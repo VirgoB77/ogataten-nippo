@@ -184,7 +184,7 @@
 - URL: https://www.sangyo-rodo.metro.tokyo.lg.jp/chushou/shoko/chiiki/daikibo
 - メモ: 前のURLは一覧ページではなかった。親ページに変更。年度別の一覧はこの下にぶら下がっている
 - robots.txt: 許可
-- HTTP 200 / UTF-8 / 553,222 バイト
+- HTTP 200 / UTF-8 / 553,194 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 縦覧 / 届出
@@ -521,12 +521,12 @@
 - URL: https://web.pref.hyogo.lg.jp/about_link.html
 - メモ: 届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）
 - robots.txt: 許可
-- HTTP 200 / utf-8 / 17,678 バイト
+- HTTP 200 / utf-8 / 17,465 バイト
 - **判定: わからない**
 - 表 1 個 / PDFリンク 0 本 / Excel 0 本
 - いちばん大きい表: 2 行 × 2 列
   - 見出しらしき行: 【HTMLの記述方法】
-			<a href="
+<a href="htt
 - 出てきた言葉: 変更
 
 ### （参考）堺市 リンク・著作権・免責事項
