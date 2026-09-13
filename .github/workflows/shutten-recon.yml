@@ -77,7 +77,7 @@ jobs:
       - name: ページを作る
         run: python3 build_site.py
         env:
-          SITE_URL: https://virgob77.github.io/ogataten-nippo/   # 独自ドメインを向けたら https://ogataten-nippo.com/ に
+          SITE_URL: https://ogataten-nippo.com/   # 独自ドメイン（CNAME ファイルと合わせる）
 
       - name: 結果をしまう
         run: |
