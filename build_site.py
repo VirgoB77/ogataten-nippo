@@ -32,7 +32,10 @@ HOST = SITE_URL.split("/", 3)[0] + "//" + SITE_URL.split("/", 3)[2]   # https://
 BASE = "/" + SITE_URL.split("/", 3)[3]                                  # /ic-log/shutten/
 SITE_NAME = "大型店日報"   # ドメインは ogataten-nippo.com の予定。「出店ウォッチ」は既存メディアと同名で使えない
 CONTACT_URL = ""   # 訂正・削除の依頼フォーム（Googleフォームなど）のURL。決まったらここに入れる
-REPO_ISSUES = "https://github.com/VirgoB77/ic-log/issues/new"
+OPERATOR = ""      # 運営者名（屋号＋氏名）。決まったらここに入れると運営者情報に出る
+CONTACT_EMAIL = "" # 返信用のメールアドレス。決まったらここに入れる
+REPLY_DAYS = 7     # 返答のめやす（日）
+REPO_ISSUES = "https://github.com/VirgoB77/ogataten-nippo/issues/new"
 DISCLAIMER = "届出時点の内容です。届出のあとに変更や取下げがあることがあり、実際の開店日・閉店日と異なる場合があります。"
 TAGLINE = "大阪・兵庫の大型店の開店・閉店を、届出が出た日に。"
 
@@ -312,8 +315,29 @@ def about_page(src_meta, today):
     cities = [m for i, m in src_meta.items()
               if m.get("enabled") and m.get("area") == "osaka" and i not in main_ids and m.get("url")]
     city_items = "".join(f'<li><a href="{esc(m["url"])}">{esc(m["name"])}</a></li>' for m in sorted(cities, key=lambda m: m["name"]))
+    operator_rows = ""
+    if OPERATOR:
+        operator_rows += f"<dt>運営者</dt><dd>{esc(OPERATOR)}</dd>\n"
+    if CONTACT_EMAIL:
+        operator_rows += f'<dt>連絡先</dt><dd><a href="mailto:{esc(CONTACT_EMAIL)}">{esc(CONTACT_EMAIL)}</a>'
+        if CONTACT_URL:
+            operator_rows += f'　／　<a href="{rel}contact.html">依頼フォーム</a>'
+        operator_rows += "</dd>\n"
+    elif CONTACT_URL:
+        operator_rows += f'<dt>連絡先</dt><dd><a href="{rel}contact.html">依頼フォーム</a></dd>\n'
     body = f"""
 <h1>このサイトについて</h1>
+
+<h2>運営者情報</h2>
+<div class="card"><dl class="kv">
+{operator_rows}
+<dt>サイトの目的</dt><dd>大規模小売店舗立地法にもとづく届出を、届出が出た日にわかる形で公開し、自治体のページから消えたあとも残すこと。</dd>
+<dt>データの出どころ</dt><dd>大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町が公表している届出、および兵庫県公報の公告。各届出ページに出典のURLと取得日を書いています。</dd>
+<dt>更新頻度</dt><dd>毎朝1回、自動で取得しています。</dd>
+<dt>訂正・削除</dt><dd><a href="{rel}contact.html">訂正・削除のご依頼</a>から受け付けます。原則{REPLY_DAYS}日以内に返信します。</dd>
+</dl></div>
+
+<h2>このサイトがしていること</h2>
 <p>{esc(SITE_NAME)}は、大規模小売店舗立地法（大店立地法）にもとづいて自治体が公表している「届出」を毎朝1回とりに行き、
 店舗面積1,000㎡を超える大型店の新設・変更・廃止・承継を、届出が出た日に一覧にしているサイトです。
 自治体のページでは縦覧期間（4か月）が過ぎると消えてしまう届出も、このサイトには残しています。</p>
@@ -353,8 +377,13 @@ def about_page(src_meta, today):
 
 def contact_page(today):
     rel = ""
+    mail = (f'<p>メールでも受け付けます：<a href="mailto:{esc(CONTACT_EMAIL)}">{esc(CONTACT_EMAIL)}</a></p>'
+            if CONTACT_EMAIL else "")
     if CONTACT_URL:
-        route = f'<p><a href="{esc(CONTACT_URL)}" style="display:inline-block;background:var(--key);color:#fff;padding:10px 18px;border-radius:10px;font-weight:700">依頼フォームを開く</a></p>'
+        route = (f'<p><a href="{esc(CONTACT_URL)}" style="display:inline-block;background:var(--key);color:#fff;'
+                 f'padding:10px 18px;border-radius:10px;font-weight:700">依頼フォームを開く</a></p>' + mail)
+    elif CONTACT_EMAIL:
+        route = mail
     else:
         route = ('<p class="note">専用の依頼フォームを準備しています。用意でき次第このページに載せます。'
                  f'それまでは <a href="{esc(REPO_ISSUES)}">GitHub の Issue</a>（GitHubのアカウントが必要です）でもお受けします。</p>')
@@ -374,7 +403,7 @@ def contact_page(today):
 
 <h2>対応のしかた</h2>
 <ul class="list">
-<li>内容を確認のうえ、原則として7日以内に返信します。</li>
+<li>内容を確認のうえ、原則として{REPLY_DAYS}日以内に返信します。</li>
 <li>自治体の公表と食い違っている場合は、公表に合わせて直します。</li>
 <li>自治体の公表そのものの訂正は、このサイトではできません。届出先の自治体窓口へお願いします。</li>
 <li>削除のご依頼は、公表期間が終わった届出や、個人の氏名が含まれる場合などを中心に、個別に判断します。</li>
