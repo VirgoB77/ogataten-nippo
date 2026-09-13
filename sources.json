@@ -172,7 +172,7 @@
       "area": "osaka",
       "url": "https://www.city.osaka-izumi.lg.jp/bizisan/shoukou/rixcchihou/todokedejoukyou/index.html",
       "enabled": true,
-      "note": "12年分すべてPDF。「届出の概要・縦覧期間等」が58本ある。大阪でいちばん本数が多い",
+      "note": "12年分すべてPDF。「届出の概要・縦覧期間等」が58本ある。大阪でいちばん本数が多い。ページに市のサイト移転前の古いリンク（ikkrwebBrowse/…/Ion.pdf、marunaka-izumi.pdf）が残っていて404になる。同じ「届出の概要・縦覧期間等」は新しいURL（material/files/group/113/…）にあり、そちらは取得済み。市側のリンク切れなので、こちらでは追わない（2026-09-13確認）",
       "pdf": true
     },
     {
@@ -476,9 +476,9 @@
       "url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000025.html",
       "pdf": true,
       "pdf_labels": "議案|議事|結果",
-      "pdf_max_mb": 3,
+      "pdf_max_mb": 5,
       "enabled": true,
-      "note": "部会の議案PDF（第54回〜、2016年〜）の冒頭「届出内容」に、店舗名・所在地・設置者・店舗面積と、その店の届出（過去分も）の届出年月日・条文が載る。parse_bukai.py が pdftotext で読んで届出の記録にする。部会にかかるのは新設と主な変更だけ。「基本計画書」で始まる議案は大規模集客施設条例の計画段階なので今は扱わない。議事録PDFも保存しているが読んでいない"
+      "note": "部会の議案PDF（第54回〜、2016年〜）の冒頭「届出内容」に、店舗名・所在地・設置者・店舗面積と、その店の届出（過去分も）の届出年月日・条文が載る。parse_bukai.py が pdftotext で読んで届出の記録にする。部会にかかるのは新設と主な変更だけ。「基本計画書」で始まる議案は大規模集客施設条例の計画段階なので今は扱わない。議事録PDFも保存しているが読んでいない。上限3MBだと第59回の議案書(3.8MB)が見送りになったので5MBにした（2026-09-13）"
     },
     {
       "id": "hyogo-shingikai",
