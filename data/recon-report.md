@@ -29,7 +29,7 @@
 - URL: https://web.pref.hyogo.lg.jp/ks21/r03_daitennrittihou.html
 - メモ: 手引と様式のページ。過去分の一覧が別にぶら下がっていないか確かめる用
 - robots.txt: 許可
-- HTTP 200 / utf-8 / 23,277 バイト
+- HTTP 200 / utf-8 / 23,276 バイト
 - **判定: Excel**
 - 表 0 個 / PDFリンク 8 本 / Excel 1 本
   - PDF: 手続の流れ（PDF：91KB） → https://web.pref.hyogo.lg.jp/ks21/documents/tetuduki011121.pdf
@@ -186,7 +186,7 @@
 - URL: https://www.sangyo-rodo.metro.tokyo.lg.jp/chushou/shoko/chiiki/daikibo
 - メモ: 前のURLは一覧ページではなかった。親ページに変更。年度別の一覧はこの下にぶら下がっている
 - robots.txt: 許可
-- HTTP 200 / UTF-8 / 553,190 バイト
+- HTTP 200 / UTF-8 / 553,196 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 縦覧 / 届出
@@ -523,7 +523,7 @@
 - URL: https://web.pref.hyogo.lg.jp/about_link.html
 - メモ: 届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）
 - robots.txt: 許可
-- HTTP 200 / utf-8 / 17,678 バイト
+- HTTP 200 / utf-8 / 17,811 バイト
 - **判定: わからない**
 - 表 1 個 / PDFリンク 0 本 / Excel 0 本
 - いちばん大きい表: 2 行 × 2 列
@@ -572,7 +572,7 @@
 - URL: https://web.pref.hyogo.lg.jp/pref/cate3_661.html
 - メモ: 兵庫県の著作権ページから辿ったオープンデータの入口。大店立地法の縦覧状況がオープンデータに含まれるか、利用規約（政府標準利用規約か）を見る（2026-09-12追加）
 - robots.txt: 許可
-- HTTP 200 / utf-8 / 14,907 バイト
+- HTTP 200 / utf-8 / 15,071 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 変更
@@ -726,8 +726,8 @@
 ### （参考）経済産業省 大店立地法の届出状況について
 
 - URL: https://www.meti.go.jp/policy/economy/distribution/daikibo/todokede.html
-- メモ: robots.txt で機械の取得が拒否されているので取りに行かない（2026-09-13確認）。内容は政府標準利用規約なので、利用者がブラウザで落とした PDF（ritti_todogai_*.pdf）を data/files/meti/ に置いてもらい、それを読む
-- **結果: 取りに行かなかった（robots.txt で機械の取得が拒否されているので取りに行かない（2026-09-13確認）。内容は政府標準利用規約なので、利用者がブラウザで落とした PDF（ritti_todogai_*.pdf）を data/files/meti/ に置いてもらい、それを読む）**
+- メモ: robots.txt で機械の取得が拒否されている。利用者がブラウザで確認したところ、ページには「令和5年度末をもって公表を終了。届出先の都道府県等に問い合わせを」とだけあり、過去年度の PDF も無かった（2026-09-13）。止めたまま
+- **結果: 取りに行かなかった（robots.txt で機械の取得が拒否されている。利用者がブラウザで確認したところ、ページには「令和5年度末をもって公表を終了。届出先の都道府県等に問い合わせを」とだけあり、過去年度の PDF も無かった（2026-09-13）。止めたまま）**
 
 ### （参考）日本ショッピングセンター協会 大店立地法新設届出情報
 
