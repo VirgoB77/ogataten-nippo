@@ -238,13 +238,32 @@
   "retailer": "株式会社トライアルカンパニー",
   "content": "",
   "area_m2": 1834,
-  "event_on": null,
-  "meeting": "第65回",
+  "event_on": "2016-10-27",
+  "meeting": "第59回",
   "docs": [
-   "https://web.pref.hyogo.lg.jp/ks21/documents/65_giann.pdf"
+   "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
   "key": "ecc32f883fd8"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2008-03-10",
+  "notified_raw": "平成 20 年３月 10 日",
+  "store": "ピオレヤング館",
+  "address": "姫路市豆腐町字万燈229ほか",
+  "operator": "神戸ＳＣ開発株式会社、西日本旅客鉄道株式会社",
+  "retailer": "株式会社丸善ジュンク堂書店ほか 39 者",
+  "content": "",
+  "area_m2": 5631,
+  "event_on": null,
+  "meeting": "第59回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "273f3a225875"
  },
  {
   "article": "",
@@ -321,6 +340,25 @@
   ],
   "source": "hyogo-bukai",
   "key": "bbb7d3e233e1"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "notified_on": "2009-09-11",
+  "notified_raw": "平成 21 年９月 11 日",
+  "store": "ピオレヤング館",
+  "address": "姫路市豆腐町字万燈229ほか",
+  "operator": "神戸ＳＣ開発株式会社、西日本旅客鉄道株式会社",
+  "retailer": "株式会社丸善ジュンク堂書店ほか 39 者",
+  "content": "",
+  "area_m2": 5631,
+  "event_on": "2016-11-17",
+  "meeting": "第59回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "903409d9acea"
  },
  {
   "article": "第5条第1項",
@@ -580,10 +618,10 @@
   "retailer": "株式会社トライアルカンパニー",
   "content": "",
   "area_m2": 1834,
-  "event_on": null,
-  "meeting": "第65回",
+  "event_on": "2016-10-27",
+  "meeting": "第59回",
   "docs": [
-   "https://web.pref.hyogo.lg.jp/ks21/documents/65_giann.pdf"
+   "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
   "key": "78da9d414b43"
@@ -625,6 +663,44 @@
   ],
   "source": "hyogo-bukai",
   "key": "09163517d251"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "notified_on": "2016-03-16",
+  "notified_raw": "平成 28 年３月 16 日",
+  "store": "ピオレヤング館",
+  "address": "姫路市豆腐町字万燈229ほか",
+  "operator": "神戸ＳＣ開発株式会社、西日本旅客鉄道株式会社",
+  "retailer": "株式会社丸善ジュンク堂書店ほか 39 者",
+  "content": "",
+  "area_m2": 5631,
+  "event_on": "2016-11-17",
+  "meeting": "第59回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "0e070b128250"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2016-03-28",
+  "notified_raw": "平成28年３月28日",
+  "store": "パピオスあかし",
+  "address": "明石市大明石町１丁目1199-2ほか",
+  "operator": "明石駅前南地区市街地再開発組合",
+  "retailer": "",
+  "content": "",
+  "area_m2": 8,
+  "event_on": "2016-12-01",
+  "meeting": "第59回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "444bb6682889"
  },
  {
   "article": "第5条第1項",
