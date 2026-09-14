@@ -1,6 +1,6 @@
 # 大店立地法 届出ページ 偵察レポート（2026-09-14）
 
-**まとめ: Excel 2件 / PDF 19件 / わからない 43件 / 表 65件**
+**まとめ: Excel 2件 / PDF 19件 / わからない 42件 / 表 66件**
 
 「そのページが機械で読める形か」だけを見ている。
 判定が **表** か **Excel** なら自動化しやすい。**PDF** なら一手間、
@@ -11,10 +11,10 @@
 - URL: https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html
 - メモ: 本命。縦覧中の案件が並ぶ。届出ごとの「資料」PDF 44本のうち2MB以下の33本を取った。ただし33本中32本は紙をスキャンした画像で文字が入っておらず、機械では読めない（2026-09-12確認）。読むならOCRが要る。保存はしてあるので、いまは表の3項目（届出日・店名・縦覧期間）だけを使う。2026-09-12から8MB級も取る（上限12MB）。読むにはOCRが要るので別の仕組みで。いま縦覧中の分しか載らないので、Wayback Machine の月1回の保存から過去分を積み直す（wayback.py、2026-09-12〜）。2019〜2023年のページは一覧を todokede_jyuuranYYMMDD.pdf に置いていたので、その PDF もアーカイブから前方一致で拾う
 - robots.txt: 許可
-- HTTP 200 / utf-8 / 35,293 バイト
+- HTTP 200 / utf-8 / 34,515 バイト
 - **判定: 表**
-- 表 3 個 / PDFリンク 44 本 / Excel 0 本
-- いちばん大きい表: 34 行 × 4 列
+- 表 3 個 / PDFリンク 42 本 / Excel 0 本
+- いちばん大きい表: 32 行 × 4 列
   - 見出しらしき行: 届出年月日 | 店舗名称 | 縦覧期間 | 概要
   - PDF: （PDF：142KB） → https://web.pref.hyogo.lg.jp/ks21/documents/onlinechirashi.pdf
   - PDF: 資料（PDF：8,057KB） → https://web.pref.hyogo.lg.jp/ks21/documents/freshbazaarinagawaten.pdf
@@ -187,7 +187,7 @@
 - URL: https://www.sangyo-rodo.metro.tokyo.lg.jp/chushou/shoko/chiiki/daikibo
 - メモ: 前のURLは一覧ページではなかった。親ページに変更。年度別の一覧はこの下にぶら下がっている
 - robots.txt: 許可
-- HTTP 200 / UTF-8 / 553,228 バイト
+- HTTP 200 / UTF-8 / 553,224 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 縦覧 / 届出
@@ -459,12 +459,15 @@
 - URL: https://www.city.kawachinagano.lg.jp/soshiki/16/100545.html
 - メモ: 「縦覧リスト」PDFが一覧そのもの。設置者と店舗面積まで入っている
 - robots.txt: 許可
-- HTTP 200 / utf-8 / 17,313 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 2 本 / Excel 0 本
-  - PDF: 縦覧リスト [PDFファイル／62KB] → https://www.city.kawachinagano.lg.jp/uploaded/attachment/48096.pdf
+- HTTP 200 / utf-8 / 18,246 バイト
+- **判定: 表**
+- 表 1 個 / PDFリンク 2 本 / Excel 0 本
+- いちばん大きい表: 4 行 × 2 列
+  - 見出しらしき行: 大規模小売店舗立地法第５条第１項 新設届に係る説
+  - PDF: 縦覧リスト [PDFファイル／59KB] → https://www.city.kawachinagano.lg.jp/uploaded/attachment/47435.pdf
   - PDF: 意見書（PDF） [PDFファイル／88KB] → https://www.city.kawachinagano.lg.jp/uploaded/attachment/39098.pdf
 - 出てきた言葉: 新設 / 変更 / 縦覧 / 届出
+- 年度らしき表記: 令和8 年
 
 ### 堺市 中規模小売店舗の届出状況
 

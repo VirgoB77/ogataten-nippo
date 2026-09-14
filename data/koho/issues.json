@@ -1,4 +1,442 @@
 {
+"2011-10-25#2332": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/documents/000190247.pdf",
+"when": "2026-09-14"
+},
+"2011-10-28#2333": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/documents/000190545_1.pdf",
+"when": "2026-09-14"
+},
+"2011-11-01#2334": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/documents/000190551.pdf",
+"when": "2026-09-14"
+},
+"2011-11-04#2335": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/documents/000190827_1.pdf",
+"when": "2026-09-14"
+},
+"2011-11-18#2339": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/documents/000191336.pdf",
+"when": "2026-09-14"
+},
+"2011-11-29#2342": {
+"sections": 4,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/documents/231129t.pdf",
+"when": "2026-09-14"
+},
+"2011-12-06#2344": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/231206t.pdf",
+"when": "2026-09-14"
+},
+"2011-12-09#2345": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/231209t.pdf",
+"when": "2026-09-14"
+},
+"2011-12-16#2347": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/231216t.pdf",
+"when": "2026-09-14"
+},
+"2011-12-27#2350": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/231227t.pdf",
+"when": "2026-09-14"
+},
+"2012-01-04#2454": {
+"status": "月ページに号が無い"
+},
+"2012-01-15#2457": {
+"status": "月ページに号が無い"
+},
+"2012-01-20#2355": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240120t.pdf",
+"when": "2026-09-14"
+},
+"2012-01-24#2356": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240124t.pdf",
+"when": "2026-09-14"
+},
+"2012-01-31#2358": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240131t.pdf",
+"when": "2026-09-14"
+},
+"2012-02-03#2359": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240203t.pdf",
+"when": "2026-09-14"
+},
+"2012-02-21#2364": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240221t.pdf",
+"when": "2026-09-14"
+},
+"2012-02-28#2366": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240228t.pdf",
+"when": "2026-09-14"
+},
+"2012-04-10#2378": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240410t.pdf",
+"when": "2026-09-14"
+},
+"2012-04-13#2379": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240413t.pdf",
+"when": "2026-09-14"
+},
+"2012-04-20#2381": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240420t.pdf",
+"when": "2026-09-14"
+},
+"2012-04-24#2382": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240424t.pdf",
+"when": "2026-09-14"
+},
+"2012-04-27#2383": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240427t.pdf",
+"when": "2026-09-14"
+},
+"2012-05-01#2384": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240501t.pdf",
+"when": "2026-09-14"
+},
+"2012-05-15#2388": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240515t.pdf",
+"when": "2026-09-14"
+},
+"2012-05-22#2390": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240522t.pdf",
+"when": "2026-09-14"
+},
+"2012-05-29#2392": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240529t.pdf",
+"when": "2026-09-14"
+},
+"2012-06-08#2395": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240608t.pdf",
+"when": "2026-09-14"
+},
+"2012-06-15#2397": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240615t.pdf",
+"when": "2026-09-14"
+},
+"2012-06-19#2398": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240619t.pdf",
+"when": "2026-09-14"
+},
+"2012-06-22#2399": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240622t.pdf",
+"when": "2026-09-14"
+},
+"2012-06-26#2400": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240626t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-03#2402": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240703t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-06#2403": {
+"sections": 4,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240706t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-13#2405": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240713t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-17#2406": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240717t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-20#2407": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240720t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-27#2409": {
+"sections": 4,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240727t.pdf",
+"when": "2026-09-14"
+},
+"2012-07-31#2410": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240731t.pdf",
+"when": "2026-09-14"
+},
+"2012-08-07#2412": {
+"sections": 4,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240807t.pdf",
+"when": "2026-09-14"
+},
+"2012-08-10#2413": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240810t.pdf",
+"when": "2026-09-14"
+},
+"2012-08-14#2414": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240814t.pdf",
+"when": "2026-09-14"
+},
+"2012-08-28#2418": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240828t.pdf",
+"when": "2026-09-14"
+},
+"2012-09-04#2420": {
+"sections": 7,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240904t.pdf",
+"when": "2026-09-14"
+},
+"2012-09-07#2421": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240907t.pdf",
+"when": "2026-09-14"
+},
+"2012-09-21#2425": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240921t.pdf",
+"when": "2026-09-14"
+},
+"2012-09-25#2426": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240925t.pdf",
+"when": "2026-09-14"
+},
+"2012-09-28#2427": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/240928t.pdf",
+"when": "2026-09-14"
+},
+"2012-10-09#2430": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241009t.pdf",
+"when": "2026-09-14"
+},
+"2012-10-12#2431": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241012t.pdf",
+"when": "2026-09-14"
+},
+"2012-10-19#2433": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241019t.pdf",
+"when": "2026-09-14"
+},
+"2012-10-26#2435": {
+"sections": 4,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241026t.pdf",
+"when": "2026-09-14"
+},
+"2012-11-09#2439": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241109t.pdf",
+"when": "2026-09-14"
+},
+"2012-11-20#2442": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241120t.pdf",
+"when": "2026-09-14"
+},
+"2012-11-26#2443": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241126t.pdf",
+"when": "2026-09-14"
+},
+"2012-11-30#2445": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241130t.pdf",
+"when": "2026-09-14"
+},
+"2012-12-11#2448": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241211t.pdf",
+"when": "2026-09-14"
+},
+"2012-12-14#2449": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241214t.pdf",
+"when": "2026-09-14"
+},
+"2012-12-21#2451": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241221t.pdf",
+"when": "2026-09-14"
+},
+"2012-12-28#2453": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/241228t.pdf",
+"when": "2026-09-14"
+},
+"2013-01-25#2460": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250125t.pdf",
+"when": "2026-09-14"
+},
+"2013-01-29#2461": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250129t.pdf",
+"when": "2026-09-14"
+},
+"2013-02-01#2462": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250201t.pdf",
+"when": "2026-09-14"
+},
+"2013-02-05#2463": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250205t.pdf",
+"when": "2026-09-14"
+},
+"2013-02-12#2465": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250212t.pdf",
+"when": "2026-09-14"
+},
+"2013-02-15#2466": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250215t.pdf",
+"when": "2026-09-14"
+},
+"2013-02-19#2467": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250219t.pdf",
+"when": "2026-09-14"
+},
+"2013-02-26#2469": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250226t.pdf",
+"when": "2026-09-14"
+},
+"2013-03-01#2470": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250301t.pdf",
+"when": "2026-09-14"
+},
+"2013-03-12#2473": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250312t.pdf",
+"when": "2026-09-14"
+},
+"2013-03-22#2476": {
+"sections": 2,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250322t.pdf",
+"when": "2026-09-14"
+},
+"2013-04-05#2480": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250405t.pdf",
+"when": "2026-09-14"
+},
+"2013-04-09#2481": {
+"sections": 3,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250409t.pdf",
+"when": "2026-09-14"
+},
+"2013-04-12#2482": {
+"sections": 1,
+"status": "done",
+"url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250412t.pdf",
+"when": "2026-09-14"
+},
 "2013-04-26#2486": {
 "sections": 1,
 "status": "done",
