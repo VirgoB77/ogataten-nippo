@@ -1,5 +1,2603 @@
 [
  {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-04-26",
+  "gazette_no": "2486",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250426t.pdf"
+  ],
+  "store": "エディオン豊岡店",
+  "address": "豊岡市宮島322番地１",
+  "operator": "オリックス株式会社",
+  "event_on": "2013-03-28",
+  "notified_on": "2013-03-28",
+  "content": "大規模小売店舗の名称",
+  "region": "但馬",
+  "review_from": "2013-04-26",
+  "key": "4b78df1827ac"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-05-07",
+  "gazette_no": "2488",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250507t.pdf"
+  ],
+  "store": "スーパーマルハチウッディタウン店",
+  "address": "三田市あかしあ台５丁目31番１ほか",
+  "operator": "株式会社ダイセイ",
+  "retailer": "株式会社マルハチ",
+  "event_on": "2013-12-05",
+  "notified_on": "2013-04-04",
+  "area_m2": 1971,
+  "region": "阪神北",
+  "review_from": "2013-05-07",
+  "key": "dcc4f1b35293"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-06-11",
+  "gazette_no": "2499",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250611t.pdf"
+  ],
+  "store": "エイヴィスプラザ",
+  "address": "西宮市田中町73番地",
+  "event_on": "2012-08-16",
+  "notified_on": "2013-04-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神南",
+  "review_from": "2013-06-11",
+  "key": "e236e43147d0"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-06-11",
+  "gazette_no": "2499",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250611t.pdf"
+  ],
+  "store": "ミリオンタウン西宮前浜店",
+  "address": "西宮市前浜町１番地１",
+  "operator": "万代油脂工業株式会社",
+  "event_on": "2012-06-22",
+  "notified_on": "2013-05-21",
+  "content": "大規模小売店舗の名称",
+  "region": "阪神南",
+  "review_from": "2013-06-11",
+  "key": "ed8f2eb07b43"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-06-11",
+  "gazette_no": "2499",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250611t.pdf"
+  ],
+  "store": "ミリオンタウン伊丹荒牧店",
+  "address": "伊丹市鴻池七丁目58番地２",
+  "operator": "万代油脂工業株式会社",
+  "event_on": "2011-09-09",
+  "notified_on": "2013-05-22",
+  "content": "大規模小売店舗の名称及び所在地",
+  "region": "阪神北",
+  "review_from": "2013-06-11",
+  "key": "0bbd8dd7b613"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-05",
+  "gazette_no": "2506",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250705t.pdf"
+  ],
+  "store": "ゆめタウンひかみ",
+  "address": "丹波市氷上町本郷300番地",
+  "operator": "株式会社タンバンベルグ 丹波市氷上町本郷300番地",
+  "event_on": "2011-08-29",
+  "notified_on": "2013-05-31",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "丹波",
+  "review_from": "2013-07-05",
+  "key": "9f612042742e"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-06-25",
+  "gazette_no": "2503",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250625t.pdf"
+  ],
+  "store": "（仮称）マナベインテリアハーツ川西店",
+  "address": "川西市加茂六丁目13番１ほか",
+  "operator": "株式会社Ｋ＆Ｋ",
+  "retailer": "ネッツトヨタ神戸株式会社、株式会社マナベインテリアハーツ",
+  "event_on": "2014-02-01",
+  "notified_on": "2013-05-31",
+  "area_m2": 3,
+  "region": "阪神北",
+  "review_from": "2013-06-25",
+  "key": "42a9fe7eef8e"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-06-28",
+  "gazette_no": "2504",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250628t.pdf"
+  ],
+  "store": "イオン小野店",
+  "address": "小野市王子町字太良右兵エ門池868番地１",
+  "operator": "神姫バス株式会社",
+  "event_on": "2013-03-01",
+  "notified_on": "2013-06-03",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2013-06-28",
+  "key": "dd8f21fa57e0"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-05",
+  "gazette_no": "2506",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250705t.pdf"
+  ],
+  "store": "やぶＹタウン",
+  "address": "養父市上箇153番地１",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-06-04",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "但馬",
+  "review_from": "2013-07-05",
+  "key": "03a11f520dae"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-23",
+  "gazette_no": "2511",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250723t.pdf"
+  ],
+  "store": "ジョーシン姫路東店",
+  "address": "姫路市楠町140番地１ほか",
+  "operator": "上新電機株式会社",
+  "event_on": "2013-06-24",
+  "notified_on": "2013-06-24",
+  "content": "大規模小売店舗の名称",
+  "region": "中播磨",
+  "review_from": "2013-07-23",
+  "key": "204d1de9b1cf"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-12",
+  "gazette_no": "2508",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250712t.pdf"
+  ],
+  "store": "（仮称）ニトリ南あわじ店",
+  "address": "南あわじ市広田広田字畑田109番１ほか",
+  "operator": "株式会社ニトリ",
+  "retailer": "株式会社ニトリ",
+  "notified_on": "2013-06-25",
+  "area_m2": 3449,
+  "region": "淡路",
+  "review_from": "2013-07-12",
+  "key": "a598c653b340"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-13",
+  "gazette_no": "2517",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250813t.pdf"
+  ],
+  "store": "イオンタウン氷上ショッピングセンター",
+  "address": "丹波市氷上町石生字牛ノ木2011番２ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-06-28",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "丹波",
+  "review_from": "2013-08-13",
+  "key": "0616ebdc0c93"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-30",
+  "gazette_no": "2513",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250730t.pdf"
+  ],
+  "store": "イオン上郡ショッピングセンター",
+  "address": "赤穂郡上郡町竹万533ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-07-01",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "西播磨",
+  "review_from": "2013-07-30",
+  "key": "62c844c1d124"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-30",
+  "gazette_no": "2513",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250730t.pdf"
+  ],
+  "store": "佐用ショッピングタウン",
+  "address": "佐用郡佐用町佐用1060ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-07-01",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "西播磨",
+  "review_from": "2013-07-30",
+  "key": "49c9f97e8ac7"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-07-30",
+  "gazette_no": "2513",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250730t.pdf"
+  ],
+  "store": "イオン姫路店",
+  "address": "姫路市増位本町二丁目12番10号",
+  "operator": "みずほ信託銀行株式会社",
+  "event_on": "2013-04-01",
+  "notified_on": "2013-07-04",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2013-07-30",
+  "key": "5353c4ed09aa"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-06",
+  "gazette_no": "2515",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250806t.pdf"
+  ],
+  "store": "やしろショッピングパーク",
+  "address": "加東市社字柿ヶ坪1128―１ほか",
+  "operator": "やしろ商業開発株式会社",
+  "event_on": "2013-05-08",
+  "notified_on": "2013-07-10",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2013-08-06",
+  "key": "1d07799648b6"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-13",
+  "gazette_no": "2517",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250813t.pdf"
+  ],
+  "store": "株式会社いかりスーパーマーケット塚口店",
+  "address": "尼崎市塚口町一丁目15番地の８",
+  "operator": "株式会社いかりスーパーマーケット",
+  "event_on": "2014-03-19",
+  "notified_on": "2013-07-18",
+  "content": "駐車場の位置及び収容台数（位置の詳細については、縦覧に供する関係書類に示すとおり。",
+  "region": "阪神南",
+  "review_from": "2013-08-13",
+  "key": "e17907265da0"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-13",
+  "gazette_no": "2526",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250913t.pdf"
+  ],
+  "store": "アスピア明石",
+  "address": "明石市東仲ノ町６番１号",
+  "operator": "明石地域振興開発株式会社",
+  "event_on": "2013-06-28",
+  "notified_on": "2013-07-29",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2013-09-13",
+  "key": "b7a1ad2a4ceb"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-06",
+  "gazette_no": "2524",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250906t.pdf"
+  ],
+  "store": "ライフガーデン潮芦屋（北敷地）",
+  "address": "芦屋市海洋町４―９ほか",
+  "operator": "ダイワロイヤル株式会社",
+  "event_on": "2009-04-16",
+  "notified_on": "2013-07-29",
+  "content": "大規模小売店舗の所在地",
+  "region": "阪神南",
+  "review_from": "2013-09-06",
+  "key": "a31cd6db93d0"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-06",
+  "gazette_no": "2524",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250906t.pdf"
+  ],
+  "store": "ライフガーデン潮芦屋（南敷地）",
+  "address": "芦屋市海洋町４―10ほか",
+  "operator": "ダイワロイヤル株式会社",
+  "event_on": "2009-04-16",
+  "notified_on": "2013-07-29",
+  "content": "大規模小売店舗の所在地",
+  "region": "阪神南",
+  "review_from": "2013-09-06",
+  "key": "eb70f1fc3618"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-23",
+  "gazette_no": "2520",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250823t.pdf"
+  ],
+  "store": "（仮称）テックランド兵庫小野店",
+  "address": "小野市王子町95番１ほか",
+  "operator": "株式会社ヤマダ電機",
+  "retailer": "株式会社ヤマダ電機",
+  "event_on": "2014-03-31",
+  "notified_on": "2013-07-30",
+  "area_m2": 1500,
+  "region": "北播磨",
+  "review_from": "2013-08-23",
+  "key": "870b536f9050"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-30",
+  "gazette_no": "2522",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250830t.pdf"
+  ],
+  "store": "ダイエーグルメシティ北鳴尾店",
+  "address": "西宮市学文殿町１―９―20",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-02",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神南",
+  "review_from": "2013-08-30",
+  "key": "8eda6880e907"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-23",
+  "gazette_no": "2520",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250823t.pdf"
+  ],
+  "store": "ダイエーグルメシティ小林店",
+  "address": "宝塚市福井町32―28",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-02",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2013-08-23",
+  "key": "b6cc38cf850c"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-30",
+  "gazette_no": "2522",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250830t.pdf"
+  ],
+  "store": "ダイエーグルメシティ西大島店",
+  "address": "尼崎市稲葉荘１―１―５",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-02",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神南",
+  "review_from": "2013-08-30",
+  "key": "559797dfa78c"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-30",
+  "gazette_no": "2522",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250830t.pdf"
+  ],
+  "store": "ダイエーグルメシティ西武庫店",
+  "address": "尼崎市武庫元町１―24―６",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-02",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神南",
+  "review_from": "2013-08-30",
+  "key": "29af14d609a5"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-08-23",
+  "gazette_no": "2520",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250823t.pdf"
+  ],
+  "store": "ダイエー川西店",
+  "address": "川西市多田桜木１―１―１",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-02",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2013-08-23",
+  "key": "b349d0eb5e7a"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-10",
+  "gazette_no": "2525",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250910t.pdf"
+  ],
+  "store": "ウエルシア青山店、ホームセンターダイキ三木青山店",
+  "address": "三木市志染町青山六丁目15―１ほか",
+  "operator": "西村興産株式会社",
+  "event_on": "2013-09-01",
+  "notified_on": "2013-08-15",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "北播磨",
+  "review_from": "2013-09-10",
+  "key": "6a051efa03dc"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-06",
+  "gazette_no": "2524",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250906t.pdf"
+  ],
+  "store": "（仮称）ニトリたつの店",
+  "address": "たつの市揖保町揖保中字砂田201―１ほか",
+  "operator": "株式会社ニトリ",
+  "retailer": "株式会社ニトリ、外未定１者",
+  "event_on": "2014-02-14",
+  "notified_on": "2013-08-15",
+  "area_m2": 3640,
+  "region": "西播磨",
+  "review_from": "2013-09-06",
+  "key": "6414fb3da121"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-13",
+  "gazette_no": "2526",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250913t.pdf"
+  ],
+  "store": "イオンタウン高砂",
+  "address": "高砂市梅井５丁目57―14ほか",
+  "operator": "イオンタウン株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-19",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2013-09-13",
+  "key": "1f156214546d"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-13",
+  "gazette_no": "2526",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250913t.pdf"
+  ],
+  "store": "加古川水足ショッピングタウン",
+  "address": "加古川市野口町水足560―11ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2013-09-13",
+  "key": "8f672d61df7b"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-10",
+  "gazette_no": "2525",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250910t.pdf"
+  ],
+  "store": "イオン宮西ショッピングセンター（Ｂ街区）",
+  "address": "姫路市宮西町四丁目37番地",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-20",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2013-09-10",
+  "key": "1564374c9752"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-09-10",
+  "gazette_no": "2525",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/250910t.pdf"
+  ],
+  "store": "太子南ショッピングタウン",
+  "address": "揖保郡太子町蓮常寺字豆田281―２",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2013-08-20",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "西播磨",
+  "review_from": "2013-09-10",
+  "key": "8859bb605a44"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-10-15",
+  "gazette_no": "2535",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251015t.pdf"
+  ],
+  "store": "香住パーク",
+  "address": "美方郡香美町香住区香住字真新場882番１ほか",
+  "operator": "株式会社トヨダ",
+  "event_on": "2013-09-01",
+  "notified_on": "2013-09-13",
+  "content": "大規模小売店舗の名称及び所在地",
+  "region": "但馬",
+  "review_from": "2013-10-15",
+  "key": "06875b2d5905"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-10-11",
+  "gazette_no": "2534",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251011t.pdf"
+  ],
+  "store": "アプリ甲東",
+  "address": "西宮市甲東園３丁目29番地ほか",
+  "operator": "千島土地株式会社",
+  "event_on": "2013-05-09",
+  "notified_on": "2013-09-20",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神南",
+  "review_from": "2013-10-11",
+  "key": "d0f8490af34a"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-10-11",
+  "gazette_no": "2534",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251011t.pdf"
+  ],
+  "store": "ピーコックストア武庫之荘店",
+  "address": "尼崎市南武庫之荘１丁目17番地ほか",
+  "event_on": "2013-05-09",
+  "notified_on": "2013-09-20",
+  "content": "大規模小売店舗の名称",
+  "region": "阪神南",
+  "review_from": "2013-10-11",
+  "key": "8c26bf393969"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-12",
+  "gazette_no": "2543",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251112t.pdf"
+  ],
+  "store": "イオン小野店",
+  "address": "小野市王子町字太良右兵エ門池868番地１",
+  "operator": "神姫バス株式会社",
+  "event_on": "2013-06-27",
+  "notified_on": "2013-10-08",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2013-11-12",
+  "key": "b1f56d33c220"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-12",
+  "gazette_no": "2543",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251112t.pdf"
+  ],
+  "store": "テックランド豊岡店",
+  "address": "豊岡市中陰字野田656番１ほか",
+  "operator": "株式会社ベスト電器",
+  "event_on": "2013-10-08",
+  "notified_on": "2013-10-08",
+  "content": "大規模小売店舗の名称",
+  "region": "但馬",
+  "review_from": "2013-11-12",
+  "key": "417042449860"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-15",
+  "gazette_no": "2544",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251115t.pdf"
+  ],
+  "store": "コジマＮＥＷ手柄店",
+  "address": "姫路市手柄158―１",
+  "operator": "西日本電信電話株式会社",
+  "event_on": "2012-06-15",
+  "notified_on": "2013-10-18",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2013-11-15",
+  "key": "df542d8fbd04"
+ },
+ {
+  "article": "第6条第5項",
+  "kind": "廃止",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-15",
+  "gazette_no": "2544",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251115t.pdf"
+  ],
+  "store": "コジマＮＥＷ手柄店",
+  "address": "姫路市手柄158―１",
+  "event_on": "2011-05-29",
+  "notified_on": "2013-10-18",
+  "area_m2": 1480,
+  "review_from": "2013-11-15",
+  "key": "57cead67b48c"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-19",
+  "gazette_no": "2545",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251119t.pdf"
+  ],
+  "store": "ピオレ姫路本館",
+  "address": "姫路市駅前町188番１",
+  "operator": "ジェイアール西日本不動産開発株式会社",
+  "event_on": "2013-04-30",
+  "notified_on": "2013-10-23",
+  "content": "大規模小売店舗の名称",
+  "region": "中播磨",
+  "review_from": "2013-11-19",
+  "key": "ce2e45ea4c79"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-15",
+  "gazette_no": "2544",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251115t.pdf"
+  ],
+  "store": "加古川水足ショッピングタウン",
+  "address": "加古川市野口町水足560―11ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-08-19",
+  "notified_on": "2013-10-23",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2013-11-15",
+  "key": "e0fd39ede5fd"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-26",
+  "gazette_no": "2547",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251126t.pdf"
+  ],
+  "store": "（仮称）ＳＵＰＥＲ ＣＥＮＴＥＲ ＰＬＡＮＴ淡路店",
+  "address": "淡路市志筑新島９番７",
+  "operator": "株式会社ＰＬＡＮＴ",
+  "retailer": "株式会社ＰＬＡＮＴ",
+  "event_on": "2014-06-29",
+  "notified_on": "2013-10-28",
+  "area_m2": 7728,
+  "region": "淡路",
+  "review_from": "2013-11-26",
+  "key": "108060e8e775"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-26",
+  "gazette_no": "2547",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251126t.pdf"
+  ],
+  "store": "（仮称）ドラッグコスモス大久保店",
+  "address": "明石市大久保町西脇西脇土地区画整理事業52街区１画地ほか",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2014-07-02",
+  "notified_on": "2013-11-01",
+  "area_m2": 1196,
+  "region": "東播磨",
+  "review_from": "2013-11-26",
+  "key": "48f9c5b228d4"
+ },
+ {
+  "article": "第6条第5項",
+  "kind": "廃止",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-11-29",
+  "gazette_no": "2548",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251129t.pdf"
+  ],
+  "store": "ホームカーペンター別所店",
+  "address": "姫路市別所町北宿字東段890番地ほか",
+  "event_on": "2011-02-28",
+  "notified_on": "2013-11-12",
+  "area_m2": 62,
+  "review_from": "2013-11-29",
+  "key": "cf4d4f5384ba"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-12-17",
+  "gazette_no": "2553",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251217t.pdf"
+  ],
+  "store": "フレッシュバザール日高パーク店",
+  "address": "豊岡市日高町祢布字ガケガ森988",
+  "event_on": "2013-05-20",
+  "notified_on": "2013-11-15",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "但馬",
+  "review_from": "2013-12-17",
+  "key": "53164bdaa674"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-12-13",
+  "gazette_no": "2552",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251213t.pdf"
+  ],
+  "store": "あまがさきキューズモール",
+  "address": "尼崎市潮江一丁目３―１ほか",
+  "operator": "三井住友信託銀行株式会社",
+  "event_on": "2013-10-09",
+  "notified_on": "2013-11-21",
+  "content": "大規模小売店舗の名称",
+  "region": "阪神南",
+  "review_from": "2013-12-13",
+  "key": "48ceb72c3f03"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-12-13",
+  "gazette_no": "2552",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251213t.pdf"
+  ],
+  "store": "（仮称）駅の街杭瀬ショッピングセンター",
+  "address": "尼崎市杭瀬本町一丁目１番１号",
+  "operator": "阪神電気鉄道株式会社",
+  "event_on": "2014-07-28",
+  "notified_on": "2013-11-27",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神南",
+  "review_from": "2013-12-13",
+  "key": "31fb41a5307b"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-12-27",
+  "gazette_no": "2556",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251227t.pdf"
+  ],
+  "store": "ホームプラザナフコ三木店",
+  "address": "三木市大村一丁目８―15ほか",
+  "operator": "株式会社ナフコ",
+  "event_on": "2014-07-29",
+  "notified_on": "2013-11-28",
+  "content": "駐車場の位置及び収容台数（位置の詳細については、縦覧に供する関係書類に示すとおり。",
+  "region": "北播磨",
+  "review_from": "2013-12-27",
+  "key": "ce1ed840f565"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2013-12-17",
+  "gazette_no": "2553",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/251217t.pdf"
+  ],
+  "store": "（仮称）ジョーシン新福崎店",
+  "address": "神崎郡福崎町南田原2903番１ほか",
+  "operator": "上新電機株式会社",
+  "retailer": "上新電機株式会社",
+  "event_on": "2014-07-29",
+  "notified_on": "2013-11-28",
+  "area_m2": 2700,
+  "region": "中播磨",
+  "review_from": "2013-12-17",
+  "key": "b431afe8b6c5"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-02-12",
+  "gazette_no": "2567",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260212t.pdf"
+  ],
+  "store": "やしろショッピングパーク",
+  "address": "加東市社字柿ヶ坪1128―１ほか",
+  "operator": "やしろ商業開発株式会社",
+  "event_on": "2013-12-16",
+  "notified_on": "2014-01-15",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2014-02-12",
+  "key": "6ddbf4f01750"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-02-12",
+  "gazette_no": "2567",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260212t.pdf"
+  ],
+  "store": "イオンモール加西北条",
+  "address": "加西市北条町北条字鳥居元323―３ほか",
+  "operator": "三井住友信託銀行株式会社",
+  "event_on": "2013-10-03",
+  "notified_on": "2014-01-20",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2014-02-12",
+  "key": "aa1232934c69"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-02-18",
+  "gazette_no": "2569",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260218t.pdf"
+  ],
+  "store": "ドラッグコスモス西蒲田店",
+  "address": "姫路市広畑区城山町1400番87",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2014-09-28",
+  "notified_on": "2014-01-27",
+  "area_m2": 1298,
+  "region": "中播磨",
+  "review_from": "2014-02-18",
+  "key": "472ed8c6cf0a"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-03-14",
+  "gazette_no": "2576",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260314t.pdf"
+  ],
+  "store": "アクロスプラザ三田ウッディタウン",
+  "address": "三田市すずかけ台３番２",
+  "operator": "大和情報サービス株式会社",
+  "event_on": "2013-07-19",
+  "notified_on": "2014-02-17",
+  "content": "大規模小売店舗の名称",
+  "region": "阪神北",
+  "review_from": "2014-03-14",
+  "key": "64fcc31ad731"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-03-14",
+  "gazette_no": "2576",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260314t.pdf"
+  ],
+  "store": "川西能勢口駅前商業施設",
+  "address": "川西市小花一丁目221―１ほか",
+  "operator": "西松建設株式会社",
+  "event_on": "2013-03-01",
+  "notified_on": "2014-02-20",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-03-14",
+  "key": "2107bc25b104"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-03-25",
+  "gazette_no": "2579",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260325t.pdf"
+  ],
+  "store": "アスピア明石",
+  "address": "明石市東仲ノ町６番１号",
+  "operator": "明石地域振興開発株式会社",
+  "event_on": "2014-04-01",
+  "notified_on": "2014-02-26",
+  "content": "駐輪場の位置（詳細については、縦覧に供する関係書類に示すとおり。",
+  "region": "東播磨",
+  "review_from": "2014-03-25",
+  "key": "736720036da2"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-03-25",
+  "gazette_no": "2579",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260325t.pdf"
+  ],
+  "store": "イオンモール姫路リバーシティー",
+  "address": "姫路市飾磨区細江2560ほか",
+  "operator": "シキボウ株式会社",
+  "event_on": "2013-05-25",
+  "notified_on": "2014-03-03",
+  "content": "大規模小売店舗の所在地",
+  "region": "中播磨",
+  "review_from": "2014-03-25",
+  "key": "9dd05e320c1e"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-01",
+  "gazette_no": "2581",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260401t.pdf"
+  ],
+  "store": "関西スーパー浜松原店",
+  "address": "西宮市浜松原19番１ほか",
+  "operator": "日本盛株式会社",
+  "event_on": "2009-04-01",
+  "notified_on": "2014-03-04",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-04-01",
+  "key": "2b144346a888"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-01",
+  "gazette_no": "2581",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260401t.pdf"
+  ],
+  "store": "関西スーパー鳴尾店",
+  "address": "西宮市上田西町４―４",
+  "operator": "サーバントラスト信託株式会社",
+  "event_on": "2013-03-21",
+  "notified_on": "2014-03-04",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-04-01",
+  "key": "e1b3644134e6"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-08",
+  "gazette_no": "2583",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260408t.pdf"
+  ],
+  "store": "（仮称）ホームセンターコーナン和田山店",
+  "address": "朝来市和田山町枚田岡字上野190―１ほか",
+  "operator": "コーナン商事株式会社",
+  "retailer": "コーナン商事株式会社",
+  "event_on": "2014-11-07",
+  "notified_on": "2014-03-06",
+  "area_m2": 6013,
+  "region": "但馬",
+  "review_from": "2014-04-08",
+  "key": "d002f4c1f784"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-08",
+  "gazette_no": "2583",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260408t.pdf"
+  ],
+  "store": "日向ビル",
+  "address": "尼崎市西大物町12番41号",
+  "operator": "ジョイハウス株式会社",
+  "event_on": "2011-03-28",
+  "notified_on": "2014-03-14",
+  "content": "大規模小売店舗の名称",
+  "region": "阪神北",
+  "review_from": "2014-04-08",
+  "key": "b8f9ee61f9e7"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-11",
+  "gazette_no": "2584",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260411t.pdf"
+  ],
+  "store": "（仮称）ドン・キホーテ三田店",
+  "address": "三田市川除相綛55番２号ほか",
+  "operator": "株式会社ドンキホーテホールディングス",
+  "event_on": "2014-04-25",
+  "notified_on": "2014-03-17",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-04-11",
+  "key": "ba149d0daa65"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-08",
+  "gazette_no": "2583",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260408t.pdf"
+  ],
+  "store": "ダイエー川西店",
+  "address": "川西市多田桜木１―１―１",
+  "operator": "株式会社ダイエー",
+  "event_on": "2014-03-20",
+  "notified_on": "2014-03-19",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "阪神北",
+  "review_from": "2014-04-08",
+  "key": "18dba6d1b205"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-11",
+  "gazette_no": "2584",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260411t.pdf"
+  ],
+  "store": "赤とんぼ広場ショッピングセンター",
+  "address": "たつの市龍野町堂本260―１ほか",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2014-03-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2014-04-11",
+  "key": "df61fdc0c301"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-08",
+  "gazette_no": "2583",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260408t.pdf"
+  ],
+  "store": "ＡＳＴＭ芦屋浜高層住宅プロジェクト商業施設",
+  "address": "芦屋市高浜町６番１号",
+  "operator": "株式会社アステム",
+  "event_on": "2008-08-11",
+  "notified_on": "2014-03-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-04-08",
+  "key": "56965ee567ec"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-30",
+  "gazette_no": "2589",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260430t.pdf"
+  ],
+  "store": "香住パーク",
+  "address": "美方郡香美町香住区香住字真新場882番１ほか",
+  "operator": "株式会社トヨダ",
+  "event_on": "2014-11-21",
+  "notified_on": "2014-03-20",
+  "content": "駐車場の収容台数",
+  "region": "但馬",
+  "review_from": "2014-04-30",
+  "key": "52fcd3fa009c"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-04-11",
+  "gazette_no": "2584",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260411t.pdf"
+  ],
+  "store": "スーパーセンタートライアル姫路店",
+  "address": "姫路市別所町小林字谷田346ほか",
+  "operator": "株式会社トライアルカンパニー",
+  "retailer": "株式会社トライアルカンパニー",
+  "event_on": "2014-11-25",
+  "notified_on": "2014-03-24",
+  "area_m2": 3664,
+  "region": "中播磨",
+  "review_from": "2014-04-11",
+  "key": "39d1ea7f79a1"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-05-07",
+  "gazette_no": "2591",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260507t.pdf"
+  ],
+  "store": "アグロガーデン加古川野口店",
+  "address": "加古川市野口町良野844番１ほか",
+  "operator": "株式会社ホームセンターアグロ",
+  "event_on": "2014-03-05",
+  "notified_on": "2014-04-10",
+  "content": "大規模小売店舗の名称",
+  "region": "東播磨",
+  "review_from": "2014-05-07",
+  "key": "b1f32bf5f53e"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-05-09",
+  "gazette_no": "2592",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260509t.pdf"
+  ],
+  "store": "エディオン豊岡店",
+  "address": "豊岡市宮島322番地１",
+  "operator": "オリックス株式会社",
+  "event_on": "2014-12-14",
+  "notified_on": "2014-04-14",
+  "content": "駐輪場の位置変更（位置の詳細については、縦覧に供する関係書類に示すとおり。）",
+  "region": "但馬",
+  "review_from": "2014-05-09",
+  "key": "6e26b4e571b1"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-05-13",
+  "gazette_no": "2593",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260513t.pdf"
+  ],
+  "store": "マックスバリュ香寺店",
+  "address": "姫路市香寺町犬飼字宮後472―１",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2006-03-27",
+  "notified_on": "2014-04-14",
+  "content": "大規小売店舗の所在地",
+  "region": "中播磨",
+  "review_from": "2014-05-13",
+  "key": "d58c340ec919"
+ },
+ {
+  "article": "第6条第5項",
+  "kind": "廃止",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-05-13",
+  "gazette_no": "2593",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260513t.pdf"
+  ],
+  "store": "マックスバリュ香寺店",
+  "address": "姫路市香寺町犬飼字宮後472―１",
+  "event_on": "2014-04-15",
+  "notified_on": "2014-04-14",
+  "area_m2": 1026,
+  "review_from": "2014-05-13",
+  "key": "1c960bb9b110"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-05-20",
+  "gazette_no": "2595",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260520t.pdf"
+  ],
+  "store": "甲子園東洋ビル",
+  "address": "西宮市甲子園高潮町22番３号",
+  "operator": "みずほ信託銀行株式会社",
+  "event_on": "2013-04-01",
+  "notified_on": "2014-04-25",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-05-20",
+  "key": "61ff20201bf9"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-05-30",
+  "gazette_no": "2598",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260530t.pdf"
+  ],
+  "store": "ダイエー西宮店",
+  "address": "西宮市林田町51―１",
+  "operator": "三井住友信託銀行株式会社",
+  "event_on": "2014-05-09",
+  "notified_on": "2014-05-08",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "阪神北",
+  "review_from": "2014-05-30",
+  "key": "dc4ece4da804"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-06",
+  "gazette_no": "2600",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260606t.pdf"
+  ],
+  "store": "やぶＹタウン",
+  "address": "養父市上箇153番地１",
+  "event_on": "2014-03-25",
+  "notified_on": "2014-05-14",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "但馬",
+  "review_from": "2014-06-06",
+  "key": "916b5556c17f"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-10",
+  "gazette_no": "2601",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260610t.pdf"
+  ],
+  "store": "ダイエー宝塚中山店",
+  "address": "宝塚市売布東の町21番22号",
+  "operator": "三井住友信託銀行株式会社",
+  "event_on": "2014-05-17",
+  "notified_on": "2014-05-16",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "阪神北",
+  "review_from": "2014-06-10",
+  "key": "7075774045b6"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-10",
+  "gazette_no": "2601",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260610t.pdf"
+  ],
+  "store": "ピオレヤング館",
+  "address": "姫路市豆腐町字万燈229ほか",
+  "operator": "神戸ＳＣ開発株式会社",
+  "event_on": "2013-04-30",
+  "notified_on": "2014-05-16",
+  "content": "大規小売店舗の名称",
+  "region": "中播磨",
+  "review_from": "2014-06-10",
+  "key": "3866d06d6b0d"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-17",
+  "gazette_no": "2603",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260617t.pdf"
+  ],
+  "store": "ドラッグコスモス上郡店",
+  "address": "赤穂郡上郡町竹万字大開キ2278ほか",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2015-01-20",
+  "notified_on": "2014-05-19",
+  "area_m2": 1698,
+  "region": "中播磨",
+  "review_from": "2014-06-17",
+  "key": "6e5dec12816a"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-10",
+  "gazette_no": "2601",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260610t.pdf"
+  ],
+  "store": "エイヴィスプラザ",
+  "address": "西宮市田中町73番地",
+  "event_on": "2014-03-12",
+  "notified_on": "2014-05-22",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-06-10",
+  "key": "e1e951dac7e8"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-17",
+  "gazette_no": "2603",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260617t.pdf"
+  ],
+  "store": "ゴダイドラッグ龍野北店",
+  "address": "たつの市龍野町島田571―１",
+  "operator": "ゴダイ株式会社",
+  "retailer": "ゴダイ株式会社",
+  "event_on": "2015-01-28",
+  "notified_on": "2014-05-27",
+  "area_m2": 1252,
+  "region": "中播磨",
+  "review_from": "2014-06-17",
+  "key": "98d37cb108c6"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-06-24",
+  "gazette_no": "2605",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260624t.pdf"
+  ],
+  "store": "（仮称）お宝市番館姫路店",
+  "address": "姫路市花田町一本松87番１",
+  "operator": "宗教法人自然帰依教",
+  "retailer": "株式会社イーグル",
+  "event_on": "2015-02-07",
+  "notified_on": "2014-06-06",
+  "area_m2": 2813,
+  "region": "中播磨",
+  "review_from": "2014-06-24",
+  "key": "0a85bb32ddb0"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-07-04",
+  "gazette_no": "2608",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260704t.pdf"
+  ],
+  "store": "フラワータウンショッピングセンター",
+  "address": "三田市弥生が丘一丁目１番地の１、２",
+  "operator": "株式会社北摂コミュニティ開発センター",
+  "event_on": "2014-06-12",
+  "notified_on": "2014-06-11",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "阪神北",
+  "review_from": "2014-07-04",
+  "key": "8e5f0491e009"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-07-25",
+  "gazette_no": "2614",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260725t.pdf"
+  ],
+  "store": "ドラッグコスモス篠山東吹店",
+  "address": "篠山市東吹字東中道ノ坪1121番ほか",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2015-02-18",
+  "notified_on": "2014-06-17",
+  "area_m2": 1650,
+  "region": "丹波",
+  "review_from": "2014-07-25",
+  "key": "907ed5a0ed59"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-07-11",
+  "gazette_no": "2610",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260711t.pdf"
+  ],
+  "store": "ホームプラザナフコ山崎店",
+  "address": "宍粟市山崎町御名字井田89番地１ほか",
+  "operator": "株式会社ナフコ",
+  "retailer": "株式会社ナフコ",
+  "event_on": "2015-02-28",
+  "notified_on": "2014-06-27",
+  "area_m2": 3311,
+  "region": "中播磨",
+  "review_from": "2014-07-11",
+  "key": "c2de1f5b89f4"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-07-25",
+  "gazette_no": "2614",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260725t.pdf"
+  ],
+  "store": "ハローズ上手野店",
+  "address": "姫路市上手野字又十郎新開309番１ほか",
+  "operator": "株式会社ハローズ",
+  "retailer": "株式会社ハローズ",
+  "event_on": "2015-03-03",
+  "notified_on": "2014-07-02",
+  "area_m2": 4547,
+  "region": "中播磨",
+  "review_from": "2014-07-25",
+  "key": "07f9b3bb2ece"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-01",
+  "gazette_no": "2616",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260801t.pdf"
+  ],
+  "store": "ドラッグコスモス南あわじ店",
+  "address": "南あわじ市賀集八幡字鯛ノ内173ほか",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2015-03-12",
+  "notified_on": "2014-07-11",
+  "area_m2": 1684,
+  "region": "淡路",
+  "review_from": "2014-08-01",
+  "key": "3b5b0e142dc8"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-26",
+  "gazette_no": "2623",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260826t.pdf"
+  ],
+  "store": "イオンタウン姫路",
+  "address": "姫路市延末字狭間435番地３ほか",
+  "operator": "イオンタウン株式会社",
+  "event_on": "2014-06-01",
+  "notified_on": "2014-07-24",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2014-08-26",
+  "key": "21cef1141a0e"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-26",
+  "gazette_no": "2623",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260826t.pdf"
+  ],
+  "store": "イオンモール猪名川",
+  "address": "川辺郡猪名川町白金二丁目１番",
+  "operator": "三菱地所株式会社",
+  "event_on": "2014-05-23",
+  "notified_on": "2014-07-29",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-08-26",
+  "key": "ed2681b02cfe"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-26",
+  "gazette_no": "2623",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260826t.pdf"
+  ],
+  "store": "ドラッグコスモス福崎店",
+  "address": "神崎郡福崎町南田原字中島762―１ほか",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2015-03-30",
+  "notified_on": "2014-07-29",
+  "area_m2": 1628,
+  "region": "中播磨",
+  "review_from": "2014-08-26",
+  "key": "652d3a869433"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-26",
+  "gazette_no": "2623",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260826t.pdf"
+  ],
+  "store": "ホームセンターダイキ宝塚店",
+  "address": "宝塚市安倉西四丁目２番43号",
+  "operator": "ダイキ株式会社",
+  "event_on": "2014-05-26",
+  "notified_on": "2014-07-29",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-08-26",
+  "key": "e6ddba5c4c0d"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-12",
+  "gazette_no": "2619",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260812t.pdf"
+  ],
+  "store": "二見ファッションモール",
+  "address": "明石市二見町西二見駅前４丁目17番",
+  "operator": "株式会社しまむら",
+  "retailer": "株式会社しまむら",
+  "event_on": "2014-12-17",
+  "notified_on": "2014-07-30",
+  "area_m2": 2225,
+  "region": "東播磨",
+  "review_from": "2014-08-12",
+  "key": "f845fb96311c"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-08-26",
+  "gazette_no": "2623",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260826t.pdf"
+  ],
+  "store": "ウエルシア青山店、ホームセンターダイキ三木青山店",
+  "address": "三木市志染町青山六丁目15―１ほか",
+  "operator": "西村興産株式会社",
+  "event_on": "2014-05-26",
+  "notified_on": "2014-08-04",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2014-08-26",
+  "key": "b2241a58ece8"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-09-19",
+  "gazette_no": "2630",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260919t.pdf"
+  ],
+  "store": "アクロスプラザ西脇",
+  "address": "西脇市高田井町55―１",
+  "operator": "第一リース株式会社",
+  "event_on": "2014-02-22",
+  "notified_on": "2014-08-05",
+  "content": "大規小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2014-09-19",
+  "key": "665ef42d74ae"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-07",
+  "gazette_no": "2635",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261007t.pdf"
+  ],
+  "store": "イオン小野店",
+  "address": "小野市王子町字太良右兵エ門池868番地１",
+  "operator": "神姫バス株式会社",
+  "event_on": "2013-12-26",
+  "notified_on": "2014-08-07",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2014-10-07",
+  "key": "f3118e21cec9"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-09-19",
+  "gazette_no": "2630",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260919t.pdf"
+  ],
+  "store": "（仮称）アルカドラッグ姫路手柄店",
+  "address": "姫路市手柄字竹ノ前158番１ほか",
+  "operator": "株式会社ＮＴＴ西日本アセット・プランニング",
+  "retailer": "株式会社ナガタ薬品",
+  "event_on": "2015-04-16",
+  "notified_on": "2014-08-15",
+  "area_m2": 1400,
+  "region": "中播磨",
+  "review_from": "2014-09-19",
+  "key": "e4233eb34269"
+ },
+ {
+  "article": "第6条第5項",
+  "kind": "廃止",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-09-26",
+  "gazette_no": "2632",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260926t.pdf"
+  ],
+  "store": "ダイエーふうしゃ上野店",
+  "address": "西脇市上野町西谷162―１",
+  "event_on": "2014-08-28",
+  "notified_on": "2014-08-21",
+  "area_m2": 4247,
+  "review_from": "2014-09-26",
+  "key": "611ca32af03d"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-07",
+  "gazette_no": "2635",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261007t.pdf"
+  ],
+  "store": "ドラッグコスモス丹波柏原店",
+  "address": "丹波市柏原町柏原字六反田2914ほか",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "株式会社コスモス薬品",
+  "event_on": "2015-04-23",
+  "notified_on": "2014-08-22",
+  "area_m2": 1704,
+  "region": "丹波",
+  "review_from": "2014-10-07",
+  "key": "8843a34b7b99"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-10",
+  "gazette_no": "2636",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261010t.pdf"
+  ],
+  "store": "ダイエーグルメシティ北鳴尾店",
+  "address": "西宮市学文殿町一丁目９番20",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2014-09-03",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-10-10",
+  "key": "df9172a09004"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-09-30",
+  "gazette_no": "2633",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/260930t.pdf"
+  ],
+  "store": "ゴダイドラッグ八鹿店",
+  "address": "養父市八鹿町下網場字中野367―１",
+  "operator": "ゴダイ株式会社",
+  "retailer": "ゴダイ株式会社",
+  "event_on": "2015-04-06",
+  "notified_on": "2014-09-05",
+  "area_m2": 1114,
+  "region": "但馬",
+  "review_from": "2014-09-30",
+  "key": "dddfaccc94a6"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-14",
+  "gazette_no": "2646",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261114t.pdf"
+  ],
+  "store": "夙川グリーンタウンビル",
+  "address": "西宮市羽衣町７―30",
+  "operator": "夙川グリーンタウン株式会社",
+  "event_on": "2014-01-31",
+  "notified_on": "2014-09-09",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-11-14",
+  "key": "91b7420a640c"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-10",
+  "gazette_no": "2636",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261010t.pdf"
+  ],
+  "store": "コムボックス明舞",
+  "address": "明石市松が丘２丁目３番３",
+  "operator": "ダイワロイヤル株式会社",
+  "event_on": "2014-03-01",
+  "notified_on": "2014-09-10",
+  "content": "大規模小売店舗の名称及び所在地",
+  "region": "東播磨",
+  "review_from": "2014-10-10",
+  "key": "b53b61614ac9"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-24",
+  "gazette_no": "2640",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261024t.pdf"
+  ],
+  "store": "ダイエーグルメシティ西武庫店",
+  "address": "尼崎市武庫元町一丁目24番６",
+  "operator": "株式会社ダイエー",
+  "event_on": "2013-05-22",
+  "notified_on": "2014-09-12",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-10-24",
+  "key": "196ae026b988"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-21",
+  "gazette_no": "2639",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261021t.pdf"
+  ],
+  "store": "ライフガーデン潮芦屋（北敷地）",
+  "address": "芦屋市海洋町４―９ほか",
+  "operator": "ダイワロイヤル株式会社",
+  "event_on": "2014-02-17",
+  "notified_on": "2014-09-16",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-10-21",
+  "key": "0fdac77459d6"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-21",
+  "gazette_no": "2639",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261021t.pdf"
+  ],
+  "store": "ライフガーデン潮芦屋（南敷地）",
+  "address": "芦屋市海洋町４―10ほか",
+  "operator": "ダイワロイヤル株式会社",
+  "event_on": "2014-02-17",
+  "notified_on": "2014-09-16",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-10-21",
+  "key": "917eb9a63b21"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-10-10",
+  "gazette_no": "2636",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261010t.pdf"
+  ],
+  "store": "（仮称）阪急オアシス伊丹店",
+  "address": "伊丹市西台三丁目534番１ほか",
+  "operator": "株式会社ＮＴＴ西日本アセット・プランニング",
+  "retailer": "株式会社阪食",
+  "event_on": "2015-05-26",
+  "notified_on": "2014-09-25",
+  "area_m2": 1612,
+  "region": "阪神北",
+  "review_from": "2014-10-10",
+  "key": "442f2b0fdbad"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-14",
+  "gazette_no": "2646",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261114t.pdf"
+  ],
+  "store": "塚口さんさんタウン",
+  "address": "尼崎市南塚口町二丁目860番地ほか",
+  "operator": "尼崎都市開発株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2014-09-30",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-11-14",
+  "key": "55b97aa5e002"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-21",
+  "gazette_no": "2648",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261121t.pdf"
+  ],
+  "store": "イトーヨーカドー広畑店",
+  "address": "姫路市広畑区夢前町一丁目１ほか",
+  "operator": "株式会社イトーヨーカ堂",
+  "event_on": "2014-05-15",
+  "notified_on": "2014-10-09",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2014-11-21",
+  "key": "504dc95eace3"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-21",
+  "gazette_no": "2648",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261121t.pdf"
+  ],
+  "store": "ゴダイドラッグ浜坂店",
+  "address": "美方郡新温泉町戸田464―１",
+  "operator": "ゴダイ株式会社",
+  "retailer": "ゴダイ株式会社",
+  "event_on": "2015-06-21",
+  "notified_on": "2014-10-20",
+  "area_m2": 1221,
+  "region": "但馬",
+  "review_from": "2014-11-21",
+  "key": "f34ee0497ea8"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-18",
+  "gazette_no": "2647",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261118t.pdf"
+  ],
+  "store": "エコール・なじお",
+  "address": "西宮市名塩新町８番地",
+  "operator": "株式会社関西都市居住サービス",
+  "event_on": "2014-09-18",
+  "notified_on": "2014-10-21",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-11-18",
+  "key": "7fd933eb376f"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-25",
+  "gazette_no": "2649",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261125t.pdf"
+  ],
+  "store": "和田山ショッピングセンター",
+  "address": "朝来市和田山町枚田岡774",
+  "operator": "イオンリテール株式会社",
+  "event_on": "2014-02-14",
+  "notified_on": "2014-10-29",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "但馬",
+  "review_from": "2014-11-25",
+  "key": "87cc12b631bb"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-28",
+  "gazette_no": "2650",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261128t.pdf"
+  ],
+  "store": "ゴダイドラッグ町田店",
+  "address": "姫路市町田４―１",
+  "operator": "ゴダイ株式会社",
+  "retailer": "ゴダイ株式会社",
+  "event_on": "2015-07-01",
+  "notified_on": "2014-10-31",
+  "area_m2": 1277,
+  "region": "中播磨",
+  "review_from": "2014-11-28",
+  "key": "514eaf254a14"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-11-28",
+  "gazette_no": "2650",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261128t.pdf"
+  ],
+  "store": "アルカスーパードラッグ土山店",
+  "address": "加古郡播磨町北野添２―６―31",
+  "operator": "株式会社ナガタ薬品",
+  "retailer": "株式会社ナガタ薬品",
+  "event_on": "2015-05-01",
+  "notified_on": "2014-11-17",
+  "area_m2": 1259,
+  "region": "東播磨",
+  "review_from": "2014-11-28",
+  "key": "2b06853aa31d"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-12-16",
+  "gazette_no": "2655",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261216t.pdf"
+  ],
+  "store": "イオンタウン姫路",
+  "address": "姫路市延末字狭間435番地３ほか",
+  "operator": "イオンタウン株式会社",
+  "event_on": "2015-07-18",
+  "notified_on": "2014-11-17",
+  "content": "駐車場の収容台数",
+  "region": "中播磨",
+  "review_from": "2014-12-16",
+  "key": "0e1145c9d71b"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-23",
+  "gazette_no": "2664",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270123t.pdf"
+  ],
+  "store": "相生ショッピングタウン",
+  "address": "相生市那波南本町８番８号ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2014-05-26",
+  "notified_on": "2014-11-18",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2015-01-23",
+  "key": "bcbf06bb8be0"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-12-16",
+  "gazette_no": "2655",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261216t.pdf"
+  ],
+  "store": "イオンタウン高砂",
+  "address": "高砂市梅井５丁目57―14",
+  "operator": "イオンタウン株式会社",
+  "event_on": "2014-05-26",
+  "notified_on": "2014-11-19",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2014-12-16",
+  "key": "5e4557451978"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-12-16",
+  "gazette_no": "2655",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261216t.pdf"
+  ],
+  "store": "ジョイフルプラザ稲美",
+  "address": "加古郡稲美町国岡一丁目106番ほか",
+  "operator": "ダイキ株式会社",
+  "event_on": "2014-05-26",
+  "notified_on": "2014-11-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2014-12-16",
+  "key": "c5bbc2b1de45"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2014-12-24",
+  "gazette_no": "2657",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261224t.pdf"
+  ],
+  "store": "イオン尼崎店",
+  "address": "尼崎市次屋３丁目13番18号",
+  "operator": "イオンリテール株式会社",
+  "event_on": "2013-03-01",
+  "notified_on": "2014-11-25",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2014-12-24",
+  "key": "83b9e3f534a8"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "ウェルネス花田店・セリア花田店",
+  "address": "姫路市花田町加納原田字辻ノ元913番ほか",
+  "operator": "三菱ＵＦＪリース株式会社",
+  "event_on": "2011-04-28",
+  "notified_on": "2014-12-08",
+  "content": "大規模小売店舗の名称",
+  "region": "中播磨",
+  "review_from": "2015-01-20",
+  "key": "e33bf00412ea"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "ダイソーひめじ岡田店",
+  "address": "姫路市岡田七反長360番１ほか",
+  "operator": "三菱ＵＦＪリース株式会社",
+  "event_on": "2012-06-28",
+  "notified_on": "2014-12-08",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2015-01-20",
+  "key": "cbd169116565"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "山崎三津ショッピングタウン",
+  "address": "宍粟市山崎町三津240ほか",
+  "operator": "三菱ＵＦＪリース株式会社",
+  "event_on": "2012-06-28",
+  "notified_on": "2014-12-08",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2015-01-20",
+  "key": "2d157af6d4b4"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "エディオン新加古川店",
+  "address": "加古川市尾上町安田311番４ほか",
+  "operator": "三菱ＵＦＪリース株式会社",
+  "event_on": "2012-10-01",
+  "notified_on": "2014-12-10",
+  "content": "大規模小売店舗の名称",
+  "region": "東播磨",
+  "review_from": "2015-01-20",
+  "key": "7537dd936fa7"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-27",
+  "gazette_no": "2665",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270127t.pdf"
+  ],
+  "store": "マックスバリュ溝口店",
+  "address": "姫路市香寺町溝口864番１ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2011-06-07",
+  "notified_on": "2014-12-12",
+  "content": "大規模小売店舗の名称",
+  "region": "中播磨",
+  "review_from": "2015-01-27",
+  "key": "37434eb30568"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-30",
+  "gazette_no": "2666",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270130t.pdf"
+  ],
+  "store": "（仮称）姫路キャスティ21コアゾーンＢブロック商業ビル",
+  "address": "姫路市駅前町字清水町64番地４",
+  "operator": "山陽企業株式会社",
+  "event_on": "2015-07-11",
+  "notified_on": "2014-12-17",
+  "area_m2": 6884,
+  "region": "中播磨",
+  "review_from": "2015-01-30",
+  "key": "873f9614c477"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-03-06",
+  "gazette_no": "2676",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270306t.pdf"
+  ],
+  "store": "アピアきた",
+  "address": "宝塚市中州１丁目１番１号",
+  "operator": "株式会社ショージ",
+  "event_on": "2014-10-23",
+  "notified_on": "2014-12-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2015-03-06",
+  "key": "ca98dba73c56"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "コープ武庫之荘",
+  "address": "尼崎市武庫之荘一丁目153番３ほか",
+  "operator": "生活協同組合コープこうべ",
+  "event_on": "2015-07-31",
+  "notified_on": "2014-12-19",
+  "content": "駐車場の収容台数",
+  "region": "阪神北",
+  "review_from": "2015-01-20",
+  "key": "c56ecdb411c5"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "ロイヤルホームセンター塚口",
+  "address": "尼崎市南塚口町四丁目１番１ほか",
+  "operator": "株式会社デザインアーク",
+  "event_on": "2014-10-01",
+  "notified_on": "2014-12-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2015-01-20",
+  "key": "8ff7c97ac1d9"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "伊丹ショッピングデパート",
+  "address": "伊丹市中央一丁目１番１号ほか",
+  "operator": "株式会社関西スーパーマーケット",
+  "event_on": "2014-10-01",
+  "notified_on": "2014-12-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2015-01-20",
+  "key": "a4c61f96213d"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "関西スーパー稲野店",
+  "address": "伊丹市安堂寺町三丁目３番１",
+  "operator": "株式会社関西スーパーマーケット",
+  "event_on": "2014-10-01",
+  "notified_on": "2014-12-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2015-01-20",
+  "key": "8e405ccd9bac"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "関西スーパー荒牧店",
+  "address": "伊丹市荒牧７丁目12番15号",
+  "operator": "株式会社関西スーパーマーケット",
+  "event_on": "2014-10-01",
+  "notified_on": "2014-12-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2015-01-20",
+  "key": "1142788ce480"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "関西スーパー鴻池店",
+  "address": "伊丹市鴻池五丁目63ほか",
+  "operator": "株式会社関西スーパーマーケット",
+  "event_on": "2014-10-01",
+  "notified_on": "2014-12-19",
+  "content": "大規模小売店舗を設置している者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2015-01-20",
+  "key": "79189054b222"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-20",
+  "gazette_no": "2663",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270120t.pdf"
+  ],
+  "store": "（仮称）ＪＡ兵庫南 天満六次産業化施設",
+  "address": "加古郡稲美町六分一字大池1179番224ほか",
+  "operator": "兵庫南農業協同組合",
+  "retailer": "兵庫南農業協同組合",
+  "event_on": "2015-11-14",
+  "notified_on": "2014-12-22",
+  "area_m2": 3,
+  "region": "東播磨",
+  "review_from": "2015-01-20",
+  "key": "6dba020cfe4e"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-27",
+  "gazette_no": "2665",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270127t.pdf"
+  ],
+  "store": "コープデイズ豊岡",
+  "address": "豊岡市加広町７―32",
+  "operator": "生活協同組合コープこうべ",
+  "event_on": "2015-08-25",
+  "notified_on": "2014-12-24",
+  "content": "駐車場の収容台数",
+  "region": "但馬",
+  "review_from": "2015-01-27",
+  "key": "bdddc653b2c9"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-01-27",
+  "gazette_no": "2665",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270127t.pdf"
+  ],
+  "store": "（仮称）太子町東保商業施設",
+  "address": "揖保郡太子町東保319ほか",
+  "operator": "タマホーム株式会社",
+  "retailer": "株式会社ユニクロ、株式会社エービーシー・マート 東京都渋谷区道玄坂一丁目12番１号、渋谷マークシティウエスト19階",
+  "event_on": "2015-10-16",
+  "notified_on": "2014-12-24",
+  "area_m2": 1995,
+  "region": "中播磨",
+  "review_from": "2015-01-27",
+  "key": "4df33cc48a75"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-03-03",
+  "gazette_no": "2675",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270303t.pdf"
+  ],
+  "store": "アイティ",
+  "address": "豊岡市大手町340番地",
+  "operator": "株式会社藤屋",
+  "event_on": "2015-01-16",
+  "notified_on": "2015-01-15",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "但馬",
+  "review_from": "2015-03-03",
+  "key": "0e18b9a942b8"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-03-03",
+  "gazette_no": "2675",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270303t.pdf"
+  ],
+  "store": "ハローズ夢前台店",
+  "address": "姫路市上手野字又十郎新開309番１ほか",
+  "operator": "株式会社ハローズ",
+  "event_on": "2015-02-01",
+  "notified_on": "2015-01-23",
+  "content": "大規模小売店舗の名称",
+  "region": "中播磨",
+  "review_from": "2015-03-03",
+  "key": "c6c5d42b49a4"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-03-03",
+  "gazette_no": "2675",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270303t.pdf"
+  ],
+  "store": "ミリオンタウン明石硯町",
+  "address": "明石市硯町三丁目455―１ほか",
+  "operator": "株式会社万代",
+  "retailer": "株式会社万代",
+  "event_on": "2015-10-06",
+  "notified_on": "2015-02-05",
+  "area_m2": 3040,
+  "region": "東播磨",
+  "review_from": "2015-03-03",
+  "key": "0ca7c54ad6aa"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-03-10",
+  "gazette_no": "2677",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270310t.pdf"
+  ],
+  "store": "イオンモール姫路リバーシティー",
+  "address": "姫路市飾磨区細江2560ほか",
+  "operator": "シキボウ株式会社",
+  "event_on": "2015-02-01",
+  "notified_on": "2015-02-20",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2015-03-10",
+  "key": "8d1740799d6c"
+ },
+ {
+  "article": "第6条第2項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-03-17",
+  "gazette_no": "2679",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/270317t.pdf"
+  ],
+  "store": "マックスバリュ城の西店",
+  "address": "姫路市岩端町106番地",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2015-02-28",
+  "notified_on": "2015-02-20",
+  "content": "大規模小売店舗において小売業を行う者の開店時刻及び閉店時刻",
+  "region": "中播磨",
+  "review_from": "2015-03-17",
+  "key": "d1b8552bcd3e"
+ },
+ {
   "article": "第6条第2項",
   "kind": "変更",
   "source": "hyogo-koho",
@@ -1377,6 +3975,158 @@
   "article": "第6条第1項",
   "kind": "変更",
   "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "イオン西脇寺内ショッピングセンター",
+  "address": "西脇市寺内字天神ノ芝515番６ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "4f25cbfbbbdd"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ別所店",
+  "address": "三木市別所町高木字山ノ下638番地",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "bf0055f9be51"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ加西南店",
+  "address": "加西市西笠原町字六蔵67番ほか",
+  "operator": "百萬石酒造株式会社",
+  "event_on": "2003-02-05",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗の所在地",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "8a9b9f4dc1af"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ古坂店",
+  "address": "加西市北条町古坂六丁目123番地ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "17662589992e"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ王子店",
+  "address": "小野市王子町593ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "5f1ad4623119"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ社店",
+  "address": "加東市梶原字猪尻333―１",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "ed6259840f57"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ西脇小坂店",
+  "address": "西脇市小坂町大歳180―１",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "8317223969bf"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "三木ショッピングタウン",
+  "address": "三木市加佐289―２ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-11-18",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "北播磨",
+  "review_from": "2015-12-25",
+  "key": "c35c6f696445"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
   "gazette_date": "2015-12-22",
   "gazette_no": "2759",
   "docs": [
@@ -2040,6 +4790,24 @@
   "article": "第6条第1項",
   "kind": "変更",
   "source": "hyogo-koho",
+  "gazette_date": "2015-12-25",
+  "gazette_no": "2760",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271225t.pdf"
+  ],
+  "store": "マックスバリュ新宮店",
+  "address": "たつの市新宮町井野原字上向川原889番地",
+  "event_on": "2013-05-22",
+  "notified_on": "2015-12-04",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "中播磨",
+  "review_from": "2015-12-25",
+  "key": "5fdc2d86ac49"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
   "gazette_date": "2016-01-19",
   "gazette_no": "2765",
   "docs": [
@@ -2358,6 +5126,65 @@
   "area_m2": 10184,
   "review_from": "2016-03-01",
   "key": "8abd3b84a165"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2016-03-08",
+  "gazette_no": "2779",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf"
+  ],
+  "store": "マックスバリュ安田店",
+  "address": "加古川市尾上町安田480番ほか",
+  "operator": "マックスバリュ西日本株式会社",
+  "event_on": "2013-05-22",
+  "notified_on": "2016-02-12",
+  "content": "大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "東播磨",
+  "review_from": "2016-03-08",
+  "key": "a28db2fc259e"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2016-03-08",
+  "gazette_no": "2779",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf"
+  ],
+  "store": "（仮称）ラ・ムー相生店",
+  "address": "相生市本郷町2012ほか",
+  "operator": "共栄商事株式会社",
+  "retailer": "大黒天物産株式会社",
+  "event_on": "2016-10-15",
+  "notified_on": "2016-02-15",
+  "area_m2": 1365,
+  "region": "中播磨",
+  "review_from": "2016-03-08",
+  "key": "053e60da8b7b"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2016-03-08",
+  "gazette_no": "2779",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf"
+  ],
+  "store": "ゴダイドラッグ山崎南店",
+  "address": "宍粟市山崎町中井185番地",
+  "operator": "ゴダイ株式会社",
+  "retailer": "ゴダイ株式会社",
+  "event_on": "2016-10-19",
+  "notified_on": "2016-02-18",
+  "area_m2": 1190,
+  "region": "中播磨",
+  "review_from": "2016-03-08",
+  "key": "159a9e516830"
  },
  {
   "article": "第6条第1項",
