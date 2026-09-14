@@ -182,10 +182,60 @@ def value_after(lines, i, label):
     return ""
 
 
-def first_column(line):
-    """「三菱ＨＣキャピタル株式会社     東京都…     久 井 大 樹」→ 最初の列だけ（住所や代表者名は捨てる）"""
-    parts = re.split(r"\s{2,}", line.strip())
-    return parts[0].strip() if parts else ""
+CORP = re.compile(r"(株式会社|有限会社|合同会社|合資会社|相互会社|生活協同組合|協同組合|農業協同組合|"
+                  r"財団法人|社団法人|医療法人|学校法人|宗教法人|特定目的会社|組合|公社|機構|会館)")
+# 「岡山県倉敷市堀南704番地の５」のような住所。列がずれて住所が先に来る公報を見分けるため
+ADDRESS_LIKE = re.compile(r"^(?:北海道|東京都|京都府|大阪府|.{2,3}県)|[0-9０-９]+\s*(?:丁目|番地|番|号)")
+ITEM_START = re.compile(r"^\s*(?:[0-9０-９]+\s|[(（][0-9０-９]+[)）]|[アイウエオ]\s)")
+JUNK_NAME = re.compile(r"^(?:外|ほか)?未定[0-9０-９]*者?$|^所在他$")
+# 折り返しの続きが「株式会社」だけの行。住所の続きが同じ行に並ぶことがある
+CORP_TAIL = re.compile(r"^(株式会社|有限会社|合同会社|合資会社|相互会社)$")
+
+
+def pick_name(line):
+    """「名称 住所 代表者の氏名」の並びから名称の列を取る。
+
+    ふつうは先頭の列。ただし列がずれて住所が先に来る公報があるので、
+    先頭が住所に見えて別の列が法人名に見えるときは、そちらを採る。
+    """
+    parts = [x.strip() for x in re.split(r"\s{2,}", line.strip()) if x.strip()]
+    if not parts:
+        return ""
+    if len(parts) > 1 and ADDRESS_LIKE.search(parts[0]) and not CORP.search(parts[0]):
+        for x in parts[1:]:
+            if CORP.search(x):
+                return x
+    return parts[0]
+
+
+def name_from(lines, i):
+    """lines[i] から名称を取り、次の行に折り返されていればつないで (名称, 次に見る行) を返す。
+
+    長い法人名は列からはみ出して次の行に続く：
+        三井住友トラスト・パナソニック    東京都港区…    西 野 敏 哉
+        ファイナンス株式会社
+    続きの行は「名称の列と同じ字下げ」で「列が1つだけ」なので、それで見分ける。
+    """
+    name = pick_name(lines[i])
+    j = i + 1
+    if not name or CORP.search(name):
+        return name, j
+    indent = len(lines[i]) - len(lines[i].lstrip())
+    while j < min(i + 3, len(lines)):
+        ln = lines[j]
+        if not ln.strip() or ITEM_START.match(ln):
+            break
+        if abs((len(ln) - len(ln.lstrip())) - indent) > 1:
+            break
+        parts = [x for x in re.split(r"\s{2,}", ln.strip()) if x]
+        # 続きの行に住所の続きが並ぶことがある。そのときは先頭が「株式会社」だけのときに限って拾う
+        if len(parts) != 1 and not CORP_TAIL.match(parts[0]):
+            break
+        name += parts[0]
+        j += 1
+        if CORP.search(name):
+            break
+    return name, j
 
 
 def parse_section(kind, lines, issue):
@@ -223,12 +273,12 @@ def parse_section(kind, lines, issue):
     for i, ln in enumerate(v):
         sq = squash(ln)
         if re.match(r"^名称\S", sq) and not re.match(r"^名称(住所|代表者)", sq):
-            rec["operator"] = first_column(re.sub(r"^\s*名\s*称\s+", "", ln))
+            rec["operator"] = pick_name(re.sub(r"^\s*名\s*称\s+", "", ln))
             break
         if sq == "名称" or re.match(r"^名称(住所|代表者)", sq):
-            for ln2 in v[i + 1:i + 4]:
-                if ln2.strip() and not re.match(r"^(住所|代表者)", squash(ln2)):
-                    rec["operator"] = first_column(ln2)
+            for j in range(i + 1, min(i + 4, len(v))):
+                if v[j].strip() and not re.match(r"^(住所|代表者)", squash(v[j])):
+                    rec["operator"], _ = name_from(v, j)
                     break
             break
     # 小売業者（新設）
@@ -237,17 +287,21 @@ def parse_section(kind, lines, issue):
     for i, ln in enumerate(v):
         sq = squash(ln)
         if re.match(r"^名称\S", sq) and not re.match(r"^名称(住所|代表者)", sq):
-            names.append(first_column(re.sub(r"^\s*名\s*称\s+", "", ln)))
+            names.append(pick_name(re.sub(r"^\s*名\s*称\s+", "", ln)))
         elif re.match(r"^名称(代表者|住所)", sq) or sq == "名称":
-            for ln2 in v[i + 1:]:
-                s2 = squash(ln2)
+            j = i + 1
+            while j < len(v):
+                s2 = squash(v[j])
                 if not s2 or re.match(r"^(住所|代表者)", s2):
+                    j += 1
                     continue
                 if re.match(r"^[0-9]", s2):
                     break
-                names.append(first_column(ln2))
+                nm, j = name_from(v, j)
+                if nm:
+                    names.append(nm)
             break
-    names = [n for n in names if n and n not in ("外未定", "ほか未定")]
+    names = [n for n in names if n and not JUNK_NAME.match(n)]
     if names:
         rec["retailer"] = "、".join(dict.fromkeys(names))
     # 日付と面積
