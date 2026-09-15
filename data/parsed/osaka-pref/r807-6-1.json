@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5c53600d9260"
+  "key": "5c53600d9260",
+  "operator_display": "阪急阪神リート投資法人",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "967a2f66c03f"
+  "key": "967a2f66c03f",
+  "operator_display": "阪急電鉄（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "574c36872d8d"
+  "key": "574c36872d8d",
+  "operator_display": "三井住友信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -97,7 +109,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "fcc00cb1d8d3"
+  "key": "fcc00cb1d8d3",
+  "operator_display": "三菱UFJ信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -122,7 +138,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4098f6df664f"
+  "key": "4098f6df664f",
+  "operator_display": "三菱UFJ信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -147,7 +167,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ede057f06b1b"
+  "key": "ede057f06b1b",
+  "operator_display": "三菱UFJ信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -172,7 +196,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a15732edbaca"
+  "key": "a15732edbaca",
+  "operator_display": "三菱UFJ信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -197,7 +225,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "56e39e9b1c50"
+  "key": "56e39e9b1c50",
+  "operator_display": "（株）サンコオア",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -222,7 +254,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4b457b5c3937"
+  "key": "4b457b5c3937",
+  "operator_display": "イオンリテール（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -247,7 +283,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d0928c46d83e"
+  "key": "d0928c46d83e",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -272,7 +312,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "11f6fe2f56b9"
+  "key": "11f6fe2f56b9",
+  "operator_display": "賛栄商事（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -297,7 +341,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7f0d1f764b78"
+  "key": "7f0d1f764b78",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -322,7 +370,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "395455918067"
+  "key": "395455918067",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -347,7 +399,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a117da61aaf3"
+  "key": "a117da61aaf3",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -372,7 +428,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "746a47f91505"
+  "key": "746a47f91505",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -397,7 +457,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8c40dc8c6b0c"
+  "key": "8c40dc8c6b0c",
+  "operator_display": "（株）エイチ・ツー・オー商業開発",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -422,7 +486,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "55f7ed00875a"
+  "key": "55f7ed00875a",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -447,7 +515,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "250ad7dd0900"
+  "key": "250ad7dd0900",
+  "operator_display": "三菱HCキャピタルエステートプラス（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -472,7 +544,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4242b98463e9"
+  "key": "4242b98463e9",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -497,7 +573,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5adb901be855"
+  "key": "5adb901be855",
+  "operator_display": "（株）KUL",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -522,7 +602,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "bd74d65fd89c"
+  "key": "bd74d65fd89c",
+  "operator_display": "みずほ信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -547,7 +631,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c6ea227bbeaf"
+  "key": "c6ea227bbeaf",
+  "operator_display": "イオンタウン（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -572,7 +660,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "81b6367bb8bc"
+  "key": "81b6367bb8bc",
+  "operator_display": "（株）Joshin",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -597,7 +689,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "97caaabd43ff"
+  "key": "97caaabd43ff",
+  "operator_display": "田渕商事（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -622,7 +718,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "420f55849848"
+  "key": "420f55849848",
+  "operator_display": "NCSアールイーキャピタル（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -647,6 +747,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6c6f3d88339d"
+  "key": "6c6f3d88339d",
+  "operator_display": "芙容総合リース（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  }
 ]

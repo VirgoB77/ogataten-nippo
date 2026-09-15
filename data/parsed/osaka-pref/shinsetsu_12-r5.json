@@ -7,8 +7,8 @@
   "notified_on": "2000-12-20",
   "store": "関西スーパー河内磐船店",
   "city": "",
-  "address": "交野市森北一丁目４９番ほか",
-  "operator": "*** ほか9者",
+  "address": "交野市森北一丁目",
+  "operator": "",
   "retailer": "(株)関西スーパーマーケット　ほか",
   "event_on": "2001-09-01",
   "area_m2": 2524,
@@ -22,7 +22,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "63b963c3f21e"
+  "key": "63b963c3f21e",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "(株)関西スーパーマーケット　ほか",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -47,7 +52,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b1caaaa20b86"
+  "key": "b1caaaa20b86",
+  "operator_display": "若江岩田駅前地区市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +81,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8d64f7d4fa77"
+  "key": "8d64f7d4fa77",
+  "operator_display": "(株)延田コーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -97,7 +110,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "addaca79412e"
+  "key": "addaca79412e",
+  "operator_display": "光陽ハウス(株)",
+  "operator_kind": "corp",
+  "retailer_display": "ニック産業(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -122,7 +139,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3b806e6ad28c"
+  "key": "3b806e6ad28c",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -147,7 +168,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "69394faba396"
+  "key": "69394faba396",
+  "operator_display": "はるやま商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "はるやま商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -172,7 +197,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3213e8fe34f8"
+  "key": "3213e8fe34f8",
+  "operator_display": "(株)コジマ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コジマ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -197,7 +226,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2993fffcd968"
+  "key": "2993fffcd968",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -222,7 +255,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "54ef7f00f0a8"
+  "key": "54ef7f00f0a8",
+  "operator_display": "ダイワラクダ工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "ダイワハウス工業(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -247,7 +284,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "460b1570d56d"
+  "key": "460b1570d56d",
+  "operator_display": "牧野建設(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -272,7 +313,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "00a507c1e99c"
+  "key": "00a507c1e99c",
+  "operator_display": "(株)マナベインテリアハーツ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)マナベインテリアハーツ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -297,7 +342,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1c78364921ae"
+  "key": "1c78364921ae",
+  "operator_display": "(株)サンプラザ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -322,7 +371,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2875f79dfd51"
+  "key": "2875f79dfd51",
+  "operator_display": "近鉄不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "日本トイザらス(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -347,7 +400,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "dc3e27357106"
+  "key": "dc3e27357106",
+  "operator_display": "(株)山陽マルナカ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)山陽マルナカ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -372,7 +429,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a62ced56a11d"
+  "key": "a62ced56a11d",
+  "operator_display": "(株)上野製作所",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -397,7 +458,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "04d494f15716"
+  "key": "04d494f15716",
+  "operator_display": "高石駅東Ｂ地区市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ショッピングセンター池忠　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -422,7 +487,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e2a0e5a39691"
+  "key": "e2a0e5a39691",
+  "operator_display": "栗本建設工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)しまむら　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -447,7 +516,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "03d63fec528a"
+  "key": "03d63fec528a",
+  "operator_display": "(株)ユアサコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -472,7 +545,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ccc900383fc6"
+  "key": "ccc900383fc6",
+  "operator_display": "東急不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "カルフールジャパン(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -484,7 +561,7 @@
   "city": "",
   "address": "箕面市西宿一丁目２７７番地の１ほか（箕面市萱野中央特定土地区画整理事業区域１２街区）",
   "operator": "東急不動産(株)",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2003-10-01",
   "area_m2": 5817,
   "content": "",
@@ -497,7 +574,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "450eb73a8b24"
+  "key": "450eb73a8b24",
+  "operator_display": "東急不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -509,7 +590,7 @@
   "city": "",
   "address": "箕面市西宿一丁目２４５番地ほか（箕面市萱野中央特定土地区画整理事業区域１３街区）",
   "operator": "東急不動産(株)",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2003-10-01",
   "area_m2": 2408,
   "content": "",
@@ -522,7 +603,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c7de3f4a478f"
+  "key": "c7de3f4a478f",
+  "operator_display": "東急不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -547,7 +632,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "325902cac612"
+  "key": "325902cac612",
+  "operator_display": "東急不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)アルペン　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -572,7 +661,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "99098523e496"
+  "key": "99098523e496",
+  "operator_display": "イズミヤ(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イズミヤ(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -597,7 +690,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "70bbf27b666b"
+  "key": "70bbf27b666b",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -622,7 +719,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "45769784cdff"
+  "key": "45769784cdff",
+  "operator_display": "蛍池駅西地区市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪北生活協同組合　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -647,7 +748,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "0bcbb1a0c663"
+  "key": "0bcbb1a0c663",
+  "operator_display": "(株)コジマ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コジマ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -672,7 +777,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "dbbbadc64b12"
+  "key": "dbbbadc64b12",
+  "operator_display": "(株)しまむら",
+  "operator_kind": "corp",
+  "retailer_display": "(株)しまむら　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -697,7 +806,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c89125aac694"
+  "key": "c89125aac694",
+  "operator_display": "阪急電鉄(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)メガスポーツ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -722,7 +835,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "de32d8d0e597"
+  "key": "de32d8d0e597",
+  "operator_display": "カルフール・ジャパン(株)",
+  "operator_kind": "corp",
+  "retailer_display": "カルフール・ジャパン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -747,7 +864,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "084e8733f0d5"
+  "key": "084e8733f0d5",
+  "operator_display": "京阪電気鉄道(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ダイエー　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -772,7 +893,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "79def8f06dff"
+  "key": "79def8f06dff",
+  "operator_display": "(株)コジマ　ほか1者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コジマ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -797,7 +922,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4d4339f80c36"
+  "key": "4d4339f80c36",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -822,7 +951,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "62f012686784"
+  "key": "62f012686784",
+  "operator_display": "(株)山陽マルナカ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)山陽マルナカ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -847,7 +980,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6cafca94ce73"
+  "key": "6cafca94ce73",
+  "operator_display": "(株)オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オークワ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -872,7 +1009,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e3205cc9459d"
+  "key": "e3205cc9459d",
+  "operator_display": "(株)ﾀﾞｲｱﾓﾝﾄﾞｼﾃｨ",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -897,7 +1038,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "764f347e08c5"
+  "key": "764f347e08c5",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -922,7 +1067,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "005a67f5305f"
+  "key": "005a67f5305f",
+  "operator_display": "ダイワロイヤル(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)メガスポーツ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -947,7 +1096,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5d05495f33e4"
+  "key": "5d05495f33e4",
+  "operator_display": "(株)イトーヨーカ堂",
+  "operator_kind": "corp",
+  "retailer_display": "(株)イトーヨーカ堂",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -972,7 +1125,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "18e2e6838c22"
+  "key": "18e2e6838c22",
+  "operator_display": "(株)国華園",
+  "operator_kind": "corp",
+  "retailer_display": "(株)国華園",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -997,7 +1154,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "0a3fa9ab7985"
+  "key": "0a3fa9ab7985",
+  "operator_display": "ＪＲ高槻駅北地区第一種市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "(株)平和堂　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1022,7 +1183,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "75ecd3591136"
+  "key": "75ecd3591136",
+  "operator_display": "(株)ドン・キホーテ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ドン・キホーテ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1047,7 +1212,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9f59e451e1e2"
+  "key": "9f59e451e1e2",
+  "operator_display": "(株)コジマ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コジマ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1072,7 +1241,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c0b540f1f70e"
+  "key": "c0b540f1f70e",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1097,7 +1270,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "54c8d96cb032"
+  "key": "54c8d96cb032",
+  "operator_display": "京阪電気鉄道(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)京阪百貨店　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1122,7 +1299,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "dbce3eed40c5"
+  "key": "dbce3eed40c5",
+  "operator_display": "(株)ヤマダ電機　ほか１者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1147,7 +1328,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4056fd14e7e4"
+  "key": "4056fd14e7e4",
+  "operator_display": "イオン(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1172,7 +1357,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "90ecfe8f5d89"
+  "key": "90ecfe8f5d89",
+  "operator_display": "(株)オートバックスセブン",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オートバックスセブン　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1197,7 +1386,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f61d62181550"
+  "key": "f61d62181550",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1222,7 +1415,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5222dac84fd8"
+  "key": "5222dac84fd8",
+  "operator_display": "(株)オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "オークワ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1247,7 +1444,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ec90a6e9bcd1"
+  "key": "ec90a6e9bcd1",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1272,7 +1473,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9dd0b237a608"
+  "key": "9dd0b237a608",
+  "operator_display": "河内長野市",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1297,7 +1502,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "359f4e5bcd5c"
+  "key": "359f4e5bcd5c",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1322,7 +1531,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "07f5e4e892e8"
+  "key": "07f5e4e892e8",
+  "operator_display": "(株)日研工作所",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1347,7 +1560,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9d71acfd1cca"
+  "key": "9d71acfd1cca",
+  "operator_display": "(株)しまむら",
+  "operator_kind": "corp",
+  "retailer_display": "(株)しまむら",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1372,7 +1589,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "05275d85dc04"
+  "key": "05275d85dc04",
+  "operator_display": "(株)ケーヨー",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ケーヨー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1397,7 +1618,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c9da6e8b489e"
+  "key": "c9da6e8b489e",
+  "operator_display": "イオンモール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1422,7 +1647,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7572a181f826"
+  "key": "7572a181f826",
+  "operator_display": "りんくうタウン共同店舗(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1447,7 +1676,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "86a5b30876ec"
+  "key": "86a5b30876ec",
+  "operator_display": "(株)ミキシング",
+  "operator_kind": "corp",
+  "retailer_display": "(株)阪急オアシス　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1472,7 +1705,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3a84a735ec65"
+  "key": "3a84a735ec65",
+  "operator_display": "(株)ヤマダ電機",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1497,7 +1734,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "54705e167882"
+  "key": "54705e167882",
+  "operator_display": "(株)ニシムラ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)モリヤマスポーツ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1522,7 +1763,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "aa1138bd0856"
+  "key": "aa1138bd0856",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1547,7 +1792,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c92a3373a9f7"
+  "key": "c92a3373a9f7",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1572,7 +1821,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3df947e2a929"
+  "key": "3df947e2a929",
+  "operator_display": "(株)オークワ　ほか1者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オークワ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1597,7 +1850,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f50b45db7c88"
+  "key": "f50b45db7c88",
+  "operator_display": "(株)ケーヨー",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ケーヨー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1622,7 +1879,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "edab409df9c1"
+  "key": "edab409df9c1",
+  "operator_display": "イオン(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1647,7 +1908,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "633088f50a37"
+  "key": "633088f50a37",
+  "operator_display": "(株)廣甚",
+  "operator_kind": "corp",
+  "retailer_display": "(株)廣甚",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1672,7 +1937,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b603795ce25d"
+  "key": "b603795ce25d",
+  "operator_display": "泉佐野駅上東地区市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "(株)松源　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1697,7 +1966,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "be6df62d94d1"
+  "key": "be6df62d94d1",
+  "operator_display": "大和工商リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1722,7 +1995,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7daaef60643f"
+  "key": "7daaef60643f",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1747,7 +2024,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5e83c6f15b6a"
+  "key": "5e83c6f15b6a",
+  "operator_display": "(株)島忠",
+  "operator_kind": "corp",
+  "retailer_display": "(株)島忠",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1772,7 +2053,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "51363e7846d7"
+  "key": "51363e7846d7",
+  "operator_display": "(株)ヤマダ電機",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1797,7 +2082,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ea6dc27f911f"
+  "key": "ea6dc27f911f",
+  "operator_display": "(株)伊藤ショウ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーション　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1822,7 +2111,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "162a07f867ac"
+  "key": "162a07f867ac",
+  "operator_display": "(株)平和堂",
+  "operator_kind": "corp",
+  "retailer_display": "(株)平和堂",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1847,7 +2140,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "64e23ed4229d"
+  "key": "64e23ed4229d",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1872,7 +2169,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7dbbc1c75fff"
+  "key": "7dbbc1c75fff",
+  "operator_display": "(株)コノミヤ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コノミヤ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1897,7 +2198,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "217dfb3040f0"
+  "key": "217dfb3040f0",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1922,7 +2227,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "12f6b883d024"
+  "key": "12f6b883d024",
+  "operator_display": "(株)廣甚",
+  "operator_kind": "corp",
+  "retailer_display": "(株)廣甚",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1947,7 +2256,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2f9f183e1688"
+  "key": "2f9f183e1688",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1972,7 +2285,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5cfb8bd1df54"
+  "key": "5cfb8bd1df54",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -1997,7 +2314,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f6fe89a454c6"
+  "key": "f6fe89a454c6",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2022,7 +2343,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4d86cd640406"
+  "key": "4d86cd640406",
+  "operator_display": "イオン(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2047,7 +2372,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a8896ff2e524"
+  "key": "a8896ff2e524",
+  "operator_display": "大和工商リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)廣甚",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2072,7 +2401,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1e7419b35fec"
+  "key": "1e7419b35fec",
+  "operator_display": "(株)山陽マルナカ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)山陽マルナカ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2097,7 +2430,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ca5675f4c1e2"
+  "key": "ca5675f4c1e2",
+  "operator_display": "酒本商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2122,7 +2459,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2eb367f3f036"
+  "key": "2eb367f3f036",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2147,7 +2488,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cdeef8054779"
+  "key": "cdeef8054779",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2172,7 +2517,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "bb52ce7403c5"
+  "key": "bb52ce7403c5",
+  "operator_display": "(株)島忠　ほか2者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)島忠　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2197,7 +2546,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "533c98df17e6"
+  "key": "533c98df17e6",
+  "operator_display": "上新電機(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2222,7 +2575,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7dc1dcb5fa2e"
+  "key": "7dc1dcb5fa2e",
+  "operator_display": "三洋電機(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2247,7 +2604,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "86cd0db50e56"
+  "key": "86cd0db50e56",
+  "operator_display": "(株)イトーヨーカ堂",
+  "operator_kind": "corp",
+  "retailer_display": "(株)イトーヨーカ堂　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2272,7 +2633,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3c0257838d0c"
+  "key": "3c0257838d0c",
+  "operator_display": "(株)ドン・キホーテ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ドン・キホーテ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2297,7 +2662,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "12380971a7ee"
+  "key": "12380971a7ee",
+  "operator_display": "日本商業開発(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)阪急オアシス",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2322,7 +2691,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "db01c40982ec"
+  "key": "db01c40982ec",
+  "operator_display": "(株)スピード",
+  "operator_kind": "corp",
+  "retailer_display": "(株)スピード",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2347,7 +2720,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "94652d824c86"
+  "key": "94652d824c86",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2372,7 +2749,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7e69151924a5"
+  "key": "7e69151924a5",
+  "operator_display": "(株)サンプラザ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2397,7 +2778,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6d56ae201b4f"
+  "key": "6d56ae201b4f",
+  "operator_display": "大和工商リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イズミヤ(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2422,7 +2807,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ec0474bd081f"
+  "key": "ec0474bd081f",
+  "operator_display": "ジェイアール西日本不動産開発(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)上新電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2447,7 +2836,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7c5c0c092da9"
+  "key": "7c5c0c092da9",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)アルペン　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2472,7 +2865,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "294e0c246837"
+  "key": "294e0c246837",
+  "operator_display": "(株)オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オークワ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2497,7 +2894,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "191a92615eeb"
+  "key": "191a92615eeb",
+  "operator_display": "(株)ミキシング",
+  "operator_kind": "corp",
+  "retailer_display": "(株)平和堂　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2522,7 +2923,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5d00d866df40"
+  "key": "5d00d866df40",
+  "operator_display": "西松建設(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2547,7 +2952,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b933ca393792"
+  "key": "b933ca393792",
+  "operator_display": "望月ビル(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オートバックスセブン",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2572,7 +2981,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b2a1a2495677"
+  "key": "b2a1a2495677",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2597,7 +3010,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "683d147a8212"
+  "key": "683d147a8212",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2622,7 +3039,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "49a5ce5e1ca5"
+  "key": "49a5ce5e1ca5",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2647,7 +3068,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4a3aca26a26f"
+  "key": "4a3aca26a26f",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2672,7 +3097,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "aea428eb20bd"
+  "key": "aea428eb20bd",
+  "operator_display": "上新電機(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2697,7 +3126,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "57cde63771bc"
+  "key": "57cde63771bc",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2722,7 +3155,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "365a15482a3b"
+  "key": "365a15482a3b",
+  "operator_display": "イオン(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2747,7 +3184,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6559f462b52b"
+  "key": "6559f462b52b",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪いずみ市民生活協同組合",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2772,7 +3213,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a3118ab36f8b"
+  "key": "a3118ab36f8b",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)太陽家具百貨店　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2797,7 +3242,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ec59f8374eb7"
+  "key": "ec59f8374eb7",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株) 　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2822,7 +3271,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1b898b3a41f7"
+  "key": "1b898b3a41f7",
+  "operator_display": "(株)ヤマダ電機",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2847,7 +3300,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "569075ecf6a0"
+  "key": "569075ecf6a0",
+  "operator_display": "(株)スピード",
+  "operator_kind": "corp",
+  "retailer_display": "(株)スピード",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2872,7 +3329,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "136613543200"
+  "key": "136613543200",
+  "operator_display": "河内花園駅前地区市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ツタヤ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2897,7 +3358,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "90479cd6fb6c"
+  "key": "90479cd6fb6c",
+  "operator_display": "ロック開発(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオン(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2922,7 +3387,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ae4f0114f152"
+  "key": "ae4f0114f152",
+  "operator_display": "(株)カインズ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)カインズ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2947,7 +3416,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "32972a994e19"
+  "key": "32972a994e19",
+  "operator_display": "(株)ヤマダ電機",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2972,7 +3445,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "605330f4d582"
+  "key": "605330f4d582",
+  "operator_display": "(株)二木ゴルフ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)二木ゴルフ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -2997,7 +3474,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "36330684f698"
+  "key": "36330684f698",
+  "operator_display": "大阪北生活協同組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪北生活協同組合",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3022,7 +3503,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "080ec98a0c9a"
+  "key": "080ec98a0c9a",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)大丸ピーコック　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3047,7 +3532,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "84438f49326e"
+  "key": "84438f49326e",
+  "operator_display": "(株)ライフコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3072,7 +3561,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f9e865dccf25"
+  "key": "f9e865dccf25",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3097,7 +3590,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "feeb270a9f60"
+  "key": "feeb270a9f60",
+  "operator_display": "(株)オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オークワ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3122,7 +3619,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "0f8ff599cccc"
+  "key": "0f8ff599cccc",
+  "operator_display": "コリーナ和泉合同会社",
+  "operator_kind": "corp",
+  "retailer_display": "ダイキ(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3147,7 +3648,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4eeb13d40182"
+  "key": "4eeb13d40182",
+  "operator_display": "(株)コノミヤ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コノミヤ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3157,8 +3662,8 @@
   "notified_on": "2008-03-11",
   "store": "万代和泉中央店",
   "city": "",
-  "address": "和泉市池田下町３７７番１ほか",
-  "operator": "***",
+  "address": "和泉市池田下町",
+  "operator": "",
   "retailer": "(株)万代",
   "event_on": "2008-11-12",
   "area_m2": 1250,
@@ -3172,7 +3677,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7d4b8f43755d"
+  "key": "7d4b8f43755d",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -3197,7 +3707,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7abafe91eca5"
+  "key": "7abafe91eca5",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3222,7 +3736,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "74ae74b88149"
+  "key": "74ae74b88149",
+  "operator_display": "(株)大丸コム開発",
+  "operator_kind": "corp",
+  "retailer_display": "(株)大丸ピーコック",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3247,7 +3765,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "737aff0476a4"
+  "key": "737aff0476a4",
+  "operator_display": "オリックス・アルファ(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)キリン堂　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3272,7 +3794,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8b359e3a7c28"
+  "key": "8b359e3a7c28",
+  "operator_display": "(株)サンプラザ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3297,7 +3823,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "eaa369340874"
+  "key": "eaa369340874",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3322,7 +3852,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "47a086bbb6b3"
+  "key": "47a086bbb6b3",
+  "operator_display": "(株)アルペン",
+  "operator_kind": "corp",
+  "retailer_display": "(株)アルペン",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3347,7 +3881,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "29fe5a2f7cf3"
+  "key": "29fe5a2f7cf3",
+  "operator_display": "(株)関西スーパーマーケット",
+  "operator_kind": "corp",
+  "retailer_display": "(株)関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3372,7 +3910,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e17a065272f4"
+  "key": "e17a065272f4",
+  "operator_display": "(株)西辻工務店",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンディ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3397,7 +3939,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "55e525b80c16"
+  "key": "55e525b80c16",
+  "operator_display": "(株)ライフコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3422,7 +3968,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "300664898ac8"
+  "key": "300664898ac8",
+  "operator_display": "(株)ニイガワ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)廣甚",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3447,7 +3997,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "96fc1a3570b7"
+  "key": "96fc1a3570b7",
+  "operator_display": "(株)ナフコ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ナフコ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3472,7 +4026,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4d22d5019e7a"
+  "key": "4d22d5019e7a",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3497,7 +4055,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4db476b09cb4"
+  "key": "4db476b09cb4",
+  "operator_display": "(株)ケーヨー",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ケーヨー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3522,7 +4084,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8b6ced470cf0"
+  "key": "8b6ced470cf0",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3547,7 +4113,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d46bb0936ecf"
+  "key": "d46bb0936ecf",
+  "operator_display": "(株)ミドリ電化",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ミドリ電化",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3572,7 +4142,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "af84437875e4"
+  "key": "af84437875e4",
+  "operator_display": "(有）末広",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3597,7 +4171,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "130c6c7047d4"
+  "key": "130c6c7047d4",
+  "operator_display": "上新電機(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3622,7 +4200,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2b76764c27ac"
+  "key": "2b76764c27ac",
+  "operator_display": "ジェイアール西日本不動産開発(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3647,7 +4229,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "297de1d70b72"
+  "key": "297de1d70b72",
+  "operator_display": "(株)コノミヤ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コノミヤ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3672,7 +4258,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "24e7528fee78"
+  "key": "24e7528fee78",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪いずみ市民生活協同組合ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3697,7 +4287,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "34573d63e67a"
+  "key": "34573d63e67a",
+  "operator_display": "(株)関西スーパーマーケット",
+  "operator_kind": "corp",
+  "retailer_display": "(株)関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3722,7 +4316,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "823b2e9f6273"
+  "key": "823b2e9f6273",
+  "operator_display": "日本土地建物(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)光洋",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3734,7 +4332,7 @@
   "city": "",
   "address": "門真市向島町20番１ほか",
   "operator": "熊西染色工業(株)",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2010-04-10",
   "area_m2": 5157,
   "content": "",
@@ -3747,7 +4345,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "28d94717bafb"
+  "key": "28d94717bafb",
+  "operator_display": "熊西染色工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -3772,7 +4374,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "14b24dd33850"
+  "key": "14b24dd33850",
+  "operator_display": "(株)ケイズ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3797,7 +4403,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b5bf14415174"
+  "key": "b5bf14415174",
+  "operator_display": "(株)万代ほか1者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3822,7 +4432,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c16584134c72"
+  "key": "c16584134c72",
+  "operator_display": "上新電機(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3847,7 +4461,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d5f6fcc59795"
+  "key": "d5f6fcc59795",
+  "operator_display": "西岡エンタープライズ㈲",
+  "operator_kind": "corp",
+  "retailer_display": "大阪いずみ市民生活協同組合",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3872,7 +4490,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "34c37813c77a"
+  "key": "34c37813c77a",
+  "operator_display": "(株)ライフコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーションほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3897,7 +4519,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f5f0fc7f34f2"
+  "key": "f5f0fc7f34f2",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪いずみ市民生活協同組合ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3922,7 +4548,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4c66b9ebebd1"
+  "key": "4c66b9ebebd1",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3947,7 +4577,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "452d28fac962"
+  "key": "452d28fac962",
+  "operator_display": "(株)しまむら",
+  "operator_kind": "corp",
+  "retailer_display": "(株)しまむら",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3972,7 +4606,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c12354e8f019"
+  "key": "c12354e8f019",
+  "operator_display": "(株)ナフコ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ナフコ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -3997,7 +4635,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f15680721497"
+  "key": "f15680721497",
+  "operator_display": "西松建設(株)　ほか12者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コノミヤ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4022,7 +4664,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9c6f4b7215b9"
+  "key": "9c6f4b7215b9",
+  "operator_display": "大和情報サービス(株)　ほか1者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)スーパーサンエー　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4047,7 +4693,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8d499cd35a72"
+  "key": "8d499cd35a72",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4072,7 +4722,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "37c2406172fb"
+  "key": "37c2406172fb",
+  "operator_display": "トステムビバ(株)",
+  "operator_kind": "corp",
+  "retailer_display": "トステムビバ(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4097,7 +4751,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "70c1706d9918"
+  "key": "70c1706d9918",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4122,7 +4780,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5a17286111b0"
+  "key": "5a17286111b0",
+  "operator_display": "上新電機(株)",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4147,7 +4809,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "0341b484e584"
+  "key": "0341b484e584",
+  "operator_display": "住友不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーション　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4172,7 +4838,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3deea913aab7"
+  "key": "3deea913aab7",
+  "operator_display": "岩井地所(有)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)しまむら",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4197,7 +4867,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7f1d0e3a21ac"
+  "key": "7f1d0e3a21ac",
+  "operator_display": "(株)ドン・キホーテ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ドン・キホーテ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4222,7 +4896,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "acd60a922bc1"
+  "key": "acd60a922bc1",
+  "operator_display": "(株)関西ケーズデンキ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)関西ケーズデンキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4247,7 +4925,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "64a9cd2ee2fa"
+  "key": "64a9cd2ee2fa",
+  "operator_display": "(株)オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)オークワ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4272,7 +4954,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "df524bee8d27"
+  "key": "df524bee8d27",
+  "operator_display": "(株)アヤハディオ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)アヤハディオ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4297,7 +4983,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f23a5560a075"
+  "key": "f23a5560a075",
+  "operator_display": "(株)平和堂",
+  "operator_kind": "corp",
+  "retailer_display": "(株)平和堂　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4322,7 +5012,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9812efa2084c"
+  "key": "9812efa2084c",
+  "operator_display": "大黒天物産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4347,7 +5041,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "245f4605869d"
+  "key": "245f4605869d",
+  "operator_display": "大黒天物産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4372,7 +5070,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "340288081f9e"
+  "key": "340288081f9e",
+  "operator_display": "(株)ニトリホールディングス",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4397,7 +5099,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3aeb712185f1"
+  "key": "3aeb712185f1",
+  "operator_display": "(株)万代　ほか1者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4422,7 +5128,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5815ac952870"
+  "key": "5815ac952870",
+  "operator_display": "(株)ニトリホールディングス",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4447,7 +5157,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5b30050fcfea"
+  "key": "5b30050fcfea",
+  "operator_display": "(株)サンプラザ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)サンプラザ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4472,7 +5186,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a7b61385a70a"
+  "key": "a7b61385a70a",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4497,7 +5215,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "011ce18a34b4"
+  "key": "011ce18a34b4",
+  "operator_display": "(株)コノミヤ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コノミヤ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4522,7 +5244,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "86e23088f4e8"
+  "key": "86e23088f4e8",
+  "operator_display": "大黒天物産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4547,7 +5273,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "efdcc16d8a21"
+  "key": "efdcc16d8a21",
+  "operator_display": "(株)山陽マルナカ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)山陽マルナカ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4572,7 +5302,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "59f2d2967674"
+  "key": "59f2d2967674",
+  "operator_display": "三井住友ファイナンス＆リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "ゼビオ(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4597,7 +5331,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "60f05c8dd06d"
+  "key": "60f05c8dd06d",
+  "operator_display": "大黒天物産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4622,7 +5360,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ef0872ddd635"
+  "key": "ef0872ddd635",
+  "operator_display": "(株)関西スーパーマーケット",
+  "operator_kind": "corp",
+  "retailer_display": "(株)関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4647,7 +5389,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "101c7bcbe405"
+  "key": "101c7bcbe405",
+  "operator_display": "大和リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)アルペン　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4672,7 +5418,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5c65e9384a57"
+  "key": "5c65e9384a57",
+  "operator_display": "国際開発(株)",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産(株)　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4697,7 +5447,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "aaadcecbb095"
+  "key": "aaadcecbb095",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪いずみ市民生活協同組合　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4722,7 +5476,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cd52c938b488"
+  "key": "cd52c938b488",
+  "operator_display": "泉南市商工会",
+  "operator_kind": "corp",
+  "retailer_display": "(株)関西ケーズデンキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4747,7 +5505,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6a2bca592cdf"
+  "key": "6a2bca592cdf",
+  "operator_display": "香里ヶ丘トラスト(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4772,7 +5534,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "66ebf9a3dfe5"
+  "key": "66ebf9a3dfe5",
+  "operator_display": "コーナン商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4797,7 +5563,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9ce74bfb2ec4"
+  "key": "9ce74bfb2ec4",
+  "operator_display": "有限会社花川興産　ほか１者",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4822,7 +5592,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a802a9b0ad48"
+  "key": "a802a9b0ad48",
+  "operator_display": "大和リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーション　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4847,7 +5621,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ee65425fbb55"
+  "key": "ee65425fbb55",
+  "operator_display": "イオンリテール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4872,7 +5650,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f281a9298b61"
+  "key": "f281a9298b61",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4897,7 +5679,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1225eaf0a109"
+  "key": "1225eaf0a109",
+  "operator_display": "(株)ドン・キホーテ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ドン・キホーテ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4922,7 +5708,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a13e26a16500"
+  "key": "a13e26a16500",
+  "operator_display": "(株)ニトリホールディングス",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4947,7 +5737,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f6ba16f827da"
+  "key": "f6ba16f827da",
+  "operator_display": "株式会社エディオン",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社エディオン",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4972,7 +5766,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "91c7849c4006"
+  "key": "91c7849c4006",
+  "operator_display": "株式会社サンプラザ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社サンプラザ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -4997,7 +5795,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1658081a242f"
+  "key": "1658081a242f",
+  "operator_display": "春和産業株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5022,7 +5824,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1ea5b9a0be7b"
+  "key": "1ea5b9a0be7b",
+  "operator_display": "株式会社万代",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5047,7 +5853,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ece38338d94d"
+  "key": "ece38338d94d",
+  "operator_display": "大和情報サービス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社松源　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5072,7 +5882,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "08499e0d83a6"
+  "key": "08499e0d83a6",
+  "operator_display": "株式会社ダイエー",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5097,7 +5911,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ddb2a244119a"
+  "key": "ddb2a244119a",
+  "operator_display": "有限会社日成ホーム",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社しまむら",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5109,7 +5927,7 @@
   "city": "",
   "address": "枚方市楠葉花園町2920番9",
   "operator": "京阪電気鉄道株式会社",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2014-02-20",
   "area_m2": 18700,
   "content": "",
@@ -5122,7 +5940,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "127595bde0bd"
+  "key": "127595bde0bd",
+  "operator_display": "京阪電気鉄道株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -5147,7 +5969,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4f80826aa824"
+  "key": "4f80826aa824",
+  "operator_display": "光陽レース株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社廣甚",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5172,7 +5998,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1b71d52fc5ce"
+  "key": "1b71d52fc5ce",
+  "operator_display": "株式会社エディオン",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社エディオン　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5197,7 +6027,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "967fc0a74ae5"
+  "key": "967fc0a74ae5",
+  "operator_display": "株式会社ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5222,7 +6056,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "59403099adc2"
+  "key": "59403099adc2",
+  "operator_display": "株式会社関西スーパーマーケット",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社関西スーパーマーケット　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5247,7 +6085,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "27cfb857757a"
+  "key": "27cfb857757a",
+  "operator_display": "株式会社ドン・キホーテ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ドン・キホーテ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5272,7 +6114,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7ad07211aa50"
+  "key": "7ad07211aa50",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5297,7 +6143,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "75efc0cb7bed"
+  "key": "75efc0cb7bed",
+  "operator_display": "上新電機株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機株式会社　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5322,7 +6172,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "495562c57ec7"
+  "key": "495562c57ec7",
+  "operator_display": "株式会社オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社オークワ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5347,7 +6201,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "451ba1e56876"
+  "key": "451ba1e56876",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5357,8 +6215,8 @@
   "notified_on": "2013-06-07",
   "store": "ドラッグコスモス赤井店",
   "city": "",
-  "address": "大東市氷野二丁目158番３ほか",
-  "operator": "***",
+  "address": "大東市氷野二丁目",
+  "operator": "",
   "retailer": "株式会社コスモス薬品",
   "event_on": "2014-02-08",
   "area_m2": 1368,
@@ -5372,7 +6230,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "218544d6b8b7"
+  "key": "218544d6b8b7",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -5397,7 +6260,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6cdf72ea2a20"
+  "key": "6cdf72ea2a20",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5422,7 +6289,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "999473ff866d"
+  "key": "999473ff866d",
+  "operator_display": "株式会社関西スーパーマーケット",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5447,7 +6318,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ae26ddc73281"
+  "key": "ae26ddc73281",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5472,7 +6347,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "eccbfa9e55fb"
+  "key": "eccbfa9e55fb",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5497,7 +6376,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3cc9bb4025f7"
+  "key": "3cc9bb4025f7",
+  "operator_display": "株式会社トライアルカンパニー",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社トライアルカンパニー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5522,7 +6405,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "db98bf0b2451"
+  "key": "db98bf0b2451",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5547,7 +6434,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3b6caf89c89c"
+  "key": "3b6caf89c89c",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5572,7 +6463,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "841ca6b6b36a"
+  "key": "841ca6b6b36a",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5597,7 +6492,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e3eca2908004"
+  "key": "e3eca2908004",
+  "operator_display": "大和リース株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪食　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5622,7 +6521,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "42cd422734d1"
+  "key": "42cd422734d1",
+  "operator_display": "株式会社光洋",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社光洋",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5647,7 +6550,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d09586086df4"
+  "key": "d09586086df4",
+  "operator_display": "伊藤忠商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社山陽マルナカ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5672,7 +6579,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "62276f258fb1"
+  "key": "62276f258fb1",
+  "operator_display": "株式会社フリーマーケット社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ヤマダ電機",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5697,7 +6608,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "6bd295aea63f"
+  "key": "6bd295aea63f",
+  "operator_display": "イオンモール株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5709,7 +6624,7 @@
   "city": "",
   "address": "吹田市千里万博公園23番17ほか",
   "operator": "三井不動産株式会社",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2015-10-01",
   "area_m2": 61000,
   "content": "",
@@ -5722,7 +6637,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "776314c4af67"
+  "key": "776314c4af67",
+  "operator_display": "三井不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -5747,7 +6666,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cf6610e01b95"
+  "key": "cf6610e01b95",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5772,7 +6695,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "0bdb2b6f980e"
+  "key": "0bdb2b6f980e",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5797,7 +6724,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4b4a9fedcbf1"
+  "key": "4b4a9fedcbf1",
+  "operator_display": "株式会社しまむら",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社しまむら",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5822,7 +6753,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b83bf53104de"
+  "key": "b83bf53104de",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5847,7 +6782,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a33414388ddc"
+  "key": "a33414388ddc",
+  "operator_display": "ＪＲ西日本大阪開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪食ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5872,7 +6811,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f6852a7ca1bc"
+  "key": "f6852a7ca1bc",
+  "operator_display": "株式会社前川電気鋳鋼所",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5897,7 +6840,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "dfb96cb7b9c3"
+  "key": "dfb96cb7b9c3",
+  "operator_display": "株式会社ナフコ　ほか１者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ナフコほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5922,7 +6869,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4a722497427d"
+  "key": "4a722497427d",
+  "operator_display": "越井林業株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コノミヤほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5947,7 +6898,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4b57e224df55"
+  "key": "4b57e224df55",
+  "operator_display": "大黒天物産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5972,7 +6927,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "68f500a7adfe"
+  "key": "68f500a7adfe",
+  "operator_display": "南海電気鉄道株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社光洋",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -5997,7 +6956,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7d441ad7a1c7"
+  "key": "7d441ad7a1c7",
+  "operator_display": "植田商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6022,7 +6985,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "afabe97634cf"
+  "key": "afabe97634cf",
+  "operator_display": "近鉄不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社近商ストア　ほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6047,7 +7014,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3afae3940757"
+  "key": "3afae3940757",
+  "operator_display": "イズミヤ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "カナート株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6057,8 +7028,8 @@
   "notified_on": "2017-04-18",
   "store": "ビエラ千里丘",
   "city": "",
-  "address": "吹田市長野西2022番",
-  "operator": "大阪市北区中之島二丁目２番７号",
+  "address": "吹田市長野西",
+  "operator": "",
   "retailer": "佐竹食品株式会社",
   "event_on": "2017-12-19",
   "area_m2": 1462,
@@ -6072,7 +7043,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8a0be9307d6c"
+  "key": "8a0be9307d6c",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "佐竹食品株式会社",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6082,8 +7058,8 @@
   "notified_on": "2017-04-21",
   "store": "（仮称）ライフ八戸ノ里駅前店",
   "city": "",
-  "address": "東大阪市下小阪五丁目47番２ほか",
-  "operator": "東大阪市下小阪二丁目９番17号",
+  "address": "東大阪市下小阪五丁目",
+  "operator": "",
   "retailer": "株式会社ライフコーポレーション",
   "event_on": "2017-12-22",
   "area_m2": 6883,
@@ -6097,7 +7073,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8ed0e79a2bf2"
+  "key": "8ed0e79a2bf2",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社ライフコーポレーション",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6107,8 +7088,8 @@
   "notified_on": "2017-05-24",
   "store": "（仮称）ドラッグコスモス鳥飼西店",
   "city": "",
-  "address": "摂津市鳥飼西二丁目528番１ほか",
-  "operator": "東京都品川区東五反田二丁目17番１号",
+  "address": "摂津市鳥飼西二丁目",
+  "operator": "",
   "retailer": "株式会社コスモス薬品",
   "event_on": "2018-01-25",
   "area_m2": 1198,
@@ -6122,7 +7103,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "49645e8c328e"
+  "key": "49645e8c328e",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6132,8 +7118,8 @@
   "notified_on": "2017-05-26",
   "store": "（仮称）コーナンＰＲＯ高槻下田部店",
   "city": "",
-  "address": "高槻市下田部町二丁目115番１",
-  "operator": "堺市西区鳳東町四丁401番地１",
+  "address": "高槻市下田部町二丁目",
+  "operator": "",
   "retailer": "コーナン商事株式会社",
   "event_on": "2018-01-27",
   "area_m2": 1472,
@@ -6147,7 +7133,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "752605d366f5"
+  "key": "752605d366f5",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6157,8 +7148,8 @@
   "notified_on": "2017-05-30",
   "store": "山田西ショッピングタウン",
   "city": "",
-  "address": "吹田市山田西二丁目１番30ほか",
-  "operator": "大阪市西成区花園南一丁目４番４号",
+  "address": "吹田市山田西二丁目",
+  "operator": "",
   "retailer": "イズミヤ株式会社",
   "event_on": "2018-02-01",
   "area_m2": 2084,
@@ -6172,7 +7163,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4bd653fc84f7"
+  "key": "4bd653fc84f7",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "イズミヤ株式会社",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6182,8 +7178,8 @@
   "notified_on": "2017-06-26",
   "store": "（仮称）下田部ファッションモール",
   "city": "",
-  "address": "高槻市下田部町二丁目110番１ほか",
-  "operator": "埼玉県さいたま市北区宮原町二丁目19番４号",
+  "address": "高槻市下田部町二丁目",
+  "operator": "",
   "retailer": "株式会社しまむら",
   "event_on": "2018-03-14",
   "area_m2": 1890,
@@ -6197,7 +7193,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "854e6650a073"
+  "key": "854e6650a073",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社しまむら",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6207,8 +7208,8 @@
   "notified_on": "2017-09-05",
   "store": "万代南津の辺店",
   "city": "",
-  "address": "大東市南津の辺町921番１ほか",
-  "operator": "大阪市生野区小路東三丁目10番13号",
+  "address": "大東市南津の辺町",
+  "operator": "",
   "retailer": "株式会社万代",
   "event_on": "2018-05-06",
   "area_m2": 2716,
@@ -6222,7 +7223,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "25a9c5157498"
+  "key": "25a9c5157498",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6232,8 +7238,8 @@
   "notified_on": "2017-09-22",
   "store": "カインズ太子店",
   "city": "",
-  "address": "南河内郡太子町太子280番ほか",
-  "operator": "埼玉県本庄市早稲田の杜一丁目２番１号",
+  "address": "南河内郡太子町太子",
+  "operator": "",
   "retailer": "株式会社カインズ",
   "event_on": "2018-05-23",
   "area_m2": 8092,
@@ -6247,7 +7253,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "49649e9d4580"
+  "key": "49649e9d4580",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社カインズ",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6257,8 +7268,8 @@
   "notified_on": "2017-10-11",
   "store": "（仮称）万代太子橋店",
   "city": "",
-  "address": "守口市京阪本通二丁目75番2ほか",
-  "operator": "大阪市生野区小路東三丁目10番13号",
+  "address": "守口市京阪本通二丁目",
+  "operator": "",
   "retailer": "株式会社万代",
   "event_on": "2018-11-01",
   "area_m2": 1609,
@@ -6272,7 +7283,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "972fd1673ad6"
+  "key": "972fd1673ad6",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6282,8 +7298,8 @@
   "notified_on": "2017-10-11",
   "store": "光伸真珠OSAKAルクス店",
   "city": "",
-  "address": "東大阪市川俣一丁目2番ほか",
-  "operator": "大阪市西区立売堀五丁目３番18号",
+  "address": "東大阪市川俣一丁目",
+  "operator": "",
   "retailer": "株式会社光伸真珠",
   "event_on": "2018-06-12",
   "area_m2": 2787,
@@ -6297,7 +7313,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "435b7e9c3a34"
+  "key": "435b7e9c3a34",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社光伸真珠",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6307,8 +7328,8 @@
   "notified_on": "2017-10-24",
   "store": "イズミヤ住道店",
   "city": "",
-  "address": "大東市大野一丁目1053番2ほか",
-  "operator": "大阪市西成区花園南一丁目4番4号",
+  "address": "大東市大野一丁目",
+  "operator": "",
   "retailer": "イズミヤ株式会社",
   "event_on": "2018-07-01",
   "area_m2": 3685,
@@ -6322,7 +7343,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "32c7eea64aeb"
+  "key": "32c7eea64aeb",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "イズミヤ株式会社",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6332,8 +7358,8 @@
   "notified_on": "2017-11-28",
   "store": "（仮称）ラ･ムー寝屋川店",
   "city": "",
-  "address": "寝屋川市小路北町12番１ほか",
-  "operator": "岡山県倉敷市堀南704番地の５",
+  "address": "寝屋川市小路北町",
+  "operator": "",
   "retailer": "大黒天物産株式会社",
   "event_on": "2018-07-29",
   "area_m2": 2936,
@@ -6347,7 +7373,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "38a9b64d38b3"
+  "key": "38a9b64d38b3",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "大黒天物産株式会社",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6357,9 +7388,9 @@
   "notified_on": "2017-12-18",
   "store": "（仮称）ＪＲ岸辺駅ビル開発",
   "city": "",
-  "address": "吹田市岸部新町17ほか",
-  "operator": "大阪市北区芝田二丁目４番24号",
-  "retailer": "未定",
+  "address": "吹田市岸部新町",
+  "operator": "",
+  "retailer": "",
   "event_on": "2018-10-01",
   "area_m2": 3861,
   "content": "",
@@ -6372,7 +7403,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d012866e3d10"
+  "key": "d012866e3d10",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "未定",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6382,8 +7418,8 @@
   "notified_on": "2017-12-28",
   "store": "モアイプラザ",
   "city": "",
-  "address": "吹田市豊津町10番６",
-  "operator": "大阪市淀川区西中島三丁目９番12号",
+  "address": "吹田市豊津町",
+  "operator": "",
   "retailer": "株式会社ドン・キホーテ",
   "event_on": "2018-08-29",
   "area_m2": 1352,
@@ -6397,7 +7433,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "56e9561d8798"
+  "key": "56e9561d8798",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社ドン・キホーテ",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6407,9 +7448,9 @@
   "notified_on": "2018-01-23",
   "store": "吹田グリーンプレイスⅡ期開発",
   "city": "",
-  "address": "吹田市片山町二丁目410番２ほか",
-  "operator": "大阪市北区角田町３番25号",
-  "retailer": "未定",
+  "address": "吹田市片山町二丁目",
+  "operator": "",
+  "retailer": "",
   "event_on": "2018-09-24",
   "area_m2": 1970,
   "content": "",
@@ -6422,7 +7463,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4051b6b2d341"
+  "key": "4051b6b2d341",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "未定",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6432,8 +7478,8 @@
   "notified_on": "2018-03-30",
   "store": "（仮称）星田北二丁目計画",
   "city": "",
-  "address": "交野市星田北二丁目298番ほか",
-  "operator": "埼玉県本庄市早稲田の杜一丁目２番１号",
+  "address": "交野市星田北二丁目",
+  "operator": "",
   "retailer": "株式会社カインズ",
   "event_on": "2018-12-01",
   "area_m2": 15576,
@@ -6447,7 +7493,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e4a713376668"
+  "key": "e4a713376668",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社カインズ",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6472,7 +7523,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b077adbe2a7f"
+  "key": "b077adbe2a7f",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6497,7 +7552,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "da9ea960567a"
+  "key": "da9ea960567a",
+  "operator_display": "上新電機株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6522,7 +7581,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5576d92c6c42"
+  "key": "5576d92c6c42",
+  "operator_display": "オリックス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社関西ケーズデンキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6547,7 +7610,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "98c9fa8084aa"
+  "key": "98c9fa8084aa",
+  "operator_display": "株式会社エイチ・ツー・オーアセットマネジメント",
+  "operator_kind": "corp",
+  "retailer_display": "イズミヤ株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6572,7 +7639,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8f57f70020d7"
+  "key": "8f57f70020d7",
+  "operator_display": "株式会社バローホールディングス",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社バロー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6597,7 +7668,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "06b1a0e18d56"
+  "key": "06b1a0e18d56",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6622,7 +7697,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4ac98690da80"
+  "key": "4ac98690da80",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6634,7 +7713,7 @@
   "city": "",
   "address": "藤井寺市岡二丁目223番１ほか",
   "operator": "イオンモール株式会社",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2019-07-15",
   "area_m2": 12386,
   "content": "",
@@ -6647,7 +7726,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "52ce3fcd9aaa"
+  "key": "52ce3fcd9aaa",
+  "operator_display": "イオンモール株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -6672,7 +7755,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1a63dbf97e21"
+  "key": "1a63dbf97e21",
+  "operator_display": "上新電機株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6682,8 +7769,8 @@
   "notified_on": "2019-02-19",
   "store": "ファッションセンターしまむら島泉店",
   "city": "",
-  "address": "羽曳野市島泉九丁目300番１ほか",
-  "operator": "***",
+  "address": "羽曳野市島泉九丁目",
+  "operator": "",
   "retailer": "株式会社しまむら",
   "event_on": "2019-10-20",
   "area_m2": 1273,
@@ -6697,7 +7784,12 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "1d8b452a1dec"
+  "key": "1d8b452a1dec",
+  "operator_display": "個人",
+  "operator_kind": "individual",
+  "retailer_display": "株式会社しまむら",
+  "retailer_kind": "corp",
+  "address_redacted": true
  },
  {
   "source": "osaka-pref",
@@ -6722,7 +7814,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2745faf9e54d"
+  "key": "2745faf9e54d",
+  "operator_display": "株式会社ライフコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6747,7 +7843,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "fc51427a64ae"
+  "key": "fc51427a64ae",
+  "operator_display": "株式会社ＮＴＴ西日本アセット・プランニング",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社さとうほか",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6772,7 +7872,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "105bae036d45"
+  "key": "105bae036d45",
+  "operator_display": "株式会社ワイズ・ワン大阪摂津",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ネクステージ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6797,7 +7901,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c96d00b61b4a"
+  "key": "c96d00b61b4a",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6822,7 +7930,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "19c4096e1918"
+  "key": "19c4096e1918",
+  "operator_display": "株式会社トライアルカンパニー",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社トライアルカンパニー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6847,7 +7959,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "7da90f26010f"
+  "key": "7da90f26010f",
+  "operator_display": "株式会社ネクステージ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ネクステージ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6872,7 +7988,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ec2387c53c54"
+  "key": "ec2387c53c54",
+  "operator_display": "タカラ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ＩＤＯＭ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6897,7 +8017,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ff1018be729d"
+  "key": "ff1018be729d",
+  "operator_display": "賛栄商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6922,7 +8046,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3cc2987ecb99"
+  "key": "3cc2987ecb99",
+  "operator_display": "株式会社マルハチエステート",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社マルハチ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6947,7 +8075,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "dabce860f633"
+  "key": "dabce860f633",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6972,7 +8104,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cf1cc3382d80"
+  "key": "cf1cc3382d80",
+  "operator_display": "株式会社ビバホーム",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ビバホーム",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -6997,7 +8133,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f83623f5d11e"
+  "key": "f83623f5d11e",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7022,7 +8162,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "25101fc3fd40"
+  "key": "25101fc3fd40",
+  "operator_display": "上新電機株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7047,7 +8191,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3eaf261ff2de"
+  "key": "3eaf261ff2de",
+  "operator_display": "株式会社ヤマダデンキ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ヤマダデンキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7072,7 +8220,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "71302be24f76"
+  "key": "71302be24f76",
+  "operator_display": "株式会社日本エスコン",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7097,7 +8249,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "59d6c89f1450"
+  "key": "59d6c89f1450",
+  "operator_display": "株式会社クスリのアオキ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社クスリのアオキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7122,7 +8278,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ec479909c2c0"
+  "key": "ec479909c2c0",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7147,7 +8307,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ce6b63193fab"
+  "key": "ce6b63193fab",
+  "operator_display": "パナソニックホームズ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪急オアシス",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7172,7 +8336,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "39f0d5cdc776"
+  "key": "39f0d5cdc776",
+  "operator_display": "株式会社ライフコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7197,7 +8365,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a6a601e0f7ac"
+  "key": "a6a601e0f7ac",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7222,7 +8394,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ed00fb27f593"
+  "key": "ed00fb27f593",
+  "operator_display": "株式会社ダイエー",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7247,7 +8423,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "eb3378605e48"
+  "key": "eb3378605e48",
+  "operator_display": "天正株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7272,7 +8452,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "bf80bb1c5ed3"
+  "key": "bf80bb1c5ed3",
+  "operator_display": "株式会社草野実業",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7297,7 +8481,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2a0bdf07aa06"
+  "key": "2a0bdf07aa06",
+  "operator_display": "株式会社ＧＯＭＥＩ小川",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7322,7 +8510,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cf8dc02026db"
+  "key": "cf8dc02026db",
+  "operator_display": "株式会社日本エスコン",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7347,7 +8539,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f575c907d71b"
+  "key": "f575c907d71b",
+  "operator_display": "株式会社さとう",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社さとう",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7372,7 +8568,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cc589c225c22"
+  "key": "cc589c225c22",
+  "operator_display": "ダイレックス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "ダイレックス株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7397,7 +8597,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5f027739beaa"
+  "key": "5f027739beaa",
+  "operator_display": "株式会社エディオン",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社エディオン",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7422,7 +8626,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f094bba2fd63"
+  "key": "f094bba2fd63",
+  "operator_display": "株式会社万代",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7447,7 +8655,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "817abe460438"
+  "key": "817abe460438",
+  "operator_display": "株式会社ザグザグ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ザグザグ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7472,7 +8684,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "373a6e44acff"
+  "key": "373a6e44acff",
+  "operator_display": "株式会社クスリのアオキ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社クスリのアオキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7497,7 +8713,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "89645d0b4a22"
+  "key": "89645d0b4a22",
+  "operator_display": "イオンタウン株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエー",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7522,7 +8742,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "fbe336650c4f"
+  "key": "fbe336650c4f",
+  "operator_display": "オリックス不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7547,7 +8771,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "329c242c91eb"
+  "key": "329c242c91eb",
+  "operator_display": "株式会社オークワ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社オークワ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7572,7 +8800,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a92f464ceee9"
+  "key": "a92f464ceee9",
+  "operator_display": "ダイレックス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "ダイレックス株式会社",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -7597,6 +8829,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "80ae59f0abc8"
+  "key": "80ae59f0abc8",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "retailer_display": "大阪いずみ市民生活協同組合",
+  "retailer_kind": "corp"
  }
 ]

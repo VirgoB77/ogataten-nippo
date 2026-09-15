@@ -20,7 +20,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240528t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "f247b8f86e3f"
+  "key": "f247b8f86e3f",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -43,7 +48,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240528t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "36208332544b"
+  "key": "36208332544b",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -66,7 +76,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "913bf66f9a5a"
+  "key": "913bf66f9a5a",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -89,7 +104,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "a9f5df63772e"
+  "key": "a9f5df63772e",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -112,7 +132,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "12c40beadd93"
+  "key": "12c40beadd93",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -135,7 +160,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "ef6e20a5375c"
+  "key": "ef6e20a5375c",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -158,7 +188,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240705t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "8272717aa7b7"
+  "key": "8272717aa7b7",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -181,7 +216,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240709t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "c1683b37ced3"
+  "key": "c1683b37ced3",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -204,7 +244,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240723t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "ac2d93d3834f"
+  "key": "ac2d93d3834f",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -227,7 +272,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240730t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "f9fd9d0217b6"
+  "key": "f9fd9d0217b6",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -250,7 +300,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240806t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "fd4ec8662250"
+  "key": "fd4ec8662250",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -273,7 +328,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240813t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "bd60574c3f1b"
+  "key": "bd60574c3f1b",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "",
@@ -296,6 +356,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240823t.pdf"
   ],
   "source": "hyogo-pref-juran",
-  "key": "cf7c8f53651c"
+  "key": "cf7c8f53651c",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  }
 ]

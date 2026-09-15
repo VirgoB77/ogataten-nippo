@@ -215,6 +215,38 @@ def load(path):
         return json.load(f)
 
 
+# ------------------------------------------------- 日ごとのファイルからも落とす
+def scrub_parsed():
+    """data/parsed の日ごとのファイルからも氏名と地番を落とす。
+
+    data/parsed は「その日にページに載っていたもの」を1日1枚ずつためたもので、
+    リポジトリに入れて公開している。ここは行政のページの写しではなく、
+    こちらが作った索引なので、氏名で引ける形にしてはいけない（9節）。
+
+    行政の写しそのもの（data/raw の HTML と PDF）はさわらない。
+    規則を変えたくなったら、そこから作り直せる。
+
+    何度通しても同じ結果になるようにしてある。
+    """
+    changed = 0
+    for path in sorted(glob.glob(os.path.join(PARSED, "**", "*.json"), recursive=True)):
+        try:
+            with open(path, encoding="utf-8") as f:
+                rows = json.load(f)
+        except Exception:
+            continue
+        if not isinstance(rows, list):
+            continue
+        before = json.dumps(rows, ensure_ascii=False, sort_keys=True)
+        apply_privacy([r for r in rows if isinstance(r, dict)])
+        after = json.dumps(rows, ensure_ascii=False, sort_keys=True)
+        if before != after:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(rows, f, ensure_ascii=False, indent=1)
+            changed += 1
+    return changed
+
+
 # ------------------------------------------------------------ 個人情報を落とす
 # 共通仕様 3.1。設置者には個人がまざる（届出は建物の持ち主が出すので、
 # 地主が個人のことがある）。氏名と地番の両方をそのまま出していた。
@@ -234,6 +266,13 @@ def apply_privacy(recs):
             raw = r.get(f)
             if raw is None:
                 continue
+            if f + "_kind" in r:
+                # もう通してある。もう一度通すと、空文字にした値を見て
+                # 画面用の「個人」まで空にしてしまう。何度通しても
+                # 同じ結果になるように、ここで止める。
+                # 判定の規則を変えたくなったら data/raw から作り直す
+                kinds[f] = r[f + "_kind"]
+                continue
             kind = privacy.party_kind(raw)
             kinds[f] = kind
             r[f] = privacy.party_for_index(raw)      # 機械用。個人は空文字
@@ -250,16 +289,22 @@ def apply_privacy(recs):
         round_it = kinds.get("operator", "individual") == "individual"
         if (r.get("new_operator") or "").strip():
             round_it = round_it or kinds.get("new_operator") == "individual"
+        # 印は毎回つけ直す。収集先をまたいでまとめるときに、丸めた記録の印だけが
+        # 法人の記録に移ることがある。前回の印を残すと、法人の地番に
+        # 「個人のため丸めた」と書いてしまう
+        r.pop("address_redacted", None)
         if round_it:
-            before = r.get("address") or ""
-            r["address"] = privacy.redact_addr(before, "individual")
-            if r["address"] != before:
-                r["address_redacted"] = True
+            r["address"] = privacy.redact_addr(r.get("address") or "", "individual")
+            r["address_redacted"] = True
             hidden += 1
     return hidden
 
 
 def main():
+    scrubbed = scrub_parsed()
+    if scrubbed:
+        print(f"日ごとのファイル {scrubbed} 枚から氏名と地番を落とした（共通仕様3.1）")
+
     by_key = {}
     latest_day = {}                     # 収集先ごとの、いちばん新しい保存日
 

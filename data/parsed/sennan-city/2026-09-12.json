@@ -18,7 +18,12 @@
   "note": "",
   "docs": [],
   "source": "sennan-city",
-  "key": "bb8891fa097d"
+  "key": "bb8891fa097d",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -39,6 +44,11 @@
   "note": "",
   "docs": [],
   "source": "sennan-city",
-  "key": "64f10fbd2a83"
+  "key": "64f10fbd2a83",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  }
 ]

@@ -18,7 +18,12 @@
   "note": "",
   "docs": [],
   "source": "kumatori-town",
-  "key": "31b45fa7fdad"
+  "key": "31b45fa7fdad",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -39,6 +44,11 @@
   "note": "",
   "docs": [],
   "source": "kumatori-town",
-  "key": "145d23a5810d"
+  "key": "145d23a5810d",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  }
 ]

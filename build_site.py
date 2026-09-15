@@ -184,8 +184,14 @@ def detail_page(r, by_ref, src_meta):
         add(label, esc(jp_date(ev)))
     if r.get("opened_on"):
         add("開店日", esc(jp_date(r["opened_on"])))
-    add("所在地", esc(r.get("address") or r.get("area"))
-        + ('<span class="note">（設置者が個人のため町丁目まで）</span>' if r.get("address_redacted") else ""))
+    addr_note = ""
+    if r.get("address_redacted"):
+        # 「個人だから伏せた」と「誰か確かめられないから伏せた」は別のこと。
+        # 読者にどちらか分かるように書き分ける
+        why = ("設置者が個人のため" if (r.get("operator_display") or "") == "個人"
+               else "設置者を確かめられないため")
+        addr_note = f'<span class="note">（{why}町丁目まで）</span>'
+    add("所在地", esc(r.get("address") or r.get("area")) + addr_note)
     add("店舗面積", esc(fmt_area(r.get("area_m2"))))
     add("延床面積", esc(fmt_area(r.get("floor_area_m2"))))
     # _display は merge.py が付ける画面用の値。個人は「個人」と書いてある。

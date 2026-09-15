@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2449",
-  "key": "abfaed4ffbeb"
+  "key": "abfaed4ffbeb",
+  "operator_display": "大黒天物産（株）",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産（株）",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "9946",
-  "key": "d46f1879d8fd"
+  "key": "d46f1879d8fd",
+  "operator_display": "㈱コメリ",
+  "operator_kind": "corp",
+  "retailer_display": "㈱コメリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -59,7 +67,7 @@
   "city": "泉南市",
   "address": "泉南市信達岡中777",
   "operator": "㈱フォレストモール",
-  "retailer": "未定",
+  "retailer": "",
   "event_on": "2027-01-30",
   "area_m2": 5817,
   "content": "",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "6436",
-  "key": "4bb4ffc6d1e0"
+  "key": "4bb4ffc6d1e0",
+  "operator_display": "㈱フォレストモール",
+  "operator_kind": "corp",
+  "retailer_display": "未定",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -97,6 +109,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "1786",
-  "key": "1ceb6f081656"
+  "key": "1ceb6f081656",
+  "operator_display": "（株）コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "（株）コスモス薬品",
+  "retailer_kind": "corp"
  }
 ]

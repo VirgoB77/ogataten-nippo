@@ -20,7 +20,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/coopnonoi5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "dc92dc090542"
+  "key": "dc92dc090542",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -43,7 +47,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/baro-toyoda.pdf"
   ],
   "source": "sakai-city",
-  "key": "3d5467650673"
+  "key": "3d5467650673",
+  "operator_display": "株式会社バロー",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -66,7 +74,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/higashihatta.pdf"
   ],
   "source": "sakai-city",
-  "key": "f4053c538f6e"
+  "key": "f4053c538f6e",
+  "operator_display": "株式会社NTT西日本アセット・プランニング",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -89,7 +101,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/cosumosuhatusiba5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "d89688e90abd"
+  "key": "d89688e90abd",
+  "operator_display": "住吉管財株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -112,7 +128,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/o-kuwa-sakaisiekimae_tiikikouken.pdf"
   ],
   "source": "sakai-city",
-  "key": "70b1c22cc31c"
+  "key": "70b1c22cc31c",
+  "operator_display": "株式会社 オークワ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -135,7 +155,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/univers-sakai_5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "833b6f1eb5e7"
+  "key": "833b6f1eb5e7",
+  "operator_display": "株式会社 ネクステージ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -158,7 +182,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/suvland-sakai.pdf"
   ],
   "source": "sakai-city",
-  "key": "eefd5271017e"
+  "key": "eefd5271017e",
+  "operator_display": "株式会社 ネクステージ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -181,7 +209,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/matugen-takakuradai_5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "f18de0706927"
+  "key": "f18de0706927",
+  "operator_display": "株式会社 松源",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -204,7 +236,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/tiikikouken_dc-fukainakamati_5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "4d14d6e97ed4"
+  "key": "4d14d6e97ed4",
+  "operator_display": "株式会社 コスモス薬品",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -227,7 +263,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/ks-daisen_5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "a8ded0739acb"
+  "key": "a8ded0739acb",
+  "operator_display": "株式会社関西ケーズデンキ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -250,7 +290,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/life-daisen_5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "73cba85a0915"
+  "key": "73cba85a0915",
+  "operator_display": "株式会社 ライフコーポレーション",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -273,7 +317,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/tekkland-minamisima_5-1.pdf"
   ],
   "source": "sakai-city",
-  "key": "b65a7bfbd3ea"
+  "key": "b65a7bfbd3ea",
+  "operator_display": "株式会社 ヤマダデンキ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -296,7 +344,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/coop-tukunoten.pdf"
   ],
   "source": "sakai-city",
-  "key": "0fee8d9ef4b3"
+  "key": "0fee8d9ef4b3",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -319,7 +371,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/chiikikouken_dcsakaitakao.pdf"
   ],
   "source": "sakai-city",
-  "key": "481a8b789a19"
+  "key": "481a8b789a19",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -342,7 +398,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/chiikikouken_dchanndanisimati.pdf"
   ],
   "source": "sakai-city",
-  "key": "6421bcfb318e"
+  "key": "6421bcfb318e",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第11条第3項",
@@ -363,7 +423,11 @@
   "note": "吸収合併のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "6f702ab50871"
+  "key": "6f702ab50871",
+  "operator_display": "株式会社ケーヨー",
+  "operator_kind": "corp",
+  "new_operator_display": "DCM株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -384,7 +448,11 @@
   "note": "建物譲渡のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "9b86008e32b2"
+  "key": "9b86008e32b2",
+  "operator_display": "三井住友トラスト・パナソニックファイナンス株式会社 株式会社キリン堂",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社関西スーパーマーケット 株式会社キリン堂",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -392,8 +460,8 @@
   "notified_on": "2023-12-08",
   "notified_raw": "令和5年 12月8日",
   "store": "サンプラザ光明池店",
-  "address": "南区新檜尾台二丁1番地7",
-  "operator": "ー",
+  "address": "南区新檜尾台二丁",
+  "operator": "",
   "new_operator": "株式会社正龍コーポレーション",
   "event_on": "2016-02-18",
   "content": "",
@@ -405,7 +473,12 @@
   "note": "売買のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "fcbd6f8a43a3"
+  "key": "fcbd6f8a43a3",
+  "operator_display": "ー",
+  "operator_kind": "individual",
+  "new_operator_display": "株式会社正龍コーポレーション",
+  "new_operator_kind": "corp",
+  "address_redacted": true
  },
  {
   "article": "第11条第3項",
@@ -426,7 +499,11 @@
   "note": "吸収合併のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "d107da4e2b0f"
+  "key": "d107da4e2b0f",
+  "operator_display": "株式会社ビバホーム",
+  "operator_kind": "corp",
+  "new_operator_display": "アークランズ株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -447,7 +524,11 @@
   "note": "売買のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "142f12c8c068"
+  "key": "142f12c8c068",
+  "operator_display": "株式会社カズ・インターナショナル",
+  "operator_kind": "corp",
+  "new_operator_display": "伊勢住宅株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -468,7 +549,11 @@
   "note": "売買のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "d19cf56426bb"
+  "key": "d19cf56426bb",
+  "operator_display": "大和ハウスリアルティマネジメント株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "リコーリース株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -489,7 +574,11 @@
   "note": "会社分割のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "75d23115f577"
+  "key": "75d23115f577",
+  "operator_display": "イズミヤ株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社エイチ・ツー・オー商業開発",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -510,7 +599,11 @@
   "note": "建物売却のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "bb6e98a4ca09"
+  "key": "bb6e98a4ca09",
+  "operator_display": "三菱UFJリース株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "MULプロパティ株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -531,7 +624,11 @@
   "note": "会社分割のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "d494494bcd3d"
+  "key": "d494494bcd3d",
+  "operator_display": "株式会社山陽マルナカ",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社ダイエー",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -552,7 +649,11 @@
   "note": "建物売却のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "1854b9e8c04e"
+  "key": "1854b9e8c04e",
+  "operator_display": "ダイワロイヤル株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "三井住友トラスト・パナソニックファイナンス株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -573,7 +674,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "26399db9de9b"
+  "key": "26399db9de9b",
+  "operator_display": "第一紡績株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社わたらせ温泉",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -594,7 +699,11 @@
   "note": "大規模小売店舗譲渡のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "924c7fcb3f3a"
+  "key": "924c7fcb3f3a",
+  "operator_display": "新金岡商業協同組合 イオンリテール株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "イオンリテール株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -615,7 +724,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "113a6c786fad"
+  "key": "113a6c786fad",
+  "operator_display": "株式会社日本エスコン",
+  "operator_kind": "corp",
+  "new_operator_display": "みずほ信託銀行株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -636,7 +749,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "febda204c20a"
+  "key": "febda204c20a",
+  "operator_display": "株式会社オージースポーツ",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社日本エスコン",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -657,7 +774,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "de536912d91b"
+  "key": "de536912d91b",
+  "operator_display": "株式会社オージーキャピタル",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社オージースポーツ",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -678,7 +799,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "f6c319ecdddd"
+  "key": "f6c319ecdddd",
+  "operator_display": "オリックス・インテリア株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "大和情報サービス株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -699,7 +824,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "6a9ff73245d4"
+  "key": "6a9ff73245d4",
+  "operator_display": "アーク不動産株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "三菱UFJ信託銀行株式会社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -720,7 +849,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "1123749e31e8"
+  "key": "1123749e31e8",
+  "operator_display": "株式会社やまたけ",
+  "operator_kind": "corp",
+  "new_operator_display": "株式会社ホリーホック",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第11条第3項",
@@ -741,7 +874,11 @@
   "note": "建物所有権移転による建物設置者の変更のため",
   "docs": [],
   "source": "sakai-city",
-  "key": "5f36d8292e13"
+  "key": "5f36d8292e13",
+  "operator_display": "三井住友信託銀行株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "大阪府住宅供給公社",
+  "new_operator_kind": "corp"
  },
  {
   "article": "第6条第2項",
@@ -764,7 +901,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/okuwamihara6-2.pdf"
   ],
   "source": "sakai-city",
-  "key": "e5616fbfae02"
+  "key": "e5616fbfae02",
+  "operator_display": "株式会社オークワ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -787,7 +928,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/life-fukuizumi_6-2.pdf"
   ],
   "source": "sakai-city",
-  "key": "40b4b227e9a5"
+  "key": "40b4b227e9a5",
+  "operator_display": "三菱UFJ 信託銀行 株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -810,7 +955,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/superautobacs-direxharayamadai6-2.pdf"
   ],
   "source": "sakai-city",
-  "key": "9e1e5f34edd2"
+  "key": "9e1e5f34edd2",
+  "operator_display": "株式会社オートバックスセブン ダイレックス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -833,7 +982,11 @@
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/takashimaya-sakaiten_6-2.pdf"
   ],
   "source": "sakai-city",
-  "key": "ab5127e40436"
+  "key": "ab5127e40436",
+  "operator_display": "南海電気鉄道株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第5項",
@@ -854,7 +1007,11 @@
   "note": "店舗構成見直しのため",
   "docs": [],
   "source": "sakai-city",
-  "key": "36331f2d1ccd"
+  "key": "36331f2d1ccd",
+  "operator_display": "南海電気鉄道株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第5項",
@@ -875,7 +1032,11 @@
   "note": "現店舗を閉鎖し、建て替えを行うため",
   "docs": [],
   "source": "sakai-city",
-  "key": "b57130527089"
+  "key": "b57130527089",
+  "operator_display": "株式会社エスコン",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第5項",
@@ -896,7 +1057,11 @@
   "note": "事業規模に応じた店舗面積とするため",
   "docs": [],
   "source": "sakai-city",
-  "key": "b11ef0c2847b"
+  "key": "b11ef0c2847b",
+  "operator_display": "有限会社サン・ローヤル",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -917,7 +1082,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "f2629649b28f"
+  "key": "f2629649b28f",
+  "operator_display": "三菱UFJ信託銀行 株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -938,7 +1107,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "3b1b2013a5de"
+  "key": "3b1b2013a5de",
+  "operator_display": "三井不動産株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -959,7 +1132,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "3d2f669abc7b"
+  "key": "3d2f669abc7b",
+  "operator_display": "株式会社パンジョ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -980,7 +1157,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "8f6c5ada2467"
+  "key": "8f6c5ada2467",
+  "operator_display": "株式会社ダイエー",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1001,7 +1182,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "b5b96934b66c"
+  "key": "b5b96934b66c",
+  "operator_display": "株式会社ダイエー",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1022,7 +1207,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "69eada87bb9b"
+  "key": "69eada87bb9b",
+  "operator_display": "三菱HCキャピタルエステートプラス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1043,7 +1232,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "9e3431921235"
+  "key": "9e3431921235",
+  "operator_display": "大和ハウスリアルティマネジメント株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1064,7 +1257,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "d18a6a35ff91"
+  "key": "d18a6a35ff91",
+  "operator_display": "アークランズ株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1085,7 +1282,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "53ac4bcf2d00"
+  "key": "53ac4bcf2d00",
+  "operator_display": "株式会社西友",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1106,7 +1307,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "47649e7dce93"
+  "key": "47649e7dce93",
+  "operator_display": "株式会社西友",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1127,7 +1332,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "83a794d1e928"
+  "key": "83a794d1e928",
+  "operator_display": "株式会社わたらせ温泉",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1148,7 +1357,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "334be85b95c8"
+  "key": "334be85b95c8",
+  "operator_display": "アークランズ株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1169,7 +1382,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "ba880ace78ec"
+  "key": "ba880ace78ec",
+  "operator_display": "株式会社オートバックスセブン ダイレックス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1190,7 +1407,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "9151f2e4b9f9"
+  "key": "9151f2e4b9f9",
+  "operator_display": "株式会社オートバックスセブン",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1211,7 +1432,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "f42889b3c585"
+  "key": "f42889b3c585",
+  "operator_display": "みずほ信託銀行株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1232,7 +1457,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "5f12f550b1c7"
+  "key": "5f12f550b1c7",
+  "operator_display": "株式会社パンジョ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1253,7 +1482,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "7db6f7f52b89"
+  "key": "7db6f7f52b89",
+  "operator_display": "株式会社パン・パシフィック・インターナショナルホールディングス",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1274,7 +1507,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "fc6c241f3313"
+  "key": "fc6c241f3313",
+  "operator_display": "大阪府住宅供給公社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1295,7 +1532,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "2d2a8152ab75"
+  "key": "2d2a8152ab75",
+  "operator_display": "DCM株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1316,7 +1557,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "c04f43de848e"
+  "key": "c04f43de848e",
+  "operator_display": "南海電気鉄道株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1337,7 +1582,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "210214e465ae"
+  "key": "210214e465ae",
+  "operator_display": "みずほ信託銀行株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1358,7 +1607,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "151277289492"
+  "key": "151277289492",
+  "operator_display": "三井住友トラスト・パナソニックファイナンス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1379,7 +1632,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "66e2950ddf99"
+  "key": "66e2950ddf99",
+  "operator_display": "大和ハウスリアルティマネジメント株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1400,7 +1657,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "1cb014d95008"
+  "key": "1cb014d95008",
+  "operator_display": "三井住友信託銀行株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1421,7 +1682,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "0f58d4568ea1"
+  "key": "0f58d4568ea1",
+  "operator_display": "株式会社オートバックスセブン ダイレックス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1442,7 +1707,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "86955fbdedec"
+  "key": "86955fbdedec",
+  "operator_display": "株式会社わたらせ温泉",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1463,7 +1732,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "d8767eef7a68"
+  "key": "d8767eef7a68",
+  "operator_display": "イオンモール株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1484,7 +1757,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "a18e4421e88f"
+  "key": "a18e4421e88f",
+  "operator_display": "株式会社関西スーパーマーケット 株式会社キリン堂",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1505,7 +1782,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "dbc77b0dce35"
+  "key": "dbc77b0dce35",
+  "operator_display": "三菱HCキャピタルエステートプラス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1526,7 +1807,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "980d41a72b05"
+  "key": "980d41a72b05",
+  "operator_display": "みずほ信託銀行 株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1547,7 +1832,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "e2f0403ad03e"
+  "key": "e2f0403ad03e",
+  "operator_display": "株式会社パンジョ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1568,7 +1857,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "cb76cef5ab61"
+  "key": "cb76cef5ab61",
+  "operator_display": "株式会社関西ケーズデンキ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1589,7 +1882,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "a2e19522b277"
+  "key": "a2e19522b277",
+  "operator_display": "株式会社関西ケーズデンキ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1610,7 +1907,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "e6b1d5aff2e6"
+  "key": "e6b1d5aff2e6",
+  "operator_display": "トモエ地所株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1631,7 +1932,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "2a064053ee6c"
+  "key": "2a064053ee6c",
+  "operator_display": "株式会社エスコン",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1652,7 +1957,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "c21c3eaecd49"
+  "key": "c21c3eaecd49",
+  "operator_display": "リコーリース株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1673,7 +1982,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "61308a1a88f3"
+  "key": "61308a1a88f3",
+  "operator_display": "株式会社NTT西日本アセット・プランニング",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1694,7 +2007,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "8f72beb0480c"
+  "key": "8f72beb0480c",
+  "operator_display": "三井住友トラスト・パナソニックファイナンス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1715,7 +2032,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "274765443178"
+  "key": "274765443178",
+  "operator_display": "株式会社パン・パシフィック・インターナショナルホールディングス",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1736,7 +2057,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "305d005f4a0c"
+  "key": "305d005f4a0c",
+  "operator_display": "大和ハウスリアルティマネジメント株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1757,7 +2082,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "6ba6e4025869"
+  "key": "6ba6e4025869",
+  "operator_display": "イオンモール株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1778,7 +2107,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "a8963c08491f"
+  "key": "a8963c08491f",
+  "operator_display": "株式会社オークワ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1799,7 +2132,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "45e4e4c2b58e"
+  "key": "45e4e4c2b58e",
+  "operator_display": "イオンリテール株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1820,7 +2157,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "80d5ed1fe867"
+  "key": "80d5ed1fe867",
+  "operator_display": "株式会社わたらせ温泉",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1841,7 +2182,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "68ae595b5423"
+  "key": "68ae595b5423",
+  "operator_display": "株式会社NTT西日本アセット・プランニング",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1862,7 +2207,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "2acffc5f2f93"
+  "key": "2acffc5f2f93",
+  "operator_display": "株式会社ハヤブサ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1883,7 +2232,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "b4f05a5e0e19"
+  "key": "b4f05a5e0e19",
+  "operator_display": "上新電機株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1904,7 +2257,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "d801af0d66df"
+  "key": "d801af0d66df",
+  "operator_display": "三菱UFJ信託銀行株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1925,7 +2282,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "eb2aa3ae5203"
+  "key": "eb2aa3ae5203",
+  "operator_display": "株式会社わたらせ温泉",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1946,7 +2307,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "7d9a8b5a0497"
+  "key": "7d9a8b5a0497",
+  "operator_display": "イオンタウン株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1967,7 +2332,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "ed76f4458973"
+  "key": "ed76f4458973",
+  "operator_display": "株式会社Joshin",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -1988,7 +2357,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "1506e9888d2a"
+  "key": "1506e9888d2a",
+  "operator_display": "株式会社Joshin",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -2009,7 +2382,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "b6825e4f0dc3"
+  "key": "b6825e4f0dc3",
+  "operator_display": "株式会社Joshin",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -2030,7 +2407,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "47695695ed9d"
+  "key": "47695695ed9d",
+  "operator_display": "株式会社Joshin",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -2051,7 +2432,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "5e8935c18da5"
+  "key": "5e8935c18da5",
+  "operator_display": "大阪いずみ市民生活協同組合",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -2072,7 +2457,11 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "08012b9ab643"
+  "key": "08012b9ab643",
+  "operator_display": "三菱HCキャピタルエステートプラス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -2093,6 +2482,10 @@
   "note": "",
   "docs": [],
   "source": "sakai-city",
-  "key": "0b11fef0e6c1"
+  "key": "0b11fef0e6c1",
+  "operator_display": "大阪府住宅供給公社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  }
 ]

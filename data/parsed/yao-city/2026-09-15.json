@@ -18,7 +18,11 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "a5b21812ec44"
+  "key": "a5b21812ec44",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -39,7 +43,11 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "55c498b40a6c"
+  "key": "55c498b40a6c",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -60,7 +68,11 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "82ce229d411b"
+  "key": "82ce229d411b",
+  "operator_display": "株式会社フォレストモール",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -81,7 +93,11 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "2e01a74b9096"
+  "key": "2e01a74b9096",
+  "operator_display": "三井住友トラスト・パナソニックファイナンス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -102,7 +118,11 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "a31f6ddc9b7e"
+  "key": "a31f6ddc9b7e",
+  "operator_display": "株式会社イトーヨーカ堂",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -123,7 +143,11 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "939f82f30ea7"
+  "key": "939f82f30ea7",
+  "operator_display": "三菱HCキャピタルエステートプラス株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "附則第5条第1項",
@@ -144,6 +168,10 @@
   "note": "",
   "docs": [],
   "source": "yao-city",
-  "key": "2787984cdadf"
+  "key": "2787984cdadf",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  }
 ]

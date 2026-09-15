@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "11762",
-  "key": "dec2df48bad3"
+  "key": "dec2df48bad3",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "3535",
-  "key": "15df56f049b4"
+  "key": "15df56f049b4",
+  "operator_display": "ひらら光善寺管理組合",
+  "operator_kind": "corp",
+  "retailer_display": "(株)スーパーストアナカガワ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "25279",
-  "key": "cadbc12432ea"
+  "key": "cadbc12432ea",
+  "operator_display": "(株)サンエイト",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ライフコーポレーション",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -97,6 +109,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "52691",
-  "key": "1bc6fb043556"
+  "key": "1bc6fb043556",
+  "operator_display": "(株)サンコオア",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール(株)",
+  "retailer_kind": "corp"
  }
 ]
