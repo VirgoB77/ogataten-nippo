@@ -148,6 +148,10 @@ def test_all_json():
                 fails.append(f"{key}: {f_}_kind が知らない値: {kind!r}")
             if kind == "corp" and v and not privacy.is_corp(v):
                 fails.append(f"{key}: {f_}_kind=corp なのに法人でない: {v!r}")
+            # 逆も見る。値が法人名なのに個人と記録されていたら、判定が
+            # 古いまま持ち回られている（値はあとから埋まることがある）
+            if v and privacy.is_corp(v) and kind not in (None, "corp"):
+                fails.append(f"{key}: {f_} は法人名なのに {f_}_kind={kind!r}: {v!r}")
 
         # 設置者が個人なら、所在地に地番が残っていてはいけない
         if r.get("address_redacted"):
