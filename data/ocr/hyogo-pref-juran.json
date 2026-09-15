@@ -17,7 +17,7 @@
   "store": "イオンモール伊丹昆陽",
   "address": "伊丹市池尻四丁目1番1号外",
   "content": "大規模小売店において小売業を行う者の氏名又は名称及び住所並びに法人にあっては",
-  "applicant": "三菱UF 」信託銀行株式会社",
+  "applicant": "三菱UF信託銀行株式会社",
   "how": "ocr"
  },
  "aeonmiki": {
@@ -37,7 +37,7 @@
   "article": "第6条第1項",
   "date": "2026-04-24",
   "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあって",
-  "applicant": "氏名 イオンタウン株式会社",
+  "applicant": "イオンタウン株式会社",
   "how": "ocr"
  },
  "aeontowninagawa": {
@@ -74,7 +74,7 @@
   "date": "2026-05-11",
   "store": "イオン社店",
   "content": "(1) 大規模小売店舗の名称 及び 所在地",
-  "applicant": "イオンリテール株式会社",
+  "applicant": "イオンリテール株式会社／株式会社Joshin",
   "how": "ocr"
  },
  "asupatakasagosc": {
@@ -104,6 +104,7 @@
   "kind_guess": "変更",
   "article": "第6条第1項",
   "content": "大規模小売店舗を設置する者の住所の変更",
+  "applicant": "大和リース株式会社",
   "how": "ocr"
  },
  "coopnishinomiyahigashi": {
@@ -112,6 +113,7 @@
   "article": "第6条第1項",
   "date": "2026-04-01",
   "content": "大規模小売店舗の設置者の代表者の氏名",
+  "applicant": "三井住友信託銀行株式会社",
   "how": "ocr"
  },
  "ekoorunajio": {
@@ -120,7 +122,7 @@
   "article": "第6条第1項",
   "date": "2026-06-03",
   "content": "大規模小売店舗を設置する者の名称及び住所並びに代表者の氏名",
-  "applicant": "氏名又は名称 株式会社KUL",
+  "applicant": "株式会社KUL",
   "how": "ocr"
  },
  "ekoorunajio_1": {
@@ -129,7 +131,7 @@
   "article": "第6条第1項",
   "date": "2026-07-31",
   "content": "大規模小売店舗を設置する者の代表者の氏名",
-  "applicant": "氏名又は名称 株式会社KUL",
+  "applicant": "株式会社KUL",
   "how": "ocr"
  },
  "frespoako": {
@@ -140,12 +142,13 @@
   "store": "フレスポ赤穂",
   "address": "兵庫県赤穂市中広902番1 外",
   "content": "大規模小売店舗を設置している者の氏名又は名称及び住所",
-  "applicant": "東洋紡不動産株式会社",
+  "applicant": "東洋紡不動産株式会社／大和リース株式会社",
   "how": "ocr"
  },
  "fretsgardenhimejihanada": {
   "article": "第6条第1項",
   "content": "(1 ) 大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "applicant": "三井住友トラスト・パナソニックファイナンス株式会社",
   "how": "ocr"
  },
  "furesupoakou": {
@@ -156,7 +159,7 @@
   "store": "フレスポ赤穂",
   "address": "兵庫県赤穂市中広902番1 外",
   "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあって",
-  "applicant": "東洋編不動産株式会社",
+  "applicant": "東洋編不動産株式会社／大和リース株式会社",
   "how": "ocr"
  },
  "hankyutakaradukasyogyozonesyogyotou": {
@@ -189,7 +192,7 @@
   "article": "第6条第1項",
   "date": "2024-11-15",
   "content": "(1) 大規模小売店舗の名称",
-  "applicant": "株式会社 フジ",
+  "applicant": "株式会社フジ",
   "how": "ocr"
  },
  "maxvalueinami": {
@@ -198,7 +201,7 @@
   "article": "第6条第1項",
   "date": "2025-11-20",
   "content": "(1) 大規模小売店舗の名称",
-  "applicant": "キング醸造 株式会社",
+  "applicant": "キング醸造株式会社",
   "how": "ocr"
  },
  "maxvaluekinnrakuujitenn": {
@@ -216,7 +219,7 @@
   "article": "第6条第1項",
   "date": "2025-11-20",
   "content": "(1) 大規模小売店舗の名称",
-  "applicant": "株式会社 フジ",
+  "applicant": "株式会社フジ",
   "how": "ocr"
  },
  "nitorimiki": {
@@ -225,6 +228,7 @@
   "article": "第6条第1項",
   "date": "2026-06-03",
   "content": "大規模小売店舗を設置する者の住所の変更",
+  "applicant": "大和リース株式会社",
   "how": "ocr"
  },
  "oasistownkiserakawanishi": {
@@ -235,7 +239,7 @@
   "store": "オアシスタウンキセラ川西",
   "address": "兵庫県川西市火打一丁目1 6",
   "content": "(1) 大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
-  "applicant": "三菱Cキャピタルエステートプラス株式会社",
+  "applicant": "三菱Cキャピタルエステートプラス株式会社／ロイヤルホームセンター株式会社",
   "how": "ocr"
  },
  "parkurbanasagiri": {
@@ -246,6 +250,7 @@
   "store": "ペークアーバン朝想",
   "address": "明石市朝霧南町一丁目488番地の13、163番地の1、165番地の1",
   "content": "(1) 大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあって",
+  "applicant": "生活協同組合コープこうべ／株式会社警友／西神総業有限会社",
   "how": "ocr"
  },
  "sandaekimaeitibankan": {
@@ -254,6 +259,7 @@
   "article": "第6条第1項",
   "date": "2026-06-17",
   "content": "(1) 大規模小売店舗を設置する者の氏名又は名称又は住所並びに法人にあっては代表者の氏名",
+  "applicant": "三田地域振興株式会社",
   "how": "ocr"
  },
  "shimosakabesc": {
@@ -275,7 +281,7 @@
   "store": "トナリエ清和台",
   "address": "兵庫県川西市清和台東 8丁目1 番地8",
   "content": "(1) 大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
-  "applicant": "氏名又は名称 株式会社りそな銀行",
+  "applicant": "株式会社りそな銀行",
   "how": "ocr"
  },
  "wadayamashoppingcenter": {
@@ -295,7 +301,7 @@
   "article": "第6条第1項",
   "date": "2026-06-17",
   "content": "(1) 大規模小売店舗の名称",
-  "applicant": "名 称 ヤマダストアー株式会社",
+  "applicant": "ヤマダストアー株式会社",
   "how": "ocr"
  },
  "youmetownhimeji": {
@@ -303,7 +309,7 @@
   "kind_guess": "変更",
   "article": "第6条第1項",
   "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表",
-  "applicant": "株式会社 イズミ",
+  "applicant": "株式会社イズミ",
   "how": "ocr"
  },
  "aeontownkakogawa6-2": {
@@ -333,7 +339,7 @@
   "date": "2026-07-31",
   "store": "(仮称コーナンPRO 姫路飾磨店",
   "address": "兵庫県姫路市飾磨区細江 110",
-  "applicant": "名 称 コーナン商事株式会社",
+  "applicant": "コーナン商事株式会社",
   "how": "ocr"
  },
  "marketsquarenakayamadera": {
