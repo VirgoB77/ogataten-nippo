@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4ae5cbd22562"
+  "key": "4ae5cbd22562",
+  "operator_display": "(株)ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "22aac15b7e24"
+  "key": "22aac15b7e24",
+  "operator_display": "イオンリテール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f8288fac0280"
+  "key": "f8288fac0280",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -97,7 +109,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c08f1ac26f2e"
+  "key": "c08f1ac26f2e",
+  "operator_display": "三菱UFJ信託銀行(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -122,7 +138,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "248983bbcdbb"
+  "key": "248983bbcdbb",
+  "operator_display": "イオンリテール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -147,7 +167,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "35b4a07bb4b0"
+  "key": "35b4a07bb4b0",
+  "operator_display": "三菱UFJ信託銀行(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -172,7 +196,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "bfb2e34e70ae"
+  "key": "bfb2e34e70ae",
+  "operator_display": "イオンリテール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -197,7 +225,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "a5739d90784f"
+  "key": "a5739d90784f",
+  "operator_display": "三菱地所・サイモン(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -222,7 +254,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "11574a4ed322"
+  "key": "11574a4ed322",
+  "operator_display": "三井住友信託銀行(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -247,7 +283,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8c772740333b"
+  "key": "8c772740333b",
+  "operator_display": "イオンリテール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -272,7 +312,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d39c9228fcf1"
+  "key": "d39c9228fcf1",
+  "operator_display": "(株)サンコオア",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -297,7 +341,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "c66075f48fe5"
+  "key": "c66075f48fe5",
+  "operator_display": "アークランズ(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -322,7 +370,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "45825575d64f"
+  "key": "45825575d64f",
+  "operator_display": "ビーシーシー(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -347,7 +399,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "08f9165ba736"
+  "key": "08f9165ba736",
+  "operator_display": "三井住友ファイナンス＆リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -372,7 +428,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "4805c490d19a"
+  "key": "4805c490d19a",
+  "operator_display": "みずほ信託銀行(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -397,7 +457,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "bd996c51649e"
+  "key": "bd996c51649e",
+  "operator_display": "(株)読売新聞大阪本社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -422,7 +486,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "0084a327e551"
+  "key": "0084a327e551",
+  "operator_display": "三井住友ファイナンス＆リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -447,7 +515,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "fa0efb1bf8f2"
+  "key": "fa0efb1bf8f2",
+  "operator_display": "イオンリテール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -472,7 +544,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "ccd1586de05e"
+  "key": "ccd1586de05e",
+  "operator_display": "大和ハウス工業(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -497,7 +573,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "62456cf6db3c"
+  "key": "62456cf6db3c",
+  "operator_display": "大黒天物産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -522,7 +602,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f15ffb53b074"
+  "key": "f15ffb53b074",
+  "operator_display": "有限会社オルカ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -547,7 +631,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b6817c1e0090"
+  "key": "b6817c1e0090",
+  "operator_display": "マイ観光(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -572,7 +660,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "86bab8d9a937"
+  "key": "86bab8d9a937",
+  "operator_display": "京阪ホールディングス(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -597,7 +689,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9543d4567832"
+  "key": "9543d4567832",
+  "operator_display": "京阪ホールディングス(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -622,7 +718,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "367721f6b3c5"
+  "key": "367721f6b3c5",
+  "operator_display": "京阪ホールディングス(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -647,7 +747,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "230ff1d49d24"
+  "key": "230ff1d49d24",
+  "operator_display": "京阪ホールディングス(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -672,7 +776,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "32698a150008"
+  "key": "32698a150008",
+  "operator_display": "芙蓉総合リース（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -697,7 +805,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "54ea34757f13"
+  "key": "54ea34757f13",
+  "operator_display": "日本アセットマーケティング(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -722,7 +834,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "43d594e962a3"
+  "key": "43d594e962a3",
+  "operator_display": "ひらら光善寺管理組合",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -747,7 +863,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "96a278313030"
+  "key": "96a278313030",
+  "operator_display": "(株)サンエイト",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -772,7 +892,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "89f215288ec3"
+  "key": "89f215288ec3",
+  "operator_display": "三井住友ファイナンス＆リース(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -797,7 +921,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f630443ae07c"
+  "key": "f630443ae07c",
+  "operator_display": "イオンモール(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -822,7 +950,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "d56fc58c8726"
+  "key": "d56fc58c8726",
+  "operator_display": "三井住友トラスト・パナソニックファイナンス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -847,7 +979,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "12f5316a30fb"
+  "key": "12f5316a30fb",
+  "operator_display": "株式会社フォレストモール",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -872,7 +1008,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "5d4695be9a49"
+  "key": "5d4695be9a49",
+  "operator_display": "(株)延田エンタープライズ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -897,7 +1037,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "734340500280"
+  "key": "734340500280",
+  "operator_display": "ジブラルタ生命保険(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -922,7 +1066,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "181facc79fc5"
+  "key": "181facc79fc5",
+  "operator_display": "(株)ネクステージ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -947,7 +1095,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8c99771fa838"
+  "key": "8c99771fa838",
+  "operator_display": "阪急阪神リート投資法人",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -972,7 +1124,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "cf80324888eb"
+  "key": "cf80324888eb",
+  "operator_display": "(株)関西ケーズデンキ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -997,7 +1153,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "eb430202d69b"
+  "key": "eb430202d69b",
+  "operator_display": "(株)関西ケーズデンキ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1022,7 +1182,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e28850ebad74"
+  "key": "e28850ebad74",
+  "operator_display": "三井不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1047,7 +1211,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "f09b35c0a7a8"
+  "key": "f09b35c0a7a8",
+  "operator_display": "泉南市商工会",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1072,7 +1240,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "41aa5a52517a"
+  "key": "41aa5a52517a",
+  "operator_display": "オーケー店舗保有(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1097,7 +1269,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "3a02350460a7"
+  "key": "3a02350460a7",
+  "operator_display": "(株)SMBC信託銀行",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1122,7 +1298,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9c73bdaf6c64"
+  "key": "9c73bdaf6c64",
+  "operator_display": "三井不動産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1147,7 +1327,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "2be9f5e2dd7e"
+  "key": "2be9f5e2dd7e",
+  "operator_display": "カルチュア・コンビニエンス・クラブ（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1172,7 +1356,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "86d5d977b32b"
+  "key": "86d5d977b32b",
+  "operator_display": "同志土地（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -1197,6 +1385,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "9b65fa33accf"
+  "key": "9b65fa33accf",
+  "operator_display": "三井住友信託銀行（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  }
 ]

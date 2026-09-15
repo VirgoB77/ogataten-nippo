@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2303",
-  "key": "69f2f522be55"
+  "key": "69f2f522be55",
+  "operator_display": "大黒天物産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "7361",
-  "key": "fa819a23185b"
+  "key": "fa819a23185b",
+  "operator_display": "オーケー店舗保有(株)",
+  "operator_kind": "corp",
+  "retailer_display": "オーケー(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "1685",
-  "key": "9e56e34d203f"
+  "key": "9e56e34d203f",
+  "operator_display": "(株)コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -97,7 +109,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2328",
-  "key": "13b73ac75d7c"
+  "key": "13b73ac75d7c",
+  "operator_display": "(株)クスリのアオキ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)クスリのアオキ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -122,7 +138,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2685",
-  "key": "a44408ed9459"
+  "key": "a44408ed9459",
+  "operator_display": "（株）松源",
+  "operator_kind": "corp",
+  "retailer_display": "（株）松源",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -147,7 +167,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "8c290408e8fb"
+  "key": "8c290408e8fb",
+  "operator_display": "田渕商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ゲオストア",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -172,7 +196,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2786",
-  "key": "b9282a9d1b28"
+  "key": "b9282a9d1b28",
+  "operator_display": "(株)さとう",
+  "operator_kind": "corp",
+  "retailer_display": "(株)さとう",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -197,7 +225,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "1452",
-  "key": "a4a17ce315a0"
+  "key": "a4a17ce315a0",
+  "operator_display": "(株)コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -222,6 +254,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "8811",
-  "key": "0ded2384e9e3"
+  "key": "0ded2384e9e3",
+  "operator_display": "大和ハウスリアルティマネジメント(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  }
 ]

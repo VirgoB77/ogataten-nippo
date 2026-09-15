@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "33c7a029f596"
+  "key": "33c7a029f596",
+  "operator_display": "(株)阪急阪神ホテルズ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e877fda5fafe"
+  "key": "e877fda5fafe",
+  "operator_display": "ファースト信託(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "e2840467c25c"
+  "key": "e2840467c25c",
+  "operator_display": "ファースト信託(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "source": "osaka-pref",
@@ -97,6 +109,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "21c418f5a445"
+  "key": "21c418f5a445",
+  "operator_display": "同志土地（株）",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  }
 ]
