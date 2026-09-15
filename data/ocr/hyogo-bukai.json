@@ -1,0 +1,744 @@
+{
+ "100_giann": {
+  "article": "第４条第１項",
+  "how": "embedded"
+ },
+ "100_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "101_giann": {
+  "how": "embedded"
+ },
+ "101_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "102_giann": {
+  "article": "第２条第２項",
+  "how": "embedded"
+ },
+ "102_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "103_giann": {
+  "article": "第４条第１項",
+  "how": "embedded"
+ },
+ "103_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "104_giann": {
+  "how": "embedded"
+ },
+ "104gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "105_giann": {
+  "how": "embedded"
+ },
+ "105_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "106_giann": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "106_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "107_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "107_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "108_giann": {
+  "how": "embedded"
+ },
+ "108_gijiroku-1": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "109_giann": {
+  "how": "embedded"
+ },
+ "109_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "110_giann": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "110_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "111_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "112_gian": {
+  "how": "embedded"
+ },
+ "112_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "113_gian": {
+  "how": "embedded"
+ },
+ "113_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "114_giann": {
+  "how": "embedded"
+ },
+ "114_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "115_giann": {
+  "how": "embedded"
+ },
+ "115_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "116_giann": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "116_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "117_giann": {
+  "article": "第５条第１項",
+  "how": "embedded"
+ },
+ "117_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "118_gian": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "118_gijiroku": {
+  "how": "embedded"
+ },
+ "119_gian": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "119_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2023-03-17",
+  "how": "embedded"
+ },
+ "120_giann": {
+  "how": "embedded"
+ },
+ "120_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2023-04-20",
+  "how": "embedded"
+ },
+ "121_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "121_gijiroku3": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "122_giann": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "122_gijiroku2": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "123_gian": {
+  "how": "embedded"
+ },
+ "123_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2023-07-20",
+  "how": "embedded"
+ },
+ "124_giann_1": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "124_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2023-09-07",
+  "how": "embedded"
+ },
+ "125_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "125_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "126_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "126_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "127_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "127_gijiroku_1": {
+  "article": "第８条第４項",
+  "date": "2024-02-01",
+  "how": "embedded"
+ },
+ "128_gian": {
+  "how": "embedded"
+ },
+ "128_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "129_gian": {
+  "article": "第４条第１項",
+  "date": "2024-04-01",
+  "how": "embedded"
+ },
+ "129_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "130_gian": {
+  "article": "第８条第１項",
+  "date": "2022-09-04",
+  "how": "embedded"
+ },
+ "130_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "131_gian": {
+  "article": "第３条第１項",
+  "date": "2024-04-01",
+  "how": "embedded"
+ },
+ "131_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "132_gian": {
+  "article": "第８条第１項",
+  "date": "2024-04-01",
+  "how": "embedded"
+ },
+ "132_gijiroku": {
+  "article": "第８条第４項",
+  "date": "2024-07-18",
+  "how": "embedded"
+ },
+ "133_gian": {
+  "how": "embedded"
+ },
+ "133_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "134_gian": {
+  "article": "第８条第１項",
+  "date": "2024-04-01",
+  "how": "embedded"
+ },
+ "134_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "135_gian": {
+  "article": "第８条第１項",
+  "date": "2024-10-23",
+  "how": "embedded"
+ },
+ "135_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "136_gian": {
+  "article": "第８条第２項",
+  "date": "2024-11-27",
+  "how": "embedded"
+ },
+ "136_gijiroku": {
+  "article": "第８条第４項",
+  "date": "2025-02-06",
+  "how": "embedded"
+ },
+ "137_gian": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "137_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2025-03-21",
+  "how": "embedded"
+ },
+ "138_gian": {
+  "article": "第８条第１項",
+  "date": "2024-11-17",
+  "area": "3,806",
+  "how": "embedded"
+ },
+ "138_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "139_gian": {
+  "article": "第８条第４項",
+  "date": "2024-06-16",
+  "how": "embedded"
+ },
+ "139_gijiroku": {
+  "article": "第８条第４項",
+  "date": "2025-05-15",
+  "how": "embedded"
+ },
+ "140_gian": {
+  "article": "第５条第１項",
+  "how": "embedded"
+ },
+ "140_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "141_gian": {
+  "article": "第８条第１項",
+  "date": "2025-04-28",
+  "how": "embedded"
+ },
+ "141_gijiroku": {
+  "article": "第８条第４項",
+  "date": "2025-07-17",
+  "how": "embedded"
+ },
+ "142_gian": {
+  "article": "第８条第１項",
+  "date": "2025-03-13",
+  "how": "embedded"
+ },
+ "142_gijiroku": {
+  "article": "第８条第４項",
+  "date": "2025-09-04",
+  "how": "embedded"
+ },
+ "143_gijirokukai": {
+  "article": "第８条第１項",
+  "date": "2025-10-16",
+  "how": "embedded"
+ },
+ "143gian": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "144_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "144gian": {
+  "article": "第３条第１項",
+  "date": "2026-02-04",
+  "how": "embedded"
+ },
+ "145_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "145gian": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "146_gian": {
+  "article": "第３条第１項",
+  "date": "2025-05-18",
+  "how": "embedded"
+ },
+ "146_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2026-02-05",
+  "how": "embedded"
+ },
+ "147_gian": {
+  "article": "第３条第１項",
+  "date": "2025-08-31",
+  "how": "embedded"
+ },
+ "147_gijiroku": {
+  "article": "第４条第２項",
+  "date": "2026-03-24",
+  "how": "embedded"
+ },
+ "148gian": {
+  "how": "embedded"
+ },
+ "149_gian": {
+  "article": "第８条第４項",
+  "date": "2024-01-01",
+  "how": "embedded"
+ },
+ "150_gian": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "151_gian": {
+  "article": "第４条第２項",
+  "area": "244",
+  "how": "embedded"
+ },
+ "151_list": {
+  "how": "embedded"
+ },
+ "54_giann": {
+  "how": "embedded"
+ },
+ "54_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "55_giann": {
+  "how": "embedded"
+ },
+ "55_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "56_giann": {
+  "how": "embedded"
+ },
+ "56_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "57_giann": {
+  "how": "embedded"
+ },
+ "57_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "58_giann": {
+  "how": "embedded"
+ },
+ "58_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "59_giann": {
+  "how": "embedded"
+ },
+ "59_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "60_giann": {
+  "article": "第７条第２項",
+  "how": "embedded"
+ },
+ "60_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "61_giann": {
+  "how": "embedded"
+ },
+ "61_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "62_giann": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "62_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "63_giann": {
+  "how": "embedded"
+ },
+ "63_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "64_giann": {
+  "how": "embedded"
+ },
+ "64_gijiroku": {
+  "article": "第９条第１項",
+  "how": "embedded"
+ },
+ "65_giann": {
+  "how": "embedded"
+ },
+ "65_gijiroku": {
+  "how": "embedded"
+ },
+ "66_giann": {
+  "how": "embedded"
+ },
+ "66_gijiroku": {
+  "how": "embedded"
+ },
+ "67_giann": {
+  "article": "第４条第１項",
+  "how": "embedded"
+ },
+ "67_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "68_giann": {
+  "how": "embedded"
+ },
+ "68_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "69_giann": {
+  "how": "embedded"
+ },
+ "69_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "70_giann": {
+  "how": "embedded"
+ },
+ "70_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "71_giann": {
+  "how": "embedded"
+ },
+ "71_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "72_giann": {
+  "how": "embedded"
+ },
+ "72_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "73_giann": {
+  "how": "embedded"
+ },
+ "73_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "74_giann": {
+  "how": "embedded"
+ },
+ "74_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "75_giann": {
+  "how": "embedded"
+ },
+ "75_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "76_giann": {
+  "article": "第４条第１項",
+  "how": "embedded"
+ },
+ "76_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "77_giann": {
+  "how": "embedded"
+ },
+ "77_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "78_giann": {
+  "how": "embedded"
+ },
+ "78_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "79_giann": {
+  "how": "embedded"
+ },
+ "79_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "80_giann": {
+  "how": "embedded"
+ },
+ "80_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "81_giann": {
+  "article": "第４条第１項",
+  "how": "embedded"
+ },
+ "81_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "82_giann": {
+  "how": "embedded"
+ },
+ "82_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "83_giann": {
+  "how": "embedded"
+ },
+ "83_gijiroku": {
+  "how": "embedded"
+ },
+ "84_giann": {
+  "article": "第６条第２項",
+  "how": "embedded"
+ },
+ "84_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "85_giann": {
+  "how": "embedded"
+ },
+ "85_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "86_giann": {
+  "article": "第５条第１項",
+  "how": "embedded"
+ },
+ "86_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "87_giann": {
+  "article": "第８条第２項",
+  "how": "embedded"
+ },
+ "87_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "88_giann": {
+  "how": "embedded"
+ },
+ "88_gijiroku": {
+  "how": "embedded"
+ },
+ "89_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "89_gijiroku": {
+  "how": "embedded"
+ },
+ "90_giann": {
+  "how": "embedded"
+ },
+ "90_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "91_giann": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "91_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "92_giann": {
+  "article": "第５条第１項",
+  "how": "embedded"
+ },
+ "92_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "93_giann": {
+  "article": "第８条第１項",
+  "how": "embedded"
+ },
+ "93_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "94_giann": {
+  "how": "embedded"
+ },
+ "94_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "95_gijiroku": {
+  "how": "embedded"
+ },
+ "96_giann": {
+  "how": "embedded"
+ },
+ "96_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ },
+ "97_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "97_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "98_gian01": {
+  "how": "embedded"
+ },
+ "98_gijiroku": {
+  "article": "第８条第４項",
+  "how": "embedded"
+ },
+ "99_giann": {
+  "article": "第３条第１項",
+  "how": "embedded"
+ },
+ "99_gijiroku": {
+  "article": "第４条第２項",
+  "how": "embedded"
+ }
+}

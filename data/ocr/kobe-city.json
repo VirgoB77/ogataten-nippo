@@ -82,6 +82,7 @@
  },
  "todoke1150": {
   "article": "第６条第１項",
+  "applicant": "生活協同組合コープこうべ",
   "how": "embedded"
  },
  "todoke1151": {
@@ -103,6 +104,17 @@
  },
  "todoke1141": {
   "area": "617",
+  "how": "embedded"
+ },
+ "todoke1153": {
+  "article": "第６条第１項",
+  "how": "embedded"
+ },
+ "todoke1154": {
+  "form": "２",
+  "kind_guess": "",
+  "article": "第６条第１項",
+  "store": "ル ッ カ 名 谷",
   "how": "embedded"
  }
 }

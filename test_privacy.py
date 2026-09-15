@@ -118,6 +118,11 @@ def test_small_numbers():
 
 # ---------------------------------------------------------------- 迂回検査（本体）
 PARTY_FIELDS = ("operator", "new_operator", "retailer")
+# 代表者の肩書き。法人名のうしろにこれが付いていたら、その後ろは
+# 個人の氏名である可能性が高い（共通仕様3.1）
+_TITLE = re.compile(
+    r"(代表取締役|代表執行役|執行役|取締役|代表社員|代表者名|代表者|代表理事"
+    r"|組合長理事|組合長|理事長|監事|会長|社長|支配人)")
 # 丸めたあとに残ってよい数字は「丁目」「丁」の直前の1つだけ
 _CHOME_TAIL = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(丁目|丁)$")
 _ONLY_NUM = re.compile(r"^[0-9０-９]+$")
@@ -152,6 +157,18 @@ def test_all_json():
             # 古いまま持ち回られている（値はあとから埋まることがある）
             if v and privacy.is_corp(v) and kind not in (None, "corp"):
                 fails.append(f"{key}: {f_} は法人名なのに {f_}_kind={kind!r}: {v!r}")
+            # 法人名のうしろに代表者の氏名がくっついていないか。
+            # OCRから補ったとき、肩書きごと1行に入ってくることがある。
+            # ただし合同会社の代表社員は法人のことがあるので
+            # （「合同会社○○ 代表社員 株式会社△△」）、肩書きの後ろが
+            # 法人ならそのままでよい
+            m = _TITLE.search(v) if v else None
+            if m:
+                rest = v[m.end():].strip(" 　:：")
+                if rest and not privacy.is_corp(rest):
+                    fails.append(
+                        f"{key}: {f_} の肩書きのうしろが法人でない"
+                        f"（個人の氏名が入っている疑い）: {v!r}")
 
         # 設置者が個人なら、所在地に地番が残っていてはいけない
         if r.get("address_redacted"):
