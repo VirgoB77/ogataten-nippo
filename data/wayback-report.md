@@ -8,4 +8,4 @@
 
 ### 神戸市 大規模小売店舗立地法 届出状況等
 
-  - https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html … アーカイブに 16 か月分
+  - 保存の一覧が取れなかった https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html — HTTPError: HTTP Error 503: Service Unavailable
