@@ -22,6 +22,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "",
-  "key": "b06db20ad3f4"
+  "key": "b06db20ad3f4",
+  "operator_display": "三菱UFJ信託銀行(株)",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  }
 ]

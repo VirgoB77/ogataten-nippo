@@ -5,7 +5,7 @@
   "notified_on": "2026-04-15",
   "notified_raw": "令和8年4月15日",
   "store": "KOHYO 小野原店",
-  "address": "箕面市小野原東六丁目2番1",
+  "address": "箕面市小野原東六丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -18,7 +18,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "14edcfa1b53e"
+  "key": "14edcfa1b53e",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -26,7 +31,7 @@
   "notified_on": "2026-05-13",
   "notified_raw": "令和8年5月13日",
   "store": "みのおキューズモール(CENTER)",
-  "address": "箕面市西宿一丁目2014番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -39,7 +44,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "6ea1554b02d6"
+  "key": "6ea1554b02d6",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -47,7 +57,7 @@
   "notified_on": "2026-05-13",
   "notified_raw": "令和8年5月13日",
   "store": "みのおキューズモール(EAST1)",
-  "address": "箕面市西宿一丁目2057番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -60,7 +70,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "45c662113af0"
+  "key": "45c662113af0",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -68,7 +83,7 @@
   "notified_on": "2026-05-13",
   "notified_raw": "令和8年5月13日",
   "store": "みのおキューズモール(EAST2)",
-  "address": "箕面市西宿一丁目2078番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -81,7 +96,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "deb5ea1249c0"
+  "key": "deb5ea1249c0",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -89,7 +109,7 @@
   "notified_on": "2026-05-13",
   "notified_raw": "令和8年5月13日",
   "store": "みのおキューズモール(EAST3)",
-  "address": "箕面市西宿一丁目2085番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -102,7 +122,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "b32a683132a8"
+  "key": "b32a683132a8",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第5項",
@@ -110,7 +135,7 @@
   "notified_on": "2026-06-03",
   "notified_raw": "令和8年6月3日",
   "store": "コープ箕面中央",
-  "address": "箕面市坊島1-1171",
+  "address": "箕面市坊島",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -123,7 +148,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "11cdfa019ac1"
+  "key": "11cdfa019ac1",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -131,7 +161,7 @@
   "notified_on": "2025-11-12",
   "notified_raw": "令和7年11月12日",
   "store": "MEGAドン・キホーテ箕面店",
-  "address": "箕面市牧落四丁目244番",
+  "address": "箕面市牧落四丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -144,7 +174,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "54956a06a6f4"
+  "key": "54956a06a6f4",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -152,7 +187,7 @@
   "notified_on": "2025-12-22",
   "notified_raw": "令和7年12月22日",
   "store": "KOHYO 小野原店",
-  "address": "箕面市小野原東六丁目2番1",
+  "address": "箕面市小野原東六丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -165,7 +200,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "3a06b287c521"
+  "key": "3a06b287c521",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -173,7 +213,7 @@
   "notified_on": "2024-06-24",
   "notified_raw": "令和6年6月24日",
   "store": "みのおキューズモール(CENTER)",
-  "address": "箕面市西宿一丁目2014番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -186,7 +226,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "92c7e278afe6"
+  "key": "92c7e278afe6",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -194,7 +239,7 @@
   "notified_on": "2024-06-24",
   "notified_raw": "令和6年6月24日",
   "store": "みのおキューズモール(EAST1)",
-  "address": "箕面市西宿一丁目2057番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -207,7 +252,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "732004b072e7"
+  "key": "732004b072e7",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -215,7 +265,7 @@
   "notified_on": "2024-06-24",
   "notified_raw": "令和6年6月24日",
   "store": "みのおキューズモール(EAST2)",
-  "address": "箕面市西宿一丁目2078番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -228,7 +278,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "7696bedcf41a"
+  "key": "7696bedcf41a",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -236,7 +291,7 @@
   "notified_on": "2024-06-24",
   "notified_raw": "令和6年6月24日",
   "store": "みのおキューズモール(EAST3)",
-  "address": "箕面市西宿一丁目2085番地",
+  "address": "箕面市西宿一丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -249,7 +304,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "80c145ed3730"
+  "key": "80c145ed3730",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -257,7 +317,7 @@
   "notified_on": "2025-03-21",
   "notified_raw": "令和7年3月21日",
   "store": "KOHYO 小野原店",
-  "address": "箕面市小野原東六丁目2番1",
+  "address": "箕面市小野原東六丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -270,7 +330,12 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "10a9b8bc9a34"
+  "key": "10a9b8bc9a34",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -278,7 +343,7 @@
   "notified_on": "2023-07-04",
   "notified_raw": "令和5年7月4日 【縦覧終了分】",
   "store": "（仮称）SUVLAND大阪千里店",
-  "address": "箕面市船場東三丁目1番3、1番4、1番5",
+  "address": "箕面市船場東三丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -293,7 +358,12 @@
    "https://www.city.minoh.lg.jp/syoukou/documents/suvland_5-1.pdf"
   ],
   "source": "minoh-city",
-  "key": "991e81c60b93"
+  "key": "991e81c60b93",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -301,7 +371,7 @@
   "notified_on": "2023-10-16",
   "notified_raw": "令和5年10月16日",
   "store": "(仮称)SUVLAND大阪千里店",
-  "address": "箕面市船場東三丁目1番3、1番4、1番5",
+  "address": "箕面市船場東三丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -314,6 +384,11 @@
   "note": "",
   "docs": [],
   "source": "minoh-city",
-  "key": "3a95e59e3044"
+  "key": "3a95e59e3044",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  }
 ]

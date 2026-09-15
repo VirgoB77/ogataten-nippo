@@ -5,7 +5,7 @@
   "notified_on": "2017-02-15",
   "notified_raw": "平成29年2月15日",
   "store": "（仮称）トライアル阪南店",
-  "address": "阪南市南山中193番1、6番3",
+  "address": "阪南市南山中",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -18,7 +18,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "92aaa0574277"
+  "key": "92aaa0574277",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -26,7 +31,7 @@
   "notified_on": "2017-02-28",
   "notified_raw": "平成29年2月28日",
   "store": "スーパーエバグリーン阪南店",
-  "address": "阪南市黒田453番地1",
+  "address": "阪南市黒田",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -39,7 +44,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "3b902d7f6609"
+  "key": "3b902d7f6609",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第5項",
@@ -47,7 +57,7 @@
   "notified_on": "2016-05-06",
   "notified_raw": "平成28年5月6日",
   "store": "テックランド大阪阪南店",
-  "address": "阪南市黒田453番15",
+  "address": "阪南市黒田",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -60,7 +70,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "de8f3adce9fb"
+  "key": "de8f3adce9fb",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -68,7 +83,7 @@
   "notified_on": "2020-12-11",
   "notified_raw": "令和2年12月11日",
   "store": "（仮称）ドラッグコスモス自然田店",
-  "address": "阪南市自然田1495-1",
+  "address": "阪南市自然田",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -81,7 +96,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "ad798c0ff54c"
+  "key": "ad798c0ff54c",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第2項",
@@ -89,7 +109,7 @@
   "notified_on": "2022-01-11",
   "notified_raw": "令和4年1月11日",
   "store": "オークワわくわくシティ尾崎店",
-  "address": "阪南市下出167番1外",
+  "address": "阪南市下出",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -102,7 +122,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "6f1cf9bffc11"
+  "key": "6f1cf9bffc11",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -110,7 +135,7 @@
   "notified_on": "2021-04-09",
   "notified_raw": "令和3年4月9日",
   "store": "オークワわくわくシティ尾崎店",
-  "address": "阪南市下出167番の1",
+  "address": "阪南市下出",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -123,7 +148,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "bc8c1c2ed43a"
+  "key": "bc8c1c2ed43a",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第2項",
@@ -131,7 +161,7 @@
   "notified_on": "2023-07-20",
   "notified_raw": "令和5年7月20日",
   "store": "スーパーエバグリーン阪南店",
-  "address": "阪南市黒田453番地1",
+  "address": "阪南市黒田",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -144,7 +174,12 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "93af4914398c"
+  "key": "93af4914398c",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第6条第1項",
@@ -152,7 +187,7 @@
   "notified_on": "2023-07-20",
   "notified_raw": "令和5年7月20日",
   "store": "スーパーエバグリーン阪南店",
-  "address": "阪南市黒田453番地1",
+  "address": "阪南市黒田",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -165,6 +200,11 @@
   "note": "",
   "docs": [],
   "source": "hannan-city",
-  "key": "7f69983caf71"
+  "key": "7f69983caf71",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
  }
 ]

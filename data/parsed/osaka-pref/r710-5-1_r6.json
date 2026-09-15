@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "1896",
-  "key": "f76de420c469"
+  "key": "f76de420c469",
+  "operator_display": "(株)ユニクロ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ユニクロ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -47,7 +51,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "55674",
-  "key": "ea2cc48f5f27"
+  "key": "ea2cc48f5f27",
+  "operator_display": "アークランズ(株)",
+  "operator_kind": "corp",
+  "retailer_display": "アークランズ(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -72,7 +80,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "16662",
-  "key": "6d8fd0c289ad"
+  "key": "6d8fd0c289ad",
+  "operator_display": "住友商事(株)",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事(株)",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -97,7 +109,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "4038",
-  "key": "b8e9c1e0acce"
+  "key": "b8e9c1e0acce",
+  "operator_display": "(株)万代",
+  "operator_kind": "corp",
+  "retailer_display": "(株)万代",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -122,7 +138,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "4063",
-  "key": "3e83afb70ac5"
+  "key": "3e83afb70ac5",
+  "operator_display": "(株)ネクステージ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ネクステージ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -147,7 +167,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2637",
-  "key": "585007588d17"
+  "key": "585007588d17",
+  "operator_display": "(株)コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -172,7 +196,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "8045",
-  "key": "43d13af5269f"
+  "key": "43d13af5269f",
+  "operator_display": "マイ観光(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)IDOM",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -197,7 +225,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "2414",
-  "key": "1c2a5a9b8d25"
+  "key": "1c2a5a9b8d25",
+  "operator_display": "(株)コメリ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)コメリ",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -222,7 +254,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "3415",
-  "key": "2e52846b47f4"
+  "key": "2e52846b47f4",
+  "operator_display": "坂本興産(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ココカラファインヘルスケア",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -247,7 +283,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "6784",
-  "key": "050de31fa9c4"
+  "key": "050de31fa9c4",
+  "operator_display": "(有)オルカ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)IDOM",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -272,6 +312,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "4063",
-  "key": "49c7fe8f4c10"
+  "key": "49c7fe8f4c10",
+  "operator_display": "（株）ネクステージ",
+  "operator_kind": "corp",
+  "retailer_display": "(株)ネクステージ",
+  "retailer_kind": "corp"
  }
 ]

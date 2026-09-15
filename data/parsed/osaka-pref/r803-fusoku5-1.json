@@ -22,7 +22,11 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "5343",
-  "key": "e03d4999519a"
+  "key": "e03d4999519a",
+  "operator_display": "阪急電鉄(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)キリン堂",
+  "retailer_kind": "corp"
  },
  {
   "source": "osaka-pref",
@@ -47,6 +51,10 @@
   "citizen_opinion": "",
   "recommendation": "",
   "note": "7211",
-  "key": "c24ce84293d2"
+  "key": "c24ce84293d2",
+  "operator_display": "阪急電鉄(株)",
+  "operator_kind": "corp",
+  "retailer_display": "(株)良品計画",
+  "retailer_kind": "corp"
  }
 ]

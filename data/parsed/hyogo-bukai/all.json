@@ -16,7 +16,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/63_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "a3d45540db5b"
+  "key": "a3d45540db5b",
+  "operator_display": "株式会社デザインアーク",
+  "operator_kind": "corp",
+  "retailer_display": "ロイヤルホームセンター株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -35,7 +39,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/61_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "ee9f16af902d"
+  "key": "ee9f16af902d",
+  "operator_display": "コストコホールセールジャパン株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "",
@@ -54,7 +62,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "01f16613e7fd"
+  "key": "01f16613e7fd",
+  "operator_display": "尼崎都市開発株式会社ほか６者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエーほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第6条第2項",
@@ -73,7 +85,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/63_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "26c8f7214f0d"
+  "key": "26c8f7214f0d",
+  "operator_display": "株式会社デザインアーク",
+  "operator_kind": "corp",
+  "retailer_display": "ロイヤルホームセンター株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -92,7 +108,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "892940e0bbc1"
+  "key": "892940e0bbc1",
+  "operator_display": "高砂商業振興株式会社、高砂北部開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -111,7 +131,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "d6d8b7e95e9e"
+  "key": "d6d8b7e95e9e",
+  "operator_display": "マックスバリュ西日本株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "マックスバリュ西日本株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -130,7 +154,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "a474df8efc9f"
+  "key": "a474df8efc9f",
+  "operator_display": "尼崎都市開発株式会社ほか６者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエーほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -149,7 +177,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "c99452747509"
+  "key": "c99452747509",
+  "operator_display": "日本毛織株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "",
@@ -168,7 +200,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "bd7a69cb8d4c"
+  "key": "bd7a69cb8d4c",
+  "operator_display": "高砂商業振興株式会社、高砂北部開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -187,7 +223,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/61_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "2f77bfe81fa2"
+  "key": "2f77bfe81fa2",
+  "operator_display": "コストコホールセールジャパン株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -206,7 +246,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/68_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "c7f1d8df63d2"
+  "key": "c7f1d8df63d2",
+  "operator_display": "阪急電鉄株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪急阪神百貨店 ほか 139 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -225,7 +269,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "e12f26cc5ca8"
+  "key": "e12f26cc5ca8",
+  "operator_display": "株式会社山陽百貨店 ほか 18 者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社山陽百貨店（衣料品）ほか 13 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -244,7 +292,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "ecc32f883fd8"
+  "key": "ecc32f883fd8",
+  "operator_display": "神鋼不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社トライアルカンパニー",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -263,7 +315,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "273f3a225875"
+  "key": "273f3a225875",
+  "operator_display": "神戸ＳＣ開発株式会社、西日本旅客鉄道株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社丸善ジュンク堂書店ほか 39 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -282,7 +338,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "dc31e07d591f"
+  "key": "dc31e07d591f",
+  "operator_display": "マックスバリュ西日本株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "マックスバリュ西日本株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第6条第2項",
@@ -301,7 +361,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/68_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "04bc2ee0b808"
+  "key": "04bc2ee0b808",
+  "operator_display": "阪急電鉄株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪急阪神百貨店 ほか 139 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -320,7 +384,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/61_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "0c0383567ad5"
+  "key": "0c0383567ad5",
+  "operator_display": "コストコホールセールジャパン株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "",
@@ -339,7 +407,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "bbb7d3e233e1"
+  "key": "bbb7d3e233e1",
+  "operator_display": "高砂商業振興株式会社、高砂北部開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第6条第2項",
@@ -358,7 +430,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "903409d9acea"
+  "key": "903409d9acea",
+  "operator_display": "神戸ＳＣ開発株式会社、西日本旅客鉄道株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社丸善ジュンク堂書店ほか 39 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -377,7 +453,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/66_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "456f413b7fd6"
+  "key": "456f413b7fd6",
+  "operator_display": "三菱 UFJ 信託銀行株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -396,7 +476,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/56_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "802da58c49c6"
+  "key": "802da58c49c6",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -415,7 +499,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "35dc672b7d3d"
+  "key": "35dc672b7d3d",
+  "operator_display": "高砂商業振興株式会社、高砂北部開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -434,7 +522,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "9146e433536f"
+  "key": "9146e433536f",
+  "operator_display": "尼崎都市開発株式会社ほか６者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエーほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -453,7 +545,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/54_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "bf9f2560f041"
+  "key": "bf9f2560f041",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -472,7 +568,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/54_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "658e808524d4"
+  "key": "658e808524d4",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -491,7 +591,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/56_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "d9708cb4662b"
+  "key": "d9708cb4662b",
+  "operator_display": "株式会社関西スーパーマーケット",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社関西スーパーマーケット",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -510,7 +614,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/56_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "9ca3aa95e821"
+  "key": "9ca3aa95e821",
+  "operator_display": "コーナン商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -529,7 +637,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/56_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "c926d0108fd9"
+  "key": "c926d0108fd9",
+  "operator_display": "ジェイアール西日本不動産開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "コーナン商事株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -548,7 +660,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/57_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "ba4c043b381a"
+  "key": "ba4c043b381a",
+  "operator_display": "上新電機株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -567,7 +683,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "f3de1d451cbd"
+  "key": "f3de1d451cbd",
+  "operator_display": "共栄商事株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "大黒天物産株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -586,7 +706,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "7fbf53e80cab"
+  "key": "7fbf53e80cab",
+  "operator_display": "ゴダイ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "ゴダイ株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -605,7 +729,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "a9d3a937761c"
+  "key": "a9d3a937761c",
+  "operator_display": "日本毛織株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "",
@@ -624,7 +752,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "78da9d414b43"
+  "key": "78da9d414b43",
+  "operator_display": "神鋼不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社トライアルカンパニー",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -643,7 +775,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "a2abc7ede515"
+  "key": "a2abc7ede515",
+  "operator_display": "コーナン商事株式会社、株式会社マルナカ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -662,7 +798,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/58_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "09163517d251"
+  "key": "09163517d251",
+  "operator_display": "株式会社山陽百貨店 ほか 18 者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社山陽百貨店（衣料品）ほか 13 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第6条第2項",
@@ -681,7 +821,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "0e070b128250"
+  "key": "0e070b128250",
+  "operator_display": "神戸ＳＣ開発株式会社、西日本旅客鉄道株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社丸善ジュンク堂書店ほか 39 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -700,7 +844,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "444bb6682889"
+  "key": "444bb6682889",
+  "operator_display": "明石駅前南地区市街地再開発組合",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -719,7 +867,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/60_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "8ab1c2e24ded"
+  "key": "8ab1c2e24ded",
+  "operator_display": "ゴダイ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "ゴダイ株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -738,7 +890,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/61_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "4c8a4581f1a2"
+  "key": "4c8a4581f1a2",
+  "operator_display": "コストコホールセールジャパン株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -757,7 +913,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/61_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "72c938d8c90d"
+  "key": "72c938d8c90d",
+  "operator_display": "株式会社銀ビルストアー、ゴダイ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -776,7 +936,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/62_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "2f1f6393424b"
+  "key": "2f1f6393424b",
+  "operator_display": "株式会社阪急オアシス",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪急オアシス（食料品等）ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第6条第2項",
@@ -795,7 +959,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/63_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "266f28201b5f"
+  "key": "266f28201b5f",
+  "operator_display": "株式会社デザインアーク",
+  "operator_kind": "corp",
+  "retailer_display": "ロイヤルホームセンター株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -814,7 +982,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/64_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "dca63d70e4b8"
+  "key": "dca63d70e4b8",
+  "operator_display": "株式会社阪急オアシス",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -833,7 +1005,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/64_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "0a3ec9af655f"
+  "key": "0a3ec9af655f",
+  "operator_display": "株式会社ナガタ薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ナガタ薬品",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -852,7 +1028,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/66_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "90ca5011a66c"
+  "key": "90ca5011a66c",
+  "operator_display": "三菱 UFJ 信託銀行株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -860,9 +1040,9 @@
   "notified_on": "2017-01-18",
   "notified_raw": "平成29年１月18日",
   "store": "明石西インター南計画",
-  "address": "明石市魚住町清水2464番１",
+  "address": "明石市魚住町清水",
   "operator": "",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 4119,
   "event_on": null,
@@ -871,7 +1051,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/93_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "382fc11340aa"
+  "key": "382fc11340aa",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -890,7 +1075,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/67_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "888c00c9251f"
+  "key": "888c00c9251f",
+  "operator_display": "株式会社トライアルカンパニーほか",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社トライアルカンパニー、株式会社ユウキ自動車",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -909,7 +1098,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/68_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "738bc7665b87"
+  "key": "738bc7665b87",
+  "operator_display": "マックスバリュ西日本株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "マックスバリュ西日本株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -928,7 +1121,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "9c0d86c17209"
+  "key": "9c0d86c17209",
+  "operator_display": "尼崎都市開発株式会社ほか６者",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエーほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第8条第7項",
@@ -947,7 +1144,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/64_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "9b60029b8bc2"
+  "key": "9b60029b8bc2",
+  "operator_display": "株式会社銀ビルストアー、ゴダイ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -966,7 +1167,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/68_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "3678df0c830b"
+  "key": "3678df0c830b",
+  "operator_display": "阪急電鉄株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社阪急阪神百貨店 ほか 139 者",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -985,7 +1190,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "bd8045b348a3"
+  "key": "bd8045b348a3",
+  "operator_display": "マックスバリュ西日本株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "マックスバリュ西日本株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -1004,7 +1213,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/65_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "87e6645dc3de"
+  "key": "87e6645dc3de",
+  "operator_display": "神鋼不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社トライアルカンパニー",
+  "retailer_kind": "corp"
  },
  {
   "article": "",
@@ -1023,7 +1236,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "37cca66a1830"
+  "key": "37cca66a1830",
+  "operator_display": "高砂商業振興株式会社、高砂北部開発株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "イオンリテール株式会社ほか",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1033,7 +1250,7 @@
   "store": "（仮称）マルイト姫路ビル",
   "address": "姫路市駅前町字御殿前188－１ほか",
   "operator": "マルイト株式会社",
-  "retailer": "未定３者",
+  "retailer": "",
   "content": "",
   "area_m2": 5260,
   "event_on": "2018-03-01",
@@ -1042,7 +1259,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/70_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "63d2a179730a"
+  "key": "63d2a179730a",
+  "operator_display": "マルイト株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "未定３者",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1061,7 +1282,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/73_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "3a2fb722e346"
+  "key": "3a2fb722e346",
+  "operator_display": "株式会社ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ニトリ",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1071,7 +1296,7 @@
   "store": "（仮称）スーパーマルハチ日生中央店",
   "address": "川辺郡猪名川町伏見台一丁目１－56ほか",
   "operator": "株式会社マルハチホールディングス",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 2989,
   "event_on": "2018-06-25",
@@ -1080,7 +1305,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/74_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "04b1800645c7"
+  "key": "04b1800645c7",
+  "operator_display": "株式会社マルハチホールディングス",
+  "operator_kind": "corp",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1099,7 +1328,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/74_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "1b1154c8c2a9"
+  "key": "1b1154c8c2a9",
+  "operator_display": "株式会社万代",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社万代 ほか未定１者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1109,7 +1342,7 @@
   "store": "（仮称）トンボプラザ",
   "address": "明石市硯町三丁目455-１ほか",
   "operator": "オリックス株式会社",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 4210,
   "event_on": "2018-09-25",
@@ -1118,7 +1351,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/76_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "475b62cbbde1"
+  "key": "475b62cbbde1",
+  "operator_display": "オリックス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1137,7 +1374,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/77_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "4b045b591f1b"
+  "key": "4b045b591f1b",
+  "operator_display": "マックスバリュ西日本株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "マックスバリュ西日本株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1156,7 +1397,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/77_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "01bc7b2a2fc4"
+  "key": "01bc7b2a2fc4",
+  "operator_display": "イオンタウン株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ダイエー ほか未定８者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1175,7 +1420,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/77_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "d2022e2eaf2e"
+  "key": "d2022e2eaf2e",
+  "operator_display": "ヤマダストアー株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "ヤマダストアー株式会社 他２者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1194,7 +1443,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/78_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "8e99d5767e2b"
+  "key": "8e99d5767e2b",
+  "operator_display": "株式会社北摂コミュニティ開発センター",
+  "operator_kind": "corp",
+  "retailer_display": "上新電機株式会社（生活家電等）ほか３者",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1204,7 +1457,7 @@
   "store": "（仮称）ニトリ尼崎店",
   "address": "尼崎市大庄北五丁目71番",
   "operator": "株式会社ニトリ",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 6791,
   "event_on": "2018-12-28",
@@ -1213,7 +1466,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/79_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "de15bbe21492"
+  "key": "de15bbe21492",
+  "operator_display": "株式会社ニトリ",
+  "operator_kind": "corp",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1232,7 +1489,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/82_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "2decd80f12dd"
+  "key": "2decd80f12dd",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社コスモス薬品",
+  "retailer_kind": "corp"
  },
  {
   "article": "第8条第7項",
@@ -1251,7 +1512,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/77_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "1e76b5c9d900"
+  "key": "1e76b5c9d900",
+  "operator_display": "ゴダイ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "ゴダイ株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1270,7 +1535,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/83_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "3c70f7b00806"
+  "key": "3c70f7b00806",
+  "operator_display": "神戸トヨペット株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "神戸トヨペット株式会社",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1289,7 +1558,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/85_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "31468dbec160"
+  "key": "31468dbec160",
+  "operator_display": "アーク不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1299,7 +1572,7 @@
   "store": "カインズ姫路店",
   "address": "姫路市大津区大津町一丁目50番",
   "operator": "日鉄興和不動産株式会社",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 7181,
   "event_on": "2019-06-25",
@@ -1308,7 +1581,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/85_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "50f3ad54dd7b"
+  "key": "50f3ad54dd7b",
+  "operator_display": "日鉄興和不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1327,7 +1604,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/87_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "1a24ebfe8188"
+  "key": "1a24ebfe8188",
+  "operator_display": "株式会社阪急オアシス、ロイヤルホームセンター株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1337,7 +1618,7 @@
   "store": "（仮称）マックスバリュ英賀保店",
   "address": "姫路市飾磨区城南町二丁目30番ほか",
   "operator": "マックスバリュ西日本株式会社",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 1466,
   "event_on": "2019-08-26",
@@ -1346,7 +1627,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/86_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "f9b6f83291ab"
+  "key": "f9b6f83291ab",
+  "operator_display": "マックスバリュ西日本株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1356,7 +1641,7 @@
   "store": "ドラッグコスモス大江島店",
   "address": "姫路市網干区大江島91ほか",
   "operator": "株式会社コスモス薬品",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 1652,
   "event_on": "2020-05-14",
@@ -1365,7 +1650,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/92_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "db69b7e37c95"
+  "key": "db69b7e37c95",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -1373,9 +1662,9 @@
   "notified_on": "2019-09-13",
   "notified_raw": "令和元年９月13日",
   "store": "明石西インター南計画",
-  "address": "明石市魚住町清水2464番１",
+  "address": "明石市魚住町清水",
   "operator": "",
-  "retailer": "物品販売業を営む店舗",
+  "retailer": "",
   "content": "",
   "area_m2": 4119,
   "event_on": "2019-09-24",
@@ -1384,7 +1673,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/93_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "f825a2402d35"
+  "key": "f825a2402d35",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "retailer_display": "物品販売業を営む店舗",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -1403,7 +1697,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/97_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "73118d7bb785"
+  "key": "73118d7bb785",
+  "operator_display": "株式会社ハローズ",
+  "operator_kind": "corp",
+  "retailer_display": "株式会社ザグザグ",
+  "retailer_kind": "corp"
  },
  {
   "article": "第5条第1項",
@@ -1411,7 +1709,7 @@
   "notified_on": "2020-04-30",
   "notified_raw": "令和２年４月 30 日",
   "store": "（仮称）旧高須東小学校跡地開発",
-  "address": "西宮市高須町一丁目１番６の一部、１番27の一部",
+  "address": "西宮市高須町一丁目",
   "operator": "",
   "retailer": "",
   "content": "",
@@ -1422,7 +1720,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/98_gian01.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "500896531adb"
+  "key": "500896531adb",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "retailer_display": "",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -1441,7 +1744,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/106_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "741c687209de"
+  "key": "741c687209de",
+  "operator_display": "株式会社マルアイ、スギホールディングス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1460,7 +1767,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/106_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "92740f43d129"
+  "key": "92740f43d129",
+  "operator_display": "株式会社ザグザグ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -1479,7 +1790,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/110_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "feb8fec57eb6"
+  "key": "feb8fec57eb6",
+  "operator_display": "シキボウ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1498,7 +1813,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/113_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "1631f4d52028"
+  "key": "1631f4d52028",
+  "operator_display": "ヤマダストアー株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1517,7 +1836,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/114_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "25e017f40e4f"
+  "key": "25e017f40e4f",
+  "operator_display": "野村不動産株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -1536,7 +1859,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/115_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "477d81b9e70f"
+  "key": "477d81b9e70f",
+  "operator_display": "大和ハウスリアルティマネジメント株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -1544,7 +1871,7 @@
   "notified_on": "2022-05-11",
   "notified_raw": "令和４年５月 11 日",
   "store": "イオンモール姫路リバーシティー",
-  "address": "姫路市飾磨区細江2560ほか",
+  "address": "姫路市飾磨区細江",
   "operator": "",
   "retailer": "",
   "content": "",
@@ -1555,7 +1882,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/116_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "e660b46874fd"
+  "key": "e660b46874fd",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "retailer_display": "",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -1574,7 +1906,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/117_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "a54c3300e4ff"
+  "key": "a54c3300e4ff",
+  "operator_display": "株式会社トライアルカンパニー",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第6条第2項",
@@ -1593,7 +1929,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/122_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "8512b4b1ab0a"
+  "key": "8512b4b1ab0a",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1612,7 +1952,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/123_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "584290a1f40c"
+  "key": "584290a1f40c",
+  "operator_display": "株式会社マルアイ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1620,7 +1964,7 @@
   "notified_on": "2023-02-09",
   "notified_raw": "令和５年２月９日",
   "store": "（仮称）マルアイ新広畑店",
-  "address": "姫路市広畑区才742番地ほか",
+  "address": "姫路市広畑区才",
   "operator": "",
   "retailer": "",
   "content": "",
@@ -1631,7 +1975,12 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/123_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "7292faf78e61"
+  "key": "7292faf78e61",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "retailer_display": "",
+  "retailer_kind": "individual",
+  "address_redacted": true
  },
  {
   "article": "第5条第1項",
@@ -1650,7 +1999,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/125_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "6c015a481b3f"
+  "key": "6c015a481b3f",
+  "operator_display": "株式会社マルハチエステート",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1669,7 +2022,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/127_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "89d72e276d26"
+  "key": "89d72e276d26",
+  "operator_display": "エスケーホールディングス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1688,7 +2045,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/127_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "49c1f0c8e926"
+  "key": "49c1f0c8e926",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1707,7 +2068,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/127_giann.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "21bebefbe4be"
+  "key": "21bebefbe4be",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1726,7 +2091,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/130_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "8334a5667d42"
+  "key": "8334a5667d42",
+  "operator_display": "株式会社ザグザグ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1745,7 +2114,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/130_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "fa1c4938e577"
+  "key": "fa1c4938e577",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1764,7 +2137,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/132_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "747a42712618"
+  "key": "747a42712618",
+  "operator_display": "株式会社ザグザグ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1783,7 +2160,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/131_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "c18b76682ae6"
+  "key": "c18b76682ae6",
+  "operator_display": "株式会社カワベ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1802,7 +2183,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/132_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "35e143cf7455"
+  "key": "35e143cf7455",
+  "operator_display": "スリーエイチ株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1821,7 +2206,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/133_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "7eefb3925e4f"
+  "key": "7eefb3925e4f",
+  "operator_display": "株式会社フジ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1840,7 +2229,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/133_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "c6d4f833aae0"
+  "key": "c6d4f833aae0",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1859,7 +2252,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/134_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "1c7dc4e5d016"
+  "key": "1c7dc4e5d016",
+  "operator_display": "株式会社さとう",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1878,7 +2275,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/134_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "ea3b7ebf46ed"
+  "key": "ea3b7ebf46ed",
+  "operator_display": "株式会社エスアンドエスコーポレーション",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1897,7 +2298,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/135_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "da8355580195"
+  "key": "da8355580195",
+  "operator_display": "ダイレックス株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1916,7 +2321,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/135_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "857ef48e31d2"
+  "key": "857ef48e31d2",
+  "operator_display": "株式会社トーホー",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1935,7 +2344,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/135_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "e22fc79f36cd"
+  "key": "e22fc79f36cd",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1954,7 +2367,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/136_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "93187831ab4d"
+  "key": "93187831ab4d",
+  "operator_display": "株式会社マルアイ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1973,7 +2390,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/138_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "7a920e1f96c2"
+  "key": "7a920e1f96c2",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -1992,7 +2413,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/139_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "670aa97e76ed"
+  "key": "670aa97e76ed",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2011,7 +2436,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/140_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "27174f4e4471"
+  "key": "27174f4e4471",
+  "operator_display": "株式会社小西園芸社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2030,7 +2459,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/141_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "0fc3aaf3658b"
+  "key": "0fc3aaf3658b",
+  "operator_display": "株式会社ハローズ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2049,7 +2482,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/141_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "7395d643c4d5"
+  "key": "7395d643c4d5",
+  "operator_display": "キング醸造株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "",
@@ -2068,7 +2505,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/143gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "53493dec46bb"
+  "key": "53493dec46bb",
+  "operator_display": "三菱 UFJ 信託銀行株式会社",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2087,7 +2528,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/142_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "38103e7f159a"
+  "key": "38103e7f159a",
+  "operator_display": "株式会社フジ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2106,7 +2551,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/143gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "8f1a74f6735a"
+  "key": "8f1a74f6735a",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2125,7 +2574,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/145gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "576f25c3cabd"
+  "key": "576f25c3cabd",
+  "operator_display": "株式会社トライアルカンパニー",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2144,7 +2597,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/144gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "66170154cdfa"
+  "key": "66170154cdfa",
+  "operator_display": "株式会社ザグザグ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2163,7 +2620,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/144gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "2f99d4d23527"
+  "key": "2f99d4d23527",
+  "operator_display": "株式会社マルハチ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2182,7 +2643,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/145gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "31887164dee9"
+  "key": "31887164dee9",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2201,7 +2666,11 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/149_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "9f2ab6da3ecc"
+  "key": "9f2ab6da3ecc",
+  "operator_display": "株式会社さとう、株式会社コメリ",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -2220,6 +2689,10 @@
    "https://web.pref.hyogo.lg.jp/ks21/documents/150_gian.pdf"
   ],
   "source": "hyogo-bukai",
-  "key": "d67ecc1ac2ab"
+  "key": "d67ecc1ac2ab",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  }
 ]

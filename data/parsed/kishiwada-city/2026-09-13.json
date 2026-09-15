@@ -21,7 +21,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/164925.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "c5757681616e"
+  "key": "c5757681616e",
+  "operator_display": "株式会社Ｊｏｓｈｉｎ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -45,7 +49,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/164926.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "f2e2f33ede9e"
+  "key": "f2e2f33ede9e",
+  "operator_display": "田渕商事株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -69,7 +77,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/165579.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "5f6a21cd8d8a"
+  "key": "5f6a21cd8d8a",
+  "operator_display": "（1）芙蓉総合リース株式会社 （2）株式会社タチバナ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -93,7 +105,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/166542.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "60c3b6ee15ae"
+  "key": "60c3b6ee15ae",
+  "operator_display": "(1)イオンリテール株式会社 (2)株式会社ファーストリテイリング (3)株式会社ヤマダデンキ (4)株式会社ジンズ (5)株式会社ワークマン (6)株式会社山本酒店 (7)岩出建設株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -117,7 +133,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/162795.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "a22452600f61"
+  "key": "a22452600f61",
+  "operator_display": "田渕商事株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -141,7 +161,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/159304.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "5914ac53811a"
+  "key": "5914ac53811a",
+  "operator_display": "株式会社クスリのアオキ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第5条第1項",
@@ -164,7 +188,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/153689.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "c4af43066aec"
+  "key": "c4af43066aec",
+  "operator_display": "​株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -187,7 +215,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/162228.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "d2b721e356fc"
+  "key": "d2b721e356fc",
+  "operator_display": "三井住友信託銀行株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -210,7 +242,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/158763.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "5c719f7c375e"
+  "key": "5c719f7c375e",
+  "operator_display": "株式会社ネクステージ",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -233,7 +269,11 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/157832.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "9c891cb9855f"
+  "key": "9c891cb9855f",
+  "operator_display": "芙蓉総合リース株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  },
  {
   "article": "第6条第1項",
@@ -256,6 +296,10 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/153036.pdf"
   ],
   "source": "kishiwada-city",
-  "key": "584192e3b38b"
+  "key": "584192e3b38b",
+  "operator_display": "(1)イオンリテール株式会社 (2)株式会社ファーストリテイリング (3)株式会社ヤマダデンキ (4)株式会社ジンズ (5)株式会社ワークマン (6)株式会社山本酒店 (7)岩出建設株式会社",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual"
  }
 ]
