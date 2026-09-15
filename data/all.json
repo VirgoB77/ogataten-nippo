@@ -216,7 +216,7 @@
   "notified_on": "2026-08-25",
   "notified_raw": "令和8年8月25日",
   "store": "コープ茨木白川",
-  "address": "白川二丁目",
+  "address": "白川二丁目648番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": "2026-03-02",
@@ -231,9 +231,9 @@
   "source": "ibaraki-city",
   "key": "87493dcd641a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -241,8 +241,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -250,7 +249,7 @@
   "notified_on": "2026-08-25",
   "notified_raw": "令和8年8月25日",
   "store": "コープ茨木白川",
-  "address": "白川二丁目",
+  "address": "白川二丁目648番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -265,9 +264,9 @@
   "source": "ibaraki-city",
   "key": "3760b891a5ce",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -275,8 +274,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -783,7 +781,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年7月23日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -2480,7 +2478,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年6月5日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -2561,7 +2559,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年6月4日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -4357,9 +4355,9 @@
   "source": "yao-chukibo",
   "key": "d5bed014de0c",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -4367,8 +4365,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -5543,7 +5540,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年4月24日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -5884,9 +5881,9 @@
   "source": "yao-chukibo",
   "key": "d22f31e9e4fa",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -5894,8 +5891,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -5939,7 +5935,7 @@
   "notified_on": "2026-04-16",
   "notified_raw": "令和8年4月16日",
   "store": "ロサヴィア1",
-  "address": "永代町",
+  "address": "永代町329-2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -5954,9 +5950,9 @@
   "source": "ibaraki-city",
   "key": "60728a3c27fd",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -5964,8 +5960,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -14459,7 +14454,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年9月3日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -15629,7 +15624,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年8月5日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -15928,7 +15923,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年7月23日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -16294,7 +16289,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年7月4日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -17469,7 +17464,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年6月4日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -17663,7 +17658,7 @@
   "notified_on": "2025-06-03",
   "notified_raw": "令和7年6月3日",
   "store": "ロサヴィア2",
-  "address": "永代町",
+  "address": "永代町471-2ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -17678,9 +17673,9 @@
   "source": "ibaraki-city",
   "key": "291c33f03f73",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -17688,8 +17683,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "附則第5条第1項",
@@ -17697,7 +17691,7 @@
   "notified_on": "2025-06-03",
   "notified_raw": "令和7年6月3日",
   "store": "ロサヴィア1",
-  "address": "永代町",
+  "address": "永代町329-2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -17712,9 +17706,9 @@
   "source": "ibaraki-city",
   "key": "cf5d157c8051",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -17722,8 +17716,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -18854,7 +18847,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年5月7日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -21444,7 +21437,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年2月10日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -22206,7 +22199,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年1月30日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -23325,7 +23318,7 @@
   "notified_on": "2024-12-05",
   "notified_raw": "令和6年12月5日",
   "store": "イオンタウン茨木太田",
-  "address": "城の前町",
+  "address": "城の前町600番地27",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -23340,9 +23333,9 @@
   "source": "ibaraki-city",
   "key": "674429b3972f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -23350,8 +23343,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -26346,9 +26338,9 @@
   "source": "yao-chukibo",
   "key": "fbd333081143",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -26356,8 +26348,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "",
@@ -27025,7 +27016,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年9月5日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -27391,7 +27382,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年8月29日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -29298,7 +29289,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年7月10日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -29688,7 +29679,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年7月3日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -30235,7 +30226,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年6月21日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -33312,7 +33303,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年4月8日",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
    "osaka-pref"
@@ -35690,7 +35681,7 @@
   "docs": [],
   "source": "sakai-city",
   "key": "fcbd6f8a43a3",
-  "operator_display": "ー",
+  "operator_display": "",
   "operator_kind": "individual",
   "new_operator_display": "株式会社正龍コーポレーション",
   "new_operator_kind": "corp",
@@ -36103,9 +36094,9 @@
   "source": "yao-chukibo",
   "key": "407f0cd11007",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -36113,8 +36104,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -37083,7 +37073,7 @@
   "notified_on": "2023-10-18",
   "notified_raw": "令和5年10月18日",
   "store": "ガーデンモール彩都",
-  "address": "大字宿久庄",
+  "address": "大字宿久庄476番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -37098,9 +37088,9 @@
   "source": "ibaraki-city",
   "key": "2df2030b4021",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -37108,8 +37098,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -37117,7 +37106,7 @@
   "notified_on": "2023-10-18",
   "notified_raw": "令和5年10月18日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -37132,9 +37121,9 @@
   "source": "ibaraki-city",
   "key": "e2785c74e3ee",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -37142,8 +37131,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -37990,7 +37978,7 @@
   "notified_on": "2023-09-26",
   "notified_raw": "令和5年9月26日",
   "store": "（仮称）業務スーパー茨木上穂東店",
-  "address": "上穂東町",
+  "address": "上穂東町116番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -38005,9 +37993,9 @@
   "source": "ibaraki-city",
   "key": "06ebb370821a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -38015,8 +38003,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -39962,7 +39949,7 @@
   "notified_on": "2023-07-03",
   "notified_raw": "令和5年7月3日",
   "store": "イオンモール茨木",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -39977,9 +39964,9 @@
   "source": "ibaraki-city",
   "key": "f3ba07959e51",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -39987,8 +39974,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -41465,9 +41451,9 @@
   "source": "yao-chukibo",
   "key": "33fe677ca689",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -41475,8 +41461,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "",
@@ -42849,7 +42834,7 @@
   "notified_on": "2023-02-20",
   "notified_raw": "令和5年2月20日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -42864,9 +42849,9 @@
   "source": "ibaraki-city",
   "key": "d0c94077c287",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -42874,8 +42859,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -42883,7 +42867,7 @@
   "notified_on": "2023-02-20",
   "notified_raw": "令和5年2月20日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -42898,9 +42882,9 @@
   "source": "ibaraki-city",
   "key": "93fef7238cef",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -42908,8 +42892,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -43407,7 +43390,7 @@
   "notified_on": "2023-01-27",
   "notified_raw": "令和5年1月27日",
   "store": "（仮称）ニトリ茨木南目垣店",
-  "address": "南目垣・東野々宮土地区画整理事業",
+  "address": "南目垣・東野々宮土地区画整理事業1街区2画地",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -43422,9 +43405,9 @@
   "source": "ibaraki-city",
   "key": "a331c952d3f1",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -43432,8 +43415,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -43519,7 +43501,7 @@
   "docs": [],
   "source": "sakai-chukibo",
   "key": "ddd911f14f1f",
-  "operator_display": "―",
+  "operator_display": "",
   "operator_kind": "individual",
   "new_operator_display": "",
   "new_operator_kind": "individual",
@@ -44500,7 +44482,7 @@
   "notified_on": "2022-12-22",
   "notified_raw": "令和4年12月22日",
   "store": "ビエラ茨木新中条",
-  "address": "新中条町",
+  "address": "新中条町155番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -44515,9 +44497,9 @@
   "source": "ibaraki-city",
   "key": "21f3259b3cef",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -44525,8 +44507,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -45508,7 +45489,7 @@
   "docs": [],
   "source": "sakai-chukibo",
   "key": "85cb69824dc9",
-  "operator_display": "ー",
+  "operator_display": "",
   "operator_kind": "individual",
   "new_operator_display": "",
   "new_operator_kind": "individual",
@@ -46546,7 +46527,7 @@
   "notified_on": "2022-10-11",
   "notified_raw": "令和4年10月11日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -46561,9 +46542,9 @@
   "source": "ibaraki-city",
   "key": "ac21009c1759",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -46571,8 +46552,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "",
@@ -46751,7 +46731,7 @@
   "notified_on": "2022-10-04",
   "notified_raw": "令和4年10月4日",
   "store": "茨木豊川ショッピングスクエア",
-  "address": "豊川三丁目",
+  "address": "豊川三丁目277番3ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -46766,9 +46746,9 @@
   "source": "ibaraki-city",
   "key": "ff9b2482d845",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -46776,8 +46756,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -47965,7 +47944,7 @@
   "notified_on": "2022-08-01",
   "notified_raw": "令和4年8月1日",
   "store": "イオンタウン茨木太田",
-  "address": "城の前町",
+  "address": "城の前町600番地27",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -47980,9 +47959,9 @@
   "source": "ibaraki-city",
   "key": "e4a0fc3bce87",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -47990,8 +47969,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -50444,7 +50422,7 @@
   "notified_on": "2022-05-11",
   "notified_raw": "令和4年5月11日",
   "store": "イオンモール茨木",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -50459,9 +50437,9 @@
   "source": "ibaraki-city",
   "key": "791aa8fd28d4",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -50469,8 +50447,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -50861,7 +50838,7 @@
   "docs": [],
   "source": "sakai-chukibo",
   "key": "be51f2d43aa6",
-  "operator_display": "-",
+  "operator_display": "",
   "operator_kind": "individual",
   "new_operator_display": "",
   "new_operator_kind": "individual",
@@ -51775,7 +51752,7 @@
   "notified_on": "2022-03-18",
   "notified_raw": "令和4年3月18日",
   "store": "コジマ×ビックカメラ茨木店",
-  "address": "双葉町",
+  "address": "双葉町355-2・355-8",
   "operator": "",
   "new_operator": "",
   "event_on": "2020-11-01",
@@ -51790,9 +51767,9 @@
   "source": "ibaraki-city",
   "key": "0ab21d9215a8",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -51800,8 +51777,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -51892,9 +51868,9 @@
   "source": "yao-chukibo",
   "key": "cb88ec5dea40",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -51902,8 +51878,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -52073,9 +52048,9 @@
   "source": "yao-chukibo",
   "key": "a79320c5c0f6",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -52083,8 +52058,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "附則第5条第1項",
@@ -52431,7 +52405,7 @@
   "notified_on": "2022-02-15",
   "notified_raw": "令和4年2月15日",
   "store": "（仮称）茨木市豊川三丁目複合店舗新築工事",
-  "address": "豊川三丁目",
+  "address": "豊川三丁目277番3ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -52446,9 +52420,9 @@
   "source": "ibaraki-city",
   "key": "60664397d45f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -52456,8 +52430,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -52706,7 +52679,7 @@
   "notified_on": "2022-01-31",
   "notified_raw": "令和4年1月31日",
   "store": "DCM茨木店",
-  "address": "東太田一丁目",
+  "address": "東太田一丁目23-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -52721,9 +52694,9 @@
   "source": "ibaraki-city",
   "key": "4a9a407b81f3",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -52731,8 +52704,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -53845,9 +53817,9 @@
   "source": "yao-chukibo",
   "key": "d98672dad65a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -53855,8 +53827,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -54226,7 +54197,7 @@
   "notified_on": "2021-11-08",
   "notified_raw": "令和3年11月8日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -54241,9 +54212,9 @@
   "source": "ibaraki-city",
   "key": "a35de1a62d1a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -54251,8 +54222,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -54620,7 +54590,7 @@
   "notified_on": "2021-10-20",
   "notified_raw": "令和3年10月20日 令和3年11月8日取り下げ",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -54635,9 +54605,9 @@
   "source": "ibaraki-city",
   "key": "73ca9b716b52",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -54645,8 +54615,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "中規模",
@@ -57188,9 +57157,9 @@
   "source": "yao-chukibo",
   "key": "da63d23eff67",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -57198,8 +57167,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -57750,9 +57718,9 @@
   "source": "yao-chukibo",
   "key": "16eb1365e8e2",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -57760,8 +57728,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -57894,7 +57861,7 @@
   "notified_on": "2021-06-18",
   "notified_raw": "令和3年6月18日",
   "store": "イオンタウン茨木太田",
-  "address": "城の前町",
+  "address": "城の前町600番地27",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -57909,9 +57876,9 @@
   "source": "ibaraki-city",
   "key": "35f93c1e3e94",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -57919,8 +57886,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -57928,7 +57894,7 @@
   "notified_on": "2021-06-18",
   "notified_raw": "令和3年6月18日",
   "store": "イオンタウン茨木太田",
-  "address": "城の前町",
+  "address": "城の前町600番地27",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -57943,9 +57909,9 @@
   "source": "ibaraki-city",
   "key": "09865e0f1ef3",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -57953,8 +57919,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -57962,7 +57927,7 @@
   "notified_on": "2021-06-16",
   "notified_raw": "令和3年6月16日",
   "store": "イオンモール茨木",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -57977,9 +57942,9 @@
   "source": "ibaraki-city",
   "key": "c4104f2bad06",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -57987,8 +57952,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -58095,7 +58059,7 @@
   "notified_on": "2021-06-14",
   "notified_raw": "令和3年6月14日",
   "store": "ガーデンモール彩都",
-  "address": "大字宿久庄",
+  "address": "大字宿久庄476番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -58110,9 +58074,9 @@
   "source": "ibaraki-city",
   "key": "492d6501bf7f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -58120,8 +58084,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -58129,7 +58092,7 @@
   "notified_on": "2021-06-14",
   "notified_raw": "令和3年6月14日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -58144,9 +58107,9 @@
   "source": "ibaraki-city",
   "key": "e2c98c3144ec",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -58154,8 +58117,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -60330,9 +60292,9 @@
   "source": "yao-chukibo",
   "key": "feea5c654388",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -60340,8 +60302,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -60401,9 +60362,9 @@
   "source": "yao-chukibo",
   "key": "cf5f73044e2a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -60411,8 +60372,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第11条第3項",
@@ -63516,7 +63476,7 @@
   "notified_on": "2020-09-14",
   "notified_raw": "令和2年9月14日",
   "store": "グルメシティ上穂積店",
-  "address": "上穂積一丁目",
+  "address": "上穂積一丁目206番地2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -63531,9 +63491,9 @@
   "source": "ibaraki-city",
   "key": "b27552916666",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -63541,8 +63501,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -64967,7 +64926,7 @@
   "notified_on": "2020-07-15",
   "notified_raw": "令和2年7月15日 令和2年8月11日取り下げ",
   "store": "阪急オアシス茨木駅前店",
-  "address": "西中条町",
+  "address": "西中条町226番2ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -64982,9 +64941,9 @@
   "source": "ibaraki-city",
   "key": "9416603a4fe8",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -64992,8 +64951,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -65001,7 +64959,7 @@
   "notified_on": "2020-07-15",
   "notified_raw": "令和2年7月15日",
   "store": "阪急オアシス茨木駅前店",
-  "address": "西中条町",
+  "address": "西中条町226番2ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -65016,9 +64974,9 @@
   "source": "ibaraki-city",
   "key": "6e644d67d97d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -65026,8 +64984,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -66422,7 +66379,7 @@
   "notified_on": "2020-07-01",
   "notified_raw": "令和2年7月1日",
   "store": "イオンモール茨木",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -66437,9 +66394,9 @@
   "source": "ibaraki-city",
   "key": "fc928ea253bf",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -66447,8 +66404,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -66761,7 +66717,7 @@
   "notified_on": "2020-06-26",
   "notified_raw": "令和2年6月26日",
   "store": "大阪府食品流通センター",
-  "address": "宮島一丁目",
+  "address": "宮島一丁目1252-12、1252-40、1252-74、1252-94",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -66776,9 +66732,9 @@
   "source": "ibaraki-city",
   "key": "9383e4887a52",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -66786,8 +66742,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -67114,7 +67069,7 @@
   "notified_on": "2020-06-10",
   "notified_raw": "令和2年6月10日",
   "store": "（仮称）イオンタウン茨木太田",
-  "address": "城の前町",
+  "address": "城の前町600番27",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -67129,9 +67084,9 @@
   "source": "ibaraki-city",
   "key": "92bbe99c184b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -67139,8 +67094,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -67432,7 +67386,7 @@
   "notified_on": "2020-05-25",
   "notified_raw": "令和2年5月25日",
   "store": "MEGAドン・キホーテ茨木店",
-  "address": "東太田一丁目",
+  "address": "東太田一丁目4番48号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -67447,9 +67401,9 @@
   "source": "ibaraki-city",
   "key": "9b22974d3f19",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -67457,8 +67411,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -67594,9 +67547,9 @@
   "source": "yao-chukibo",
   "key": "1252a6afffbc",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -67604,8 +67557,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -67874,7 +67826,7 @@
   "notified_on": "2020-04-28",
   "notified_raw": "令和2年4月28日",
   "store": "グルメシティ上穂積店",
-  "address": "上穂積一丁目",
+  "address": "上穂積一丁目206番地2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -67889,9 +67841,9 @@
   "source": "ibaraki-city",
   "key": "552147013ba0",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -67899,8 +67851,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -68186,7 +68137,7 @@
   "notified_on": "2020-04-23",
   "notified_raw": "令和2年4月23日",
   "store": "ガーデンモール彩都",
-  "address": "大字宿久庄",
+  "address": "大字宿久庄476番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -68201,9 +68152,9 @@
   "source": "ibaraki-city",
   "key": "1a64d2f4b9e0",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -68211,8 +68162,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -68220,7 +68170,7 @@
   "notified_on": "2020-04-23",
   "notified_raw": "令和2年4月23日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -68235,9 +68185,9 @@
   "source": "ibaraki-city",
   "key": "8d01cbc0a015",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -68245,8 +68195,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -68387,7 +68336,7 @@
   "notified_on": "2020-04-21",
   "notified_raw": "令和2年4月21日",
   "store": "ビエラ茨木新中条",
-  "address": "新中条町",
+  "address": "新中条町155番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -68402,9 +68351,9 @@
   "source": "ibaraki-city",
   "key": "a169a1a44a94",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -68412,8 +68361,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -70934,9 +70882,9 @@
   "source": "yao-chukibo",
   "key": "231283c50256",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -70944,8 +70892,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -70953,7 +70900,7 @@
   "notified_on": "2019-12-27",
   "notified_raw": "令和元年12月27日",
   "store": "阪急オアシス茨木駅前店",
-  "address": "西中条町",
+  "address": "西中条町226番2ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -70968,9 +70915,9 @@
   "source": "ibaraki-city",
   "key": "6dfe9ba96c43",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -70978,8 +70925,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第5項",
@@ -70987,7 +70933,7 @@
   "notified_on": "2019-12-27",
   "notified_raw": "令和元年12月27日",
   "store": "阪急オアシス茨木駅前店",
-  "address": "西中条町",
+  "address": "西中条町226番2ほか",
   "operator": "",
   "new_operator": "",
   "event_on": "2017-10-02",
@@ -71002,9 +70948,9 @@
   "source": "ibaraki-city",
   "key": "c82bc425df20",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -71012,8 +70958,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -71057,7 +71002,7 @@
   "notified_on": "2019-12-25",
   "notified_raw": "令和元年12月25日",
   "store": "ジョーシン茨木店",
-  "address": "上穂東町",
+  "address": "上穂東町116番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -71072,9 +71017,9 @@
   "source": "ibaraki-city",
   "key": "20c44980c760",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -71082,8 +71027,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -73597,7 +73541,7 @@
   "key": "f825a2402d35",
   "operator_display": "",
   "operator_kind": "individual",
-  "retailer_display": "物品販売業を営む店舗",
+  "retailer_display": "",
   "retailer_kind": "individual",
   "first_seen": null,
   "last_seen": null,
@@ -74796,7 +74740,7 @@
   "notified_on": "2019-07-24",
   "notified_raw": "令和元年7月24日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -74811,9 +74755,9 @@
   "source": "ibaraki-city",
   "key": "792e5f3260c5",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -74821,8 +74765,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -74830,7 +74773,7 @@
   "notified_on": "2019-07-24",
   "notified_raw": "令和元年7月24日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -74845,9 +74788,9 @@
   "source": "ibaraki-city",
   "key": "dc40c4d6d69e",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -74855,8 +74798,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -77741,9 +77683,9 @@
   "source": "yao-chukibo",
   "key": "e84165df362e",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -77751,8 +77693,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -77910,7 +77851,7 @@
   "notified_on": "2019-01-29",
   "notified_raw": "平成31年1月29日",
   "store": "（仮称）ジョーシン茨木上穂東店",
-  "address": "上穂東町",
+  "address": "上穂東町116番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -77925,9 +77866,9 @@
   "source": "ibaraki-city",
   "key": "1c86ea3c91b5",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -77935,8 +77876,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -78254,9 +78194,9 @@
   "source": "yao-chukibo",
   "key": "8bb7a9cc5bdb",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -78264,8 +78204,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第5項",
@@ -79028,9 +78967,9 @@
   "source": "yao-chukibo",
   "key": "625d70ceb667",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -79038,8 +78977,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -79596,9 +79534,9 @@
   "source": "yao-chukibo",
   "key": "8cfd951c9d68",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -79606,8 +79544,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -80046,9 +79983,9 @@
   "source": "yao-chukibo",
   "key": "0a0879724de7",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -80056,8 +79993,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -80098,7 +80034,7 @@
   "notified_on": "2018-09-10",
   "notified_raw": "平成30年9月10日",
   "store": "コジマ×ビックカメラ茨木店",
-  "address": "双葉町",
+  "address": "双葉町355番2、355番8",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -80113,9 +80049,9 @@
   "source": "ibaraki-city",
   "key": "5f3682edc95d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -80123,8 +80059,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "中規模",
@@ -80147,9 +80082,9 @@
   "source": "yao-chukibo",
   "key": "da55b46a73d2",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -80157,8 +80092,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -80283,9 +80217,9 @@
   "source": "yao-chukibo",
   "key": "74ece03ba590",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -80293,8 +80227,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -81751,7 +81684,7 @@
   "notified_on": "2018-06-04",
   "notified_raw": "平成30年6月4日",
   "store": "（仮称）茨木新中条町NKビル",
-  "address": "新中条町",
+  "address": "新中条町155番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -81766,9 +81699,9 @@
   "source": "ibaraki-city",
   "key": "5ecb702c5b49",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -81776,8 +81709,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -82109,7 +82041,7 @@
   "notified_on": "2018-05-08",
   "notified_raw": "平成30年5月8日",
   "store": "（仮称）ラ・ムー茨木彩都店",
-  "address": "彩都やまぶき二丁目",
+  "address": "彩都やまぶき二丁目12番の一部及び13番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -82124,9 +82056,9 @@
   "source": "ibaraki-city",
   "key": "972d533e5b85",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -82134,8 +82066,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -82362,9 +82293,9 @@
   "source": "yao-chukibo",
   "key": "13ecdbdb534a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -82372,8 +82303,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -82606,9 +82536,9 @@
   "source": "yao-chukibo",
   "key": "04bcf18c8c28",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -82616,8 +82546,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -82713,9 +82642,9 @@
   "source": "yao-chukibo",
   "key": "3a0358b4914f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -82723,8 +82652,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -83241,9 +83169,9 @@
   "source": "yao-chukibo",
   "key": "cf1e3144ccc9",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -83251,8 +83179,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -83560,9 +83487,9 @@
   "source": "yao-chukibo",
   "key": "d1653d9aa4ad",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -83570,8 +83497,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -84116,9 +84042,9 @@
   "source": "yao-chukibo",
   "key": "2aa2385a2374",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -84126,8 +84052,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -84198,9 +84123,9 @@
   "source": "yao-chukibo",
   "key": "d4558d67ef8c",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -84208,8 +84133,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -84432,7 +84356,7 @@
   "notified_on": "2017-11-28",
   "notified_raw": "平成29年11月28日 平成30年1月17日取り下げ",
   "store": "（仮称）ラ・ムー茨木彩都店",
-  "address": "彩都やまぶき二丁目",
+  "address": "彩都やまぶき二丁目12番の一部及び13番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -84447,9 +84371,9 @@
   "source": "ibaraki-city",
   "key": "d599acc8cd63",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -84457,8 +84381,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -86425,7 +86348,7 @@
   "notified_on": "2017-07-27",
   "notified_raw": "平成29年7月27日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -86440,9 +86363,9 @@
   "source": "ibaraki-city",
   "key": "8072d32f1aa2",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -86450,8 +86373,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -87210,39 +87132,36 @@
  {
   "article": "第5条第1項",
   "kind": "新設",
-  "notified_on": "2017-06-28",
-  "notified_raw": "平成 29 年６月 28 日",
-  "store": "（仮称）マルイト姫路ビル",
-  "address": "姫路市駅前町字御殿前188－１ほか",
-  "operator": "マルイト株式会社",
-  "retailer": "",
-  "content": "",
-  "area_m2": 5260,
-  "event_on": "2018-03-01",
-  "meeting": "第70回",
+  "source": "hyogo-koho",
+  "gazette_date": "2017-07-21",
+  "gazette_no": "2919",
   "docs": [
-   "https://web.pref.hyogo.lg.jp/ks21/documents/70_giann.pdf"
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290721t.pdf"
   ],
-  "source": "hyogo-bukai",
-  "key": "63d2a179730a",
+  "store": "（仮称）マルイト姫路ビル",
+  "address": "姫路市駅前町字御殿前188―１ほか",
+  "operator": "マルイト株式会社",
+  "event_on": "2018-03-01",
+  "notified_on": "2017-06-28",
+  "area_m2": 5260,
+  "region": "中播磨",
+  "review_from": "2017-07-21",
+  "key": "f8c4d6f9cda4",
   "operator_display": "マルイト株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定３者",
-  "retailer_kind": "individual",
   "first_seen": null,
   "last_seen": null,
   "mode": "cumulative",
   "listed": true,
-  "gazette_date": "2017-07-21",
-  "gazette_no": "2919",
-  "region": "中播磨",
-  "review_from": "2017-07-21",
+  "notified_raw": "平成 29 年６月 28 日",
+  "meeting": "第70回",
+  "retailer_kind": "individual",
   "sources": [
    "hyogo-bukai",
    "hyogo-koho"
   ],
   "merged_keys": [
-   "f8c4d6f9cda4"
+   "63d2a179730a"
   ],
   "pref": "兵庫県",
   "city": "姫路市",
@@ -87448,7 +87367,7 @@
   "notified_on": "2017-06-07",
   "notified_raw": "平成29年6月7日",
   "store": "ガーデンモール彩都",
-  "address": "大字宿久庄",
+  "address": "大字宿久庄476番5ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -87463,9 +87382,9 @@
   "source": "ibaraki-city",
   "key": "2d520dd2794f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -87473,8 +87392,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -87482,7 +87400,7 @@
   "notified_on": "2017-06-06",
   "notified_raw": "平成29年6月6日",
   "store": "イオンモール茨木",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -87497,9 +87415,9 @@
   "source": "ibaraki-city",
   "key": "72ae6115fd87",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -87507,8 +87425,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -91232,7 +91149,7 @@
   "key": "382fc11340aa",
   "operator_display": "",
   "operator_kind": "individual",
-  "retailer_display": "物品販売業を営む店舗",
+  "retailer_display": "",
   "retailer_kind": "individual",
   "first_seen": null,
   "last_seen": null,
@@ -92053,9 +91970,9 @@
   "source": "yao-chukibo",
   "key": "21f405ee0414",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -92063,8 +91980,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -92346,9 +92262,9 @@
   "source": "yao-chukibo",
   "key": "d58c1ff36bba",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -92356,8 +92272,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -92834,9 +92749,9 @@
   "source": "yao-chukibo",
   "key": "978be39495dd",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -92844,8 +92759,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -93623,7 +93537,7 @@
   "notified_on": "2016-07-29",
   "notified_raw": "平成28年7月29日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -93638,9 +93552,9 @@
   "source": "ibaraki-city",
   "key": "d9b56410eae3",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -93648,8 +93562,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -94425,9 +94338,9 @@
   "source": "yao-chukibo",
   "key": "9fceb6a3326d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -94435,8 +94348,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -95148,9 +95060,9 @@
   "source": "yao-chukibo",
   "key": "c06ed404abe2",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -95158,8 +95070,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -95293,9 +95204,9 @@
   "source": "yao-chukibo",
   "key": "197fc4300ad2",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -95303,8 +95214,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -95939,7 +95849,7 @@
   "notified_on": "2016-02-18",
   "notified_raw": "平成28年2月18日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -95954,9 +95864,9 @@
   "source": "ibaraki-city",
   "key": "5d44a283063e",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -95964,8 +95874,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -95973,7 +95882,7 @@
   "notified_on": "2016-02-18",
   "notified_raw": "平成28年2月18日",
   "store": "アル・プラザ茨木",
-  "address": "上郡二丁目",
+  "address": "上郡二丁目12番8号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -95988,9 +95897,9 @@
   "source": "ibaraki-city",
   "key": "7cc43a59f6ad",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -95998,8 +95907,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -96853,9 +96761,9 @@
   "source": "yao-chukibo",
   "key": "9a0630de20fe",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -96863,8 +96771,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -97157,9 +97064,9 @@
   "source": "yao-chukibo",
   "key": "49adcc7fabfa",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -97167,8 +97074,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -98410,9 +98316,9 @@
   "source": "yao-chukibo",
   "key": "25fd97ad11de",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -98420,8 +98326,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -101067,9 +100972,9 @@
   "source": "yao-chukibo",
   "key": "e0766ef29a89",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -101077,8 +100982,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -102555,7 +102459,7 @@
   "notified_on": "2015-05-08",
   "notified_raw": "平成27年5月8日",
   "store": "DCMダイキ茨木店",
-  "address": "東太田一丁目",
+  "address": "東太田一丁目23番1号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -102570,9 +102474,9 @@
   "source": "ibaraki-city",
   "key": "b7e722b6618b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -102580,8 +102484,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -102589,7 +102492,7 @@
   "notified_on": "2015-05-01",
   "notified_raw": "平成27年5月1日",
   "store": "グルメシティ上穂積店",
-  "address": "上穂積一丁目",
+  "address": "上穂積一丁目206番地2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -102604,9 +102507,9 @@
   "source": "ibaraki-city",
   "key": "284d34d96d7e",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -102614,8 +102517,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -103677,9 +103579,9 @@
   "source": "yao-chukibo",
   "key": "21fdec928b14",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -103687,8 +103589,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -104145,7 +104046,7 @@
   "notified_on": "2015-03-09",
   "notified_raw": "平成27年3月9日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町827番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -104160,9 +104061,9 @@
   "source": "ibaraki-city",
   "key": "48be0bb40ad9",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -104170,8 +104071,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -104843,9 +104743,9 @@
   "source": "yao-chukibo",
   "key": "1c06ac372efd",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -104853,8 +104753,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -105245,7 +105144,7 @@
   "notified_on": "2015-01-05",
   "notified_raw": "平成27年1月5日",
   "store": "MEGAドン・キホーテ茨木店",
-  "address": "東太田一丁目",
+  "address": "東太田一丁目4番48号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -105260,9 +105159,9 @@
   "source": "ibaraki-city",
   "key": "fc7e1cfb6eca",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -105270,8 +105169,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -106208,7 +106106,7 @@
   "notified_on": "2014-11-17",
   "notified_raw": "平成26年11月17日",
   "store": "ホームセンターダイキ茨木店",
-  "address": "東太田一丁目",
+  "address": "東太田一丁目23番1号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -106223,9 +106121,9 @@
   "source": "ibaraki-city",
   "key": "0e9363117145",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -106233,8 +106131,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第2項",
@@ -106415,9 +106312,9 @@
   "source": "yao-chukibo",
   "key": "4d8ea147739a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -106425,8 +106322,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -106434,7 +106330,7 @@
   "notified_on": "2014-10-27",
   "notified_raw": "平成26年10月27日",
   "store": "関西スーパー三島丘店",
-  "address": "三島丘一丁目",
+  "address": "三島丘一丁目11番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -106449,9 +106345,9 @@
   "source": "ibaraki-city",
   "key": "a3ec12a351d0",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -106459,8 +106355,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -106516,9 +106411,9 @@
   "source": "yao-chukibo",
   "key": "b2681e9cd5c1",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -106526,8 +106421,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -109212,7 +109106,7 @@
   "notified_on": "2014-06-20",
   "notified_raw": "平成26年6月20日",
   "store": "MEGAドン・キホーテ茨木店",
-  "address": "東太田一丁目",
+  "address": "東太田一丁目4番48号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -109227,9 +109121,9 @@
   "source": "ibaraki-city",
   "key": "4f2d0c184a1a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -109237,8 +109131,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "中規模",
@@ -109261,9 +109154,9 @@
   "source": "yao-chukibo",
   "key": "1257dfd73c0b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -109271,8 +109164,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -109400,9 +109292,9 @@
   "source": "yao-chukibo",
   "key": "e44a50bd45c5",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -109410,8 +109302,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -109967,7 +109858,7 @@
   "notified_on": "2014-05-26",
   "notified_raw": "平成26年5月26日",
   "store": "グルメシティ上穂積店",
-  "address": "上穂積一丁目",
+  "address": "上穂積一丁目206番地2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -109982,9 +109873,9 @@
   "source": "ibaraki-city",
   "key": "8141d484df73",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -109992,8 +109883,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -110037,7 +109927,7 @@
   "notified_on": "2014-05-22",
   "notified_raw": "平成26年5月22日",
   "store": "ホームセンターコーナン茨木店",
-  "address": "沢良宜西四丁目",
+  "address": "沢良宜西四丁目282番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -110052,9 +109942,9 @@
   "source": "ibaraki-city",
   "key": "c7ea0d791085",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -110062,8 +109952,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -110327,9 +110216,9 @@
   "source": "yao-chukibo",
   "key": "e8c21079b05b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -110337,8 +110226,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -112200,9 +112088,9 @@
   "source": "yao-chukibo",
   "key": "635aa6676824",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -112210,8 +112098,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -115118,9 +115005,9 @@
   "source": "yao-chukibo",
   "key": "ed284a64d895",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -115128,8 +115015,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -116719,7 +116605,7 @@
   "notified_on": "2013-04-23",
   "notified_raw": "平成25年4月23日",
   "store": "グルメシティ上穂積店",
-  "address": "上穂積一丁目",
+  "address": "上穂積一丁目206番地2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -116734,9 +116620,9 @@
   "source": "ibaraki-city",
   "key": "39dbce9f8bc4",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -116744,8 +116630,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-pref",
@@ -116831,9 +116716,9 @@
   "source": "yao-chukibo",
   "key": "fd0cb930f396",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -116841,8 +116726,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -117414,7 +117298,7 @@
   "notified_on": "2013-03-21",
   "notified_raw": "平成25年3月21日",
   "store": "ショッパーズ南茨木",
-  "address": "沢良宜浜一丁目",
+  "address": "沢良宜浜一丁目81番地1",
   "operator": "",
   "new_operator": "",
   "event_on": "2013-01-16",
@@ -117429,9 +117313,9 @@
   "source": "ibaraki-city",
   "key": "c1b7ea2a7042",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -117439,8 +117323,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -117448,7 +117331,7 @@
   "notified_on": "2013-03-21",
   "notified_raw": "平成25年3月21日",
   "store": "ショッパーズ南茨木",
-  "address": "沢良宜浜一丁目",
+  "address": "沢良宜浜一丁目81番地1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -117463,9 +117346,9 @@
   "source": "ibaraki-city",
   "key": "617e344c61cf",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -117473,8 +117356,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第5条第1項",
@@ -117556,9 +117438,9 @@
   "source": "yao-chukibo",
   "key": "b7bd6cec3c25",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -117566,8 +117448,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -117888,9 +117769,9 @@
   "source": "yao-chukibo",
   "key": "a4d95a32d032",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -117898,8 +117779,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -118092,7 +117972,7 @@
   "notified_on": "2013-02-13",
   "notified_raw": "平成25年2月13日",
   "store": "関西スーパー三島丘店",
-  "address": "三島丘一丁目",
+  "address": "三島丘一丁目11番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -118107,9 +117987,9 @@
   "source": "ibaraki-city",
   "key": "d8c4f3fe0065",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -118117,8 +117997,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -118631,9 +118510,9 @@
   "source": "yao-chukibo",
   "key": "7b902125c276",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -118641,8 +118520,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第6条第1項",
@@ -121505,9 +121383,9 @@
   "source": "yao-chukibo",
   "key": "ab10f80a75d8",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -121515,8 +121393,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -121605,9 +121482,9 @@
   "source": "yao-chukibo",
   "key": "34857e7fa341",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -121615,8 +121492,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -122651,7 +122527,7 @@
   "notified_on": "2012-07-06",
   "notified_raw": "平成24年7月6日",
   "store": "イオン茨木ショッピングセンター",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122666,9 +122542,9 @@
   "source": "ibaraki-city",
   "key": "908892465f8e",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -122676,8 +122552,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -122685,7 +122560,7 @@
   "notified_on": "2012-07-06",
   "notified_raw": "平成24年7月6日",
   "store": "イオン茨木ショッピングセンター",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122700,9 +122575,9 @@
   "source": "ibaraki-city",
   "key": "c68d66246f28",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -122710,8 +122585,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -122719,7 +122593,7 @@
   "notified_on": "2012-07-06",
   "notified_raw": "平成24年7月6日",
   "store": "イオン茨木ショッピングセンター",
-  "address": "松ケ本町",
+  "address": "松ケ本町86番4ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122734,9 +122608,9 @@
   "source": "ibaraki-city",
   "key": "5ebf55138a82",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -122744,8 +122618,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第2項",
@@ -122814,7 +122687,7 @@
   "notified_on": "2012-07-05",
   "notified_raw": "平成24年7月5日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122829,9 +122702,9 @@
   "source": "ibaraki-city",
   "key": "c46fa61e430d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -122839,8 +122712,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -122848,7 +122720,7 @@
   "notified_on": "2012-07-05",
   "notified_raw": "平成24年7月5日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122863,9 +122735,9 @@
   "source": "ibaraki-city",
   "key": "3beb90542864",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -122873,8 +122745,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第11条第3項",
@@ -122882,7 +122753,7 @@
   "notified_on": "2012-07-05",
   "notified_raw": "平成24年7月5日",
   "store": "茨木ショッピングタウン（イオン新茨木店）",
-  "address": "中津町",
+  "address": "中津町825番地ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122897,9 +122768,9 @@
   "source": "ibaraki-city",
   "key": "b303b3b9cbad",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -122907,8 +122778,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第2項",
@@ -125106,9 +124976,9 @@
   "source": "yao-chukibo",
   "key": "a249095f2879",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -125116,8 +124986,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -129016,7 +128885,7 @@
   "notified_on": "2011-12-28",
   "notified_raw": "平成23年12月28日",
   "store": "コープ茨木白川",
-  "address": "白川二丁目",
+  "address": "白川二丁目648番1ほか",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -129031,9 +128900,9 @@
   "source": "ibaraki-city",
   "key": "5f77c4507f6a",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -129041,8 +128910,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "article": "第6条第1項",
@@ -129593,9 +129461,9 @@
   "source": "yao-chukibo",
   "key": "ed9bda94f022",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -129603,8 +129471,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -129644,7 +129511,7 @@
   "notified_on": "2011-12-02",
   "notified_raw": "平成23年12月2日",
   "store": "コジマNEW茨木店",
-  "address": "双葉町",
+  "address": "双葉町355番2、355番8",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -129659,9 +129526,9 @@
   "source": "ibaraki-city",
   "key": "577188dc7b22",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -129669,8 +129536,7 @@
   "pref": "大阪府",
   "city": "茨木市",
   "ward": "",
-  "area": "茨木市",
-  "address_redacted": true
+  "area": "茨木市"
  },
  {
   "source": "osaka-city",
@@ -138348,9 +138214,9 @@
   "source": "yao-chukibo",
   "key": "752dee93726d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -138358,8 +138224,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -142698,9 +142563,9 @@
   "source": "yao-chukibo",
   "key": "0cc7e3696fe6",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -142708,8 +142573,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -147824,9 +147688,9 @@
   "source": "yao-chukibo",
   "key": "a355698453ba",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -147834,8 +147698,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -152006,9 +151869,9 @@
   "source": "yao-chukibo",
   "key": "8445b0521253",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -152016,8 +151879,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -158196,9 +158058,9 @@
   "source": "yao-chukibo",
   "key": "f8d949da5e52",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -158206,8 +158068,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -158426,9 +158287,9 @@
   "source": "yao-chukibo",
   "key": "b4bdcd802d77",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -158436,8 +158297,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -160530,9 +160390,9 @@
   "source": "yao-chukibo",
   "key": "5e68e17aa79b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -160540,8 +160400,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -160999,9 +160858,9 @@
   "source": "yao-chukibo",
   "key": "9aea98a5ae18",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -161009,8 +160868,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -161186,9 +161044,9 @@
   "source": "yao-chukibo",
   "key": "ff0784a21634",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -161196,8 +161054,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -161828,9 +161685,9 @@
   "source": "yao-chukibo",
   "key": "64caaee84be9",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -161838,8 +161695,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -162123,9 +161979,9 @@
   "source": "yao-chukibo",
   "key": "5d20721f46b6",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -162133,8 +161989,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -162855,9 +162710,9 @@
   "source": "yao-chukibo",
   "key": "7d9168289eed",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -162865,8 +162720,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -164198,9 +164052,9 @@
   "source": "yao-chukibo",
   "key": "63d585cdb408",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -164208,8 +164062,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -164764,9 +164617,9 @@
   "source": "yao-chukibo",
   "key": "360ba01e8aec",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -164774,8 +164627,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -165643,9 +165495,9 @@
   "source": "yao-chukibo",
   "key": "5995a92aa41c",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -165653,8 +165505,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -168210,9 +168061,9 @@
   "source": "yao-chukibo",
   "key": "503050e8cb85",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -168220,8 +168071,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -169276,9 +169126,9 @@
   "source": "yao-chukibo",
   "key": "7189d0decd16",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -169286,8 +169136,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -169556,9 +169405,9 @@
   "source": "yao-chukibo",
   "key": "9fc15639ced0",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -169566,8 +169415,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -170783,9 +170631,9 @@
   "source": "yao-chukibo",
   "key": "acb18c91249e",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -170793,8 +170641,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -171659,9 +171506,9 @@
   "source": "yao-chukibo",
   "key": "7f991d476d8b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -171669,8 +171516,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -172131,9 +171977,9 @@
   "source": "yao-chukibo",
   "key": "b1bc35deb7d3",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -172141,8 +171987,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -172663,9 +172508,9 @@
   "source": "yao-chukibo",
   "key": "2a5d87023e4d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -172673,8 +172518,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -174349,9 +174193,9 @@
   "source": "yao-chukibo",
   "key": "ce32442cfd3f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -174359,8 +174203,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -174570,9 +174413,9 @@
   "source": "yao-chukibo",
   "key": "ba585accc52f",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -174580,8 +174423,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -175584,9 +175426,9 @@
   "source": "yao-chukibo",
   "key": "8de13d18a336",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -175594,8 +175436,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -176250,9 +176091,9 @@
   "source": "yao-chukibo",
   "key": "22e5b333ba91",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -176260,8 +176101,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -176744,9 +176584,9 @@
   "source": "yao-chukibo",
   "key": "0f074be9bc98",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -176754,8 +176594,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -177129,9 +176968,9 @@
   "source": "yao-chukibo",
   "key": "e5fab2cda33d",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -177139,8 +176978,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -177414,9 +177252,9 @@
   "source": "yao-chukibo",
   "key": "eb724adecae8",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -177424,8 +177262,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -178436,9 +178273,9 @@
   "source": "yao-chukibo",
   "key": "f4e705b5b7ff",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -178446,8 +178283,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -178641,9 +178477,9 @@
   "source": "yao-chukibo",
   "key": "d7daf7bb4c03",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -178651,8 +178487,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -178957,9 +178792,9 @@
   "source": "yao-chukibo",
   "key": "af67cae5bdac",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -178967,8 +178802,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "第5条第1項",
@@ -179836,9 +179670,9 @@
   "source": "yao-chukibo",
   "key": "82fcb855037b",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -179846,8 +179680,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "中規模",
@@ -179870,9 +179703,9 @@
   "source": "yao-chukibo",
   "key": "0b2923c99d07",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -179880,8 +179713,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -180122,9 +179954,9 @@
   "source": "yao-chukibo",
   "key": "115e109d4c02",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -180132,8 +179964,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-pref",
@@ -181122,9 +180953,9 @@
   "source": "yao-chukibo",
   "key": "86ca17959c95",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181132,8 +180963,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -181303,9 +181133,9 @@
   "source": "yao-chukibo",
   "key": "8aaec1e47a91",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181313,8 +181143,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "source": "osaka-city",
@@ -181754,9 +181583,9 @@
   "source": "yao-chukibo",
   "key": "4a018d7928c9",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181764,8 +181593,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "中規模",
@@ -181788,9 +181616,9 @@
   "source": "yao-chukibo",
   "key": "1a97f7be98ff",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181798,8 +181626,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "中規模",
@@ -181822,9 +181649,9 @@
   "source": "yao-chukibo",
   "key": "df483679e758",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181832,8 +181659,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "中規模",
@@ -181856,9 +181682,9 @@
   "source": "yao-chukibo",
   "key": "cc16416c3535",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181866,8 +181692,7 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  },
  {
   "article": "中規模",
@@ -181890,9 +181715,9 @@
   "source": "yao-chukibo",
   "key": "12a1ed2b5b71",
   "operator_display": "",
-  "operator_kind": "individual",
+  "operator_kind": "undisclosed",
   "new_operator_display": "",
-  "new_operator_kind": "individual",
+  "new_operator_kind": "undisclosed",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
@@ -181900,7 +181725,6 @@
   "pref": "大阪府",
   "city": "八尾市",
   "ward": "",
-  "area": "八尾市",
-  "address_redacted": true
+  "area": "八尾市"
  }
 ]
