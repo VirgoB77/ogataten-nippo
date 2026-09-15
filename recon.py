@@ -34,8 +34,8 @@ from datetime import date
 from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-UA = "shutten-recon/0.1 (+https://github.com/VirgoB77/ic-log)"
-WAIT = 2          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
+UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
 
 # robots.txt を読む urllib.robotparser はタイムアウトを指定できず、
