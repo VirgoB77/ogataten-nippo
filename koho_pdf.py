@@ -45,7 +45,8 @@ sys.path.insert(0, HERE)
 import parse as P  # noqa: E402
 
 HOST = "https://web.pref.hyogo.lg.jp"
-NOTICES = os.path.join(HERE, "data", "koho", "hyogo-notices.json")
+NOTICES = os.path.join(HERE, "data", "koho", "hyogo-notices.json")   # 大店立地法の公告だけ
+ISSUES = os.path.join(HERE, "data", "koho", "hyogo-issues.json")     # 目録に出てくる号を全部
 INDEX_DIR = os.path.join(HERE, "data", "raw", "hyogo-koho-index")
 MONTHS = os.path.join(HERE, "data", "koho", "months")
 FULL = os.path.join(HERE, "data", "koho", "full")    # 公報の全文（gzip）。これが生データ
@@ -455,17 +456,18 @@ def needs_fetch(key, ledger):
 def main():
     lines = ["# 兵庫県公報の本体から読んだ大店立地法の公告", ""]
     fetched = 0
-    if os.path.exists(NOTICES) and shutil.which("pdftotext"):
-        with open(NOTICES, encoding="utf-8") as f:
-            notices = json.load(f)
-        issues = {}
-        for n in notices:
-            if n["kind"] in ("新設", "変更", "廃止") and n["date"] and n["no"].isdigit():
-                issues.setdefault((n["date"], n["no"]), 0)
-                issues[(n["date"], n["no"])] += 1
+    if os.path.exists(ISSUES) and shutil.which("pdftotext"):
+        # 目録に出てくる号を全部取りに行く。大店立地法の号だけでは、工事完了公告や
+        # 都市計画の告示しか載っていない号（821 号ある）が丸ごと抜けるため。
+        # 生データは全部保存する（共通仕様 9）。姉妹サイトもこの全文を読む。
+        with open(ISSUES, encoding="utf-8") as f:
+            index_rows = json.load(f)
+        issues = {(r["date"], r["no"]): r.get("topics", {}).get("大店立地法", 0) for r in index_rows}
+        dev = sum(1 for r in index_rows if any(t != "大店立地法" for t in r.get("topics", {})))
         ledger = load_ledger()
         index = month_index()
-        lines.append(f"- 目録にある届出の公告 {sum(issues.values())} 件、号にして {len(issues)} 号。月別一覧 {len(index)} か月")
+        lines.append(f"- 目録に出てくる号 {len(issues):,} 号（うち開発系の告示がある号 {dev:,}）。"
+                     f"月別一覧 {len(index)} か月")
         todo = [k for k in sorted(issues, reverse=True) if needs_fetch(f"{k[0]}#{k[1]}", ledger)]
         again = sum(1 for k in todo if f"{k[0]}#{k[1]}" in ledger)
         lines.append(f"- 未読の号 {len(todo)}（うち全文を残す前に取った取り直し {again} 号）。"
@@ -491,7 +493,8 @@ def main():
                 ledger[key] = {"status": "done", "url": url, "sections": n,
                                "v": TEXT_VERSION, "when": date.today().isoformat()}
                 fetched += 1
-                lines.append(f"  - **{d} 第{no}号** 公告 {n} 件（目録では {issues[(d, no)]} 件）")
+                lines.append(f"  - **{d} 第{no}号** 大店立地法の公告 {n} 件"
+                             f"（目録では {issues[(d, no)]} 件）")
             except urllib.error.HTTPError as e:
                 ledger[key] = {"status": f"failed: HTTP {e.code}", "url": url}
                 lines.append(f"  - {d} 第{no}号: HTTP {e.code}")
@@ -503,7 +506,7 @@ def main():
         with open(LEDGER, "w", encoding="utf-8") as f:
             json.dump(ledger, f, ensure_ascii=False, indent=0, sort_keys=True)
     else:
-        lines.append("- 目録がまだ無いか pdftotext が無いので、取りに行かなかった")
+        lines.append("- 号の一覧がまだ無いか pdftotext が無いので、取りに行かなかった")
 
     # 全文が手元にある号は、抜粋を作り直してから読む（読み取りの直しが過去分に効く）
     rebuild_from_full(lines)
