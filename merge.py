@@ -256,6 +256,26 @@ def scrub_parsed():
 # data/all.json は公開しているので、ここも出力として扱う。
 PARTY_FIELDS = ("operator", "new_operator", "retailer")
 
+# 設置者の名前が、その収集先の一次情報のどこにも無いことを確かめた収集先。
+# ここに入れると party_kind が undisclosed になり、所在地を丸めない（3.1）。
+#
+# 入れてよいのは「一覧にも、そこからリンクされた資料にも、設置者が
+# 書かれていない」と実物で確かめたものだけ。読めていないだけのものを
+# 入れると、こちらの取りこぼしがそのまま地番の公開になる。
+#
+# 確かめ方と結果（2026-09-15 時点）
+#   yao-chukibo       表の列は 年度／届出日／店舗名称／所在地（地番）／店舗面積。
+#                     ページに PDF へのリンクが 0 本。設置者はどこにも無い
+#   ibaraki-city      表の列は 名称／所在地／届出日／市の意見。
+#                     ページに PDF へのリンクが 0 本。設置者はどこにも無い
+#
+# 入れなかったもの（名前はあるが、こちらがまだ読んでいない）
+#   kobe-city         届出概要のPDFに「設置者の名称及び住所…」の欄がある
+#   hyogo-pref-juran  OCR43本のうち5本に設置者の記載。1本は法人名まで読めている
+#   matsubara-city    PDF 37本へのリンクがある（未取得）
+#   toyonaka-city     PDF 24本へのリンクがある（未取得）
+NO_NAME_ANYWHERE = {"yao-chukibo", "ibaraki-city"}
+
 
 def apply_privacy(recs):
     """氏名と所在地を、共通仕様 3.1 の粒度に落とす。落とした件数を返す。"""
@@ -266,14 +286,23 @@ def apply_privacy(recs):
             raw = r.get(f)
             if raw is None:
                 continue
-            if f + "_kind" in r:
-                # もう通してある。もう一度通すと、空文字にした値を見て
-                # 画面用の「個人」まで空にしてしまう。何度通しても
-                # 同じ結果になるように、ここで止める。
-                # 判定の規則を変えたくなったら data/raw から作り直す
-                kinds[f] = r[f + "_kind"]
+            if r.get(f + "_display") == "個人":
+                # 個人だったので名前を消してある。もう一度通すと、空になった
+                # 値を見て画面用の「個人」まで消してしまう。ここだけは止める。
+                # 消した名前は戻せないので、規則を変えたくなったら
+                # data/raw から作り直す
+                kinds[f] = r.get(f + "_kind", "individual")
                 continue
-            kind = privacy.party_kind(raw)
+
+            # それ以外は毎回やり直す。値はあとから埋まることがあるので
+            # （収集先をまたいでまとめたとき、OCRで補ったとき）、
+            # 一度決めた判定を持ち回ると、法人名が入ったのに individual の
+            # ままになる。実際「三菱UFJ信託銀行（株）」が individual に
+            # なっていて、法人の地番を丸めていた
+            # 一次情報に欄が無いと確かめた収集先だけ undisclosed にできる。
+            # 値が入っているときは、欄があったということなので普通に判定する
+            disclosed = not (r.get("source") in NO_NAME_ANYWHERE and not (raw or "").strip())
+            kind = privacy.party_kind(raw, disclosed=disclosed)
             kinds[f] = kind
             r[f] = privacy.party_for_index(raw)      # 機械用。個人は空文字
             r[f + "_display"] = privacy.redact_name(raw)   # 画面用。個人は「個人」
