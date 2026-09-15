@@ -7,7 +7,10 @@ koho.py が目録から拾った公告には（発行日, 公報番号）が付�
 
 置き方の約束：
 - PDF そのものは git に残さない（1冊 300KB × 1,400冊 で重すぎる）。
-  大店立地法の公告の部分だけ文字で data/koho/text/<日付>-<号>.txt に残す。
+  かわりに **公報の全文** を data/koho/full/<日付>-<号>.txt.gz に残す。
+  ここが生データで、姉妹サイトもここを読む（同じ公報を二度取りに行かせない）。
+- data/koho/text/<日付>-<号>.txt は、そこから切り出した大店立地法の公告だけ。
+  full があれば取りに行かずに作り直せるので、読み取りを直すと過去分にも効く。
 - 月ページは一度読んだら data/koho/months/<年-月>.json に控えて、二度取りに行かない
 - 1回の実行で読む号数に上限を置く（KOHO_MAX、既定 40）。新しい号から順に。続きは次回
 - 取れなかった号は台帳 data/koho/issues.json に理由を残す。404 以外は次回やり直す
@@ -16,9 +19,14 @@ koho.py が目録から拾った公告には（発行日, 公報番号）が付�
 出力：data/parsed/hyogo-koho/all.json（過去分を全部含む一覧として merge.py が読む）。
 文字ファイルは毎回読み直すので、読み取りを直せば過去の分にも効く。
 
+姉妹サイトへ：全文はここから読める。兵庫県のサーバーには触らないこと。
+  https://raw.githubusercontent.com/VirgoB77/ogataten-nippo/main/data/koho/full/<日付>-<号>.txt.gz
+  号の一覧は data/koho/issues.json（status が done のものが取得済み）。
+
 使い方: python3 shutten/koho_pdf.py
 """
 import glob
+import gzip
 import json
 import os
 import re
@@ -40,18 +48,23 @@ HOST = "https://web.pref.hyogo.lg.jp"
 NOTICES = os.path.join(HERE, "data", "koho", "hyogo-notices.json")
 INDEX_DIR = os.path.join(HERE, "data", "raw", "hyogo-koho-index")
 MONTHS = os.path.join(HERE, "data", "koho", "months")
-TEXTS = os.path.join(HERE, "data", "koho", "text")
+FULL = os.path.join(HERE, "data", "koho", "full")    # 公報の全文（gzip）。これが生データ
+TEXTS = os.path.join(HERE, "data", "koho", "text")   # そこから切り出した大店立地法の公告だけ
 LEDGER = os.path.join(HERE, "data", "koho", "issues.json")
 OUT = os.path.join(HERE, "data", "parsed", "hyogo-koho")
 REPORT = os.path.join(HERE, "data", "koho", "pdf-report.md")
 SOURCE = "hyogo-koho"
 
-UA = "shutten-recon/0.1 (+https://github.com/VirgoB77/ic-log)"
-WAIT = 2
+UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024
 MAX_ISSUES = int(os.environ.get("KOHO_MAX", "40"))
 FIRST_MONTH = (2007, 1)          # 月別一覧の最初のリンクが指す月
+# 保存の仕方が変わったら上げる。台帳の v がこれより古い号は取り直す。
+#   1 … 大店立地法の抜粋だけ残していた頃
+#   2 … 公報の全文を full/ に残す
+TEXT_VERSION = 2
 
 Z2H = str.maketrans("０１２３４５６７８９（）：，、．－―", "0123456789():,,.--")
 
@@ -366,8 +379,55 @@ def load_ledger():
     return {}
 
 
+def stem_of(issue):
+    return f"{issue['date']}-{issue['no']}"
+
+
+def save_full(issue, url, text):
+    """公報の全文を残す。これが生データで、姉妹サイトもここを読む。
+
+    絞り込みは出力の段階だけで行う（共通仕様 9）。取得時点で捨てると、
+    あとから別の告示が要るようになったときに全部取り直しになる。実際になった。
+    """
+    os.makedirs(FULL, exist_ok=True)
+    with gzip.open(os.path.join(FULL, stem_of(issue) + ".txt.gz"), "wt", encoding="utf-8") as f:
+        f.write(f"# {url}\n")
+        f.write(text)
+
+
+def write_sections(issue, url, text):
+    """全文から大店立地法の公告だけを切り出して text に置く。戻り値は公告の数。"""
+    sections = cut_sections(text)
+    os.makedirs(TEXTS, exist_ok=True)
+    with open(os.path.join(TEXTS, stem_of(issue) + ".txt"), "w", encoding="utf-8") as f:
+        f.write(f"# {url}\n")
+        for kind, sec in sections:
+            f.write("\n".join(sec).rstrip() + "\n\n")
+    return len(sections)
+
+
+def rebuild_from_full(lines):
+    """手元の全文から抜粋を作り直す。取りに行かない。
+
+    読み取りを直したときに、過去の号にもその場で効かせるためのもの。
+    """
+    n = 0
+    for path in sorted(glob.glob(os.path.join(FULL, "*.txt.gz"))):
+        stem = os.path.basename(path)[:-len(".txt.gz")]
+        d, no = stem.rsplit("-", 1)
+        with gzip.open(path, "rt", encoding="utf-8") as f:
+            body = f.read()
+        first, _, rest = body.partition("\n")
+        url = first[2:].strip() if first.startswith("# ") else ""
+        write_sections({"date": d, "no": no}, url, rest)
+        n += 1
+    if n:
+        lines.append(f"- 手元の全文 {n} 号から抜粋を作り直した（取りに行っていない）")
+    return n
+
+
 def fetch_issue(issue, url, lines):
-    """PDF を落として文字にし、大店立地法の公告の部分だけ text に残す。戻り値は公告の数。"""
+    """PDF を落として文字にし、全文を full に、大店立地法の公告を text に残す。"""
     data = get(url)
     with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
         tmp.write(data)
@@ -377,13 +437,19 @@ def fetch_issue(issue, url, lines):
         text = r.stdout.decode("utf-8", errors="replace")
     finally:
         os.remove(tmp_path)
-    sections = cut_sections(text)
-    os.makedirs(TEXTS, exist_ok=True)
-    with open(os.path.join(TEXTS, f"{issue['date']}-{issue['no']}.txt"), "w", encoding="utf-8") as f:
-        f.write(f"# {url}\n")
-        for kind, sec in sections:
-            f.write("\n".join(sec).rstrip() + "\n\n")
-    return len(sections)
+    save_full(issue, url, text)
+    return write_sections(issue, url, text)
+
+
+def needs_fetch(key, ledger):
+    """この号を取りに行くか。"""
+    e = ledger.get(key)
+    if e is None:
+        return True
+    status = e.get("status", "")
+    if status.startswith("done"):
+        return e.get("v", 1) < TEXT_VERSION      # 全文を残す前に取った号は取り直す
+    return "404" not in status                   # 404 以外の失敗は次回やり直す
 
 
 def main():
@@ -400,10 +466,10 @@ def main():
         ledger = load_ledger()
         index = month_index()
         lines.append(f"- 目録にある届出の公告 {sum(issues.values())} 件、号にして {len(issues)} 号。月別一覧 {len(index)} か月")
-        todo = [k for k in sorted(issues, reverse=True) if f"{k[0]}#{k[1]}" not in ledger
-                or (not ledger[f"{k[0]}#{k[1]}"].get("status", "").startswith("done")
-                    and "404" not in ledger[f"{k[0]}#{k[1]}"].get("status", ""))]
-        lines.append(f"- 未読の号 {len(todo)}。今回は新しいほうから {MAX_ISSUES} 号まで")
+        todo = [k for k in sorted(issues, reverse=True) if needs_fetch(f"{k[0]}#{k[1]}", ledger)]
+        again = sum(1 for k in todo if f"{k[0]}#{k[1]}" in ledger)
+        lines.append(f"- 未読の号 {len(todo)}（うち全文を残す前に取った取り直し {again} 号）。"
+                     f"今回は新しいほうから {MAX_ISSUES} 号まで")
         for (d, no) in todo[:MAX_ISSUES]:
             key = f"{d}#{no}"
             ym = d[:7]
@@ -422,7 +488,8 @@ def main():
                 continue
             try:
                 n = fetch_issue({"date": d, "no": no}, url, lines)
-                ledger[key] = {"status": "done", "url": url, "sections": n, "when": date.today().isoformat()}
+                ledger[key] = {"status": "done", "url": url, "sections": n,
+                               "v": TEXT_VERSION, "when": date.today().isoformat()}
                 fetched += 1
                 lines.append(f"  - **{d} 第{no}号** 公告 {n} 件（目録では {issues[(d, no)]} 件）")
             except urllib.error.HTTPError as e:
@@ -437,6 +504,9 @@ def main():
             json.dump(ledger, f, ensure_ascii=False, indent=0, sort_keys=True)
     else:
         lines.append("- 目録がまだ無いか pdftotext が無いので、取りに行かなかった")
+
+    # 全文が手元にある号は、抜粋を作り直してから読む（読み取りの直しが過去分に効く）
+    rebuild_from_full(lines)
 
     # 手元の文字ファイルを全部読み直す
     recs, seen = [], set()
