@@ -184,12 +184,15 @@ def detail_page(r, by_ref, src_meta):
         add(label, esc(jp_date(ev)))
     if r.get("opened_on"):
         add("開店日", esc(jp_date(r["opened_on"])))
-    add("所在地", esc(r.get("address") or r.get("area")))
+    add("所在地", esc(r.get("address") or r.get("area"))
+        + ('<span class="note">（設置者が個人のため町丁目まで）</span>' if r.get("address_redacted") else ""))
     add("店舗面積", esc(fmt_area(r.get("area_m2"))))
     add("延床面積", esc(fmt_area(r.get("floor_area_m2"))))
-    add("設置者", esc(r.get("operator")))
-    add("新設置者", esc(r.get("new_operator")))
-    add("小売業者", esc(r.get("retailer")))
+    # _display は merge.py が付ける画面用の値。個人は「個人」と書いてある。
+    # 空欄にすると「取れなかった」のか「伏せた」のか読者に分からない（共通仕様3.1）
+    add("設置者", esc(r.get("operator_display") or r.get("operator")))
+    add("新設置者", esc(r.get("new_operator_display") or r.get("new_operator")))
+    add("小売業者", esc(r.get("retailer_display") or r.get("retailer")))
     add("内容", esc(r.get("content")))
     if r.get("parking") or r.get("bicycle"):
         add("駐車・駐輪", esc(f"{r.get('parking') or '–'}台 / {r.get('bicycle') or '–'}台"))
