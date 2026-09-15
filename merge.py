@@ -24,7 +24,11 @@ import glob
 import json
 import os
 import re
+import sys
 from collections import Counter, defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import privacy
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PARSED = os.path.join(HERE, "data", "parsed")
@@ -211,6 +215,50 @@ def load(path):
         return json.load(f)
 
 
+# ------------------------------------------------------------ 個人情報を落とす
+# 共通仕様 3.1。設置者には個人がまざる（届出は建物の持ち主が出すので、
+# 地主が個人のことがある）。氏名と地番の両方をそのまま出していた。
+# 行政の縦覧は4か月で消えるが、このサイトは消えない。だからここで落とす。
+#
+# 生データ（data/raw）はさわらない。落とすのは出力の段階だけ（9節）。
+# data/all.json は公開しているので、ここも出力として扱う。
+PARTY_FIELDS = ("operator", "new_operator", "retailer")
+
+
+def apply_privacy(recs):
+    """氏名と所在地を、共通仕様 3.1 の粒度に落とす。落とした件数を返す。"""
+    hidden = 0
+    for r in recs:
+        kinds = {}
+        for f in PARTY_FIELDS:
+            raw = r.get(f)
+            if raw is None:
+                continue
+            kind = privacy.party_kind(raw)
+            kinds[f] = kind
+            r[f] = privacy.party_for_index(raw)      # 機械用。個人は空文字
+            r[f + "_display"] = privacy.redact_name(raw)   # 画面用。個人は「個人」
+            r[f + "_kind"] = kind
+
+        # 所在地を丸めるかどうかは「設置者」で決める。小売業者は店舗の
+        # 所在地であって住まいではないので、丸める理由がない（3.1）。
+        #
+        # 設置者は、空でも個人として扱う。読めていないだけかもしれず、
+        # こちらの取りこぼしを地番の公開にしないため（3.1・121件の件）。
+        # 新設置者は承継のときだけ出てくる欄なので、値があるときだけ見る。
+        # 空を個人と数えると、承継でない届出が全部丸まってしまう。
+        round_it = kinds.get("operator", "individual") == "individual"
+        if (r.get("new_operator") or "").strip():
+            round_it = round_it or kinds.get("new_operator") == "individual"
+        if round_it:
+            before = r.get("address") or ""
+            r["address"] = privacy.redact_addr(before, "individual")
+            if r["address"] != before:
+                r["address_redacted"] = True
+            hidden += 1
+    return hidden
+
+
 def main():
     by_key = {}
     latest_day = {}                     # 収集先ごとの、いちばん新しい保存日
@@ -268,13 +316,17 @@ def main():
 
     all_recs = sorted(by_key.values(),
                       key=lambda r: (r.get("notified_on") or "", r["source"], r["store"]), reverse=True)
+
+    hidden = apply_privacy(all_recs)
+
     with open(OUT_ALL, "w", encoding="utf-8") as f:
         json.dump(all_recs, f, ensure_ascii=False, indent=1)
 
     # ---- まとめ ----
     lines = [f"# まとめ（{len(all_recs):,} 件）", "",
              f"収集先をまたいで同じ届出だったものを {merged_away} 件まとめた（移譲市町の届出は市のページと大阪府のExcelの両方に載るため）。",
-             f"スキャンPDFをOCRで読んだ結果から、所在地・設置者などを {enriched} 件に補った。", ""]
+             f"スキャンPDFをOCRで読んだ結果から、所在地・設置者などを {enriched} 件に補った。",
+             f"設置者が個人だった {hidden} 件は、氏名を「個人」にして所在地を町丁目まで丸めた（共通仕様3.1）。", ""]
     lines.append("| 収集先 | 件数 | 新設 | 変更 | 廃止 | 承継 | 最新の保存日 | 消えた |")
     lines.append("| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |")
     per = defaultdict(list)
