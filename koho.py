@@ -7,8 +7,15 @@
 担当（県庁の都市計画課か、どの県民局か）は分かる。
 
 ここから作るもの：
-- data/koho/hyogo-notices.json … 公告 1 件 1 行（日付・種類・担当・公報番号・件名）
+- data/koho/hyogo-notices.json … 大店立地法の公告 1 件 1 行（日付・種類・担当・公報番号・件名）
 - data/koho/hyogo-monthly.json … 年月 × 種類 の件数
+- data/koho/hyogo-issues.json  … 目録に出てくる号を全部（日付・号・件名の数・制度の内訳）
+
+3 本目は大店立地法に限らない。目録には「告示」シートもあり、そちらに
+工事完了公告・都市計画の決定・土壌汚染の区域指定などが載っている。
+19 年ぶんを数えると、大店立地法 2,032 件に対し開発系はその 2.4 倍ある。
+姉妹サイト（開発系）がそれを使うので、本体 PDF は全号を取りに行く。
+どの号にどの制度が何件あるかは、この 3 本目を見れば PDF を開かずに分かる。
 
 店舗名まで要るときは、公報番号から公報本体の PDF をたどる（それは次の段）。
 """
@@ -26,6 +33,11 @@ import xlsx  # noqa: E402
 
 SRC = os.path.join(HERE, "data", "files", "hyogo-koho-mokuroku")
 OUT = os.path.join(HERE, "data", "koho")
+# 目録は 2007 年から。あり得ない年の行は読み違いなので数えない。
+# ただし「今日より後」は捨てない。オートフィルの事故で年がずれているだけのことが多く、
+# 公報番号でまとめれば正しい発行日に戻せる（main を見ること）。
+FIRST_DAY = "2007-01-01"
+LAST_DAY = "2100-12-31"
 
 KIND = [
     (r"新設に関する届出", "新設"),
@@ -37,6 +49,30 @@ KIND = [
     (r"県の意見", "県の意見"),
     (r"住民等?の意見", "住民の意見"),
 ]
+
+
+# 目録の件名から制度を見分ける。上から順に、最初に当たった 1 つだけを数える。
+# 「都市計画法第36条第3項に基づく工事完了公告」は都市計画にも当たるので、順番が効く。
+TOPIC = [
+    ("大店立地法",             r"大規模小売"),
+    ("工事完了公告",           r"工事完了公告"),
+    ("都市計画",               r"都市計画"),
+    ("瀬戸内法",               r"瀬戸内海環境保全特別措置法"),
+    ("土地区画整理・再開発",     r"土地区画整理|市街地再開発"),
+    ("土壌汚染",               r"土壌汚染対策法"),
+    ("公有財産の売払い",         r"県有(地|財産).{0,14}(売払|売却)"),
+    ("環境影響評価",           r"環境影響評価"),
+    ("盛土規制法・宅造",        r"宅地造成|特定盛土"),
+]
+
+
+def topic_of(title):
+    """件名がどの制度のものか。どれでもなければ空文字。"""
+    t = re.sub(r"\s", "", title)
+    for name, pat in TOPIC:
+        if re.search(pat, t):
+            return name
+    return ""
 
 
 def kind_of(title):
@@ -60,6 +96,43 @@ def to_iso(v):
         if 30000 < n < 60000:                       # 1982〜2064 年
             return (date(1899, 12, 30) + timedelta(days=n)).isoformat()
     return ""
+
+
+def sheet_rows(path):
+    """1 冊の目録の「告示」「公告」シートから、(発行日, 号, 件名) を全部返す。
+
+    大店立地法に絞らない。rows_of() が使っているシート選びより広く、
+    告示シートも読む。開発系の告示はそちらにしか出てこない。
+    """
+    out, dropped = [], []
+    for name, rows in xlsx.read_any(path).items():
+        if name not in ("告示", "公告"):
+            continue
+        hdr = next((i for i, r in enumerate(rows[:8])
+                    if any("件" in str(c) and "名" in str(c) for c in r)), None)
+        if hdr is None:
+            continue
+        head = [re.sub(r"\s", "", str(c or "")) for c in rows[hdr]]
+        ci = {h: i for i, h in enumerate(head) if h}
+        ti = ci.get("件名")
+        di = next((ci[k] for k in ("発行日", "発行年月日") if k in ci), None)
+        ni = next((ci[k] for k in ("公報番号", "公報号数", "号数") if k in ci), None)
+        if ti is None or di is None or ni is None:
+            continue
+        for r in rows[hdr + 1:]:
+            cells = list(r)
+            if max(ti, di, ni) >= len(cells):
+                continue
+            title = re.sub(r"\s+", " ", str(cells[ti] or "")).strip()
+            d = to_iso(str(cells[di] or ""))
+            no = str(cells[ni] or "").strip()
+            if not title or not d or not no.isdigit():
+                continue
+            if not (FIRST_DAY <= d <= LAST_DAY):    # 発行日として成り立たない行は数えない
+                dropped.append((d, no, title))      # 黙って捨てず、呼び出し側に返す
+                continue
+            out.append((d, no, title))
+    return out, dropped
 
 
 def rows_of(path):
@@ -114,6 +187,56 @@ def main():
         years = Counter(g["date"][:4] for g in got if g["date"])
         lines.append(f"- {os.path.basename(p)}: {len(got)} 件（{', '.join(f'{y}年 {n}' for y, n in sorted(years.items()))}）")
 
+    # 大店立地法に限らず、目録に出てくる号を全部ひろう（本体 PDF を全号取るため）
+    issues, odd = {}, []
+    for p_ in files:
+        try:
+            got, dropped = sheet_rows(p_)
+        except Exception as e:
+            lines.append(f"- {os.path.basename(p_)}: 号の一覧が作れなかった — {type(e).__name__}: {str(e)[:60]}")
+            continue
+        for d, no, title in dropped:
+            odd.append(f"{os.path.basename(p_)}: {d} 第{no}号 「{title[:40]}」")
+        for d, no, title in got:
+            it = issues.setdefault(f"{d}#{no}", {"date": d, "no": no, "titles": 0, "topics": {}})
+            it["titles"] += 1
+            t = topic_of(title)
+            if t:
+                it["topics"][t] = it["topics"].get(t, 0) + 1
+
+    # 公報番号は通し番号なので、1 号に発行日は 1 つしかない。
+    # 目録の一部（23-1-12h.xls の告示シートなど）は、Excel のオートフィルの事故で
+    # 発行日の「年」が 1 行ずつ増えている。号番号のほうは正しいので、そちらでまとめ、
+    # いちばん多く出てくる日付（同数なら古いほう）を本当の発行日として採る。
+    by_no = defaultdict(list)
+    for it in issues.values():
+        by_no[it["no"]].append(it)
+    fixed, merged = {}, []
+    for no, group in by_no.items():
+        if len(group) > 1:
+            best = Counter()
+            for it in group:
+                best[it["date"]] += it["titles"]
+            mx = max(best.values())
+            true_date = min(d for d, n in best.items() if n == mx)   # 同数なら古いほう
+            merged.append((no, sorted(best), true_date, len(group) - 1))
+        else:
+            true_date = group[0]["date"]
+        topics = Counter()
+        titles = 0
+        for it in group:
+            titles += it["titles"]
+            for t, n in it["topics"].items():
+                topics[t] += n
+        fixed[f"{true_date}#{no}"] = {"date": true_date, "no": no,
+                                      "titles": titles, "topics": dict(topics)}
+    if merged:
+        lines.append("")
+        lines.append(f"発行日がずれていた号 {len(merged)} 件をまとめた（偽の号 {sum(m[3] for m in merged)} を消した）：")
+        for no, ds, true_date, extra in sorted(merged, key=lambda m: -m[3])[:10]:
+            lines.append(f"- 第{no}号: {len(ds)}通りの日付（{ds[0]}〜{ds[-1]}）→ {true_date}")
+    issues = fixed
+
     notices.sort(key=lambda g: (g["date"], g["no"], g["kind"]))
     monthly = defaultdict(Counter)
     for g in notices:
@@ -124,6 +247,30 @@ def main():
         json.dump(notices, f, ensure_ascii=False, indent=0)
     with open(os.path.join(OUT, "hyogo-monthly.json"), "w", encoding="utf-8") as f:
         json.dump({ym: dict(c) for ym, c in sorted(monthly.items())}, f, ensure_ascii=False, indent=0)
+    with open(os.path.join(OUT, "hyogo-issues.json"), "w", encoding="utf-8") as f:
+        json.dump([issues[k] for k in sorted(issues)], f, ensure_ascii=False, indent=0)
+
+    topics = Counter()
+    for it in issues.values():
+        for t, n in it["topics"].items():
+            topics[t] += n
+    dev = sum(n for t, n in topics.items() if t != "大店立地法")
+    lines.append("")
+    lines.append(f"## 目録に出てくる号 {len(issues):,} 号（本体 PDF はこれを全部取りに行く）")
+    lines.append("")
+    lines.append("| 制度 | 件名 | その制度がある号 |")
+    lines.append("|---|---:|---:|")
+    for t, n in topics.most_common():
+        has = sum(1 for it in issues.values() if t in it["topics"])
+        lines.append(f"| {t} | {n:,} | {has:,} |")
+    lines.append(f"| **開発系の合計（大店立地法を除く）** | **{dev:,}** | |")
+    if odd:
+        lines.append("")
+        lines.append(f"発行日として成り立たない行 {len(odd)} 件は号の一覧に入れていない：")
+        for x in odd[:10]:
+            lines.append(f"- {x}")
+        if len(odd) > 10:
+            lines.append(f"- ほか {len(odd) - 10} 件")
 
     kinds = Counter(g["kind"] for g in notices)
     undated = sum(1 for g in notices if not g["date"])
