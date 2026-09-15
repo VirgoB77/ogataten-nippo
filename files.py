@@ -38,8 +38,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "data", "raw")
 FILES = os.path.join(HERE, "data", "files")
 
-UA = "shutten-recon/0.1 (+https://github.com/VirgoB77/ic-log)"
-WAIT = 2
+UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90
 PDF_TIMEOUT = 25          # PDFは1本ずつ多いので短く諦める。90秒×50本で1時間止まった
 FAIL_STREAK = 3           # 同じ収集先で続けてこれだけ失敗したら、今日はその収集先をやめる

@@ -29,8 +29,8 @@ RAW = os.path.join(HERE, "data", "raw")
 LEDGER = os.path.join(HERE, "data", "wayback")
 FILES = os.path.join(HERE, "data", "files")
 
-UA = "shutten-recon/0.1 (+https://github.com/VirgoB77/ic-log)"
-WAIT = 3
+UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90               # Wayback は混んでいると遅い。40秒では時間切れが多かった
 MAX_PER_RUN = int(os.environ.get("WAYBACK_MAX", "24"))     # 全部合わせて1回にこれだけ
 CDX = os.environ.get("WAYBACK_CDX", "https://web.archive.org/cdx/search/cdx")
