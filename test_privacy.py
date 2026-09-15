@@ -207,9 +207,58 @@ def test_generated_pages():
             fails.append(f"{r.get('key','?')}: {f_}_display に伏せそこねた値: {d!r}")
 
 
+def test_public_urls():
+    """出来上がったページと sitemap.xml が、CNAME のホストだけを指しているか。
+
+    公開URLの正本は CNAME ファイル。ここと違うホストが出力に混ざったら、
+    引っ越し前のURLが残っているか、手元の実行が既定値で上書きしたか。
+
+    実際に起きた：build_site.py の既定が古いURLのままで、手元で走らせた
+    ぶんが 4,921本のURLと全ページの canonical を引っ越し前のホストに
+    書き換えてコミットされた。Google はそちらを正規URLとして扱うので、
+    独自ドメインのほうが落ちる。
+    """
+    cname = os.path.join(HERE, "CNAME")
+    if not os.path.exists(cname):
+        print("  CNAME が無いので公開URLの検査は飛ばした")
+        return
+    with open(cname, encoding="utf-8") as f:
+        host = f.read().strip()
+    if not host:
+        return
+
+    bad = {}
+    targets = [os.path.join(HERE, "sitemap.xml")]
+    for pat in ("*.html", os.path.join("s", "*.html"), os.path.join("a", "*.html"),
+                os.path.join("k", "*.html")):
+        targets += glob.glob(os.path.join(HERE, pat))
+
+    other = re.compile(r'(?:href|src|content)="https://([a-z0-9.\-]+)/', re.I)
+    loc = re.compile(r"<loc>https://([a-z0-9.\-]+)/", re.I)
+    # 外に向けたふつうのリンク（出典・自治体・GitHub）は当然ある。
+    # 見るのは canonical・og:url・sitemap の loc だけ
+    canon = re.compile(r'rel="canonical"\s+href="https://([a-z0-9.\-]+)/', re.I)
+    ogurl = re.compile(r'property="og:url"\s+content="https://([a-z0-9.\-]+)/', re.I)
+
+    for path in targets:
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            t = f.read()
+        hosts = set(canon.findall(t)) | set(ogurl.findall(t)) | set(loc.findall(t))
+        wrong = {h for h in hosts if h != host}
+        if wrong:
+            bad.setdefault(",".join(sorted(wrong)), []).append(os.path.relpath(path, HERE))
+
+    for wrong, files in bad.items():
+        fails.append(
+            f"公開URLが CNAME（{host}）と違うホストを指している: {wrong}"
+            f"／{len(files)}ファイル（例 {files[0]}）")
+
+
 def main():
     for t in (test_is_corp, test_names, test_addr, test_small_numbers,
-              test_all_json, test_generated_pages):
+              test_all_json, test_generated_pages, test_public_urls):
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")

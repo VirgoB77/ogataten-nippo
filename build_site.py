@@ -26,8 +26,26 @@ from datetime import date
 HERE = os.path.dirname(os.path.abspath(__file__))
 ALL = os.path.join(HERE, "data", "all.json")
 SOURCES = os.path.join(HERE, "sources.json")
-# 公開URL。別リポジトリや独自ドメイン（ogataten-nippo.com）に移すときは環境変数 SITE_URL を変えるだけでよい
-SITE_URL = os.environ.get("SITE_URL", "https://virgob77.github.io/ic-log/shutten/").rstrip("/") + "/"
+# 公開URL。既定は CNAME ファイルから読む。CNAME は GitHub Pages が
+# 独自ドメインを知るために置いているもので、公開先の正本はここしかない。
+#
+# 以前は既定を古いURLの文字列で書いていた。ワークフローは環境変数で
+# 正しいURLを渡していたが、手元で build_site.py を走らせると既定に戻り、
+# 4,921本のURLと全ページの canonical が引っ越し前のホストを指したまま
+# コミットされた。既定を持たせず、CNAME を見るようにする。
+def _default_site_url():
+    path = os.path.join(HERE, "CNAME")
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            host = f.read().strip()
+        if host:
+            return f"https://{host}/"
+    # CNAME が無いときだけ、リポジトリ名から組み立てる（独自ドメインを
+    # 付ける前の状態）。ここに固定のURLを書き足さないこと
+    return "https://virgob77.github.io/ogataten-nippo/"
+
+
+SITE_URL = (os.environ.get("SITE_URL") or _default_site_url()).rstrip("/") + "/"
 HOST = SITE_URL.split("/", 3)[0] + "//" + SITE_URL.split("/", 3)[2]   # https://virgob77.github.io
 BASE = "/" + SITE_URL.split("/", 3)[3]                                  # /ic-log/shutten/
 SITE_NAME = "大型店日報"   # ドメインは ogataten-nippo.com の予定。「出店ウォッチ」は既存メディアと同名で使えない
