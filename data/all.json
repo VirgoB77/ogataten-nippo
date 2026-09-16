@@ -5690,9 +5690,9 @@
   "new_operator_display": "",
   "new_operator_kind": "individual",
   "first_seen": "2026-09-11",
-  "last_seen": "2026-09-15",
+  "last_seen": "2026-09-14",
   "mode": "snapshot",
-  "listed": true,
+  "listed": false,
   "from_ocr": [
    "address",
    "operator"
@@ -87104,36 +87104,39 @@
  {
   "article": "第5条第1項",
   "kind": "新設",
-  "source": "hyogo-koho",
-  "gazette_date": "2017-07-21",
-  "gazette_no": "2919",
-  "docs": [
-   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290721t.pdf"
-  ],
-  "store": "（仮称）マルイト姫路ビル",
-  "address": "姫路市駅前町字御殿前188―１ほか",
-  "operator": "マルイト株式会社",
-  "event_on": "2018-03-01",
   "notified_on": "2017-06-28",
+  "notified_raw": "平成 29 年６月 28 日",
+  "store": "（仮称）マルイト姫路ビル",
+  "address": "姫路市駅前町字御殿前188－１ほか",
+  "operator": "マルイト株式会社",
+  "retailer": "",
+  "content": "",
   "area_m2": 5260,
-  "region": "中播磨",
-  "review_from": "2017-07-21",
-  "key": "f8c4d6f9cda4",
+  "event_on": "2018-03-01",
+  "meeting": "第70回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/70_giann.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "63d2a179730a",
   "operator_display": "マルイト株式会社",
   "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual",
   "first_seen": null,
   "last_seen": null,
   "mode": "cumulative",
   "listed": true,
-  "notified_raw": "平成 29 年６月 28 日",
-  "meeting": "第70回",
-  "retailer_kind": "individual",
+  "gazette_date": "2017-07-21",
+  "gazette_no": "2919",
+  "region": "中播磨",
+  "review_from": "2017-07-21",
   "sources": [
    "hyogo-bukai",
    "hyogo-koho"
   ],
   "merged_keys": [
-   "63d2a179730a"
+   "f8c4d6f9cda4"
   ],
   "pref": "兵庫県",
   "city": "姫路市",

@@ -577,7 +577,7 @@
   "key": "450eb73a8b24",
   "operator_display": "東急不動産(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -606,7 +606,7 @@
   "key": "c7de3f4a478f",
   "operator_display": "東急不動産(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -4348,7 +4348,7 @@
   "key": "28d94717bafb",
   "operator_display": "熊西染色工業(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -5943,7 +5943,7 @@
   "key": "127595bde0bd",
   "operator_display": "京阪電気鉄道株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -6640,7 +6640,7 @@
   "key": "776314c4af67",
   "operator_display": "三井不動産株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -7406,7 +7406,7 @@
   "key": "d012866e3d10",
   "operator_display": "個人",
   "operator_kind": "individual",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual",
   "address_redacted": true
  },
@@ -7466,7 +7466,7 @@
   "key": "4051b6b2d341",
   "operator_display": "個人",
   "operator_kind": "individual",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual",
   "address_redacted": true
  },
@@ -7729,7 +7729,7 @@
   "key": "52ce3fcd9aaa",
   "operator_display": "イオンモール株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
