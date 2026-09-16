@@ -25,8 +25,6 @@ jobs:
       # 監査で、このワークフローだけ検査を通さずに data/ocr をコミットしていた
       - name: 検査する
         run: python3 test_privacy.py
-        with:
-          ref: main
 
       - name: OCRの道具を入れる
         run: |
