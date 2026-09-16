@@ -714,6 +714,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称の変更のため （2）小売業を行う者の名称及び住所並びに代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e1e0ab801ad4",
   "operator_display": "",
@@ -740,6 +743,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e2e6f0cbb8a0",
   "operator_display": "",
@@ -766,6 +772,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売業を行う者の名称及び住所並びに代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "725bcf8d97dd",
   "operator_display": "",
@@ -792,6 +801,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の名称及び代表者変更のため （2）大規模小売店舗において小売業を行う者の名称及び代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3cb0bccf9cd5",
   "operator_display": "",
@@ -818,6 +830,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "dadf8113ca27",
   "operator_display": "",
@@ -844,6 +859,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)設置者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "f1c113718c18",
   "operator_display": "",
@@ -870,6 +888,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売店舗の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2f64284896de",
   "operator_display": "",
@@ -896,6 +917,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "534380fbc705",
   "operator_display": "",
@@ -922,6 +946,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売業を行う者の名称及び住所並びに代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e0d13d98ac00",
   "operator_display": "",
@@ -948,6 +975,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売業者の変更があったため"
+  },
   "source": "toyonaka-city",
   "key": "0b90902d62dd",
   "operator_display": "",
@@ -974,6 +1004,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売業者の変更があったため"
+  },
   "source": "toyonaka-city",
   "key": "71fa22287f51",
   "operator_display": "",
@@ -1000,6 +1033,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売業者の変更があったため"
+  },
   "source": "toyonaka-city",
   "key": "772317e3c022",
   "operator_display": "",
@@ -1026,6 +1062,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "6cd89a793544",
   "operator_display": "",
@@ -1052,6 +1091,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売店舗の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2c198d821e2c",
   "operator_display": "",
@@ -1078,6 +1120,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "82ceb0ae3098",
   "operator_display": "",
@@ -1104,6 +1149,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の名称及び代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "f11a7267a3fb",
   "operator_display": "",
@@ -1130,6 +1178,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "21785f19cae5",
   "operator_display": "",
@@ -1156,6 +1207,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2c212c2b2d3a",
   "operator_display": "",
@@ -1182,6 +1236,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の代表者の氏名に変更が生じたため （2）小売業者に変更が生じたため"
+  },
   "source": "toyonaka-city",
   "key": "67092b9cc097",
   "operator_display": "",
@@ -1208,6 +1265,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の代表者の変更のため （2）小売店舗の住所及び代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "dc02e8e1d5df",
   "operator_display": "",
@@ -1234,6 +1294,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "215d0e971b45",
   "operator_display": "",
@@ -1260,6 +1323,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "564d14b8a352",
   "operator_display": "",
@@ -1286,6 +1352,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e1770994dcef",
   "operator_display": "",
@@ -1312,6 +1381,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の住所変更のため （2）小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "ad1615a1099c",
   "operator_display": "",
@@ -1338,6 +1410,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の住所変更のため （2）小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "1abd051fd6cb",
   "operator_display": "",
@@ -1364,6 +1439,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称変更のため （2）代表者変更のため （3）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "da4f55aac185",
   "operator_display": "",
@@ -1390,6 +1468,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3c2a5e3a9d7f",
   "operator_display": "",
@@ -1416,6 +1497,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e3c35c533a26",
   "operator_display": "",
@@ -1442,6 +1526,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "7d29a17afe8a",
   "operator_display": "",
@@ -1468,6 +1555,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "dbe592e2c5c5",
   "operator_display": "",
@@ -1494,6 +1584,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "15e40fdf4af3",
   "operator_display": "",
@@ -1520,6 +1613,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e436978279fc",
   "operator_display": "",
@@ -1546,6 +1642,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "c063ea642e4c",
   "operator_display": "",
@@ -1572,6 +1671,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "273e23c873f4",
   "operator_display": "",
@@ -1598,6 +1700,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "0e2a3a23a58b",
   "operator_display": "",
@@ -1624,6 +1729,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "d96a247183d0",
   "operator_display": "",
@@ -1650,6 +1758,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "306080f13934",
   "operator_display": "",
@@ -1676,6 +1787,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "52379a2f4920",
   "operator_display": "",
@@ -1702,6 +1816,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3b85afa47f85",
   "operator_display": "",
@@ -1728,6 +1845,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2cf451ac0da5",
   "operator_display": "",
@@ -1754,6 +1874,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "bfbb1572706b",
   "operator_display": "",
@@ -1780,6 +1903,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "11e78449e100",
   "operator_display": "",
@@ -1806,6 +1932,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "669e628b96e2",
   "operator_display": "",
@@ -1832,6 +1961,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "店舗名称変更のため"
+  },
   "source": "toyonaka-city",
   "key": "b0b8dae60bef",
   "operator_display": "",
@@ -1858,6 +1990,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "店舗名称変更のため"
+  },
   "source": "toyonaka-city",
   "key": "d20aa849218d",
   "operator_display": "",
@@ -1884,6 +2019,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "66d57923062d",
   "operator_display": "",
@@ -1910,6 +2048,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称変更のため （2）代表者変更のため （3）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "4705d86f4fe6",
   "operator_display": "",
@@ -1936,6 +2077,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "b1844ddc9c63",
   "operator_display": "",
@@ -1962,6 +2106,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3c61ab68de2d",
   "operator_display": "",
@@ -1988,6 +2135,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2b16e6251185",
   "operator_display": "",
@@ -2014,6 +2164,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "グループ企業の屋号統一のため"
+  },
   "source": "toyonaka-city",
   "key": "61c2f5d73320",
   "operator_display": "",
@@ -2040,6 +2193,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "テナント入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "730d45a32289",
   "operator_display": "",
@@ -2066,6 +2222,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)小売店舗の入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "faed6581245d",
   "operator_display": "",
@@ -2092,6 +2251,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "営業政策上の理由"
+  },
   "source": "toyonaka-city",
   "key": "f3910c3603a6",
   "operator_display": "",
@@ -2118,6 +2280,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表取締役交代に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "2610c0ac8e10",
   "operator_display": "",
@@ -2144,6 +2309,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "db18a1440756",
   "operator_display": "",
@@ -2170,6 +2338,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)小売店舗の入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "700317c19a2e",
   "operator_display": "",
@@ -2196,6 +2367,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)商号、代表者、本店所在地の変更のため (3)小売店舗の入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "867fe224747e",
   "operator_display": "",
@@ -2222,6 +2396,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "7e578eaa3047",
   "operator_display": "",
@@ -2248,6 +2425,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)正式名称決定のため (2)本社移転のため (3)テナント入居のため"
+  },
   "source": "toyonaka-city",
   "key": "14a90825def6",
   "operator_display": "",
@@ -2274,6 +2454,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)小売業を行う者の名称ならびに代表者の氏名及び住所の変更、テナント入店のため"
+  },
   "source": "toyonaka-city",
   "key": "144cbac5f404",
   "operator_display": "",
@@ -2300,6 +2483,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "ea57290b2c02",
   "operator_display": "",
@@ -2326,6 +2512,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大阪北生活協同組合と生活協同組合コープこうべの合併に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "d0c36604053d",
   "operator_display": "",
@@ -2352,6 +2541,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大阪北生活協同組合と生活協同組合コープこうべの合併に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "0069ac279836",
   "operator_display": "",
@@ -2378,6 +2570,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大阪北生活協同組合と生活協同組合コープこうべの合併に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "30de793437d7",
   "operator_display": "",
@@ -2404,6 +2599,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "令和8年3月18日"
+  },
   "source": "toyonaka-city",
   "key": "2cc5ba8a40ad",
   "operator_display": "",
@@ -2430,6 +2628,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "令和7年7月22日"
+  },
   "source": "toyonaka-city",
   "key": "7288c67a77da",
   "operator_display": "",
@@ -2456,6 +2657,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "令和8年3月31日"
+  },
   "source": "toyonaka-city",
   "key": "59f577da8810",
   "operator_display": "",
@@ -2482,6 +2686,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "令和5年4月30日"
+  },
   "source": "toyonaka-city",
   "key": "9f7d026501dc",
   "operator_display": "",
@@ -2508,6 +2715,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "平成30年8月31日"
+  },
   "source": "toyonaka-city",
   "key": "d01b427e0732",
   "operator_display": "",
@@ -2534,6 +2744,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "平成24年10月1日"
+  },
   "source": "toyonaka-city",
   "key": "137966465145",
   "operator_display": "",
@@ -2560,6 +2773,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "平成24年2月1日"
+  },
   "source": "toyonaka-city",
   "key": "40f1129ca694",
   "operator_display": "",
