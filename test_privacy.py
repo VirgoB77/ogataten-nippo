@@ -208,6 +208,18 @@ def test_generated_pages():
             if privacy.is_corp(d) or privacy.is_placeholder(d):
                 continue
             fails.append(f"{r.get('key','?')}: {f_}_display に伏せそこねた値: {d!r}")
+            sv = r.get(f_ + "_suspect_value")
+            if sv and (not merge.ADDR_HEAD.match(sv) or merge._BANCHI_LEFT.search(sv)):
+                fails.append(f"{r.get('key','?')}: {f_}_suspect_value が住所の形でないか地番が残っている: {sv!r}")
+    # サイトが自分で取りに行き始めた日より前の取得日は、Internet Archive の保存から取れる収集先にしか付かない
+    try:
+        with open(os.path.join(HERE, "sources.json"), encoding="utf-8") as f:
+            wb = {x["id"] for x in json.load(f)["sources"] if x.get("wayback")}
+    except Exception:
+        wb = set()
+    early = [r for r in recs if (r.get("fetched_on") or "9") < "2026-09-11" and r.get("source") not in wb]
+    if early:
+        fails.append(f"サイト開始前の取得日なのに Internet Archive の収集先でない記録が {len(early)} 件（例 {early[0].get('source')} {early[0].get('fetched_on')}）")
 
 
 def test_public_urls():
@@ -588,10 +600,12 @@ def test_stale_party_marks_are_dropped():
     """5節：欄そのものが無い記録に、合流で運ばれた古い印（_kind/_display）を残さない。"""
     import merge
     rec = {"source": "kobe-city", "key": "demo-stale", "store": "テスト店",
-           "operator_kind": "undisclosed", "operator_display": "個人", "address": "神戸市中央区1-1-1"}
+           "operator_kind": "undisclosed", "operator_display": "個人", "address": "神戸市中央区1-1-1",
+           "operator_suspect": "address", "operator_suspect_value": "大阪市北区梅田1丁目"}
     merge.apply_privacy([rec])
     eq("operator_kind" in rec, False, "欄が無いのに古い kind が残っている")
     eq("operator_display" in rec, False, "欄が無いのに古い display が残っている")
+    eq("operator_suspect" in rec or "operator_suspect_value" in rec, False, "欄が無いのに古い印（住所の形）が残っている")
 
 
 def test_address_shaped_operator_is_flagged():
@@ -605,11 +619,28 @@ def test_address_shaped_operator_is_flagged():
     eq("個人" in rec["operator_display"], False, "画面に「個人」とは書かない（事実と違う）")
     eq("住所" in rec["operator_display"], True, "理由（設置者の欄に住所）を書く")
     eq(rec.get("operator_suspect"), "address", "列ずれの疑いの印が付く")
-    eq("2丁目1番20号" in rec.get("operator_suspect_value", ""), False, "記録に残す値も町丁目までに丸める")
+    eq(rec.get("operator_suspect_value"), "枚方市大垣内町2丁目", "記録に残す値は町丁目まで")
     disp = rec["operator_display"]
     merge.apply_privacy([rec]); merge.apply_privacy([rec])
     eq(rec["operator_display"], disp, "伏せたあとに何度通しても文言と印が消えない")
     eq(rec.get("operator_suspect"), "address", "印も残る")
+    # 「氏名 住所」が1つの欄に入っているものは先頭が住所ではないので拾わず、従来どおり「個人」。氏名はどこにも残らない
+    rec2 = {"source": "hirakata-city", "key": "demo-addr2", "store": "テスト店",
+            "operator": "架空　太郎　枚方市大垣内町2丁目1番20号", "address": "枚方市大垣内町2丁目1番20号"}
+    merge.apply_privacy([rec2])
+    eq(rec2.get("operator_suspect"), None, "氏名＋住所は住所の形として拾わない")
+    eq(rec2["operator_display"], "個人", "氏名＋住所は「個人」")
+    eq("架空" in json.dumps(rec2, ensure_ascii=False), False, "氏名がどの欄にも残らない")
+    # 屋号・姓に数字＋番が入るもの（先頭が住所ではない）
+    for nm in ("一番館", "二丁目食堂", "一番ヶ瀬架空"):
+        rec3 = {"source": "x", "key": "k", "store": "s", "operator": nm, "address": "大阪市北区梅田1-1-1"}
+        merge.apply_privacy([rec3])
+        eq(rec3.get("operator_suspect"), None, f"{nm} は住所の形ではない")
+    # 漢数字の地番は丸められないので、記録用の値を残さない
+    rec4 = {"source": "x", "key": "k4", "store": "s", "operator": "神戸市中央区加納町三番一号", "address": "神戸市中央区加納町三番一号"}
+    merge.apply_privacy([rec4])
+    eq(rec4.get("operator_suspect"), "address", "漢数字の地番も住所の形として拾う")
+    eq(rec4.get("operator_suspect_value"), "", "丸めきれない値は記録に残さない")
 
 
 def test_teisei_and_about_pages():
@@ -675,12 +706,10 @@ def test_koho_extra_issues():
 
 
 def main():
-    for t in (test_is_corp, test_names, test_addr, test_small_numbers,
-              test_all_json, test_generated_pages, test_public_urls,
-              test_late_name_is_still_redacted, test_every_record_has_source,
-              test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages,
-              test_fetch_etiquette, test_place_names, test_parse_keeps_unknown_columns,
-              test_addr_normalize, test_jis_rows, test_index_json):
+    # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
+    tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
+    print(f"検査 {len(tests)} 本")
+    for t in tests:
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")
