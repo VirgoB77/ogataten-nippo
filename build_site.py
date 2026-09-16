@@ -61,6 +61,25 @@ BASE = "/" + SITE_URL.split("/", 3)[3]                                  # /ic-lo
 SITE_NAME = "大型店日報"   # ドメインは ogataten-nippo.com の予定。「出店ウォッチ」は既存メディアと同名で使えない
 CONTACT_URL = "https://forms.gle/pp93tSJ5p8SAMEMk8"   # 訂正・削除の依頼フォーム（Googleフォーム）
 OPERATOR = "鯨屋（くじらや）"      # 運営者名（屋号のみ。氏名は載せない → docs/kyotsu-shiyo.md 7節）
+OPERATOR_DESC = "大阪府・兵庫県で行政が公開する一次情報を、消える前に記録しています。"   # 7節の共通文面の2行目
+# 大阪府の移譲市町（20）の数え方。sources.json の note と同じことをここに書く。
+WINDOW_COVERS = {"minoh-2shi2cho": ["池田市", "豊能町", "能勢町"]}   # 箕面市の窓口のページに載る3市町
+NOT_DELEGATED = {"吹田市", "高槻市"}     # 移譲先ではなく府が受理する（sources.json の note）
+DELEGATED_MISSING = ["岬町"]              # 移譲先だが届出ページが見つからず、府のページに載る分だけ拾う
+SITE_START = "2026-09-11"   # このサイトが自分で取りに行き始めた日。これより前の日付は Internet Archive の保存から
+# 訂正履歴（7節「氏名の代わりに信用を作るもの」の3つめ）。いつ・何を・なぜ。氏名は書かない
+TEISEI = [
+    ("2026-09-15", "設置者が個人の届出で、氏名が検索用の欄に、地番が所在地に残っていたのを伏せ直した（22件）。",
+     "共通仕様3.1（個人は「個人」と書き、所在地は町丁目まで）。自治体のページは数か月で消えるが、このサイトは消えないため。"),
+    ("2026-09-16", "法人なのに個人と判定していた設置者（15件）を法人に直し、地番の丸めを戻した。",
+     "判定を一度きりにせず、値が入るたびにやり直すようにした（共通仕様5節）。"),
+    ("2026-09-16", "全ての届出ページに出典のURLと取得日を付けた（2,185ページで取得日が空だった）。1〜2件の数字は「1-2」と伏せた。",
+     "共通仕様3.5（出典と取得日）と3.2（小さい母数）。"),
+    ("2026-09-16", "存在しない市区町村「神崎郡市」のページを直し、同じ町が2つに割れていた市区町村ページ（猪名川町など4件）をまとめた。八尾市・堺市の「中規模」が市条例の届出であることを全ページに注記した。",
+     "住所から市区町村名を切り出す規則の誤り（共通仕様4節）。"),
+    ("2026-09-16", "大阪市の届出1,419件の「取得日」が、一覧ファイルの日付（2026-06-30）になっていたのを、実際にダウンロードした日に直した。一覧の日付は別に書くようにした。",
+     "共通仕様3.5。取得日は「こちらが取った日」であって、自治体の一覧の日付ではない。"),
+]
 CONTACT_EMAIL = "info@ogataten-nippo.com" # 返信用のメールアドレス
 REPLY_DAYS = 7     # 返答のめやす（日）
 REPO_ISSUES = "https://github.com/VirgoB77/ogataten-nippo/issues/new"
@@ -168,7 +187,7 @@ def page(title, body, rel, desc="", canonical=""):
 <header class="top"><div class="name"><a href="{rel}index.html">{esc(SITE_NAME)}</a></div><div class="tag">{esc(TAGLINE)}</div></header>
 {body}
 <footer>
-<p>出典：各自治体が大規模小売店舗立地法に基づいて公告・縦覧している届出（大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町）。八尾市・堺市の「中規模」は、法ではなく市の条例に基づく届出です。各届出ページに出典のURLと取得日を載せています。
+<p>出典：各自治体が大規模小売店舗立地法に基づいて公告・縦覧している届出（大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町）。八尾市・堺市の「中規模」は、法ではなく市の条例に基づく届出です。各届出ページに出典のURLと取得日を載せています。兵庫県・神戸市の過去分には、Internet Archive（Wayback Machine）の保存から積み直したものを含みます（各ページにその旨を書いています）。
 毎朝1回とりに行き、自治体のページから消えた届出もこのサイトには残しています。</p>
 <p>{esc(DISCLAIMER)} 写し間違いもありえます。正確な内容は各届出ページの「出典」から自治体のページをご確認ください。</p>
 <p><a href="{rel}about.html">このサイトについて・出典と利用規約</a> ／ <a href="{rel}contact.html">訂正・削除のご依頼</a></p>
@@ -216,7 +235,9 @@ def detail_page(r, by_ref, src_meta):
     if r.get("address_redacted"):
         # 「個人だから伏せた」と「誰か確かめられないから伏せた」は別のこと。
         # 読者にどちらか分かるように書き分ける
-        why = ("設置者が個人のため" if (r.get("operator_display") or "") == "個人"
+        disp = r.get("operator_display") or ""
+        why = ("設置者が個人のため" if disp == "個人"
+               else "届出の一覧の設置者の欄に住所だけが書かれていて名称が読めないため" if r.get("operator_suspect") == "address"
                else "設置者を確かめられないため")
         addr_note = f'<span class="note">（{why}町丁目まで）</span>'
     if r.get("address_suspect"):
@@ -259,9 +280,19 @@ def detail_page(r, by_ref, src_meta):
     src_items = []
     for i in src_ids:
         m = src_meta.get(i, {})
-        got = r.get("fetched_on") or r.get("last_seen") or r.get("first_seen") or ""
-        first = r.get("first_seen") or ""
-        when = (f"{got}取得" if got else "取得日の記録なし") + (f"、最初に確認した日 {first}" if first and first != got else "")
+        # 合流した記録は収集先ごとの取得日（fetched_by）。無ければ記録の取得日
+        got = (r.get("fetched_by") or {}).get(i) or r.get("fetched_on") or r.get("last_seen") or r.get("first_seen") or ""
+        first = r.get("first_seen") if i == r.get("source") else ""
+        # サイトが自分で取りに行き始めた日より前の日付は、Internet Archive の保存から積み直したもの
+        via_archive = bool(m.get("wayback")) and bool(got) and got < SITE_START
+        when = (f"{got}時点の保存（Internet Archive）から取得" if via_archive else
+                f"{got}取得" if got else "取得日の記録なし")
+        # Excel から取り出したもの（asof がある）は first_seen が一覧の日付そのものなので、
+        # 「最初に確認した日」とは書かず「自治体の一覧の日付」とだけ書く
+        if first and first != got and not r.get("asof"):
+            when += f"、最初に確認した日 {first}"
+        if r.get("asof"):
+            when += f"、自治体の一覧の日付 {r['asof']}"
         if m.get("url"):
             line = (f'出典：「{esc(m["name"])}」（<a href="{esc(m["url"])}">{esc(m["url"])}</a>、{esc(when)}）を加工して作成')
         else:
@@ -271,6 +302,8 @@ def detail_page(r, by_ref, src_meta):
             sub.append(f'ライセンス：{esc(m["license"])}')
         if m.get("terms"):
             sub.append(f'利用規約：<a href="{esc(m["terms"])}">{esc(m.get("terms_name") or m["terms"])}</a>')
+        if not m.get("license") and not m.get("terms"):
+            sub.append("利用規約：確認中")
         src_items.append(f"<li>{line}" + (f'<div class="m">{" ／ ".join(sub)}</div>' if sub else "") + "</li>")
     src_block = '<ul class="list" style="font-size:14px">' + "".join(src_items) + "</ul>"
     status = ""
@@ -316,9 +349,10 @@ def area_page(area, rows):
     chips = "".join(f'<a href="{rel}k/{esc(k)}.html">{esc(k)}<b>{n_(kinds[k])}</b></a>' for k in KIND_ORDER if kinds.get(k))
     rows = sorted(rows, key=lambda r: r["notified_on"], reverse=True)
     latest = rows[0]["notified_on"] if rows else ""
+    oldest = rows[-1]["notified_on"] if rows else ""
     body = f"""
 <h1>{esc(area)}の大型店の届出</h1>
-<p class="lead">{n_(len(rows))}件。最新の届出は{esc(jp_date(latest))}。</p>
+<p class="lead">{n_(len(rows))}件。最新の届出は{esc(jp_date(latest))}。収録は{esc(oldest[:4])}年から（収集先が公表している範囲。市区町村どうしで件数は比べられません）。</p>
 <div class="chips">{chips}</div>
 {table(rows, rel, show_area=False)}
 """
@@ -334,6 +368,7 @@ def kind_page(kind, rows):
     body = f"""
 <h1>{badge(kind)} {esc(kind)}の届出</h1>
 <p class="lead">{esc(KIND_DESC.get(kind,''))} 全{n_(len(rows))}件。</p>
+<p class="note">市区町村の数字は届出の件数で、収録の始まりが市区町村ごとに違うため、比べられる数ではありません。</p>
 <div class="chips">{chips}</div>
 {table(rows, rel)}
 """
@@ -356,14 +391,29 @@ def about_page(src_meta, today):
     city_items = "".join(f'<li><a href="{esc(m["url"])}">{esc(m["name"])}</a></li>' for m in sorted(cities, key=lambda m: m["name"]))
     operator_rows = ""
     if OPERATOR:
-        operator_rows += f"<dt>運営者</dt><dd>{esc(OPERATOR)}</dd>\n"
-    if CONTACT_EMAIL:
-        operator_rows += f'<dt>連絡先</dt><dd><a href="mailto:{esc(CONTACT_EMAIL)}">{esc(CONTACT_EMAIL)}</a>'
-        if CONTACT_URL:
-            operator_rows += f'　／　<a href="{rel}contact.html">依頼フォーム</a>'
+        operator_rows += f"<dt>運営者</dt><dd>{esc(OPERATOR)}<br>{esc(OPERATOR_DESC)}</dd>\n"
+    # 連絡先はフォームを先に（7節）。メールは contact.html にも書いてある
+    if CONTACT_URL:
+        operator_rows += (f'<dt>連絡先</dt><dd><a href="{rel}contact.html">訂正・削除の依頼フォーム</a>'
+                          f'（{REPLY_DAYS}日以内にご返信します）')
+        if CONTACT_EMAIL:
+            operator_rows += f'　／　<a href="mailto:{esc(CONTACT_EMAIL)}">{esc(CONTACT_EMAIL)}</a>'
         operator_rows += "</dd>\n"
-    elif CONTACT_URL:
-        operator_rows += f'<dt>連絡先</dt><dd><a href="{rel}contact.html">依頼フォーム</a></dd>\n'
+    elif CONTACT_EMAIL:
+        operator_rows += f'<dt>連絡先</dt><dd><a href="mailto:{esc(CONTACT_EMAIL)}">{esc(CONTACT_EMAIL)}</a></dd>\n'
+    operator_rows += f'<dt>訂正履歴</dt><dd><a href="{rel}teisei.html">いつ・何を・なぜ直したか</a></dd>\n'
+    # 大阪府から権限移譲を受けた20市町のうち、見ている市町を数える（収集先の数ではなく市町の数）。
+    # 箕面市は2市2町（箕面・池田・豊能・能勢）の幹事で、池田市・豊能町・能勢町のぶんは箕面市の窓口の
+    # ページに載る（sources.json の minoh-2shi2cho）。吹田市・高槻市は移譲先ではなく府が受理する
+    # （sources.json の note）ので、この数には入れず、府のページから拾う
+    covered = set()
+    for i, m in src_meta.items():
+        if m.get("area") == "osaka" and m.get("enabled") and i not in main_ids:
+            covered.add(m["name"].split()[0])
+            covered |= set(WINDOW_COVERS.get(i, []))
+    covered -= NOT_DELEGATED
+    n_delegated = len(covered)
+    not_seen = sorted(DELEGATED_MISSING)
     body = f"""
 <h1>このサイトについて</h1>
 
@@ -372,7 +422,7 @@ def about_page(src_meta, today):
 {operator_rows}
 <dt>サイトの目的</dt><dd>大規模小売店舗立地法にもとづく届出を、届出が出た日にわかる形で公開し、自治体のページから消えたあとも残すこと。</dd>
 <dt>データの出どころ</dt><dd>大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町が公表している届出、および兵庫県公報の公告。各届出ページに出典のURLと取得日を書いています。</dd>
-<dt>更新頻度</dt><dd>毎朝1回、自動で取得しています。</dd>
+<dt>更新頻度</dt><dd>毎朝1回、自動で取得しています。兵庫県・神戸市の過去分（{esc(SITE_START)}より前の日付のもの）は、Internet Archive（Wayback Machine）に残っていた自治体ページの保存から積み直したもので、各ページにその旨を書いています。</dd>
 <dt>訂正・削除</dt><dd><a href="{rel}contact.html">訂正・削除のご依頼</a>から受け付けます。原則{REPLY_DAYS}日以内に返信します。</dd>
 </dl></div>
 
@@ -380,7 +430,17 @@ def about_page(src_meta, today):
 <p>{esc(SITE_NAME)}は、大規模小売店舗立地法（大店立地法）にもとづいて自治体が公表している「届出」を毎朝1回とりに行き、
 店舗面積1,000㎡を超える大型店の新設・変更・廃止・承継を、届出が出た日に一覧にしているサイトです。
 自治体のページでは縦覧期間（4か月）が過ぎると消えてしまう届出も、このサイトには残しています。</p>
-<p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、それぞれのページを見ています。</p>
+<p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、そのうち{n_delegated}市町のページを見ています（池田市・豊能町・能勢町は、箕面市が2市2町の窓口として公表しているページで見ています）。{'・'.join(esc(x) for x in not_seen)}は届出のページが見つからないため、府のページに載る分だけ拾っています。吹田市・高槻市は移譲先ではなく府が受理するため、府のページから拾っています。</p>
+
+<h2>やらないと決めたこと</h2>
+<ul class="list">
+<li><b>設置者が個人のときは、氏名を「個人」と書き、所在地は町丁目までにしています。</b> 自治体のページは数か月で消えますが、このサイトは消えないので、氏名と地番を恒久的に結びつけないためです。法人は名称をそのまま載せます。</li>
+<li><b>載せるのは店舗の届出だけで、人の住まいそのものは対象に入りません。</b> 店舗の所在地は届出のとおり載せますが、設置者が個人のときは町丁目までにします。</li>
+<li><b>市区町村ごとの件数など、1〜2件の小さい数字は「1-2」と伏せています。</b> 個別の届出ページと突き合わせて特定できないようにするためです。</li>
+<li><b>大規模集客施設の基本計画書など、届出より前の段階の情報は扱いません。</b></li>
+<li><b>民間の団体や事業者がまとめた一覧は転載しません。</b> 載せるのは行政が法律にもとづいて公表した一次情報だけです。</li>
+<li><b>届出の良し悪しを評価しません。</b> 件数と事実を並べるだけで、順位付けや優劣の言葉は使いません。</li>
+</ul>
 
 <h2>出典と利用規約</h2>
 <p>載せている内容はすべて自治体が公表している届出の一覧・資料からとったもので、このサイトで表の形・並び順・表記をそろえる加工をしています。
@@ -460,6 +520,35 @@ KOHO = os.path.join(HERE, "data", "koho", "hyogo-notices.json")
 KOHO_KINDS = ["新設", "変更", "廃止", "市町の意見", "その他"]
 
 
+def _mokuroku_fetched():
+    """目録の Excel をダウンロードした日（data/files/fetched.json）。ビルドした日ではない（3.5）。"""
+    try:
+        with open(os.path.join(HERE, "data", "files", "fetched.json"), encoding="utf-8") as f:
+            led = json.load(f)
+    except Exception:
+        return ""
+    days = [v for k, v in led.items() if k.startswith("hyogo-koho-mokuroku/") and v]
+    return max(days) if days else ""
+
+
+def teisei_page(today):
+    """訂正履歴。いつ・何を・なぜ（7節）。氏名は書かない。"""
+    rel = ""
+    items = "".join(f"<tr><td style=\"white-space:nowrap\">{esc(d)}</td><td>{esc(what)}</td><td>{esc(why)}</td></tr>"
+                    for d, what, why in sorted(TEISEI, reverse=True))
+    body = f"""
+<h1>訂正履歴</h1>
+<p class="lead">このサイトの内容や出し方を直したときの記録です。いつ・何を・なぜ直したかを書きます。個人の氏名はここにも書きません。</p>
+<div style="overflow-x:auto"><table>
+<tr><th>日付</th><th>何を直したか</th><th>なぜ</th></tr>
+{items}
+</table></div>
+<p style="font-size:14px">訂正や削除のご依頼は<a href="{rel}contact.html">こちら</a>から。原則{REPLY_DAYS}日以内に返信します。</p>
+<p style="font-size:13px;color:var(--sub)">このページの更新日：{esc(today)}</p>
+"""
+    return page(f"訂正履歴｜{SITE_NAME}", body, rel, desc=f"{SITE_NAME}の訂正履歴。いつ・何を・なぜ直したか。", canonical="teisei.html")
+
+
 def koho_page(notices, src_meta, today):
     """兵庫県公報の目録から数えた、大店立地法の公告の件数（2007年〜）。"""
     rel = ""
@@ -501,10 +590,11 @@ def koho_page(notices, src_meta, today):
 神戸市の届出は神戸市が別に公告するため、ここには含まれません。</p>
 <h2>年ごと</h2>
 <div style="overflow-x:auto"><table>{head}{years}</table></div>
-<h2>最近 24 か月</h2>
+<h2>月ごと（目録にある最新 {last[:4]}年{int(last[5:7])}月 までの 24 か月）</h2>
+<p class="note">目録に載っているのは {esc(last)} の号までです。それより後の月は、県がまだ目録を出していないので数えられません。</p>
 <div style="overflow-x:auto"><table>{head}{months}</table></div>
 <h2>この数字の元</h2>
-<p style="font-size:14px">出典：「{esc(m.get("name", "兵庫県公報 検索用目録"))}」（<a href="{esc(m.get("url", ""))}">{esc(m.get("url", ""))}</a>、{esc(today)}取得）を加工して作成。
+<p style="font-size:14px">出典：「{esc(m.get("name", "兵庫県公報 検索用目録"))}」（<a href="{esc(m.get("url", ""))}">{esc(m.get("url", ""))}</a>、{esc(_mokuroku_fetched() or today)}取得）を加工して作成。
 目録の「公告」シートから件名に「大規模小売」を含む行を数えました。公告の本文（店舗名・所在地など）は公報の本体にあり、順に読み取っていく予定です。</p>
 """
     return page(f"兵庫県の大型店の届出、2007年からの推移｜{SITE_NAME}", body, rel,
@@ -524,11 +614,15 @@ def index_page(all_recs, today):
     areas = Counter(r["area"] for r in all_recs)
     area_chips = "".join(f'<a href="a/{esc(slug(a))}.html">{esc(a)}<b>{n_(n)}</b></a>' for a, n in sorted(areas.items(), key=lambda x: -x[1]))
     kind_chips = "".join(f'<a href="k/{esc(k)}.html">{badge(k)} <b>{n_(kinds[k])}</b></a>' for k in KIND_ORDER if kinds.get(k))
-    yrs = [r["notified_on"][:4] for r in all_recs if r.get("notified_on") and r["kind"] != "中規模"]
+    yrs = [r["notified_on"][:4] for r in all_recs if r.get("notified_on")]   # 件数と同じ母集団で数える
+    law_yrs = [r["notified_on"][:4] for r in all_recs if r.get("notified_on") and r["kind"] != "中規模"]
+    # 大店立地法は 2000 年施行。それより前の年は八尾市・堺市の条例による中規模の届出なので、その場に書く（3.3）
+    yr_note = (f"。{int(min(law_yrs)) - 1}年以前は市の条例による中規模の届出"
+               if law_yrs and min(yrs) < min(law_yrs) else "")
     body = f"""
 <h1>大阪・兵庫の大型店、これからの開店とこれまでの閉店</h1>
 <p class="lead">大規模小売店舗立地法の届出（店舗面積1,000㎡超）を、各自治体の公表ページから毎朝あつめています。届出は開店の8か月以上前に出るので、ニュースになる前に分かります。</p>
-<div class="stat"><div><b>{len(all_recs):,}</b><span>届出（{min(yrs)}〜{max(yrs)}年）</span></div><div><b>{kinds.get('新設',0)}</b><span>新設</span></div><div><b>{kinds.get('廃止',0)}</b><span>廃止</span></div><div><b>{len(areas)}</b><span>市区町村</span></div></div>
+<div class="stat"><div><b>{len(all_recs):,}</b><span>届出（{min(yrs)}〜{max(yrs)}年{yr_note}）</span></div><div><b>{kinds.get('新設',0)}</b><span>新設</span></div><div><b>{kinds.get('廃止',0)}</b><span>廃止</span></div><div><b>{len(areas)}</b><span>市区町村</span></div></div>
 <input class="q" id="q" type="search" placeholder="店名・市区町村でさがす（例：イオン、枚方市）" autocomplete="off"><ul class="list" id="hits"></ul>
 
 <h2>これから起きる予定（{len(future)}件）</h2>
@@ -545,6 +639,7 @@ def index_page(all_recs, today):
 {"<h2>自治体のページから消えた届出</h2><p class='lead'>縦覧期間（4か月）が終わって元のページには載らなくなったもの。ここには残ります。</p>" + table(gone, rel) if gone else ""}
 
 <h2>市区町村から</h2>
+<p class="lead">数字は届出の件数です（同じ店の変更の届出も1件ずつ数えます。店の数ではありません）。収録の始まりは市区町村ごとに違うので、市区町村どうしで比べられる数ではありません（各市区町村のページに「収録は何年から」を書いています）。</p>
 <div class="chips">{area_chips}</div>
 <p style="font-size:14px">兵庫県は届出のページに過去分が無いため、<a href="hyogo-koho.html">県公報の目録から数えた 2007 年からの推移</a>を別に載せています。</p>
 
@@ -665,7 +760,9 @@ def main():
         f.write(about_page(src_meta, today))
     with open(os.path.join(HERE, "contact.html"), "w", encoding="utf-8") as f:
         f.write(contact_page(today))
-    urls += ["about.html", "contact.html"]
+    with open(os.path.join(HERE, "teisei.html"), "w", encoding="utf-8") as f:
+        f.write(teisei_page(today))
+    urls += ["about.html", "contact.html", "teisei.html"]
     if os.path.exists(KOHO):
         with open(KOHO, encoding="utf-8") as f:
             notices = json.load(f)

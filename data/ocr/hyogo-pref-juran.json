@@ -63,8 +63,9 @@
   "form": "２",
   "kind_guess": "",
   "article": "第６条第１項",
-  "address": "愛媛県松山市大街道二丁目３番地８ 愛媛県松山市大街道二丁目３番地８",
+  "address": "愛媛県松山市大街道二丁目",
   "content": "大規模小売店において小売業を行う者の氏名又は名称及び住所並びに法人にあっては",
+  "address_redacted": true,
   "how": "embedded"
  },
  "aeonyashiro": {
@@ -182,8 +183,9 @@
   "article": "第6条第1項",
   "date": "2026-04-28",
   "store": "マーケットスクエア中山寺",
-  "address": "兵庫県宝塚市中筋五十目 1番地",
+  "address": "兵庫県宝塚市中筋五十目",
   "content": "①) 大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては代表者",
+  "address_redacted": true,
   "how": "ocr"
  },
  "marunakasumotomonobe": {
@@ -355,8 +357,9 @@
   "article": "第５条第１項",
   "date": "2026-07-28",
   "store": "(左称)マックスバリュ瘜田店  住居地域  駐車場 －  荷庫ばき施設③ 32㎡",
-  "address": "兵庫県加古川市尾上町瘜田480 ほか  (2) 駐輪場の位置及び収容台数  位  置 ２つ以上 54",
+  "address": "兵庫県加古川市尾上町瘜田",
   "area": "3,313",
+  "address_redacted": true,
   "how": "embedded"
  },
  "soyoraono": {

@@ -21,6 +21,7 @@ Python 3 の標準ライブラリだけで動く。GitHub Actions でそのま�
 
 import html
 import json
+import glob
 import os
 import re
 import socket
@@ -191,6 +192,23 @@ FOLLOW_MAX = 12          # 1つの目次から辿る数の上限。相手に迷�
 FOLLOW_MAX_2 = 4         # 2階層目はさらに絞る
 FOLLOW_BUDGET = 32       # 1つの収集先で辿る総数の上限。堺市が25本必要だったので余裕をみた
 
+# 相手ごとの頻度（共通仕様3.4）。sources.json の freq。無ければ毎日。
+# 規約・案内・オープンデータの一覧のような、めったに変わらないページは四半期に1回でよい
+FREQ_DAYS = {"daily": 0, "biweekly": 14, "quarterly": 90}
+
+
+def last_saved(sid):
+    """その収集先を最後に保存した日（data/raw/<id>/YYYY-MM-DD.html）。無ければ None。"""
+    days = []
+    for p in glob.glob(os.path.join(HERE, "data", "raw", sid, "????-??-??.html")):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.html", os.path.basename(p))
+        if m:
+            days.append(m.group(1))
+    if not days:
+        return None
+    y, mo, d = map(int, max(days).split("-"))
+    return date(y, mo, d)
+
 
 def analyze(text, base_url):
     s = Scanner()
@@ -338,6 +356,15 @@ def main():
             lines.append(report_one(src, res))
             continue
 
+        # 相手ごとの頻度（共通仕様3.4）。前回からその日数たっていなければ取りに行かない
+        wait_days = FREQ_DAYS.get(src.get("freq", "daily"), 0)
+        if wait_days:
+            last = last_saved(src["id"])
+            if last and (date.today() - last).days < wait_days:
+                res["skipped"] = f"{src.get('freq')}：前回 {last.isoformat()} から {wait_days} 日たっていないので今回は見ない（共通仕様3.4）"
+                lines.append(report_one(src, res))
+                continue
+
         ok, why = check_robots(src["url"])
         res["robots"] = why
         if not ok:                     # False＝拒否、None＝robots.txt が混んでいる。どちらも今回は行かない
@@ -401,6 +428,11 @@ def main():
 
             while queue and len(res["followed"]) < FOLLOW_BUDGET:
                 url2, label, depth = queue.pop(0)
+                # 辿った先も robots.txt を見る（共通仕様3.4）。ホストごとに1回だけ取ってあるので追加の通信は無い
+                ok2, why2 = check_robots(url2)
+                if not ok2:
+                    res["followed"].append((label, None, depth, why2 or "robots"))
+                    continue
                 time.sleep(WAIT)
                 try:
                     st2, ct2, raw2 = fetch(url2)

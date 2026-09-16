@@ -577,7 +577,7 @@
   "key": "450eb73a8b24",
   "operator_display": "東急不動産(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -606,7 +606,7 @@
   "key": "c7de3f4a478f",
   "operator_display": "東急不動産(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -4348,7 +4348,7 @@
   "key": "28d94717bafb",
   "operator_display": "熊西染色工業(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -5943,7 +5943,7 @@
   "key": "127595bde0bd",
   "operator_display": "京阪電気鉄道株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -6640,7 +6640,7 @@
   "key": "776314c4af67",
   "operator_display": "三井不動産株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {
@@ -7044,8 +7044,9 @@
   "recommendation": "",
   "note": "",
   "key": "8a0be9307d6c",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "佐竹食品株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7074,8 +7075,9 @@
   "recommendation": "",
   "note": "",
   "key": "8ed0e79a2bf2",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社ライフコーポレーション",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7104,8 +7106,9 @@
   "recommendation": "",
   "note": "",
   "key": "49645e8c328e",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社コスモス薬品",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7134,8 +7137,9 @@
   "recommendation": "",
   "note": "",
   "key": "752605d366f5",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "コーナン商事株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7164,8 +7168,9 @@
   "recommendation": "",
   "note": "",
   "key": "4bd653fc84f7",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "イズミヤ株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7194,8 +7199,9 @@
   "recommendation": "",
   "note": "",
   "key": "854e6650a073",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社しまむら",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7224,8 +7230,9 @@
   "recommendation": "",
   "note": "",
   "key": "25a9c5157498",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社万代",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7254,8 +7261,9 @@
   "recommendation": "",
   "note": "",
   "key": "49649e9d4580",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社カインズ",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7284,8 +7292,9 @@
   "recommendation": "",
   "note": "",
   "key": "972fd1673ad6",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社万代",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7314,8 +7323,9 @@
   "recommendation": "",
   "note": "",
   "key": "435b7e9c3a34",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社光伸真珠",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7344,8 +7354,9 @@
   "recommendation": "",
   "note": "",
   "key": "32c7eea64aeb",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "イズミヤ株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7374,8 +7385,9 @@
   "recommendation": "",
   "note": "",
   "key": "38a9b64d38b3",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "大黒天物産株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7404,9 +7416,10 @@
   "recommendation": "",
   "note": "",
   "key": "d012866e3d10",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
-  "retailer_display": "",
+  "operator_suspect": "address",
+  "retailer_display": "未定",
   "retailer_kind": "individual",
   "address_redacted": true
  },
@@ -7434,8 +7447,9 @@
   "recommendation": "",
   "note": "",
   "key": "56e9561d8798",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社ドン・キホーテ",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7464,9 +7478,10 @@
   "recommendation": "",
   "note": "",
   "key": "4051b6b2d341",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
-  "retailer_display": "",
+  "operator_suspect": "address",
+  "retailer_display": "未定",
   "retailer_kind": "individual",
   "address_redacted": true
  },
@@ -7494,8 +7509,9 @@
   "recommendation": "",
   "note": "",
   "key": "e4a713376668",
-  "operator_display": "個人",
+  "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
+  "operator_suspect": "address",
   "retailer_display": "株式会社カインズ",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7729,7 +7745,7 @@
   "key": "52ce3fcd9aaa",
   "operator_display": "イオンモール株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定",
   "retailer_kind": "individual"
  },
  {

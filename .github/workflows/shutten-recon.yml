@@ -221,7 +221,7 @@ jobs:
             for p in data/all.json data/parsed data/koho/full data/koho/text data/koho/months \
                      data/koho/issues.json data/koho/hyogo-issues.json \
                      data/koho/hyogo-notices.json data/koho/hyogo-monthly.json data/ref \
-                     index.html about.html contact.html hyogo-koho.html a k s \
+                     index.html about.html contact.html hyogo-koho.html teisei.html a k s \
                      index.json search.json sitemap.xml robots.txt; do
               # あるものは add（配下の削除も入る）。丸ごと消えたものは、追跡中なら削除を入れる
               if [ -e "$p" ] || [ -n "$(git ls-files -- "$p")" ]; then git add -A -- "$p"; fi

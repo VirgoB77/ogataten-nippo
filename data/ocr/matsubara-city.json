@@ -1,0 +1,194 @@
+{
+ "020428gaiyou_6-2_": {
+  "date": "2020-12-29",
+  "address": "松原市上田二丁目",
+  "area": "１，１６８",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "20130108-121756": {
+  "how": "embedded"
+ },
+ "20140225-180711": {
+  "how": "embedded"
+ },
+ "20150203-085657": {
+  "article": "第５条第１項",
+  "date": "2015-02-02",
+  "how": "embedded"
+ },
+ "20150803-130820": {
+  "article": "第６条第２項",
+  "date": "2015-07-31",
+  "area": "７，２２１",
+  "how": "embedded"
+ },
+ "20170511-143102": {
+  "article": "第５条第１項",
+  "how": "embedded"
+ },
+ "Homepage_gaiyou": {
+  "date": "2021-02-26",
+  "address": "松原市上田二丁目",
+  "content": "松原市阿保１丁目１番１号 松原市役所６階",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "_____": {
+  "store": "（ 仮 称 ） ラ ･ ム ー 松 原 天 美 店",
+  "address": "松 原 市 天 美 北 一 丁 目",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou": {
+  "date": "2020-11-01",
+  "store": "（ 仮称） 松原天美ショッピングセンター",
+  "address": "松原市天美東３丁目",
+  "area": "３４，０００",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_6-1_": {
+  "date": "2016-05-01",
+  "store": "万代松原店",
+  "address": "松原市上田二丁目",
+  "content": "①大規模小売店舗の名称及び所在地",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_aeontownmatsubara_": {
+  "date": "2023-10-09",
+  "store": "イオンタウン松原",
+  "address": "松原市新堂四丁目",
+  "content": "（ １ ） 大規模小売店舗の名称及び所在地",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_baromatsubarabessyoten_": {
+  "store": "（仮称）バロー松原別所店",
+  "address": "松原市別所一丁目",
+  "area": "1,926",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_daihyousya_henkou_": {
+  "store": "（仮称） 松原天美ショッピングセンター",
+  "address": "松原市天美東３丁目",
+  "content": "大規模小売店舗を設置する者 の氏名又は 名称 及び 住所並びに法人にあっては 代表",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_izumiyashoppingcentermatsubara_": {
+  "date": "2023-06-09",
+  "store": "イズミヤショッピングセンター松原",
+  "address": "松原市上田六丁目",
+  "content": "（１）大規模小売店舗の名称及び所在地",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_ke-zudenki_": {
+  "date": "2020-03-30",
+  "address": "松原市天美東４丁目",
+  "area": "２，５９０",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_kinshostoreamamiten_": {
+  "date": "2024-08-01",
+  "store": "近商ストア天美店",
+  "address": "松原市天美南三丁目",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_kinshousutoaamamiten_": {
+  "date": "2024-08-16",
+  "store": "近商ストア天美店",
+  "address": "松原市天美南三丁目",
+  "content": "３ 届出に係る書類の縦覧の期間及び場所 （１）大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_kosumosu_": {
+  "date": "2020-08-17",
+  "store": "（仮称） ドラッグコスモス松原インター店",
+  "address": "松原市別所一丁目",
+  "area": "１，５１２",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_mandai": {
+  "date": "2020-08-17",
+  "store": "（仮称） 万代松原上田 店",
+  "address": "松原市上田２丁目",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyou_mandai_matsubarataijoten_": {
+  "date": "2024-09-09",
+  "store": "（仮称）万代松原田井城店",
+  "address": "松原市田井城六丁目",
+  "area": "２，７７０",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyousyo-6zyou1kou-": {
+  "date": "2022-04-01",
+  "store": "セブンパーク天美",
+  "address": "松原市天美東３丁目",
+  "content": "・ 大規模小売店舗を設置する者の氏名又は名称及び住所並びに",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyousyo-6zyou1kou": {
+  "form": "２",
+  "kind_guess": "",
+  "date": "2020-10-02",
+  "store": "イズミヤ松原店",
+  "address": "松原市上田六丁目",
+  "content": "・大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyousyo-6zyou2kou": {
+  "date": "2022-07-27",
+  "store": "イズミヤ松原店",
+  "address": "松原市上田六丁目",
+  "content": "①廃棄物等の保管施設の位置及び容量",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "gaiyousyo_aeontown": {
+  "how": "embedded"
+ },
+ "gaiyousyo_kezudenki": {
+  "store": "ケ ー ズ デ ン キ 松 原 天 美 店",
+  "how": "embedded"
+ },
+ "gaiyousyo_ramu": {
+  "how": "embedded"
+ },
+ "meisyou_kourigyousyanohenkou_gaiyou": {
+  "date": "2021-10-28",
+  "store": "セブンパーク天美",
+  "address": "松原市天美東３丁目",
+  "content": "・ 大規模小売店舗の名称及び所在地",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "settisyanohenkou_gaiyou": {
+  "date": "2021-10-28",
+  "store": "（仮称）松原天美ショッピングセンター",
+  "address": "松原市天美東３丁目",
+  "content": "・ 設置者の変更",
+  "address_redacted": true,
+  "how": "embedded"
+ },
+ "todokedenogaiyou": {
+  "date": "2020-05-21",
+  "store": "近商ストア天美店",
+  "address": "松原市天美南三丁目",
+  "content": "・ 大規模小売店舗を設置する者の氏名又は名称及び住所並びに",
+  "address_redacted": true,
+  "how": "embedded"
+ }
+}

@@ -180,6 +180,13 @@ def merge_across_sources(by_key):
             base["first_seen"] = min(fs) if fs else None
             base["last_seen"] = max(ls) if ls else None
         base["sources"] = sorted(srcs)
+        # 収集先ごとの「見た日」と「読んだファイル」。合流すると土台の last_seen しか
+        # 残らず、相手の出典の行に別の収集先のページを見た日が出ていた（3.5）
+        base["seen_by"] = {r["source"]: (r.get("last_seen") or r.get("first_seen") or "")
+                           for r in g if (r.get("last_seen") or r.get("first_seen"))}
+        fb = {r["source"]: r["file"] for r in g if r.get("file")}
+        if fb:
+            base["file_by"] = fb
         base["merged_keys"] = sorted(r["key"] for r in g if r["key"] != base["key"])
         out[base["key"]] = base
         merged_away += len(g) - 1
@@ -237,7 +244,14 @@ def enrich_from_ocr(by_key, ocr):
             pairs = (("address", "address"), ("operator", "applicant"), ("content", "content"))
             for field, okey in pairs:
                 if not r.get(field) and o.get(okey):
-                    r[field] = tidy_ocr(o[okey])
+                    val = tidy_ocr(o[okey])
+                    # 「変更した事項」の行は様式の文言や氏名の変更（「設置者の氏名 ○○から△△へ」）が
+                    # 混ざりうる。氏名・代表者に触れる行は使わない（privacy を通らない欄なので、入口で止める）
+                    if field == "content" and (re.search(r"氏名|代表者", val) or ADDR_SHAPE.search(val)):
+                        # 「変更した事項」の次の行は、様式の文言・氏名の変更・住所が来ることがある。
+                        # content は privacy を通らない欄なので、入口で止める（3.1）
+                        continue
+                    r[field] = val
                     got.append(field)
             if not r.get("area_m2") and o.get("area"):
                 digits = re.sub(r"[^0-9]", "", o["area"])
@@ -302,9 +316,12 @@ def stamp_sources(recs):
     """各レコードに source_url と fetched_on を付ける。付けられなかった件数を返す。
 
     fetched_on の決め方（上から順に、最初にあるもの）
-      1. last_seen / first_seen … 毎日巡回している収集先。実際に見た日
-      2. 公報の台帳 issues.json の when … 兵庫県公報。PDFを取った日
-      3. data/files/fetched.json … Excel・PDF をダウンロードした日
+      1. data/files/fetched.json … Excel・PDF から取り出したもの（file がある）は、
+         そのファイルをダウンロードした日。大阪市の一覧はファイル名の日付（2026-06-30）で
+         parsed に置くので、first_seen を先に見ると「一覧の日付」を取得日と書いてしまう
+      2. last_seen / first_seen … 毎日巡回している収集先。実際に見た日
+      3. 公報の台帳 issues.json の when … 兵庫県公報。PDFを取った日
+      4. data/files/fetched.json を文書URLの末尾で引く … 部会の議案など
     どれも無ければ空にして、テストで落とす（黙って今日の日付にしない）。
     """
     try:
@@ -333,15 +350,44 @@ def stamp_sources(recs):
         else:
             r["source_url"] = m.get("url") or (docs[0] if docs else "")
 
-        when = r.get("last_seen") or r.get("first_seen") or ""
-        if not when and docs:
-            when = koho_when.get(docs[0], "") or ""
-        if not when and r.get("file"):
-            when = file_when.get(f"{src}/{r['file']}", "") or ""
-        if not when and docs:
-            # 文書のURLの末尾がそのまま data/files/<収集先>/ のファイル名（部会の議案など）
-            when = file_when.get(f"{src}/{os.path.basename(docs[0].split('?')[0])}", "") or ""
+        def when_for(sid):
+            """収集先 sid の取得日。
+
+            引けるのは「その収集先の台帳に載っている日」だけにする。合流した記録では、
+            相手の文書や相手のページを見た日が分からないことがあり、そこで土台の
+            last_seen（別の収集先のページを見た日）を使うと、公報や部会の行に
+            関係のない日付が出る（審査で見つかった。部会の取得日が4通りに割れていた）。
+            分からないときは空にして「取得日の記録なし」と書く（3.5。黙って埋めない）。
+            """
+            fn = (r.get("file_by") or {}).get(sid) or (r.get("file") if sid == src else "")
+            if fn:
+                w = file_when.get(f"{sid}/{fn}", "") or ""
+                if w:
+                    return w
+            for u in docs:                       # その収集先の台帳で引けた文書だけ
+                base = os.path.basename(u.split("?")[0])
+                w = file_when.get(f"{sid}/{base}", "") or ""
+                if w:
+                    return w
+                if sid == "hyogo-koho":
+                    w = koho_when.get(u, "") or ""
+                    if w:
+                        return w
+            if sid not in DOC_SOURCES:           # 毎日巡回している収集先。実際に見た日
+                seen = (r.get("seen_by") or {}).get(sid)
+                if seen:
+                    return seen
+                if sid == src:
+                    return r.get("last_seen") or r.get("first_seen") or ""
+            return ""
+
+        when = when_for(src)
         r["fetched_on"] = when
+        srcs = r.get("sources") or []
+        if len(srcs) > 1:
+            r["fetched_by"] = {sid: (when if sid == src else when_for(sid)) for sid in srcs}
+        else:
+            r.pop("fetched_by", None)
         if not r["source_url"] or not when:
             missing += 1
     return missing
@@ -355,6 +401,41 @@ def stamp_sources(recs):
 # 生データ（data/raw）はさわらない。落とすのは出力の段階だけ（9節）。
 # data/all.json は公開しているので、ここも出力として扱う。
 PARTY_FIELDS = ("operator", "new_operator", "retailer")
+
+# 設置者の欄に住所の形（「…1丁目2番3号」）の値が来ているもの。列ずれの疑い。
+# 個人として伏せるのは同じだが、黙って「個人」にせず記録に残す（5節「個人に化けてはいけないもの」）
+ADDR_SHAPE = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|番|号|丁目)")
+# 「住所の形」は、都道府県か市区郡町村で始まり、かつ数字＋番地・番・号・丁目を含むもの。
+# 数字＋番だけだと「一番館」「二丁目食堂」「一番ヶ瀬」のような屋号・姓まで拾う。
+# 「氏名 住所」が1つの欄に入っているものは先頭が住所でないので拾わず、従来どおり「個人」に倒す
+ADDR_HEAD = re.compile(r"^(北海道|東京都|京都府|大阪府|[^\s]{2,3}県|[^\s]{1,6}(市|区|郡|町|村))")
+ADDR_IN_NAME_DISPLAY = "不詳（届出の一覧では設置者の欄に住所だけが書かれています）"   # 画面用。「個人」とは書かない
+# 店名の欄に「店名＋住所」を書いている収集先がある（松原市など）。設置者が個人で
+# 所在地を丸めるときは、店名の末尾にくっついた住所も丸める。そうしないと、
+# 所在地だけ町丁目にしても店名に地番が残る（3.1）。
+# 「雲井通6丁目地区…ビル」のような町名入りの店名を壊さないよう、
+# 空白で区切られた末尾が住所の形のときだけ直す
+_ADDR_TAIL = re.compile(r"[\s　]+((?:[^\s　]{1,6}[市区郡町村])?[^\s　]*"
+                        r"(?:[0-9０-９一二三四五六七八九十]+\s*(?:丁目|番地)|[0-9０-９]+\s*番\s*[0-9０-９])"
+                        r"[^\s　]*)(?:[\s　]*(?:ほか|他|外)[0-9０-９]*筆?[^\s　]*)?$")
+
+
+def round_store_tail(store):
+    """店名の末尾にくっついた住所を町丁目まで丸める。住所が無ければそのまま。"""
+    m = _ADDR_TAIL.search(store or "")
+    if not m:
+        return store
+    return store[:m.start(1)] + privacy.redact_addr(m.group(1), "individual")
+
+
+def looks_like_address(raw):
+    raw = (raw or "").strip()
+    return bool(raw) and bool(ADDR_HEAD.match(raw)) and bool(ADDR_SHAPE.search(raw)) and not privacy.is_corp(raw)
+
+
+# 記録用に値そのものは残さない。ADDR_HEAD は「山田太郎大阪市…」のように
+# 氏名がくっついた値にも先頭から当たってしまい、丸めても氏名が残るため
+# （審査で見つかった）。どの行かは 収集先・ファイル・鍵・店舗 で引ける。
 
 # 設置者の名前が、その収集先の一次情報のどこにも無いことを確かめた収集先。
 # ここに入れると party_kind が undisclosed になり、所在地を丸めない（3.1）。
@@ -385,8 +466,13 @@ def apply_privacy(recs):
         for f in PARTY_FIELDS:
             raw = r.get(f)
             if raw is None:
+                # 欄そのものが無い。収集先をまたいでまとめたときに運ばれてきた古い印
+                # （_kind / _display / _suspect）だけが残っていることがあるので、捨てる。
+                # 印だけ残ると、当事者のいない記録に undisclosed や individual が付く
+                for k in ("_kind", "_display", "_suspect", "_suspect_value"):   # _suspect_value は古い版の名残
+                    r.pop(f + k, None)
                 continue
-            if r.get(f + "_display") == "個人" and not (raw or "").strip():
+            if r.get(f + "_display") and not (raw or "").strip():
                 # 個人だったので名前を消してあり、値も空。もう一度通すと、空の
                 # 値を見て画面用の「個人」まで消してしまう。ここだけは止める。
                 # 消した名前は戻せないので、規則を変えたくなったら
@@ -412,6 +498,15 @@ def apply_privacy(recs):
             r[f] = privacy.party_for_index(raw)      # 機械用。個人は空文字
             r[f + "_display"] = privacy.redact_name(raw)   # 画面用。個人は「個人」
             r[f + "_kind"] = kind
+            r.pop(f + "_suspect", None)
+            r.pop(f + "_suspect_value", None)
+            if kind == "individual" and looks_like_address(raw):
+                # 名前の欄に住所だけが書かれている（大阪府の一覧に実例。法人の本社住所が入っている行がある）。
+                # 名前は読めないので、伏せる側（individual・地番は丸める）に倒すのは同じだが、
+                # 画面に「個人」と書くと事実と違うので、そう書かずに理由を書く。記録にも残す（5節）。
+                # 記録用の値は町丁目まで。地番が残る形（漢数字の番地）なら値は残さない
+                r[f + "_suspect"] = "address"
+                r[f + "_display"] = ADDR_IN_NAME_DISPLAY
 
         # 所在地を丸めるかどうかは「設置者」で決める。小売業者は店舗の
         # 所在地であって住まいではないので、丸める理由がない（3.1）。
@@ -426,12 +521,66 @@ def apply_privacy(recs):
         # 印は毎回つけ直す。収集先をまたいでまとめるときに、丸めた記録の印だけが
         # 法人の記録に移ることがある。前回の印を残すと、法人の地番に
         # 「個人のため丸めた」と書いてしまう
+        # 知らない列（extra）は privacy を通らないまま公開されていた。
+        # 表の結合セル（colspan）で他の欄の値がそのまま複製されることがあり、
+        # 住所の列が見出しの書き方の違いで address に入らないこともある（3.1）
+        extra = r.get("extra")
+        if isinstance(extra, dict):
+            known = {(r.get(f) or "").strip() for f in PARTY_FIELDS + ("address", "store")}
+            known.discard("")
+            for k in list(extra):
+                v = str(extra[k] or "").strip()
+                if not v:
+                    continue
+                if v in known:                       # 他の欄の複製。二重に持たない
+                    del extra[k]
+                elif ADDR_SHAPE.search(v) and not privacy.is_corp(v):
+                    extra[k] = privacy.redact_addr(v, "individual")
+            if not extra:
+                r.pop("extra", None)
+
         r.pop("address_redacted", None)
         if round_it:
             r["address"] = privacy.redact_addr(r.get("address") or "", "individual")
+            if r.get("store"):
+                r["store"] = round_store_tail(r["store"])
             r["address_redacted"] = True
             hidden += 1
     return hidden
+
+
+UNKNOWN_MD = os.path.join(HERE, "data", "parse-unknown.md")
+SUSPECT_HEAD = "## 個人に化けた疑いのある値（設置者の欄に住所の形）"
+
+
+def write_suspects(recs):
+    """住所の形をした設置者名を data/parse-unknown.md の節に書く（5節）。無ければ節を消す。
+
+    印（_suspect）は記録に付いているので、ここでは記録から拾う。検出は値が入っている
+    最初の1回だけだが、印と丸めた値は伏せたあとも残るので、2回目以降も一覧に出る。
+    """
+    SUSPECTS = sorted({(r.get("source", ""), r.get("file") or "", r.get("key", ""), r.get("store", ""))
+                       for r in recs for f in PARTY_FIELDS if r.get(f + "_suspect") == "address"})
+    try:
+        with open(UNKNOWN_MD, encoding="utf-8") as f:
+            text = f.read()
+    except FileNotFoundError:
+        text = "# 読み落としたもの\n"
+    # 前回の節を落としてから書き直す
+    text = re.sub(re.escape(SUSPECT_HEAD) + r".*?(?=\n## |\Z)", "", text, flags=re.S).rstrip("\n") + "\n"
+    if SUSPECTS:
+        lines = ["", SUSPECT_HEAD, "",
+                 f"{len(SUSPECTS)} 件。個人として伏せてある。値は載せない"
+                 "（住所の前に氏名が付いていることがあるため。元の表で確かめる）。", "",
+                 "| 収集先 | ファイル | 鍵 | 店舗 |", "|---|---|---|---|"]
+        for src, fn, key, store in SUSPECTS:
+            lines.append(f"| {src} | {fn} | {key} | {store} |")
+        text += "\n".join(lines) + "\n"
+    os.makedirs(os.path.dirname(UNKNOWN_MD), exist_ok=True)
+    with open(UNKNOWN_MD, "w", encoding="utf-8") as f:
+        f.write(text)
+    if SUSPECTS:
+        print(f"設置者の欄に住所の形の値: {len(SUSPECTS)} 件（data/parse-unknown.md に書いた）")
 
 
 def main():
@@ -557,7 +706,7 @@ def main():
     if gh:
         with open(gh, "a", encoding="utf-8") as f:
             f.write("\n" + "\n".join(lines) + "\n")
-
+    write_suspects(all_recs)
 
 if __name__ == "__main__":
     main()

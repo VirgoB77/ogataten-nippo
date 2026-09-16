@@ -132,6 +132,7 @@ _HAS_NUM = re.compile(r"[0-9０-９]")
 
 def test_all_json():
     """data/all.json は公開している。privacy.py を通っていない値がないか見る。"""
+    import merge
     path = os.path.join(HERE, "data", "all.json")
     if not os.path.exists(path):
         print("  data/all.json が無いので迂回検査は飛ばした")
@@ -190,6 +191,7 @@ def test_generated_pages():
     data/all.json を正として、そこで個人と判定した値が1つでも
     ページに出ていたら落とす。all.json 側が正しいことは上で見ている。
     """
+    import merge
     path = os.path.join(HERE, "data", "all.json")
     if not os.path.exists(path):
         return
@@ -201,11 +203,33 @@ def test_generated_pages():
     for r in recs:
         for f_ in PARTY_FIELDS:
             d = (r.get(f_ + "_display") or "").strip()
-            if not d or d == "個人":
+            if not d or d == "個人" or d == merge.ADDR_IN_NAME_DISPLAY:
                 continue
             if privacy.is_corp(d) or privacy.is_placeholder(d):
                 continue
             fails.append(f"{r.get('key','?')}: {f_}_display に伏せそこねた値: {d!r}")
+    # 住所の形の設置者は、値そのものを残さない（住所の前に氏名が付いていることがある）。
+    # この検査は上の continue の先にあって一度も届いていなかった（審査で見つかった）
+    for r in recs:
+        for f_ in PARTY_FIELDS:
+            if r.get(f_ + "_suspect_value"):
+                fails.append(f"{r.get('key','?')}: {f_}_suspect_value が残っている（値は載せない決まり）")
+    # 知らない列（extra）も公開するので、地番が生で残っていないこと
+    for r in recs:
+        for k_, v_ in (r.get("extra") or {}).items():
+            v_ = str(v_ or "")
+            if re.search(r"[0-9０-９一二三四五六七八九十]+\s*(番地|番|号)", v_):
+                fails.append(f"{r.get('key','?')}: extra[{k_!r}] に地番が残っている: {v_[:20]!r}")
+                break
+    # サイトが自分で取りに行き始めた日より前の取得日は、Internet Archive の保存から取れる収集先にしか付かない
+    try:
+        with open(os.path.join(HERE, "sources.json"), encoding="utf-8") as f:
+            wb = {x["id"] for x in json.load(f)["sources"] if x.get("wayback")}
+    except Exception:
+        wb = set()
+    early = [r for r in recs if (r.get("fetched_on") or "9") < "2026-09-11" and r.get("source") not in wb]
+    if early:
+        fails.append(f"サイト開始前の取得日なのに Internet Archive の収集先でない記録が {len(early)} 件（例 {early[0].get('source')} {early[0].get('fetched_on')}）")
 
 
 def test_public_urls():
@@ -563,13 +587,114 @@ def test_index_json():
                   "コード表と市区町村名の突き合わせ（common/addr.py の city_code_of）を見る")
 
 
+# ---------------------------------------------------------------- 監査その5
+def test_rowspan_colspan():
+    """共通仕様9節：表の rowspan / colspan を展開して、列の位置がずれないこと。"""
+    import parse
+    # 見出しだけ colspan：2列ぶんに広がる
+    t1 = ("<table><tr><th colspan='2'>店舗</th><th>届出日</th></tr>"
+          "<tr><td>A店</td><td>大阪市</td><td>令和6年5月1日</td></tr></table>")
+    rows = parse.rows_of(t1, "https://example.test/")
+    eq([len(c) for c, _ in rows], [3, 3], "colspan の見出しが2列に広がり、行の長さが揃う")
+    eq(rows[0][0], ["店舗", "店舗", "届出日"], "colspan は同じ文字を繰り返す")
+    # 本文に rowspan：2行目の先頭に1行目の値が下りてくる
+    t2 = ("<table><tr><th>市</th><th>店舗</th><th>届出日</th></tr>"
+          "<tr><td rowspan=\"2\">大阪市</td><td>A店</td><td>令和6年5月1日</td></tr>"
+          "<tr><td>B店</td><td>令和6年6月1日</td></tr></table>")
+    rows = parse.rows_of(t2, "https://example.test/")
+    eq([c for c, _ in rows][1:], [["大阪市", "A店", "令和6年5月1日"], ["大阪市", "B店", "令和6年6月1日"]],
+       "rowspan の値が次の行の同じ列位置に入る")
+
+
+def test_stale_party_marks_are_dropped():
+    """5節：欄そのものが無い記録に、合流で運ばれた古い印（_kind/_display）を残さない。"""
+    import merge
+    rec = {"source": "kobe-city", "key": "demo-stale", "store": "テスト店",
+           "operator_kind": "undisclosed", "operator_display": "個人", "address": "神戸市中央区1-1-1",
+           "operator_suspect": "address", "operator_suspect_value": "大阪市北区梅田1丁目"}
+    merge.apply_privacy([rec])
+    eq("operator_kind" in rec, False, "欄が無いのに古い kind が残っている")
+    eq("operator_display" in rec, False, "欄が無いのに古い display が残っている")
+    eq("operator_suspect" in rec or "operator_suspect_value" in rec, False, "欄が無いのに古い印（住所の形）が残っている")
+
+
+def test_address_shaped_operator_is_flagged():
+    """5節「個人に化けてはいけないもの」：住所の形の値が設置者の欄に来たら、伏せたうえで記録に残す。"""
+    import merge
+    rec = {"source": "hirakata-city", "key": "demo-addr", "store": "テスト店",
+           "operator": "枚方市大垣内町2丁目1番20号", "address": "枚方市大垣内町2丁目1番20号"}
+    merge.apply_privacy([rec])
+    eq(rec["operator"], "", "住所の形の値は index 用の欄に残さない")
+    eq(rec["operator_kind"], "individual", "伏せる側（individual）に倒す")
+    eq("個人" in rec["operator_display"], False, "画面に「個人」とは書かない（事実と違う）")
+    eq("住所" in rec["operator_display"], True, "理由（設置者の欄に住所）を書く")
+    eq(rec.get("operator_suspect"), "address", "列ずれの疑いの印が付く")
+    eq("operator_suspect_value" in rec, False, "記録用の値は残さない（氏名が前に付いていることがある）")
+    # 空白なしで氏名と住所がくっついた値でも、氏名がどこにも残らないこと
+    rec9 = {"source": "osaka-pref", "key": "demo-addr9", "store": "テスト店",
+            "operator": "架空太郎大阪市北区梅田一丁目1番1号", "address": "吹田市山田西二丁目1番30"}
+    merge.apply_privacy([rec9])
+    eq("架空太郎" in json.dumps(rec9, ensure_ascii=False), False, "氏名＋住所（空白なし）でも氏名が残らない")
+    disp = rec["operator_display"]
+    merge.apply_privacy([rec]); merge.apply_privacy([rec])
+    eq(rec["operator_display"], disp, "伏せたあとに何度通しても文言と印が消えない")
+    eq(rec.get("operator_suspect"), "address", "印も残る")
+    # 「氏名 住所」が1つの欄に入っているものは先頭が住所ではないので拾わず、従来どおり「個人」。氏名はどこにも残らない
+    rec2 = {"source": "hirakata-city", "key": "demo-addr2", "store": "テスト店",
+            "operator": "架空　太郎　枚方市大垣内町2丁目1番20号", "address": "枚方市大垣内町2丁目1番20号"}
+    merge.apply_privacy([rec2])
+    eq(rec2.get("operator_suspect"), None, "氏名＋住所は住所の形として拾わない")
+    eq(rec2["operator_display"], "個人", "氏名＋住所は「個人」")
+    eq("架空" in json.dumps(rec2, ensure_ascii=False), False, "氏名がどの欄にも残らない")
+    # 屋号・姓に数字＋番が入るもの（先頭が住所ではない）
+    for nm in ("一番館", "二丁目食堂", "一番ヶ瀬架空"):
+        rec3 = {"source": "x", "key": "k", "store": "s", "operator": nm, "address": "大阪市北区梅田1-1-1"}
+        merge.apply_privacy([rec3])
+        eq(rec3.get("operator_suspect"), None, f"{nm} は住所の形ではない")
+    # 漢数字の地番は丸められないので、記録用の値を残さない
+    rec4 = {"source": "x", "key": "k4", "store": "s", "operator": "神戸市中央区加納町三番一号", "address": "神戸市中央区加納町三番一号"}
+    merge.apply_privacy([rec4])
+    eq(rec4.get("operator_suspect"), "address", "漢数字の地番も住所の形として拾う")
+    eq("operator_suspect_value" in rec4, False, "記録用の値は残さない")
+
+
+def test_teisei_and_about_pages():
+    """7節：訂正履歴のページがあり about から辿れる。8節：「やらないと決めたこと」が about にある。"""
+    about = os.path.join(HERE, "about.html")
+    teisei = os.path.join(HERE, "teisei.html")
+    if not (os.path.exists(about) and os.path.exists(teisei)):
+        print("about.html / teisei.html がまだ無い（ページを作ったあとに見る）")
+        return
+    a = open(about, encoding="utf-8").read()
+    t = open(teisei, encoding="utf-8").read()
+    eq("teisei.html" in a, True, "about から訂正履歴に辿れる")
+    eq("やらないと決めたこと" in a, True, "about に「やらないと決めたこと」がある")
+    eq(t.count("<tr>") >= 2, True, "訂正履歴に1件以上ある")
+    eq("依頼フォーム" in a.split("連絡先")[1][:200] if "連絡先" in a else False, True, "連絡先はフォームが先")
+
+
+def test_excel_fetched_on_is_download_day():
+    ALL = os.path.join(HERE, "data", "all.json")
+    """3.5：Excel から取り出した記録の取得日は、ダウンロードした日（自治体の一覧の日付ではない）。"""
+    if not os.path.exists(ALL):
+        return
+    with open(ALL, encoding="utf-8") as f:
+        recs = json.load(f)
+    bad = [r for r in recs if r.get("source") == "osaka-city" and r.get("asof")
+           and r.get("fetched_on") and r["fetched_on"] < r["asof"]]
+    eq(len(bad), 0, f"大阪市の取得日が一覧の日付より前になっている {len(bad)} 件")
+    same = [r for r in recs if r.get("source") == "osaka-city" and r.get("asof") and r.get("fetched_on") == r["asof"]]
+    if same:
+        # データの質の話で privacy の見張りではない。止めるとその日の取得と公開が丸ごと飛ぶ
+        print(f"注意: 大阪市の取得日が一覧の日付そのものの記録が {len(same)} 件。"
+              "data/files/fetched.json にその Excel の行があるか見る（3.5）")
+
+
 def main():
-    for t in (test_is_corp, test_names, test_addr, test_small_numbers,
-              test_all_json, test_generated_pages, test_public_urls,
-              test_late_name_is_still_redacted, test_every_record_has_source,
-              test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages,
-              test_fetch_etiquette, test_place_names, test_parse_keeps_unknown_columns,
-              test_addr_normalize, test_jis_rows, test_index_json):
+    # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
+    tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
+    print(f"検査 {len(tests)} 本")
+    for t in tests:
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")

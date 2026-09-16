@@ -11,14 +11,16 @@
  "220725": {
   "date": "2022-07-01",
   "store": "デイリーカナート鶴山台",
-  "address": "和泉市鶴山台二丁目１番５号",
+  "address": "和泉市鶴山台二丁目",
   "content": "大規模小売店舗を設置する者の氏名",
+  "address_redacted": true,
   "how": "embedded"
  },
  "2211082": {
   "date": "2020-04-01",
-  "address": "大阪府和泉市いぶき野五丁目１番１１ 大阪市住之江区南港北一丁目 14 番 16 号 大阪府咲洲庁舎",
+  "address": "大阪府和泉市いぶき野五丁目",
   "content": "①大規模小売店舗を設置する者の氏名",
+  "address_redacted": true,
   "how": "embedded"
  },
  "2212211": {
@@ -29,8 +31,9 @@
  "24comboxdtodokede": {
   "date": "2024-10-28",
   "store": "COMBOX 光明池",
-  "address": "和泉市室堂町８２４番 ３４ 他",
+  "address": "和泉市室堂町",
   "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並び",
+  "address_redacted": true,
   "how": "embedded"
  },
  "6-1": {
@@ -44,8 +47,9 @@
  "bbbbbb": {
   "date": "2026-07-16",
   "store": "トリヴェール和泉Ｂブロック  大阪府商工労働部中小企業支援室商業振興課",
-  "address": "和泉市いぶき野五丁目１番１１ 他",
+  "address": "和泉市いぶき野五丁目",
   "content": "名 称：トリヴェール和泉Ｂブロック  大阪府商工労働部中小企業支援室商業振興課",
+  "address_redacted": true,
   "how": "embedded"
  },
  "bibamo-ru": {
@@ -54,8 +58,9 @@
  "combox": {
   "date": "2025-04-01",
   "store": "ＣＯＭＢＯＸ光明池 大阪府咲洲庁舎２５階",
-  "address": "和泉市室堂町８２４番３４ 和泉市 環境産業部 産業振興 室 商工 他 来訪促進 担当",
+  "address": "和泉市室堂町",
   "content": "大阪府商工労働部中小企業支援室商業振興課",
+  "address_redacted": true,
   "how": "embedded"
  },
  "daiei1": {
@@ -66,21 +71,24 @@
  "daieizumiten": {
   "date": "2022-03-01",
   "store": "ダイエー和泉 店",
-  "address": "和泉市 ５９４－８５０１ 寺田町２丁目８７番１ 和泉市府中町二丁目 他 ７ 番 ５ 号",
+  "address": "和泉市",
   "content": "和泉市 環境産業部 産業振 興 室 商工 観光 担当",
+  "address_redacted": true,
   "how": "embedded"
  },
  "daiekoumyou": {
   "date": "2022-03-01",
-  "address": "和泉市室堂町８４１番地１ ( TEL ０７２５－９９－８１２３ ）",
+  "address": "和泉市室堂町８４１番地１ ( TEL ０７２５丁目",
   "content": "( １ ) 大規模小売店舗を設置する者の代表者の氏名",
+  "address_redacted": true,
   "how": "embedded"
  },
  "daitencombox": {
   "date": "2023-11-22",
   "store": "COMBOX 光明池",
-  "address": "和泉市室堂町８２４番地３４ 他",
+  "address": "和泉市室堂町",
   "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに",
+  "address_redacted": true,
   "how": "embedded"
  },
  "donki1-1": {
@@ -90,8 +98,9 @@
  "donki3": {
   "date": "2017-04-03",
   "store": "（仮称）ドン・キホーテ和泉中央店",
-  "address": "和泉市いぶき野 五 丁目 6 番 他",
+  "address": "和泉市いぶき野五丁目",
   "content": "②③ 平成 30 年 11 月 2 日",
+  "address_redacted": true,
   "how": "embedded"
  },
  "donnki": {
@@ -113,8 +122,9 @@
  "gaiyou2502": {
   "date": "2024-09-24",
   "store": "トリヴェール和泉 B ブロック",
-  "address": "和泉市いぶき野五丁目１ 番 １１ 他",
+  "address": "和泉市いぶき野五丁目",
   "content": "( １ ) 大規模小売店舗を設置する者の代 表者 氏名",
+  "address_redacted": true,
   "how": "embedded"
  },
  "gaiyoujuuran": {
@@ -164,8 +174,9 @@
  "ion": {
   "date": "2026-07-16",
   "store": "イオン和泉府中店",
-  "address": "和泉市肥子町二丁目１０６０番外",
+  "address": "和泉市肥子町二丁目",
   "content": "名 称：イオン和泉府中店",
+  "address_redacted": true,
   "how": "embedded"
  },
  "ion1": {
@@ -176,15 +187,17 @@
  "ionizumifutyuu6jou1kou": {
   "date": "2024-04-01",
   "store": "イオン和泉府中店",
-  "address": "和泉市肥子町二丁目１０６０番 外",
+  "address": "和泉市肥子町二丁目",
   "content": "( １ ) 大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人",
+  "address_redacted": true,
   "how": "embedded"
  },
  "joshin": {
   "date": "2026-06-29",
   "store": "令和８年４月１日 代表者：令和７年６月２４日",
-  "address": "和泉市いぶき野三丁目１５番",
+  "address": "和泉市いぶき野三丁目",
   "content": "名 称：ジョーシン和泉中央店",
+  "address_redacted": true,
   "how": "embedded"
  },
  "joshinn": {
@@ -199,8 +212,9 @@
  "jyo-shin": {
   "date": "2018-11-09",
   "store": "ジョーシン和泉中央店",
-  "address": "和泉市いぶき野三丁目 15 所 番",
+  "address": "和泉市いぶき野三丁目",
   "content": "①大規模小売店舗の名称 平成 30 年 11 月 13 日 から 平成 31 年 3 月 13 日まで",
+  "address_redacted": true,
   "how": "embedded"
  },
  "kannonji": {
@@ -230,8 +244,9 @@
  "marunaka": {
   "date": "2018-02-01",
   "store": "山陽マルナカ 和泉店",
-  "address": "和泉市 寺田町二丁目 87 番 1 外",
+  "address": "和泉市寺田町二丁目",
   "content": "〒 594 - 8501 和泉市府中町二丁目 7 番 5 号（ TEL0725 - 99 - 8123 ）",
+  "address_redacted": true,
   "how": "embedded"
  },
  "matsugennkoumyouike": {
@@ -247,8 +262,9 @@
  "rarapotocosutoko2024": {
   "date": "2022-06-30",
   "store": "三井ショッピングパークららぽーと和泉",
-  "address": "大阪府和泉市あゆみ野四丁目４番１ほか",
+  "address": "大阪府和泉市あゆみ野四丁目",
   "content": "( １ ) 大規模小売店舗 の設置者の名称及び住所並びに法人にあっては 代表",
+  "address_redacted": true,
   "how": "embedded"
  },
  "todokede1": {
@@ -263,8 +279,9 @@
  "todokedegaiyou": {
   "date": "2025-03-01",
   "store": "イオン和泉府中店",
-  "address": "和泉市肥子町二丁目１０６０番 外",
+  "address": "和泉市肥子町二丁目",
   "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに",
+  "address_redacted": true,
   "how": "embedded"
  },
  "todokedejuuran": {
@@ -279,9 +296,10 @@
  },
  "toriveruBburoku2024": {
   "date": "2024-04-01",
-  "address": "和泉市いぶき野五丁目１ ( TEL ０７２５－９９－８１２３ (有)ラメール (有)ラメール ㈱ペリ",
+  "address": "和泉市いぶき野五丁目",
   "area": "33,243",
   "content": "武 大阪市西区新町1-27-9 大阪市西区新町1-27-9 和歌山市里174-1 和歌山市里174-1 114 114",
+  "address_redacted": true,
   "how": "embedded"
  },
  "zyo-sshin6-1": {

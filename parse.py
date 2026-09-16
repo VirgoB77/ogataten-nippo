@@ -76,15 +76,51 @@ def tables_with_context(page):
     return out
 
 
+def _span(attrs, name):
+    m = re.search(name + r'\s*=\s*["\']?(\d+)', attrs, re.I)
+    try:
+        return max(1, int(m.group(1))) if m else 1
+    except ValueError:
+        return 1
+
+
 def rows_of(table_html, base_url):
-    """表を「セルの文字列の並び」と「その行にあったリンク」に分ける。"""
+    """表を「セルの文字列の並び」と「その行にあったリンク」に分ける。
+
+    rowspan / colspan は展開して、どの行も同じ列位置に同じ意味の値が来るようにする
+    （共通仕様9節）。展開しないと、結合セルのある行だけ列がずれて、隣の列の値を
+    別の欄として読んでしまう。
+    """
     rows = []
+    pending = {}        # 列位置 → [文字列, 残り行数]。上の行から rowspan で下りてくるセル
     for tr in re.findall(r"<tr\b.*?</tr>", table_html, re.S | re.I):
         cells, links = [], []
-        for c in re.findall(r"<t[dh]\b.*?</t[dh]>", tr, re.S | re.I):
-            cells.append(text_of(c))
+        col = 0
+
+        def take_pending():
+            nonlocal col
+            while col in pending:
+                text, left = pending[col]
+                cells.append(text)
+                if left <= 1:
+                    del pending[col]
+                else:
+                    pending[col][1] = left - 1
+                col += 1
+
+        for m in re.finditer(r"<(t[dh])\b([^>]*)>.*?</t[dh]>", tr, re.S | re.I):
+            take_pending()
+            c = m.group(0)
+            text = text_of(c)
             for href in re.findall(r'href=["\']([^"\']+)["\']', c, re.I):
                 links.append(urllib.parse.urljoin(base_url, html.unescape(href)))
+            cs, rs = _span(m.group(2), "colspan"), _span(m.group(2), "rowspan")
+            for _ in range(cs):
+                cells.append(text)
+                if rs > 1:
+                    pending[col] = [text, rs - 1]
+                col += 1
+        take_pending()
         if any(cells):
             rows.append((cells, links))
     return rows
@@ -311,7 +347,10 @@ HTML_COLS = [
     ("kind_col",    r"^(区分|届出の種類|届出書類名|届出区分|届出種別)$"),   # 届出種別: 兵庫県2024年の表
     ("date",        r"^(届出年月日|届出日|受理日)$"),
     ("store",       r"^(店舗名称|店舗の名称|届出の名称|大規模小売店舗の名称|建物名称|名称)"),
-    ("address",     r"^(店舗の所在地|所在地|所在)$"),                 # 所在: 兵庫県2024年の表（市名だけ）
+    # 所在: 兵庫県2024年の表（市名だけ）。「所在地（地番）」（八尾市 485行）と
+    # 「店舗所在地」（泉南市 10行）も受ける。受けないと住所が extra に生で残り、
+    # 伏せ処理の外に出る（審査で見つかった）。norm_head が括弧を落とすので「所在地地番」
+    ("address",     r"^(店舗の?所在地|所在地|所在)(地番|住居表示|地番又は住居表示)?$"),
     ("operator",    r"^(設置者|設置する者|建物設置者|設置者名|旧設置者)$"),
     ("new_operator", r"^新設置者$"),
     ("event_on",    r"^(新設日|変更日|廃止日|承継日|開店日|新設する日)$"),
@@ -404,7 +443,11 @@ def extract_generic(page, base_url, how, hint=""):
             continue
         # 対応づけられなかった列。値は extra に残し、列名を書き留める
         header = rows[0][0]
-        unknown_cols = [i for i in range(len(header)) if i not in idx.values() and norm_head(header[i])]
+        # colspan を展開すると同じ見出しが2列に並ぶ（神戸市の「届出年月日」）。対応づけた列と
+        # 同じ見出しの列は「知らない列」ではないので、extra には入れない
+        mapped_heads = {norm_head(header[j]) for j in idx.values() if j < len(header)}
+        unknown_cols = [i for i in range(len(header))
+                        if i not in idx.values() and norm_head(header[i]) and norm_head(header[i]) not in mapped_heads]
         # 見出しに条文が無く、行にも区分が無いときだけ、見出しの言葉から推定する
         heading_article = article or ("" if "kind_col" in idx else article_in(heading))
 
@@ -445,6 +488,11 @@ def extract_generic(page, base_url, how, hint=""):
                 "note": cell("note"),
                 "docs": [u for u in links if re.search(r"\.(pdf|xlsx?|docx?)$", u, re.I)],
             }
+            # 結合セル（colspan）で1行を1セルにした注記の行は、全列に同じ文字が並ぶ。
+            # 届出として読むと、店名も所在地も注記の文になった記録が1件できる
+            if len(set(cells)) == 1 and len(cells) > 1:
+                note_unknown("全列が同じ値の行（注記とみなして飛ばした）", heading[:40], cells[0][:60])
+                continue
             extra = {header[i]: cells[i] for i in unknown_cols if i < len(cells) and cells[i].strip()}
             if extra:
                 rec["extra"] = extra

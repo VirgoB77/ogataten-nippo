@@ -120,6 +120,8 @@ def parse_osaka_city(path):
 
         rec = {
             "source": "osaka-city",
+            "file": os.path.basename(path),          # 取得日（fetched_on）はこのファイルをダウンロードした日
+            "asof": asof_from_name(path),            # 一覧そのものの日付（ファイル名の日付。取得日ではない）
             "ref": ref,                              # 整理番号（大阪市がふった番号）
             "store_no": g(r, "店舗番号"),
             "article": article,
