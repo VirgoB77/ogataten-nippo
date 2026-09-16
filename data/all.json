@@ -370,7 +370,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -450,7 +450,7 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第5条第1項",
@@ -491,7 +491,7 @@
   "ward": "",
   "area": "小野市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -531,7 +531,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第5条第1項",
@@ -574,7 +574,7 @@
   "area": "加古川市",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -612,7 +612,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -653,7 +653,7 @@
   "area": "姫路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -832,6 +832,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "bf0ac7727bd9"
   ],
@@ -881,7 +887,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -922,7 +928,7 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -962,7 +968,7 @@
   "ward": "",
   "area": "神戸市",
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1004,6 +1010,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "6c6f3d88339d"
   ],
@@ -1014,7 +1026,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -1053,7 +1065,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1129,7 +1141,7 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1168,7 +1180,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第2項",
@@ -1207,7 +1219,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "中規模",
@@ -1326,7 +1338,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -1503,7 +1515,7 @@
   "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1544,7 +1556,7 @@
   "ward": "",
   "area": "朝来市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1586,7 +1598,7 @@
   "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1625,6 +1637,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "c6ea227bbeaf"
   ],
@@ -1634,7 +1652,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -1674,7 +1692,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -1827,7 +1845,7 @@
   "area": "三田市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1868,7 +1886,7 @@
   "area": "西宮市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1910,6 +1928,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "97caaabd43ff"
   ],
@@ -1920,7 +1944,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2077,7 +2101,7 @@
   "area": "神戸市西区",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -2119,7 +2143,7 @@
   "area": "淡路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -2160,7 +2184,7 @@
   "ward": "",
   "area": "三木市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -2236,7 +2260,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -2277,7 +2301,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第11条第3項",
@@ -2452,6 +2476,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "81b6367bb8bc"
   ],
@@ -2462,7 +2492,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2537,6 +2567,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "395455918067"
   ],
@@ -2547,7 +2583,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2584,6 +2620,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "7f0d1f764b78"
   ],
@@ -2594,7 +2636,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2673,6 +2715,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "f32e8933b71f"
   ],
@@ -2761,6 +2809,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "4fef8e75323c"
   ],
@@ -3047,7 +3101,7 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -3088,7 +3142,7 @@
   "ward": "",
   "area": "加古郡播磨町",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -3131,6 +3185,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-6-5.xlsx"
+  },
   "merged_keys": [
    "11cdfa019ac1",
    "aded198e5b2c"
@@ -3261,7 +3322,7 @@
   "area": "三木市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -3301,7 +3362,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -3342,7 +3403,7 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -3969,7 +4030,7 @@
   "area": "姫路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -4016,6 +4077,12 @@
    "osaka-pref",
    "sennan-city"
   ],
+  "seen_by": {
+   "sennan-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-5-1.xlsx"
+  },
   "merged_keys": [
    "1de432e7d95f"
   ],
@@ -4074,6 +4141,12 @@
    "osaka-pref",
    "sennan-city"
   ],
+  "seen_by": {
+   "sennan-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-5-1.xlsx"
+  },
   "merged_keys": [
    "770c9686ccdd"
   ],
@@ -4176,7 +4249,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4214,7 +4287,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第11条第3項",
@@ -4341,7 +4414,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4379,7 +4452,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4419,7 +4492,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第5条第1項",
@@ -4458,7 +4531,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4498,7 +4571,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4539,7 +4612,7 @@
   "area": "西宮市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4577,7 +4650,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4618,7 +4691,7 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -4758,6 +4831,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "2e511edbeb53"
   ],
@@ -4810,7 +4889,7 @@
   "ward": "",
   "area": "川辺郡猪名川町",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4851,7 +4930,7 @@
   "ward": "",
   "area": "宝塚市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第2項",
@@ -4891,7 +4970,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4929,7 +5008,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4967,7 +5046,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -5186,6 +5265,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "b32a683132a8"
   ],
@@ -5233,6 +5316,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "deb5ea1249c0"
   ],
@@ -5280,6 +5367,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "45c662113af0"
   ],
@@ -5330,6 +5421,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "6ea1554b02d6",
    "fcc00cb1d8d3"
@@ -5342,7 +5440,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -5420,7 +5518,7 @@
   "area": "洲本市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5460,7 +5558,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5501,7 +5599,7 @@
   "area": "加古郡稲美町",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5541,7 +5639,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -5819,7 +5917,7 @@
   "ward": "",
   "area": "高砂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5895,7 +5993,7 @@
   "area": "宝塚市",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第2項",
@@ -5933,7 +6031,7 @@
   "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -5972,6 +6070,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "2aa4fe520713"
   ],
@@ -6024,7 +6128,7 @@
   "area": "姫路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -6113,7 +6217,7 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -6154,7 +6258,7 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -6196,6 +6300,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-5-1.xlsx"
+  },
   "merged_keys": [
    "03b192f26899"
   ],
@@ -6460,6 +6570,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "14edcfa1b53e",
    "5c53600d9260"
@@ -6472,7 +6589,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -6691,6 +6808,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "9b65fa33accf"
   ],
@@ -6701,7 +6824,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -6785,6 +6908,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "2be9f5e2dd7e"
   ],
@@ -6795,7 +6924,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -6871,6 +7000,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "86d5d977b32b"
   ],
@@ -6880,7 +7015,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -6924,6 +7059,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "2cc5ba8a40ad"
   ],
@@ -7790,6 +7931,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "e2840467c25c"
   ],
@@ -7800,7 +7947,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -7948,6 +8095,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "e1bb7d488362"
   ],
@@ -8040,6 +8193,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "7288c67a77da"
   ],
@@ -8361,6 +8520,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "581f5f3c871d"
   ],
@@ -8939,6 +9104,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "e28850ebad74"
   ],
@@ -8949,7 +9120,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -10109,7 +10280,7 @@
   "kind": "変更",
   "notified_on": "2025-12-23",
   "notified_raw": "令和7年12月23日",
-  "store": "ケーズデンキ松原天美店 松原市天美東4丁目297番1ほか",
+  "store": "ケーズデンキ松原天美店 松原市天美東4丁目",
   "address": "松 原 市 天 美 北 一 丁 目",
   "operator": "",
   "new_operator": "",
@@ -10146,7 +10317,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -10281,6 +10452,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "3a06b287c521",
    "8c99771fa838"
@@ -10293,7 +10471,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -10403,6 +10581,9 @@
    "hyogo-bukai",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "87b4bd545407"
   ],
@@ -10453,6 +10634,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "181facc79fc5"
   ],
@@ -10463,7 +10650,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -10810,6 +10997,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "734340500280"
   ],
@@ -10819,7 +11012,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -11294,6 +11487,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "2a98e2f49d9b"
   ],
@@ -11770,6 +11966,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "4827a1644d93"
   ],
@@ -12014,6 +12213,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "be354c8e44a7"
   ],
@@ -12063,6 +12265,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "9f2ab6da3ecc",
    "a16c679fcc32"
@@ -12074,7 +12279,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251216t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2026-03-16"
   }
@@ -12146,6 +12351,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "37935066311e"
   ],
@@ -12394,6 +12602,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "8c290408e8fb"
   ],
@@ -12404,7 +12618,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -12447,6 +12661,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-2.xlsx"
+  },
   "merged_keys": [
    "43936c46580d"
   ],
@@ -12496,6 +12716,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "96a278313030"
   ],
@@ -12506,7 +12732,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -12538,6 +12764,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "2c382b22e893"
   ],
@@ -12660,6 +12889,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "54956a06a6f4",
    "54ea34757f13"
@@ -12672,7 +12908,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -13367,6 +13603,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "32698a150008"
   ],
@@ -13377,7 +13619,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -14151,6 +14393,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "59f577da8810"
   ],
@@ -15692,6 +15940,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "fd2752aa79a9"
   ],
@@ -16235,6 +16489,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "f15ffb53b074"
   ],
@@ -16245,7 +16505,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -16291,7 +16551,7 @@
   "kind": "変更",
   "notified_on": "2025-08-26",
   "notified_raw": "令和7年8月26日",
-  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目350番1ほか",
+  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -16325,7 +16585,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -16513,6 +16773,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "13b73ac75d7c"
   ],
@@ -16523,7 +16789,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -16790,6 +17056,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "0084a327e551"
   ],
@@ -16800,7 +17072,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -16977,6 +17249,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "85f8069eccd3"
   ],
@@ -17309,6 +17587,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "ba4df7c1fe12"
   ],
@@ -17493,6 +17777,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "7ae286667c90"
   ],
@@ -17709,6 +17996,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "7530e80c8a64"
   ],
@@ -18022,6 +18315,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "31887164dee9",
    "af39c6b0bacb"
@@ -18033,7 +18329,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250711t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-09-16"
   }
@@ -18083,6 +18379,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "9e56e34d203f"
   ],
@@ -18093,7 +18395,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -18579,6 +18881,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "4f39d30fe028"
   ],
@@ -18676,6 +18981,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "d39c9228fcf1"
   ],
@@ -18686,7 +18997,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -18822,6 +19133,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "008a0336069b"
   ],
@@ -18865,6 +19179,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "b8991063f296"
   ],
@@ -18948,6 +19265,12 @@
    "kaizuka-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kaizuka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "8c772740333b"
   ],
@@ -18958,7 +19281,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kaizuka-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -18998,6 +19321,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "3312ccae09c1"
   ],
@@ -19341,6 +19670,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "2f99d4d23527"
   ],
@@ -19351,7 +19681,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16"
   }
  },
@@ -19452,6 +19782,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "ef686715b03d"
   ],
@@ -19540,6 +19873,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "66170154cdfa",
    "bc74859633b9"
@@ -19551,7 +19887,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-09-16"
   }
@@ -19632,6 +19968,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "cc855dffc819"
   ],
@@ -19760,6 +20099,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "bfb2e34e70ae"
   ],
@@ -19770,7 +20115,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -20100,6 +20445,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "576f25c3cabd",
    "592c6b7bc386"
@@ -20111,7 +20459,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250613t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-09-16"
   }
@@ -20196,6 +20544,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "201a049b9597"
   ],
@@ -20206,7 +20560,7 @@
   "fetched_on": "2026-09-11",
   "fetched_by": {
    "osaka-pref": "2026-09-11",
-   "toyonaka-city": "2026-09-15"
+   "toyonaka-city": "2026-09-16"
   }
  },
  {
@@ -20246,6 +20600,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "c08f1ac26f2e"
   ],
@@ -20255,7 +20615,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -20356,6 +20716,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "18f7811fc89f"
   ],
@@ -20523,6 +20886,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "70c7670f8c0b"
   ],
@@ -20565,6 +20934,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "d710a00fb602"
   ],
@@ -20608,6 +20980,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "01c80f473dc3"
   ],
@@ -20741,7 +21116,7 @@
   "kind": "新設",
   "notified_on": "2025-04-30",
   "notified_raw": "令和7年4月30日",
-  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目350番1ほか",
+  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目",
   "address": "松 原 市 天 美 北 一 丁 目",
   "operator": "",
   "new_operator": "",
@@ -20778,7 +21153,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -20913,6 +21288,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "611c188107e3",
    "8f1a74f6735a"
@@ -20924,7 +21302,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250516t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -21179,6 +21557,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "985b9353c3fe"
   ],
@@ -21276,6 +21657,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "cd36e75978eb"
   ],
@@ -21587,6 +21971,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "06736903ee03"
   ],
@@ -21630,6 +22017,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "369ea5b7d726"
   ],
@@ -21673,6 +22063,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "c8c79edcabac"
   ],
@@ -21716,6 +22109,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "d8effce2f806"
   ],
@@ -21759,6 +22155,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "1c92fa27ea04"
   ],
@@ -22075,6 +22474,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "641d8af3aaca"
   ],
@@ -22157,6 +22559,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "03b586fdd116"
   ],
@@ -22206,6 +22611,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "10a9b8bc9a34",
    "bf10a12f6350"
@@ -22218,7 +22630,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -22358,6 +22770,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "fca798714aaf"
   ],
@@ -22445,6 +22860,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "0350599ac91e",
    "38103e7f159a"
@@ -22456,7 +22874,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250401t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -22581,6 +22999,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "c50cf51d48a5"
   ],
@@ -22624,6 +23045,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "72f83c657cbf"
   ],
@@ -22752,6 +23176,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "993349f668c4"
   ],
@@ -22796,6 +23223,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "e75cbf242088"
   ],
@@ -22934,6 +23364,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "43b298bee680"
   ],
@@ -23184,6 +23617,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "53493dec46bb",
    "6aeec5000f20"
@@ -23195,7 +23631,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250307t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -23273,6 +23709,12 @@
    "kaizuka-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kaizuka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "d5a9a0af4086"
   ],
@@ -23283,7 +23725,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kaizuka-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -23322,6 +23764,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "7395d643c4d5",
    "d5d45b0dcbcd"
@@ -23333,7 +23778,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250304t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -23375,6 +23820,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "03defff7c57a"
   ],
@@ -23798,6 +24249,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "9d4503905d0a"
   ],
@@ -23842,6 +24296,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "4bb9b2e22205"
   ],
@@ -23886,6 +24343,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "81a7f76a8881"
   ],
@@ -23945,6 +24405,12 @@
    "minoh-2shi2cho",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "e6a15e8bb26e"
   ],
@@ -24129,6 +24595,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "8e07d85c4264"
   ],
@@ -24139,7 +24611,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -24172,6 +24644,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "e89da66b4a00"
   ],
@@ -24224,6 +24699,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "7dc4429d8774"
   ],
@@ -24377,6 +24858,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "0fc3aaf3658b",
    "613e76acd9c6"
@@ -24388,7 +24872,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250204t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-04-24"
   }
@@ -24423,6 +24907,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "c87f19ce05f5"
   ],
@@ -25282,6 +25769,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "dd86b4dd617a"
   ],
@@ -25328,6 +25818,9 @@
    "hyogo-bukai",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "0dcfd5a3f5d3"
   ],
@@ -25432,6 +25925,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "ff3dc0f22b2f"
   ],
@@ -25767,6 +26263,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "c94f9918af77"
   ],
@@ -25967,6 +26466,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "670aa97e76ed",
    "9058849efb97"
@@ -25978,7 +26480,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241210t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-01-12"
   }
@@ -26142,6 +26644,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "3b3aa29ddc4e"
   ],
@@ -27253,6 +27758,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "daefd60a227d"
   ],
@@ -27981,6 +28489,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "fccc8c8b394a"
   ],
@@ -28037,6 +28548,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703_6-2.xlsx"
+  },
   "merged_keys": [
    "751a14aec8fe"
   ],
@@ -28047,7 +28564,7 @@
   "fetched_on": "2026-09-11",
   "fetched_by": {
    "osaka-pref": "2026-09-11",
-   "toyonaka-city": "2026-09-15"
+   "toyonaka-city": "2026-09-16"
   }
  },
  {
@@ -29275,7 +29792,7 @@
   "kind": "新設",
   "notified_on": "2024-09-09",
   "notified_raw": "令和6年9月9日",
-  "store": "（仮称）万代松原田井城店 松原市田井城六丁目322番1ほか",
+  "store": "（仮称）万代松原田井城店 松原市田井城六丁目",
   "address": "松原市田井城六丁目",
   "operator": "",
   "new_operator": "",
@@ -29312,7 +29829,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -29458,6 +29975,12 @@
    "kaizuka-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kaizuka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703_6-2.xlsx"
+  },
   "merged_keys": [
    "11fa1e0d0caa"
   ],
@@ -29508,6 +30031,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "abd49a6972cb"
   ],
@@ -29909,6 +30438,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "2e46a90df43e"
   ],
@@ -30018,6 +30553,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "f19716c0b057"
   ],
@@ -30028,7 +30569,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -30727,6 +31268,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "52e922a10efc",
    "93187831ab4d"
@@ -30738,7 +31282,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240913t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-01-12"
   }
@@ -30979,7 +31523,7 @@
   "kind": "変更",
   "notified_on": "2024-08-16",
   "notified_raw": "令和6年8月16日",
-  "store": "近商ストア天美店 松原市天美南三丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南三丁目",
   "address": "松原市天美南三丁目",
   "operator": "",
   "new_operator": "",
@@ -31016,7 +31560,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -31233,6 +31777,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "b54bc5e53050"
   ],
@@ -31243,7 +31793,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -31613,6 +32163,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-12-08"
+  },
   "merged_keys": [
    "e22fc79f36cd",
    "fd4ec8662250"
@@ -31624,7 +32177,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240806t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-12-08"
   }
@@ -31765,6 +32318,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "f8997d99ddf1"
   ],
@@ -31775,7 +32334,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -31997,6 +32556,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "ecf1e24889d8"
   ],
@@ -32417,6 +32982,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "e3582c185bbb"
   ],
@@ -32555,6 +33126,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-12-08"
+  },
   "merged_keys": [
    "857ef48e31d2",
    "f9fd9d0217b6"
@@ -32566,7 +33140,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240730t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-12-08"
   }
@@ -32604,6 +33178,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "ac2d93d3834f"
   ],
@@ -32821,6 +33398,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "80c145ed3730",
    "9fa1ec639345"
@@ -32833,7 +33417,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32871,6 +33455,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "0223db4424a8",
    "7696bedcf41a"
@@ -32883,7 +33474,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32921,6 +33512,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "732004b072e7",
    "e4f9d5ce90d0"
@@ -32933,7 +33531,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32971,6 +33569,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "92c7e278afe6",
    "cdaff545fb40"
@@ -32983,7 +33588,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -33024,6 +33629,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "491e99aa9185"
   ],
@@ -33152,6 +33763,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "c1683b37ced3",
    "da8355580195"
@@ -33163,7 +33777,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240709t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-09-07"
   }
@@ -34725,6 +35339,9 @@
    "hyogo-bukai",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "913bf66f9a5a"
   ],
@@ -34833,6 +35450,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "1c7dc4e5d016",
    "a9f5df63772e"
@@ -34844,7 +35464,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240618t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-09-07"
   }
@@ -34883,6 +35503,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "ef6e20a5375c"
   ],
@@ -35024,6 +35647,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "12c40beadd93"
   ],
@@ -35080,6 +35706,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "4a5157974d9c"
   ],
@@ -35090,7 +35722,7 @@
   "fetched_on": "2026-09-11",
   "fetched_by": {
    "osaka-pref": "2026-09-11",
-   "toyonaka-city": "2026-09-15"
+   "toyonaka-city": "2026-09-16"
   }
  },
  {
@@ -35753,6 +36385,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "f247b8f86e3f"
   ],
@@ -35958,6 +36593,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "36208332544b"
   ],
@@ -36009,6 +36647,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "7a6756b5c797"
   ],
@@ -36018,7 +36662,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -36412,6 +37056,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703_6-2.xlsx"
+  },
   "merged_keys": [
    "73f359129482"
   ],
@@ -36594,6 +37244,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "c6d4f833aae0"
   ],
@@ -36604,7 +37255,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240423t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -36889,7 +37540,7 @@
   "kind": "変更",
   "notified_on": "2024-03-25",
   "notified_raw": "令和6年3月25日",
-  "store": "イオンタウン松原 松原市新堂四丁目1154番ほか",
+  "store": "イオンタウン松原 松原市新堂四丁目",
   "address": "松原市新堂四丁目",
   "operator": "",
   "new_operator": "",
@@ -36928,7 +37579,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -37499,6 +38150,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "7eefb3925e4f"
   ],
@@ -37509,7 +38161,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240315t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -37518,7 +38170,7 @@
   "kind": "新設",
   "notified_on": "2024-02-28",
   "notified_raw": "令和6年2月28日",
-  "store": "（仮称）バロー松原別所店 松原市別所一丁目79番3ほか",
+  "store": "（仮称）バロー松原別所店 松原市別所一丁目",
   "address": "松原市別所一丁目",
   "operator": "",
   "new_operator": "",
@@ -37557,14 +38209,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2024-02-28",
   "notified_raw": "令和6年2月28日",
-  "store": "イズミヤショッピングセンター松原 松原市上田六丁目27番3ほか",
+  "store": "イズミヤショッピングセンター松原 松原市上田六丁目",
   "address": "松原市上田六丁目",
   "operator": "",
   "new_operator": "",
@@ -37603,7 +38255,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -37903,6 +38555,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "35e143cf7455"
   ],
@@ -37913,7 +38566,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240226t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -38689,6 +39342,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "c18b76682ae6"
   ],
@@ -38699,7 +39353,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240123t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -38823,6 +39477,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "747a42712618"
   ],
@@ -38833,7 +39488,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240123t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -39540,6 +40195,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "fa1c4938e577"
   ],
@@ -39550,7 +40206,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20231128t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -39587,6 +40243,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "8334a5667d42"
   ],
@@ -39597,7 +40254,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20231128t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -39884,7 +40541,7 @@
   "kind": "新設",
   "notified_on": "2023-11-01",
   "notified_raw": "令和5年11月1日",
-  "store": "近商ストア天美店 松原市天美南三丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南三丁目",
   "address": "松原市天美南三丁目",
   "operator": "",
   "new_operator": "",
@@ -39921,7 +40578,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -40810,6 +41467,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "3a95e59e3044"
   ],
@@ -42703,6 +43364,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "21bebefbe4be"
   ],
@@ -42713,7 +43375,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230905t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -42861,6 +43523,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "49c1f0c8e926"
   ],
@@ -42871,7 +43534,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230825t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -43565,6 +44228,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "991e81c60b93"
   ],
@@ -44243,6 +44910,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "89d72e276d26"
   ],
@@ -44253,7 +44921,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230707t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -45834,6 +46502,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "6c015a481b3f"
   ],
@@ -45844,7 +46513,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230414t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -47102,6 +47771,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "584290a1f40c"
   ],
@@ -47112,7 +47782,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230221t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -47150,6 +47820,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "738426b4a0a3"
   ],
@@ -51409,7 +52080,7 @@
   "kind": "新設",
   "notified_on": "2022-09-30",
   "notified_raw": "令和4年9月30日",
-  "store": "（仮称）イオンタウン松原新堂 松原市新堂四丁目25 外94筆、水路敷",
+  "store": "（仮称）イオンタウン松原新堂 松原市新堂四丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -51443,14 +52114,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2022-09-29",
   "notified_raw": "令和4年9月29日",
-  "store": "ケーズデンキ松原天美店 松原市天美東4丁目297番1ほか",
+  "store": "ケーズデンキ松原天美店 松原市天美東4丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -51484,7 +52155,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -52287,7 +52958,7 @@
   "kind": "変更",
   "notified_on": "2022-08-17",
   "notified_raw": "令和4年8月17日",
-  "store": "セブンパーク天美 松原市天美東3丁目500番地",
+  "store": "セブンパーク天美 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -52324,7 +52995,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -52684,7 +53355,7 @@
   "kind": "変更",
   "notified_on": "2022-07-26",
   "notified_raw": "令和4年7月26日",
-  "store": "イズミヤ松原店 松原市上田六丁目27番3ほか",
+  "store": "イズミヤ松原店 松原市上田六丁目",
   "address": "松原市上田六丁目",
   "operator": "",
   "new_operator": "",
@@ -52722,14 +53393,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第2項",
   "kind": "変更",
   "notified_on": "2022-07-26",
   "notified_raw": "令和4年7月26日",
-  "store": "イズミヤ松原店 松原市上田六丁目27番3ほか",
+  "store": "イズミヤ松原店 松原市上田六丁目",
   "address": "松原市上田六丁目",
   "operator": "",
   "new_operator": "",
@@ -52767,7 +53438,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -52885,7 +53556,7 @@
   "kind": "新設",
   "notified_on": "2022-07-21",
   "notified_raw": "令和4年7月21日",
-  "store": "松源熊取五門店 熊取町五門東2丁目7番17号",
+  "store": "松源熊取五門店 熊取町五門東2丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -53283,6 +53954,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "a54c3300e4ff"
   ],
@@ -53293,7 +53965,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20220726t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -54654,7 +55326,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -55411,7 +56083,7 @@
   "kind": "変更",
   "notified_on": "2022-04-28",
   "notified_raw": "令和4年4月28日",
-  "store": "近商ストア天美店 松原市天美南三丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南三丁目",
   "address": "松原市天美南三丁目",
   "operator": "",
   "new_operator": "",
@@ -55449,7 +56121,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -55829,7 +56501,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -58270,6 +58942,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "1631f4d52028"
   ],
@@ -58280,7 +58953,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20220118t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -59610,7 +60283,7 @@
   "kind": "変更",
   "notified_on": "2021-10-28",
   "notified_raw": "令和3年10月28日",
-  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目地内",
+  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -59648,14 +60321,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2021-10-28",
   "notified_raw": "令和3年10月28日",
-  "store": "セブンパーク天美 松原市天美東3丁目500番地",
+  "store": "セブンパーク天美 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -59694,7 +60367,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -64893,7 +65566,7 @@
   "kind": "変更",
   "notified_on": "2021-04-09",
   "notified_raw": "令和3年4月9日",
-  "store": "ココカラファイン河内松原駅北店・ダイソー河内松原上田店 上田二丁目409番1 ほか",
+  "store": "ココカラファイン河内松原駅北店・ダイソー河内松原上田店 上田二丁目",
   "address": "松原市上田二丁目",
   "operator": "",
   "new_operator": "",
@@ -64930,7 +65603,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -65082,6 +65755,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "92740f43d129"
   ],
@@ -65092,7 +65766,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/030427t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -65168,6 +65842,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "741c687209de"
   ],
@@ -65178,7 +65853,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/030420t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -68957,7 +69632,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第11条第3項",
@@ -69859,7 +70534,7 @@
   "kind": "新設",
   "notified_on": "2020-08-17",
   "notified_raw": "令和2年8月17日",
-  "store": "（仮称）ドラッグコスモス松原インター店 別所一丁目74番1 ほか",
+  "store": "（仮称）ドラッグコスモス松原インター店 別所一丁目",
   "address": "松原市別所一丁目",
   "operator": "",
   "new_operator": "",
@@ -69896,7 +70571,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -74062,6 +74737,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "500896531adb"
   ],
@@ -74072,7 +74748,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020529t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -74081,7 +74757,7 @@
   "kind": "変更",
   "notified_on": "2020-04-28",
   "notified_raw": "令和2年4月28日",
-  "store": "万代松原店 上田2丁目409番1ほか",
+  "store": "万代松原店 上田2丁目",
   "address": "松原市上田二丁目",
   "operator": "",
   "new_operator": "",
@@ -74118,7 +74794,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "",
@@ -74266,6 +74942,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "73118d7bb785"
   ],
@@ -74276,7 +74953,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020522t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -76176,7 +76853,7 @@
   "kind": "変更",
   "notified_on": "2020-03-09",
   "notified_raw": "令和2年3月9日",
-  "store": "万代松原店 上田2丁目409番1ほか",
+  "store": "万代松原店 上田2丁目",
   "address": "松原市上田二丁目",
   "operator": "",
   "new_operator": "",
@@ -76214,7 +76891,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -77922,7 +78599,7 @@
   "kind": "新設",
   "notified_on": "2019-12-16",
   "notified_raw": "令和元年12月16日",
-  "store": "（仮称）万代松原上田店 上田2丁目334番11の一部",
+  "store": "（仮称）万代松原上田店 上田2丁目",
   "address": "松原市上田２丁目",
   "operator": "",
   "new_operator": "",
@@ -77959,7 +78636,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -78667,7 +79344,7 @@
   "kind": "変更",
   "notified_on": "2019-11-15",
   "notified_raw": "令和元年11月15日",
-  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目地内",
+  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -78704,7 +79381,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -80408,6 +81085,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "db69b7e37c95"
   ],
@@ -80418,7 +81096,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/011008t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -81235,7 +81913,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -81522,7 +82200,7 @@
   "kind": "新設",
   "notified_on": "2019-07-29",
   "notified_raw": "令和元年7月29日",
-  "store": "（仮称）ケーズデンキ松原天美店 松原市天美東4丁目297番1ほか",
+  "store": "（仮称）ケーズデンキ松原天美店 松原市天美東4丁目",
   "address": "松原市天美東４丁目",
   "operator": "",
   "new_operator": "",
@@ -81559,7 +82237,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -83612,7 +84290,7 @@
   "kind": "新設",
   "notified_on": "2019-04-23",
   "notified_raw": "平成31年4月23日",
-  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目地内",
+  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -83649,7 +84327,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -85686,6 +86364,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "f9b6f83291ab"
   ],
@@ -85696,7 +86375,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/310122t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -86651,6 +87330,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "50f3ad54dd7b"
   ],
@@ -86661,7 +87341,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/301126t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -86736,6 +87416,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "31468dbec160"
   ],
@@ -86746,7 +87427,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/301120t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -87695,6 +88376,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "3c70f7b00806"
   ],
@@ -87705,7 +88387,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300928t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -87835,7 +88517,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -89758,6 +90440,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "de15bbe21492"
   ],
@@ -89768,7 +90451,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300522t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -89928,6 +90611,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "8e99d5767e2b"
   ],
@@ -89938,7 +90622,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300501t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -90617,6 +91301,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "d2022e2eaf2e"
   ],
@@ -90627,7 +91312,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300403t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -90769,7 +91454,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -90927,6 +91612,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "01bc7b2a2fc4"
   ],
@@ -90937,7 +91623,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300320t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -91088,6 +91774,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "4b045b591f1b"
   ],
@@ -91098,7 +91785,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300316t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -91320,6 +92007,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "475b62cbbde1"
   ],
@@ -91330,7 +92018,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300216t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -92604,6 +93292,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "1b1154c8c2a9"
   ],
@@ -92614,7 +93303,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291128t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -92795,6 +93484,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "04b1800645c7"
   ],
@@ -92805,7 +93495,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291117t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -92873,6 +93563,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "3a2fb722e346"
   ],
@@ -92883,7 +93574,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291031t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -95161,6 +95852,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "63d2a179730a"
   ],
@@ -95171,7 +95863,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290721t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -96675,7 +97367,7 @@
   "kind": "変更",
   "notified_on": "2017-05-02",
   "notified_raw": "平成29年5月2日",
-  "store": "ゆめニティまつばら 松原市上田3丁目6-1",
+  "store": "ゆめニティまつばら 松原市上田3丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -96709,7 +97401,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -97361,6 +98053,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "4f39b558c073"
   ],
@@ -97920,6 +98613,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "e81ac790d806"
   ],
@@ -98585,6 +99279,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "9c0d86c17209"
   ],
@@ -98595,7 +99290,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290328t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -98861,6 +99556,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "738bc7665b87"
   ],
@@ -98871,7 +99567,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290324t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -100246,6 +100942,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "b9f576d9814b"
   ],
@@ -101036,6 +101733,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0a3ec9af655f"
   ],
@@ -101046,7 +101744,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/281111t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -101510,6 +102208,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "dca63d70e4b8"
   ],
@@ -101520,7 +102219,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/281007t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -101759,6 +102458,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "969ca1b206c1"
   ],
@@ -101869,6 +102569,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "e78993f38a91"
   ],
@@ -102548,6 +103249,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "72c938d8c90d"
   ],
@@ -102558,7 +103260,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280715t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -102593,6 +103295,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "4c8a4581f1a2"
   ],
@@ -102603,7 +103306,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280701t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -103241,6 +103944,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "8ab1c2e24ded"
   ],
@@ -103251,7 +103955,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280614t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -103834,6 +104538,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "444bb6682889"
   ],
@@ -103844,7 +104549,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280426t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -104376,6 +105081,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "a2abc7ede515"
   ],
@@ -104386,7 +105092,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280325t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -104424,6 +105130,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "82d88151be91"
   ],
@@ -104556,6 +105263,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "a9d3a937761c"
   ],
@@ -104566,7 +105274,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280318t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -104673,6 +105381,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "7fbf53e80cab"
   ],
@@ -104683,7 +105392,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -104790,6 +105499,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "f3de1d451cbd"
   ],
@@ -104800,7 +105510,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -105074,6 +105784,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "ba4c043b381a"
   ],
@@ -105084,7 +105795,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280219t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -105529,6 +106240,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "c926d0108fd9"
   ],
@@ -105539,7 +106251,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280126t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -105653,6 +106365,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "9ca3aa95e821"
   ],
@@ -105663,7 +106376,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280209t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -107541,7 +108254,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -107884,6 +108597,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "658e808524d4"
   ],
@@ -107894,7 +108608,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271124t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -108185,6 +108899,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "bf9f2560f041"
   ],
@@ -108195,7 +108910,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271023t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -109272,7 +109987,7 @@
   "kind": "変更",
   "notified_on": "2015-07-31",
   "notified_raw": "平成27年7月31日",
-  "store": "ホームセンターコーナン松原市役所前店 松原市三宅西1丁目313番地1",
+  "store": "ホームセンターコーナン松原市役所前店 松原市三宅西1丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -109306,7 +110021,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -110175,7 +110890,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -110283,7 +110998,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -110453,7 +111168,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -113571,7 +114286,7 @@
   "kind": "新設",
   "notified_on": "2015-03-03",
   "notified_raw": "平成27年3月3日",
-  "store": "じゃんぼスクエア熊取 熊取町紺屋1丁目26番1号",
+  "store": "じゃんぼスクエア熊取 熊取町紺屋1丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -113711,7 +114426,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -113749,7 +114464,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第2項",
@@ -114477,7 +115192,7 @@
   "kind": "変更",
   "notified_on": "2015-01-29",
   "notified_raw": "平成27年1月29日",
-  "store": "（仮称）ドン・キホーテ松原店 松原市丹南3丁目237番地の4ほか",
+  "store": "（仮称）ドン・キホーテ松原店 松原市丹南3丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -114511,7 +115226,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -116370,6 +117085,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "9146e433536f"
   ],
@@ -116380,7 +117096,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261114t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -116420,7 +117136,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第2項",
@@ -116458,7 +117174,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -116964,7 +117680,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -120594,7 +121310,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -121797,7 +122513,7 @@
   "kind": "変更",
   "notified_on": "2014-02-21",
   "notified_raw": "平成26年2月21日",
-  "store": "近商ストア天美店 松原市天美南3丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南3丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -121832,7 +122548,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -129073,14 +129789,14 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
   "kind": "新設",
   "notified_on": "2012-12-26",
   "notified_raw": "平成24年12月26日",
-  "store": "（仮称）イズミヤ松原市役所前店 松原市田井城一丁目139-2",
+  "store": "（仮称）イズミヤ松原市役所前店 松原市田井城一丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -129114,7 +129830,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -130287,7 +131003,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -131535,7 +132251,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -131907,7 +132623,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -133632,6 +134348,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0009ca9ba197"
   ],
@@ -137149,6 +137866,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "shinsetsu_12-r5.xlsx"
+  },
   "merged_keys": [
    "d015bc52271a"
   ],
@@ -147537,6 +148260,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "802da58c49c6"
   ],
@@ -147547,7 +148271,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000171291.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -154499,6 +155223,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "db81bc682a63"
   ],
@@ -156564,6 +157289,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0c0383567ad5"
   ],
@@ -156574,7 +157300,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000125580.pdf",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-15",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-15"
   }
  },
@@ -158741,6 +159467,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0ed79df4b3d4"
   ],

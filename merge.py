@@ -180,6 +180,13 @@ def merge_across_sources(by_key):
             base["first_seen"] = min(fs) if fs else None
             base["last_seen"] = max(ls) if ls else None
         base["sources"] = sorted(srcs)
+        # 収集先ごとの「見た日」と「読んだファイル」。合流すると土台の last_seen しか
+        # 残らず、相手の出典の行に別の収集先のページを見た日が出ていた（3.5）
+        base["seen_by"] = {r["source"]: (r.get("last_seen") or r.get("first_seen") or "")
+                           for r in g if (r.get("last_seen") or r.get("first_seen"))}
+        fb = {r["source"]: r["file"] for r in g if r.get("file")}
+        if fb:
+            base["file_by"] = fb
         base["merged_keys"] = sorted(r["key"] for r in g if r["key"] != base["key"])
         out[base["key"]] = base
         merged_away += len(g) - 1
@@ -344,21 +351,35 @@ def stamp_sources(recs):
             r["source_url"] = m.get("url") or (docs[0] if docs else "")
 
         def when_for(sid):
-            """収集先 sid の取得日。合流した記録では、公報・部会は台帳から、巡回のページは見た日から。"""
-            w = ""
-            if sid == src and r.get("file"):
-                w = file_when.get(f"{sid}/{r['file']}", "") or ""
-            if not w and sid in DOC_SOURCES:
-                # 文書そのものを取った日。合流で運ばれた last_seen は縦覧ページの保存日であって、公報の取得日ではない
-                for u in docs:
-                    w = koho_when.get(u, "") or file_when.get(f"{sid}/{os.path.basename(u.split('?')[0])}", "") or ""
+            """収集先 sid の取得日。
+
+            引けるのは「その収集先の台帳に載っている日」だけにする。合流した記録では、
+            相手の文書や相手のページを見た日が分からないことがあり、そこで土台の
+            last_seen（別の収集先のページを見た日）を使うと、公報や部会の行に
+            関係のない日付が出る（審査で見つかった。部会の取得日が4通りに割れていた）。
+            分からないときは空にして「取得日の記録なし」と書く（3.5。黙って埋めない）。
+            """
+            fn = (r.get("file_by") or {}).get(sid) or (r.get("file") if sid == src else "")
+            if fn:
+                w = file_when.get(f"{sid}/{fn}", "") or ""
+                if w:
+                    return w
+            for u in docs:                       # その収集先の台帳で引けた文書だけ
+                base = os.path.basename(u.split("?")[0])
+                w = file_when.get(f"{sid}/{base}", "") or ""
+                if w:
+                    return w
+                if sid == "hyogo-koho":
+                    w = koho_when.get(u, "") or ""
                     if w:
-                        break
-            if not w and sid not in DOC_SOURCES:
-                w = r.get("last_seen") or r.get("first_seen") or ""
-            if not w and docs:
-                w = koho_when.get(docs[0], "") or file_when.get(f"{sid}/{os.path.basename(docs[0].split('?')[0])}", "") or ""
-            return w
+                        return w
+            if sid not in DOC_SOURCES:           # 毎日巡回している収集先。実際に見た日
+                seen = (r.get("seen_by") or {}).get(sid)
+                if seen:
+                    return seen
+                if sid == src:
+                    return r.get("last_seen") or r.get("first_seen") or ""
+            return ""
 
         when = when_for(src)
         r["fetched_on"] = when
@@ -389,6 +410,22 @@ ADDR_SHAPE = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|
 # 「氏名 住所」が1つの欄に入っているものは先頭が住所でないので拾わず、従来どおり「個人」に倒す
 ADDR_HEAD = re.compile(r"^(北海道|東京都|京都府|大阪府|[^\s]{2,3}県|[^\s]{1,6}(市|区|郡|町|村))")
 ADDR_IN_NAME_DISPLAY = "不詳（届出の一覧では設置者の欄に住所だけが書かれています）"   # 画面用。「個人」とは書かない
+# 店名の欄に「店名＋住所」を書いている収集先がある（松原市など）。設置者が個人で
+# 所在地を丸めるときは、店名の末尾にくっついた住所も丸める。そうしないと、
+# 所在地だけ町丁目にしても店名に地番が残る（3.1）。
+# 「雲井通6丁目地区…ビル」のような町名入りの店名を壊さないよう、
+# 空白で区切られた末尾が住所の形のときだけ直す
+_ADDR_TAIL = re.compile(r"[\s　]+((?:[^\s　]{1,6}[市区郡町村])?[^\s　]*"
+                        r"(?:[0-9０-９一二三四五六七八九十]+\s*(?:丁目|番地)|[0-9０-９]+\s*番\s*[0-9０-９])"
+                        r"[^\s　]*)(?:[\s　]*(?:ほか|他|外)[0-9０-９]*筆?[^\s　]*)?$")
+
+
+def round_store_tail(store):
+    """店名の末尾にくっついた住所を町丁目まで丸める。住所が無ければそのまま。"""
+    m = _ADDR_TAIL.search(store or "")
+    if not m:
+        return store
+    return store[:m.start(1)] + privacy.redact_addr(m.group(1), "individual")
 
 
 def looks_like_address(raw):
@@ -505,6 +542,8 @@ def apply_privacy(recs):
         r.pop("address_redacted", None)
         if round_it:
             r["address"] = privacy.redact_addr(r.get("address") or "", "individual")
+            if r.get("store"):
+                r["store"] = round_store_tail(r["store"])
             r["address_redacted"] = True
             hidden += 1
     return hidden
