@@ -20,8 +20,17 @@ import html
 import json
 import os
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import date
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import privacy   # 3.2 の小さい数の伏せ。件数を画面に出す所は全部ここを通す
+
+
+def n_(v):
+    """画面に出す件数。1〜2件は "1-2"、0 は "–"（共通仕様 3.2）。"""
+    return privacy.bucket_count(v) if v else "–"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ALL = os.path.join(HERE, "data", "all.json")
@@ -247,9 +256,9 @@ def detail_page(r, by_ref, src_meta):
     src_items = []
     for i in src_ids:
         m = src_meta.get(i, {})
-        got = r.get("last_seen") or r.get("first_seen") or ""
+        got = r.get("fetched_on") or r.get("last_seen") or r.get("first_seen") or ""
         first = r.get("first_seen") or ""
-        when = f"{got}取得" + (f"、最初に確認した日 {first}" if first and first != got else "")
+        when = (f"{got}取得" if got else "取得日の記録なし") + (f"、最初に確認した日 {first}" if first and first != got else "")
         if m.get("url"):
             line = (f'出典：「{esc(m["name"])}」（<a href="{esc(m["url"])}">{esc(m["url"])}</a>、{esc(when)}）を加工して作成')
         else:
@@ -301,16 +310,16 @@ def detail_page(r, by_ref, src_meta):
 def area_page(area, rows):
     rel = "../"
     kinds = Counter(r["kind"] for r in rows)
-    chips = "".join(f'<a href="{rel}k/{esc(k)}.html">{esc(k)}<b>{kinds[k]}</b></a>' for k in KIND_ORDER if kinds.get(k))
+    chips = "".join(f'<a href="{rel}k/{esc(k)}.html">{esc(k)}<b>{n_(kinds[k])}</b></a>' for k in KIND_ORDER if kinds.get(k))
     rows = sorted(rows, key=lambda r: r["notified_on"], reverse=True)
     latest = rows[0]["notified_on"] if rows else ""
     body = f"""
 <h1>{esc(area)}の大型店の届出</h1>
-<p class="lead">{len(rows)}件。最新の届出は{esc(jp_date(latest))}。</p>
+<p class="lead">{n_(len(rows))}件。最新の届出は{esc(jp_date(latest))}。</p>
 <div class="chips">{chips}</div>
 {table(rows, rel, show_area=False)}
 """
-    desc = f"{area}で公表された大規模小売店舗立地法の届出{len(rows)}件。新設{kinds.get('新設',0)}・廃止{kinds.get('廃止',0)}・変更{kinds.get('変更',0)}。"
+    desc = f"{area}で公表された大規模小売店舗立地法の届出{n_(len(rows))}件。新設{n_(kinds.get('新設',0))}・廃止{n_(kinds.get('廃止',0))}・変更{n_(kinds.get('変更',0))}。"
     return page(f"{area}の大型店の開店・閉店届出一覧", body, rel, desc, canonical=f"a/{slug(area)}.html")
 
 
@@ -318,14 +327,14 @@ def kind_page(kind, rows):
     rel = "../"
     rows = sorted(rows, key=lambda r: r["notified_on"], reverse=True)
     areas = Counter(r["area"] for r in rows)
-    chips = "".join(f'<a href="{rel}a/{esc(slug(a))}.html">{esc(a)}<b>{n}</b></a>' for a, n in areas.most_common(30))
+    chips = "".join(f'<a href="{rel}a/{esc(slug(a))}.html">{esc(a)}<b>{n_(n)}</b></a>' for a, n in areas.most_common(30))
     body = f"""
 <h1>{badge(kind)} {esc(kind)}の届出</h1>
-<p class="lead">{esc(KIND_DESC.get(kind,''))} 全{len(rows)}件。</p>
+<p class="lead">{esc(KIND_DESC.get(kind,''))} 全{n_(len(rows))}件。</p>
 <div class="chips">{chips}</div>
 {table(rows, rel)}
 """
-    return page(f"{kind}の届出一覧（大阪・兵庫の大型店）", body, rel, f"{KIND_DESC.get(kind,'')} 大阪府・兵庫県で{len(rows)}件。", canonical=f"k/{kind}.html")
+    return page(f"{kind}の届出一覧（大阪・兵庫の大型店）", body, rel, f"{KIND_DESC.get(kind,'')} 大阪府・兵庫県で{n_(len(rows))}件。", canonical=f"k/{kind}.html")
 
 
 def about_page(src_meta, today):
@@ -461,8 +470,11 @@ def koho_page(notices, src_meta, today):
         by_month[n["date"][:7]][k] += 1
 
     def row(label, c, href=None):
-        cells = "".join(f'<td class="n">{c.get(k, 0) or "–"}</td>' for k in KOHO_KINDS)
-        total = sum(c.get(k, 0) for k in ("新設", "変更", "廃止"))
+        cells = "".join(f'<td class="n">{n_(c.get(k, 0))}</td>' for k in KOHO_KINDS)
+        parts = [c.get(k, 0) for k in ("新設", "変更", "廃止")]
+        # 1〜2件のセルを伏せても、合計から他を引けば戻ってしまう（3.2「引き算で戻せる」）。
+        # 伏せたセルが1つでもある行は、合計も出さない
+        total = "–" if any(1 <= v <= 2 for v in parts) else str(sum(parts))
         lab = f'<a href="{href}">{esc(label)}</a>' if href else esc(label)
         return f"<tr><td>{lab}</td>{cells}<td class=\"n\"><b>{total}</b></td></tr>"
 
@@ -507,8 +519,8 @@ def index_page(all_recs, today):
                   key=lambda r: r.get("last_seen") or "", reverse=True)[:12]
     kinds = Counter(r["kind"] for r in all_recs)
     areas = Counter(r["area"] for r in all_recs)
-    area_chips = "".join(f'<a href="a/{esc(slug(a))}.html">{esc(a)}<b>{n}</b></a>' for a, n in sorted(areas.items(), key=lambda x: -x[1]))
-    kind_chips = "".join(f'<a href="k/{esc(k)}.html">{badge(k)} <b>{kinds[k]}</b></a>' for k in KIND_ORDER if kinds.get(k))
+    area_chips = "".join(f'<a href="a/{esc(slug(a))}.html">{esc(a)}<b>{n_(n)}</b></a>' for a, n in sorted(areas.items(), key=lambda x: -x[1]))
+    kind_chips = "".join(f'<a href="k/{esc(k)}.html">{badge(k)} <b>{n_(kinds[k])}</b></a>' for k in KIND_ORDER if kinds.get(k))
     yrs = [r["notified_on"][:4] for r in all_recs if r.get("notified_on") and r["kind"] != "中規模"]
     body = f"""
 <h1>大阪・兵庫の大型店、これからの開店とこれまでの閉店</h1>
