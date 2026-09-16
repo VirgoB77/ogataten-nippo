@@ -39,7 +39,7 @@ URL: https://github.com/VirgoB77/ogataten-nippo/blob/main/docs/kyotsu-shiyo.md
 
 | サイト | 内容 | リポジトリ | 公開 |
 |---|---|---|---|
-| 大型店日報 | 大規模小売店舗立地法の届出 | `VirgoB77/ogataten-nippo` | https://ogataten-nippo.com/ |
+| 大型店日報 | 大規模小売店舗立地法の届出 | `VirgoB77/ogataten-nippo`（公開用）＋ `VirgoB77/ogataten-nippo-raw`（収集用・private。9節） | https://ogataten-nippo.com/ |
 | 開発系（仮） | 開発許可・工事完了公告・環境影響評価・公有財産の売却など | 準備中 | 未 |
 | 競売統計（仮） | 裁判所の競売・国税や自治体の公売（集計のみ） | `VirgoB77/keibai-data` | 未 |
 | 街頭窃盗統計 | 町丁目ごとの街頭窃盗の認知件数（7手口） | 準備中 | `gaitou-settou.com`（取得ずみ・未公開） |
@@ -813,6 +813,32 @@ COOP コープ 生協
 
   迷ったら分ける。あとから1本にまとめることはできるが、
   1本にしたものを2本には戻せない。
+
+  **2本にするときの形**（大型店日報の `.github/workflows/shutten-recon.yml` が実物。
+  他のサイトも同じ形にする。名前は揃える）
+
+  - 走るのは**公開用の Actions**。public なので Actions の分は無料で、`GITHUB_TOKEN` で
+    自分に push できる。収集用は**置き場**で、workflow を持たない
+  - 公開用の Actions が **deploy key** で収集用を `_raw/` に checkout する。鍵は収集用の
+    Settings → Deploy keys（書き込み可）に公開鍵、公開用の Secret **`RAW_DEPLOY_KEY`** に秘密鍵。
+    PAT は期限で黙って止まるので使わない。deploy key は1本のリポジトリにしか効かない
+  - `data/raw` `data/files` `data/ocr` `data/wayback` を `ln -s` で**今までのパスにつなぐ**。
+    Python は置き場の違いを知らない。置き場を変えるためにコードを直さない
+  - 公開用への commit は**許可リスト**。公開してよいと決めたパスだけを列挙して `git add` する。
+    `git add data` のような丸ごとはしない。新しい出力を公開したいときは列挙に1つ足す
+    （足し忘れると「載らない」だけで済む。逆は済まない）
+  - しまう順番は **収集用 → 公開用**。取り直せないものを先にしまい、そこで失敗したら
+    公開用にも送らない
+  - ページを作ったあとに**もう一度テストを通してから** push する。最初のテストは
+    昨日の出力に対してなので、それだけだと今日の伏せ忘れが翌朝まで公開される
+  - 走らせた記録（`data/*.md`）は生の値を含みうるので、収集用の `data/reports/` に置く
+  - 鍵が無ければ（Secret が空なら）1本のときと同じに動く。移行の前後でコードは変えない
+  - 収集用が 2GB を超えそうになったら都道府県ごとに分ける（`-raw-<pref>`）。
+    公開用は checkout を1本足すだけで、URL も木も変わらない
+  - 一度でも生データを public に commit していたら、そのリポジトリを**名前ごと private に
+    して収集用にし**、公開用は履歴ゼロで同じ名前に作り直す。同じ public リポジトリの中で
+    履歴を書き換える手（filter-repo・orphan の force-push）は採らない。PR の参照
+    （`refs/pull/*`）と PR の題名・本文は force-push でも消えず、そこから旧コミットに届く
 
 - **生データを公開してよい場合でも、そこから氏名で引ける索引やページを作らない。**
   公報の全文には、法令に基づいて行政が公示した氏名が入っている

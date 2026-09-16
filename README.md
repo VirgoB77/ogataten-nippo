@@ -43,6 +43,29 @@
 `data/raw/` に保存するので、**git の履歴がそのまま「いつ何が変わったか」の記録になる**。
 差分を調べるしくみを自分で書かなくてよい。
 
+### 2本のリポジトリ（生データの置き場）
+
+生データ（取ってきたページ・Excel・PDF・OCR の結果・台帳）は、そのまま公開できるとは
+限らないので、**private の収集用リポジトリ `VirgoB77/ogataten-nippo-raw`（金庫）** に置く。
+ここ（公開用）に残るのは、伏せ処理を通した集計結果とページ、それを作るコードだけ。
+共通仕様9節「2本のリポジトリ」の実装。
+
+- 走るのは公開用（この）リポジトリの Actions。金庫は workflow を持たない
+- Actions が deploy key で金庫を `_raw/` に checkout し、`data/raw` `data/files` `data/ocr`
+  `data/wayback` を `ln -s` で**今までのパスにつなぐ**。Python は置き場の違いを知らない
+- 公開用への commit は**許可リスト**。公開してよいと決めたパスだけを列挙して `git add` する
+- しまう順番は 金庫 → 公開用。生データを先にしまい、そこで失敗したら公開用にも送らない
+- 鍵（Secret `RAW_DEPLOY_KEY`）が無ければ、この2段は飛んで1本のときと同じに動く
+
+```
+公開用 ogataten-nippo（public・Pages）        金庫 ogataten-nippo-raw（private）
+  コード・共通仕様・all.json・parsed・         data/raw   取ってきたページ
+  koho/full,text・HTML・index.json     ←ln -s→ data/files Excel・PDF
+  .github/workflows（ここで毎晩走る）           data/ocr   OCR の結果
+                                              data/wayback 台帳
+                                              data/reports 走らせた記録
+```
+
 自動を止めたいときは `.github/workflows/shutten-recon.yml` の `schedule:` の3行を消す。
 
 ### 手元で動かす
@@ -61,11 +84,11 @@ Python 3 だけで動く。入れるものは何もない。
 | --- | --- |
 | `sources.json` | 見に行く先の一覧。ここを増やせば対象が増える |
 | `recon.py` | 偵察する本体。取得・判定・保存 |
-| `data/raw/<id>/<日付>.html` | 取ってきたページそのまま。**これがアーカイブの1枚目** |
-| `data/recon-report.md` | 最後に走らせたときの判定結果 |
+| `data/raw/<id>/<日付>.html` | 取ってきたページそのまま。**これがアーカイブの1枚目**（置き場は金庫） |
+| `data/recon-report.md` | 最後に走らせたときの判定結果（金庫の `data/reports/` に写す） |
 | `koho.py` / `koho_pdf.py` | 兵庫県公報の目録（2007年〜）から大店立地法の公告を数え、本体 PDF を月別一覧からたどって公告の本文（店舗名・所在地・設置者・面積・日付）を読む。PDF は残さず、公告の部分だけ `data/koho/text/` に文字で残す |
 | `parse_bukai.py` | 兵庫県 まちづくり審議会 大規模小売店舗等立地部会の議案 PDF から届出（過去分も）を読む |
-| `wayback.py` | いま縦覧中の分しか載らないページ（兵庫県・神戸市）の過去分を、Wayback Machine の月1回の保存から `data/raw/<id>/<日付>.html` に積み直す。1回24本まで、台帳は `data/wayback/<id>.json` |
+| `wayback.py` | いま縦覧中の分しか載らないページ（兵庫県・神戸市）の過去分を、Wayback Machine の月1回の保存から `data/raw/<id>/<日付>.html` に積み直す。1回24本まで、台帳は `data/wayback/<id>.json`（どちらも金庫） |
 
 ## 見に行く先（12件）
 
@@ -86,7 +109,7 @@ Python 3 だけで動く。入れるものは何もない。
 - **robots.txt を毎回確認**し、拒否されていれば取りに行かない
 - 1件ごとに2秒あける
 - 1日1回だけ
-- User-Agent にこのリポジトリのURLを入れて、誰が来ているか分かるようにしている
+- User-Agent に運営者ページ（about）と連絡フォームの URL を入れて、誰が来ているか・どこに言えばよいかが分かるようにしている（`common/fetch.py`）
 
 ## まだやっていないこと
 
@@ -105,7 +128,7 @@ Python 3 だけで動く。入れるものは何もない。
 - **数値や事実に著作権はない**ので、数字を取り込んで自分で表やグラフにするのは問題ない
 - **文章表現には著作権がある**ので、本文をそのまま並べるのは避ける
 - 取ってきたページそのもの（`data/raw/`）は**調べるための控え**であって、
-  そのまま再公開するものではない
+  そのまま再公開するものではない。だから private の金庫に置く
 
 ## 取り出しと Excel（2日目に足したもの）
 
@@ -117,7 +140,7 @@ Python 3 だけで動く。入れるものは何もない。
 | `xlsx.py` | xlsx を読む。標準ライブラリだけで動く（入れるものを増やさないため） |
 | `files.py` | ページにぶら下がっている Excel を取ってくる |
 | `data/parsed/<id>/<日付>.json` | 取り出した届出 |
-| `data/files/<id>/` | 落とした Excel |
+| `data/files/<id>/` | 落とした Excel（置き場は金庫） |
 
 ### 届出の種類は条文で分かる
 

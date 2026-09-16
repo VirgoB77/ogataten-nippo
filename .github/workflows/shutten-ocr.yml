@@ -18,8 +18,38 @@ permissions:
 jobs:
   ocr:
     runs-on: ubuntu-latest
+    env:
+      # 金庫（生データの置き場・private）の鍵があるか。無ければ今まで通り1本で動く
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
+
+      # 共通仕様9節「2本のリポジトリ」。生データ（取ってきたページ・Excel・PDF・OCR・台帳）は
+      # private の金庫 VirgoB77/ogataten-nippo-raw に置き、ここには集計結果とページだけを残す。
+      # 金庫を deploy key で隣に出し、data/raw などを今までのパスにつなぐ。Python は置き場を知らない。
+      # 鍵（Secret RAW_DEPLOY_KEY）が無ければこの2段は飛び、1本のときと同じに動く。
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: VirgoB77/ogataten-nippo-raw
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        if: env.HAS_VAULT == 'true'
+        run: |
+          # このリポジトリ自身が生データを追跡していたら止まる（金庫と二重に持たない）
+          if [ -n "$(git ls-files data/raw data/files data/ocr data/wayback)" ]; then
+            echo "このリポジトリに生データが入っている。金庫と二重になるので止まる"
+            exit 1
+          fi
+          for d in raw files ocr wayback; do
+            mkdir -p "_raw/data/$d"
+            rm -rf "data/$d"
+            ln -s "../_raw/data/$d" "data/$d"
+          done
+          ls -la data
 
       # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
       # 監査で、このワークフローだけ検査を通さずに data/ocr をコミットしていた
@@ -35,8 +65,10 @@ jobs:
       - name: 文字を起こす
         run: python3 ocr.py
 
+      # OCR の結果は生データなので、金庫があれば金庫に、無ければここにしまう。公開側には何も書かない
       - name: 結果をしまう
         run: |
+          if [ "$HAS_VAULT" = "true" ]; then cd _raw; fi
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ocr
@@ -46,7 +78,7 @@ jobs:
           fi
           git commit -m "スキャンPDFの文字を $(date -u +%Y-%m-%d) に起こした"
           for i in 1 2 3 4 5; do
-            if git push; then exit 0; fi
+            if git push origin HEAD:main; then exit 0; fi
             git pull --rebase -X theirs origin main || { git rebase --abort 2>/dev/null || true; exit 1; }
             sleep $((i * 3))
           done
