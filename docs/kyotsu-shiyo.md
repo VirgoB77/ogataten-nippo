@@ -819,10 +819,15 @@ COOP コープ 生協
 
   - 走るのは**公開用の Actions**。public なので Actions の分は無料で、`GITHUB_TOKEN` で
     自分に push できる。収集用は**置き場**。収集用の Actions は止め、workflow は持たせない
-    （名前が `-raw` で終わるリポジトリでは workflow が自分で止まるようにしてある）
+    （名前が `-raw` で終わるか `-raw-` を含むリポジトリでは workflow が自分で止まるようにしてある）
   - 公開用の Actions が **deploy key** で収集用を `_raw/` に checkout する。鍵は収集用の
     Settings → Deploy keys（書き込み可）に公開鍵、公開用の Secret **`RAW_DEPLOY_KEY`** に秘密鍵。
+    鍵は `ssh-keygen -t ed25519 -N "" -f raw_deploy_key -C <公開用の名前>-actions` で作る
+    （**パスフレーズは空**。Actions は対話できない）。Secret には秘密鍵ファイルの全文
+    （`-----BEGIN OPENSSH PRIVATE KEY-----` から `END` の行まで）を貼る。
     PAT は期限で黙って止まるので使わない。deploy key は1本のリポジトリにしか効かない。
+    公開用の Actions は走る前に、収集用が公開側から見えない（private）ことを確かめ、
+    見えたら生データを送らずに止まる
     Secret は**生データを持たない公開用にだけ**入れる（生データを追跡しているリポジトリに
     入れると二重持ちの見張りで止まる。意図どおり）
   - `data/raw` `data/files` `data/ocr` `data/wayback` を `ln -s` で**今までのパスにつなぐ**。
@@ -848,8 +853,13 @@ COOP コープ 生協
     して収集用にし**、公開用は履歴ゼロで同じ名前に作り直す。同じ public リポジトリの中で
     履歴を書き換える手（filter-repo・orphan の force-push）は採らない。PR の参照
     （`refs/pull/*`）と PR の題名・本文は force-push でも消えず、そこから旧コミットに届く。
-    作り直す順番：旧の Actions を止める → 旧の Pages から独自ドメインを外す → 旧を rename →
-    同じ名前で新を作る → 新に Pages・ドメイン・Secret → 旧を private。
+    作り直す順番（サイトが止まる窓を短くし、収集用が public のまま生データを受けないため）：
+    ① 新を**仮の名前**で作り、公開用の木を入れ、Pages を（github.io の URL で）動かして
+    おく → ② 旧の Actions を止める → ③ 旧の Pages を **Unpublish**（独自ドメインを外す
+    だけでは github.io 側が配信を続ける。Free なら private 化で落ちるが、それに頼らない）→
+    ④ 旧を rename → ⑤ **すぐ旧を private** → ⑥ 収集用（旧）に Deploy key → ⑦ 新を同じ名前に
+    rename → ⑧ 新に独自ドメインと Secret → ⑨ 旧の github.io の実ファイルの URL が 404 に
+    なったことを見る。Secret を入れるのは収集用が private になった**後**。
     **古い clone は全部 remote を付け替えるか消す。** 同じ名前で作り直したあと、古い clone
     からの push は新しい公開用に届く（新しい枝を push すると、旧履歴ごと public に戻る）
 

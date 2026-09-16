@@ -36,21 +36,35 @@ jobs:
       # （移行前の）リポジトリだけ。生データを持たない公開用で鍵が無ければ、取りに行かずに止まる。
       # 鍵が無いまま data を丸ごと commit すると、その日の生データが public に載るため。
       - name: 置き場を確かめる
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           case "$GITHUB_REPOSITORY" in
-            *-raw) echo "ここは金庫（$GITHUB_REPOSITORY）。金庫では走らない"; exit 1 ;;
+            *-raw|*-raw-*) echo "ここは金庫（$GITHUB_REPOSITORY）。金庫では走らない"; exit 1 ;;
           esac
           raw_tracked=$(git ls-files -- data/raw data/files data/ocr data/wayback)
-          md_tracked=$(git ls-files -- 'data/*.md' 'data/koho/*.md')
+          # :(glob) は data 直下と data/koho 直下だけ（git の * は / をまたぐので）
+          md_tracked=$(git ls-files -- ':(glob)data/*.md' ':(glob)data/koho/*.md')
           if [ "$HAS_VAULT" = "true" ]; then
             if [ -n "$raw_tracked" ]; then
               echo "鍵があるのに、このリポジトリ自身が生データを追跡している。金庫と二重になるので止まる"
               exit 1
             fi
             if [ -n "$md_tracked" ]; then
-              echo "走らせた記録（data/*.md）がこのリポジトリに追跡されている。記録は金庫に置く決まり。止まる"
+              echo "走らせた記録がこのリポジトリに追跡されている。記録は金庫に置く決まり。止まる:"
+              echo "$md_tracked"
               exit 1
             fi
+            # 金庫が private であることを確かめる。公開側の GITHUB_TOKEN から見えるなら（200）public。
+            # private なら 404。それ以外（通信失敗・403 など）も止まる（疑わしきは止まる）
+            code=$(curl -s -o /dev/null -w '%{http_code}' \
+                     -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
+                     "https://api.github.com/repos/${GITHUB_REPOSITORY}-raw" || echo 000)
+            case "$code" in
+              404) echo "金庫 ${GITHUB_REPOSITORY}-raw は公開側から見えない（private）" ;;
+              200) echo "金庫 ${GITHUB_REPOSITORY}-raw が public のまま。生データを送らない。先に private にする"; exit 1 ;;
+              *)   echo "金庫の見え方を確かめられなかった（HTTP $code）。止まる"; exit 1 ;;
+            esac
             echo "金庫の形で動く"
           elif [ -n "$raw_tracked" ]; then
             echo "鍵が無い。生データを追跡している旧来の形なので、今まで通り1本で動く"
@@ -70,6 +84,7 @@ jobs:
           path: _raw
 
       - name: 生データの置き場を金庫につなぐ
+        id: link
         if: env.HAS_VAULT == 'true'
         run: |
           mkdir -p data

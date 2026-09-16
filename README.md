@@ -56,7 +56,8 @@
 共通仕様9節「2本のリポジトリ」の実装。
 
 - 走るのは公開用（この）リポジトリの Actions。金庫の Actions は止め、workflow を持たせない
-  （名前が `-raw` で終わるリポジトリでは workflow が自分で止まる）
+  （名前が `-raw` で終わるか `-raw-` を含むリポジトリでは workflow が自分で止まる）。
+  走る前に金庫が private であることも確かめる
 - Actions が deploy key で金庫を `_raw/` に checkout し、`data/raw` `data/files` `data/ocr`
   `data/wayback` を `ln -s` で**今までのパスにつなぐ**。Python は置き場の違いを知らない
 - 公開用への commit は**許可リスト**。公開してよいと決めたパスだけを列挙して `git add` し、
