@@ -29,12 +29,16 @@ RAW = os.path.join(HERE, "data", "raw")
 LEDGER = os.path.join(HERE, "data", "wayback")
 FILES = os.path.join(HERE, "data", "files")
 
-from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
+from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90               # Wayback は混んでいると遅い。40秒では時間切れが多かった
 MAX_PER_RUN = int(os.environ.get("WAYBACK_MAX", "24"))     # 全部合わせて1回にこれだけ
 CDX = os.environ.get("WAYBACK_CDX", "https://web.archive.org/cdx/search/cdx")
 WEB = os.environ.get("WAYBACK_WEB", "https://web.archive.org/web")
+
+
+class Busy(Exception):
+    """Wayback が 429/503 を返した。相手は1つのサーバーなので、その回はここで中止する（共通仕様3.4）。"""
 
 
 def get(url, timeout=TIMEOUT, tries=2):
@@ -157,6 +161,9 @@ def backfill(sid, urls, budget, lines, prefixes=()):
             try:
                 data, headers = get(f"{WEB}/{ts}id_/{url}")
             except (urllib.error.URLError, urllib.error.HTTPError, OSError) as e:
+                if is_busy(e):
+                    save_ledger(sid, led)
+                    raise Busy(f"HTTP {e.code}")
                 # 404/403 は何度叩いても同じなので台帳に残す。混雑や時間切れは次回もう一度
                 if isinstance(e, urllib.error.HTTPError) and e.code in (403, 404):
                     led["failed"][ts] = f"HTTP {e.code}"
@@ -199,6 +206,9 @@ def backfill(sid, urls, budget, lines, prefixes=()):
             try:
                 data, headers = get(f"{WEB}/{ts}id_/{orig}")
             except (urllib.error.URLError, urllib.error.HTTPError, OSError) as e:
+                if is_busy(e):
+                    save_ledger(sid, led)
+                    raise Busy(f"HTTP {e.code}")
                 if isinstance(e, urllib.error.HTTPError) and e.code in (403, 404):
                     led["failed"][key] = f"HTTP {e.code}"
                 lines.append(f"  - 取れなかった {day} {name} — {type(e).__name__}: {str(e)[:60]}")
@@ -225,6 +235,10 @@ def main():
     lines = ["# アーカイブから取ってきた結果", ""]
     budget = [MAX_PER_RUN]
     total = 0
+    ok, why = check_robots(WEB + "/")
+    if not ok:                          # False＝拒否、None＝robots.txt が混んでいる
+        lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
+        sources = []
     for src in sources:
         wb = src.get("wayback")
         if not wb or not src.get("enabled"):
@@ -234,7 +248,12 @@ def main():
         urls = wb if isinstance(wb, list) else [src["url"]]
         lines.append(f"### {src['name']}")
         lines.append("")
-        total += backfill(src["id"], urls, budget, lines, prefixes=src.get("wayback_prefix") or ())
+        try:
+            total += backfill(src["id"], urls, budget, lines, prefixes=src.get("wayback_prefix") or ())
+        except Busy as e:
+            lines.append(f"- **Wayback が {e}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+            lines.append("")
+            break
         lines.append("")
     lines.insert(1, f"**今回置いた {total}本**（1回の上限 {MAX_PER_RUN}本）")
     text = "\n".join(lines)

@@ -354,11 +354,65 @@ def test_no_empty_fetch_date_in_pages():
         fails.append(f"出典の取得日が空「、取得）」のページ {bad} 枚。fetched_on が届いていない")
 
 
+# ---------------------------------------------------------------- 取得の作法（3.4）の部品
+def _load_koho():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("koho_pdf", os.path.join(HERE, "koho_pdf.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def test_fetch_etiquette():
+    """robots の判定・混雑の判定・恒久失敗の扱い・目録の年ずれの復旧・空本文の見張り。ネットには出ない。"""
+    import urllib.error
+    from datetime import date as _d
+    from common import fetch
+    eq(fetch.robots_allows("User-agent: *\nDisallow: /kk32/", "https://x/kk32/a.pdf"), False, "robots が拒否する")
+    eq(fetch.robots_allows("User-agent: *\nDisallow: /private/", "https://x/kk32/a.pdf"), True, "robots が許す")
+    eq(fetch.robots_allows("", "https://x/a"), True, "robots が空なら許可")
+    eq(fetch.is_busy(urllib.error.HTTPError("u", 429, "", {}, None)), True, "429 は混んでいる")
+    eq(fetch.is_busy(urllib.error.HTTPError("u", 503, "", {}, None)), True, "503 は混んでいる")
+    eq(fetch.is_busy(urllib.error.HTTPError("u", 404, "", {}, None)), False, "404 は混んでいるではない")
+    eq("kujiraya archive bot (+https://" in fetch.UA and "forms.gle" in fetch.UA, True, "UA に about と連絡フォーム")
+
+    k = _load_koho()
+    L = {"a": {"status": "月ページに号が無い", "when": "2026-09-01"},
+         "b": {"status": "月ページに号が無い", "when": "2026-07-01"},
+         "c": {"status": "failed: 文字なし", "when": "2026-09-10"},
+         "d": {"status": "failed: HTTP 404"},
+         "e": {"status": "failed: URLError"},
+         "f": {"status": "done", "v": 2}, "g": {"status": "done", "v": 1},
+         "h": {"status": "月ページに号が無い"}}
+    t = _d(2026, 9, 16)
+    eq(k.needs_fetch("a", L, t), False, "恒久的な失敗は30日は叩かない")
+    eq(k.needs_fetch("b", L, t), True, "30日たったら1回だけ確かめ直す")
+    eq(k.needs_fetch("c", L, t), False, "文字なしも恒久扱い")
+    eq(k.needs_fetch("d", L, t), False, "404 は二度と行かない")
+    eq(k.needs_fetch("e", L, t), True, "一時的な失敗は次回やり直す")
+    eq(k.needs_fetch("f", L, t), False, "全文ありは取り直さない")
+    eq(k.needs_fetch("g", L, t), True, "抜粋だけの古い号は取り直す")
+    eq(k.needs_fetch("h", L, t), True, "いつ調べたか不明なら一度だけ")
+    eq(k.text_ok(0, ""), False, "空の本文を done にしない")
+    eq(k.text_ok(1, "あ" * 300), False, "pdftotext が失敗したら done にしない")
+    eq(k.text_ok(0, "あ" * 300), True, "文字があれば OK")
+    saved = k.month_links
+    try:
+        k.month_links = lambda ym, murl, lines: {"1-14-2252": "https://x/2252.pdf"} if ym == "2011-01" else {}
+        eq(k.find_in_neighbor_year("2010-01-14", "2252", {"2010-01": "u", "2011-01": "u"}, []),
+           ("2011-01-14", "https://x/2252.pdf"), "目録の年が1年前にずれた号を翌年で見つける")
+        eq(k.find_in_neighbor_year("2010-01-14", "9999", {"2010-01": "u", "2011-01": "u"}, []),
+           (None, None), "無いものは無い")
+    finally:
+        k.month_links = saved
+
+
 def main():
     for t in (test_is_corp, test_names, test_addr, test_small_numbers,
               test_all_json, test_generated_pages, test_public_urls,
               test_late_name_is_still_redacted, test_every_record_has_source,
-              test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages):
+              test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages,
+              test_fetch_etiquette):
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")
