@@ -17,6 +17,7 @@ git の履歴は消せない。人の名前の形をした架空の文字列だ�
 """
 
 import glob
+from collections import Counter
 import json
 import os
 import re
@@ -448,12 +449,127 @@ def test_parse_keeps_unknown_columns():
     eq(parse.UNKNOWN["test-src"][("読まなかった列", "謎の列")] >= 1, True, "読まなかった列を書き留める")
 
 
+# ---------------------------------------------------------------- 4節 addr.py と 6節 index.json
+def test_addr_normalize():
+    """共通仕様4節のテスト値をそのまま通す。期待値は具体的に書く。"""
+    from common import addr
+    codes = {("大阪府", "大阪市北区"): "27127", ("兵庫県", "尼崎市"): "28202", ("兵庫県", "西宮市"): "28204",
+             ("大阪府", "豊中市"): "27203", ("兵庫県", "三田市"): "28219", ("大阪府", "大阪市淀川区"): "27123"}
+    r = addr.normalize("大阪府", "大阪市北区", "梅田一丁目１番１号", codes)
+    eq(r["addr"], "大阪市北区梅田1-1-1", "4節 1件目 addr")
+    eq(r["town"], "梅田1", "4節 1件目 town（丁目を含む）")
+    eq(r["addr_key"], "27127|梅田1-1-1", "4節 1件目 addr_key")
+    eq(r["addr_key_town"], "27127|梅田1", "4節 1件目 addr_key_town")
+    r = addr.normalize("兵庫県", "尼崎市", "潮江1丁目3番1号", codes)
+    eq(r["addr_key"], "28202|潮江1-3-1", "4節 2件目 addr_key")
+    eq(r["addr_key_town"], "28202|潮江1", "4節 2件目 addr_key_town")
+    r = addr.normalize("兵庫県", "西宮市", "大字上ケ原　二番町3-5", codes)
+    eq(r["addr_key"], "28204|上ケ原2番町3-5", "4節 3件目：「番町」の番を置き換えない")
+    eq(r["addr_key_town"], "", "4節 3件目：一覧が無いうちは空（③）。「上ケ原2番町3」にしない")
+    r = addr.normalize("大阪府", "大阪市北区", "大阪市北区梅田1-1-1 ○○ビル3F", codes)
+    eq(r["addr_key"], "27127|梅田1-1-1", "建物名の数字を地番に混ぜない（6.）")
+    r = addr.normalize("大阪府", "豊中市", "服部西町一丁目８４７番地の１ほか", codes)
+    eq(r["addr_key"], "27203|服部西町1-847-1", "番地の「の」と全角数字と「ほか」")
+    eq(r["addr_key_town"], "27203|服部西町1", "town は丁目まで")
+    r = addr.normalize("大阪府", "大阪市淀川区", "十三本町1-2-3", codes)
+    eq(r["addr_key"], "27123|十三本町1-2-3", "地名の漢数字（十三）を壊さない")
+    r = addr.normalize("兵庫県", "三田市", "三田市天神1丁目", codes)
+    eq(r["addr_key_town"], "28219|天神1", "地名の漢数字（三田）を壊さず、先頭の市名を落とす")
+    r = addr.normalize("大阪府", "豊中市", "", codes)
+    eq((r["addr_key"], r["addr_key_town"]), ("", ""), "住所が無ければ鍵も無い")
+
+
+def test_jis_rows():
+    """総務省の Excel の行 → コード表。区の親を取り違えない。"""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("ref_jis", os.path.join(HERE, "ref_jis.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    rows = [["団体コード", "都道府県名（漢字）", "市区町村名（漢字）", "都道府県名（カナ）", "市区町村名（カナ）"],
+            ["270008", "大阪府", "", "", ""], ["271004", "大阪府", "大阪市", "", ""],
+            ["271208", "大阪府", "住吉区", "", ""], ["271276", "大阪府", "北区", "", ""],
+            ["271403", "大阪府", "堺市", "", ""], ["271411", "大阪府", "堺区", "", ""],
+            ["272027", "大阪府", "岸和田市", "", ""], ["281000", "兵庫県", "神戸市", "", ""],
+            ["281018", "兵庫県", "神戸市東灘区", "", ""], ["282022", "兵庫県", "尼崎市", "", ""]]
+    got = {r["code"]: r["city"] for r in m.rows_to_codes(rows)}
+    eq(got.get("27127"), "大阪市北区", "「北区」に親の市を付ける")
+    eq(got.get("27120"), "大阪市住吉区", "0で終わる区（住吉区）を市と読み違えない")
+    eq(got.get("27141"), "堺市堺区", "堺の区の親は堺市（大阪市ではない）")
+    eq(got.get("27202"), "岸和田市", "普通の市には何も付けない")
+    eq(got.get("28101"), "神戸市東灘区", "もとから市が付いていれば二重にしない")
+    eq("27000" in got, False, "都道府県の行は入れない")
+    c = m.find_code_file('<p>都道府県コード及び市区町村コード</p><a href="/main_content/x.xlsx">一覧（Excel）</a>'
+                         '<a href="/y.xlsx">政令指定都市の区</a>', m.PAGE)
+    eq(c[0][1].endswith("/main_content/x.xlsx"), True, "一覧の Excel を先頭に選ぶ")
+
+
+def test_index_json():
+    """共通仕様6節：index.json の形と、伏せ・升の整合。"""
+    path = os.path.join(HERE, "index.json")
+    if not os.path.exists(path):
+        # 検査はワークフローの最初（ページを作る前）に走る。初めて index.json を
+        # 作る回はまだ無いので、無いことは咎めない。あれば中身を全部見る
+        print("index.json がまだ無い（6節）。ページを作ったあとにできる")
+        return
+    with open(path, encoding="utf-8") as f:
+        d = json.load(f)
+    for k in ("site", "site_name", "generated_at", "records", "counts_by_city"):
+        if k not in d:
+            fails.append(f"index.json に {k} が無い")
+    need = ["id", "title", "kind", "date", "pref", "city", "city_code", "addr", "addr_key",
+            "addr_key_town", "party", "party_kind", "url", "source_url", "fetched_on"]
+    cname = os.path.join(HERE, "CNAME")
+    host = open(cname, encoding="utf-8").read().strip() if os.path.exists(cname) else ""
+    bad = Counter()
+    for r in d.get("records", []):
+        for k in need:
+            if k not in r:
+                bad[f"{k} が無い"] += 1
+        if r.get("party") and not privacy.is_corp(r["party"]):
+            bad["party に法人でない値"] += 1
+        if r.get("party_kind") not in ("corp", "individual", "undisclosed", "none"):
+            bad["party_kind が4値以外"] += 1
+        if host and not str(r.get("url", "")).startswith(f"https://{host}/"):
+            bad["url が絶対URLでない／別ホスト"] += 1
+        if not _DATE.match(str(r.get("fetched_on", ""))):
+            bad["fetched_on が日付でない"] += 1
+        cc = r.get("city_code", "")
+        if cc and not re.fullmatch(r"[0-9]{5}", cc):
+            bad["city_code が5桁でない"] += 1
+        for k in ("addr_key", "addr_key_town"):
+            v = r.get(k, "")
+            if v and (not cc or not v.startswith(cc + "|")):
+                bad[f"{k} が city_code| で始まらない"] += 1
+        if "/" not in str(r.get("kind", "")):
+            bad["kind が <制度>/<種別> でない"] += 1
+    for c in d.get("counts_by_city", []):
+        n, lab = c.get("count"), c.get("count_label")
+        if n is None and lab != "1-2":
+            bad["count が null なのに label が 1-2 でない"] += 1
+        if isinstance(n, int) and (1 <= n <= 2 or str(n) != lab):
+            bad["1〜2件が伏せられていない／label 不一致"] += 1
+        if "period" not in c or "kind" not in c or "city" not in c:
+            bad["升に city/kind/period が無い"] += 1
+    for k, v in bad.items():
+        fails.append(f"index.json: {k}: {v} 件")
+    # コード表があるなら、市区町村が分かる個票の9割以上に city_code が付くこと
+    if os.path.exists(os.path.join(HERE, "data", "ref", "jis-codes.json")):
+        known = [r for r in d.get("records", []) if r.get("city")]
+        coded = sum(1 for r in known if r.get("city_code"))
+        if known and coded / len(known) < 0.9:
+            # データの質の話で privacy の検査ではないので、止めずに知らせるだけにする。
+            # 止めると、その日の取得と公開が丸ごと飛ぶ
+            print(f"注意: index.json で city_code が付いた個票は {coded}/{len(known)}（9割未満）。"
+                  "コード表と市区町村名の突き合わせ（common/addr.py の city_code_of）を見る")
+
+
 def main():
     for t in (test_is_corp, test_names, test_addr, test_small_numbers,
               test_all_json, test_generated_pages, test_public_urls,
               test_late_name_is_still_redacted, test_every_record_has_source,
               test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages,
-              test_fetch_etiquette, test_place_names, test_parse_keeps_unknown_columns):
+              test_fetch_etiquette, test_place_names, test_parse_keeps_unknown_columns,
+              test_addr_normalize, test_jis_rows, test_index_json):
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")

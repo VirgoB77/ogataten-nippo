@@ -26,6 +26,7 @@ from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import privacy   # 3.2 の小さい数の伏せ。件数を画面に出す所は全部ここを通す
+from common import addr as addrlib   # 4節。index.json の city_code / addr_key を作る
 
 
 def n_(v):
@@ -567,6 +568,60 @@ ul.innerHTML=out.map(function(r){{return '<li><a href="s/'+r.k+'.html">'+r.s+'</
 
 # ---------------------------------------------------------------- 書き出し
 
+# ---------------------------------------------------------------- index.json（共通仕様6節）
+# 姉妹サイトと横断ハブが読む。records は個票（伏せ済みの値だけ）、counts_by_city は升。
+INDEX_KIND = {
+    "新設": "大店立地法/新設", "変更": "大店立地法/変更", "廃止": "大店立地法/廃止",
+    "承継": "大店立地法/承継", "意見・勧告": "大店立地法/意見・勧告",
+    "中規模": "中規模小売店舗（市条例）/届出",     # 八尾市・堺市の条例。法の届出ではない
+}
+
+
+def index_kind(kind):
+    return INDEX_KIND.get(kind) or f"大店立地法/{kind}"
+
+
+def build_index(recs, today):
+    records = []
+    cells = Counter()
+    label = {}
+    for r in recs:
+        city = r.get("area") if r.get("area") not in (None, "", "所在地不明") else ""
+        n = addrlib.normalize(r.get("pref", ""), city, r.get("address", ""))
+        kind = index_kind(r.get("kind", ""))
+        date_ = r.get("notified_on") or ""
+        records.append({
+            "id": f"ogataten:{r.get('source','')}:{date_}:{r['key']}",
+            "title": f"{r.get('store','')} {r.get('kind','')}" + ("" if r.get("kind") == "意見・勧告" else "届出"),
+            "kind": kind,
+            "date": date_,
+            "pref": r.get("pref", ""),
+            "city": city,
+            "city_code": n["city_code"],
+            "addr": n["addr"],
+            "addr_key": n["addr_key"],
+            "addr_key_town": n["addr_key_town"],
+            "party": r.get("operator") or "",            # index 用。個人は空文字（5節 party_for_index の値）
+            "party_kind": r.get("operator_kind") or "individual",
+            "url": f"{SITE_URL}s/{r['key']}.html",
+            "source_url": r.get("source_url", ""),
+            "fetched_on": r.get("fetched_on", ""),
+        })
+        if city and date_:
+            # 升の期間は年。月にすると 3,713 升のうち 95% が 1〜2件になり、伏せ字だらけで
+            # 意味をなさない（3.2「ほとんどが伏せ字になる層は、期間を長くまとめる」）。
+            # 月と年の両方は出さない。粗さが2つあると引き算で伏せた値が戻る（3.2）
+            k = (n["city_code"], city, kind, date_[:4])
+            cells[k] += 1
+    counts = []
+    for (code, city, kind, period), c in sorted(cells.items(), key=lambda x: (x[0][1], x[0][2], x[0][3]), reverse=False):
+        counts.append({"city_code": code, "city": city, "kind": kind, "period": period,
+                       "count": None if 1 <= c <= 2 else c,
+                       "count_label": privacy.bucket_count(c)})
+    return {"site": "ogataten-nippo", "site_name": SITE_NAME, "generated_at": today,
+            "records": records, "counts_by_city": counts}
+
+
 def main():
     with open(ALL, encoding="utf-8") as f:
         recs = json.load(f)
@@ -623,6 +678,14 @@ def main():
            for r in sorted(recs, key=lambda r: r["notified_on"], reverse=True)]
     with open(os.path.join(HERE, "search.json"), "w", encoding="utf-8") as f:
         json.dump(idx, f, ensure_ascii=False, separators=(",", ":"))
+
+    # 共通仕様6節。sitemap には入れない（ページではない）
+    index = build_index(recs, today)
+    with open(os.path.join(HERE, "index.json"), "w", encoding="utf-8") as f:
+        json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
+    coded = sum(1 for x in index["records"] if x["city_code"])
+    print(f"index.json: 個票 {len(index['records'])} / 升 {len(index['counts_by_city'])} / city_code あり {coded}"
+          + ("" if coded else "（data/ref/jis-codes.json がまだ無い。初回の自動実行で埋まる）"))
 
     host = SITE_URL
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
