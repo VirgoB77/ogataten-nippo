@@ -595,15 +595,18 @@ def test_rowspan_colspan():
     t1 = ("<table><tr><th colspan='2'>店舗</th><th>届出日</th></tr>"
           "<tr><td>A店</td><td>大阪市</td><td>令和6年5月1日</td></tr></table>")
     rows = parse.rows_of(t1, "https://example.test/")
-    eq([len(c) for c, _ in rows], [3, 3], "colspan の見出しが2列に広がり、行の長さが揃う")
+    eq([len(c) for c, _, _ in rows], [3, 3], "colspan の見出しが2列に広がり、行の長さが揃う")
     eq(rows[0][0], ["店舗", "店舗", "届出日"], "colspan は同じ文字を繰り返す")
+    eq(rows[0][2][0] == rows[0][2][1], True, "colspan で広げた2列は同じセルから来たと分かる")
+    eq(rows[0][2][1] == rows[0][2][2], False, "別のセルは別の出どころになる")
     # 本文に rowspan：2行目の先頭に1行目の値が下りてくる
     t2 = ("<table><tr><th>市</th><th>店舗</th><th>届出日</th></tr>"
           "<tr><td rowspan=\"2\">大阪市</td><td>A店</td><td>令和6年5月1日</td></tr>"
           "<tr><td>B店</td><td>令和6年6月1日</td></tr></table>")
     rows = parse.rows_of(t2, "https://example.test/")
-    eq([c for c, _ in rows][1:], [["大阪市", "A店", "令和6年5月1日"], ["大阪市", "B店", "令和6年6月1日"]],
+    eq([c for c, _, _ in rows][1:], [["大阪市", "A店", "令和6年5月1日"], ["大阪市", "B店", "令和6年6月1日"]],
        "rowspan の値が次の行の同じ列位置に入る")
+    eq(rows[1][2][0] == rows[2][2][0], True, "rowspan で下りてきた値は、元のセルの出どころを持ち回る")
 
 
 def test_stale_party_marks_are_dropped():
@@ -773,6 +776,100 @@ def test_parsed_is_scrubbed():
         fails.append(f"data/parsed が伏せ処理を通っていない: {k_} で {v} 件（merge.py を通してから commit する）")
     if len(bad) > 5:
         fails.append(f"…ほか {len(bad) - 5} ファイル")
+
+
+# ---------------------------------------------------------------- 監査その5の再審査
+
+def test_note_row_is_not_a_notice():
+    """3.1：結合セルで書かれた注記の行を、届出1件として読まない。
+
+    「全列が同じ値」だけでは足りない。上の行から rowspan で年度などが1列だけ
+    下りてくると値が2種類になり、ガードをすり抜けて注記の本文（氏名や地番を
+    含みうる）が店名と所在地になった記録ができる（監査で再現された穴）。
+    """
+    import parse
+    head = ("<table><tr><th>年度</th><th>店舗名称</th><th>所在地</th>"
+            "<th>設置者</th><th>届出日</th></tr>")
+    note = "※令和7年4月1日から様式が変わりました。問い合わせは架空市役所まで"
+    # (a) 上から rowspan で「令和7年度」が1列だけ下りてくる注記の行
+    t = (head
+         + "<tr><td rowspan='2'>令和7年度</td><td>アイウ店</td><td>架空市1丁目</td>"
+           "<td>株式会社カブシキ</td><td>令和7年5月1日</td></tr>"
+         + f"<tr><td colspan='4'>{note}</td></tr></table>")
+    recs = parse.extract_generic(t, "https://example.test/", "見出し")
+    eq([r["store"] for r in recs], ["アイウ店"], "rowspan が下りてくる注記の行を届出として読んでいる")
+    # (b) 全幅の注記の行（今までも飛ばせていた形）
+    t2 = head + f"<tr><td colspan='5'>{note}</td></tr></table>"
+    eq(parse.extract_generic(t2, "https://example.test/", "見出し"), [],
+       "全幅の注記の行を届出として読んでいる")
+    # (c) ふつうの行は飛ばさない
+    t3 = (head + "<tr><td>令和7年度</td><td>エオ店</td><td>架空市2丁目</td>"
+          "<td>株式会社カブシキ</td><td>令和7年6月1日</td></tr></table>")
+    eq([r["store"] for r in parse.extract_generic(t3, "https://example.test/", "見出し")],
+       ["エオ店"], "ふつうの行まで注記として飛ばしている")
+    # (d) 飛ばした行の本文を data/parse-unknown.md の例に書かない
+    for src, ex in parse.EXAMPLE.items():
+        for (kind, name), v in ex.items():
+            if "注記とみなして飛ばした" in kind:
+                fails.append(f"注記の本文を parse-unknown.md に書いている: {src} {name} {v[:30]}")
+
+
+def test_extra_is_scrubbed_like_a_party():
+    """3.1：知らない列（extra）に当事者が入っていても、privacy を通す。
+
+    伏せたあとの値で「他の欄の複製か」を見ていたため、個人の氏名（空文字に
+    なっている）が一覧に入らず、extra に残った同じ氏名が素通りしていた。
+    """
+    import merge, copy
+    rec = {"source": "demo", "key": "demo-extra", "store": "アイウ店",
+           "address": "架空市架空町1丁目1番1号", "operator": "架空太郎",
+           "extra": {"届出者": "架空太郎",                 # 設置者の複製 → 消す
+                     "備考": "架空市別町5-6-7",            # ハイフンの地番 → 丸める
+                     "所在": "架空市架空町1-2-3",          # 丸めると所在地と同じ → 消す
+                     "摘要": "代表者 架空花子",             # 頭が人を指す語 → 名前だけ伏せる
+                     "小売業者": "株式会社カブシキ",         # 名前の列だが法人 → そのまま
+                     "変更理由": "代表者変更のため",         # 名前ではない文 → そのまま
+                     "設置者対応": "ー",                    # 名前の列ではない → そのまま
+                     "受理 番号": "862"}}
+    merge.apply_privacy([rec])
+    ex = rec.get("extra", {})
+    eq("届出者" in ex, False, "設置者と同じ氏名が extra に残っている")
+    eq(any("架空太郎" in str(v) for v in ex.values()), False, "伏せた氏名が extra のどこかに残っている")
+    eq(any("架空花子" in str(v) for v in ex.values()), False, "「代表者 ○○」の氏名が extra に残っている")
+    eq(ex.get("摘要"), "代表者 個人", "「代表者 ○○」の伏せ方が違う")
+    eq(ex.get("小売業者"), "株式会社カブシキ", "法人名まで伏せている")
+    eq(ex.get("変更理由"), "代表者変更のため", "名前ではない文まで伏せている")
+    eq(ex.get("設置者対応"), "ー", "名前の列でない「設置者対応」を伏せている")
+    eq(ex.get("受理 番号"), "862", "関係のない列を消している")
+    eq(ex.get("備考"), "架空市別町5丁目", "ハイフンの地番を丸めていない")
+    eq("所在" in ex, False, "丸めたら所在地と同じになる列を消していない（足すと二重に持つ）")
+    # 個人が入る列なら「個人」に落ちる
+    rec2 = {"source": "demo", "key": "demo-extra2", "store": "エオ店", "address": "架空市2丁目",
+            "operator": "株式会社カブシキ", "extra": {"設置者の代表者氏名": "架空次郎"}}
+    merge.apply_privacy([rec2])
+    eq(rec2.get("extra", {}).get("設置者の代表者氏名"), "個人", "名前の列の個人名を伏せていない")
+    # 何回通しても同じ
+    once = copy.deepcopy(rec)
+    merge.apply_privacy([rec])
+    eq(rec, once, "apply_privacy を2回通すと extra の中身が変わる（冪等でない）")
+
+
+def test_hyphen_banchi_is_an_address():
+    """3.1：ハイフンで書いた地番も住所として扱う（「番地」の語が無い形）。"""
+    import merge
+    # 設置者の欄に住所だけが書かれている形（ハイフン）も拾う
+    eq(merge.looks_like_address("架空市架空町1-2-3"), True, "住所だけの設置者名（ハイフン）を見逃している")
+    eq(merge.looks_like_address("株式会社カブシキ"), False, "法人名を住所と見ている")
+    eq(merge.looks_like_address("架空市架空町1丁目1番1号"), True, "「番地」の形の住所を見逃している")
+    # OCR の「変更した事項」から住所を拾わない入口フィルタも、この形を見ていること
+    eq(bool(re.search(r"氏名|代表者", "架空市架空町1-2-3")
+            or merge.ADDR_SHAPE.search("架空市架空町1-2-3")
+            or merge.ADDR_HYPHEN.search("架空市架空町1-2-3")), True,
+       "OCR の入口フィルタがハイフンの地番を素通りさせる")
+    for a in ("架空市架空町1-2-3", "架空市架空町1-2", "架空区架空町1－27－9"):
+        eq(bool(merge.ADDR_HYPHEN.search(a)), True, f"ハイフンの地番を住所と見ていない: {a}")
+    for a in ("2026-09-16", "令和8年7月3日から令和8年11月4日", "862", "9-12時"):
+        eq(bool(merge.ADDR_HYPHEN.search(a)), False, f"住所でないものを住所と見ている: {a}")
 
 
 def main():

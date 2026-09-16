@@ -247,7 +247,8 @@ def enrich_from_ocr(by_key, ocr):
                     val = tidy_ocr(o[okey])
                     # 「変更した事項」の行は様式の文言や氏名の変更（「設置者の氏名 ○○から△△へ」）が
                     # 混ざりうる。氏名・代表者に触れる行は使わない（privacy を通らない欄なので、入口で止める）
-                    if field == "content" and (re.search(r"氏名|代表者", val) or ADDR_SHAPE.search(val)):
+                    if field == "content" and (re.search(r"氏名|代表者", val)
+                                              or ADDR_SHAPE.search(val) or ADDR_HYPHEN.search(val)):
                         # 「変更した事項」の次の行は、様式の文言・氏名の変更・住所が来ることがある。
                         # content は privacy を通らない欄なので、入口で止める（3.1）
                         continue
@@ -405,6 +406,17 @@ PARTY_FIELDS = ("operator", "new_operator", "retailer")
 # 設置者の欄に住所の形（「…1丁目2番3号」）の値が来ているもの。列ずれの疑い。
 # 個人として伏せるのは同じだが、黙って「個人」にせず記録に残す（5節「個人に化けてはいけないもの」）
 ADDR_SHAPE = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|番|号|丁目)")
+# ハイフンで書いた地番（「大阪市西区新町1-27-9」「加古川市野口町174-1」）。
+# 「番地」などの語が無いので ADDR_SHAPE では拾えない。数字とハイフンの並びだけでは
+# 日付や受理番号と見分けられないので、市区町村の名前が手前にあるときだけ住所と見る。
+# 監査で、この形の地番が OCR の文と知らない列をすり抜けていた
+ADDR_HYPHEN = re.compile(
+    r"[^\s　]{1,6}[市区郡町村][^\s　]{0,12}?[0-9０-９]+\s*[-‐−－ー―]\s*[0-9０-９]+")
+
+
+def squash_ws(s):
+    """空白（全角も）を全部落とす。値どうしを突き合わせるときに使う。"""
+    return re.sub(r"[\s　]+", "", str(s or ""))
 # 「住所の形」は、都道府県か市区郡町村で始まり、かつ数字＋番地・番・号・丁目を含むもの。
 # 数字＋番だけだと「一番館」「二丁目食堂」「一番ヶ瀬」のような屋号・姓まで拾う。
 # 「氏名 住所」が1つの欄に入っているものは先頭が住所でないので拾わず、従来どおり「個人」に倒す
@@ -430,7 +442,9 @@ def round_store_tail(store):
 
 def looks_like_address(raw):
     raw = (raw or "").strip()
-    return bool(raw) and bool(ADDR_HEAD.match(raw)) and bool(ADDR_SHAPE.search(raw)) and not privacy.is_corp(raw)
+    return (bool(raw) and bool(ADDR_HEAD.match(raw))
+            and bool(ADDR_SHAPE.search(raw) or ADDR_HYPHEN.search(raw))
+            and not privacy.is_corp(raw))
 
 
 # 記録用に値そのものは残さない。ADDR_HEAD は「山田太郎大阪市…」のように
@@ -457,12 +471,28 @@ def looks_like_address(raw):
 #   toyonaka-city     PDF 24本へのリンクがある（未取得）
 NO_NAME_ANYWHERE = {"yao-chukibo", "ibaraki-city"}
 
+# 知らない列（extra）の列名が、当事者の「名前そのもの」を指しているか。
+# 語で終わっているかを見る。「小売業者」「設置者」「代表者氏名」は当たり、
+# 「設置者対応」「変更理由」は当たらない（どちらも実物にある列名）。
+# 当たった列は、対応づけられなかっただけの当事者の欄なので、当事者と同じ規則を当てる
+EXTRA_PARTY_KEY = re.compile(
+    r"(氏名|名義|代表者|届出者|申請者|設置者|小売業者|事業者|所有者|世帯主)(名|氏名|等)?$")
+# 文の中に伏せた氏名が混ざっていたときの書き方。どこまでが名前かは決められないので、
+# 値ごと伏せる。伏せたことは書く（3.1）
+EXTRA_NAME_HIDDEN = "（氏名が入っているため伏せています）"
+# 「代表者 架空花子」のように、値の頭に人を指す語があって、そのあとが名前1つのもの。
+# 区切り（空白か：）と「そのあとに空白が無いこと」の両方を求める。これが無いと
+# 「代表者変更のため」（実物に10件ある）まで名前と読んでしまう
+EXTRA_NAME_HEAD = re.compile(
+    r"^(氏名|名義人?|代表者|届出者|申請者|設置者|所有者)\s*[:：]?[\s　]+([^\s　]+)$")
+
 
 def apply_privacy(recs):
     """氏名と所在地を、共通仕様 3.1 の粒度に落とす。落とした件数を返す。"""
     hidden = 0
     for r in recs:
         kinds = {}
+        raw_party = {}      # 伏せる前の当事者の値。下の extra の掃除で使う
         for f in PARTY_FIELDS:
             raw = r.get(f)
             if raw is None:
@@ -493,6 +523,7 @@ def apply_privacy(recs):
             # 一次情報に欄が無いと確かめた収集先だけ undisclosed にできる。
             # 値が入っているときは、欄があったということなので普通に判定する
             disclosed = not (r.get("source") in NO_NAME_ANYWHERE and not (raw or "").strip())
+            raw_party[f] = raw          # 伏せる前に控える。この下で r[f] は上書きされる
             kind = privacy.party_kind(raw, disclosed=disclosed)
             kinds[f] = kind
             r[f] = privacy.party_for_index(raw)      # 機械用。個人は空文字
@@ -521,31 +552,63 @@ def apply_privacy(recs):
         # 印は毎回つけ直す。収集先をまたいでまとめるときに、丸めた記録の印だけが
         # 法人の記録に移ることがある。前回の印を残すと、法人の地番に
         # 「個人のため丸めた」と書いてしまう
-        # 知らない列（extra）は privacy を通らないまま公開されていた。
-        # 表の結合セル（colspan）で他の欄の値がそのまま複製されることがあり、
-        # 住所の列が見出しの書き方の違いで address に入らないこともある（3.1）
-        extra = r.get("extra")
-        if isinstance(extra, dict):
-            known = {(r.get(f) or "").strip() for f in PARTY_FIELDS + ("address", "store")}
-            known.discard("")
-            for k in list(extra):
-                v = str(extra[k] or "").strip()
-                if not v:
-                    continue
-                if v in known:                       # 他の欄の複製。二重に持たない
-                    del extra[k]
-                elif ADDR_SHAPE.search(v) and not privacy.is_corp(v):
-                    extra[k] = privacy.redact_addr(v, "individual")
-            if not extra:
-                r.pop("extra", None)
-
         r.pop("address_redacted", None)
+        raw_addr, raw_store = r.get("address"), r.get("store")
         if round_it:
             r["address"] = privacy.redact_addr(r.get("address") or "", "individual")
             if r.get("store"):
                 r["store"] = round_store_tail(r["store"])
             r["address_redacted"] = True
             hidden += 1
+
+        # 知らない列（extra）は privacy を通らないまま公開されていた。
+        # 表の結合セル（colspan）で他の欄の値がそのまま複製されることがあり、
+        # 住所の列が見出しの書き方の違いで address に入らないこともある（3.1）
+        extra = r.get("extra")
+        if isinstance(extra, dict):
+            # 突き合わせる値は「伏せる前」のもの。伏せたあとの値で作ると、個人の氏名は
+            # 空文字になっていて一覧に入らず、extra に残った同じ氏名が privacy を
+            # 通らないまま公開される（監査で再現された穴）。
+            # 丸めたあとに通す。丸める前の値（raw_addr / raw_store）も一覧に入れる。
+            # 片方だけだと、1回目と2回目で結果が変わる（丸めた値どうしが2回目に
+            # 初めて一致して、そこで初めて消える）
+            known = {squash_ws(v) for v in raw_party.values()}
+            known |= {squash_ws(r.get(f)) for f in PARTY_FIELDS + ("address", "store")}
+            known |= {squash_ws(raw_addr), squash_ws(raw_store)}
+            known.discard("")
+            # 伏せた個人の氏名。extra の文の中に「代表者 ○○」の形で混ざることがある。
+            # 2文字の姓は店名や法人名に偶然入りうるので、3文字以上だけを突き合わせる
+            hidden_names = {squash_ws(raw_party.get(f)) for f, kind in kinds.items()
+                            if kind == "individual"}
+            hidden_names = {n for n in hidden_names
+                            if len(n) >= 3 and not privacy.is_placeholder(n)}
+            for k in list(extra):
+                v = str(extra[k] or "").strip()
+                if not v:
+                    continue
+                if squash_ws(v) in known:            # 他の欄の複製。二重に持たない
+                    del extra[k]
+                elif EXTRA_PARTY_KEY.search(squash_ws(k)):
+                    # 当事者の名前の列。列の対応づけから漏れていただけなので、
+                    # 当事者の欄と同じ規則を当てる（法人はそのまま、個人は「個人」）
+                    extra[k] = privacy.redact_name(v)
+                elif any(n in squash_ws(v) for n in hidden_names):
+                    extra[k] = EXTRA_NAME_HIDDEN
+                elif EXTRA_NAME_HEAD.match(v):
+                    # 「代表者 ○○」。○○ を当事者と同じ規則で出す（法人ならそのまま）
+                    m = EXTRA_NAME_HEAD.match(v)
+                    extra[k] = f"{m.group(1)} {privacy.redact_name(m.group(2))}"
+                elif looks_like_address(v) or (ADDR_SHAPE.search(v) and not privacy.is_corp(v)):
+                    extra[k] = privacy.redact_addr(v, "individual")
+            # 伏せたり丸めたりした結果、空になった列と、他の欄の複製になった列は持たない。
+            # ここでもう一度見ないと、丸めた住所が2回目に初めて他の欄と一致して、
+            # そのとき初めて消える（1回目と2回目で結果が変わる）
+            for k in list(extra):
+                v = str(extra[k] or "").strip()
+                if not v or squash_ws(v) in known:
+                    del extra[k]
+            if not extra:
+                r.pop("extra", None)
     return hidden
 
 
