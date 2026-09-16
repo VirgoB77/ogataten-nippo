@@ -70,6 +70,7 @@ FETCH_DAYS = (1, 15)          # 追いついたあとに取りに行く日
 MONTH_CACHE_V = 2
 MONTH_REFRESH_MAX = int(os.environ.get("KOHO_MONTH_REFRESH", "40"))
 _month_refreshed = 0
+_asked = 0            # 今回、県のサーバーに出した要求の数（月ページも本体PDFも数える）
 # 月ページの見出し。「12月19日第679号」「12月1日号外」「12月3日第2号外」「12月3日号外第2号」。
 # 「第2号外」を「第2号」と読み違えないよう、号のあとに「外」が続くものは号外に回す
 LABEL = re.compile(r"(\d{1,2})月(\d{1,2})日(?:第(\d+)号(?!外)|(?:第(\d+))?号外(?:第(\d+)号)?)")
@@ -161,7 +162,7 @@ def month_links(ym, url, lines):
     控えが古い版（号外を読んでいない）なら、1回の実行で MONTH_REFRESH_MAX 月まで取り直す。
     上限を超えた月は古い控えのまま返す（定期号は引ける。号外は次回以降）。
     """
-    global _month_refreshed
+    global _month_refreshed, _asked
     os.makedirs(MONTHS, exist_ok=True)
     cache = os.path.join(MONTHS, f"{ym}.json")
     old = None
@@ -174,6 +175,7 @@ def month_links(ym, url, lines):
             return old                   # 今回の取り直しの上限。古い控え（定期号だけ）で進む
     if ym in _month_failed:
         return old                       # この実行で一度取れなかった月は、もう叩かない
+    _asked += 1                          # ここから県のサーバーに出す
     try:
         html_ = get(url, limit=2_000_000).decode("utf-8", errors="replace")
     except (urllib.error.URLError, urllib.error.HTTPError, OSError, ValueError) as e:
@@ -580,6 +582,8 @@ def save_ledger(ledger):
 
 
 def main():
+    global _asked
+    _asked = 0
     lines = ["# 兵庫県公報の本体から読んだ大店立地法の公告", ""]
     fetched = 0
     if os.path.exists(ISSUES) and shutil.which("pdftotext"):
@@ -596,13 +600,16 @@ def main():
                      f"月別一覧 {len(index)} か月")
         todo = [k for k in sorted(issues, reverse=True) if needs_fetch(f"{k[0]}#{k[1]}", ledger)]
         again = sum(1 for k in todo if f"{k[0]}#{k[1]}" in ledger)
-        lines.append(f"- 未読の号 {len(todo)}（うち全文を残す前に取った取り直し {again} 号）。"
-                     f"今回は新しいほうから {MAX_ISSUES} 号まで")
+        # 積み直しが済んだかは「まだ一度も見ていない号」で見る。恒久失敗の確かめ直し
+        # （月ページに号が無い等。30日に1回）は県のサーバーに行かないので、数に入れない
+        fresh = sum(1 for k in todo if f"{k[0]}#{k[1]}" not in ledger)
+        lines.append(f"- 未読の号 {len(todo)}（まだ一度も見ていない {fresh}／"
+                     f"全文を残す前に取った取り直し {again}）。今回は県に {MAX_ISSUES} 回まで行く")
         today = date.today().isoformat()
         # 追いついたら月2回（共通仕様3.4）。過去分の積み直しの間だけ毎日。手で押したときは行く
-        if todo and not fetch_today(len(todo), date.today(), bool(os.environ.get("KOHO_ANYDAY"))):
-            lines.append(f"- 未読が {len(todo)} 号で追いついている。公報は月2回（{FETCH_DAYS[0]}日・{FETCH_DAYS[1]}日）だけ"
-                         "取りに行く（共通仕様3.4）。今日は取りに行かない")
+        if todo and not fetch_today(fresh, date.today(), bool(os.environ.get("KOHO_ANYDAY"))):
+            lines.append(f"- まだ見ていない号が {fresh} で追いついている。公報は月2回"
+                         f"（{FETCH_DAYS[0]}日・{FETCH_DAYS[1]}日）だけ取りに行く（共通仕様3.4）。今日は取りに行かない")
             todo = []
         ok, why = check_robots(HOST + "/")
         if ok is None:
@@ -612,13 +619,17 @@ def main():
             lines.append(f"- {why}。取りに行かない（共通仕様3.4）")
             todo = []
         try:
-            for (d, no) in todo[:MAX_ISSUES]:
+            for (d, no) in todo:
+                # 枠は「県のサーバーに出した要求の数」で数える（月ページも本体PDFも）。
+                # 月ページに号が無いと分かっただけの号は控えを見ただけなので枠を使わない
+                if _asked >= MAX_ISSUES:
+                    lines.append(f"- 今回の {MAX_ISSUES} 回を使い切った。残りは次回")
+                    break
                 key = f"{d}#{no}"
                 ym = d[:7]
                 murl = index.get(ym)
                 if not murl:
                     ledger[key] = {"status": "月ページが一覧に無い", "when": today}
-                    save_ledger(ledger)
                     continue
                 links = month_links(ym, murl, lines)
                 if links is None:
@@ -637,11 +648,11 @@ def main():
                         url, issue_date = url2, d2
                         lines.append(f"  - {d} {no_label(no)}: 目録の年がずれていた。実際は {d2}")
                 if not url:
+                    # 県には行っていない（控えを見ただけ）。枠は使わず、台帳もあとでまとめて書く
                     ledger[key] = {"status": "月ページに号が無い", "when": today}
-                    save_ledger(ledger)
-                    lines.append(f"  - {d} {no_label(no)}: 月ページに見つからない")
                     continue
                 try:
+                    _asked += 1
                     n = fetch_issue({"date": issue_date, "no": no}, url, lines)
                     ledger[key] = {"status": "done", "url": url, "sections": n,
                                    "v": TEXT_VERSION, "when": today}

@@ -153,16 +153,22 @@ def merge_issue_dates(issues):
     return fixed, merged
 
 
-def sheet_rows(path):
-    """1 冊の目録の「告示」「公告」シートから、(発行日, 号, 件名) を全部返す。
+# 件名まで読むシート。ほかのシート（条例・規則・訓令・達・辞令など）は「号の一覧」にだけ使う。
+# 辞令や人事の件名には個人の氏名が入るので、件名は読まない（共通仕様3.1）
+TITLE_SHEETS = ("告示", "公告")
 
-    大店立地法に絞らない。rows_of() が使っているシート選びより広く、
-    告示シートも読む。開発系の告示はそちらにしか出てこない。
+
+def sheet_rows(path):
+    """1 冊の目録から (発行日, 号, 件名) を全部返す。
+
+    号の一覧は**全シート**から作る。号外は告示も公告も無い号（条例だけ、辞令だけ）が
+    多く、シートを絞ると本体PDFを取りに行く先から丸ごと落ちる。共通仕様9節
+    「取得の段階で絞らない。絞り込みは出力の段階だけ」。
+    件名は告示・公告シートからだけ読む（3.1。ほかのシートの件名には氏名が入る）。
     """
     out, dropped = [], []
     for name, rows in xlsx.read_any(path).items():
-        if name not in ("告示", "公告"):
-            continue
+        want_title = name in TITLE_SHEETS
         hdr = next((i for i, r in enumerate(rows[:8])
                     if any("件" in str(c) and "名" in str(c) for c in r)), None)
         if hdr is None:
@@ -172,19 +178,22 @@ def sheet_rows(path):
         ti = ci.get("件名")
         di = next((ci[k] for k in ("発行日", "発行年月日") if k in ci), None)
         ni = next((ci[k] for k in ("公報番号", "公報号数", "号数") if k in ci), None)
-        if ti is None or di is None or ni is None:
+        if di is None or ni is None or (want_title and ti is None):
             continue
         for r in rows[hdr + 1:]:
             cells = list(r)
-            if max(ti, di, ni) >= len(cells):
+            if max(di, ni) >= len(cells):
                 continue
-            title = re.sub(r"\s+", " ", str(cells[ti] or "")).strip()
+            title = ""
+            if want_title and ti < len(cells):
+                title = re.sub(r"\s+", " ", str(cells[ti] or "")).strip()
             d = to_iso(str(cells[di] or ""))
             no = norm_issue_no(cells[ni])          # 号外は g1, g2 …（落とさない）
-            if not title or not d or not no:
+            if not d or not no or (want_title and not title):
                 continue
             if not (FIRST_DAY <= d <= LAST_DAY):    # 発行日として成り立たない行は数えない
-                dropped.append((d, no, title))      # 黙って捨てず、呼び出し側に返す
+                if want_title:
+                    dropped.append((d, no, title))  # 黙って捨てず、呼び出し側に返す
                 continue
             out.append((d, no, title))
     return out, dropped
@@ -255,7 +264,7 @@ def main():
         for d, no, title in got:
             it = issues.setdefault(f"{d}#{no}", {"date": d, "no": no, "titles": 0, "topics": {}})
             it["titles"] += 1
-            t = topic_of(title)
+            t = topic_of(title) if title else None
             if t:
                 it["topics"][t] = it["topics"].get(t, 0) + 1
 
