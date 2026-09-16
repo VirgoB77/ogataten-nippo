@@ -147,6 +147,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "令和7年5月29日"
+  },
   "source": "minoh-2shi2cho",
   "key": "aded198e5b2c",
   "operator_display": "",
@@ -357,6 +360,9 @@
   "docs": [
    "https://www.city.minoh.lg.jp/syoukou/documents/suvland_5-1.pdf"
   ],
+  "extra": {
+   "住民などの意見の概要": "なし"
+  },
   "source": "minoh-2shi2cho",
   "key": "809202f540e1",
   "operator_display": "",
@@ -411,6 +417,10 @@
   "docs": [
    "https://www.city.minoh.lg.jp/syoukou/documents/komeriha-doandgreen.pdf"
   ],
+  "extra": {
+   "住民などの意見の概要": "なし",
+   "町意見": "なし"
+  },
   "source": "minoh-2shi2cho",
   "key": "e6a15e8bb26e",
   "operator_display": "",

@@ -49,6 +49,7 @@ SOURCE_PLACE = {
     "kishiwada-city": ("大阪府", "岸和田市"), "matsubara-city": ("大阪府", "松原市"),
     "sennan-city": ("大阪府", "泉南市"),   "kumatori-town": ("大阪府", "熊取町"),
     "hannan-city": ("大阪府", "阪南市"),   "yao-city": ("大阪府", "八尾市"),
+    "kaizuka-city": ("大阪府", "貝塚市"),   # 抜けていた。所在地欄が空なので area が空になり、名前の無いページ a/.html が26件ぶん出ていた
     "yao-chukibo": ("大阪府", "八尾市"),   "minoh-city": ("大阪府", "箕面市"),
     "minoh-2shi2cho": ("大阪府", None),    "kobe-city": ("兵庫県", "神戸市"),
     "hyogo-pref-juran": ("兵庫県", None), "hyogo-bukai": ("兵庫県", None), "hyogo-koho": ("兵庫県", None),
@@ -59,7 +60,11 @@ HYOGO_CITIES = ["神戸", "姫路", "尼崎", "明石", "西宮", "洲本", "芦
                 "丹波", "南あわじ", "朝来", "淡路", "宍粟", "加東", "たつの", "猪名川", "稲美", "播磨",
                 "福崎", "太子", "上郡", "佐用", "香美", "新温泉", "多可", "市川", "神河"]
 WARD = re.compile(r"^(?:大阪市|堺市|神戸市)?([^\s市区町村]{1,4}区)")
+# 郡のある町村を先に見る。「神崎郡市川町」を CITY で読むと最初の「市」で切れて「神崎郡市」になる（監査）
+GUN_TOWN = re.compile(r"^(?:大阪府|兵庫県)?([^\s]{1,3}郡[^\s]{1,4}?[町村])")
 CITY = re.compile(r"^(?:大阪府|兵庫県)?([^\s]{1,6}?[市町村])")
+# 住所の頭に付く都道府県名。収集先で県が決まっているのに別の県から始まる住所は、店舗の所在地ではない
+PREF_HEAD = re.compile(r"^(北海道|東京都|京都府|大阪府|[^\s]{2,3}県)")
 
 
 def place_of(r):
@@ -68,6 +73,14 @@ def place_of(r):
     addr = (r.get("address") or "").strip()
     ward = ""
     guess = False
+    # 県が決まっている収集先なのに、住所が別の県から始まる → 店舗の所在地ではない
+    # （兵庫県の表で「イオン山崎SC」の所在が「愛媛県松山市…」になっていた。設置者の住所が混ざった）。
+    # 捨てずに address_suspect に退避し、所在地は店名から当てる側に回す（共通仕様9）
+    m = PREF_HEAD.match(addr)
+    if pref and m and m.group(1) != pref:
+        r["address_suspect"] = addr
+        r["address"] = ""
+        addr = ""
     if r["source"] == "osaka-city":
         ward = (r.get("ward") or "").strip()
         ward = ward + "区" if ward and not ward.endswith("区") else ward
@@ -77,7 +90,7 @@ def place_of(r):
     if city is None:
         c = (r.get("city") or "").strip()
         if not c:
-            m = CITY.match(addr)
+            m = GUN_TOWN.match(addr) or CITY.match(addr)
             c = m.group(1) if m else ""
         if not c and r["source"] == "hyogo-pref-juran":
             towns = ("猪名川", "稲美", "播磨", "福崎", "太子", "上郡", "佐用", "香美", "新温泉", "多可", "市川", "神河")
@@ -93,6 +106,34 @@ def place_of(r):
                         break
         city = c or ""
     return pref, city, ward, guess
+
+
+def gun_table(recs):
+    """(都道府県, 町村名) → 郡名 の対応表を、手元のデータの住所から作る。
+
+    同じ町が「猪名川町」と「川辺郡猪名川町」の2つの名前に割れて、市区町村ページが
+    2枚できていた（監査）。郡は住所に実際に書いてあるものから取る。記憶で書かない。
+    太子町は大阪府（南河内郡）と兵庫県（揖保郡）の2つあるので、都道府県ごとに引く。
+    """
+    seen = defaultdict(Counter)
+    for r in recs:
+        pref = r.get("pref") or SOURCE_PLACE.get(r.get("source", ""), ("", None))[0]
+        for s in (r.get("address") or "", r.get("city") or "", r.get("area") or ""):
+            m = GUN_TOWN.match(s)
+            if m:
+                full = m.group(1)
+                gun, town = full[:full.index("郡") + 1], full[full.index("郡") + 1:]
+                seen[(pref, town)][gun] += 1
+    return {k: c.most_common(1)[0][0] for k, c in seen.items()}
+
+
+def with_gun(pref, city, table):
+    """郡の無い町村名に、データで分かっている郡を付ける。分からなければそのまま。"""
+    if city and "郡" not in city and re.fullmatch(r"[^\s]{1,4}[町村]", city):
+        g = table.get((pref, city))
+        if g:
+            return g + city
+    return city
 
 
 # ---------------------------------------------------------------- 収集先をまたいだ重複をまとめる
@@ -442,10 +483,12 @@ def main():
     enriched = enrich_from_ocr(by_key, load_ocr())
 
     # 地域をそろえる（ページで市区町村ごとに束ねるため）
+    guns = gun_table(by_key.values())
     for rec in by_key.values():
         pref, city, ward, guess = place_of(rec)
+        city = with_gun(pref, city or rec.get("city") or "", guns)
         rec["pref"] = pref
-        rec["city"] = city or rec.get("city") or ""
+        rec["city"] = city or ""
         rec["ward"] = ward or ""
         rec["area"] = (city or pref) + (ward if city in ("大阪市", "堺市", "神戸市") else "")
         if guess:

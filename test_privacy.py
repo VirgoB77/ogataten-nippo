@@ -407,12 +407,53 @@ def test_fetch_etiquette():
         k.month_links = saved
 
 
+# ---------------------------------------------------------------- 市区町村名（4節・監査）
+def test_place_names():
+    """郡の有無で割れない・「神崎郡市」にならない・空の市区町村ページを作らない・他県の住所を店舗所在地にしない。"""
+    import merge
+    fake = [{"source": "hyogo-koho", "address": "神崎郡市川町西川辺字的場479", "store": "x"},
+            {"source": "hyogo-koho", "address": "川辺郡猪名川町松尾台1", "store": "x"},
+            {"source": "hyogo-pref-juran", "address": "", "store": "○○猪名川店", "city": ""}]
+    guns = merge.gun_table(fake)
+    eq(guns.get(("兵庫県", "市川町")), "神崎郡", "データから 市川町→神崎郡 が取れる")
+    pref, city, ward, guess = merge.place_of(fake[0])
+    eq(merge.with_gun(pref, city, guns), "神崎郡市川町", "市川町の「市」で切れない")
+    pref, city, ward, guess = merge.place_of(fake[2])
+    eq(merge.with_gun(pref, city, guns), "川辺郡猪名川町", "店名から当てた町にも郡が付く（割れない）")
+    eq(guess, True, "店名から当てたら印が付く")
+    r = {"source": "kaizuka-city", "address": "", "store": "x"}
+    pref, city, ward, guess = merge.place_of(r)
+    eq((pref, city), ("大阪府", "貝塚市"), "貝塚市の届出は貝塚市（26件が名前の無いページになっていた）")
+    r = {"source": "hyogo-pref-juran", "address": "愛媛県松山市大街道二丁目", "store": "イオン山崎ショッピングセンター"}
+    pref, city, ward, guess = merge.place_of(r)
+    eq(r.get("address"), "", "別の県の住所は店舗所在地として使わない")
+    eq(r.get("address_suspect"), "愛媛県松山市大街道二丁目", "捨てずに退避する")
+    eq(city, "", "別の県の市を市区町村にしない")
+    # 出来上がりの側：名前の無い市区町村ページが無いこと
+    a_dir = os.path.join(HERE, "a")
+    if os.path.isdir(a_dir):
+        eq(os.path.exists(os.path.join(a_dir, ".html")), False, "a/.html（名前の無い市区町村ページ）を作らない")
+        eq(os.path.exists(os.path.join(a_dir, "神崎郡市.html")), False, "存在しない市「神崎郡市」のページを作らない")
+
+
+def test_parse_keeps_unknown_columns():
+    """共通仕様9：知らない列は extra に残し、parse-unknown.md に書き出す（黙って捨てない）。"""
+    import parse
+    parse.CURRENT["source"] = "test-src"
+    page = ("<h2>新設届出</h2><table><tr><th>店舗名称</th><th>届出日</th><th>謎の列</th></tr>"
+            "<tr><td>テスト店</td><td>令和6年5月1日</td><td>ここは読めない値</td></tr></table>")
+    recs = parse.extract_generic(page, "https://example.test/", "heading")
+    eq(len(recs), 1, "表から1件取れる")
+    eq((recs[0].get("extra") or {}).get("謎の列"), "ここは読めない値", "知らない列の値を extra に残す")
+    eq(parse.UNKNOWN["test-src"][("読まなかった列", "謎の列")] >= 1, True, "読まなかった列を書き留める")
+
+
 def main():
     for t in (test_is_corp, test_names, test_addr, test_small_numbers,
               test_all_json, test_generated_pages, test_public_urls,
               test_late_name_is_still_redacted, test_every_record_has_source,
               test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages,
-              test_fetch_etiquette):
+              test_fetch_etiquette, test_place_names, test_parse_keeps_unknown_columns):
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")

@@ -19,6 +19,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240528t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：343KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "f247b8f86e3f",
   "operator_display": "",
@@ -47,6 +51,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240528t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "但馬",
+   "公告": "公告（PDF：343KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "36208332544b",
   "operator_display": "",
@@ -75,6 +83,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：305KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "913bf66f9a5a",
   "operator_display": "",
@@ -103,6 +115,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "丹波",
+   "公告": "公告（PDF：305KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "a9f5df63772e",
   "operator_display": "",
@@ -131,6 +147,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "北播磨",
+   "公告": "公告（PDF：305KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "12c40beadd93",
   "operator_display": "",
@@ -159,6 +179,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240618t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：305KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "ef6e20a5375c",
   "operator_display": "",
@@ -187,6 +211,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240705t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "北播磨",
+   "公告": "公告（PDF：194KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "8272717aa7b7",
   "operator_display": "",
@@ -215,6 +243,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240709t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：348KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "c1683b37ced3",
   "operator_display": "",
@@ -243,6 +275,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240723t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "丹波",
+   "公告": "公告（PDF：1,565KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "ac2d93d3834f",
   "operator_display": "",
@@ -271,6 +307,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240730t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：473KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "f9fd9d0217b6",
   "operator_display": "",
@@ -299,6 +339,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240806t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "丹波",
+   "公告": "公告（PDF：345KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "fd4ec8662250",
   "operator_display": "",
@@ -327,6 +371,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240813t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "東播磨",
+   "公告": "公告（PDF：351KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "bd60574c3f1b",
   "operator_display": "",
@@ -355,6 +403,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240823t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：4,999KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "cf7c8f53651c",
   "operator_display": "",
