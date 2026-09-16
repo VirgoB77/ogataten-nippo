@@ -85,45 +85,67 @@ def _span(attrs, name):
 
 
 def rows_of(table_html, base_url):
-    """表を「セルの文字列の並び」と「その行にあったリンク」に分ける。
+    """表を「セルの文字列の並び」「その行にあったリンク」「各列の出どころ」に分ける。
 
     rowspan / colspan は展開して、どの行も同じ列位置に同じ意味の値が来るようにする
     （共通仕様9節）。展開しないと、結合セルのある行だけ列がずれて、隣の列の値を
     別の欄として読んでしまう。
+
+    3つめの「出どころ」は、その列の値が元の HTML のどのセルから来たかを表す札。
+    2つの列の札が同じなら、1つのセルが両方の列にまたがっている（＝結合セル）。
+    注記の行を届出として読まないために使う（extract_generic）。
     """
     rows = []
-    pending = {}        # 列位置 → [文字列, 残り行数]。上の行から rowspan で下りてくるセル
-    for tr in re.findall(r"<tr\b.*?</tr>", table_html, re.S | re.I):
-        cells, links = [], []
+    pending = {}        # 列位置 → [文字列, 残り行数, 出どころの札]。上の行から rowspan で下りてくるセル
+    for ri, tr in enumerate(re.findall(r"<tr\b.*?</tr>", table_html, re.S | re.I)):
+        cells, links, origins = [], [], []
         col = 0
 
         def take_pending():
             nonlocal col
             while col in pending:
-                text, left = pending[col]
+                text, left, origin = pending[col]
                 cells.append(text)
+                origins.append(origin)
                 if left <= 1:
                     del pending[col]
                 else:
                     pending[col][1] = left - 1
                 col += 1
 
-        for m in re.finditer(r"<(t[dh])\b([^>]*)>.*?</t[dh]>", tr, re.S | re.I):
+        for ci, m in enumerate(re.finditer(r"<(t[dh])\b([^>]*)>.*?</t[dh]>", tr, re.S | re.I)):
             take_pending()
             c = m.group(0)
             text = text_of(c)
             for href in re.findall(r'href=["\']([^"\']+)["\']', c, re.I):
                 links.append(urllib.parse.urljoin(base_url, html.unescape(href)))
             cs, rs = _span(m.group(2), "colspan"), _span(m.group(2), "rowspan")
+            origin = (ri, ci)       # この行の何番目のセルか。行をまたいでも一意
             for _ in range(cs):
                 cells.append(text)
+                origins.append(origin)
                 if rs > 1:
-                    pending[col] = [text, rs - 1]
+                    pending[col] = [text, rs - 1, origin]
                 col += 1
         take_pending()
         if any(cells):
-            rows.append((cells, links))
+            rows.append((cells, links, origins))
     return rows
+
+
+def same_origin(origins, idx, *keys):
+    """指定した列が、元の HTML の同じセルから来ているか。
+
+    結合セル（colspan）が複数の欄にまたがっている行を見つけるために使う。
+    列が足りない行では False（判断できないので、飛ばす側に倒さない）。
+    """
+    seen = []
+    for k in keys:
+        i = idx.get(k)
+        if i is None or i >= len(origins):
+            return False
+        seen.append(origins[i])
+    return len(set(seen)) == 1
 
 
 # ---------------------------------------------------------------- 日付を直す
@@ -240,9 +262,19 @@ UNKNOWN = defaultdict(Counter)      # (source, 種類, 列名) → 回数
 EXAMPLE = {}                        # 同じキー → 値の例
 
 
+# 列名が当事者の「名前そのもの」を指しているか。merge.py の EXTRA_PARTY_KEY と
+# 同じ考え方。この列の値は氏名なので、data/parse-unknown.md に例として書かない
+PARTY_COL = re.compile(
+    r"(氏名|名義|代表者|届出者|申請者|設置者|小売業者|事業者|所有者|世帯主)(名|氏名|等)?$")
+
+
 def note_unknown(kind, name, example=""):
     key = (CURRENT["source"], kind, name)
     UNKNOWN[key[0]][(kind, name)] += 1
+    # data/parse-unknown.md は公開する。氏名の入る列の値は例に載せない（3.1）。
+    # 回数は残るので「様式が変わった」のサインとしては働く
+    if example and PARTY_COL.search(norm_head(name)):
+        example = ""
     if example and (kind, name) not in EXAMPLE.get(key[0], {}):
         EXAMPLE.setdefault(key[0], {})[(kind, name)] = str(example)[:60]
 
@@ -413,11 +445,14 @@ def extract_generic(page, base_url, how, hint=""):
             continue
 
         # 阪南市：1件が「項目名 | 値」の縦長の表。横に倒して1行にする
-        if all(len(c) == 2 for c, _ in rows) and len(rows) >= 4:
-            labels = [c[0] for c, _ in rows]
+        if all(len(c) == 2 for c, _, _ in rows) and len(rows) >= 4:
+            labels = [c[0] for c, _, _ in rows]
             if any(re.search(r"店舗|名称", l) for l in labels) and any("届出" in l for l in labels):
-                links = [u for _, ls in rows for u in ls]
-                rows = [([l for l in labels], []), ([c[1] for c, _ in rows], links)]
+                links = [u for _, ls, _ in rows for u in ls]
+                # 倒したあとは、どの列も元は別のセル（縦の1行ぶん）。出どころも列ごとに分ける
+                origins = [("t", i) for i in range(len(labels))]
+                rows = [([l for l in labels], [], list(origins)),
+                        ([c[1] for c, _, _ in rows], links, list(origins))]
 
         if how == "firstrow" and len(rows[0][0]) <= 2:
             label = rows[0][0][0]
@@ -451,10 +486,25 @@ def extract_generic(page, base_url, how, hint=""):
         # 見出しに条文が無く、行にも区分が無いときだけ、見出しの言葉から推定する
         heading_article = article or ("" if "kind_col" in idx else article_in(heading))
 
-        for cells, links in rows[1:]:
+        for cells, links, origins in rows[1:]:
             def cell(k):
                 i = idx.get(k)
                 return cells[i] if i is not None and i < len(cells) else ""
+
+            # 結合セル（colspan）で1行ぶんを1セルにした注記の行。届出として読むと、
+            # 店名も所在地も注記の文になった記録が1件できる。注記には氏名や地番が
+            # 入っていることがあるので、飛ばすだけでなく本文も書き留めない（3.1）。
+            #
+            # 「全列が同じ値」だけでは足りない。上の行から rowspan で年度などが
+            # 1列だけ下りてくると値が2種類になり、その条件をすり抜ける（監査で再現）。
+            # 店名の列と届出日の列が同じセルから来ているかを見る。1つのセルが
+            # その2つにまたがることは、届出の行では起きない
+            if same_origin(origins, idx, "store", "date"):
+                note_unknown("結合セルが店名と届出日にまたがる行（注記とみなして飛ばした）", heading[:40])
+                continue
+            if len(set(cells)) == 1 and len(cells) > 1:
+                note_unknown("全列が同じ値の行（注記とみなして飛ばした）", heading[:40])
+                continue
 
             store, addr_in_name = split_store(cell("store"))
             if not store or norm_head(store) in ("店舗名称", "店舗の名称", "届出の名称", "届出なし", "なし"):
@@ -488,11 +538,6 @@ def extract_generic(page, base_url, how, hint=""):
                 "note": cell("note"),
                 "docs": [u for u in links if re.search(r"\.(pdf|xlsx?|docx?)$", u, re.I)],
             }
-            # 結合セル（colspan）で1行を1セルにした注記の行は、全列に同じ文字が並ぶ。
-            # 届出として読むと、店名も所在地も注記の文になった記録が1件できる
-            if len(set(cells)) == 1 and len(cells) > 1:
-                note_unknown("全列が同じ値の行（注記とみなして飛ばした）", heading[:40], cells[0][:60])
-                continue
             extra = {header[i]: cells[i] for i in unknown_cols if i < len(cells) and cells[i].strip()}
             if extra:
                 rec["extra"] = extra
