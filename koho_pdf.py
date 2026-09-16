@@ -38,7 +38,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date
+from datetime import date, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -56,7 +56,7 @@ OUT = os.path.join(HERE, "data", "parsed", "hyogo-koho")
 REPORT = os.path.join(HERE, "data", "koho", "pdf-report.md")
 SOURCE = "hyogo-koho"
 
-from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
+from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024
@@ -85,6 +85,9 @@ def get(url, limit=MAX_PDF):
     if len(data) > limit:
         raise ValueError("大きすぎる")
     return data
+
+
+_month_failed = {}   # この実行で取れなかった月ページ（同じ月を何十回も叩かないため）
 
 
 # ---------------------------------------------------------------- 月別一覧 → 月ページ
@@ -119,10 +122,16 @@ def month_links(ym, url, lines):
     if os.path.exists(cache):
         with open(cache, encoding="utf-8") as f:
             return json.load(f)
+    if ym in _month_failed:
+        return None                      # この実行で一度取れなかった月は、もう叩かない
     try:
         html_ = get(url, limit=2_000_000).decode("utf-8", errors="replace")
     except (urllib.error.URLError, urllib.error.HTTPError, OSError, ValueError) as e:
         lines.append(f"  - 月ページが取れなかった {ym} — {type(e).__name__}: {str(e)[:60]}")
+        _month_failed[ym] = e
+        time.sleep(WAIT)                 # 失敗でも要求は出している。次まで5秒あける
+        if is_busy(e):
+            raise                        # 混んでいるなら、その回は中止（呼び出し側で止める）
         return None
     time.sleep(WAIT)
     out = {}
@@ -438,11 +447,29 @@ def fetch_issue(issue, url, lines):
         text = r.stdout.decode("utf-8", errors="replace")
     finally:
         os.remove(tmp_path)
+    if not text_ok(r.returncode, text):
+        # 文字が取れていないのに done にすると、空の全文が「取得済み」として
+        # 姉妹サイトに渡る（監査）。full にも書かない
+        raise ValueError("文字なし")
     save_full(issue, url, text)
     return write_sections(issue, url, text)
 
 
-def needs_fetch(key, ledger):
+MIN_TEXT_CHARS = 200   # 公報1号ぶんの文字がこれより少ないことはない
+
+
+def text_ok(returncode, text):
+    """pdftotext が本当に文字を返したか。"""
+    return returncode == 0 and len((text or "").strip()) >= MIN_TEXT_CHARS
+
+
+# 何度取りに行っても同じ結果になる失敗。毎日叩かず、月に1回だけ確かめ直す
+# （県が後から載せることはあるので、永久には諦めない）
+PERMANENT = ("月ページに号が無い", "月ページが一覧に無い", "文字なし", "大きすぎる")
+RECHECK_DAYS = 30
+
+
+def needs_fetch(key, ledger, today=None):
     """この号を取りに行くか。"""
     e = ledger.get(key)
     if e is None:
@@ -450,7 +477,39 @@ def needs_fetch(key, ledger):
     status = e.get("status", "")
     if status.startswith("done"):
         return e.get("v", 1) < TEXT_VERSION      # 全文を残す前に取った号は取り直す
-    return "404" not in status                   # 404 以外の失敗は次回やり直す
+    if "404" in status:
+        return False
+    if any(p in status for p in PERMANENT):
+        when = e.get("when")
+        if not when:
+            return True                           # いつ調べたか分からないなら、もう一度だけ
+        return (today or date.today()) - date.fromisoformat(when) >= timedelta(days=RECHECK_DAYS)
+    return True                                   # 一時的な失敗は次回やり直す
+
+
+def find_in_neighbor_year(d, no, index, lines):
+    """目録の年が1年ずれている号を、前後1年の同じ月日で探す。
+
+    兵庫県の目録は年始の行の年が前年のまま残っていることがあり、1月の号が
+    「月ページに号が無い」になっていた（19件中8件がこれ）。号番号は通し番号なので、
+    前後1年の同じ月日に同じ号番号があれば、それが本物。見つかれば (本当の日付, URL)。
+    """
+    y, m, dd = d.split("-")
+    for yy in (int(y) + 1, int(y) - 1):
+        ym2 = f"{yy:04d}-{m}"
+        murl2 = index.get(ym2)
+        if not murl2:
+            continue
+        links2 = month_links(ym2, murl2, lines)
+        if links2 and f"{int(m)}-{int(dd)}-{no}" in links2:
+            return f"{yy:04d}-{m}-{dd}", links2[f"{int(m)}-{int(dd)}-{no}"]
+    return None, None
+
+
+def save_ledger(ledger):
+    os.makedirs(os.path.dirname(LEDGER), exist_ok=True)
+    with open(LEDGER, "w", encoding="utf-8") as f:
+        json.dump(ledger, f, ensure_ascii=False, indent=0, sort_keys=True)
 
 
 def main():
@@ -472,39 +531,67 @@ def main():
         again = sum(1 for k in todo if f"{k[0]}#{k[1]}" in ledger)
         lines.append(f"- 未読の号 {len(todo)}（うち全文を残す前に取った取り直し {again} 号）。"
                      f"今回は新しいほうから {MAX_ISSUES} 号まで")
-        for (d, no) in todo[:MAX_ISSUES]:
-            key = f"{d}#{no}"
-            ym = d[:7]
-            murl = index.get(ym)
-            if not murl:
-                ledger[key] = {"status": "月ページが一覧に無い"}
-                continue
-            links = month_links(ym, murl, lines)
-            if links is None:
-                continue
-            y, m, dd = d.split("-")
-            url = links.get(f"{int(m)}-{int(dd)}-{no}")
-            if not url:
-                ledger[key] = {"status": "月ページに号が無い"}
-                lines.append(f"  - {d} 第{no}号: 月ページに見つからない")
-                continue
-            try:
-                n = fetch_issue({"date": d, "no": no}, url, lines)
-                ledger[key] = {"status": "done", "url": url, "sections": n,
-                               "v": TEXT_VERSION, "when": date.today().isoformat()}
-                fetched += 1
-                lines.append(f"  - **{d} 第{no}号** 大店立地法の公告 {n} 件"
-                             f"（目録では {issues[(d, no)]} 件）")
-            except urllib.error.HTTPError as e:
-                ledger[key] = {"status": f"failed: HTTP {e.code}", "url": url}
-                lines.append(f"  - {d} 第{no}号: HTTP {e.code}")
-            except (urllib.error.URLError, OSError, ValueError, subprocess.TimeoutExpired) as e:
-                ledger[key] = {"status": f"failed: {type(e).__name__}", "url": url}
-                lines.append(f"  - {d} 第{no}号: {type(e).__name__}: {str(e)[:50]}")
-            time.sleep(WAIT)
-        os.makedirs(os.path.dirname(LEDGER), exist_ok=True)
-        with open(LEDGER, "w", encoding="utf-8") as f:
-            json.dump(ledger, f, ensure_ascii=False, indent=0, sort_keys=True)
+        today = date.today().isoformat()
+        ok, why = check_robots(HOST + "/")
+        if ok is None:
+            lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
+            todo = []
+        elif ok is False:
+            lines.append(f"- {why}。取りに行かない（共通仕様3.4）")
+            todo = []
+        try:
+            for (d, no) in todo[:MAX_ISSUES]:
+                key = f"{d}#{no}"
+                ym = d[:7]
+                murl = index.get(ym)
+                if not murl:
+                    ledger[key] = {"status": "月ページが一覧に無い", "when": today}
+                    save_ledger(ledger)
+                    continue
+                links = month_links(ym, murl, lines)
+                if links is None:
+                    continue
+                y, m, dd = d.split("-")
+                url = links.get(f"{int(m)}-{int(dd)}-{no}")
+                issue_date = d
+                if not url:
+                    # 目録の年が1年ずれていないか、前後1年の同じ月日で探す
+                    d2, url2 = find_in_neighbor_year(d, no, index, lines)
+                    if url2:
+                        url, issue_date = url2, d2
+                        lines.append(f"  - {d} 第{no}号: 目録の年がずれていた。実際は {d2}")
+                if not url:
+                    ledger[key] = {"status": "月ページに号が無い", "when": today}
+                    save_ledger(ledger)
+                    lines.append(f"  - {d} 第{no}号: 月ページに見つからない")
+                    continue
+                try:
+                    n = fetch_issue({"date": issue_date, "no": no}, url, lines)
+                    ledger[key] = {"status": "done", "url": url, "sections": n,
+                                   "v": TEXT_VERSION, "when": today}
+                    if issue_date != d:
+                        ledger[key]["date_actual"] = issue_date
+                    fetched += 1
+                    lines.append(f"  - **{issue_date} 第{no}号** 大店立地法の公告 {n} 件"
+                                 f"（目録では {issues[(d, no)]} 件）")
+                except urllib.error.HTTPError as e:
+                    ledger[key] = {"status": f"failed: HTTP {e.code}", "url": url, "when": today}
+                    lines.append(f"  - {d} 第{no}号: HTTP {e.code}")
+                    if is_busy(e):
+                        save_ledger(ledger)
+                        lines.append(f"  - **HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+                        break
+                except (urllib.error.URLError, OSError, ValueError, subprocess.TimeoutExpired) as e:
+                    # ValueError は「大きすぎる」「文字なし」。中身を残して恒久扱いにする
+                    why = str(e) if isinstance(e, ValueError) else type(e).__name__
+                    ledger[key] = {"status": f"failed: {why}", "url": url, "when": today}
+                    lines.append(f"  - {d} 第{no}号: {why[:50]}")
+                save_ledger(ledger)               # 途中で落ちても、ここまでの分は残る
+                time.sleep(WAIT)
+        except urllib.error.HTTPError as e:
+            # 月ページが 429/503。その回は中止
+            lines.append(f"  - **月ページが HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+        save_ledger(ledger)
     else:
         lines.append("- 号の一覧がまだ無いか pdftotext が無いので、取りに行かなかった")
 

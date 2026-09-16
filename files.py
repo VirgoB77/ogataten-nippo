@@ -38,7 +38,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "data", "raw")
 FILES = os.path.join(HERE, "data", "files")
 
-from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
+from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90
 PDF_TIMEOUT = 25          # PDFは1本ずつ多いので短く諦める。90秒×50本で1時間止まった
@@ -275,6 +275,16 @@ def main():
         opener = browser_session(src["url"]) if src.get("session") else None
         for url, label in links:
             dest = os.path.join(d, safe_name(url))
+            # robots.txt はホストごとに1回だけ取る（キャッシュ）。拒否なら取りに行かない。
+            # robots.txt 自体が 429/503 なら、その収集先は今回ここまで（3.4）
+            allowed, why = check_robots(url)
+            if allowed is None:
+                lines.append(f"  - {why}。この収集先は今回ここまで")
+                break
+            if allowed is False:
+                lines.append(f"  - {why}: {safe_name(url)} は取りに行かない")
+                skipped += 1
+                continue
             if os.path.exists(dest):
                 if opener is not None:
                     # クッキー経路の収集先は、手持ちがあっても取りに行って通るかを確かめる。
@@ -299,9 +309,14 @@ def main():
                 # 兵庫県はリストの先頭3本が8MB級で、ここを失敗と数えて全部打ち切っていた
                 lines.append(f"  - 見送り {safe_name(url)} — {e}")
                 skipped += 1
+                time.sleep(WAIT)          # 上限まで読んでから見送っている。要求は出したので5秒あける
                 continue
             except (urllib.error.HTTPError, urllib.error.URLError, OSError, TimeoutError) as e:
                 lines.append(f"  - 取れなかった {safe_name(url)} — {type(e).__name__}: {str(e)[:60]}")
+                if is_busy(e):
+                    lines.append(f"  - **HTTP {e.code}（混んでいる）。この収集先は今回ここまで**（共通仕様3.4）")
+                    failed += 1
+                    break
                 if opener is not None:
                     # 大阪市は機械からは取れないと分かっている（2026-09-12時点）。
                     # ページに新しいファイル名が出たら、人がブラウザで落として置く合図にする
