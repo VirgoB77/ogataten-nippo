@@ -828,6 +828,10 @@ def test_extra_is_scrubbed_like_a_party():
                      "所在": "架空市架空町1-2-3",          # 丸めると所在地と同じ → 消す
                      "摘要": "代表者 架空花子",             # 頭が人を指す語 → 名前だけ伏せる
                      "小売業者": "株式会社カブシキ",         # 名前の列だが法人 → そのまま
+                     "設置者（氏名）": "架空三郎",           # 括弧つきの名前の列 → 伏せる
+                     "小売業者 （名称）": "架空四郎",         # 空白＋括弧 → 伏せる
+                     "備考2": "代表者：架空五郎",            # コロン区切り → 名前だけ伏せる
+                     "備考3": "代表取締役 架空 六郎",        # 姓名の間に空白 → 名前だけ伏せる
                      "変更理由": "代表者変更のため",         # 名前ではない文 → そのまま
                      "設置者対応": "ー",                    # 名前の列ではない → そのまま
                      "受理 番号": "862"}}
@@ -838,6 +842,12 @@ def test_extra_is_scrubbed_like_a_party():
     eq(any("架空花子" in str(v) for v in ex.values()), False, "「代表者 ○○」の氏名が extra に残っている")
     eq(ex.get("摘要"), "代表者 個人", "「代表者 ○○」の伏せ方が違う")
     eq(ex.get("小売業者"), "株式会社カブシキ", "法人名まで伏せている")
+    eq(ex.get("設置者（氏名）"), "個人", "括弧つきの名前の列（設置者（氏名））をすり抜けている")
+    eq(ex.get("小売業者 （名称）"), "個人", "空白＋括弧の名前の列をすり抜けている")
+    eq(ex.get("備考2"), "代表者 個人", "コロン区切りの「代表者：○○」をすり抜けている")
+    eq(ex.get("備考3"), "代表取締役 個人", "姓名の間に空白のある「代表取締役 姓 名」をすり抜けている")
+    for bad in ("架空三郎", "架空四郎", "架空五郎", "六郎"):
+        eq(any(bad in str(v) for v in ex.values()), False, f"{bad} が extra に残っている")
     eq(ex.get("変更理由"), "代表者変更のため", "名前ではない文まで伏せている")
     eq(ex.get("設置者対応"), "ー", "名前の列でない「設置者対応」を伏せている")
     eq(ex.get("受理 番号"), "862", "関係のない列を消している")
@@ -921,6 +931,66 @@ def test_every_fetcher_stops_when_busy():
         eq("is_busy" in src, True, f"{name} が 429/503 を見ていない（共通仕様3.4）")
         stops = re.search(r"if is_busy\(e\):(?:[^\n]*\n){1,8}?[ \t]*(break|raise|return)", src)
         eq(bool(stops), True, f"{name} は 429/503 を見ているが、そこで止めていない")
+
+
+# ---------------------------------------------------------------- 監査：#37 の再審査
+
+def test_party_column_is_judged_in_one_place():
+    """3.1：列の見出しが「名前の欄」かの判定は、1か所だけに置く。
+
+    parse.py（例を書かない）と merge.py（値を伏せる）が別々に持っていて、
+    落とす記号が違ったため「設置者（氏名）」が merge 側だけすり抜けた。
+    表記のゆれ（空白・括弧・中黒）で破れないこと。
+    """
+    from common import privacy
+    import parse, merge
+    NAME = ("設置者", "小売業者", "設置者氏名", "設置者（氏名）", "設置者(氏名)",
+            "小売業者 （名称）", "設置者・代表者", "設置者の氏名又は名称",
+            "氏名（法人にあっては名称）", "代表取締役", "届出者（代表者）")
+    NOT = ("設置者対応", "設 置 者 対 応", "変更理由", "縦覧場所 （県民局等）",
+           "受理 番号", "店舗面積", "年度", "公告", "勧告", "届出書の概要",
+           "営業時間", "取扱品目", "駐車台数 (駐輪台数)", "基準面積以下となる日", "No")
+    for k in NAME:
+        eq(privacy.is_party_column(k), True, f"名前の列を見落としている: {k}")
+    for k in NOT:
+        eq(privacy.is_party_column(k), False, f"名前の列でないものを名前の列と見ている: {k}")
+    # 2つのファイルが同じ判定を使っていること（別々の正規表現を持たない）
+    src = open(os.path.join(HERE, "merge.py"), encoding="utf-8").read()
+    src += open(os.path.join(HERE, "parse.py"), encoding="utf-8").read()
+    eq("EXTRA_PARTY_KEY" in src or "PARTY_COL" in src, False,
+       "名前の列の判定が common/privacy.py の外にも残っている（2か所あると食い違う）")
+
+
+def test_empty_rows_are_not_called_notes():
+    """9節：中身が空なだけの行を「注記」と書かない（公開する報告書なので）。
+
+    阪南市の縦長の表を横に倒すと空の行ができる。実データで75件あり、
+    どれも data/parse-unknown.md に「注記とみなして飛ばした」と載っていた。
+    """
+    import parse
+    parse.EXAMPLE.clear(); parse.UNKNOWN.clear()
+    parse.CURRENT["source"] = "demo-empty"
+    # 阪南市の形：「項目名 | 値」の縦長の表。横に倒すと、値が全部空の行になる
+    t = ("<table>"
+         "<tr><td>店舗の名称</td><td></td></tr>"
+         "<tr><td>所在地</td><td></td></tr>"
+         "<tr><td>届出年月日</td><td></td></tr>"
+         "<tr><td>設置者</td><td></td></tr>"
+         "</table>")
+    parse.extract_generic(t, "https://example.test/", "見出し")
+    kinds = [k for (k, _n) in parse.UNKNOWN.get("demo-empty", {})]
+    eq(any("注記" in k for k in kinds), False, f"中身が空の行を注記と呼んでいる: {kinds}")
+    eq(any("中身が空" in k for k in kinds), True, f"空の行を書き留めていない: {kinds}")
+
+
+def test_placeholder_is_not_a_duplicate():
+    """3.1：「―」「なし」は値ではなく文言。複製として消すと、列があったことまで消える。"""
+    import merge
+    rec = {"source": "demo", "key": "demo-ph", "store": "アイウ店", "address": "架空市1丁目",
+           "operator": "株式会社カブシキ", "retailer": "―",
+           "extra": {"小売業者": "―", "店舗面積": "919平方メートル"}}
+    merge.apply_privacy([rec])
+    eq(rec.get("extra", {}).get("小売業者"), "―", "「―」の列が黙って消えている")
 
 
 def main():

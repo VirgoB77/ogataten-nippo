@@ -29,6 +29,7 @@ import urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xlsx import _serial_to_date as serial_to_date  # noqa: E402
+from common import privacy  # 列の見出しが名前の欄かの判定（共通仕様5節）  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "data", "raw")
@@ -262,18 +263,13 @@ UNKNOWN = defaultdict(Counter)      # (source, 種類, 列名) → 回数
 EXAMPLE = {}                        # 同じキー → 値の例
 
 
-# 列名が当事者の「名前そのもの」を指しているか。merge.py の EXTRA_PARTY_KEY と
-# 同じ考え方。この列の値は氏名なので、data/parse-unknown.md に例として書かない
-PARTY_COL = re.compile(
-    r"(氏名|名義|代表者|届出者|申請者|設置者|小売業者|事業者|所有者|世帯主)(名|氏名|等)?$")
-
-
 def note_unknown(kind, name, example=""):
     key = (CURRENT["source"], kind, name)
     UNKNOWN[key[0]][(kind, name)] += 1
     # data/parse-unknown.md は公開する。氏名の入る列の値は例に載せない（3.1）。
     # 回数は残るので「様式が変わった」のサインとしては働く
-    if example and PARTY_COL.search(norm_head(name)):
+    # 判定は common/privacy.py に1つだけ置く（merge.py の extra の掃除と同じもの）
+    if example and privacy.is_party_column(name):
         example = ""
     if example and (kind, name) not in EXAMPLE.get(key[0], {}):
         EXAMPLE.setdefault(key[0], {})[(kind, name)] = str(example)[:60]
@@ -503,7 +499,10 @@ def extract_generic(page, base_url, how, hint=""):
                 note_unknown("結合セルが店名と届出日にまたがる行（注記とみなして飛ばした）", heading[:40])
                 continue
             if len(set(cells)) == 1 and len(cells) > 1:
-                note_unknown("全列が同じ値の行（注記とみなして飛ばした）", heading[:40])
+                # 中身が空なだけの行は注記ではない。阪南市の縦長の表を横に倒すと
+                # 空の行が75件できる。公開する報告書に「注記」と書くと嘘になる
+                kind = "注記とみなして飛ばした行" if cells[0].strip() else "中身が空の行"
+                note_unknown(f"全列が同じ値の行（{kind}）", heading[:40])
                 continue
 
             store, addr_in_name = split_store(cell("store"))
