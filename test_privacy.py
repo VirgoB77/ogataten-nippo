@@ -641,6 +641,39 @@ def test_excel_fetched_on_is_download_day():
     eq(len(same), 0, f"大阪市の取得日が一覧の日付そのものになっている {len(same)} 件（ファイル名の日付を取得日にしていないか）")
 
 
+def test_koho_extra_issues():
+    """号外を取る：目録の番号の揃え方、月ページの見出しの読み方、ファイル名、追いついたら月2回（3.4）。"""
+    import koho
+    from datetime import date as _d
+    k = _load_koho()
+    eq(koho.norm_issue_no("423"), "423", "定期号はそのまま")
+    eq(koho.norm_issue_no("号外"), "g1", "「号外」は g1")
+    eq(koho.norm_issue_no("第2号外"), "g2", "「第2号外」は g2")
+    eq(koho.norm_issue_no("第１２号外"), "g12", "全角の数字も読む")
+    eq(koho.norm_issue_no("-"), "", "欠番は空")
+    eq(k.issue_no_of_label("12月19日第679号"), (12, 19, "679"), "定期号の見出し")
+    eq(k.issue_no_of_label("12月1日号外"), (12, 1, "g1"), "号外の見出し")
+    eq(k.issue_no_of_label("12月3日第2号外"), (12, 3, "g2"), "第2号外の見出し（第2号と読み違えない）")
+    eq(k.issue_no_of_label("目次"), None, "見出しでないものは None")
+    eq(k.stem_of({"date": "2025-12-19", "no": "g2"}), "2025-12-19-g2", "号外のファイル名")
+    eq(k.no_label("679"), "第679号", "人が読む文（定期号）")
+    eq(k.no_label("g1"), "号外", "人が読む文")
+    eq(k.no_label("g2"), "第2号外", "人が読む文")
+    eq(k.fetch_today(500, _d(2026, 9, 20)), True, "積み直しの間は毎日")
+    eq(k.fetch_today(5, _d(2026, 9, 20)), False, "追いついたら 1日・15日以外は取りに行かない")
+    eq(k.fetch_today(5, _d(2026, 10, 1)), True, "追いついても 1日は取りに行く")
+    eq(k.fetch_today(5, _d(2026, 9, 20), force=True), True, "手で押したときは取りに行く")
+    # 号外は日ごとに番号が振り直されるので、発行日のまとめ直し（年ずれの復旧）の対象にしない
+    fixed, merged = koho.merge_issue_dates({
+        "2025-01-10#g1": {"date": "2025-01-10", "no": "g1", "titles": 1, "topics": {}},
+        "2025-02-10#g1": {"date": "2025-02-10", "no": "g1", "titles": 1, "topics": {}},
+        "2025-01-10#423": {"date": "2025-01-10", "no": "423", "titles": 3, "topics": {}},
+        "2026-01-10#423": {"date": "2026-01-10", "no": "423", "titles": 1, "topics": {}},
+    })
+    eq(sorted(fixed), ["2025-01-10#423", "2025-01-10#g1", "2025-02-10#g1"], "号外は別々のまま、定期号の年ずれはまとまる")
+    eq(len(merged), 1, "まとめたのは定期号の1件だけ")
+
+
 def main():
     for t in (test_is_corp, test_names, test_addr, test_small_numbers,
               test_all_json, test_generated_pages, test_public_urls,
