@@ -195,6 +195,44 @@ ARTICLE_MEANS = [
 ]
 
 # 届出ではない表（意見書など）はここで弾く
+# 共通仕様9「知らないものを黙って捨てない」。読まなかった列と飛ばした表を書き留めて
+# data/parse-unknown.md に出す。様式が変わったことに何年も気づかないまま、
+# 歯抜けのデータが積み上がるのを防ぐ（監査：堺市の中規模は5列、神戸市の意見の表は1表まるごと捨てていた）
+from collections import Counter, defaultdict
+CURRENT = {"source": ""}
+UNKNOWN = defaultdict(Counter)      # (source, 種類, 列名) → 回数
+EXAMPLE = {}                        # 同じキー → 値の例
+
+
+def note_unknown(kind, name, example=""):
+    key = (CURRENT["source"], kind, name)
+    UNKNOWN[key[0]][(kind, name)] += 1
+    if example and (kind, name) not in EXAMPLE.get(key[0], {}):
+        EXAMPLE.setdefault(key[0], {})[(kind, name)] = str(example)[:60]
+
+
+def write_unknown_report(path):
+    lines = ["# 読まなかったもの（parse.py）", "",
+             "解析中に出会ったが、どの欄にも対応づけられなかった列と、読まなかった表。",
+             "様式が変わったサインなので、増えていたら parse.py の列の対応（HTML_COLS）を足す。", ""]
+    total = 0
+    for source in sorted(UNKNOWN):
+        lines.append(f"## {source}")
+        lines.append("")
+        lines.append("| 種類 | 列名・見出し | 回数 | 例 |")
+        lines.append("|---|---|---:|---|")
+        for (kind, name), n in UNKNOWN[source].most_common():
+            ex = EXAMPLE.get(source, {}).get((kind, name), "")
+            lines.append(f"| {kind} | {name} | {n} | {ex} |")
+            total += n
+        lines.append("")
+    lines.insert(1, f"合計 {total} 件（収集先 {len(UNKNOWN)}）")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    return total
+
+
 NOT_A_NOTICE = re.compile(r"意見書|市の意見|県の意見|公表")
 
 
@@ -330,6 +368,7 @@ def extract_generic(page, base_url, how, hint=""):
             continue
 
         if NOT_A_NOTICE.search(heading):
+            note_unknown("意見の表として飛ばした", heading[:40], " | ".join(rows[0][0])[:60])
             continue
 
         # 阪南市：1件が「項目名 | 値」の縦長の表。横に倒して1行にする
@@ -359,7 +398,11 @@ def extract_generic(page, base_url, how, hint=""):
 
         idx = map_columns(rows[0][0])
         if "store" not in idx or "date" not in idx:
+            note_unknown("店名か届出日の列が見つからず飛ばした表", heading[:40], " | ".join(rows[0][0])[:60])
             continue
+        # 対応づけられなかった列。値は extra に残し、列名を書き留める
+        header = rows[0][0]
+        unknown_cols = [i for i in range(len(header)) if i not in idx.values() and norm_head(header[i])]
         # 見出しに条文が無く、行にも区分が無いときだけ、見出しの言葉から推定する
         heading_article = article or ("" if "kind_col" in idx else article_in(heading))
 
@@ -400,6 +443,11 @@ def extract_generic(page, base_url, how, hint=""):
                 "note": cell("note"),
                 "docs": [u for u in links if re.search(r"\.(pdf|xlsx?|docx?)$", u, re.I)],
             }
+            extra = {header[i]: cells[i] for i in unknown_cols if i < len(cells) and cells[i].strip()}
+            if extra:
+                rec["extra"] = extra
+                for k, v in extra.items():
+                    note_unknown("読まなかった列", k, v)
             found.append(rec)
     return found
 
@@ -516,6 +564,7 @@ def main():
         # 同じ日の保存ページ（入口と、そこから辿った先）をまとめて1つにする。
         # 堺市は入口が目次で、中身は年度別ページに散らばっている
         by_day = {}
+        CURRENT["source"] = source
         for path in sorted(glob.glob(os.path.join(RAW, source, "*.html"))):
             day = os.path.basename(path)[:10]
             by_day.setdefault(day, []).append(path)
@@ -538,6 +587,8 @@ def main():
             total += len(recs)
 
     print(f"# 取り出した結果（合計 {total} 件）\n")
+    n_unknown = write_unknown_report(os.path.join(HERE, "data", "parse-unknown.md"))
+    print(f"読まなかった列・表 {n_unknown} 件 → data/parse-unknown.md")
     for source, day, n, kinds in summary:
         k = " / ".join(f"{a} {b}件" for a, b in sorted(kinds.items(), key=lambda x: -x[1]))
         print(f"- {source} {day}: **{n}件**（{k}）")

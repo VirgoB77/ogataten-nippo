@@ -17,6 +17,10 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "届出書の提出理由": "大規模小売店舗立地法第5条第1項に基づくもの",
+   "提出期限": "終了"
+  },
   "source": "kumatori-town",
   "key": "31b45fa7fdad",
   "operator_display": "",
@@ -43,6 +47,10 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "届出書の提出理由": "大規模小売店舗立地法第5条第1項に基づくもの",
+   "提出期限": "終了"
+  },
   "source": "kumatori-town",
   "key": "145d23a5810d",
   "operator_display": "",

@@ -17,6 +17,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "92aaa0574277",
   "operator_display": "",
@@ -43,6 +46,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "3b902d7f6609",
   "operator_display": "",
@@ -69,6 +75,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下 となる日": "平成28年3月25日"
+  },
   "source": "hannan-city",
   "key": "de8f3adce9fb",
   "operator_display": "",
@@ -95,6 +104,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "ad798c0ff54c",
   "operator_display": "",
@@ -121,6 +133,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "6f1cf9bffc11",
   "operator_display": "",
@@ -147,6 +162,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "bc8c1c2ed43a",
   "operator_display": "",
@@ -173,6 +191,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "93af4914398c",
   "operator_display": "",
@@ -199,6 +220,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "7f69983caf71",
   "operator_display": "",

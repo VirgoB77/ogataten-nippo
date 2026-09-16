@@ -167,7 +167,7 @@ def page(title, body, rel, desc="", canonical=""):
 <header class="top"><div class="name"><a href="{rel}index.html">{esc(SITE_NAME)}</a></div><div class="tag">{esc(TAGLINE)}</div></header>
 {body}
 <footer>
-<p>出典：各自治体が大規模小売店舗立地法に基づいて公告・縦覧している届出（大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町）。各届出ページに出典のURLと取得日を載せています。
+<p>出典：各自治体が大規模小売店舗立地法に基づいて公告・縦覧している届出（大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町）。八尾市・堺市の「中規模」は、法ではなく市の条例に基づく届出です。各届出ページに出典のURLと取得日を載せています。
 毎朝1回とりに行き、自治体のページから消えた届出もこのサイトには残しています。</p>
 <p>{esc(DISCLAIMER)} 写し間違いもありえます。正確な内容は各届出ページの「出典」から自治体のページをご確認ください。</p>
 <p><a href="{rel}about.html">このサイトについて・出典と利用規約</a> ／ <a href="{rel}contact.html">訂正・削除のご依頼</a></p>
@@ -218,6 +218,8 @@ def detail_page(r, by_ref, src_meta):
         why = ("設置者が個人のため" if (r.get("operator_display") or "") == "個人"
                else "設置者を確かめられないため")
         addr_note = f'<span class="note">（{why}町丁目まで）</span>'
+    if r.get("address_suspect"):
+        addr_note += '<span class="note">（自治体の表の所在地欄に別の県の住所が入っていたため、店舗の所在地としては表示していません）</span>'
     add("所在地", esc(r.get("address") or r.get("area")) + addr_note)
     add("店舗面積", esc(fmt_area(r.get("area_m2"))))
     add("延床面積", esc(fmt_area(r.get("floor_area_m2"))))
@@ -292,7 +294,7 @@ def detail_page(r, by_ref, src_meta):
     if ev:
         desc += f" {jp_date(ev)}予定。"
     body = f"""
-<p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a> › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
+<p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>
 <div class="card"><dl class="kv">{''.join(kv)}</dl></div>
 <p class="note">{esc(DISCLAIMER)} 内容に誤りがある場合は<a href="{rel}contact.html">訂正・削除のご依頼</a>からお知らせください。</p>
@@ -587,6 +589,7 @@ def main():
 
     by_area = defaultdict(list)
     for r in recs:
+        r["area"] = r.get("area") or "所在地不明"      # 空だと a/.html という名前の無いページができる（監査）
         by_area[r["area"]].append(r)
     for area, rows in by_area.items():
         with open(os.path.join(HERE, "a", f"{slug(area)}.html"), "w", encoding="utf-8") as f:

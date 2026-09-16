@@ -17,6 +17,9 @@
   "city_opinion": "",
   "note": "小売業者、小売業を行う者の開店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "1069"
+  },
   "source": "kobe-city",
   "key": "5f060740d1fd",
   "operator_display": "",
@@ -43,6 +46,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1060"
+  },
   "source": "kobe-city",
   "key": "fd2bebf1ece3",
   "operator_display": "",
@@ -69,6 +75,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1055"
+  },
   "source": "kobe-city",
   "key": "ad757b288d90",
   "operator_display": "",
@@ -95,6 +104,9 @@
   "city_opinion": "",
   "note": "駐車場の位置、駐車場の自動車の出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "1052"
+  },
   "source": "kobe-city",
   "key": "a8e207109ec1",
   "operator_display": "",
@@ -121,6 +133,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1045"
+  },
   "source": "kobe-city",
   "key": "8f57e3eb5aab",
   "operator_display": "",
@@ -147,6 +162,9 @@
   "city_opinion": "",
   "note": "小売業を行う者の開店時刻及び閉店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "1044"
+  },
   "source": "kobe-city",
   "key": "ee00fd89a8b8",
   "operator_display": "",
@@ -173,6 +191,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1037"
+  },
   "source": "kobe-city",
   "key": "c7270dbee407",
   "operator_display": "",
@@ -199,6 +220,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1035"
+  },
   "source": "kobe-city",
   "key": "6669cc2dd693",
   "operator_display": "",
@@ -225,6 +249,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1034"
+  },
   "source": "kobe-city",
   "key": "2f29417697ce",
   "operator_display": "",
@@ -251,6 +278,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1033"
+  },
   "source": "kobe-city",
   "key": "661ec8df4355",
   "operator_display": "",
@@ -277,6 +307,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1031"
+  },
   "source": "kobe-city",
   "key": "a7b5787a5f9e",
   "operator_display": "",
@@ -303,6 +336,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1029"
+  },
   "source": "kobe-city",
   "key": "0248bc81a645",
   "operator_display": "",
@@ -329,6 +365,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1028"
+  },
   "source": "kobe-city",
   "key": "4975f09b0e58",
   "operator_display": "",
@@ -355,6 +394,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数、荷さばき施設の位置及び面積、廃棄物等の保管施設の位置及び容量、開店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "1027"
+  },
   "source": "kobe-city",
   "key": "b33e3cc973e2",
   "operator_display": "",
@@ -381,6 +423,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1026"
+  },
   "source": "kobe-city",
   "key": "1cd8a6422ebf",
   "operator_display": "",
@@ -407,6 +452,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1025"
+  },
   "source": "kobe-city",
   "key": "1f0ceb77d321",
   "operator_display": "",
@@ -433,6 +481,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1024"
+  },
   "source": "kobe-city",
   "key": "41711d19c2af",
   "operator_display": "",
@@ -459,6 +510,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1023"
+  },
   "source": "kobe-city",
   "key": "2716f72fdfff",
   "operator_display": "",
@@ -485,6 +539,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1022"
+  },
   "source": "kobe-city",
   "key": "ada49808f614",
   "operator_display": "",
@@ -511,6 +568,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1021"
+  },
   "source": "kobe-city",
   "key": "08af0e0085ee",
   "operator_display": "",
@@ -537,6 +597,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1020"
+  },
   "source": "kobe-city",
   "key": "510098094ffc",
   "operator_display": "",
@@ -563,6 +626,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1019"
+  },
   "source": "kobe-city",
   "key": "81b178ee313e",
   "operator_display": "",
@@ -589,6 +655,9 @@
   "city_opinion": "",
   "note": "設置者住所・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1018"
+  },
   "source": "kobe-city",
   "key": "4d47674c8af8",
   "operator_display": "",
@@ -615,6 +684,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1017"
+  },
   "source": "kobe-city",
   "key": "50b866d302d1",
   "operator_display": "",
@@ -641,6 +713,9 @@
   "city_opinion": "",
   "note": "設置者名称・住所・代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1016"
+  },
   "source": "kobe-city",
   "key": "21fe4c8a6e4e",
   "operator_display": "",
@@ -667,6 +742,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1015"
+  },
   "source": "kobe-city",
   "key": "872a344223e4",
   "operator_display": "",
@@ -693,6 +771,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1014"
+  },
   "source": "kobe-city",
   "key": "551555c887a7",
   "operator_display": "",
@@ -719,6 +800,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1013"
+  },
   "source": "kobe-city",
   "key": "e9c875650765",
   "operator_display": "",
@@ -745,6 +829,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1012"
+  },
   "source": "kobe-city",
   "key": "dd45dd4d1767",
   "operator_display": "",
@@ -771,6 +858,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1011"
+  },
   "source": "kobe-city",
   "key": "45c9ada1729d",
   "operator_display": "",
@@ -797,6 +887,9 @@
   "city_opinion": "",
   "note": "設置者名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1010"
+  },
   "source": "kobe-city",
   "key": "c597aa573832",
   "operator_display": "",

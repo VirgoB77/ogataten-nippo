@@ -55,6 +55,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称の変更のため （2）小売業を行う者の名称及び住所並びに代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e1e0ab801ad4",
   "operator_display": "",
@@ -167,6 +170,9 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/166686.pdf",
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/166542.pdf"
   ],
+  "extra": {
+   "縦覧期間": "令和8年9月7日から令和9年1月7日"
+  },
   "source": "kishiwada-city",
   "key": "60c3b6ee15ae",
   "operator_display": "(1)イオンリテール株式会社 (2)株式会社ファーストリテイリング (3)株式会社ヤマダデンキ (4)株式会社ジンズ (5)株式会社ワークマン (6)株式会社山本酒店 (7)岩出建設株式会社",
@@ -384,6 +390,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e2e6f0cbb8a0",
   "operator_display": "",
@@ -973,6 +982,9 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/165580.pdf",
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/165579.pdf"
   ],
+  "extra": {
+   "縦覧期間": "令和8年8月4日から令和8年12月4日"
+  },
   "source": "kishiwada-city",
   "key": "5f6a21cd8d8a",
   "operator_display": "（1）芙蓉総合リース株式会社 （2）株式会社タチバナ",
@@ -1209,6 +1221,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社アカカベ 株式会社ローソン 近畿エリアサポート部",
+   "店舗面積": "700.37 平方メートル",
+   "駐車台数 (駐輪台数)": "30台 （64台）",
+   "営業時間": "9時から22時ほか",
+   "取扱品目": "医薬品、生活雑貨、食品、飲料"
+  },
   "source": "sakai-chukibo",
   "key": "51720feb05b0",
   "operator_display": "株式会社アカカベ",
@@ -1417,6 +1436,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "スギホールディングス 株式会社",
+   "店舗面積": "855.11 平方メートル",
+   "駐車台数 (駐輪台数)": "31台 （66台）",
+   "営業時間": "9時から22時",
+   "取扱品目": "薬品、日用品"
+  },
   "source": "sakai-chukibo",
   "key": "3b6a00bee636",
   "operator_display": "スギホールディングス 株式会社",
@@ -1519,7 +1545,7 @@
   "notified_on": "2026-06-23",
   "notified_raw": "令和8年6月23日",
   "store": "イオン山崎ショッピングセンター",
-  "address": "愛媛県松山市大街道二丁目",
+  "address": "",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -1546,60 +1572,60 @@
   "from_ocr": [
    "address"
   ],
+  "address_suspect": "愛媛県松山市大街道二丁目３番地８ 愛媛県松山市大街道二丁目３番地８",
   "pref": "兵庫県",
-  "city": "愛媛県松山市",
+  "city": "",
   "ward": "",
-  "area": "愛媛県松山市",
+  "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
   "fetched_on": "2026-09-15"
  },
  {
-  "source": "osaka-pref",
-  "file": "r807-6-1.xlsx",
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2026-06-22",
+  "notified_raw": "令和8年6月22日",
   "store": "イオンタウン豊中緑丘",
-  "city": "豊中市",
-  "address": "豊中市緑丘4丁目276番３　ほか",
+  "address": "豊中市緑丘4丁目",
   "operator": "イオンタウン（株）",
-  "retailer": "",
+  "new_operator": "",
   "event_on": "2026-03-01",
-  "area_m2": null,
-  "content": "小売業者の名称、住所、代表者の氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
+  "content": "大規模小売店舗において小売業を行う者の名称及び住所並びに法人にあっては代表者の氏名",
+  "review_from": "2026-11-16",
+  "review_to": null,
+  "meeting": "",
   "citizen_opinion": "",
-  "recommendation": "",
+  "city_opinion": "",
   "note": "",
-  "key": "c6ea227bbeaf",
+  "docs": [],
+  "extra": {
+   "変更理由": "小売業を行う者の名称及び住所並びに代表者の変更のため"
+  },
+  "source": "toyonaka-city",
+  "key": "725bcf8d97dd",
   "operator_display": "イオンタウン（株）",
   "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "notified_raw": "令和8年6月22日",
-  "review_from": "2026-11-16",
-  "new_operator_kind": "individual",
+  "file": "r807-6-1.xlsx",
+  "city": "豊中市",
+  "retailer_kind": "individual",
   "sources": [
    "osaka-pref",
    "toyonaka-city"
   ],
   "merged_keys": [
-   "725bcf8d97dd"
+   "c6ea227bbeaf"
   ],
   "pref": "大阪府",
   "ward": "",
   "area": "豊中市",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
+  "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15"
  },
  {
@@ -1851,6 +1877,9 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/164924.pdf",
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/164926.pdf"
   ],
+  "extra": {
+   "縦覧期間": "令和8年7月3日から令和8年11月4日"
+  },
   "source": "kishiwada-city",
   "key": "f2e2f33ede9e",
   "operator_display": "田渕商事株式会社",
@@ -1932,6 +1961,9 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/chiikikouken_dcsakaitakao.pdf"
   ],
+  "extra": {
+   "地域貢 献活動 計画書": "あり（PDF：648KB）"
+  },
   "source": "sakai-city",
   "key": "481a8b789a19",
   "operator_display": "株式会社コスモス薬品",
@@ -1969,6 +2001,9 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/chiikikouken_dchanndanisimati.pdf"
   ],
+  "extra": {
+   "地域貢 献活動 計画書": "あり（PDF：321KB）"
+  },
   "source": "sakai-city",
   "key": "6421bcfb318e",
   "operator_display": "株式会社コスモス薬品",
@@ -2379,6 +2414,9 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/164922.pdf",
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/164925.pdf"
   ],
+  "extra": {
+   "縦覧期間": "令和8年7月3日から令和8年11月4日"
+  },
   "source": "kishiwada-city",
   "key": "c5757681616e",
   "operator_display": "株式会社Ｊｏｓｈｉｎ",
@@ -2549,6 +2587,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の名称及び代表者変更のため （2）大規模小売店舗において小売業を行う者の名称及び代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3cb0bccf9cd5",
   "operator_display": "",
@@ -3040,6 +3081,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年6月3日",
+  "extra": {
+   "基準面積以下となる日": "令和7年5月29日"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "minoh-2shi2cho",
@@ -3897,6 +3941,12 @@
   "review_from": "2026-06-17",
   "review_to": "2026-10-16",
   "meeting": "令和8年7月9日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
+  "extra": {
+   "店舗所在地": "泉南市信達岡中777",
+   "市民等の意見提出期限": "令和8年10月16日",
+   "市の意見": "－",
+   "意見の縦覧期間": "－"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "osaka-pref",
@@ -3947,6 +3997,12 @@
   "review_from": "2026-06-17",
   "review_to": "2026-10-16",
   "meeting": "令和8年7月24日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
+  "extra": {
+   "店舗所在地": "泉南市幡代三丁目154-1 付近",
+   "市民等の意見提出期限": "令和8年10月16日",
+   "市の意見": "－",
+   "意見の縦覧期間": "－"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "osaka-pref",
@@ -4322,9 +4378,9 @@
   "mode": "snapshot",
   "listed": true,
   "pref": "兵庫県",
-  "city": "猪名川町",
+  "city": "川辺郡猪名川町",
   "ward": "",
-  "area": "猪名川町",
+  "area": "川辺郡猪名川町",
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
@@ -4567,6 +4623,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "8",
+   "所在地（地番）": "東久宝寺3丁目21番の一部、22番の一部、23番、24番の一部122番",
+   "店舗面積": "556.62平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d5bed014de0c",
   "operator_display": "",
@@ -5339,9 +5400,9 @@
    "operator"
   ],
   "pref": "兵庫県",
-  "city": "稲美町",
+  "city": "加古郡稲美町",
   "ward": "",
-  "area": "稲美町",
+  "area": "加古郡稲美町",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
   "fetched_on": "2026-09-15"
@@ -6022,6 +6083,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou202605121431.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "kadoma-city",
@@ -6154,6 +6218,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "8",
+   "所在地（地番）": "桜ヶ丘2丁目206、207-1",
+   "店舗面積": "999.22平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d22f31e9e4fa",
   "operator_display": "",
@@ -6659,6 +6728,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "dadf8113ca27",
   "operator_display": "同志土地（株）",
@@ -6718,6 +6790,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年3月19日",
+  "extra": {
+   "基準面積以下となる日": "令和8年3月18日"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "osaka-pref",
@@ -6826,6 +6901,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyo202603301310.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "c3e9b8a950c8",
   "operator_display": "",
@@ -7062,6 +7140,9 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/tiikikouken_dc-fukainakamati_5-1.pdf"
   ],
+  "extra": {
+   "地域貢 献活動 計画書": "あり（PDF：229KB）"
+  },
   "source": "sakai-city",
   "key": "4d14d6e97ed4",
   "operator_display": "株式会社 コスモス薬品",
@@ -7233,6 +7314,9 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/ks-daisen_5-1.pdf"
   ],
+  "extra": {
+   "地域貢 献活動 計画書": "あり（PDF：343KB）"
+  },
   "source": "sakai-city",
   "key": "a8ded0739acb",
   "operator_display": "株式会社関西ケーズデンキ",
@@ -7270,6 +7354,9 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/life-daisen_5-1.pdf"
   ],
+  "extra": {
+   "地域貢 献活動 計画書": "あり（PDF：333KB）"
+  },
   "source": "sakai-city",
   "key": "73cba85a0915",
   "operator_display": "株式会社 ライフコーポレーション",
@@ -7307,6 +7394,9 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/tekkland-minamisima_5-1.pdf"
   ],
+  "extra": {
+   "地域貢 献活動 計画書": "あり（PDF：214KB）"
+  },
   "source": "sakai-city",
   "key": "b65a7bfbd3ea",
   "operator_display": "株式会社 ヤマダデンキ",
@@ -7800,6 +7890,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和8年2月20日",
+  "extra": {
+   "基準面積以下となる日": "令和7年7月22日"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "osaka-pref",
@@ -7912,6 +8005,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202603031708.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "84c14ddcb74b",
   "operator_display": "",
@@ -8022,6 +8118,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1126"
+  },
   "source": "kobe-city",
   "key": "6b7706243247",
   "operator_display": "",
@@ -8058,6 +8157,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)設置者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "f1c113718c18",
   "operator_display": "",
@@ -8258,6 +8360,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 クスリのアオキ",
+   "店舗面積": "999.38 平方メートル",
+   "駐車台数 (駐輪台数)": "33台 （75台）",
+   "営業時間": "9時 から 22時",
+   "取扱品目": "食品、飲料、医薬品等"
+  },
   "source": "sakai-chukibo",
   "key": "d872a8f9fc99",
   "operator_display": "株式会社 クスリのアオキ",
@@ -8642,53 +8751,52 @@
   "fetched_on": "2026-09-15"
  },
  {
-  "source": "osaka-pref",
-  "file": "r803-6-1.xlsx",
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2026-01-19",
-  "store": "三井ショッピングパークららぽーと門真・三井アウトレットパーク大阪門真、コストコホールセール門真倉庫店",
-  "city": "門真市",
-  "address": "門真市松生町204番3号　ほか",
+  "notified_raw": "令和8(2026)年1月19日",
+  "store": "三井ショッピングパーク ららぽーと門真・三井アウトレットパーク 大阪門真、コストコホールセール 門真倉庫店",
+  "address": "門真市松生町",
   "operator": "三井不動産(株)",
-  "retailer": "",
+  "new_operator": "",
   "event_on": "2025-12-01",
-  "area_m2": null,
   "content": "設置者の代表者氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
+  "review_from": null,
+  "review_to": null,
+  "meeting": "",
   "citizen_opinion": "",
-  "recommendation": "",
+  "city_opinion": "",
   "note": "",
-  "key": "e28850ebad74",
+  "docs": [
+   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202601261406.pdf"
+  ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
+  "source": "kadoma-city",
+  "key": "30ce0d5a137d",
   "operator_display": "三井不動産(株)",
   "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "notified_raw": "令和8(2026)年1月19日",
-  "docs": [
-   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202601261406.pdf"
-  ],
-  "new_operator_kind": "individual",
+  "file": "r803-6-1.xlsx",
+  "city": "門真市",
+  "retailer_kind": "individual",
   "sources": [
    "kadoma-city",
    "osaka-pref"
   ],
   "merged_keys": [
-   "30ce0d5a137d"
+   "e28850ebad74"
   ],
   "pref": "大阪府",
   "ward": "",
   "area": "門真市",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
+  "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
   "fetched_on": "2026-09-15"
  },
  {
@@ -8977,6 +9085,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1121"
+  },
   "source": "kobe-city",
   "key": "75be3bdee2d4",
   "operator_display": "",
@@ -9013,6 +9124,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1118"
+  },
   "source": "kobe-city",
   "key": "ded32411d8bc",
   "operator_display": "",
@@ -9049,6 +9163,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1119"
+  },
   "source": "kobe-city",
   "key": "a8b1d4313e79",
   "operator_display": "",
@@ -9157,6 +9274,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "グランマルシェ 株式会社",
+   "店舗面積": "720.00 平方メートル",
+   "駐車台数 (駐輪台数)": "43台 （0台）",
+   "営業時間": "9時 から21時",
+   "取扱品目": "食料品、日用品"
+  },
   "source": "sakai-chukibo",
   "key": "0176dc1eb8ec",
   "operator_display": "グランマルシェ 株式会社",
@@ -9231,6 +9355,9 @@
   "city_opinion": "",
   "note": "設置者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1117"
+  },
   "source": "kobe-city",
   "key": "6b22a3557c3f",
   "operator_display": "",
@@ -9303,6 +9430,9 @@
   "city_opinion": "",
   "note": "設置者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1116"
+  },
   "source": "kobe-city",
   "key": "4316b803edf3",
   "operator_display": "",
@@ -9832,6 +9962,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/3/2/4/0/5/0/_/_____.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 78.1KB)"
+  },
   "source": "matsubara-city",
   "key": "e11d184e63c6",
   "operator_display": "",
@@ -10008,6 +10141,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1114"
+  },
   "source": "kobe-city",
   "key": "711458cb43cd",
   "operator_display": "",
@@ -10325,6 +10461,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 スギ薬局",
+   "店舗面積": "907.92 平方メートル",
+   "駐車台数 (駐輪台数)": "28台 （38台）",
+   "営業時間": "9時 から22時 （予定）",
+   "取扱品目": "医薬品、日用品、化粧品、食品"
+  },
   "source": "sakai-chukibo",
   "key": "3684108a2814",
   "operator_display": "スギホールディングス 株式会社",
@@ -10469,6 +10612,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売店舗の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2f64284896de",
   "operator_display": "ジブラルタ生命保険(株)",
@@ -10609,6 +10755,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1113"
+  },
   "source": "kobe-city",
   "key": "4d9040d2a9c1",
   "operator_display": "",
@@ -10681,6 +10830,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1111"
+  },
   "source": "kobe-city",
   "key": "88d0c570ee06",
   "operator_display": "",
@@ -10753,6 +10905,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1112"
+  },
   "source": "kobe-city",
   "key": "f570d1b771c1",
   "operator_display": "",
@@ -10825,6 +10980,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1110"
+  },
   "source": "kobe-city",
   "key": "52bdaa69f1d0",
   "operator_display": "",
@@ -10899,6 +11057,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20250107t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：1,243KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "94f0132de88f",
   "operator_display": "",
@@ -11317,6 +11479,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "534380fbc705",
   "operator_display": "",
@@ -11431,6 +11596,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "ウエルシア薬局 株式会社",
+   "店舗面積": "814.47 平方メートル",
+   "駐車台数 (駐輪台数)": "37台 （23台）",
+   "営業時間": "9時 から 23時",
+   "取扱品目": "食品、飲料、医薬品等"
+  },
   "source": "sakai-chukibo",
   "key": "75cf75824e80",
   "operator_display": "三国産業 株式会社",
@@ -11788,6 +11960,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1108"
+  },
   "source": "kobe-city",
   "key": "35075e95908b",
   "operator_display": "",
@@ -11824,6 +11999,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1107"
+  },
   "source": "kobe-city",
   "key": "bff34c6a3659",
   "operator_display": "",
@@ -11896,6 +12074,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1109"
+  },
   "source": "kobe-city",
   "key": "e3c20b9e86fc",
   "operator_display": "",
@@ -11971,6 +12152,9 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/158114.pdf",
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/162795.pdf"
   ],
+  "extra": {
+   "説明会日時": "令和7年12月26日（金曜日）午後7 時から"
+  },
   "source": "kishiwada-city",
   "key": "a22452600f61",
   "operator_display": "田渕商事株式会社",
@@ -12037,6 +12221,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou62202511251601.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "kadoma-city",
@@ -12052,53 +12239,52 @@
   "fetched_on": "2026-09-15"
  },
  {
-  "source": "osaka-pref",
-  "file": "r803-6-1.xlsx",
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2025-11-17",
+  "notified_raw": "令和7(2025)年11月17日",
   "store": "ライフ門真店",
-  "city": "門真市",
-  "address": "門真市島頭3丁目513番地2　ほか",
+  "address": "門真市島頭三丁目",
   "operator": "(株)サンエイト",
-  "retailer": "",
+  "new_operator": "",
   "event_on": "2024-02-01",
-  "area_m2": null,
   "content": "小売業者の名称、住所、代表者氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
+  "review_from": null,
+  "review_to": null,
+  "meeting": "",
   "citizen_opinion": "",
-  "recommendation": "",
+  "city_opinion": "",
   "note": "",
-  "key": "96a278313030",
+  "docs": [
+   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou61202511251606.pdf"
+  ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
+  "source": "kadoma-city",
+  "key": "8d6948ef9209",
   "operator_display": "(株)サンエイト",
   "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "notified_raw": "令和7(2025)年11月17日",
-  "docs": [
-   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou61202511251606.pdf"
-  ],
-  "new_operator_kind": "individual",
+  "file": "r803-6-1.xlsx",
+  "city": "門真市",
+  "retailer_kind": "individual",
   "sources": [
    "kadoma-city",
    "osaka-pref"
   ],
   "merged_keys": [
-   "8d6948ef9209"
+   "96a278313030"
   ],
   "pref": "大阪府",
   "ward": "",
   "area": "門真市",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
+  "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
   "fetched_on": "2026-09-15"
  },
  {
@@ -12351,6 +12537,9 @@
   "city_opinion": "",
   "note": "店舗名称",
   "docs": [],
+  "extra": {
+   "受理 番号": "1106"
+  },
   "source": "kobe-city",
   "key": "fb18521fd80e",
   "operator_display": "",
@@ -12387,6 +12576,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1105"
+  },
   "source": "kobe-city",
   "key": "2bc78f42023a",
   "operator_display": "",
@@ -12459,6 +12651,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1104"
+  },
   "source": "kobe-city",
   "key": "34a3f2fd8079",
   "operator_display": "",
@@ -12650,6 +12845,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1102"
+  },
   "source": "kobe-city",
   "key": "80742f2494df",
   "operator_display": "",
@@ -12722,6 +12920,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1103"
+  },
   "source": "kobe-city",
   "key": "106d9b75fd23",
   "operator_display": "",
@@ -12794,6 +12995,9 @@
   "city_opinion": "",
   "note": "店舗名称及び所在地、駐車場の位置及び収容台数、駐輪場の位置及び収容台数、荷さばき施設の位置及び面積、廃棄物等の保管施設の位置及び容量、小売業を行う者の開店時刻及び閉店時刻、来客が駐車場を利用することができる時間帯",
   "docs": [],
+  "extra": {
+   "受理 番号": "1101"
+  },
   "source": "kobe-city",
   "key": "46873eb96379",
   "operator_display": "",
@@ -13012,6 +13216,9 @@
   "city_opinion": "",
   "note": "駐輪場の位置及び収容台数、駐輪場の位置及び収容台数",
   "docs": [],
+  "extra": {
+   "受理 番号": "1100"
+  },
   "source": "kobe-city",
   "key": "521ed490dd2b",
   "operator_display": "",
@@ -13326,6 +13533,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1098"
+  },
   "source": "kobe-city",
   "key": "f9989ee4823f",
   "operator_display": "",
@@ -13436,6 +13646,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1097"
+  },
   "source": "kobe-city",
   "key": "03cbeaf83510",
   "operator_display": "",
@@ -13565,6 +13778,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1096"
+  },
   "source": "kobe-city",
   "key": "467ad1604d4e",
   "operator_display": "",
@@ -13633,6 +13849,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/coop-tukunoten.pdf"
   ],
+  "extra": {
+   "設 置 者 対 応": "ー",
+   "勧 告": "ー",
+   "地域貢 献活動 計画書": "あり（PDF：65KB）"
+  },
   "source": "sakai-city",
   "key": "0fee8d9ef4b3",
   "operator_display": "大阪いずみ市民生活協同組合",
@@ -13683,6 +13904,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年10月10日",
+  "extra": {
+   "基準面積以下となる日": "令和8年3月31日"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "osaka-pref",
@@ -13715,6 +13939,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1095"
+  },
   "source": "kobe-city",
   "key": "30dd992d176c",
   "operator_display": "",
@@ -13826,6 +14053,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 あさひ",
+   "店舗面積": "397.49平方メートル",
+   "駐車台数 (駐輪台数)": "12台 （10台）",
+   "営業時間": "10時から20時",
+   "取扱品目": "自転車及び備品"
+  },
   "source": "sakai-chukibo",
   "key": "370826a797b8",
   "operator_display": "株式会社 あさひ",
@@ -13861,6 +14095,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1094"
+  },
   "source": "kobe-city",
   "key": "54b488b455de",
   "operator_display": "",
@@ -14414,6 +14651,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1092"
+  },
   "source": "kobe-city",
   "key": "d3f0ab1df04a",
   "operator_display": "",
@@ -14923,6 +15163,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1091"
+  },
   "source": "kobe-city",
   "key": "0bb71231fbef",
   "operator_display": "",
@@ -15267,6 +15510,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1089"
+  },
   "source": "kobe-city",
   "key": "0839d90c0230",
   "operator_display": "",
@@ -15303,6 +15549,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1090"
+  },
   "source": "kobe-city",
   "key": "e96c132d6183",
   "operator_display": "",
@@ -15339,6 +15588,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1088"
+  },
   "source": "kobe-city",
   "key": "9624a0884090",
   "operator_display": "",
@@ -15375,6 +15627,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1087"
+  },
   "source": "kobe-city",
   "key": "8ac19b8f361d",
   "operator_display": "",
@@ -15552,6 +15807,9 @@
   "city_opinion": "",
   "note": "駐車場の自動車の出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "1086"
+  },
   "source": "kobe-city",
   "key": "efa9d1a01af8",
   "operator_display": "",
@@ -15768,6 +16026,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/3/0/0/1/6/0/_/gaiyousyo_ramu.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 95.6KB)"
+  },
   "source": "matsubara-city",
   "key": "750e1cca6e63",
   "operator_display": "",
@@ -15869,6 +16130,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数",
   "docs": [],
+  "extra": {
+   "受理 番号": "1085"
+  },
   "source": "kobe-city",
   "key": "f2bfdd5ff3f5",
   "operator_display": "",
@@ -15944,6 +16208,9 @@
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/155926.pdf",
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/159304.pdf"
   ],
+  "extra": {
+   "説明会日時": "令和7年10月3日（金曜日）午後7 時から"
+  },
   "source": "kishiwada-city",
   "key": "5914ac53811a",
   "operator_display": "株式会社クスリのアオキ",
@@ -16108,6 +16375,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売業を行う者の名称及び住所並びに代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e0d13d98ac00",
   "operator_display": "",
@@ -16302,6 +16572,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1084"
+  },
   "source": "kobe-city",
   "key": "0a5dd17a6b70",
   "operator_display": "",
@@ -16485,6 +16758,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/takashimaya-sakaiten_6-2.pdf"
   ],
+  "extra": {
+   "設 置 者 対 応": "ー",
+   "勧 告": "ー",
+   "地域貢献活動計画書": "あり（PDF：59KB）"
+  },
   "source": "sakai-city",
   "key": "ab5127e40436",
   "operator_display": "南海電気鉄道株式会社",
@@ -16555,6 +16833,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 キリン堂",
+   "店舗面積": "998.04平方メートル",
+   "駐車台数 (駐輪台数)": "45台 （46台）",
+   "営業時間": "8時 から21時",
+   "取扱品目": "医薬品等"
+  },
   "source": "sakai-chukibo",
   "key": "f3049db7481b",
   "operator_display": "有限会社 サン・ローヤル",
@@ -16798,6 +17083,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1083"
+  },
   "source": "kobe-city",
   "key": "239dd8928ae1",
   "operator_display": "",
@@ -17029,6 +17317,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者、店舗面積の合計、駐車場の位置及び収容台数、駐輪場の位置及び収容台数、荷さばき施設の位置及び面積、廃棄物等の保管施設の位置及び容量、小売業を行う者の開店時刻及び閉店時刻、来客が駐車場を利用することができる時間帯、駐車場の自動車の出入口の数及び位置、荷さばき施設において荷さばきを行うことができる時間帯",
   "docs": [],
+  "extra": {
+   "受理 番号": "1082"
+  },
   "source": "kobe-city",
   "key": "f7ab18eaa5ed",
   "operator_display": "",
@@ -17247,6 +17538,9 @@
   "city_opinion": "",
   "note": "駐輪場の位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "1080"
+  },
   "source": "kobe-city",
   "key": "5feb2388aa91",
   "operator_display": "",
@@ -17319,6 +17613,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 ツルハ",
+   "店舗面積": "697.54平方メートル",
+   "駐車台数 (駐輪台数)": "17台 （70台）",
+   "営業時間": "9時 から22時",
+   "取扱品目": "薬品、日用品"
+  },
   "source": "sakai-chukibo",
   "key": "2325cf687d75",
   "operator_display": "株式会社 ツルハ",
@@ -17449,6 +17750,9 @@
   "docs": [
    "https://www.city.kishiwada.lg.jp/uploaded/attachment/153689.pdf"
   ],
+  "extra": {
+   "説明会日時": "令和7年8月6日（水曜日）午後7時から"
+  },
   "source": "kishiwada-city",
   "key": "c4af43066aec",
   "operator_display": "​株式会社コスモス薬品",
@@ -17901,6 +18205,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1079"
+  },
   "source": "kobe-city",
   "key": "3467ab3f71ea",
   "operator_display": "",
@@ -17960,56 +18267,6 @@
   "fetched_on": "2025-09-16"
  },
  {
-  "source": "osaka-pref",
-  "file": "r803-6-1.xlsx",
-  "article": "第6条第1項",
-  "kind": "変更",
-  "notified_on": "2025-06-16",
-  "store": "サンコオア第一ビル（そよら古川橋駅前）",
-  "city": "門真市",
-  "address": "門真市末広町689番1",
-  "operator": "(株)サンコオア",
-  "retailer": "",
-  "event_on": "2025-03-01",
-  "area_m2": null,
-  "content": "小売業者の名称、住所、代表者氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
-  "citizen_opinion": "",
-  "recommendation": "",
-  "note": "",
-  "key": "d39c9228fcf1",
-  "operator_display": "(株)サンコオア",
-  "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
-  "first_seen": "2026-09-11",
-  "last_seen": "2026-09-15",
-  "mode": "snapshot",
-  "listed": true,
-  "notified_raw": "令和7(2025)年6月16日",
-  "docs": [
-   "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou202506271417.pdf"
-  ],
-  "new_operator_kind": "individual",
-  "sources": [
-   "kadoma-city",
-   "osaka-pref"
-  ],
-  "merged_keys": [
-   "5498b83eadfa"
-  ],
-  "pref": "大阪府",
-  "ward": "",
-  "area": "門真市",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-15"
- },
- {
   "source": "osaka-city",
   "ref": "25-15",
   "store_no": "25-15",
@@ -18053,6 +18310,55 @@
   "area": "大阪市住吉区",
   "source_url": "https://www.city.osaka.lg.jp/keizaisenryaku/page/0000373985.html",
   "fetched_on": "2026-06-30"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "notified_on": "2025-06-16",
+  "notified_raw": "令和7(2025)年6月16日",
+  "store": "サンコオア第一ビル(そよら古川橋駅前)",
+  "address": "門真市末広町",
+  "operator": "(株)サンコオア",
+  "new_operator": "",
+  "event_on": "2025-03-01",
+  "content": "小売業者の名称、住所、代表者氏名",
+  "review_from": null,
+  "review_to": null,
+  "meeting": "",
+  "citizen_opinion": "",
+  "city_opinion": "",
+  "note": "",
+  "docs": [
+   "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou202506271417.pdf"
+  ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
+  "source": "kadoma-city",
+  "key": "5498b83eadfa",
+  "operator_display": "(株)サンコオア",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "first_seen": "2026-09-11",
+  "last_seen": "2026-09-15",
+  "mode": "snapshot",
+  "listed": true,
+  "file": "r803-6-1.xlsx",
+  "city": "門真市",
+  "retailer_kind": "individual",
+  "sources": [
+   "kadoma-city",
+   "osaka-pref"
+  ],
+  "merged_keys": [
+   "d39c9228fcf1"
+  ],
+  "pref": "大阪府",
+  "ward": "",
+  "area": "門真市",
+  "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
+  "fetched_on": "2026-09-15"
  },
  {
   "source": "osaka-city",
@@ -18307,7 +18613,7 @@
   "merged_keys": [
    "8c772740333b"
   ],
-  "pref": "",
+  "pref": "大阪府",
   "ward": "",
   "area": "貝塚市",
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
@@ -18378,6 +18684,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数、駐輪場の位置及び収容台数、小売業を行う者の開店時刻及び閉店時刻、駐車場の自動車の出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "1078"
+  },
   "source": "kobe-city",
   "key": "b0c149e9790e",
   "operator_display": "",
@@ -18564,6 +18873,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "291c33f03f73",
   "operator_display": "",
@@ -18599,6 +18911,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "cf5d157c8051",
   "operator_display": "",
@@ -18823,6 +19138,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1077"
+  },
   "source": "kobe-city",
   "key": "e063506424ae",
   "operator_display": "",
@@ -18991,6 +19309,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1076"
+  },
   "source": "kobe-city",
   "key": "dc6823792bb4",
   "operator_display": "",
@@ -19027,6 +19348,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1074"
+  },
   "source": "kobe-city",
   "key": "6dbf2dec6181",
   "operator_display": "",
@@ -19198,6 +19522,9 @@
   "city_opinion": "",
   "note": "店舗名称、店舗所在地、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1073"
+  },
   "source": "kobe-city",
   "key": "7bb2b0031931",
   "operator_display": "",
@@ -19316,6 +19643,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1072"
+  },
   "source": "kobe-city",
   "key": "b0184d06aaf5",
   "operator_display": "",
@@ -19352,6 +19682,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1072"
+  },
   "source": "kobe-city",
   "key": "590aa90285d0",
   "operator_display": "",
@@ -19525,6 +19858,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売業者の変更があったため"
+  },
   "source": "toyonaka-city",
   "key": "0b90902d62dd",
   "operator_display": "三菱UFJ信託銀行(株)",
@@ -19715,6 +20051,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1071"
+  },
   "source": "kobe-city",
   "key": "7c0b42d0e5c7",
   "operator_display": "",
@@ -19751,6 +20090,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1070"
+  },
   "source": "kobe-city",
   "key": "9f4dad1bb759",
   "operator_display": "",
@@ -20030,6 +20372,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/2/8/1/8/7/1/_/_____.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 113KB)"
+  },
   "source": "matsubara-city",
   "key": "79720eb42b8d",
   "operator_display": "",
@@ -21016,6 +21361,9 @@
   "city_opinion": "",
   "note": "小売業者、小売業を行う者の開店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "1069"
+  },
   "source": "kobe-city",
   "key": "5f060740d1fd",
   "operator_display": "",
@@ -21099,6 +21447,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1068"
+  },
   "source": "kobe-city",
   "key": "68b65164bc68",
   "operator_display": "",
@@ -21848,6 +22199,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 ドン・キホーテ",
+   "店舗面積": "999.03平方メートル",
+   "駐車台数 (駐輪台数)": "6台（149台）",
+   "営業時間": "24時間",
+   "取扱品目": "食品、日用消耗品等"
+  },
   "source": "sakai-chukibo",
   "key": "2e5b3ca9d188",
   "operator_display": "株式会社ARE",
@@ -21883,6 +22241,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社 サンディ",
+   "店舗面積": "550.35 平方メートル",
+   "駐車台数 (駐輪台数)": "47台 （50台）",
+   "営業時間": "10時 から 19時 30分",
+   "取扱品目": "食品、生活用品等"
+  },
   "source": "sakai-chukibo",
   "key": "6c1c535fc511",
   "operator_display": "有限会社音八",
@@ -22133,6 +22498,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1067"
+  },
   "source": "kobe-city",
   "key": "c46d8e828062",
   "operator_display": "",
@@ -22377,6 +22745,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1066"
+  },
   "source": "kobe-city",
   "key": "2d765e9fe16b",
   "operator_display": "",
@@ -22433,7 +22804,7 @@
   "merged_keys": [
    "d5a9a0af4086"
   ],
-  "pref": "",
+  "pref": "大阪府",
   "ward": "",
   "area": "貝塚市",
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
@@ -22552,6 +22923,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1065"
+  },
   "source": "kobe-city",
   "key": "861020aba1bc",
   "operator_display": "",
@@ -22626,6 +23000,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1063"
+  },
   "source": "kobe-city",
   "key": "a22a7114ebdd",
   "operator_display": "",
@@ -22662,6 +23039,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1060"
+  },
   "source": "kobe-city",
   "key": "fd2bebf1ece3",
   "operator_display": "",
@@ -22698,6 +23078,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1062"
+  },
   "source": "kobe-city",
   "key": "5cb69d14a6ee",
   "operator_display": "",
@@ -22734,6 +23117,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1064"
+  },
   "source": "kobe-city",
   "key": "358fde8262e7",
   "operator_display": "",
@@ -22770,6 +23156,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1064"
+  },
   "source": "kobe-city",
   "key": "d47d92bd68c6",
   "operator_display": "",
@@ -22806,6 +23195,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1063"
+  },
   "source": "kobe-city",
   "key": "005e86ff894e",
   "operator_display": "",
@@ -23023,7 +23415,7 @@
   "kind": "新設",
   "notified_on": "2025-02-06",
   "store": "（仮称）コメリハード＆グリーン能勢店",
-  "city": "能勢町",
+  "city": "豊能郡能勢町",
   "address": "豊能郡能勢町栗栖61番3 ほか",
   "operator": "(株)コメリ",
   "retailer": "(株)コメリ",
@@ -23053,6 +23445,10 @@
   "docs": [
    "https://www.city.minoh.lg.jp/syoukou/documents/komeriha-doandgreen.pdf"
   ],
+  "extra": {
+   "住民などの意見の概要": "なし",
+   "町意見": "なし"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "minoh-2shi2cho",
@@ -23063,57 +23459,7 @@
   ],
   "pref": "大阪府",
   "ward": "",
-  "area": "能勢町",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-15"
- },
- {
-  "source": "osaka-pref",
-  "file": "r703-6-1.xlsx",
-  "article": "第6条第1項",
-  "kind": "変更",
-  "notified_on": "2025-02-06",
-  "store": "フレスポ門真南",
-  "city": "門真市",
-  "address": "門真市三ツ島三丁目2261番 ほか",
-  "operator": "大和リース(株)",
-  "retailer": "",
-  "event_on": "2023-04-01",
-  "area_m2": null,
-  "content": "小売業者の名称、住所、代表者氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
-  "citizen_opinion": "",
-  "recommendation": "",
-  "note": "",
-  "key": "8e07d85c4264",
-  "operator_display": "大和リース(株)",
-  "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
-  "first_seen": "2026-09-11",
-  "last_seen": "2026-09-15",
-  "mode": "snapshot",
-  "listed": true,
-  "notified_raw": "令和7(2025)年2月6日",
-  "docs": [
-   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202502251338.pdf"
-  ],
-  "new_operator_kind": "individual",
-  "sources": [
-   "kadoma-city",
-   "osaka-pref"
-  ],
-  "merged_keys": [
-   "bd054293d553"
-  ],
-  "pref": "大阪府",
-  "ward": "",
-  "area": "門真市",
+  "area": "豊能郡能勢町",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
   "fetched_on": "2026-09-15"
  },
@@ -23251,6 +23597,55 @@
  {
   "article": "第6条第1項",
   "kind": "変更",
+  "notified_on": "2025-02-06",
+  "notified_raw": "令和7(2025)年2月6日",
+  "store": "フレスポ門真南",
+  "address": "門真市三ツ島3丁目",
+  "operator": "大和リース(株)",
+  "new_operator": "",
+  "event_on": "2023-04-01",
+  "content": "小売業者の名称、住所、代表者氏名",
+  "review_from": null,
+  "review_to": null,
+  "meeting": "",
+  "citizen_opinion": "",
+  "city_opinion": "",
+  "note": "",
+  "docs": [
+   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202502251338.pdf"
+  ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
+  "source": "kadoma-city",
+  "key": "bd054293d553",
+  "operator_display": "大和リース(株)",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "first_seen": "2026-09-11",
+  "last_seen": "2026-09-15",
+  "mode": "snapshot",
+  "listed": true,
+  "file": "r703-6-1.xlsx",
+  "city": "門真市",
+  "retailer_kind": "individual",
+  "sources": [
+   "kadoma-city",
+   "osaka-pref"
+  ],
+  "merged_keys": [
+   "8e07d85c4264"
+  ],
+  "pref": "大阪府",
+  "ward": "",
+  "area": "門真市",
+  "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
+  "fetched_on": "2026-09-15"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
   "source": "hyogo-koho",
   "gazette_date": "2025-02-21",
   "gazette_no": "593",
@@ -23322,6 +23717,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年1月30日",
+  "extra": {
+   "市の意見": "なし"
+  },
   "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
@@ -23692,6 +24090,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1061"
+  },
   "source": "kobe-city",
   "key": "777766c91382",
   "operator_display": "",
@@ -23858,6 +24259,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1059"
+  },
   "source": "kobe-city",
   "key": "ac323d137814",
   "operator_display": "",
@@ -23894,6 +24298,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1057"
+  },
   "source": "kobe-city",
   "key": "935a325d7971",
   "operator_display": "",
@@ -23930,6 +24337,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1058"
+  },
   "source": "kobe-city",
   "key": "6acc562aabd8",
   "operator_display": "",
@@ -24058,6 +24468,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社イエローハット",
+   "店舗面積": "501.95 平方メートル",
+   "駐車台数 (駐輪台数)": "36台 （11台）",
+   "営業時間": "10時 から 19時",
+   "取扱品目": "車用品"
+  },
   "source": "sakai-chukibo",
   "key": "f0eeb935996f",
   "operator_display": "株式会社イエローハット",
@@ -24950,6 +25367,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/o-kuwa-sakaisiekimae_tiikikouken.pdf"
   ],
+  "extra": {
+   "設 置 者 対 応": "ー",
+   "勧 告": "ー",
+   "地域貢 献活動 計画書": "あり（PDF：244KB）"
+  },
   "source": "sakai-city",
   "key": "70b1c22cc31c",
   "operator_display": "株式会社 オークワ",
@@ -24997,6 +25419,10 @@
   "notified_raw": "令和６年 11 月 20 日",
   "meeting": "第139回",
   "review_to": "2025-04-10",
+  "extra": {
+   "縦覧場所 （県民局等）": "東播磨",
+   "公告": "公告（PDF：439KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -25163,6 +25589,10 @@
   "listed": false,
   "notified_raw": "令和6年11月15日",
   "review_to": "2025-03-31",
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：504KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -25258,6 +25688,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1056"
+  },
   "source": "kobe-city",
   "key": "b39d42b9aa83",
   "operator_display": "",
@@ -25391,6 +25824,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1055"
+  },
   "source": "kobe-city",
   "key": "93c54ce18b61",
   "operator_display": "",
@@ -25427,6 +25863,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1055"
+  },
   "source": "kobe-city",
   "key": "ad757b288d90",
   "operator_display": "",
@@ -25642,6 +26081,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/univers-sakai_5-1.pdf"
   ],
+  "extra": {
+   "設 置 者 対 応": "ー",
+   "勧 告": "ー",
+   "地域貢 献活動 計画書": "あり（PDF：228KB）"
+  },
   "source": "sakai-city",
   "key": "833b6f1eb5e7",
   "operator_display": "株式会社 ネクステージ",
@@ -25679,6 +26123,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/suvland-sakai.pdf"
   ],
+  "extra": {
+   "設 置 者 対 応": "ー",
+   "勧 告": "ー",
+   "地域貢 献活動 計画書": "あり（PDF：250KB）"
+  },
   "source": "sakai-city",
   "key": "eefd5271017e",
   "operator_display": "株式会社 ネクステージ",
@@ -26238,6 +26687,10 @@
   "listed": false,
   "notified_raw": "令和6年10月21日",
   "review_to": "2025-03-12",
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：238KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -26273,6 +26726,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/matugen-takakuradai_5-1.pdf"
   ],
+  "extra": {
+   "設 置 者 対 応": "ー",
+   "勧 告": "ー",
+   "地域貢 献活動 計画書": "あり（PDF：176KB）"
+  },
   "source": "sakai-city",
   "key": "f18de0706927",
   "operator_display": "株式会社 松源",
@@ -26821,6 +27279,9 @@
   "city_opinion": "",
   "note": "設置者代表者、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1054"
+  },
   "source": "kobe-city",
   "key": "3eabcbd3ab81",
   "operator_display": "",
@@ -26857,6 +27318,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1053"
+  },
   "source": "kobe-city",
   "key": "e744ba9019ad",
   "operator_display": "",
@@ -26893,6 +27357,9 @@
   "city_opinion": "",
   "note": "駐車場の位置、駐車場の自動車の出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "1052"
+  },
   "source": "kobe-city",
   "key": "a8e207109ec1",
   "operator_display": "",
@@ -26937,6 +27404,10 @@
   "listed": false,
   "notified_raw": "令和6年10月2日",
   "review_to": "2025-02-19",
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神南",
+   "公告": "公告（PDF：258KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -27069,6 +27540,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20241018t_1.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神南",
+   "公告": "公告（PDF：258KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "6a57e1aa5337",
   "operator_display": "",
@@ -27205,6 +27680,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1051"
+  },
   "source": "kobe-city",
   "key": "5c2177fc9766",
   "operator_display": "",
@@ -27241,6 +27719,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1048"
+  },
   "source": "kobe-city",
   "key": "b93130737927",
   "operator_display": "",
@@ -27277,6 +27758,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1050"
+  },
   "source": "kobe-city",
   "key": "c834053ea992",
   "operator_display": "",
@@ -27313,6 +27797,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1047"
+  },
   "source": "kobe-city",
   "key": "2c29d4f065e4",
   "operator_display": "",
@@ -27349,6 +27836,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1046"
+  },
   "source": "kobe-city",
   "key": "a647d9fcf311",
   "operator_display": "",
@@ -27385,6 +27875,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1049"
+  },
   "source": "kobe-city",
   "key": "a1b8babe8f25",
   "operator_display": "",
@@ -27467,6 +27960,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1045"
+  },
   "source": "kobe-city",
   "key": "8f57e3eb5aab",
   "operator_display": "",
@@ -27680,6 +28176,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "6",
+   "所在地（地番）": "山本町南四丁目7番",
+   "店舗面積": "728.23平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "fbd333081143",
   "operator_display": "",
@@ -27715,6 +28216,9 @@
   "city_opinion": "",
   "note": "小売業を行う者の開店時刻及び閉店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "1044"
+  },
   "source": "kobe-city",
   "key": "ee00fd89a8b8",
   "operator_display": "",
@@ -27993,6 +28497,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1043"
+  },
   "source": "kobe-city",
   "key": "816f2ee5da8c",
   "operator_display": "",
@@ -28201,6 +28708,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/2/4/6/1/9/2/_/gaiyou_mandai_matsubarataijoten_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 94.5KB)"
+  },
   "source": "matsubara-city",
   "key": "36b19d089267",
   "operator_display": "",
@@ -28303,6 +28813,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1042"
+  },
   "source": "kobe-city",
   "key": "4f959f57a81e",
   "operator_display": "",
@@ -28512,6 +29025,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1041"
+  },
   "source": "kobe-city",
   "key": "dd7bbc706caf",
   "operator_display": "",
@@ -28548,6 +29064,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1040"
+  },
   "source": "kobe-city",
   "key": "f9c05631f120",
   "operator_display": "",
@@ -28927,6 +29446,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社ゲオホールディングス",
+   "店舗面積": "744.42 平方メートル",
+   "駐車台数 (駐輪台数)": "25台 （75台）",
+   "営業時間": "11時 から 21時 （予定）",
+   "取扱品目": "衣料、服飾品、雑貨等"
+  },
   "source": "sakai-chukibo",
   "key": "0eb545d51a8c",
   "operator_display": "大和ハウスリアルティマネジメント株式会社",
@@ -29565,6 +30091,10 @@
   "notified_raw": "令和６年８月 27 日",
   "meeting": "第136回",
   "review_to": "2025-01-15",
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：228KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -29637,6 +30167,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240823t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：4,999KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "cf7c8f53651c",
   "operator_display": "",
@@ -29825,6 +30359,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/2/4/4/9/7/2/_/gaiyou_kinshousutoaamamiten_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 173KB)"
+  },
   "source": "matsubara-city",
   "key": "87977bb59216",
   "operator_display": "",
@@ -29930,6 +30467,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "コーナン商事 株式会社",
+   "店舗面積": "991.11平方メートル",
+   "駐車台数 (駐輪台数)": "27台 (100台)",
+   "営業時間": "平日･祝日 6時30分から20時(日曜9時 から20時)",
+   "取扱品目": "生活用品等"
+  },
   "source": "sakai-chukibo",
   "key": "0843dc3acf02",
   "operator_display": "コーナン商事 株式会社",
@@ -29984,56 +30528,6 @@
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2024-08-05",
-  "store": "門真幸福物販店舗",
-  "city": "門真市",
-  "address": "門真市幸福町537番1の一部",
-  "operator": "関電不動産開発（株）",
-  "retailer": "",
-  "event_on": "2024-07-30",
-  "area_m2": null,
-  "content": "①大規模小売店舗の名称\n②設置者の代表者氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
-  "citizen_opinion": "",
-  "recommendation": "",
-  "note": "",
-  "key": "b54bc5e53050",
-  "operator_display": "関電不動産開発（株）",
-  "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
-  "first_seen": "2026-09-11",
-  "last_seen": "2026-09-15",
-  "mode": "snapshot",
-  "listed": true,
-  "notified_raw": "令和6(2024)年8月5日",
-  "docs": [
-   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202408201542.pdf"
-  ],
-  "new_operator_kind": "individual",
-  "sources": [
-   "kadoma-city",
-   "osaka-pref"
-  ],
-  "merged_keys": [
-   "daf964f86bbb"
-  ],
-  "pref": "大阪府",
-  "ward": "",
-  "area": "門真市",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-15"
- },
- {
-  "source": "osaka-pref",
-  "file": "r703-6-1.xlsx",
-  "article": "第6条第1項",
-  "kind": "変更",
-  "notified_on": "2024-08-05",
   "store": "イオン和泉府中店",
   "city": "和泉市",
   "address": "和泉市肥子町二丁目1060番　ほか",
@@ -30065,6 +30559,55 @@
   "area": "和泉市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
   "fetched_on": "2026-09-11"
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "notified_on": "2024-08-05",
+  "notified_raw": "令和6(2024)年8月5日",
+  "store": "門真幸福物販店舗",
+  "address": "門真市幸福町",
+  "operator": "関電不動産開発（株）",
+  "new_operator": "",
+  "event_on": "2024-07-30",
+  "content": "①大規模小売店舗の名称\n②設置者の代表者氏名",
+  "review_from": null,
+  "review_to": null,
+  "meeting": "",
+  "citizen_opinion": "",
+  "city_opinion": "",
+  "note": "",
+  "docs": [
+   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202408201542.pdf"
+  ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
+  "source": "kadoma-city",
+  "key": "daf964f86bbb",
+  "operator_display": "関電不動産開発（株）",
+  "operator_kind": "corp",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "first_seen": "2026-09-11",
+  "last_seen": "2026-09-15",
+  "mode": "snapshot",
+  "listed": true,
+  "file": "r703-6-1.xlsx",
+  "city": "門真市",
+  "retailer_kind": "individual",
+  "sources": [
+   "kadoma-city",
+   "osaka-pref"
+  ],
+  "merged_keys": [
+   "b54bc5e53050"
+  ],
+  "pref": "大阪府",
+  "ward": "",
+  "area": "門真市",
+  "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
+  "fetched_on": "2026-09-15"
  },
  {
   "article": "第6条第1項",
@@ -30184,6 +30727,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売業者の変更があったため"
+  },
   "source": "toyonaka-city",
   "key": "71fa22287f51",
   "operator_display": "",
@@ -30367,6 +30913,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240813t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "東播磨",
+   "公告": "公告（PDF：351KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "bd60574c3f1b",
   "operator_display": "",
@@ -30415,6 +30965,10 @@
   "notified_raw": "令和６年７月 22 日",
   "meeting": "第135回",
   "review_to": "2024-12-06",
+  "extra": {
+   "縦覧場所 （県民局等）": "丹波",
+   "公告": "公告（PDF：345KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -30533,53 +31087,52 @@
   "fetched_on": "2026-09-11"
  },
  {
-  "source": "osaka-pref",
-  "file": "r703-6-1.xlsx",
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2024-07-16",
+  "notified_raw": "令和6(2024)年7月16日",
   "store": "関西スーパー京阪大和田店",
-  "city": "門真市",
-  "address": "門真市常称寺町30番１　ほか",
+  "address": "門真市常称寺町",
   "operator": "（株）関西スーパーマーケット",
-  "retailer": "",
+  "new_operator": "",
   "event_on": "2024-04-01",
-  "area_m2": null,
   "content": "①設置者の代表者氏名\n②小売業者の代表者氏名",
-  "parking": null,
-  "bicycle": null,
-  "open_time": "",
-  "close_time": "",
-  "pref_opinion": "",
-  "pref_recommendation": "",
+  "review_from": null,
+  "review_to": null,
+  "meeting": "",
   "citizen_opinion": "",
-  "recommendation": "",
+  "city_opinion": "",
   "note": "",
-  "key": "f8997d99ddf1",
+  "docs": [
+   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyo292408071600.pdf"
+  ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
+  "source": "kadoma-city",
+  "key": "e1ce279cb092",
   "operator_display": "（株）関西スーパーマーケット",
   "operator_kind": "corp",
-  "retailer_display": "",
-  "retailer_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
   "first_seen": "2026-09-11",
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "notified_raw": "令和6(2024)年7月16日",
-  "docs": [
-   "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyo292408071600.pdf"
-  ],
-  "new_operator_kind": "individual",
+  "file": "r703-6-1.xlsx",
+  "city": "門真市",
+  "retailer_kind": "individual",
   "sources": [
    "kadoma-city",
    "osaka-pref"
   ],
   "merged_keys": [
-   "e1ce279cb092"
+   "f8997d99ddf1"
   ],
   "pref": "大阪府",
   "ward": "",
   "area": "門真市",
-  "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
+  "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
   "fetched_on": "2026-09-15"
  },
  {
@@ -30743,6 +31296,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1037"
+  },
   "source": "kobe-city",
   "key": "c7270dbee407",
   "operator_display": "",
@@ -31081,6 +31637,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売業者の変更があったため"
+  },
   "source": "toyonaka-city",
   "key": "772317e3c022",
   "operator_display": "",
@@ -31336,6 +31895,10 @@
   "notified_raw": "令和６年６月 28 日",
   "meeting": "第135回",
   "review_to": "2024-12-02",
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：473KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -31379,6 +31942,10 @@
   "listed": false,
   "notified_raw": "令和6年6月28日",
   "review_to": "2024-11-25",
+  "extra": {
+   "縦覧場所 （県民局等）": "丹波",
+   "公告": "公告（PDF：1,565KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -31777,6 +32344,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年6月21日",
+  "extra": {
+   "市の意見": "なし"
+  },
   "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
@@ -31897,6 +32467,10 @@
   "notified_raw": "令和６年６月 20 日",
   "meeting": "第135回",
   "review_to": "2024-11-11",
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：348KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -32025,6 +32599,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1034"
+  },
   "source": "kobe-city",
   "key": "2f29417697ce",
   "operator_display": "",
@@ -32061,6 +32638,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1035"
+  },
   "source": "kobe-city",
   "key": "6669cc2dd693",
   "operator_display": "",
@@ -32099,6 +32679,10 @@
   "docs": [
    "https://web.pref.hyogo.lg.jp/ks21/documents/20240705t.pdf"
   ],
+  "extra": {
+   "縦覧場所 （県民局等）": "北播磨",
+   "公告": "公告（PDF：194KB）"
+  },
   "source": "hyogo-pref-juran",
   "key": "8272717aa7b7",
   "operator_display": "",
@@ -32430,6 +33014,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1033"
+  },
   "source": "kobe-city",
   "key": "661ec8df4355",
   "operator_display": "",
@@ -32497,6 +33084,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1031"
+  },
   "source": "kobe-city",
   "key": "a7b5787a5f9e",
   "operator_display": "",
@@ -33323,6 +33913,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1029"
+  },
   "source": "kobe-city",
   "key": "0248bc81a645",
   "operator_display": "",
@@ -33434,6 +34027,10 @@
   "listed": false,
   "review_from": "2024-06-18",
   "review_to": "2024-10-18",
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：305KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -33533,6 +34130,10 @@
   "notified_raw": "令和６年６月３日",
   "meeting": "第134回",
   "review_to": "2024-10-18",
+  "extra": {
+   "縦覧場所 （県民局等）": "丹波",
+   "公告": "公告（PDF：305KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-bukai",
@@ -33576,6 +34177,10 @@
   "listed": false,
   "notified_raw": "令和6年5月31日",
   "review_to": "2024-10-18",
+  "extra": {
+   "縦覧場所 （県民局等）": "阪神北",
+   "公告": "公告（PDF：305KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -33710,6 +34315,10 @@
   "listed": false,
   "notified_raw": "令和6年5月28日",
   "review_to": "2024-10-18",
+  "extra": {
+   "縦覧場所 （県民局等）": "北播磨",
+   "公告": "公告（PDF：305KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -34281,6 +34890,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1028"
+  },
   "source": "kobe-city",
   "key": "4975f09b0e58",
   "operator_display": "",
@@ -34408,6 +35020,10 @@
   "listed": false,
   "notified_raw": "令和6年5月9日",
   "review_to": "2024-09-30",
+  "extra": {
+   "縦覧場所 （県民局等）": "中播磨",
+   "公告": "公告（PDF：343KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -34526,6 +35142,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数、荷さばき施設の位置及び面積、廃棄物等の保管施設の位置及び容量、開店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "1027"
+  },
   "source": "kobe-city",
   "key": "b33e3cc973e2",
   "operator_display": "",
@@ -34601,6 +35220,10 @@
   "listed": false,
   "notified_raw": "令和6年4月24日",
   "review_to": "2024-09-30",
+  "extra": {
+   "縦覧場所 （県民局等）": "但馬",
+   "公告": "公告（PDF：343KB）"
+  },
   "new_operator_kind": "individual",
   "sources": [
    "hyogo-koho",
@@ -34634,6 +35257,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "6cd89a793544",
   "operator_display": "北大阪急行電鉄（株）",
@@ -34709,6 +35335,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1026"
+  },
   "source": "kobe-city",
   "key": "1cd8a6422ebf",
   "operator_display": "",
@@ -34745,6 +35374,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1025"
+  },
   "source": "kobe-city",
   "key": "1f0ceb77d321",
   "operator_display": "",
@@ -34781,6 +35413,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1021"
+  },
   "source": "kobe-city",
   "key": "08af0e0085ee",
   "operator_display": "",
@@ -34817,6 +35452,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1024"
+  },
   "source": "kobe-city",
   "key": "41711d19c2af",
   "operator_display": "",
@@ -34853,6 +35491,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1022"
+  },
   "source": "kobe-city",
   "key": "ada49808f614",
   "operator_display": "",
@@ -34889,6 +35530,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1023"
+  },
   "source": "kobe-city",
   "key": "2716f72fdfff",
   "operator_display": "",
@@ -35025,6 +35669,9 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年4月8日",
+  "extra": {
+   "市の意見": "なし"
+  },
   "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
@@ -35102,6 +35749,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1020"
+  },
   "source": "kobe-city",
   "key": "510098094ffc",
   "operator_display": "",
@@ -35289,6 +35939,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1019"
+  },
   "source": "kobe-city",
   "key": "81b178ee313e",
   "operator_display": "",
@@ -35421,6 +36074,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/life-fukuizumi_6-2.pdf"
   ],
+  "extra": {
+   "設置者対応": "ー",
+   "勧告": "ー",
+   "地域貢献活動計画書": "あり（PDF：282KB）"
+  },
   "source": "sakai-city",
   "key": "40b4b227e9a5",
   "operator_display": "三菱UFJ 信託銀行 株式会社",
@@ -35494,6 +36152,9 @@
    "https://www.city.matsubara.lg.jp/fs/2/2/5/9/9/7/_/gaiyou_aeontownmatsubara_.pdf",
    "https://www.city.matsubara.lg.jp/fs/2/3/8/5/1/0/_/beppyo_aeontownmatsubara_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 80.5KB) 別表 (PDF 174KB)"
+  },
   "source": "matsubara-city",
   "key": "2254b44aec9d",
   "operator_display": "",
@@ -35634,6 +36295,9 @@
   "city_opinion": "",
   "note": "設置者住所・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1018"
+  },
   "source": "kobe-city",
   "key": "4d47674c8af8",
   "operator_display": "",
@@ -35670,6 +36334,9 @@
   "city_opinion": "",
   "note": "設置者住所・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1018"
+  },
   "source": "kobe-city",
   "key": "90e1e09e2512",
   "operator_display": "",
@@ -35741,6 +36408,9 @@
   "city_opinion": "",
   "note": "設置者名称・住所・代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1016"
+  },
   "source": "kobe-city",
   "key": "21fe4c8a6e4e",
   "operator_display": "",
@@ -35777,6 +36447,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1017"
+  },
   "source": "kobe-city",
   "key": "50b866d302d1",
   "operator_display": "",
@@ -36093,6 +36766,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/2/2/1/0/9/3/_/gaiyou_baromatsubarabessyoten_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF 98.1KB)"
+  },
   "source": "matsubara-city",
   "key": "0f35fe3040dc",
   "operator_display": "",
@@ -36132,6 +36808,9 @@
    "https://www.city.matsubara.lg.jp/fs/2/2/1/0/9/2/_/gaiyou_izumiyashoppingcentermatsubara_.pdf",
    "https://www.city.matsubara.lg.jp/fs/2/3/8/5/1/2/_/beppyou_izumiyashoppingcentermatsubara_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF 77.7KB) 別表 (PDF 804KB)"
+  },
   "source": "matsubara-city",
   "key": "6f0c12739dc2",
   "operator_display": "",
@@ -36296,6 +36975,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1015"
+  },
   "source": "kobe-city",
   "key": "872a344223e4",
   "operator_display": "",
@@ -36404,10 +37086,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -36899,6 +37581,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）大規模小売店舗を設置している者の代表者変更のため （2）小売店舗の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2c198d821e2c",
   "operator_display": "",
@@ -36935,6 +37620,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No": "4"
+  },
   "source": "yao-city",
   "key": "939f82f30ea7",
   "operator_display": "三菱HCキャピタルエステートプラス株式会社",
@@ -37005,6 +37693,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1014"
+  },
   "source": "kobe-city",
   "key": "551555c887a7",
   "operator_display": "",
@@ -37041,6 +37732,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1013"
+  },
   "source": "kobe-city",
   "key": "e9c875650765",
   "operator_display": "",
@@ -37077,6 +37771,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1012"
+  },
   "source": "kobe-city",
   "key": "dd45dd4d1767",
   "operator_display": "",
@@ -37113,6 +37810,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1011"
+  },
   "source": "kobe-city",
   "key": "45c9ada1729d",
   "operator_display": "",
@@ -37227,6 +37927,9 @@
   "city_opinion": "",
   "note": "設置者名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1010"
+  },
   "source": "kobe-city",
   "key": "c597aa573832",
   "operator_display": "",
@@ -37433,6 +38136,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1009"
+  },
   "source": "kobe-city",
   "key": "db9a6e7ec3d4",
   "operator_display": "",
@@ -37629,6 +38335,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1008"
+  },
   "source": "kobe-city",
   "key": "1b1b956fdaa7",
   "operator_display": "",
@@ -37665,6 +38374,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数、駐輪場の位置及び収容台数",
   "docs": [],
+  "extra": {
+   "受理 番号": "1007"
+  },
   "source": "kobe-city",
   "key": "9e00efb5839b",
   "operator_display": "",
@@ -37736,6 +38448,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1006"
+  },
   "source": "kobe-city",
   "key": "5e569062de5b",
   "operator_display": "",
@@ -37812,6 +38527,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou20231204.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "2dd8fba232f4",
   "operator_display": "",
@@ -37969,6 +38687,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "5",
+   "所在地（地番）": "小畑町三丁目1-1、四丁目11-1の一部、13-1外、121-2",
+   "店舗面積": "993.46平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "407f0cd11007",
   "operator_display": "",
@@ -38090,6 +38813,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1005"
+  },
   "source": "kobe-city",
   "key": "6f04e5e96a7e",
   "operator_display": "",
@@ -38361,6 +39087,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/2/3/8/5/1/1/_/gaiyou_kinshostoreamamiten_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要 (PDF 100KB)"
+  },
   "source": "matsubara-city",
   "key": "2c2bac4df027",
   "operator_display": "",
@@ -38623,6 +39352,9 @@
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202311081103.pdf",
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyo202403181803.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "意見概要(PDFファイル:107.2KB)"
+  },
   "source": "kadoma-city",
   "key": "5422f3600f37",
   "operator_display": "",
@@ -38659,6 +39391,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No.": "1",
+   "審議会": "令和6年6月7日（金曜）午後4時00分から八尾市立中小企業サポートセンター 多目的室にて",
+   "市の意見（通知日）": "令和6年6月24日"
+  },
   "source": "yao-city",
   "key": "2787984cdadf",
   "operator_display": "コーナン商事株式会社",
@@ -39089,6 +39826,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No": "3"
+  },
   "source": "yao-city",
   "key": "a31f6ddc9b7e",
   "operator_display": "株式会社イトーヨーカ堂",
@@ -39169,10 +39909,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -39346,6 +40086,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社スギ薬局",
+   "店舗面積": "978.26平方メートル",
+   "駐車台数 (駐輪台数)": "58台 (76台)",
+   "営業時間": "10時 から 22時 (予定)",
+   "取扱品目": "医薬品、日用品、化粧品、食品"
+  },
   "source": "sakai-chukibo",
   "key": "1e1d4fb7fb6b",
   "operator_display": "スギホールディングス株式会社",
@@ -39896,6 +40643,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No": "2"
+  },
   "source": "yao-city",
   "key": "2e01a74b9096",
   "operator_display": "三井住友トラスト・パナソニックファイナンス株式会社",
@@ -39976,6 +40726,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "06ebb370821a",
   "operator_display": "",
@@ -40501,6 +41254,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1004"
+  },
   "source": "kobe-city",
   "key": "41e3fe2bdb04",
   "operator_display": "",
@@ -40613,10 +41369,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -41134,6 +41890,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No.": "2",
+   "審議会": "令和6年2月6日（火曜）午前9時30分から八尾市立中小企業サポートセンター 多目的室にて",
+   "市の意見（通知日）": "令和6年2月26日"
+  },
   "source": "yao-city",
   "key": "55c498b40a6c",
   "operator_display": "コーナン商事株式会社",
@@ -41169,6 +41930,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社アルコン堺",
+   "店舗面積": "371.71平方メートル",
+   "駐車台数 (駐輪台数)": "19台 (63台)",
+   "営業時間": "10時 から 19時",
+   "取扱品目": "自動車"
+  },
   "source": "sakai-chukibo",
   "key": "e1cb338f5af8",
   "operator_display": "株式会社アルコン堺",
@@ -41515,6 +42283,9 @@
   "city_opinion": "",
   "note": "店舗面積、駐車場の位置及び収容台数、駐輪場の位置及び収容台数、荷さばき施設の位置及び面積、廃棄物等の保管施設の位置及び容量、開店時刻、駐車場利用時間帯",
   "docs": [],
+  "extra": {
+   "受理 番号": "1003"
+  },
   "source": "kobe-city",
   "key": "d1d8e7979733",
   "operator_display": "",
@@ -41694,6 +42465,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou20230728.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "7485f011e83b",
   "operator_display": "",
@@ -41730,6 +42504,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "93af4914398c",
   "operator_display": "",
@@ -41766,6 +42543,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "7f69983caf71",
   "operator_display": "",
@@ -41802,6 +42582,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "1001"
+  },
   "source": "kobe-city",
   "key": "b700276c0fb9",
   "operator_display": "",
@@ -41840,6 +42623,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/superautobacs-direxharayamadai6-2.pdf"
   ],
+  "extra": {
+   "設置者対応": "ー",
+   "勧告": "ー",
+   "地域貢献活動計画書": "あり（PDF：206KB）"
+  },
   "source": "sakai-city",
   "key": "9e1e5f34edd2",
   "operator_display": "株式会社オートバックスセブン ダイレックス株式会社",
@@ -41912,6 +42700,9 @@
   "docs": [
    "https://www.city.minoh.lg.jp/syoukou/documents/suvland_5-1.pdf"
   ],
+  "extra": {
+   "住民などの意見の概要": "なし"
+  },
   "source": "minoh-2shi2cho",
   "key": "809202f540e1",
   "operator_display": "",
@@ -42090,6 +42881,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "1000"
+  },
   "source": "kobe-city",
   "key": "9400dbcf0601",
   "operator_display": "",
@@ -42159,6 +42953,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/cosumosuhatusiba5-1.pdf"
   ],
+  "extra": {
+   "設置者対応": "ー",
+   "勧告": "ー",
+   "地域貢献活動計画書": "あり（PDF：82KB）"
+  },
   "source": "sakai-city",
   "key": "d89688e90abd",
   "operator_display": "住吉管財株式会社",
@@ -42194,6 +42993,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No.": "1",
+   "審議会": "令和6年2月6日（火曜）午前9時30分から八尾市立中小企業サポートセンター 多目的室にて",
+   "市の意見（通知日）": "令和6年2月21日"
+  },
   "source": "yao-city",
   "key": "a5b21812ec44",
   "operator_display": "株式会社コスモス薬品",
@@ -42485,6 +43289,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "82ceb0ae3098",
   "operator_display": "",
@@ -42521,6 +43328,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "令和5年4月30日"
+  },
   "source": "toyonaka-city",
   "key": "9f7d026501dc",
   "operator_display": "",
@@ -42781,6 +43591,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "999"
+  },
   "source": "kobe-city",
   "key": "6a449d21d303",
   "operator_display": "",
@@ -42972,6 +43785,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "998"
+  },
   "source": "kobe-city",
   "key": "bbd306501190",
   "operator_display": "",
@@ -43060,6 +43876,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202306200924.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "60bb85806246",
   "operator_display": "",
@@ -43182,6 +44001,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の名称及び代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "f11a7267a3fb",
   "operator_display": "",
@@ -43249,6 +44071,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "No": "1"
+  },
   "source": "yao-city",
   "key": "82ce229d411b",
   "operator_display": "株式会社フォレストモール",
@@ -43508,6 +44333,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社ビッグモーター",
+   "店舗面積": "394平方メートル",
+   "駐車台数 (駐輪台数)": "12台 (118台)",
+   "営業時間": "9時 から 20時",
+   "取扱品目": "自動車(中古車)"
+  },
   "source": "sakai-chukibo",
   "key": "528c4349989a",
   "operator_display": "株式会社ビッグモーター",
@@ -43624,6 +44456,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "5",
+   "所在地（地番）": "高安町北一丁目79番2、83番2",
+   "店舗面積": "721.25平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "33fe677ca689",
   "operator_display": "",
@@ -43659,6 +44496,9 @@
   "city_opinion": "",
   "note": "設置者名称・住所・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "996"
+  },
   "source": "kobe-city",
   "key": "749603330a7c",
   "operator_display": "",
@@ -43695,6 +44535,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "995"
+  },
   "source": "kobe-city",
   "key": "ce3a6a454649",
   "operator_display": "",
@@ -43731,6 +44574,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "994"
+  },
   "source": "kobe-city",
   "key": "df772b5eb5ed",
   "operator_display": "",
@@ -43767,6 +44613,9 @@
   "city_opinion": "",
   "note": "設置者名称・住所・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "997"
+  },
   "source": "kobe-city",
   "key": "3747f2fab7a5",
   "operator_display": "",
@@ -43838,6 +44687,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "993"
+  },
   "source": "kobe-city",
   "key": "172ba201af01",
   "operator_display": "",
@@ -44193,6 +45045,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "992"
+  },
   "source": "kobe-city",
   "key": "652108d9bb98",
   "operator_display": "",
@@ -44302,6 +45157,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "989"
+  },
   "source": "kobe-city",
   "key": "241c125a568f",
   "operator_display": "",
@@ -44338,6 +45196,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "991"
+  },
   "source": "kobe-city",
   "key": "c5fcf4b0c6f6",
   "operator_display": "",
@@ -44405,6 +45266,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者名称・住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "985"
+  },
   "source": "kobe-city",
   "key": "16b7c7475f7a",
   "operator_display": "",
@@ -44441,6 +45305,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "986"
+  },
   "source": "kobe-city",
   "key": "2e933c140254",
   "operator_display": "",
@@ -44477,6 +45344,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "988"
+  },
   "source": "kobe-city",
   "key": "7f90e7830794",
   "operator_display": "",
@@ -44583,6 +45453,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "ウエルシア薬局株式会社",
+   "店舗面積": "629平方メートル",
+   "駐車台数 (駐輪台数)": "17台 (62台)",
+   "営業時間": "10時から22時",
+   "取扱品目": "医薬品及び日用品"
+  },
   "source": "sakai-chukibo",
   "key": "f61e553b4b31",
   "operator_display": "ウエルシア薬局株式会社",
@@ -44729,6 +45606,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社イリオスネット、株式会社大創産業",
+   "店舗面積": "978平方メートル",
+   "駐車台数 (駐輪台数)": "―",
+   "営業時間": "9時から22時",
+   "取扱品目": "一般小売販売店等"
+  },
   "source": "sakai-chukibo",
   "key": "0e5ac5f9a621",
   "operator_display": "南海電気鉄道株式会社",
@@ -44764,6 +45648,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社ファミリーマート他",
+   "店舗面積": "573平方メートル",
+   "駐車台数 (駐輪台数)": "―",
+   "営業時間": "9時から22時",
+   "取扱品目": "一般小売販売店等"
+  },
   "source": "sakai-chukibo",
   "key": "059d23221948",
   "operator_display": "南海電気鉄道株式会社",
@@ -44834,6 +45725,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "984"
+  },
   "source": "kobe-city",
   "key": "4cccb7db0086",
   "operator_display": "",
@@ -45104,6 +45998,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "d0c94077c287",
   "operator_display": "",
@@ -45269,6 +46166,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/coopnonoi5-1.pdf"
   ],
+  "extra": {
+   "設置者対応": "―",
+   "勧告": "―",
+   "地域貢献活動計画書": "あり（PDF：89KB）"
+  },
   "source": "sakai-city",
   "key": "dc92dc090542",
   "operator_display": "大阪いずみ市民生活協同組合",
@@ -45421,6 +46323,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数",
   "docs": [],
+  "extra": {
+   "受理 番号": "982"
+  },
   "source": "kobe-city",
   "key": "a082f1409787",
   "operator_display": "",
@@ -45488,6 +46393,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "981"
+  },
   "source": "kobe-city",
   "key": "30f5c84a408e",
   "operator_display": "",
@@ -45524,6 +46432,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数",
   "docs": [],
+  "extra": {
+   "受理 番号": "980"
+  },
   "source": "kobe-city",
   "key": "54e14c0e4844",
   "operator_display": "",
@@ -45656,6 +46567,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "979"
+  },
   "source": "kobe-city",
   "key": "4d69ef0a04d5",
   "operator_display": "",
@@ -45692,6 +46606,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "a331c952d3f1",
   "operator_display": "",
@@ -45760,6 +46677,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/okuwamihara6-2.pdf"
   ],
+  "extra": {
+   "設置者対応": "ー",
+   "勧告": "ー",
+   "地域貢献活動計画書": "あり（PDF：57KB）"
+  },
   "source": "sakai-city",
   "key": "e5616fbfae02",
   "operator_display": "株式会社オークワ",
@@ -45795,6 +46717,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "―",
+   "店舗面積": "919平方メートル",
+   "駐車台数 (駐輪台数)": "21台 (69台)",
+   "営業時間": "9時から22時",
+   "取扱品目": "一般雑貨の中古品販売"
+  },
   "source": "sakai-chukibo",
   "key": "ddd911f14f1f",
   "operator_display": "",
@@ -45988,6 +46917,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社リーフ",
+   "店舗面積": "613平方メートル",
+   "駐車台数 (駐輪台数)": "23台 (65台)",
+   "営業時間": "8時から22時",
+   "取扱品目": "一般小売販売店"
+  },
   "source": "sakai-chukibo",
   "key": "f1b3bbebf701",
   "operator_display": "株式会社リーフ",
@@ -46023,6 +46959,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社キリン堂",
+   "店舗面積": "907平方メートル",
+   "駐車台数 (駐輪台数)": "29台 (34台)",
+   "営業時間": "9時から21時45分",
+   "取扱品目": "ドラッグストア、食品"
+  },
   "source": "sakai-chukibo",
   "key": "d8bb05b2c105",
   "operator_display": "今村不動産株式会社",
@@ -46106,6 +47049,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/higashihatta.pdf"
   ],
+  "extra": {
+   "設置者対応": "―",
+   "勧告": "―",
+   "地域貢献活動計画書": "あり（PDF：48KB）"
+  },
   "source": "sakai-city",
   "key": "f4053c538f6e",
   "operator_display": "株式会社NTT西日本アセット・プランニング",
@@ -46143,6 +47091,11 @@
   "docs": [
    "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.files/baro-toyoda.pdf"
   ],
+  "extra": {
+   "設置者対応": "―",
+   "勧告": "―",
+   "地域貢献活動計画書": "あり（PDF：44KB）"
+  },
   "source": "sakai-city",
   "key": "3d5467650673",
   "operator_display": "株式会社バロー",
@@ -46329,6 +47282,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/20221227_6-2_sankooa.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "4f46a146cc1e",
   "operator_display": "",
@@ -46432,6 +47388,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "976"
+  },
   "source": "kobe-city",
   "key": "8b28caa63531",
   "operator_display": "",
@@ -46468,6 +47427,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "978"
+  },
   "source": "kobe-city",
   "key": "58786a894981",
   "operator_display": "",
@@ -46504,6 +47466,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "977"
+  },
   "source": "kobe-city",
   "key": "1e058be62e8e",
   "operator_display": "",
@@ -46540,6 +47505,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "975"
+  },
   "source": "kobe-city",
   "key": "d403d991809b",
   "operator_display": "",
@@ -46702,6 +47670,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "973"
+  },
   "source": "kobe-city",
   "key": "f9afee7a4f46",
   "operator_display": "",
@@ -46738,6 +47709,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "972"
+  },
   "source": "kobe-city",
   "key": "a3095514c313",
   "operator_display": "",
@@ -46774,6 +47748,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "974"
+  },
   "source": "kobe-city",
   "key": "cc28cc7baeb0",
   "operator_display": "",
@@ -46812,6 +47789,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokede01061004.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "2bc121f4cc35",
   "operator_display": "",
@@ -47135,6 +48115,9 @@
   "city_opinion": "",
   "note": "設置者名称・住所・代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "971"
+  },
   "source": "kobe-city",
   "key": "08c50f32aafe",
   "operator_display": "",
@@ -47270,6 +48253,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "970"
+  },
   "source": "kobe-city",
   "key": "883ab4c8ff37",
   "operator_display": "",
@@ -47337,6 +48323,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "969"
+  },
   "source": "kobe-city",
   "key": "12f9fd61746f",
   "operator_display": "",
@@ -47439,6 +48428,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社ツルハ",
+   "店舗面積": "984平方メートル",
+   "駐車台数 (駐輪台数)": "24台 (83台)",
+   "営業時間": "8時から24時",
+   "取扱品目": "薬品、日用品"
+  },
   "source": "sakai-chukibo",
   "key": "9fe17bd53d8f",
   "operator_display": "株式会社ツルハ",
@@ -47544,6 +48540,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "968"
+  },
   "source": "kobe-city",
   "key": "0d246d487ba9",
   "operator_display": "",
@@ -47614,6 +48613,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "967"
+  },
   "source": "kobe-city",
   "key": "97b8edea075b",
   "operator_display": "",
@@ -47867,6 +48869,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "966"
+  },
   "source": "kobe-city",
   "key": "73b836c1dc19",
   "operator_display": "",
@@ -47903,6 +48908,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "つるや株式会社",
+   "店舗面積": "378平方メートル",
+   "駐車台数 (駐輪台数)": "21台 (33台)",
+   "営業時間": "10時から20時",
+   "取扱品目": "ゴルフ用品"
+  },
   "source": "sakai-chukibo",
   "key": "85cb69824dc9",
   "operator_display": "",
@@ -48319,6 +49331,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "964"
+  },
   "source": "kobe-city",
   "key": "90225ca359f4",
   "operator_display": "",
@@ -48585,6 +49600,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "961"
+  },
   "source": "kobe-city",
   "key": "7177b6d3df4c",
   "operator_display": "",
@@ -48621,6 +49639,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "962"
+  },
   "source": "kobe-city",
   "key": "2a913bb73823",
   "operator_display": "",
@@ -48657,6 +49678,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "963"
+  },
   "source": "kobe-city",
   "key": "72c8ee9d14cc",
   "operator_display": "",
@@ -48875,6 +49899,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "960"
+  },
   "source": "kobe-city",
   "key": "b413c7ad64fa",
   "operator_display": "",
@@ -48911,6 +49938,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "958"
+  },
   "source": "kobe-city",
   "key": "acee6c51d129",
   "operator_display": "",
@@ -48947,6 +49977,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "957"
+  },
   "source": "kobe-city",
   "key": "db0bec43c361",
   "operator_display": "",
@@ -48983,6 +50016,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "959"
+  },
   "source": "kobe-city",
   "key": "ff516b0b4536",
   "operator_display": "",
@@ -49054,6 +50090,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "956"
+  },
   "source": "kobe-city",
   "key": "1c2ae1cf17cc",
   "operator_display": "",
@@ -49090,6 +50129,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "954"
+  },
   "source": "kobe-city",
   "key": "e2ace4c1522c",
   "operator_display": "",
@@ -49126,6 +50168,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "955"
+  },
   "source": "kobe-city",
   "key": "b8afc764286b",
   "operator_display": "",
@@ -49467,6 +50512,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/6/1/_/gaiyousyo_aeontown.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:93.1KB)"
+  },
   "source": "matsubara-city",
   "key": "16e004dd883f",
   "operator_display": "",
@@ -49505,6 +50553,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/6/0/_/gaiyousyo_kezudenki.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:51KB)"
+  },
   "source": "matsubara-city",
   "key": "1399862f2d67",
   "operator_display": "",
@@ -49543,6 +50594,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/edion_6-1_gaiyou.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "8150425fba71",
   "operator_display": "",
@@ -49872,6 +50926,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "953"
+  },
   "source": "kobe-city",
   "key": "1a4c8642eb96",
   "operator_display": "",
@@ -49986,6 +51043,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "952"
+  },
   "source": "kobe-city",
   "key": "c7984e05a568",
   "operator_display": "",
@@ -50057,6 +51117,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2c212c2b2d3a",
   "operator_display": "",
@@ -50093,6 +51156,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大規模小売店舗を設置している者の代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "21785f19cae5",
   "operator_display": "",
@@ -50276,6 +51342,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の代表者の氏名に変更が生じたため （2）小売業者に変更が生じたため"
+  },
   "source": "toyonaka-city",
   "key": "67092b9cc097",
   "operator_display": "",
@@ -50314,6 +51383,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/9/_/gaiyousyo-6zyou1kou-.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:84.3KB)"
+  },
   "source": "matsubara-city",
   "key": "20dc12801029",
   "operator_display": "",
@@ -50478,6 +51550,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "951"
+  },
   "source": "kobe-city",
   "key": "812a1df025a2",
   "operator_display": "",
@@ -50611,6 +51686,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "950"
+  },
   "source": "kobe-city",
   "key": "f663d09fe8fb",
   "operator_display": "",
@@ -50698,6 +51776,9 @@
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/6/_/gaiyousyo-6zyou1kou.pdf",
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/7/_/beppyou-6zyou1kou.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:68.1KB) 別表(PDFファイル:109.2KB)"
+  },
   "source": "matsubara-city",
   "key": "063c2c1991fa",
   "operator_display": "",
@@ -50736,6 +51817,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/8/_/gaiyousyo-6zyou2kou.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:73.2KB)"
+  },
   "source": "matsubara-city",
   "key": "0f6306dfddad",
   "operator_display": "",
@@ -50841,6 +51925,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "スギホールディングス株式会社",
+   "店舗面積": "980平方メートル",
+   "駐車台数 (駐輪台数)": "42台 (92台)",
+   "営業時間": "10時から22時",
+   "取扱品目": "医薬品・日用品等"
+  },
   "source": "sakai-chukibo",
   "key": "94763218a8a9",
   "operator_display": "合同会社 スギアセット",
@@ -50876,6 +51967,10 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "届出書の提出理由": "大規模小売店舗立地法第5条第1項に基づくもの",
+   "提出期限": "終了"
+  },
   "source": "kumatori-town",
   "key": "31b45fa7fdad",
   "operator_display": "",
@@ -50943,6 +52038,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "948"
+  },
   "source": "kobe-city",
   "key": "b84441048d50",
   "operator_display": "",
@@ -50979,6 +52077,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "949"
+  },
   "source": "kobe-city",
   "key": "9f8d16ed129f",
   "operator_display": "",
@@ -51015,6 +52116,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社こくぶや",
+   "店舗面積": "692平方メートル",
+   "駐車台数 (駐輪台数)": "50台 (40台)",
+   "営業時間": "9時から21時",
+   "取扱品目": "酒、食料品等"
+  },
   "source": "sakai-chukibo",
   "key": "2166a43a5458",
   "operator_display": "株式会社こくぶや",
@@ -51085,6 +52193,9 @@
   "city_opinion": "",
   "note": "駐車場の自動車の出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "947"
+  },
   "source": "kobe-city",
   "key": "a14865d9e594",
   "operator_display": "",
@@ -51121,6 +52232,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "946"
+  },
   "source": "kobe-city",
   "key": "5d87db0e21a6",
   "operator_display": "",
@@ -51503,6 +52617,9 @@
   "city_opinion": "",
   "note": "設置者代表者・住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "945"
+  },
   "source": "kobe-city",
   "key": "915865a5aacd",
   "operator_display": "",
@@ -51794,6 +52911,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "943"
+  },
   "source": "kobe-city",
   "key": "35bb89145477",
   "operator_display": "",
@@ -52179,6 +53299,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社ワッツ西日本販売",
+   "店舗面積": "645平方メートル",
+   "駐車台数 (駐輪台数)": "6台 (0台)",
+   "営業時間": "10時から20時",
+   "取扱品目": "日用品・雑貨"
+  },
   "source": "sakai-chukibo",
   "key": "84d6a5851bdf",
   "operator_display": "株式会社銀雅",
@@ -52259,6 +53386,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "941"
+  },
   "source": "kobe-city",
   "key": "af036f94dd60",
   "operator_display": "",
@@ -52295,6 +53425,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "942"
+  },
   "source": "kobe-city",
   "key": "d2a83ab6a2ed",
   "operator_display": "",
@@ -52700,6 +53833,9 @@
   "city_opinion": "",
   "note": "店舗名称",
   "docs": [],
+  "extra": {
+   "受理 番号": "940"
+  },
   "source": "kobe-city",
   "key": "6b33b36f915f",
   "operator_display": "",
@@ -52798,6 +53934,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "939"
+  },
   "source": "kobe-city",
   "key": "0d32eae555c6",
   "operator_display": "",
@@ -53005,6 +54144,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社あさひ",
+   "店舗面積": "537平方メートル",
+   "駐車台数 (駐輪台数)": "11台 (10台)",
+   "営業時間": "10時から20時",
+   "取扱品目": "自転車・備品"
+  },
   "source": "sakai-chukibo",
   "key": "748e462aaa67",
   "operator_display": "大和リース株式会社",
@@ -53102,6 +54248,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "938"
+  },
   "source": "kobe-city",
   "key": "fa95b0f2f01b",
   "operator_display": "",
@@ -53329,6 +54478,9 @@
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/4/_/todokedenogaiyou.pdf",
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/5/_/beppyou.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:74.4KB) 別表(PDFファイル:79.9KB)"
+  },
   "source": "matsubara-city",
   "key": "7d0c9859b5ea",
   "operator_display": "",
@@ -53400,6 +54552,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "スギホールディングス株式会社",
+   "店舗面積": "998平方メートル",
+   "駐車台数 (駐輪台数)": "45台 (20台)",
+   "営業時間": "9時から23時",
+   "取扱品目": "医薬品・化粧品等"
+  },
   "source": "sakai-chukibo",
   "key": "68ea080d1a62",
   "operator_display": "スギホールディングス株式会社",
@@ -53435,6 +54594,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "ウエルシア薬局株式会社",
+   "店舗面積": "968平方メートル",
+   "駐車台数 (駐輪台数)": "40台 (80台)",
+   "営業時間": "0時から24時",
+   "取扱品目": "クスリ・一般日用品等"
+  },
   "source": "sakai-chukibo",
   "key": "d0bf714fe9f6",
   "operator_display": "ウエルシア薬局株式会社",
@@ -53562,6 +54728,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社とみづや",
+   "店舗面積": "771平方メートル",
+   "駐車台数 (駐輪台数)": "23台 (76台)",
+   "営業時間": "9時から21時",
+   "取扱品目": "食品小売"
+  },
   "source": "sakai-chukibo",
   "key": "be51f2d43aa6",
   "operator_display": "",
@@ -53643,6 +54816,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "ダイレックス株式会社",
+   "店舗面積": "999平方メートル",
+   "駐車台数 (駐輪台数)": "45台 (50台)",
+   "営業時間": "9時から22時",
+   "取扱品目": "医薬品、日用雑貨等"
+  },
   "source": "sakai-chukibo",
   "key": "8f7baaa7f0b6",
   "operator_display": "ダイレックス株式会社",
@@ -53761,6 +54941,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "937"
+  },
   "source": "kobe-city",
   "key": "e495623e99e6",
   "operator_display": "",
@@ -53895,6 +55078,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "936"
+  },
   "source": "kobe-city",
   "key": "a1f68c451910",
   "operator_display": "",
@@ -54396,6 +55582,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "934"
+  },
   "source": "kobe-city",
   "key": "59c3a326524d",
   "operator_display": "",
@@ -54432,6 +55621,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "932"
+  },
   "source": "kobe-city",
   "key": "cfeaeeabcb1d",
   "operator_display": "",
@@ -54468,6 +55660,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "935"
+  },
   "source": "kobe-city",
   "key": "f4fc370c3791",
   "operator_display": "",
@@ -54504,6 +55699,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "933"
+  },
   "source": "kobe-city",
   "key": "cbbf32eb2a98",
   "operator_display": "",
@@ -54647,6 +55845,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "志紀町二丁目43-1、43-4、43-5",
+   "店舗面積": "918.8平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "cb88ec5dea40",
   "operator_display": "",
@@ -54685,6 +55888,9 @@
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou_kadomamatsuotyokeikaku.pdf",
    "https://www.city.kadoma.osaka.jp/material/files/group/14/ikengaiyou_kadomamatsuotyokeikaku.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "意見概要(PDFファイル:59.9KB)"
+  },
   "source": "kadoma-city",
   "key": "948caa4718ba",
   "operator_display": "",
@@ -54837,6 +56043,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "高美町三丁目3番1,3番2、3番3、3番5、3番7、3番8、4番",
+   "店舗面積": "768.60平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "a79320c5c0f6",
   "operator_display": "",
@@ -55197,6 +56408,9 @@
   "city_opinion": "",
   "note": "開店時刻、駐車場利用時間帯",
   "docs": [],
+  "extra": {
+   "受理 番号": "930"
+  },
   "source": "kobe-city",
   "key": "b300bcae5975",
   "operator_display": "",
@@ -55233,6 +56447,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "60664397d45f",
   "operator_display": "",
@@ -55333,6 +56550,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の代表者の変更のため （2）小売店舗の住所及び代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "dc02e8e1d5df",
   "operator_display": "",
@@ -55369,6 +56589,9 @@
   "city_opinion": "",
   "note": "小売店舗所在地、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "929"
+  },
   "source": "kobe-city",
   "key": "e04cda669621",
   "operator_display": "",
@@ -55405,6 +56628,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "928"
+  },
   "source": "kobe-city",
   "key": "5df8acd937bb",
   "operator_display": "",
@@ -55441,6 +56667,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "927"
+  },
   "source": "kobe-city",
   "key": "1a0f86225f4f",
   "operator_display": "",
@@ -55850,6 +57079,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "6f1cf9bffc11",
   "operator_display": "",
@@ -56162,6 +57394,9 @@
   "city_opinion": "",
   "note": "駐車場の位置及び収容台数、駐輪場の位置及び収容台数、廃棄物等の保管施設の位置及び容量",
   "docs": [],
+  "extra": {
+   "受理 番号": "925"
+  },
   "source": "kobe-city",
   "key": "022070b75d37",
   "operator_display": "",
@@ -56295,6 +57530,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "924"
+  },
   "source": "kobe-city",
   "key": "3f79d6220299",
   "operator_display": "",
@@ -56331,6 +57569,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者名称・代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "923"
+  },
   "source": "kobe-city",
   "key": "62a2e833905f",
   "operator_display": "",
@@ -56398,6 +57639,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "DAIWA CYCLE株式会社",
+   "店舗面積": "386平方メートル",
+   "駐車台数 (駐輪台数)": "7台 (27台)",
+   "営業時間": "10時30分から19時30分（土日10時から20時）",
+   "取扱品目": "自転車"
+  },
   "source": "sakai-chukibo",
   "key": "f79882397543",
   "operator_display": "由利土地開発株式会社",
@@ -56710,6 +57958,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "南久宝寺一丁目40番",
+   "店舗面積": "923.20平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d98672dad65a",
   "operator_display": "",
@@ -57008,6 +58261,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "スギホールディングス株式会社",
+   "店舗面積": "994平方メートル",
+   "駐車台数 (駐輪台数)": "23台（80台）",
+   "営業時間": "10時から22時",
+   "取扱品目": "医薬品・日用品・食品"
+  },
   "source": "sakai-chukibo",
   "key": "82cf4d1422e7",
   "operator_display": "スギホールディングス株式会社",
@@ -57091,6 +58351,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "922"
+  },
   "source": "kobe-city",
   "key": "f850ec215e3b",
   "operator_display": "",
@@ -57193,6 +58456,9 @@
   "city_opinion": "",
   "note": "駐輪場の位置及び収容台数、閉店時刻、駐車場利用時間帯、駐車場の自動車の出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "921"
+  },
   "source": "kobe-city",
   "key": "803e34b251da",
   "operator_display": "",
@@ -57297,6 +58563,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "919"
+  },
   "source": "kobe-city",
   "key": "fcbc51e3b16c",
   "operator_display": "",
@@ -57333,6 +58602,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "918"
+  },
   "source": "kobe-city",
   "key": "5ee3f2ea1ef6",
   "operator_display": "",
@@ -57371,6 +58643,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/1/_/settisyanohenkou_gaiyou.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:92.4KB)"
+  },
   "source": "matsubara-city",
   "key": "94e10a64cde7",
   "operator_display": "",
@@ -57410,6 +58685,9 @@
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/2/_/meisyou_kourigyousyanohenkou_gaiyou.pdf",
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/3/_/beppyou_kourigyousya.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:71KB) 別表(PDFファイル:383.3KB)"
+  },
   "source": "matsubara-city",
   "key": "e73a555e064b",
   "operator_display": "",
@@ -57577,6 +58855,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社サンフェステ",
+   "店舗面積": "498平方メートル",
+   "駐車台数 (駐輪台数)": "17台 (27台)",
+   "営業時間": "9時から21時",
+   "取扱品目": "飲食料品"
+  },
   "source": "sakai-chukibo",
   "key": "e1514d516e52",
   "operator_display": "株式会社サンフェステ",
@@ -57669,6 +58954,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "916"
+  },
   "source": "kobe-city",
   "key": "2d9f831182c3",
   "operator_display": "",
@@ -57990,6 +59278,9 @@
   "city_opinion": "",
   "note": "駐輪場の位置及び収容台数、開店時刻",
   "docs": [],
+  "extra": {
+   "受理 番号": "915"
+  },
   "source": "kobe-city",
   "key": "f3f8186c800b",
   "operator_display": "",
@@ -58026,6 +59317,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "913"
+  },
   "source": "kobe-city",
   "key": "923cc3745883",
   "operator_display": "",
@@ -58062,6 +59356,9 @@
   "city_opinion": "",
   "note": "開店時刻、駐車場利用時間帯",
   "docs": [],
+  "extra": {
+   "受理 番号": "911"
+  },
   "source": "kobe-city",
   "key": "9457cecf8712",
   "operator_display": "",
@@ -58098,6 +59395,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "912"
+  },
   "source": "kobe-city",
   "key": "02cd432e62a4",
   "operator_display": "",
@@ -58221,6 +59521,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "910"
+  },
   "source": "kobe-city",
   "key": "059fbbc5196f",
   "operator_display": "",
@@ -58662,6 +59965,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "907"
+  },
   "source": "kobe-city",
   "key": "b5f368fd087c",
   "operator_display": "",
@@ -58698,6 +60004,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "908"
+  },
   "source": "kobe-city",
   "key": "7d9988293d7b",
   "operator_display": "",
@@ -58734,6 +60043,9 @@
   "city_opinion": "",
   "note": "開店時刻、駐車場利用時間帯",
   "docs": [],
+  "extra": {
+   "受理 番号": "909"
+  },
   "source": "kobe-city",
   "key": "9298a1457558",
   "operator_display": "",
@@ -58804,6 +60116,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "215d0e971b45",
   "operator_display": "",
@@ -58850,10 +60165,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -58886,10 +60201,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -58943,6 +60258,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "904"
+  },
   "source": "kobe-city",
   "key": "61f051306a2a",
   "operator_display": "",
@@ -59010,6 +60328,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "903"
+  },
   "source": "kobe-city",
   "key": "d5e70b5a58d1",
   "operator_display": "",
@@ -59191,6 +60512,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "902"
+  },
   "source": "kobe-city",
   "key": "4cfe1b3c1bbe",
   "operator_display": "",
@@ -59227,6 +60551,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "901"
+  },
   "source": "kobe-city",
   "key": "f460039903c1",
   "operator_display": "",
@@ -59263,6 +60590,9 @@
   "city_opinion": "",
   "note": "設置者名称",
   "docs": [],
+  "extra": {
+   "受理 番号": "900"
+  },
   "source": "kobe-city",
   "key": "1a65805f83c7",
   "operator_display": "",
@@ -59382,6 +60712,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "899"
+  },
   "source": "kobe-city",
   "key": "a109bed6522d",
   "operator_display": "",
@@ -59867,6 +61200,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "大阪ダイハツ販売株式会社",
+   "店舗面積": "315平方メートル",
+   "駐車台数 (駐輪台数)": "33台 (78台)",
+   "営業時間": "10時から19時",
+   "取扱品目": "自動車"
+  },
   "source": "sakai-chukibo",
   "key": "9c8336db607b",
   "operator_display": "大阪ダイハツ販売株式会社",
@@ -59902,6 +61242,9 @@
   "city_opinion": "",
   "note": "縦覧に対する意見書の提出が2件ありました",
   "docs": [],
+  "extra": {
+   "受理 番号": "898"
+  },
   "source": "kobe-city",
   "key": "bf8bf20f0f8c",
   "operator_display": "",
@@ -59938,6 +61281,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "896"
+  },
   "source": "kobe-city",
   "key": "0f2a7c33cee7",
   "operator_display": "",
@@ -59974,6 +61320,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "897"
+  },
   "source": "kobe-city",
   "key": "623cdfcd7f85",
   "operator_display": "",
@@ -60174,6 +61523,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社ダイコク",
+   "店舗面積": "470平方メートル",
+   "駐車台数 (駐輪台数)": "13台（36台）",
+   "営業時間": "7時から17時",
+   "取扱品目": "建築資材"
+  },
   "source": "sakai-chukibo",
   "key": "c6610723c5c7",
   "operator_display": "株式会社ダイコク",
@@ -60240,6 +61596,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "安中町四丁目38番3、38番63、38番64",
+   "店舗面積": "727.75平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "da63d23eff67",
   "operator_display": "",
@@ -60801,6 +62162,9 @@
   "city_opinion": "",
   "note": "駐輪場の位置及び収容台数",
   "docs": [],
+  "extra": {
+   "受理 番号": "895"
+  },
   "source": "kobe-city",
   "key": "cc6ea83053c6",
   "operator_display": "",
@@ -60837,6 +62201,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "光町二丁目69番1、69番2の一部",
+   "店舗面積": "444.84平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "16eb1365e8e2",
   "operator_display": "",
@@ -60907,6 +62276,9 @@
   "city_opinion": "",
   "note": "設置者名称・代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "894"
+  },
   "source": "kobe-city",
   "key": "423dd0cab450",
   "operator_display": "",
@@ -61179,6 +62551,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "893"
+  },
   "source": "kobe-city",
   "key": "603797999f9a",
   "operator_display": "",
@@ -61581,6 +62956,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/daitengaiyou_furesupokadomaminami.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "feb3a701218f",
   "operator_display": "",
@@ -61732,6 +63110,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "886"
+  },
   "source": "kobe-city",
   "key": "887d46653c3a",
   "operator_display": "",
@@ -61768,6 +63149,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "ウエルシア薬局株式会社",
+   "店舗面積": "738平方メートル",
+   "駐車台数 (駐輪台数)": "19台（10台）",
+   "営業時間": "9時から21時",
+   "取扱品目": "衣料品・日用品"
+  },
   "source": "sakai-chukibo",
   "key": "5f48693f9854",
   "operator_display": "ウエルシア薬局株式会社",
@@ -61803,6 +63191,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "885"
+  },
   "source": "kobe-city",
   "key": "77fa091da786",
   "operator_display": "",
@@ -61839,6 +63230,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "884"
+  },
   "source": "kobe-city",
   "key": "20cee221d6b7",
   "operator_display": "",
@@ -62221,6 +63615,13 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "小売業者": "株式会社クスリのアオキ",
+   "店舗面積": "993平方メートル",
+   "駐車台数 (駐輪台数)": "30台 (20台)",
+   "営業時間": "9時から22時",
+   "取扱品目": "医薬品・化粧品等"
+  },
   "source": "sakai-chukibo",
   "key": "ee1817636b9a",
   "operator_display": "株式会社クスリのアオキ",
@@ -62489,6 +63890,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/5/0/_/Homepage_gaiyou.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:80.5KB)"
+  },
   "source": "matsubara-city",
   "key": "0a2262a55335",
   "operator_display": "",
@@ -62535,10 +63939,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -62561,6 +63965,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "bc8c1c2ed43a",
   "operator_display": "",
@@ -62683,6 +64090,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "883"
+  },
   "source": "kobe-city",
   "key": "f5202068f567",
   "operator_display": "",
@@ -63235,6 +64645,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "882"
+  },
   "source": "kobe-city",
   "key": "a96852b7ed51",
   "operator_display": "",
@@ -63561,6 +64974,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "2",
+   "所在地（地番）": "中田五丁目158番、159番の各一部",
+   "店舗面積": "682.65平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "feea5c654388",
   "operator_display": "",
@@ -63635,6 +65053,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "2",
+   "所在地（地番）": "山城町1丁目123番13、37、39",
+   "店舗面積": "722.49平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "cf5f73044e2a",
   "operator_display": "",
@@ -63935,6 +65358,9 @@
   "city_opinion": "",
   "note": "縦覧に対する意見書の提出が1件ありました",
   "docs": [],
+  "extra": {
+   "受理 番号": "876"
+  },
   "source": "kobe-city",
   "key": "7137550128c0",
   "operator_display": "",
@@ -64612,6 +66038,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "875"
+  },
   "source": "kobe-city",
   "key": "d8078c5884c6",
   "operator_display": "",
@@ -64875,6 +66304,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "ad798c0ff54c",
   "operator_display": "",
@@ -64911,6 +66343,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "874"
+  },
   "source": "kobe-city",
   "key": "19b5a24c5452",
   "operator_display": "",
@@ -65031,6 +66466,9 @@
   "city_opinion": "",
   "note": "駐車場出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "873"
+  },
   "source": "kobe-city",
   "key": "ec08ddf23101",
   "operator_display": "",
@@ -65232,6 +66670,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "872"
+  },
   "source": "kobe-city",
   "key": "4361e8013f8c",
   "operator_display": "",
@@ -66331,6 +67772,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "870"
+  },
   "source": "kobe-city",
   "key": "8cfaf7f9795f",
   "operator_display": "",
@@ -66475,6 +67919,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "867"
+  },
   "source": "kobe-city",
   "key": "1fb960b3d8b1",
   "operator_display": "",
@@ -66511,6 +67958,9 @@
   "city_opinion": "",
   "note": "店舗名称、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "869"
+  },
   "source": "kobe-city",
   "key": "b67d47380783",
   "operator_display": "",
@@ -66547,6 +67997,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "868"
+  },
   "source": "kobe-city",
   "key": "85ade997ae17",
   "operator_display": "",
@@ -66583,6 +68036,9 @@
   "city_opinion": "",
   "note": "駐車場収容台数、出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "866"
+  },
   "source": "kobe-city",
   "key": "75da3d0e2aa3",
   "operator_display": "",
@@ -66619,6 +68075,9 @@
   "city_opinion": "",
   "note": "駐車場収容台数、出入口の数及び位置",
   "docs": [],
+  "extra": {
+   "受理 番号": "866"
+  },
   "source": "kobe-city",
   "key": "8c7173db7ec8",
   "operator_display": "",
@@ -66655,6 +68114,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "865"
+  },
   "source": "kobe-city",
   "key": "57b46a14194f",
   "operator_display": "",
@@ -66691,6 +68153,9 @@
   "city_opinion": "",
   "note": "設置者",
   "docs": [],
+  "extra": {
+   "受理 番号": "864"
+  },
   "source": "kobe-city",
   "key": "61f2b8678c9f",
   "operator_display": "",
@@ -66868,10 +68333,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -67055,6 +68520,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "863"
+  },
   "source": "kobe-city",
   "key": "fc8b87dd77a9",
   "operator_display": "",
@@ -67122,6 +68590,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "862"
+  },
   "source": "kobe-city",
   "key": "c71a5347c975",
   "operator_display": "",
@@ -67158,6 +68629,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "862"
+  },
   "source": "kobe-city",
   "key": "444970901b6c",
   "operator_display": "",
@@ -67225,6 +68699,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "861"
+  },
   "source": "kobe-city",
   "key": "c6e5be19eb2e",
   "operator_display": "",
@@ -67261,6 +68738,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "564d14b8a352",
   "operator_display": "",
@@ -67299,6 +68779,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/9/_/gaiyou_kosumosu_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDFファイル:105.2KB)"
+  },
   "source": "matsubara-city",
   "key": "183b5dfd1b6d",
   "operator_display": "",
@@ -67335,6 +68818,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "860"
+  },
   "source": "kobe-city",
   "key": "3b96015de5f2",
   "operator_display": "",
@@ -67543,6 +69029,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e1770994dcef",
   "operator_display": "",
@@ -67627,10 +69116,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -67748,6 +69237,9 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/20200803_lifekadoma.pdf"
   ],
+  "extra": {
+   "市町村、住民等の意見の概要": "なし"
+  },
   "source": "kadoma-city",
   "key": "2951325f0a03",
   "operator_display": "",
@@ -67784,6 +69276,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "859"
+  },
   "source": "kobe-city",
   "key": "5446bd813bac",
   "operator_display": "",
@@ -67820,6 +69315,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "859"
+  },
   "source": "kobe-city",
   "key": "d0b8a8ecea43",
   "operator_display": "",
@@ -68095,6 +69593,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "858"
+  },
   "source": "kobe-city",
   "key": "2167ea6b3c9e",
   "operator_display": "",
@@ -68314,6 +69815,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "857"
+  },
   "source": "kobe-city",
   "key": "9c54e2d42771",
   "operator_display": "",
@@ -68528,6 +70032,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の住所変更のため （2）小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "ad1615a1099c",
   "operator_display": "",
@@ -68564,6 +70071,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）設置者の住所変更のため （2）小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "1abd051fd6cb",
   "operator_display": "",
@@ -69161,9 +70671,9 @@
   "mode": "cumulative",
   "listed": true,
   "pref": "兵庫県",
-  "city": "神崎郡市",
+  "city": "神崎郡市川町",
   "ward": "",
-  "area": "神崎郡市",
+  "area": "神崎郡市川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020804t.pdf",
   "fetched_on": "2026-09-13"
  },
@@ -69316,9 +70826,9 @@
   "mode": "cumulative",
   "listed": true,
   "pref": "兵庫県",
-  "city": "神崎郡市",
+  "city": "神崎郡市川町",
   "ward": "",
-  "area": "神崎郡市",
+  "area": "神崎郡市川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020804t.pdf",
   "fetched_on": "2026-09-13"
  },
@@ -70369,6 +71879,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "9383e4887a52",
   "operator_display": "",
@@ -70497,6 +72010,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "856"
+  },
   "source": "kobe-city",
   "key": "ab72d0170fb3",
   "operator_display": "",
@@ -70533,6 +72049,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "855"
+  },
   "source": "kobe-city",
   "key": "b7f2bc6e0122",
   "operator_display": "",
@@ -70707,6 +72226,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "854"
+  },
   "source": "kobe-city",
   "key": "9dedac6b541d",
   "operator_display": "",
@@ -70743,6 +72265,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "92bbe99c184b",
   "operator_display": "",
@@ -71006,6 +72531,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "853"
+  },
   "source": "kobe-city",
   "key": "7133d054fc44",
   "operator_display": "",
@@ -71042,6 +72570,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "852"
+  },
   "source": "kobe-city",
   "key": "ec93cd46151c",
   "operator_display": "",
@@ -71196,6 +72727,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "851"
+  },
   "source": "kobe-city",
   "key": "d64df804585c",
   "operator_display": "",
@@ -71232,6 +72766,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "2",
+   "所在地（地番）": "志紀町南二丁目135番、136番、137番、138番、139番",
+   "店舗面積": "316.28平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "1252a6afffbc",
   "operator_display": "",
@@ -71318,6 +72857,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "850"
+  },
   "source": "kobe-city",
   "key": "80bc3141b633",
   "operator_display": "",
@@ -71434,6 +72976,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/8/_/020428gaiyou_6-2_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF:79.3KB)"
+  },
   "source": "matsubara-city",
   "key": "18a8825fbc58",
   "operator_display": "",
@@ -71470,6 +73015,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "849"
+  },
   "source": "kobe-city",
   "key": "800e716750c4",
   "operator_display": "",
@@ -71506,6 +73054,9 @@
   "city_opinion": "",
   "note": "駐車場台数減",
   "docs": [],
+  "extra": {
+   "受理 番号": "848"
+  },
   "source": "kobe-city",
   "key": "0621610141cb",
   "operator_display": "",
@@ -71763,6 +73314,9 @@
   "city_opinion": "",
   "note": "設置者代表者",
   "docs": [],
+  "extra": {
+   "受理 番号": "845"
+  },
   "source": "kobe-city",
   "key": "fc9e5e91db40",
   "operator_display": "",
@@ -71799,6 +73353,9 @@
   "city_opinion": "",
   "note": "設置者住所、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "844"
+  },
   "source": "kobe-city",
   "key": "7810cdf8e472",
   "operator_display": "",
@@ -71835,6 +73392,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "846"
+  },
   "source": "kobe-city",
   "key": "df60ee6e018a",
   "operator_display": "",
@@ -72323,6 +73883,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "843"
+  },
   "source": "kobe-city",
   "key": "11938a78e111",
   "operator_display": "",
@@ -72359,6 +73922,9 @@
   "city_opinion": "",
   "note": "設置者代表者、設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "842"
+  },
   "source": "kobe-city",
   "key": "730754be28af",
   "operator_display": "",
@@ -72395,6 +73961,9 @@
   "city_opinion": "",
   "note": "設置者住所、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "841"
+  },
   "source": "kobe-city",
   "key": "92abcebcf41d",
   "operator_display": "",
@@ -72431,6 +74000,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "840"
+  },
   "source": "kobe-city",
   "key": "ede7100f0270",
   "operator_display": "",
@@ -73060,6 +74632,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "839"
+  },
   "source": "kobe-city",
   "key": "59bd7df880a5",
   "operator_display": "",
@@ -73096,6 +74671,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "838"
+  },
   "source": "kobe-city",
   "key": "524dfec6b8a2",
   "operator_display": "",
@@ -73132,6 +74710,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "836"
+  },
   "source": "kobe-city",
   "key": "ea6552e9476f",
   "operator_display": "",
@@ -73168,6 +74749,9 @@
   "city_opinion": "",
   "note": "店舗名称、設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "837"
+  },
   "source": "kobe-city",
   "key": "c65ec8553c5a",
   "operator_display": "",
@@ -73258,6 +74842,9 @@
   "city_opinion": "",
   "note": "駐車場台数減",
   "docs": [],
+  "extra": {
+   "受理 番号": "834"
+  },
   "source": "kobe-city",
   "key": "08e77ebac4bd",
   "operator_display": "",
@@ -73294,6 +74881,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "835"
+  },
   "source": "kobe-city",
   "key": "03f0df12fcf7",
   "operator_display": "",
@@ -73448,6 +75038,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/7/_/gaiyou_6-1_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF:71.2KB)"
+  },
   "source": "matsubara-city",
   "key": "00b6f43aa99c",
   "operator_display": "",
@@ -73532,6 +75125,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "833"
+  },
   "source": "kobe-city",
   "key": "afa31ee7b61b",
   "operator_display": "",
@@ -73568,6 +75164,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "受理 番号": "832"
+  },
   "source": "kobe-city",
   "key": "23f3a68bf61c",
   "operator_display": "",
@@ -73723,6 +75322,9 @@
   "city_opinion": "",
   "note": "手続終了",
   "docs": [],
+  "extra": {
+   "受理 番号": "831"
+  },
   "source": "kobe-city",
   "key": "ceb7464f50c3",
   "operator_display": "",
@@ -74101,6 +75703,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "830"
+  },
   "source": "kobe-city",
   "key": "77c6b919215b",
   "operator_display": "",
@@ -74348,6 +75953,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称変更のため （2）代表者変更のため （3）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "da4f55aac185",
   "operator_display": "",
@@ -74538,6 +76146,9 @@
   "city_opinion": "",
   "note": "設置者代表者、設置者住所",
   "docs": [],
+  "extra": {
+   "受理 番号": "829"
+  },
   "source": "kobe-city",
   "key": "662aac223b6b",
   "operator_display": "",
@@ -74574,6 +76185,9 @@
   "city_opinion": "",
   "note": "設置者代表者、設置者住所",
   "docs": [],
+  "extra": {
+   "受理 番号": "828"
+  },
   "source": "kobe-city",
   "key": "b50955267008",
   "operator_display": "",
@@ -74751,6 +76365,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "1",
+   "所在地（地番）": "宮町三丁目52－3、52－1の一部",
+   "店舗面積": "288.22平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "231283c50256",
   "operator_display": "",
@@ -74786,6 +76405,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "6dfe9ba96c43",
   "operator_display": "",
@@ -74994,6 +76616,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "827"
+  },
   "source": "kobe-city",
   "key": "a658612f82e9",
   "operator_display": "",
@@ -75069,6 +76694,9 @@
   "city_opinion": "",
   "note": "設置者代表者、設置者住所",
   "docs": [],
+  "extra": {
+   "受理 番号": "826"
+  },
   "source": "kobe-city",
   "key": "070bbd0173a2",
   "operator_display": "",
@@ -75138,6 +76766,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/6/_/gaiyou_mandai.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF:95.9KB)"
+  },
   "source": "matsubara-city",
   "key": "d354473fb65b",
   "operator_display": "",
@@ -75613,6 +77244,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "825"
+  },
   "source": "kobe-city",
   "key": "262c16f76c16",
   "operator_display": "",
@@ -75784,6 +77418,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "824"
+  },
   "source": "kobe-city",
   "key": "90be69f80808",
   "operator_display": "",
@@ -75853,6 +77490,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/5/_/gaiyou_daihyousya_henkou_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF:68.9KB)"
+  },
   "source": "matsubara-city",
   "key": "31fe27a033fc",
   "operator_display": "",
@@ -76044,6 +77684,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "822"
+  },
   "source": "kobe-city",
   "key": "81abb2b95318",
   "operator_display": "",
@@ -76080,6 +77723,9 @@
   "city_opinion": "",
   "note": "設置者代表者、小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "823"
+  },
   "source": "kobe-city",
   "key": "b08ca6fdef08",
   "operator_display": "",
@@ -76178,6 +77824,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "821"
+  },
   "source": "kobe-city",
   "key": "1a58c4db4d00",
   "operator_display": "",
@@ -76252,6 +77901,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "819"
+  },
   "source": "kobe-city",
   "key": "175087f1a82d",
   "operator_display": "",
@@ -76288,6 +77940,9 @@
   "city_opinion": "",
   "note": "小売業者",
   "docs": [],
+  "extra": {
+   "受理 番号": "820"
+  },
   "source": "kobe-city",
   "key": "8bb9677d3d86",
   "operator_display": "",
@@ -76418,6 +78073,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3c2a5e3a9d7f",
   "operator_display": "",
@@ -77597,10 +79255,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -78215,6 +79873,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e3c35c533a26",
   "operator_display": "",
@@ -78351,6 +80012,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "7d29a17afe8a",
   "operator_display": "",
@@ -78598,10 +80262,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -78626,6 +80290,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/4/_/gaiyou_ke-zudenki_.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF:98.9KB)"
+  },
   "source": "matsubara-city",
   "key": "cd988db390a0",
   "operator_display": "",
@@ -78826,6 +80493,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "792e5f3260c5",
   "operator_display": "",
@@ -79224,10 +80894,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -80692,6 +82362,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/3/_/gaiyou.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要(PDF:118.3KB)"
+  },
   "source": "matsubara-city",
   "key": "5c9b6c7f569d",
   "operator_display": "",
@@ -81922,6 +83595,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "跡部北の町三丁目3番2、3番3の一部",
+   "店舗面積": "723.96平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "e84165df362e",
   "operator_display": "",
@@ -82115,6 +83793,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "1c86ea3c91b5",
   "operator_display": "",
@@ -82461,6 +84142,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "山本町南一丁目151-1",
+   "店舗面積": "994.83平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "8bb7a9cc5bdb",
   "operator_display": "",
@@ -82658,10 +84344,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -83280,6 +84966,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "都塚二丁目68-3、69、70、71、都塚四丁目5-5、6-1、6-2、7-1、7-2番地各一部",
+   "店舗面積": "268.142平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "625d70ceb667",
   "operator_display": "",
@@ -83879,6 +85570,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "南木の本二丁目19番1、20番1、121番1、122番1",
+   "店舗面積": "912.26平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "8cfd951c9d68",
   "operator_display": "",
@@ -84058,6 +85754,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "平成30年8月31日"
+  },
   "source": "toyonaka-city",
   "key": "d01b427e0732",
   "operator_display": "",
@@ -84179,6 +85878,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "dbe592e2c5c5",
   "operator_display": "",
@@ -84350,6 +86052,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "山本町南七丁目13番22号",
+   "店舗面積": "232.38平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "0a0879724de7",
   "operator_display": "",
@@ -84455,6 +86162,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "南植松町五丁目1-1、1-4、2-1の一部、2-4、2-5、3-1の一部、3-2",
+   "店舗面積": "749.68平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "da55b46a73d2",
   "operator_display": "",
@@ -84598,6 +86310,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "南植松町二丁目15番2、15番3、15番4、28番2、29番2、31番1、31番25",
+   "店舗面積": "266.27平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "74ece03ba590",
   "operator_display": "",
@@ -84802,6 +86519,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "15e40fdf4af3",
   "operator_display": "",
@@ -86158,6 +87878,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "5ecb702c5b49",
   "operator_display": "",
@@ -86535,6 +88258,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "972d533e5b85",
   "operator_display": "",
@@ -86784,6 +88510,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "30",
+   "所在地（地番）": "南植松町四丁目1番の一部、2番、3番、4番、5番の一部",
+   "店舗面積": "557.05平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "13ecdbdb534a",
   "operator_display": "",
@@ -86862,6 +88593,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "c063ea642e4c",
   "operator_display": "",
@@ -86898,6 +88632,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "設置者の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "e436978279fc",
   "operator_display": "",
@@ -87041,6 +88778,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "29",
+   "所在地（地番）": "木の本一丁目7番1",
+   "店舗面積": "984.48平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "04bcf18c8c28",
   "operator_display": "",
@@ -87153,6 +88895,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "29",
+   "所在地（地番）": "山賀町一丁目53-1、53-2、53-3、55-2、楠根町四丁目1-2、1-3、2-2、3-2、4-2、6-2",
+   "店舗面積": "866.16平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "3a0358b4914f",
   "operator_display": "",
@@ -87706,6 +89453,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "29",
+   "所在地（地番）": "若林町一丁目76番3",
+   "店舗面積": "241.34平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "cf1e3144ccc9",
   "operator_display": "",
@@ -88042,6 +89794,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "29",
+   "所在地（地番）": "南久宝寺一丁目60番6、60番7、61番、62番",
+   "店舗面積": "809.78平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d1653d9aa4ad",
   "operator_display": "",
@@ -88629,6 +90386,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "29",
+   "所在地（地番）": "木の本一丁目7番1",
+   "店舗面積": "935.73平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "2aa2385a2374",
   "operator_display": "",
@@ -88714,6 +90476,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "29",
+   "所在地（地番）": "南植松町四丁目1番の一部、2番、3番、4番、5番の一部",
+   "店舗面積": "564.50平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d4558d67ef8c",
   "operator_display": "",
@@ -88976,6 +90743,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "-"
+  },
   "source": "ibaraki-city",
   "key": "d599acc8cd63",
   "operator_display": "",
@@ -89197,6 +90967,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "0e2a3a23a58b",
   "operator_display": "",
@@ -89233,6 +91006,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "小売店舗の住所変更のため"
+  },
   "source": "toyonaka-city",
   "key": "273e23c873f4",
   "operator_display": "",
@@ -89297,6 +91073,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "d96a247183d0",
   "operator_display": "",
@@ -89343,10 +91122,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -89379,10 +91158,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -90498,10 +92277,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -91435,6 +93214,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "306080f13934",
   "operator_display": "",
@@ -92056,6 +93838,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "52379a2f4920",
   "operator_display": "",
@@ -92832,6 +94617,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3b85afa47f85",
   "operator_display": "",
@@ -92985,10 +94773,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -93147,6 +94935,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2cf451ac0da5",
   "operator_display": "",
@@ -93398,6 +95189,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/2/_/20170511-143102.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要.pdf[74KB pdfファイル]"
+  },
   "source": "matsubara-city",
   "key": "1d8e419b4b2a",
   "operator_display": "",
@@ -94754,6 +96548,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "bfbb1572706b",
   "operator_display": "",
@@ -95466,10 +97263,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -95535,6 +97332,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "3b902d7f6609",
   "operator_display": "",
@@ -95644,6 +97444,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "hannan-city",
   "key": "92aaa0574277",
   "operator_display": "",
@@ -96961,6 +98764,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "28",
+   "所在地（地番）": "木ノ本一丁目15番1、15番2、16番、18番、19番",
+   "店舗面積": "868.81平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "21f405ee0414",
   "operator_display": "",
@@ -97207,10 +99015,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -97243,10 +99051,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -97269,6 +99077,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "28",
+   "所在地（地番）": "山本町南一丁目5番2号",
+   "店舗面積": "494.5平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d58c1ff36bba",
   "operator_display": "",
@@ -97782,6 +99595,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "28",
+   "所在地（地番）": "南植松町四丁目7番の一部、8番、9番、10番",
+   "店舗面積": "346.82平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "978be39495dd",
   "operator_display": "",
@@ -98691,6 +100509,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "11e78449e100",
   "operator_display": "",
@@ -98727,6 +100548,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "669e628b96e2",
   "operator_display": "",
@@ -99200,6 +101024,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "店舗名称変更のため"
+  },
   "source": "toyonaka-city",
   "key": "d20aa849218d",
   "operator_display": "",
@@ -99236,6 +101063,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "店舗名称変更のため"
+  },
   "source": "toyonaka-city",
   "key": "b0b8dae60bef",
   "operator_display": "",
@@ -99455,6 +101285,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "28",
+   "所在地（地番）": "東久宝寺三丁目7番、8番2、9番2、121番（東大阪市金岡四丁目1番90）",
+   "店舗面積": "902.75平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "9fceb6a3326d",
   "operator_display": "",
@@ -99822,6 +101657,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下 となる日": "平成28年3月25日"
+  },
   "source": "hannan-city",
   "key": "de8f3adce9fb",
   "operator_display": "",
@@ -100082,6 +101920,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "66d57923062d",
   "operator_display": "",
@@ -100219,6 +102060,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "27",
+   "所在地（地番）": "東本町四丁目2番50号",
+   "店舗面積": "936.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "c06ed404abe2",
   "operator_display": "",
@@ -100371,6 +102217,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "27",
+   "所在地（地番）": "高美町一丁目29番1",
+   "店舗面積": "617.51平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "197fc4300ad2",
   "operator_display": "",
@@ -100501,6 +102352,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）店舗名称変更のため （2）代表者変更のため （3）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "4705d86f4fe6",
   "operator_display": "",
@@ -100547,10 +102401,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -102016,6 +103870,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "27",
+   "所在地（地番）": "新家町七丁目1番地1",
+   "店舗面積": "266.32平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "9a0630de20fe",
   "operator_display": "",
@@ -102333,6 +104192,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "27",
+   "所在地（地番）": "南本町一丁目28番1の一部、29番1、30番、31番の一部、32番",
+   "店舗面積": "278.51平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "49adcc7fabfa",
   "operator_display": "",
@@ -102991,9 +104855,9 @@
   "mode": "cumulative",
   "listed": true,
   "pref": "兵庫県",
-  "city": "神崎郡市",
+  "city": "神崎郡市川町",
   "ward": "",
-  "area": "神崎郡市",
+  "area": "神崎郡市川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280122t.pdf",
   "fetched_on": "2026-09-13"
  },
@@ -103301,9 +105165,9 @@
   "mode": "cumulative",
   "listed": true,
   "pref": "兵庫県",
-  "city": "神崎郡市",
+  "city": "神崎郡市川町",
   "ward": "",
-  "area": "神崎郡市",
+  "area": "神崎郡市川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280122t.pdf",
   "fetched_on": "2026-09-13"
  },
@@ -103669,6 +105533,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "27",
+   "所在地（地番）": "本町七丁目29番、31番",
+   "店舗面積": "212.07平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "25fd97ad11de",
   "operator_display": "",
@@ -105684,6 +107553,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/1/_/20150803-130820.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出の概要.pdf[96KB pdfファイル]"
+  },
   "source": "matsubara-city",
   "key": "80d4797f052d",
   "operator_display": "",
@@ -106477,6 +108349,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "27",
+   "所在地（地番）": "東本町五丁目31番1",
+   "店舗面積": "814.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "e0766ef29a89",
   "operator_display": "",
@@ -106581,6 +108458,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "b1844ddc9c63",
   "operator_display": "",
@@ -106686,6 +108566,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "3c61ab68de2d",
   "operator_display": "",
@@ -106853,6 +108736,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "（1）代表者変更のため （2）小売店舗変更のため"
+  },
   "source": "toyonaka-city",
   "key": "2b16e6251185",
   "operator_display": "",
@@ -109222,6 +111108,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "山城町五丁目4番17号",
+   "店舗面積": "459.73平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "21fdec928b14",
   "operator_display": "",
@@ -109704,10 +111595,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -109905,6 +111796,10 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "届出書の提出理由": "大規模小売店舗立地法第5条第1項に基づくもの",
+   "提出期限": "終了"
+  },
   "source": "kumatori-town",
   "key": "145d23a5810d",
   "operator_display": "",
@@ -110450,6 +112345,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "旭ヶ丘一丁目110番、111番",
+   "店舗面積": "531.81平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "1c06ac372efd",
   "operator_display": "",
@@ -110590,6 +112490,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "グループ企業の屋号統一のため"
+  },
   "source": "toyonaka-city",
   "key": "61c2f5d73320",
   "operator_display": "",
@@ -110790,6 +112693,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/4/0/_/20150203-085657.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出書概要[83KB pdfファイル]"
+  },
   "source": "matsubara-city",
   "key": "56d210c62d78",
   "operator_display": "",
@@ -112111,6 +114017,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "太田三丁目223番1",
+   "店舗面積": "869.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "4d8ea147739a",
   "operator_display": "",
@@ -112216,6 +114127,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "楠根町四丁目34番1、34番14の各一部",
+   "店舗面積": "480.77平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "b2681e9cd5c1",
   "operator_display": "",
@@ -112743,6 +114659,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "テナント入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "730d45a32289",
   "operator_display": "",
@@ -112862,6 +114781,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)小売店舗の入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "faed6581245d",
   "operator_display": "",
@@ -113575,6 +115497,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "営業政策上の理由"
+  },
   "source": "toyonaka-city",
   "key": "f3910c3603a6",
   "operator_display": "",
@@ -114137,6 +116062,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表取締役交代に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "2610c0ac8e10",
   "operator_display": "",
@@ -114204,6 +116132,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "db18a1440756",
   "operator_display": "",
@@ -114830,6 +116761,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)小売店舗の入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "700317c19a2e",
   "operator_display": "",
@@ -115042,10 +116976,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -115068,6 +117002,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "4f2d0c184a1a",
   "operator_display": "",
@@ -115103,6 +117040,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "北本町二丁目215－1～215－4",
+   "店舗面積": "947.24平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "1257dfd73c0b",
   "operator_display": "",
@@ -115249,6 +117191,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "南太子堂三丁目33-7の一部",
+   "店舗面積": "663.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "e44a50bd45c5",
   "operator_display": "",
@@ -116219,6 +118166,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "26",
+   "所在地（地番）": "中田三丁目34番1～34番4",
+   "店舗面積": "394.20平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "e8c21079b05b",
   "operator_display": "",
@@ -117962,6 +119914,9 @@
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/3/8/_/20140225-180711.pdf",
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/3/9/_/20140225-180759.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出書概要[42KB pdfファイル] 別表[74KB pdfファイル]"
+  },
   "source": "matsubara-city",
   "key": "f701b9d21a1a",
   "operator_display": "",
@@ -118191,6 +120146,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "25",
+   "所在地（地番）": "福万寺町一丁目93-13、93-1～93-3 福万寺町南一丁目16-3、16-4、17-3、17-17～17-19",
+   "店舗面積": "842.37平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "635aa6676824",
   "operator_display": "",
@@ -119268,10 +121228,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -120288,6 +122248,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)商号、代表者、本店所在地の変更のため (3)小売店舗の入れ替えのため"
+  },
   "source": "toyonaka-city",
   "key": "867fe224747e",
   "operator_display": "",
@@ -121095,6 +123058,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者変更のため"
+  },
   "source": "toyonaka-city",
   "key": "7e578eaa3047",
   "operator_display": "",
@@ -121228,6 +123194,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "平成24年10月1日"
+  },
   "source": "toyonaka-city",
   "key": "137966465145",
   "operator_display": "",
@@ -121264,6 +123233,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "25",
+   "所在地（地番）": "光町1丁目65番～67番,601番～610番,北本町2丁目601～605番、東本町3丁目173番92",
+   "店舗面積": "844.4平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "ed284a64d895",
   "operator_display": "",
@@ -121733,10 +123707,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -122590,10 +124564,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -122983,7 +124957,7 @@
   "kind": "新設",
   "notified_on": "2013-04-19",
   "store": "（仮称）スーパーセンターオークワ河南店",
-  "city": "河南町",
+  "city": "南河内郡河南町",
   "address": "河南町大字中403番３ほか",
   "operator": "株式会社オークワ",
   "retailer": "株式会社オークワ",
@@ -123010,7 +124984,7 @@
   "listed": true,
   "pref": "大阪府",
   "ward": "",
-  "area": "河南町",
+  "area": "南河内郡河南町",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
   "fetched_on": "2026-09-11"
  },
@@ -123061,6 +125035,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "25",
+   "所在地（地番）": "志紀町2丁目43の1,4,5",
+   "店舗面積": "446.01平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "fd0cb930f396",
   "operator_display": "",
@@ -123394,10 +125373,10 @@
   "last_seen": "2026-09-15",
   "mode": "snapshot",
   "listed": true,
-  "pref": "",
-  "city": "",
+  "pref": "大阪府",
+  "city": "貝塚市",
   "ward": "",
-  "area": "",
+  "area": "貝塚市",
   "address_redacted": true,
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
   "fetched_on": "2026-09-15"
@@ -123821,6 +125800,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "24",
+   "所在地（地番）": "志紀町1丁目152,155,156,157,169番の各一部",
+   "店舗面積": "377.84平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "b7bd6cec3c25",
   "operator_display": "",
@@ -124170,6 +126154,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "24",
+   "所在地（地番）": "服部川1丁目34番1,37番1,37番2",
+   "店舗面積": "294.36平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "a4d95a32d032",
   "operator_display": "",
@@ -124402,6 +126391,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "d8c4f3fe0065",
   "operator_display": "",
@@ -124437,6 +126429,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)正式名称決定のため (2)本社移転のため (3)テナント入居のため"
+  },
   "source": "toyonaka-city",
   "key": "14a90825def6",
   "operator_display": "",
@@ -124953,6 +126948,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "24",
+   "所在地（地番）": "志紀町南3丁目93",
+   "店舗面積": "354.37平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "7b902125c276",
   "operator_display": "",
@@ -125093,6 +127093,9 @@
   "docs": [
    "https://www.city.matsubara.lg.jp/fs/1/9/3/0/3/7/_/20130108-121756.pdf"
   ],
+  "extra": {
+   "届出書の概要": "届出書概要[50KB pdfファイル]"
+  },
   "source": "matsubara-city",
   "key": "4b6190cc7abe",
   "operator_display": "",
@@ -126475,6 +128478,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "(1)店舗名称変更のため (2)小売業を行う者の名称ならびに代表者の氏名及び住所の変更、テナント入店のため"
+  },
   "source": "toyonaka-city",
   "key": "144cbac5f404",
   "operator_display": "",
@@ -127875,6 +129881,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "代表者の変更のため"
+  },
   "source": "toyonaka-city",
   "key": "ea57290b2c02",
   "operator_display": "",
@@ -127911,6 +129920,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "基準面積以下となる日": "平成24年2月1日"
+  },
   "source": "toyonaka-city",
   "key": "40f1129ca694",
   "operator_display": "",
@@ -127978,6 +129990,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "24",
+   "所在地（地番）": "旭ヶ丘1丁目110番,111番",
+   "店舗面積": "581.40平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "ab10f80a75d8",
   "operator_display": "",
@@ -128083,6 +130100,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "24",
+   "所在地（地番）": "青山町4丁目165番1,168番,169番2",
+   "店舗面積": "676.73平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "34857e7fa341",
   "operator_display": "",
@@ -129203,6 +131225,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "908892465f8e",
   "operator_display": "",
@@ -129373,6 +131398,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "市の意見": "なし"
+  },
   "source": "ibaraki-city",
   "key": "c46fa61e430d",
   "operator_display": "",
@@ -131769,6 +133797,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "24",
+   "所在地（地番）": "高美町6丁目33番1の一部",
+   "店舗面積": "680.75平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "a249095f2879",
   "operator_display": "",
@@ -135577,6 +137610,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大阪北生活協同組合と生活協同組合コープこうべの合併に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "30de793437d7",
   "operator_display": "",
@@ -135613,6 +137649,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大阪北生活協同組合と生活協同組合コープこうべの合併に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "d0c36604053d",
   "operator_display": "",
@@ -135649,6 +137688,9 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "変更理由": "大阪北生活協同組合と生活協同組合コープこうべの合併に伴う変更"
+  },
   "source": "toyonaka-city",
   "key": "0069ac279836",
   "operator_display": "",
@@ -136472,6 +138514,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "23",
+   "所在地（地番）": "東山本新町3丁目12-6,13-1",
+   "店舗面積": "274.85平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "ed9bda94f022",
   "operator_display": "",
@@ -145673,6 +147720,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "22",
+   "所在地（地番）": "萱振町1丁目54番3、54番4、54番10",
+   "店舗面積": "459.65平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "752dee93726d",
   "operator_display": "",
@@ -149190,9 +151242,9 @@
   "mode": "cumulative",
   "listed": true,
   "pref": "兵庫県",
-  "city": "神崎郡市",
+  "city": "神崎郡市川町",
   "ward": "",
-  "area": "神崎郡市",
+  "area": "神崎郡市川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000137881.pdf",
   "fetched_on": "2026-09-14"
  },
@@ -149221,9 +151273,9 @@
   "mode": "cumulative",
   "listed": true,
   "pref": "兵庫県",
-  "city": "神崎郡市",
+  "city": "神崎郡市川町",
   "ward": "",
-  "area": "神崎郡市",
+  "area": "神崎郡市川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000137881.pdf",
   "fetched_on": "2026-09-14"
  },
@@ -150250,6 +152302,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "21",
+   "所在地（地番）": "北久宝寺1丁目133番3、143番2",
+   "店舗面積": "547.47平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "0cc7e3696fe6",
   "operator_display": "",
@@ -155639,6 +157696,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "20",
+   "所在地（地番）": "高安北1丁目1-1",
+   "店舗面積": "499.94平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "a355698453ba",
   "operator_display": "",
@@ -160036,6 +162098,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "19",
+   "所在地（地番）": "山本町北2丁目26番8他",
+   "店舗面積": "499.93平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "8445b0521253",
   "operator_display": "",
@@ -166503,6 +168570,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "17",
+   "所在地（地番）": "小畑町2‐31番1の一部 他",
+   "店舗面積": "510.20平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "f8d949da5e52",
   "operator_display": "",
@@ -166744,6 +168816,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "17",
+   "所在地（地番）": "跡部北の町三丁目7番他",
+   "店舗面積": "883.38平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "b4bdcd802d77",
   "operator_display": "",
@@ -168943,6 +171020,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "17",
+   "所在地（地番）": "志紀町南2‐135‐4",
+   "店舗面積": "560.40平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "5e68e17aa79b",
   "operator_display": "",
@@ -169433,6 +171515,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "17",
+   "所在地（地番）": "光町1丁目9番",
+   "店舗面積": "726.47平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "9aea98a5ae18",
   "operator_display": "",
@@ -169627,6 +171714,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "17",
+   "所在地（地番）": "南太子堂5-34-1の一部",
+   "店舗面積": "282.40平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "ff0784a21634",
   "operator_display": "",
@@ -170298,6 +172390,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "17",
+   "所在地（地番）": "山城町1-1ペントモール八尾1番街",
+   "店舗面積": "635.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "64caaee84be9",
   "operator_display": "",
@@ -170608,6 +172705,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "16",
+   "所在地（地番）": "志紀町一丁目4番1他",
+   "店舗面積": "529.81平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "5d20721f46b6",
   "operator_display": "",
@@ -171373,6 +173475,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "16",
+   "所在地（地番）": "志紀町2-34他",
+   "店舗面積": "269.99平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "7d9168289eed",
   "operator_display": "",
@@ -172777,6 +174884,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "16",
+   "所在地（地番）": "水越1-98他",
+   "店舗面積": "279.30平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "63d585cdb408",
   "operator_display": "",
@@ -173368,6 +175480,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "16",
+   "所在地（地番）": "萱振町7-19-1他",
+   "店舗面積": "651.30平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "360ba01e8aec",
   "operator_display": "",
@@ -174288,6 +176405,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "16",
+   "所在地（地番）": "山本町南4-2他",
+   "店舗面積": "992.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "5995a92aa41c",
   "operator_display": "",
@@ -176978,6 +179100,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "本町7-34",
+   "店舗面積": "330.07平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "503050e8cb85",
   "operator_display": "",
@@ -178091,6 +180218,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "南植松町2-11他",
+   "店舗面積": "988.21平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "7189d0decd16",
   "operator_display": "",
@@ -178384,6 +180516,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "沼4-152",
+   "店舗面積": "996.50平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "9fc15639ced0",
   "operator_display": "",
@@ -179666,6 +181803,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "東山本新町8-14-18",
+   "店舗面積": "700.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "acb18c91249e",
   "operator_display": "",
@@ -180579,6 +182721,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "山城町5-1-5の一部",
+   "店舗面積": "410.70平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "7f991d476d8b",
   "operator_display": "",
@@ -181072,6 +183219,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "楽音寺1-140他",
+   "店舗面積": "985.15平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "b1bc35deb7d3",
   "operator_display": "",
@@ -181629,6 +183781,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "15",
+   "所在地（地番）": "南本町1-1-1",
+   "店舗面積": "844.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "2a5d87023e4d",
   "operator_display": "",
@@ -183392,6 +185549,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "沼4-153",
+   "店舗面積": "277.05平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "ce32442cfd3f",
   "operator_display": "",
@@ -183624,6 +185786,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "太子堂2-5他",
+   "店舗面積": "985.40平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "ba585accc52f",
   "operator_display": "",
@@ -184683,6 +186850,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "老原1-13-15他",
+   "店舗面積": "986.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "8de13d18a336",
   "operator_display": "",
@@ -185378,6 +187550,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "高美町1-34-1",
+   "店舗面積": "647.11平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "22e5b333ba91",
   "operator_display": "",
@@ -185895,6 +188072,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "老原1-12他",
+   "店舗面積": "240.20平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "0f074be9bc98",
   "operator_display": "",
@@ -186299,6 +188481,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "天王寺屋7-44",
+   "店舗面積": "929.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "e5fab2cda33d",
   "operator_display": "",
@@ -186597,6 +188784,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "14",
+   "所在地（地番）": "水越1-122他",
+   "店舗面積": "663.07平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "eb724adecae8",
   "operator_display": "",
@@ -187664,6 +189856,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "13",
+   "所在地（地番）": "東山本新町8-8",
+   "店舗面積": "433.75平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "f4e705b5b7ff",
   "operator_display": "",
@@ -187878,6 +190075,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "13",
+   "所在地（地番）": "跡部北の町2-54他",
+   "店舗面積": "928.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "d7daf7bb4c03",
   "operator_display": "",
@@ -188209,6 +190411,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "13",
+   "所在地（地番）": "北本町3-143他",
+   "店舗面積": "508.60平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "af67cae5bdac",
   "operator_display": "",
@@ -189127,6 +191334,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "13",
+   "所在地（地番）": "沼4-151",
+   "店舗面積": "489.98平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "82fcb855037b",
   "operator_display": "",
@@ -189162,6 +191374,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "13",
+   "所在地（地番）": "山本高安町1-149-1他",
+   "店舗面積": "652.20平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "0b2923c99d07",
   "operator_display": "",
@@ -189425,6 +191642,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "13",
+   "所在地（地番）": "南木の本2-77-7",
+   "店舗面積": "331.38平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "115e109d4c02",
   "operator_display": "",
@@ -190466,6 +192688,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "12",
+   "所在地（地番）": "木の本1-2",
+   "店舗面積": "722.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "86ca17959c95",
   "operator_display": "",
@@ -190654,6 +192881,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "12",
+   "所在地（地番）": "萱振町3-44-1他",
+   "店舗面積": "460.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "8aaec1e47a91",
   "operator_display": "",
@@ -191122,6 +193354,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "8",
+   "所在地（地番）": "本町7-92",
+   "店舗面積": "349.80平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "4a018d7928c9",
   "operator_display": "",
@@ -191157,6 +193394,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "6",
+   "所在地（地番）": "亀井町2-4-2他",
+   "店舗面積": "481.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "1a97f7be98ff",
   "operator_display": "",
@@ -191192,6 +193434,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "6",
+   "所在地（地番）": "八尾木北5-11",
+   "店舗面積": "495.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "df483679e758",
   "operator_display": "",
@@ -191227,6 +193474,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "青山町4-124-1",
+   "店舗面積": "495.00平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "cc16416c3535",
   "operator_display": "",
@@ -191262,6 +193514,11 @@
   "city_opinion": "",
   "note": "",
   "docs": [],
+  "extra": {
+   "年度": "3",
+   "所在地（地番）": "高美町3-1",
+   "店舗面積": "427.34平方メートル"
+  },
   "source": "yao-chukibo",
   "key": "12a1ed2b5b71",
   "operator_display": "",
