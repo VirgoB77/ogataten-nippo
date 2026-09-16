@@ -70,17 +70,20 @@ FETCH_DAYS = (1, 15)          # 追いついたあとに取りに行く日
 MONTH_CACHE_V = 2
 MONTH_REFRESH_MAX = int(os.environ.get("KOHO_MONTH_REFRESH", "40"))
 _month_refreshed = 0
-# 月ページの見出し。「12月19日第679号」「12月1日号外」「12月3日第2号外」。
+# 月ページの見出し。「12月19日第679号」「12月1日号外」「12月3日第2号外」「12月3日号外第2号」。
 # 「第2号外」を「第2号」と読み違えないよう、号のあとに「外」が続くものは号外に回す
-LABEL = re.compile(r"\s*(\d{1,2})月(\d{1,2})日(?:第(\d+)号(?!外)|(?:第(\d+))?号外)")
+LABEL = re.compile(r"(\d{1,2})月(\d{1,2})日(?:第(\d+)号(?!外)|(?:第(\d+))?号外(?:第(\d+)号)?)")
 
 
 def issue_no_of_label(lab):
-    """月ページの見出し → (月, 日, 号)。号外は 'g1', 'g2' …。読めなければ None。"""
-    m = LABEL.match(lab or "")
+    """月ページの見出し → (月, 日, 号)。号外は 'g1', 'g2' …。読めなければ None。
+
+    全角の数字と空白は squash で先に直す（呼び出し側で直し忘れても同じに読めるように）。
+    """
+    m = LABEL.match(squash(lab))
     if not m:
         return None
-    no = m.group(3) if m.group(3) else f"g{m.group(4) or 1}"
+    no = m.group(3) if m.group(3) else f"g{m.group(4) or m.group(5) or 1}"
     return (int(m.group(1)), int(m.group(2)), no)
 
 
@@ -185,7 +188,7 @@ def month_links(ym, url, lines):
         _month_refreshed += 1
     out = {"_v": MONTH_CACHE_V}
     for href, label in re.findall(r'<a[^>]+href="([^"]+\.pdf)"[^>]*>(.*?)</a>', html_, re.S | re.I):
-        k = issue_no_of_label(squash(re.sub(r"<[^>]+>", "", label)))
+        k = issue_no_of_label(re.sub(r"<[^>]+>", "", label))
         if k:
             out[f"{k[0]}-{k[1]}-{k[2]}"] = urllib.parse.urljoin(HOST, href)
     with open(cache, "w", encoding="utf-8") as f:
