@@ -21,6 +21,9 @@ jobs:
     env:
       # 金庫（生データの置き場・private）の鍵があるか。無ければ今まで通り1本で動く
       HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' }}
+      # 金庫の名前は公開用の名前から決める（<公開用>-raw）。見張りと checkout が同じ名前を見る。
+      # 仮の名前のリポジトリや fork では存在しない名前になり、checkout で止まる（別の金庫には届かない）
+      RAW_REPO: ${{ github.repository }}-raw
     steps:
       # 走り出す時点の main から始める（枝から手で押しても、枝の commit を main に載せない）
       - uses: actions/checkout@v4
@@ -57,13 +60,14 @@ jobs:
             fi
             # 金庫が private であることを確かめる。公開側の GITHUB_TOKEN から見えるなら（200）public。
             # private なら 404。それ以外（通信失敗・403 など）も止まる（疑わしきは止まる）
+            # curl は失敗しても -w の 000 を出す
             code=$(curl -s -o /dev/null -w '%{http_code}' \
                      -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
-                     "https://api.github.com/repos/${GITHUB_REPOSITORY}-raw" || echo 000)
+                     "https://api.github.com/repos/${RAW_REPO}" || true)
             case "$code" in
-              404) echo "金庫 ${GITHUB_REPOSITORY}-raw は公開側から見えない（private）" ;;
-              200) echo "金庫 ${GITHUB_REPOSITORY}-raw が public のまま。生データを送らない。先に private にする"; exit 1 ;;
-              *)   echo "金庫の見え方を確かめられなかった（HTTP $code）。止まる"; exit 1 ;;
+              404) echo "金庫 ${RAW_REPO} は公開側から見えない（private か、まだ無い。無ければ次の checkout で止まる）" ;;
+              200) echo "金庫 ${RAW_REPO} が public のまま。生データを送らない。先に private にする"; exit 1 ;;
+              *)   echo "金庫の見え方を確かめられなかった（HTTP ${code:-なし}）。止まる"; exit 1 ;;
             esac
             echo "金庫の形で動く"
           elif [ -n "$raw_tracked" ]; then
@@ -78,13 +82,12 @@ jobs:
         if: env.HAS_VAULT == 'true'
         uses: actions/checkout@v4
         with:
-          repository: VirgoB77/ogataten-nippo-raw
+          repository: ${{ env.RAW_REPO }}
           ref: main
           ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
           path: _raw
 
       - name: 生データの置き場を金庫につなぐ
-        id: link
         if: env.HAS_VAULT == 'true'
         run: |
           mkdir -p data

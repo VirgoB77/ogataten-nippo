@@ -855,19 +855,33 @@ COOP コープ 生協
     移行前のリポジトリだけ**。生データを持たない公開用で鍵が無ければ、取りに行かずに止まる。
     鍵が無いまま走ると、その日の生データが public に載るため
   - 収集用が 2GB を超えそうになったら都道府県ごとに分ける（`-raw-<pref>`）。そのときは
-    checkout と Secret をもう1組足し、つなぐ段を収集先ごとのリンクに直す。公開 URL と
-    公開用の木は変わらない
+    checkout と Secret と private の確認をもう1組ずつ足し、つなぐ段を収集先ごとのリンクに
+    直す。公開 URL と公開用の木は変わらない
   - 一度でも生データを public に commit していたら、そのリポジトリを**名前ごと private に
     して収集用にし**、公開用は履歴ゼロで同じ名前に作り直す。同じ public リポジトリの中で
     履歴を書き換える手（filter-repo・orphan の force-push）は採らない。PR の参照
     （`refs/pull/*`）と PR の題名・本文は force-push でも消えず、そこから旧コミットに届く。
-    作り直す順番（サイトが止まる窓を短くし、収集用が public のまま生データを受けないため）：
-    ① 新を**仮の名前**で作り、公開用の木を入れ、Pages を（github.io の URL で）動かして
-    おく → ② 旧の Actions を止める → ③ 旧の Pages を **Unpublish**（独自ドメインを外す
-    だけでは github.io 側が配信を続ける。Free なら private 化で落ちるが、それに頼らない）→
-    ④ 旧を rename → ⑤ **すぐ旧を private** → ⑥ 収集用（旧）に Deploy key → ⑦ 新を同じ名前に
-    rename → ⑧ 新に独自ドメインと Secret → ⑨ 旧の github.io の実ファイルの URL が 404 に
-    なったことを見る。Secret を入れるのは収集用が private になった**後**。
+    作り直す順番（サイトが止まる窓と独自ドメインが空く窓を短くし、収集用が public のまま
+    生データを受けないため）：
+    ⓪ アカウントの Settings → Pages → **Verified domains** で独自ドメインを検証済みにしておく
+    （③〜⑧ の間はどのリポジトリもドメインを主張していない。検証していないと他人が自分の
+    Pages に付けられる）→ ① 新を**仮の名前**で作り、公開用の木を1コミットで入れる。
+    **入れないもの**：`data/raw` `data/files` `data/ocr` `data/wayback`・`data/*.md`・
+    `data/koho/*.md`（workflow の見張りが見る一覧と同じ。残すと初回から止まる）・`CNAME`
+    （入れると旧と同じドメインを取り合う。⑧ で GitHub が書き戻す）。作り方は「main を
+    `git archive` で展開 → 上を消す → 1コミット」。Pages を有効にしてよい（CNAME が無いので
+    github.io の仮 URL で配信される。動作確認に使う）→ ② 旧の Actions を止める →
+    ③ 旧の Pages を **Unpublish**（独自ドメインを外すだけでは github.io 側が配信を続ける。
+    Free なら private 化で落ちるが、それに頼らない）。直後に
+    `https://<owner>.github.io/<公開用の名前>/data/raw/<id>/<日付>.html` が 200 でないことを見る →
+    ④ 旧を **`<公開用の名前>-raw`** に rename（workflow の checkout・private の確認・名前による
+    自己停止が全部この名前を見る）→ ⑤ **すぐ旧を private** にし、旧の main から
+    `.github/workflows/` を消す commit を入れる（収集用に workflow を持たせない）→
+    ⑥ 収集用（旧）に Deploy key → ⑦ 新を同じ名前に rename → ⑧ 新の Pages に独自ドメインを
+    付け（GitHub が `CNAME` を commit する）、それから Secret を入れる →
+    ⑨ **`https://<owner>.github.io/<公開用の名前>-raw/data/raw/<id>/<日付>.html`** が 404 で
+    あることを見る（`…/<公開用の名前>/` は ⑦ 以降は新のサイトなので確認にならない）。
+    Secret を入れるのは収集用が private になった**後**。
     **古い clone は全部 remote を付け替えるか消す。** 同じ名前で作り直したあと、古い clone
     からの push は新しい公開用に届く（新しい枝を push すると、旧履歴ごと public に戻る）
 
