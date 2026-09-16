@@ -34,7 +34,7 @@ from datetime import date
 from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-from common.fetch import UA, check_robots  # 名乗りと robots は common/fetch.py（共通仕様3.4）
+from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
 
@@ -280,6 +280,8 @@ def report_one(src, res):
 
     if res.get("fetch_error"):
         out.append(f"- **結果: 取得できなかった — {res['fetch_error']}**")
+        if res.get("busy_stop"):
+            out.append(f"  - **HTTP {res['busy_stop']}（混んでいる）。この収集先は今回ここまで**（共通仕様3.4）")
         out.append("")
         return "\n".join(out)
 
@@ -321,7 +323,9 @@ def report_one(src, res):
                 extra = f" {a2['biggest']['rows']}行×{a2['biggest']['cols']}列" if a2.get("biggest") else ""
                 pdf = f" PDF{a2['pdf_count']}本" if a2.get("pdf_count") else ""
                 out.append(f"  -{mark}{label[:34]} … **{a2['verdict']}**{extra}{pdf}")
-        if res.get("budget_hit"):
+        if res.get("busy_stop") and not res.get("fetch_error"):
+            out.append(f"  - **HTTP {res['busy_stop']}（混んでいる）。この収集先は今回ここまで**（共通仕様3.4）")
+        elif res.get("budget_hit"):
             b, left = res["budget_hit"]
             out.append(f"  - （上限{b}本に達した。まだ{left}本残っている）")
     out.append("")
@@ -377,6 +381,9 @@ def main():
             status, ctype, raw = fetch(src["url"])
         except urllib.error.HTTPError as e:
             res["fetch_error"] = f"HTTP {e.code}"
+            if is_busy(e):
+                # 入口で混んでいると言われた。この収集先は今回ここまで（辿りにも行かない）
+                res["busy_stop"] = e.code
             lines.append(report_one(src, res))
             counts["失敗"] = counts.get("失敗", 0) + 1
             time.sleep(WAIT)
@@ -438,6 +445,12 @@ def main():
                     st2, ct2, raw2 = fetch(url2)
                 except Exception as e:
                     res["followed"].append((label, None, depth, f"{type(e).__name__}"))
+                    if is_busy(e):
+                        # 相手が「混んでいる」「今は受けない」と言っている。押し込まない。
+                        # ここで break しないと、同じホストに最大 FOLLOW_BUDGET 本まで
+                        # 5秒おきに当たり続ける（共通仕様3.4。他のスクリプトはみな止めている）
+                        res["busy_stop"] = getattr(e, "code", None)
+                        break
                     continue
                 t2, _ = to_text(raw2, ct2)
                 a2 = analyze(t2, url2)

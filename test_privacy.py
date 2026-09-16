@@ -872,6 +872,57 @@ def test_hyphen_banchi_is_an_address():
         eq(bool(merge.ADDR_HYPHEN.search(a)), False, f"住所でないものを住所と見ている: {a}")
 
 
+# ---------------------------------------------------------------- 監査その5の再審査（続き）
+
+def test_recon_stops_when_busy():
+    """3.4：相手が 429/503 と言ったら、その収集先は今回そこで終わる。
+
+    辿った先で混雑を受けても止めずに次のURLへ行っていたので、同じホストに
+    上限（FOLLOW_BUDGET=32）まで5秒おきに当たり続けていた（監査で見つかった）。
+    ネットには出ない。fetch と robots と sleep を差し替えて、回数だけ数える。
+    """
+    import recon, json, tempfile, urllib.error, time, io as _io, contextlib
+    ENTRY = "https://example.test/"
+    got = []
+
+    def fake_fetch(url):
+        got.append(url)
+        if url == ENTRY:
+            # 表もExcelもPDFも無いページ＝「わからない」→ この先を辿りに行く
+            return 200, "text/html; charset=utf-8", "<html><body>目次</body></html>".encode()
+        raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
+
+    keep = (recon.HERE, recon.fetch, recon.check_robots, recon.follow_links, time.sleep)
+    with tempfile.TemporaryDirectory() as d:
+        with open(os.path.join(d, "sources.json"), "w", encoding="utf-8") as f:
+            json.dump({"sources": [{"id": "demo", "name": "架空市", "url": ENTRY}]}, f)
+        recon.HERE = d
+        recon.fetch = fake_fetch
+        recon.check_robots = lambda u: (True, "許可")
+        recon.follow_links = lambda page, base: [(f"{ENTRY}y{i}", f"令和{i}年度") for i in range(10)]
+        time.sleep = lambda *_a, **_k: None
+        try:
+            with contextlib.redirect_stdout(_io.StringIO()):
+                recon.main()
+        finally:
+            recon.HERE, recon.fetch, recon.check_robots, recon.follow_links, time.sleep = keep
+
+    # 入口1本 ＋ 辿った先の1本目で 429 → そこで終わる
+    eq(len(got), 2, f"混んでいると言われたのに押し込んでいる（{len(got)}回 要求した。2回で止まるはず）")
+
+
+def test_every_fetcher_stops_when_busy():
+    """3.4：取りに行くスクリプトは全部、429/503 でその回を中止すること。
+
+    recon.py だけ is_busy を見ていなかった。1本忘れると、そこだけ押し込む。
+    """
+    for name in ("recon.py", "files.py", "wayback.py", "koho_pdf.py"):
+        src = open(os.path.join(HERE, name), encoding="utf-8").read()
+        eq("is_busy" in src, True, f"{name} が 429/503 を見ていない（共通仕様3.4）")
+        stops = re.search(r"if is_busy\(e\):(?:[^\n]*\n){1,8}?[ \t]*(break|raise|return)", src)
+        eq(bool(stops), True, f"{name} は 429/503 を見ているが、そこで止めていない")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
