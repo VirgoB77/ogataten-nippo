@@ -237,7 +237,12 @@ def enrich_from_ocr(by_key, ocr):
             pairs = (("address", "address"), ("operator", "applicant"), ("content", "content"))
             for field, okey in pairs:
                 if not r.get(field) and o.get(okey):
-                    r[field] = tidy_ocr(o[okey])
+                    val = tidy_ocr(o[okey])
+                    # 「変更した事項」の行は様式の文言や氏名の変更（「設置者の氏名 ○○から△△へ」）が
+                    # 混ざりうる。氏名・代表者に触れる行は使わない（privacy を通らない欄なので、入口で止める）
+                    if field == "content" and re.search(r"氏名|代表者", val):
+                        continue
+                    r[field] = val
                     got.append(field)
             if not r.get("area_m2") and o.get("area"):
                 digits = re.sub(r"[^0-9]", "", o["area"])
@@ -336,17 +341,30 @@ def stamp_sources(recs):
         else:
             r["source_url"] = m.get("url") or (docs[0] if docs else "")
 
-        when = ""
-        if r.get("file"):
-            when = file_when.get(f"{src}/{r['file']}", "") or ""
-        if not when:
-            when = r.get("last_seen") or r.get("first_seen") or ""
-        if not when and docs:
-            when = koho_when.get(docs[0], "") or ""
-        if not when and docs:
-            # 文書のURLの末尾がそのまま data/files/<収集先>/ のファイル名（部会の議案など）
-            when = file_when.get(f"{src}/{os.path.basename(docs[0].split('?')[0])}", "") or ""
+        def when_for(sid):
+            """収集先 sid の取得日。合流した記録では、公報・部会は台帳から、巡回のページは見た日から。"""
+            w = ""
+            if sid == src and r.get("file"):
+                w = file_when.get(f"{sid}/{r['file']}", "") or ""
+            if not w and sid in DOC_SOURCES:
+                # 文書そのものを取った日。合流で運ばれた last_seen は縦覧ページの保存日であって、公報の取得日ではない
+                for u in docs:
+                    w = koho_when.get(u, "") or file_when.get(f"{sid}/{os.path.basename(u.split('?')[0])}", "") or ""
+                    if w:
+                        break
+            if not w and sid not in DOC_SOURCES:
+                w = r.get("last_seen") or r.get("first_seen") or ""
+            if not w and docs:
+                w = koho_when.get(docs[0], "") or file_when.get(f"{sid}/{os.path.basename(docs[0].split('?')[0])}", "") or ""
+            return w
+
+        when = when_for(src)
         r["fetched_on"] = when
+        srcs = r.get("sources") or []
+        if len(srcs) > 1:
+            r["fetched_by"] = {sid: (when if sid == src else when_for(sid)) for sid in srcs}
+        else:
+            r.pop("fetched_by", None)
         if not r["source_url"] or not when:
             missing += 1
     return missing
@@ -364,7 +382,23 @@ PARTY_FIELDS = ("operator", "new_operator", "retailer")
 # 設置者の欄に住所の形（「…1丁目2番3号」）の値が来ているもの。列ずれの疑い。
 # 個人として伏せるのは同じだが、黙って「個人」にせず記録に残す（5節「個人に化けてはいけないもの」）
 ADDR_SHAPE = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|番|号|丁目)")
+# 「住所の形」は、都道府県か市区郡町村で始まり、かつ数字＋番地・番・号・丁目を含むもの。
+# 数字＋番だけだと「一番館」「二丁目食堂」「一番ヶ瀬」のような屋号・姓まで拾う。
+# 「氏名 住所」が1つの欄に入っているものは先頭が住所でないので拾わず、従来どおり「個人」に倒す
+ADDR_HEAD = re.compile(r"^(北海道|東京都|京都府|大阪府|[^\s]{2,3}県|[^\s]{1,6}(市|区|郡|町|村))")
+_BANCHI_LEFT = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|番|号)")   # 丸めたあとに残っていてはいけないもの
 ADDR_IN_NAME_DISPLAY = "不詳（届出の一覧では設置者の欄に住所だけが書かれています）"   # 画面用。「個人」とは書かない
+
+
+def looks_like_address(raw):
+    raw = (raw or "").strip()
+    return bool(raw) and bool(ADDR_HEAD.match(raw)) and bool(ADDR_SHAPE.search(raw)) and not privacy.is_corp(raw)
+
+
+def suspect_value(raw):
+    """記録用に残す値。町丁目まで丸め、それでも地番（漢数字の番地など）が残るなら何も残さない。"""
+    val = privacy.redact_addr(raw, "individual")
+    return "" if _BANCHI_LEFT.search(val) else val
 
 # 設置者の名前が、その収集先の一次情報のどこにも無いことを確かめた収集先。
 # ここに入れると party_kind が undisclosed になり、所在地を丸めない（3.1）。
@@ -396,10 +430,10 @@ def apply_privacy(recs):
             raw = r.get(f)
             if raw is None:
                 # 欄そのものが無い。収集先をまたいでまとめたときに運ばれてきた古い印
-                # （_kind / _display）だけが残っていることがあるので、捨てる。
+                # （_kind / _display / _suspect）だけが残っていることがあるので、捨てる。
                 # 印だけ残ると、当事者のいない記録に undisclosed や individual が付く
-                r.pop(f + "_kind", None)
-                r.pop(f + "_display", None)
+                for k in ("_kind", "_display", "_suspect", "_suspect_value"):
+                    r.pop(f + k, None)
                 continue
             if r.get(f + "_display") and not (raw or "").strip():
                 # 個人だったので名前を消してあり、値も空。もう一度通すと、空の
@@ -429,12 +463,13 @@ def apply_privacy(recs):
             r[f + "_kind"] = kind
             r.pop(f + "_suspect", None)
             r.pop(f + "_suspect_value", None)
-            if kind == "individual" and (raw or "").strip() and ADDR_SHAPE.search(raw) and not privacy.is_corp(raw):
-                # 名前の欄に住所が書かれている（大阪府の一覧に実例。法人の本社住所が入っている行がある）。
+            if kind == "individual" and looks_like_address(raw):
+                # 名前の欄に住所だけが書かれている（大阪府の一覧に実例。法人の本社住所が入っている行がある）。
                 # 名前は読めないので、伏せる側（individual・地番は丸める）に倒すのは同じだが、
-                # 画面に「個人」と書くと事実と違うので、そう書かずに理由を書く。記録にも残す（5節）
+                # 画面に「個人」と書くと事実と違うので、そう書かずに理由を書く。記録にも残す（5節）。
+                # 記録用の値は町丁目まで。地番が残る形（漢数字の番地）なら値は残さない
                 r[f + "_suspect"] = "address"
-                r[f + "_suspect_value"] = privacy.redact_addr(raw, "individual")   # 町丁目まで。記録用
+                r[f + "_suspect_value"] = suspect_value(raw)
                 r[f + "_display"] = ADDR_IN_NAME_DISPLAY
 
         # 所在地を丸めるかどうかは「設置者」で決める。小売業者は店舗の

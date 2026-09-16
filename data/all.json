@@ -839,7 +839,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -1007,7 +1011,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -1625,7 +1633,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "osaka-pref": "2026-09-15",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -1906,7 +1918,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -2444,7 +2460,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -2525,7 +2545,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -2568,7 +2592,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -2653,7 +2681,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -2737,7 +2769,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -3104,7 +3140,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -3984,7 +4025,11 @@
   "ward": "",
   "area": "泉南市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "sennan-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -4039,7 +4084,11 @@
   "ward": "",
   "area": "泉南市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "sennan-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -4720,7 +4769,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -5146,7 +5199,11 @@
   "area": "箕面市",
   "address_redacted": true,
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -5189,7 +5246,11 @@
   "area": "箕面市",
   "address_redacted": true,
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -5232,7 +5293,11 @@
   "area": "箕面市",
   "address_redacted": true,
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -5277,7 +5342,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -5913,7 +5983,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -6133,7 +6207,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-city",
@@ -6395,7 +6473,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -6620,7 +6703,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -6710,7 +6797,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第11条第3項",
@@ -6792,7 +6883,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "osaka-pref": "2026-09-15",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -6841,7 +6936,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -7703,7 +7802,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第11条第3項",
@@ -7857,7 +7960,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第2項",
@@ -7945,7 +8052,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "article": "第5条第1項",
@@ -8262,7 +8373,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -8837,7 +8952,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -10177,7 +10296,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "",
@@ -10294,7 +10418,11 @@
   "ward": "",
   "area": "淡路市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/150_gian.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -10339,7 +10467,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -10692,7 +10824,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "osaka-pref": "2026-09-15",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -11173,7 +11309,11 @@
   "ward": "",
   "area": "高砂市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251219t.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "source": "osaka-city",
@@ -11645,7 +11785,11 @@
   "ward": "",
   "area": "豊岡市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251219t.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "article": "中規模",
@@ -11885,7 +12029,11 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251209t.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "article": "第5条第1項",
@@ -11931,7 +12079,12 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251216t.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "source": "osaka-pref",
@@ -12008,7 +12161,11 @@
   "ward": "",
   "area": "川辺郡猪名川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251205t.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "article": "",
@@ -12251,7 +12408,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -12300,7 +12461,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -12345,7 +12510,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -12384,7 +12553,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20251128t.pdf",
-  "fetched_on": "2026-03-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2026-03-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -12502,7 +12675,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -13203,7 +13381,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -13983,7 +14165,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "article": "",
@@ -15521,7 +15707,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-city",
@@ -16060,7 +16250,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -16334,7 +16528,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -16607,7 +16805,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -16790,7 +16992,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -17118,7 +17324,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -17299,7 +17509,11 @@
   "ward": "",
   "area": "南あわじ市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250729t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -17510,7 +17724,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-city",
@@ -17822,7 +18040,12 @@
   "ward": "",
   "area": "加東市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250711t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "第5条第1項",
@@ -17876,7 +18099,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -18369,7 +18596,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250701t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "source": "osaka-city",
@@ -18461,7 +18692,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -18604,7 +18839,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250624t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -18643,7 +18882,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250624t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -18721,7 +18964,11 @@
   "ward": "",
   "area": "貝塚市",
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kaizuka-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -18767,7 +19014,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "",
@@ -19107,7 +19358,11 @@
   "ward": "",
   "area": "芦屋市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
-  "fetched_on": "2026-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -19214,7 +19469,11 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "",
@@ -19299,7 +19558,12 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "source": "osaka-city",
@@ -19385,7 +19649,11 @@
   "ward": "",
   "area": "川辺郡猪名川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "第11条第3項",
@@ -19508,7 +19776,11 @@
   "ward": "",
   "area": "岸和田市",
   "source_url": "https://www.city.kishiwada.lg.jp/page/43-daitentodokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kishiwada-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -19846,7 +20118,12 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250613t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "source": "osaka-pref",
@@ -19935,7 +20212,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -19981,7 +20262,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "osaka-pref": "2026-09-15",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -20088,7 +20373,11 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250527t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "source": "osaka-pref",
@@ -20250,7 +20539,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -20289,7 +20582,11 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250523t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "article": "第6条第1項",
@@ -20328,7 +20625,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250523t.pdf",
-  "fetched_on": "2025-09-16"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-09-16"
+  }
  },
  {
   "source": "osaka-pref",
@@ -20630,7 +20931,12 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250516t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "source": "osaka-city",
@@ -20890,7 +21196,11 @@
   "ward": "",
   "area": "三木市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250513t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "source": "osaka-city",
@@ -20983,7 +21293,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250513t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "source": "osaka-city",
@@ -21290,7 +21604,11 @@
   "ward": "",
   "area": "南あわじ市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250430t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -21329,7 +21647,11 @@
   "ward": "",
   "area": "朝来市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250422t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -21368,7 +21690,11 @@
   "ward": "",
   "area": "淡路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250422t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -21407,7 +21733,11 @@
   "ward": "",
   "area": "宍粟市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250422t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -21446,7 +21776,11 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250422t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "",
@@ -21758,7 +22092,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250411t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第2項",
@@ -21836,7 +22174,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250408t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -21881,7 +22223,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第2項",
@@ -22028,7 +22375,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250415t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "source": "osaka-pref",
@@ -22112,7 +22463,12 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250401t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-16",
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -22242,7 +22598,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250415t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -22281,7 +22641,11 @@
   "ward": "",
   "area": "神崎郡福崎町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250411t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-16",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-16",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "中規模",
@@ -22405,7 +22769,11 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250318t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -22445,7 +22813,11 @@
   "ward": "",
   "area": "川辺郡猪名川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250321t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -22579,7 +22951,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250321t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "",
@@ -22826,7 +23202,12 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250307t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "",
@@ -22908,7 +23289,11 @@
   "ward": "",
   "area": "貝塚市",
   "source_url": "https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kaizuka-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第5条第1項",
@@ -22955,7 +23340,12 @@
   "ward": "",
   "area": "加古郡稲美町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250304t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "source": "osaka-pref",
@@ -23001,7 +23391,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第5項",
@@ -23421,7 +23815,11 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250228t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -23461,7 +23859,11 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250228t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -23501,7 +23903,11 @@
   "ward": "",
   "area": "三木市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250228t.pdf",
-  "fetched_on": "2025-06-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-06-24"
+  }
  },
  {
   "source": "osaka-pref",
@@ -23555,7 +23961,11 @@
   "ward": "",
   "area": "豊能郡能勢町",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -23735,7 +24145,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -23775,7 +24189,11 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250221t.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "source": "osaka-pref",
@@ -23822,7 +24240,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -23973,7 +24395,12 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250204t.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -24013,7 +24440,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250204t.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "article": "第6条第1項",
@@ -24869,7 +25300,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241227t.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "article": "第5条第1項",
@@ -24911,7 +25346,11 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/140_gian.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "source": "osaka-city",
@@ -25011,7 +25450,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241227t.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "article": "第11条第3項",
@@ -25342,7 +25785,11 @@
   "ward": "",
   "area": "宍粟市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241224t.pdf",
-  "fetched_on": "2025-04-24"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-04-24"
+  }
  },
  {
   "article": "第11条第3項",
@@ -25539,7 +25986,12 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241210t.pdf",
-  "fetched_on": "2025-01-12"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-01-12"
+  }
  },
  {
   "source": "osaka-city",
@@ -25708,7 +26160,11 @@
   "ward": "",
   "area": "たつの市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241129t.pdf",
-  "fetched_on": "2025-01-12"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-01-12"
+  }
  },
  {
   "article": "第6条第1項",
@@ -26815,7 +27271,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241112t.pdf",
-  "fetched_on": "2025-01-12"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-01-12"
+  }
  },
  {
   "article": "第5条第1項",
@@ -27539,7 +27999,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241018t_1.pdf",
-  "fetched_on": "2025-01-12"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-01-12"
+  }
  },
  {
   "source": "osaka-pref",
@@ -27590,7 +28054,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -29008,7 +29476,11 @@
   "ward": "",
   "area": "貝塚市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "kaizuka-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -29054,7 +29526,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -29451,7 +29927,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "article": "第6条第1項",
@@ -29556,7 +30036,11 @@
   "ward": "",
   "area": "枚方市",
   "source_url": "https://www.city.hirakata.osaka.jp/0000003373.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hirakata-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "中規模",
@@ -30263,7 +30747,12 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240913t.pdf",
-  "fetched_on": "2025-01-12"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2025-01-12"
+  }
  },
  {
   "article": "第6条第1項",
@@ -30506,7 +30995,7 @@
   "operator": "",
   "new_operator": "",
   "event_on": null,
-  "content": "３ 届出に係る書類の縦覧の期間及び場所 （１）大規模小売店舗を設置する者の氏名又は名称及び住所並びに法人にあっては",
+  "content": "",
   "review_from": "2024-09-06",
   "review_to": "2025-01-06",
   "meeting": "",
@@ -30530,8 +31019,7 @@
   "mode": "snapshot",
   "listed": true,
   "from_ocr": [
-   "address",
-   "content"
+   "address"
   ],
   "pref": "大阪府",
   "city": "松原市",
@@ -30764,7 +31252,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -31142,7 +31634,12 @@
   "ward": "",
   "area": "丹波篠山市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240806t.pdf",
-  "fetched_on": "2024-12-08"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-12-08"
+  }
  },
  {
   "article": "第6条第1項",
@@ -31287,7 +31784,11 @@
   "ward": "",
   "area": "門真市",
   "source_url": "https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "kadoma-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -31515,7 +32016,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -31931,7 +32436,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -32067,7 +32576,12 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240730t.pdf",
-  "fetched_on": "2024-12-08"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-12-08"
+  }
  },
  {
   "article": "第6条第2項",
@@ -32111,7 +32625,11 @@
   "ward": "",
   "area": "丹波市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240723t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "source": "osaka-pref",
@@ -32324,7 +32842,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -32369,7 +32892,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -32414,7 +32942,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -32459,7 +32992,12 @@
   "ward": "",
   "area": "箕面市",
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15",
+   "osaka-pref": "2026-09-15"
+  }
  },
  {
   "source": "osaka-pref",
@@ -32506,7 +33044,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-pref",
@@ -32632,7 +33174,12 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240709t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "article": "第6条第1項",
@@ -34199,7 +34746,11 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/134_gian.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "source": "osaka-city",
@@ -34305,7 +34856,12 @@
   "ward": "",
   "area": "丹波市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240618t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "article": "第6条第2項",
@@ -34349,7 +34905,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240618t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "article": "第6条第1項",
@@ -34486,7 +35046,11 @@
   "ward": "",
   "area": "三木市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240618t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "source": "osaka-pref",
@@ -34537,7 +35101,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -35207,7 +35775,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240528t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "source": "osaka-city",
@@ -35408,7 +35980,11 @@
   "ward": "",
   "area": "朝来市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240528t.pdf",
-  "fetched_on": "2024-09-07"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-koho": "2026-09-13",
+   "hyogo-pref-juran": "2024-09-07"
+  }
  },
  {
   "article": "第6条第1項",
@@ -35454,7 +36030,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "osaka-pref": "2026-09-15",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -35853,7 +36433,11 @@
   "ward": "",
   "area": "茨木市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "ibaraki-city": "2026-09-15",
+   "osaka-pref": "2026-09-11"
+  }
  },
  {
   "source": "osaka-city",
@@ -36032,7 +36616,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240423t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -36933,7 +37521,11 @@
   "ward": "",
   "area": "洲本市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240315t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -37333,7 +37925,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240226t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -38115,7 +38711,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240123t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "",
@@ -38245,7 +38845,11 @@
   "ward": "",
   "area": "淡路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240123t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -38959,7 +39563,11 @@
   "ward": "",
   "area": "洲本市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20231128t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -39002,7 +39610,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20231128t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "",
@@ -40222,7 +40834,11 @@
   "area": "箕面市",
   "address_redacted": true,
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  }
  },
  {
   "article": "第6条第1項",
@@ -42110,7 +42726,11 @@
   "ward": "",
   "area": "たつの市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230905t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -42265,7 +42885,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230825t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -42966,7 +43590,11 @@
   "area": "箕面市",
   "address_redacted": true,
   "source_url": "https://www.city.minoh.lg.jp/syoukou/daikibo.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -43639,7 +44267,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230707t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -45228,7 +45860,11 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230414t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -46493,7 +47129,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230221t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -46538,7 +47178,11 @@
   "area": "姫路市",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/123_gian.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "article": "第6条第1項",
@@ -51669,7 +52313,7 @@
   "operator": "",
   "new_operator": "",
   "event_on": null,
-  "content": "・ 大規模小売店舗を設置する者の氏名又は名称及び住所並びに",
+  "content": "",
   "review_from": "2022-08-31",
   "review_to": "2023-01-04",
   "meeting": "",
@@ -51693,8 +52337,7 @@
   "mode": "snapshot",
   "listed": true,
   "from_ocr": [
-   "address",
-   "content"
+   "address"
   ],
   "pref": "大阪府",
   "city": "松原市",
@@ -52067,7 +52710,7 @@
   "operator": "",
   "new_operator": "",
   "event_on": null,
-  "content": "・大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに",
+  "content": "",
   "review_from": "2022-08-31",
   "review_to": "2023-01-04",
   "meeting": "",
@@ -52092,8 +52735,7 @@
   "mode": "snapshot",
   "listed": true,
   "from_ocr": [
-   "address",
-   "content"
+   "address"
   ],
   "pref": "大阪府",
   "city": "松原市",
@@ -52671,7 +53313,11 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20220726t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -54792,7 +55438,7 @@
   "operator": "",
   "new_operator": "",
   "event_on": null,
-  "content": "・ 大規模小売店舗を設置する者の氏名又は名称及び住所並びに",
+  "content": "",
   "review_from": "2022-05-31",
   "review_to": "2022-10-03",
   "meeting": "",
@@ -54817,8 +55463,7 @@
   "mode": "snapshot",
   "listed": true,
   "from_ocr": [
-   "address",
-   "content"
+   "address"
   ],
   "pref": "大阪府",
   "city": "松原市",
@@ -57660,7 +58305,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20220118t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -64478,7 +65127,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/030427t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "",
@@ -64560,7 +65213,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/030420t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第5条第1項",
@@ -73453,7 +74110,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020529t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第2項",
@@ -73653,7 +74314,11 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020522t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -78048,7 +78713,7 @@
   "operator": "",
   "new_operator": "",
   "event_on": null,
-  "content": "大規模小売店舗を設置する者 の氏名又は 名称 及び 住所並びに法人にあっては 代表",
+  "content": "",
   "review_from": "2019-11-26",
   "review_to": "2020-03-26",
   "meeting": "",
@@ -78072,8 +78737,7 @@
   "mode": "snapshot",
   "listed": true,
   "from_ocr": [
-   "address",
-   "content"
+   "address"
   ],
   "pref": "大阪府",
   "city": "松原市",
@@ -79793,7 +80457,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/011008t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第2項",
@@ -85069,7 +85737,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/310122t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -86031,7 +86703,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/301126t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-pref",
@@ -86112,7 +86788,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/301120t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -87071,7 +87751,11 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300928t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -89130,7 +89814,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300522t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第11条第3項",
@@ -89297,7 +89985,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300501t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -89985,7 +90677,11 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300403t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -90292,7 +90988,11 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300320t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第5項",
@@ -90449,7 +91149,11 @@
   "ward": "",
   "area": "三田市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300316t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第2項",
@@ -90678,7 +91382,11 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300216t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-pref",
@@ -91964,7 +92672,11 @@
   "ward": "",
   "area": "宝塚市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291128t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -92152,7 +92864,11 @@
   "ward": "",
   "area": "川辺郡猪名川町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291117t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -92226,7 +92942,11 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291031t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-pref",
@@ -94514,7 +95234,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290721t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-pref",
@@ -96716,7 +97440,11 @@
   "ward": "",
   "area": "高砂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "article": "第5条第1項",
@@ -97271,7 +97999,11 @@
   "ward": "",
   "area": "小野市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "source": "osaka-city",
@@ -97932,7 +98664,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290328t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -98204,7 +98940,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290324t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -99585,7 +100325,11 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/66_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "source": "osaka-pref",
@@ -100373,7 +101117,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/281111t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -100844,7 +101592,11 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/281007t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -101089,7 +101841,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/63_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "article": "第6条第1項",
@@ -101195,7 +101951,11 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/62_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "article": "第6条第2項",
@@ -101870,7 +102630,11 @@
   "ward": "",
   "area": "たつの市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280715t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第2項",
@@ -101911,7 +102675,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280701t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -102556,7 +103324,11 @@
   "ward": "",
   "area": "美方郡新温泉町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280614t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -103146,7 +103918,11 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280426t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "中規模",
@@ -103685,7 +104461,11 @@
   "ward": "",
   "area": "洲本市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280325t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -103729,7 +104509,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/59_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "source": "osaka-city",
@@ -103857,7 +104641,11 @@
   "ward": "",
   "area": "加古川市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280318t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "第6条第1項",
@@ -103970,7 +104758,11 @@
   "ward": "",
   "area": "宍粟市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-14",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-14",
+   "hyogo-koho": "2026-09-14"
+  }
  },
  {
   "article": "第6条第1項",
@@ -104083,7 +104875,11 @@
   "ward": "",
   "area": "相生市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-14",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-14",
+   "hyogo-koho": "2026-09-14"
+  }
  },
  {
   "article": "第6条第1項",
@@ -104363,7 +105159,11 @@
   "ward": "",
   "area": "揖保郡太子町",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280219t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-pref",
@@ -104814,7 +105614,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280126t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "article": "中規模",
@@ -104935,7 +105739,11 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280209t.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": "2026-09-13"
+  }
  },
  {
   "source": "osaka-city",
@@ -107164,7 +107972,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271124t.pdf",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-14",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-14",
+   "hyogo-koho": "2026-09-14"
+  }
  },
  {
   "source": "osaka-pref",
@@ -107461,7 +108273,11 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271023t.pdf",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-14",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-14",
+   "hyogo-koho": "2026-09-14"
+  }
  },
  {
   "article": "第5条第1項",
@@ -115647,7 +116463,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261114t.pdf",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-14",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-14",
+   "hyogo-koho": "2026-09-14"
+  }
  },
  {
   "article": "第6条第2項",
@@ -132916,7 +133736,11 @@
   "ward": "",
   "area": "高砂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "source": "osaka-pref",
@@ -136429,7 +137253,11 @@
   "ward": "",
   "area": "豊中市",
   "source_url": "https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html",
-  "fetched_on": "2026-09-11"
+  "fetched_on": "2026-09-11",
+  "fetched_by": {
+   "osaka-pref": "2026-09-11",
+   "toyonaka-city": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -146815,7 +147643,11 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000171291.pdf",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-14",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-14",
+   "hyogo-koho": "2026-09-14"
+  }
  },
  {
   "source": "osaka-city",
@@ -153774,7 +154606,11 @@
   "ward": "",
   "area": "高砂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/69_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "source": "osaka-city",
@@ -155836,7 +156672,11 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000125580.pdf",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-15",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-15",
+   "hyogo-koho": "2026-09-15"
+  }
  },
  {
   "source": "osaka-city",
@@ -158009,7 +158849,11 @@
   "ward": "",
   "area": "西宮市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/documents/68_giann.pdf",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-13",
+  "fetched_by": {
+   "hyogo-bukai": "2026-09-13",
+   "hyogo-koho": ""
+  }
  },
  {
   "source": "osaka-city",

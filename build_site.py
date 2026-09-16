@@ -62,6 +62,10 @@ SITE_NAME = "大型店日報"   # ドメインは ogataten-nippo.com の予定�
 CONTACT_URL = "https://forms.gle/pp93tSJ5p8SAMEMk8"   # 訂正・削除の依頼フォーム（Googleフォーム）
 OPERATOR = "鯨屋（くじらや）"      # 運営者名（屋号のみ。氏名は載せない → docs/kyotsu-shiyo.md 7節）
 OPERATOR_DESC = "大阪府・兵庫県で行政が公開する一次情報を、消える前に記録しています。"   # 7節の共通文面の2行目
+# 大阪府の移譲市町（20）の数え方。sources.json の note と同じことをここに書く。
+WINDOW_COVERS = {"minoh-2shi2cho": ["池田市", "豊能町", "能勢町"]}   # 箕面市の窓口のページに載る3市町
+NOT_DELEGATED = {"吹田市", "高槻市"}     # 移譲先ではなく府が受理する（sources.json の note）
+DELEGATED_MISSING = ["岬町"]              # 移譲先だが届出ページが見つからず、府のページに載る分だけ拾う
 SITE_START = "2026-09-11"   # このサイトが自分で取りに行き始めた日。これより前の日付は Internet Archive の保存から
 # 訂正履歴（7節「氏名の代わりに信用を作るもの」の3つめ）。いつ・何を・なぜ。氏名は書かない
 TEISEI = [
@@ -276,8 +280,9 @@ def detail_page(r, by_ref, src_meta):
     src_items = []
     for i in src_ids:
         m = src_meta.get(i, {})
-        got = r.get("fetched_on") or r.get("last_seen") or r.get("first_seen") or ""
-        first = r.get("first_seen") or ""
+        # 合流した記録は収集先ごとの取得日（fetched_by）。無ければ記録の取得日
+        got = (r.get("fetched_by") or {}).get(i) or r.get("fetched_on") or r.get("last_seen") or r.get("first_seen") or ""
+        first = r.get("first_seen") if i == r.get("source") else ""
         # サイトが自分で取りに行き始めた日より前の日付は、Internet Archive の保存から積み直したもの
         via_archive = bool(m.get("wayback")) and bool(got) and got < SITE_START
         when = (f"{got}時点の保存（Internet Archive）から取得" if via_archive else
@@ -344,9 +349,10 @@ def area_page(area, rows):
     chips = "".join(f'<a href="{rel}k/{esc(k)}.html">{esc(k)}<b>{n_(kinds[k])}</b></a>' for k in KIND_ORDER if kinds.get(k))
     rows = sorted(rows, key=lambda r: r["notified_on"], reverse=True)
     latest = rows[0]["notified_on"] if rows else ""
+    oldest = rows[-1]["notified_on"] if rows else ""
     body = f"""
 <h1>{esc(area)}の大型店の届出</h1>
-<p class="lead">{n_(len(rows))}件。最新の届出は{esc(jp_date(latest))}。</p>
+<p class="lead">{n_(len(rows))}件。最新の届出は{esc(jp_date(latest))}。収録は{esc(oldest[:4])}年から（収集先が公表している範囲。市区町村どうしで件数は比べられません）。</p>
 <div class="chips">{chips}</div>
 {table(rows, rel, show_area=False)}
 """
@@ -396,13 +402,18 @@ def about_page(src_meta, today):
     elif CONTACT_EMAIL:
         operator_rows += f'<dt>連絡先</dt><dd><a href="mailto:{esc(CONTACT_EMAIL)}">{esc(CONTACT_EMAIL)}</a></dd>\n'
     operator_rows += f'<dt>訂正履歴</dt><dd><a href="{rel}teisei.html">いつ・何を・なぜ直したか</a></dd>\n'
-    # 大阪府の移譲市町のうち、見に行っていないもの（町のページが見つからないなど）
-    off = sorted({m["name"].split()[0] for i, m in src_meta.items()
-                  if m.get("area") == "osaka" and not m.get("enabled") and i not in main_ids})
-    off_note = ""
-    if off:
-        off_note = (f"{'・'.join(esc(x) for x in off)}は、市町のページに届出の一覧が無い（府のページへの案内だけなど）ため対象外で、"
-                    f"府のページに載る分だけ拾っています。")
+    # 大阪府から権限移譲を受けた20市町のうち、見ている市町を数える（収集先の数ではなく市町の数）。
+    # 箕面市は2市2町（箕面・池田・豊能・能勢）の幹事で、池田市・豊能町・能勢町のぶんは箕面市の窓口の
+    # ページに載る（sources.json の minoh-2shi2cho）。吹田市・高槻市は移譲先ではなく府が受理する
+    # （sources.json の note）ので、この数には入れず、府のページから拾う
+    covered = set()
+    for i, m in src_meta.items():
+        if m.get("area") == "osaka" and m.get("enabled") and i not in main_ids:
+            covered.add(m["name"].split()[0])
+            covered |= set(WINDOW_COVERS.get(i, []))
+    covered -= NOT_DELEGATED
+    n_delegated = len(covered)
+    not_seen = sorted(DELEGATED_MISSING)
     body = f"""
 <h1>このサイトについて</h1>
 
@@ -419,12 +430,12 @@ def about_page(src_meta, today):
 <p>{esc(SITE_NAME)}は、大規模小売店舗立地法（大店立地法）にもとづいて自治体が公表している「届出」を毎朝1回とりに行き、
 店舗面積1,000㎡を超える大型店の新設・変更・廃止・承継を、届出が出た日に一覧にしているサイトです。
 自治体のページでは縦覧期間（4か月）が過ぎると消えてしまう届出も、このサイトには残しています。</p>
-<p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、そのうち{len(cities)}市町のページを見ています。{off_note}</p>
+<p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、そのうち{n_delegated}市町のページを見ています（池田市・豊能町・能勢町は、箕面市が2市2町の窓口として公表しているページで見ています）。{'・'.join(esc(x) for x in not_seen)}は届出のページが見つからないため、府のページに載る分だけ拾っています。吹田市・高槻市は移譲先ではなく府が受理するため、府のページから拾っています。</p>
 
 <h2>やらないと決めたこと</h2>
 <ul class="list">
 <li><b>設置者が個人のときは、氏名を「個人」と書き、所在地は町丁目までにしています。</b> 自治体のページは数か月で消えますが、このサイトは消えないので、氏名と地番を恒久的に結びつけないためです。法人は名称をそのまま載せます。</li>
-<li><b>人が住んでいる建物は、届出があっても個別のページにしません。</b></li>
+<li><b>載せるのは店舗の届出だけで、人の住まいそのものは対象に入りません。</b> 店舗の所在地は届出のとおり載せますが、設置者が個人のときは町丁目までにします。</li>
 <li><b>市区町村ごとの件数など、1〜2件の小さい数字は「1-2」と伏せています。</b> 個別の届出ページと突き合わせて特定できないようにするためです。</li>
 <li><b>大規模集客施設の基本計画書など、届出より前の段階の情報は扱いません。</b></li>
 <li><b>民間の団体や事業者がまとめた一覧は転載しません。</b> 載せるのは行政が法律にもとづいて公表した一次情報だけです。</li>
@@ -604,10 +615,14 @@ def index_page(all_recs, today):
     area_chips = "".join(f'<a href="a/{esc(slug(a))}.html">{esc(a)}<b>{n_(n)}</b></a>' for a, n in sorted(areas.items(), key=lambda x: -x[1]))
     kind_chips = "".join(f'<a href="k/{esc(k)}.html">{badge(k)} <b>{n_(kinds[k])}</b></a>' for k in KIND_ORDER if kinds.get(k))
     yrs = [r["notified_on"][:4] for r in all_recs if r.get("notified_on")]   # 件数と同じ母集団で数える
+    law_yrs = [r["notified_on"][:4] for r in all_recs if r.get("notified_on") and r["kind"] != "中規模"]
+    # 大店立地法は 2000 年施行。それより前の年は八尾市・堺市の条例による中規模の届出なので、その場に書く（3.3）
+    yr_note = (f"。{int(min(law_yrs)) - 1}年以前は市の条例による中規模の届出"
+               if law_yrs and min(yrs) < min(law_yrs) else "")
     body = f"""
 <h1>大阪・兵庫の大型店、これからの開店とこれまでの閉店</h1>
 <p class="lead">大規模小売店舗立地法の届出（店舗面積1,000㎡超）を、各自治体の公表ページから毎朝あつめています。届出は開店の8か月以上前に出るので、ニュースになる前に分かります。</p>
-<div class="stat"><div><b>{len(all_recs):,}</b><span>届出（{min(yrs)}〜{max(yrs)}年）</span></div><div><b>{kinds.get('新設',0)}</b><span>新設</span></div><div><b>{kinds.get('廃止',0)}</b><span>廃止</span></div><div><b>{len(areas)}</b><span>市区町村</span></div></div>
+<div class="stat"><div><b>{len(all_recs):,}</b><span>届出（{min(yrs)}〜{max(yrs)}年{yr_note}）</span></div><div><b>{kinds.get('新設',0)}</b><span>新設</span></div><div><b>{kinds.get('廃止',0)}</b><span>廃止</span></div><div><b>{len(areas)}</b><span>市区町村</span></div></div>
 <input class="q" id="q" type="search" placeholder="店名・市区町村でさがす（例：イオン、枚方市）" autocomplete="off"><ul class="list" id="hits"></ul>
 
 <h2>これから起きる予定（{len(future)}件）</h2>
@@ -624,7 +639,7 @@ def index_page(all_recs, today):
 {"<h2>自治体のページから消えた届出</h2><p class='lead'>縦覧期間（4か月）が終わって元のページには載らなくなったもの。ここには残ります。</p>" + table(gone, rel) if gone else ""}
 
 <h2>市区町村から</h2>
-<p class="lead">数字は届出の件数です（同じ店の変更の届出も1件ずつ数えます。店の数ではありません）。収録の始まりは市区町村ごとに違うので、市区町村どうしで比べられる数ではありません（大阪市は2000年から、神戸市は2019年から、大阪府の移譲市町は縦覧中のものから）。</p>
+<p class="lead">数字は届出の件数です（同じ店の変更の届出も1件ずつ数えます。店の数ではありません）。収録の始まりは市区町村ごとに違うので、市区町村どうしで比べられる数ではありません（各市区町村のページに「収録は何年から」を書いています）。</p>
 <div class="chips">{area_chips}</div>
 <p style="font-size:14px">兵庫県は届出のページに過去分が無いため、<a href="hyogo-koho.html">県公報の目録から数えた 2007 年からの推移</a>を別に載せています。</p>
 
