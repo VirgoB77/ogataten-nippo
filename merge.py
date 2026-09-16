@@ -471,20 +471,20 @@ def looks_like_address(raw):
 #   toyonaka-city     PDF 24本へのリンクがある（未取得）
 NO_NAME_ANYWHERE = {"yao-chukibo", "ibaraki-city"}
 
-# 知らない列（extra）の列名が、当事者の「名前そのもの」を指しているか。
-# 語で終わっているかを見る。「小売業者」「設置者」「代表者氏名」は当たり、
-# 「設置者対応」「変更理由」は当たらない（どちらも実物にある列名）。
-# 当たった列は、対応づけられなかっただけの当事者の欄なので、当事者と同じ規則を当てる
-EXTRA_PARTY_KEY = re.compile(
-    r"(氏名|名義|代表者|届出者|申請者|設置者|小売業者|事業者|所有者|世帯主)(名|氏名|等)?$")
+# 知らない列（extra）の列名が、当事者の「名前そのもの」を指しているかは
+# privacy.is_party_column が決める。parse.py と同じ判定を使う（監査で、
+# 同じ判定を別々に持っていて落とす記号が違い、「設置者（氏名）」が
+# merge 側だけすり抜けていた）
 # 文の中に伏せた氏名が混ざっていたときの書き方。どこまでが名前かは決められないので、
 # 値ごと伏せる。伏せたことは書く（3.1）
 EXTRA_NAME_HIDDEN = "（氏名が入っているため伏せています）"
-# 「代表者 架空花子」のように、値の頭に人を指す語があって、そのあとが名前1つのもの。
-# 区切り（空白か：）と「そのあとに空白が無いこと」の両方を求める。これが無いと
-# 「代表者変更のため」（実物に10件ある）まで名前と読んでしまう
+# 「代表者 架空花子」のように、値の頭に人を指す語があって、そのあとが名前のもの。
+# 区切り（空白か：）を必ず求める。これが無いと「代表者変更のため」
+# （実物に10件ある）まで名前と読んでしまう。名前の側は空白を含んでよい
+# （「架空 花子」。監査で、空白なしの1語しか拾えていなかった）
 EXTRA_NAME_HEAD = re.compile(
-    r"^(氏名|名義人?|代表者|届出者|申請者|設置者|所有者)\s*[:：]?[\s　]+([^\s　]+)$")
+    r"^(氏名|名義人?|代表者|代表取締役|取締役|届出者|申請者|設置者|所有者)"
+    r"(?:\s*[:：]\s*|[\s　]+)(.+)$")
 
 
 def apply_privacy(recs):
@@ -576,6 +576,9 @@ def apply_privacy(recs):
             known |= {squash_ws(r.get(f)) for f in PARTY_FIELDS + ("address", "store")}
             known |= {squash_ws(raw_addr), squash_ws(raw_store)}
             known.discard("")
+            # 「―」「なし」は名前の代わりに書かれている文言で、値そのものではない。
+            # 複製として消すと、その列があったことまで消える（監査で見つかった）
+            known = {v for v in known if not privacy.is_placeholder(v)}
             # 伏せた個人の氏名。extra の文の中に「代表者 ○○」の形で混ざることがある。
             # 2文字の姓は店名や法人名に偶然入りうるので、3文字以上だけを突き合わせる
             hidden_names = {squash_ws(raw_party.get(f)) for f, kind in kinds.items()
@@ -588,7 +591,7 @@ def apply_privacy(recs):
                     continue
                 if squash_ws(v) in known:            # 他の欄の複製。二重に持たない
                     del extra[k]
-                elif EXTRA_PARTY_KEY.search(squash_ws(k)):
+                elif privacy.is_party_column(k):
                     # 当事者の名前の列。列の対応づけから漏れていただけなので、
                     # 当事者の欄と同じ規則を当てる（法人はそのまま、個人は「個人」）
                     extra[k] = privacy.redact_name(v)
