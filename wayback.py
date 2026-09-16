@@ -29,7 +29,7 @@ RAW = os.path.join(HERE, "data", "raw")
 LEDGER = os.path.join(HERE, "data", "wayback")
 FILES = os.path.join(HERE, "data", "files")
 
-UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90               # Wayback は混んでいると遅い。40秒では時間切れが多かった
 MAX_PER_RUN = int(os.environ.get("WAYBACK_MAX", "24"))     # 全部合わせて1回にこれだけ

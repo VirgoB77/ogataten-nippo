@@ -2192,7 +2192,7 @@
   "key": "392436ad41e8",
   "operator_display": "平和不動産㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -3291,7 +3291,7 @@
   "key": "23180257abcb",
   "operator_display": "キリンエコー㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -5025,7 +5025,7 @@
   "key": "feaa7e2d5ffb",
   "operator_display": "大阪不動産㈲",
   "operator_kind": "corp",
-  "retailer_display": "（未定）",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -6089,7 +6089,7 @@
   "key": "7b4e099e2c24",
   "operator_display": "阪神電気鉄道㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "（未定）",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -8018,7 +8018,7 @@
   "key": "d5e08a255a43",
   "operator_display": "オリックス・リアルエステート㈱",
   "operator_kind": "corp",
-  "retailer_display": "（未定）",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -10371,7 +10371,7 @@
   "key": "0ddda078eb64",
   "operator_display": "西日本旅客鉄道㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -11857,7 +11857,7 @@
   "key": "fc2e4fb269ee",
   "operator_display": "みずほ信託銀行㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -12526,7 +12526,7 @@
   "key": "cf146f506cdc",
   "operator_display": "三菱UFJ信託銀行㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -12600,7 +12600,7 @@
   "key": "d7f6428599e3",
   "operator_display": "三井住友海上火災保険㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -12683,7 +12683,7 @@
   "key": "ff1af8804334",
   "operator_display": "㈱サンケイビル",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -13306,7 +13306,7 @@
   "key": "20e4bb6536ef",
   "operator_display": "三洋ホームズ㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -13681,7 +13681,7 @@
   "key": "f51928aa1459",
   "operator_display": "三井住友海上火災保険㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -13878,7 +13878,7 @@
   "key": "fc489a721836",
   "operator_display": "㈱近鉄百貨店",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -14113,7 +14113,7 @@
   "key": "adea2c38e498",
   "operator_display": "有限会社シャガール",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -14153,7 +14153,7 @@
   "key": "3805055eaef3",
   "operator_display": "㈱丸糸商店",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -14193,7 +14193,7 @@
   "key": "bb51da1a350e",
   "operator_display": "㈲武蔵野プロパティーズ",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -15450,7 +15450,7 @@
   "key": "61af17f8e837",
   "operator_display": "有限会社シャガール",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -16817,7 +16817,7 @@
   "key": "ac3d77d4ab16",
   "operator_display": "京阪電気鉄道株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -17294,7 +17294,7 @@
   "key": "6d7729f93fa4",
   "operator_display": "近畿日本鉄道㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -18547,7 +18547,7 @@
   "key": "c4f226822a94",
   "operator_display": "辰野株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -20490,7 +20490,7 @@
   "key": "1c25e99394bb",
   "operator_display": "ソクラテス特定目的会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -20658,7 +20658,7 @@
   "key": "8bb0fd20e371",
   "operator_display": "辰野株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -21031,7 +21031,7 @@
   "key": "83a815dc9769",
   "operator_display": "メックデベロップメント㈲　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -21070,7 +21070,7 @@
   "key": "b810cd121501",
   "operator_display": "三菱地所㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -23461,7 +23461,7 @@
   "key": "be5512b535c3",
   "operator_display": "岸本ビル㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -24057,7 +24057,7 @@
   "key": "c3763d8e9f43",
   "operator_display": "三菱地所㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -24347,7 +24347,7 @@
   "key": "1fe04aeeb193",
   "operator_display": "三菱地所㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -24386,7 +24386,7 @@
   "key": "dd51da1cb15e",
   "operator_display": "三菱地所㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -24425,7 +24425,7 @@
   "key": "e925781c35a9",
   "operator_display": "三菱地所㈱　ほか",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -27487,7 +27487,7 @@
   "key": "03c297e66dec",
   "operator_display": "ルックスビルディング㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -28743,7 +28743,7 @@
   "key": "0c7a96151f10",
   "operator_display": "㈲アールワン難波",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -30263,7 +30263,7 @@
   "key": "5ace31a546e5",
   "operator_display": "セイレイ興産㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -31593,7 +31593,7 @@
   "key": "46ca18767304",
   "operator_display": "東急不動産㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -33369,7 +33369,7 @@
   "key": "942307703b53",
   "operator_display": "㈱マルハン",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -37319,7 +37319,7 @@
   "key": "d352301eb257",
   "operator_display": "マントミビルディング㈱",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -41097,7 +41097,7 @@
   "key": "62ca487ae7aa",
   "operator_display": "特定目的会社ロンジヴィティ",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -46890,7 +46890,7 @@
   "key": "4e7badf290f9",
   "operator_display": "三菱地所㈱　他７者",
   "operator_kind": "corp",
-  "retailer_display": "（未定）",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -46926,7 +46926,7 @@
   "key": "bc60ac0474cd",
   "operator_display": "三菱地所㈱　他７者",
   "operator_kind": "corp",
-  "retailer_display": "（未定）",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -49700,7 +49700,7 @@
   "key": "d5964fa45494",
   "operator_display": "日本郵便株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -50627,7 +50627,7 @@
   "key": "ebda463f729f",
   "operator_display": "ヒューリック株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -52051,7 +52051,7 @@
   "key": "2af10d8c2e00",
   "operator_display": "ヒューリック株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -52092,7 +52092,7 @@
   "key": "86753cc21468",
   "operator_display": "ヒューリック株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -52629,7 +52629,7 @@
   "key": "02ecda023e70",
   "operator_display": "淀屋橋西地区市街地再開発組合",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -53481,7 +53481,7 @@
   "key": "407d39d29f81",
   "operator_display": "阪神電気鉄道株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -54436,7 +54436,7 @@
   "key": "df1c91663c9c",
   "operator_display": "公益社団法人2025年日本国際博覧会協会",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -56455,7 +56455,7 @@
   "key": "0051cdfc1889",
   "operator_display": "ヒューリック株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -58304,7 +58304,7 @@
   "key": "2686cb219b4a",
   "operator_display": "公益社団法人2025年日本国際博覧会協会",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -58957,7 +58957,7 @@
   "key": "d029874c7be5",
   "operator_display": "三菱商事都市開発株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {
@@ -59349,7 +59349,7 @@
   "key": "4c457099cb6c",
   "operator_display": "ヒューリック株式会社",
   "operator_kind": "corp",
-  "retailer_display": "未定",
+  "retailer_display": "",
   "retailer_kind": "individual"
  },
  {

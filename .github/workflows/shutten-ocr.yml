@@ -20,6 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # 監査で、このワークフローだけ検査を通さずに data/ocr をコミットしていた
+      - name: 検査する
+        run: python3 test_privacy.py
         with:
           ref: main
 

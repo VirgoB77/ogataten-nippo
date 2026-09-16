@@ -256,9 +256,109 @@ def test_public_urls():
             f"／{len(files)}ファイル（例 {files[0]}）")
 
 
+
+
+# ---------------------------------------------------------------- 監査で見つかった穴の見張り
+def test_late_name_is_still_redacted():
+    """伏せたあとに名前が入り直しても、privacy を通ること（merge.py のガードの穴）。
+
+    scrub 済みのレコード（operator は空、画面用は「個人」）に、OCR や収集先の
+    合流であとから氏名が入ると、以前は「もう伏せた」と判断して素通りし、
+    氏名が index 用の欄に残った。監査が架空名で再現した。ここでは架空名で守る。
+    """
+    import merge
+    rec = {"source": "osaka-city", "key": "demo",
+           "operator": "架空　太郎", "operator_display": "個人", "operator_kind": "individual",
+           "address": "大阪市北区梅田1-1-1"}
+    merge.apply_privacy([rec])
+    eq(rec["operator"], "", "あとから入った氏名は index 用の欄に残さない")
+    eq(rec["operator_display"], "個人", "画面用は「個人」のまま")
+    eq(rec["operator_kind"], "individual", "個人のまま")
+    # 逆に、あとから入ったのが法人名なら法人に直る（三菱UFJ信託銀行の件）
+    rec2 = {"source": "osaka-city", "key": "demo2",
+            "operator": "株式会社かきく", "operator_display": "個人", "operator_kind": "individual",
+            "address": "大阪市北区梅田1-1-1"}
+    merge.apply_privacy([rec2])
+    eq(rec2["operator_kind"], "corp", "あとから法人名が入ったら法人に直す")
+    eq(rec2["operator_display"], "株式会社かきく", "法人名は画面にそのまま")
+    eq(rec2.get("address_redacted"), None, "法人の地番は丸めない")
+    # 空のままなら「個人」の字が消えない（冪等）
+    rec3 = {"source": "osaka-city", "key": "demo3",
+            "operator": "", "operator_display": "個人", "operator_kind": "individual", "address": "大阪市北区梅田1丁目"}
+    merge.apply_privacy([rec3]); merge.apply_privacy([rec3])
+    eq(rec3["operator_display"], "個人", "空のレコードを何度通しても「個人」は消えない")
+
+
+_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def test_every_record_has_source():
+    """共通仕様 3.5：全レコードに source_url と fetched_on。監査で 4,790 件とも無かった。"""
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+    no_url = [r for r in recs if not str(r.get("source_url", "")).startswith("http")]
+    no_when = [r for r in recs if not _DATE.match(str(r.get("fetched_on", "")))]
+    from collections import Counter
+    if no_url:
+        c = Counter(r.get("source") for r in no_url)
+        fails.append(f"source_url が無い（またはURLでない）レコード {len(no_url)} 件: {dict(c.most_common(5))}")
+    if no_when:
+        c = Counter(r.get("source") for r in no_when)
+        fails.append(f"fetched_on が無い（または日付でない）レコード {len(no_when)} 件: {dict(c.most_common(5))}")
+
+
+# 件数を出している場所の形。ここに 1 か 2 がそのまま出ていたら 3.2 違反
+_RAW_SMALL = re.compile(
+    r"<b>[12]</b></a>"                 # チップ（市区町村・種別）
+    r"|<td class=\"n\">[12]</td>"       # 公報の表のセル
+    r"|<td class=\"n\"><b>[12]</b>"     # 公報の表の合計
+    r"|class=\"lead\">[12]件"           # 市区町村ページ・種別ページの先頭行
+    r"|届出[12]件。"                     # meta description
+    r"|(?:新設|廃止|変更)[12][・。]"      # meta description の内訳
+)
+
+
+def test_no_raw_small_counts_in_pages():
+    """共通仕様 3.2 の迂回検査：出来上がったページに 1〜2 件が実数で出ていないか。
+
+    監査で index のチップ13個・公報の表48セル・市区町村ページ多数に出ていた。
+    bucket_count() が一度も呼ばれていない死んだコードだった。
+    """
+    targets = [os.path.join(HERE, "index.html"), os.path.join(HERE, "hyogo-koho.html")]
+    targets += glob.glob(os.path.join(HERE, "a", "*.html")) + glob.glob(os.path.join(HERE, "k", "*.html"))
+    bad = []
+    for path in targets:
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            t = f.read()
+        n = len(_RAW_SMALL.findall(t))
+        if n:
+            bad.append((os.path.relpath(path, HERE), n))
+    if bad:
+        total = sum(n for _, n in bad)
+        fails.append(f"1〜2件が実数のまま出ている箇所 {total}（{len(bad)}ファイル。例 {bad[:3]}）。bucket_count を通すこと")
+
+
+def test_no_empty_fetch_date_in_pages():
+    """各届出ページの出典に取得日が入っているか。監査で 2,185 ページが「（URL、取得）」と空だった。"""
+    bad = 0
+    for path in glob.glob(os.path.join(HERE, "s", "*.html")):
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            if "、取得）" in f.read():
+                bad += 1
+    if bad:
+        fails.append(f"出典の取得日が空「、取得）」のページ {bad} 枚。fetched_on が届いていない")
+
+
 def main():
     for t in (test_is_corp, test_names, test_addr, test_small_numbers,
-              test_all_json, test_generated_pages, test_public_urls):
+              test_all_json, test_generated_pages, test_public_urls,
+              test_late_name_is_still_redacted, test_every_record_has_source,
+              test_no_raw_small_counts_in_pages, test_no_empty_fetch_date_in_pages):
         t()
     if fails:
         print(f"落ちた検査 {len(fails)} 件\n")
