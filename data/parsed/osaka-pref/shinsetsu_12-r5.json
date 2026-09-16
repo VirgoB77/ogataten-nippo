@@ -7047,7 +7047,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市北区中之島二丁目",
   "retailer_display": "佐竹食品株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7079,7 +7078,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "東大阪市下小阪二丁目",
   "retailer_display": "株式会社ライフコーポレーション",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7111,7 +7109,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "東京都品川区東五反田二丁目",
   "retailer_display": "株式会社コスモス薬品",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7143,7 +7140,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "堺市西区鳳東町四丁",
   "retailer_display": "コーナン商事株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7175,7 +7171,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市西成区花園南一丁目",
   "retailer_display": "イズミヤ株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7207,7 +7202,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "埼玉県さいたま市北区宮原町二丁目",
   "retailer_display": "株式会社しまむら",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7239,7 +7233,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市生野区小路東三丁目",
   "retailer_display": "株式会社万代",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7271,7 +7264,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "埼玉県本庄市早稲田の杜一丁目",
   "retailer_display": "株式会社カインズ",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7303,7 +7295,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市生野区小路東三丁目",
   "retailer_display": "株式会社万代",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7335,7 +7326,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市西区立売堀五丁目",
   "retailer_display": "株式会社光伸真珠",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7367,7 +7357,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市西成区花園南一丁目",
   "retailer_display": "イズミヤ株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7399,7 +7388,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "岡山県倉敷市堀南",
   "retailer_display": "大黒天物産株式会社",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7431,7 +7419,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市北区芝田二丁目",
   "retailer_display": "未定",
   "retailer_kind": "individual",
   "address_redacted": true
@@ -7463,7 +7450,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市淀川区西中島三丁目",
   "retailer_display": "株式会社ドン・キホーテ",
   "retailer_kind": "corp",
   "address_redacted": true
@@ -7495,7 +7481,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市北区角田町",
   "retailer_display": "未定",
   "retailer_kind": "individual",
   "address_redacted": true
@@ -7527,7 +7512,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "埼玉県本庄市早稲田の杜一丁目",
   "retailer_display": "株式会社カインズ",
   "retailer_kind": "corp",
   "address_redacted": true

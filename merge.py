@@ -240,7 +240,9 @@ def enrich_from_ocr(by_key, ocr):
                     val = tidy_ocr(o[okey])
                     # 「変更した事項」の行は様式の文言や氏名の変更（「設置者の氏名 ○○から△△へ」）が
                     # 混ざりうる。氏名・代表者に触れる行は使わない（privacy を通らない欄なので、入口で止める）
-                    if field == "content" and re.search(r"氏名|代表者", val):
+                    if field == "content" and (re.search(r"氏名|代表者", val) or ADDR_SHAPE.search(val)):
+                        # 「変更した事項」の次の行は、様式の文言・氏名の変更・住所が来ることがある。
+                        # content は privacy を通らない欄なので、入口で止める（3.1）
                         continue
                     r[field] = val
                     got.append(field)
@@ -386,7 +388,6 @@ ADDR_SHAPE = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|
 # 数字＋番だけだと「一番館」「二丁目食堂」「一番ヶ瀬」のような屋号・姓まで拾う。
 # 「氏名 住所」が1つの欄に入っているものは先頭が住所でないので拾わず、従来どおり「個人」に倒す
 ADDR_HEAD = re.compile(r"^(北海道|東京都|京都府|大阪府|[^\s]{2,3}県|[^\s]{1,6}(市|区|郡|町|村))")
-_BANCHI_LEFT = re.compile(r"[0-9０-９一二三四五六七八九十]+\s*(番地|番|号)")   # 丸めたあとに残っていてはいけないもの
 ADDR_IN_NAME_DISPLAY = "不詳（届出の一覧では設置者の欄に住所だけが書かれています）"   # 画面用。「個人」とは書かない
 
 
@@ -395,10 +396,9 @@ def looks_like_address(raw):
     return bool(raw) and bool(ADDR_HEAD.match(raw)) and bool(ADDR_SHAPE.search(raw)) and not privacy.is_corp(raw)
 
 
-def suspect_value(raw):
-    """記録用に残す値。町丁目まで丸め、それでも地番（漢数字の番地など）が残るなら何も残さない。"""
-    val = privacy.redact_addr(raw, "individual")
-    return "" if _BANCHI_LEFT.search(val) else val
+# 記録用に値そのものは残さない。ADDR_HEAD は「山田太郎大阪市…」のように
+# 氏名がくっついた値にも先頭から当たってしまい、丸めても氏名が残るため
+# （審査で見つかった）。どの行かは 収集先・ファイル・鍵・店舗 で引ける。
 
 # 設置者の名前が、その収集先の一次情報のどこにも無いことを確かめた収集先。
 # ここに入れると party_kind が undisclosed になり、所在地を丸めない（3.1）。
@@ -432,7 +432,7 @@ def apply_privacy(recs):
                 # 欄そのものが無い。収集先をまたいでまとめたときに運ばれてきた古い印
                 # （_kind / _display / _suspect）だけが残っていることがあるので、捨てる。
                 # 印だけ残ると、当事者のいない記録に undisclosed や individual が付く
-                for k in ("_kind", "_display", "_suspect", "_suspect_value"):
+                for k in ("_kind", "_display", "_suspect", "_suspect_value"):   # _suspect_value は古い版の名残
                     r.pop(f + k, None)
                 continue
             if r.get(f + "_display") and not (raw or "").strip():
@@ -469,7 +469,6 @@ def apply_privacy(recs):
                 # 画面に「個人」と書くと事実と違うので、そう書かずに理由を書く。記録にも残す（5節）。
                 # 記録用の値は町丁目まで。地番が残る形（漢数字の番地）なら値は残さない
                 r[f + "_suspect"] = "address"
-                r[f + "_suspect_value"] = suspect_value(raw)
                 r[f + "_display"] = ADDR_IN_NAME_DISPLAY
 
         # 所在地を丸めるかどうかは「設置者」で決める。小売業者は店舗の
@@ -485,6 +484,24 @@ def apply_privacy(recs):
         # 印は毎回つけ直す。収集先をまたいでまとめるときに、丸めた記録の印だけが
         # 法人の記録に移ることがある。前回の印を残すと、法人の地番に
         # 「個人のため丸めた」と書いてしまう
+        # 知らない列（extra）は privacy を通らないまま公開されていた。
+        # 表の結合セル（colspan）で他の欄の値がそのまま複製されることがあり、
+        # 住所の列が見出しの書き方の違いで address に入らないこともある（3.1）
+        extra = r.get("extra")
+        if isinstance(extra, dict):
+            known = {(r.get(f) or "").strip() for f in PARTY_FIELDS + ("address", "store")}
+            known.discard("")
+            for k in list(extra):
+                v = str(extra[k] or "").strip()
+                if not v:
+                    continue
+                if v in known:                       # 他の欄の複製。二重に持たない
+                    del extra[k]
+                elif ADDR_SHAPE.search(v) and not privacy.is_corp(v):
+                    extra[k] = privacy.redact_addr(v, "individual")
+            if not extra:
+                r.pop("extra", None)
+
         r.pop("address_redacted", None)
         if round_it:
             r["address"] = privacy.redact_addr(r.get("address") or "", "individual")
@@ -503,8 +520,7 @@ def write_suspects(recs):
     印（_suspect）は記録に付いているので、ここでは記録から拾う。検出は値が入っている
     最初の1回だけだが、印と丸めた値は伏せたあとも残るので、2回目以降も一覧に出る。
     """
-    SUSPECTS = sorted({(r.get("source", ""), r.get("file") or "", r.get("key", ""), r.get("store", ""),
-                        r.get(f + "_suspect_value", ""))
+    SUSPECTS = sorted({(r.get("source", ""), r.get("file") or "", r.get("key", ""), r.get("store", ""))
                        for r in recs for f in PARTY_FIELDS if r.get(f + "_suspect") == "address"})
     try:
         with open(UNKNOWN_MD, encoding="utf-8") as f:
@@ -515,10 +531,11 @@ def write_suspects(recs):
     text = re.sub(re.escape(SUSPECT_HEAD) + r".*?(?=\n## |\Z)", "", text, flags=re.S).rstrip("\n") + "\n"
     if SUSPECTS:
         lines = ["", SUSPECT_HEAD, "",
-                 f"{len(SUSPECTS)} 件。個人として伏せてあるが、列ずれの疑いがある。値は町丁目まで丸めてある。", "",
-                 "| 収集先 | ファイル | 鍵 | 店舗 | 値（丸めたもの） |", "|---|---|---|---|---|"]
-        for src, fn, key, store, val in SUSPECTS:
-            lines.append(f"| {src} | {fn} | {key} | {store} | {val} |")
+                 f"{len(SUSPECTS)} 件。個人として伏せてある。値は載せない"
+                 "（住所の前に氏名が付いていることがあるため。元の表で確かめる）。", "",
+                 "| 収集先 | ファイル | 鍵 | 店舗 |", "|---|---|---|---|"]
+        for src, fn, key, store in SUSPECTS:
+            lines.append(f"| {src} | {fn} | {key} | {store} |")
         text += "\n".join(lines) + "\n"
     os.makedirs(os.path.dirname(UNKNOWN_MD), exist_ok=True)
     with open(UNKNOWN_MD, "w", encoding="utf-8") as f:
