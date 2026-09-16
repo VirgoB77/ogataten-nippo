@@ -3941,10 +3941,10 @@
   "review_from": "2026-06-17",
   "review_to": "2026-10-16",
   "meeting": "令和8年7月9日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
+  "city_opinion": "－",
   "extra": {
    "店舗所在地": "泉南市信達岡中777",
    "市民等の意見提出期限": "令和8年10月16日",
-   "市の意見": "－",
    "意見の縦覧期間": "－"
   },
   "new_operator_kind": "individual",
@@ -3997,10 +3997,10 @@
   "review_from": "2026-06-17",
   "review_to": "2026-10-16",
   "meeting": "令和8年7月24日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
+  "city_opinion": "－",
   "extra": {
    "店舗所在地": "泉南市幡代三丁目154-1 付近",
    "市民等の意見提出期限": "令和8年10月16日",
-   "市の意見": "－",
    "意見の縦覧期間": "－"
   },
   "new_operator_kind": "individual",
@@ -6067,7 +6067,7 @@
   "close_time": "20：45",
   "pref_opinion": "",
   "pref_recommendation": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "recommendation": "",
   "note": "2449",
   "key": "abfaed4ffbeb",
@@ -6083,9 +6083,6 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou202605121431.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "new_operator_kind": "individual",
   "sources": [
    "kadoma-city",
@@ -6895,15 +6892,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyo202603301310.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "c3e9b8a950c8",
   "operator_display": "",
@@ -7999,15 +7993,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202603031708.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "84c14ddcb74b",
   "operator_display": "",
@@ -8764,15 +8755,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202601261406.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "30ce0d5a137d",
   "operator_display": "三井不動産(株)",
@@ -12205,7 +12193,7 @@
   "close_time": "",
   "pref_opinion": "",
   "pref_recommendation": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "recommendation": "",
   "note": "25279",
   "key": "cadbc12432ea",
@@ -12221,9 +12209,6 @@
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou62202511251601.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "new_operator_kind": "individual",
   "sources": [
    "kadoma-city",
@@ -12252,15 +12237,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou61202511251606.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "8d6948ef9209",
   "operator_display": "(株)サンエイト",
@@ -18325,15 +18307,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou202506271417.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "5498b83eadfa",
   "operator_display": "(株)サンコオア",
@@ -18870,12 +18849,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "291c33f03f73",
   "operator_display": "",
@@ -18908,12 +18884,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "cf5d157c8051",
   "operator_display": "",
@@ -23608,15 +23581,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202502251338.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "bd054293d553",
   "operator_display": "大和リース(株)",
@@ -23717,9 +23687,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和7年1月30日",
-  "extra": {
-   "市の意見": "なし"
-  },
+  "city_opinion": "なし",
   "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
@@ -30574,15 +30542,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202408201542.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "daf964f86bbb",
   "operator_display": "関電不動産開発（株）",
@@ -31100,15 +31065,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyo292408071600.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "e1ce279cb092",
   "operator_display": "（株）関西スーパーマーケット",
@@ -32344,9 +32306,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年6月21日",
-  "extra": {
-   "市の意見": "なし"
-  },
+  "city_opinion": "なし",
   "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
@@ -35669,9 +35629,7 @@
   "mode": "snapshot",
   "listed": true,
   "notified_raw": "令和6年4月8日",
-  "extra": {
-   "市の意見": "なし"
-  },
+  "city_opinion": "なし",
   "new_operator_kind": "undisclosed",
   "sources": [
    "ibaraki-city",
@@ -38521,15 +38479,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou20231204.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "2dd8fba232f4",
   "operator_display": "",
@@ -39345,16 +39300,13 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "意見概要(PDFファイル:107.2KB)",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202311081103.pdf",
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyo202403181803.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "意見概要(PDFファイル:107.2KB)"
-  },
   "source": "kadoma-city",
   "key": "5422f3600f37",
   "operator_display": "",
@@ -39388,13 +39340,12 @@
   "review_to": null,
   "meeting": "令和5年11月13日午後7時から 郡川会館（郡川5丁目181番地）",
   "citizen_opinion": "無し",
-  "city_opinion": "",
+  "city_opinion": "令和6年6月24日",
   "note": "",
   "docs": [],
   "extra": {
    "No.": "1",
-   "審議会": "令和6年6月7日（金曜）午後4時00分から八尾市立中小企業サポートセンター 多目的室にて",
-   "市の意見（通知日）": "令和6年6月24日"
+   "審議会": "令和6年6月7日（金曜）午後4時00分から八尾市立中小企業サポートセンター 多目的室にて"
   },
   "source": "yao-city",
   "key": "2787984cdadf",
@@ -40723,12 +40674,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "06ebb370821a",
   "operator_display": "",
@@ -41887,13 +41835,12 @@
   "review_to": null,
   "meeting": "令和5年9月21日午後7時から 大正コミュニティセンター（八尾市若林町三丁目27番地）",
   "citizen_opinion": "無し",
-  "city_opinion": "",
+  "city_opinion": "令和6年2月26日",
   "note": "",
   "docs": [],
   "extra": {
    "No.": "2",
-   "審議会": "令和6年2月6日（火曜）午前9時30分から八尾市立中小企業サポートセンター 多目的室にて",
-   "市の意見（通知日）": "令和6年2月26日"
+   "審議会": "令和6年2月6日（火曜）午前9時30分から八尾市立中小企業サポートセンター 多目的室にて"
   },
   "source": "yao-city",
   "key": "55c498b40a6c",
@@ -42459,15 +42406,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/gaiyou20230728.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "7485f011e83b",
   "operator_display": "",
@@ -42501,12 +42445,9 @@
   "review_to": "2023-12-15",
   "meeting": "掲示による説明",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "93af4914398c",
   "operator_display": "",
@@ -42540,12 +42481,9 @@
   "review_to": "2023-12-15",
   "meeting": "",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "7f69983caf71",
   "operator_display": "",
@@ -42990,13 +42928,12 @@
   "review_to": null,
   "meeting": "令和5年8月10日午後7時から 上尾町集会所（上尾町一丁目3－2）",
   "citizen_opinion": "無し",
-  "city_opinion": "",
+  "city_opinion": "令和6年2月21日",
   "note": "",
   "docs": [],
   "extra": {
    "No.": "1",
-   "審議会": "令和6年2月6日（火曜）午前9時30分から八尾市立中小企業サポートセンター 多目的室にて",
-   "市の意見（通知日）": "令和6年2月21日"
+   "審議会": "令和6年2月6日（火曜）午前9時30分から八尾市立中小企業サポートセンター 多目的室にて"
   },
   "source": "yao-city",
   "key": "a5b21812ec44",
@@ -43870,15 +43807,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou202306200924.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "60bb85806246",
   "operator_display": "",
@@ -45995,12 +45929,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "d0c94077c287",
   "operator_display": "",
@@ -46603,12 +46534,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "a331c952d3f1",
   "operator_display": "",
@@ -47276,15 +47204,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/20221227_6-2_sankooa.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "4f46a146cc1e",
   "operator_display": "",
@@ -47783,15 +47708,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokede01061004.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "2bc121f4cc35",
   "operator_display": "",
@@ -50588,15 +50510,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/edion_6-1_gaiyou.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "8150425fba71",
   "operator_display": "",
@@ -55881,16 +55800,13 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "意見概要(PDFファイル:59.9KB)",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/todokedegaiyou_kadomamatsuotyokeikaku.pdf",
    "https://www.city.kadoma.osaka.jp/material/files/group/14/ikengaiyou_kadomamatsuotyokeikaku.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "意見概要(PDFファイル:59.9KB)"
-  },
   "source": "kadoma-city",
   "key": "948caa4718ba",
   "operator_display": "",
@@ -56444,12 +56360,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "60664397d45f",
   "operator_display": "",
@@ -57076,12 +56989,9 @@
   "review_to": "2022-05-31",
   "meeting": "掲示による説明",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "6f1cf9bffc11",
   "operator_display": "",
@@ -62950,15 +62860,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/daitengaiyou_furesupokadomaminami.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "feb3a701218f",
   "operator_display": "",
@@ -63962,12 +63869,9 @@
   "review_to": "2021-08-16",
   "meeting": "",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "bc8c1c2ed43a",
   "operator_display": "",
@@ -66301,12 +66205,9 @@
   "review_to": "2021-04-27",
   "meeting": "令和3年1月14日（木曜日）19時 阪南市立文化センター（サラダホール）",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "ad798c0ff54c",
   "operator_display": "",
@@ -69231,15 +69132,12 @@
   "review_from": null,
   "review_to": null,
   "meeting": "",
-  "citizen_opinion": "",
+  "citizen_opinion": "なし",
   "city_opinion": "",
   "note": "",
   "docs": [
    "https://www.city.kadoma.osaka.jp/material/files/group/14/20200803_lifekadoma.pdf"
   ],
-  "extra": {
-   "市町村、住民等の意見の概要": "なし"
-  },
   "source": "kadoma-city",
   "key": "2951325f0a03",
   "operator_display": "",
@@ -71876,12 +71774,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "9383e4887a52",
   "operator_display": "",
@@ -72262,12 +72157,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "92bbe99c184b",
   "operator_display": "",
@@ -76402,12 +76294,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "6dfe9ba96c43",
   "operator_display": "",
@@ -80490,12 +80379,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "792e5f3260c5",
   "operator_display": "",
@@ -83790,12 +83676,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "1c86ea3c91b5",
   "operator_display": "",
@@ -87875,12 +87758,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "5ecb702c5b49",
   "operator_display": "",
@@ -88255,12 +88135,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "972d533e5b85",
   "operator_display": "",
@@ -90740,12 +90617,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "-",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "-"
-  },
   "source": "ibaraki-city",
   "key": "d599acc8cd63",
   "operator_display": "",
@@ -97329,12 +97203,9 @@
   "review_to": "2017-07-07",
   "meeting": "",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "3b902d7f6609",
   "operator_display": "",
@@ -97441,12 +97312,9 @@
   "review_to": "2017-06-22",
   "meeting": "平成29年4月11日（火曜日）19時～20時 箱の浦東住民センター（阪南市箱の浦1-76）",
   "citizen_opinion": "なし",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "hannan-city",
   "key": "92aaa0574277",
   "operator_display": "",
@@ -116999,12 +116867,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "4f2d0c184a1a",
   "operator_display": "",
@@ -126388,12 +126253,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "d8c4f3fe0065",
   "operator_display": "",
@@ -131222,12 +131084,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "908892465f8e",
   "operator_display": "",
@@ -131395,12 +131254,9 @@
   "review_to": null,
   "meeting": "",
   "citizen_opinion": "",
-  "city_opinion": "",
+  "city_opinion": "なし",
   "note": "",
   "docs": [],
-  "extra": {
-   "市の意見": "なし"
-  },
   "source": "ibaraki-city",
   "key": "c46fa61e430d",
   "operator_display": "",
