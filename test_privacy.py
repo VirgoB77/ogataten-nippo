@@ -690,6 +690,91 @@ def test_excel_fetched_on_is_download_day():
               "data/files/fetched.json にその Excel の行があるか見る（3.5）")
 
 
+def test_koho_extra_issues():
+    """号外を取る：目録の番号の揃え方、月ページの見出しの読み方、ファイル名、追いついたら月2回（3.4）。"""
+    import koho
+    from datetime import date as _d
+    k = _load_koho()
+    eq(koho.norm_issue_no("423"), "423", "定期号はそのまま")
+    eq(koho.norm_issue_no("号外"), "g1", "「号外」は g1")
+    eq(koho.norm_issue_no("第2号外"), "g2", "「第2号外」は g2")
+    eq(koho.norm_issue_no("第１２号外"), "g12", "全角の数字も読む")
+    eq(koho.norm_issue_no("-"), "", "欠番は空")
+    eq(k.issue_no_of_label("12月19日第679号"), (12, 19, "679"), "定期号の見出し")
+    eq(k.issue_no_of_label("12月1日号外"), (12, 1, "g1"), "号外の見出し")
+    eq(k.issue_no_of_label("12月3日第2号外"), (12, 3, "g2"), "第2号外の見出し（第2号と読み違えない）")
+    eq(k.issue_no_of_label("12月3日号外第2号"), (12, 3, "g2"), "「号外第2号」の順でも第2号外")
+    eq(k.issue_no_of_label("１２月１９日第６７９号"), (12, 19, "679"), "全角の数字も半角にして読む")
+    eq(k.issue_no_of_label("12月19日 第679号"), (12, 19, "679"), "空白が入っていても読む")
+    eq(k.issue_no_of_label("12月19日第679号PDF（250KB）"), (12, 19, "679"), "うしろに何か付いていても読む")
+    eq(k.issue_no_of_label("目次"), None, "見出しでないものは None")
+    eq(k.issue_no_of_label("12月の公報"), None, "日が無いものは None")
+    eq(k.stem_of({"date": "2025-12-19", "no": "g2"}), "2025-12-19-g2", "号外のファイル名")
+    # 書いた名前を読み返せること（書く側だけ号外に直して、読む側が取り残されていた）
+    import tempfile
+    d = tempfile.mkdtemp()
+    for no in ("679", "g1", "g2", "g39"):
+        name = k.stem_of({"date": "2025-12-19", "no": no}) + ".txt"
+        with open(os.path.join(d, name), "w", encoding="utf-8") as f:
+            f.write("# https://example.test/a.pdf\n")
+        eq(k.parse_text_file(os.path.join(d, name)) is not None, True, f"{name} を読み返せる")
+    with open(os.path.join(d, "へんな名前.txt"), "w", encoding="utf-8") as f:
+        f.write("# x\n")
+    eq(k.parse_text_file(os.path.join(d, "へんな名前.txt")), None, "読めない名前は None（落ちない）")
+    # 号外は通し番号ではないので、年ずれの復旧を当てない
+    eq(k.find_in_neighbor_year("2025-12-19", "g2", {}, []), (None, None), "号外に年ずれ復旧を当てない")
+    eq(k.no_label("679"), "第679号", "人が読む文（定期号）")
+    eq(k.no_label("g1"), "号外", "人が読む文")
+    eq(k.no_label("g2"), "第2号外", "人が読む文")
+    eq(k.fetch_today(500, _d(2026, 9, 20)), True, "積み直しの間は毎日")
+    eq(k.fetch_today(5, _d(2026, 9, 20)), False, "追いついたら 1日・15日以外は取りに行かない")
+    eq(k.fetch_today(5, _d(2026, 10, 1)), True, "追いついても 1日は取りに行く")
+    eq(k.fetch_today(5, _d(2026, 9, 20), force=True), True, "手で押したときは取りに行く")
+    # 号外は日ごとに番号が振り直されるので、発行日のまとめ直し（年ずれの復旧）の対象にしない
+    fixed, merged = koho.merge_issue_dates({
+        "2025-01-10#g1": {"date": "2025-01-10", "no": "g1", "titles": 1, "topics": {}},
+        "2025-02-10#g1": {"date": "2025-02-10", "no": "g1", "titles": 1, "topics": {}},
+        "2025-01-10#423": {"date": "2025-01-10", "no": "423", "titles": 3, "topics": {}},
+        "2026-01-10#423": {"date": "2026-01-10", "no": "423", "titles": 1, "topics": {}},
+    })
+    eq(sorted(fixed), ["2025-01-10#423", "2025-01-10#g1", "2025-02-10#g1"], "号外は別々のまま、定期号の年ずれはまとまる")
+    eq(len(merged), 1, "まとめたのは定期号の1件だけ")
+
+
+def test_parsed_is_scrubbed():
+    """5節：data/parsed も公開するので、伏せ処理を通っていること。
+
+    apply_privacy は何度通しても同じ（冪等）なので、もう一度通して値が変わるなら
+    その日ごとのファイルは伏せ処理を通っていない。生成物だけ手で作り直して
+    commit した日に、地番が公開側に戻るのを止める。
+    """
+    import copy
+    import merge
+    paths = sorted(glob.glob(os.path.join(HERE, "data", "parsed", "*", "*.json")))
+    if not paths:
+        return
+    bad = Counter()
+    for p in paths:
+        with open(p, encoding="utf-8") as f:
+            try:
+                recs = json.load(f)
+            except Exception:
+                continue
+        if not isinstance(recs, list):
+            continue
+        for r in recs:
+            if not isinstance(r, dict):
+                continue
+            again = copy.deepcopy(r)
+            merge.apply_privacy([again])
+            if again != r:
+                bad[os.path.relpath(p, HERE)] += 1
+    for k_, v in bad.most_common(5):
+        fails.append(f"data/parsed が伏せ処理を通っていない: {k_} で {v} 件（merge.py を通してから commit する）")
+    if len(bad) > 5:
+        fails.append(f"…ほか {len(bad) - 5} ファイル")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]

@@ -21,6 +21,7 @@ koho.py が目録から拾った公告には（発行日, 公報番号）が付�
 
 姉妹サイトへ：全文はここから読める。兵庫県のサーバーには触らないこと。
   https://raw.githubusercontent.com/VirgoB77/ogataten-nippo/main/data/koho/full/<日付>-<号>.txt.gz
+  号外は <日付>-g<n>.txt.gz（「号外」が g1、「第2号外」が g2。本体 PDF の名前 20251219g2.pdf と同じ数え方）
   号の一覧は data/koho/issues.json（status が done のものが取得済み）。
 
 使い方: python3 shutten/koho_pdf.py
@@ -61,6 +62,46 @@ WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024
 MAX_ISSUES = int(os.environ.get("KOHO_MAX", "40"))
+# 追いついたら月2回（共通仕様3.4）。過去分の積み直しの間だけ毎日。未読がこれ以下なら「追いついた」
+CATCH_UP = 20                 # 週2回の発行 × 半月ぶん
+FETCH_DAYS = (1, 15)          # 追いついたあとに取りに行く日
+# 月ページの控えの版。2 は号外（「M月D日号外」「M月D日第N号外」）も読むようになった版。
+# 古い版の控えは、1回の実行につき MONTH_REFRESH_MAX 月まで取り直す（相手のサーバーに一気に行かない）
+MONTH_CACHE_V = 2
+MONTH_REFRESH_MAX = int(os.environ.get("KOHO_MONTH_REFRESH", "40"))
+_month_refreshed = 0
+_asked = 0            # 今回、県のサーバーに出した要求の数（月ページも本体PDFも数える）
+# 月ページの見出し。「12月19日第679号」「12月1日号外」「12月3日第2号外」「12月3日号外第2号」。
+# 「第2号外」を「第2号」と読み違えないよう、号のあとに「外」が続くものは号外に回す
+LABEL = re.compile(r"(\d{1,2})月(\d{1,2})日(?:第(\d+)号(?!外)|(?:第(\d+))?号外(?:第(\d+)号)?)")
+
+
+def issue_no_of_label(lab):
+    """月ページの見出し → (月, 日, 号)。号外は 'g1', 'g2' …。読めなければ None。
+
+    全角の数字と空白は squash で先に直す（呼び出し側で直し忘れても同じに読めるように）。
+    """
+    m = LABEL.match(squash(lab))
+    if not m:
+        return None
+    no = m.group(3) if m.group(3) else f"g{m.group(4) or m.group(5) or 1}"
+    return (int(m.group(1)), int(m.group(2)), no)
+
+
+def no_label(no):
+    """'679' → '第679号'、'g1' → '号外'、'g2' → '第2号外'（人が読む文のため）。"""
+    no = str(no)
+    if no.startswith("g"):
+        n = no[1:]
+        return "号外" if n == "1" else f"第{n}号外"
+    return f"第{no}号"
+
+
+def fetch_today(backlog, today, force=False):
+    """今日、県のサーバーに取りに行くか。積み直しの間（未読が多い間）は毎日、追いついたら月2回。"""
+    if force or backlog > CATCH_UP:
+        return True
+    return today.day in FETCH_DAYS
 FIRST_MONTH = (2007, 1)          # 月別一覧の最初のリンクが指す月
 # 保存の仕方が変わったら上げる。台帳の v がこれより古い号は取り直す。
 #   1 … 大店立地法の抜粋だけ残していた頃
@@ -116,14 +157,25 @@ def month_index():
 
 
 def month_links(ym, url, lines):
-    """月ページの「M月D日第N号」→ PDF の URL の対応。控えがあればそれを使う。"""
+    """月ページの「M月D日第N号」「M月D日号外」→ PDF の URL の対応。控えがあればそれを使う。
+
+    控えが古い版（号外を読んでいない）なら、1回の実行で MONTH_REFRESH_MAX 月まで取り直す。
+    上限を超えた月は古い控えのまま返す（定期号は引ける。号外は次回以降）。
+    """
+    global _month_refreshed, _asked
     os.makedirs(MONTHS, exist_ok=True)
     cache = os.path.join(MONTHS, f"{ym}.json")
+    old = None
     if os.path.exists(cache):
         with open(cache, encoding="utf-8") as f:
-            return json.load(f)
+            old = json.load(f)
+        if old.get("_v") == MONTH_CACHE_V:
+            return old
+        if _month_refreshed >= MONTH_REFRESH_MAX:
+            return old                   # 今回の取り直しの上限。古い控え（定期号だけ）で進む
     if ym in _month_failed:
-        return None                      # この実行で一度取れなかった月は、もう叩かない
+        return old                       # この実行で一度取れなかった月は、もう叩かない
+    _asked += 1                          # ここから県のサーバーに出す
     try:
         html_ = get(url, limit=2_000_000).decode("utf-8", errors="replace")
     except (urllib.error.URLError, urllib.error.HTTPError, OSError, ValueError) as e:
@@ -132,14 +184,25 @@ def month_links(ym, url, lines):
         time.sleep(WAIT)                 # 失敗でも要求は出している。次まで5秒あける
         if is_busy(e):
             raise                        # 混んでいるなら、その回は中止（呼び出し側で止める）
-        return None
+        return old
     time.sleep(WAIT)
-    out = {}
+    if old is not None:
+        _month_refreshed += 1
+    out = {"_v": MONTH_CACHE_V}
     for href, label in re.findall(r'<a[^>]+href="([^"]+\.pdf)"[^>]*>(.*?)</a>', html_, re.S | re.I):
-        lab = squash(re.sub(r"<[^>]+>", "", label))
-        m = re.match(r"(\d{1,2})月(\d{1,2})日第(\d+)号", lab)
-        if m:
-            out[f"{int(m.group(1))}-{int(m.group(2))}-{m.group(3)}"] = urllib.parse.urljoin(HOST, href)
+        k = issue_no_of_label(re.sub(r"<[^>]+>", "", label))
+        if k:
+            out[f"{k[0]}-{k[1]}-{k[2]}"] = urllib.parse.urljoin(HOST, href)
+    # 取り直しで定期号が減っていたら、県のページの作りが変わった疑い。古い控えを残す。
+    # 減ったまま新しい版として書くと、その月の号が全部「月ページに号が無い」になり、
+    # 版が新しいので二度と取り直さない（直らなくなる）
+    if old is not None:
+        old_n = sum(1 for k in old if k != "_v" and not k.rsplit("-", 1)[-1].startswith("g"))
+        new_n = sum(1 for k in out if k != "_v" and not k.rsplit("-", 1)[-1].startswith("g"))
+        if new_n < old_n:
+            lines.append(f"  - 月ページの定期号が {old_n} → {new_n} に減った {ym}。"
+                         "ページの作りが変わったかもしれない。古い控えのままにする")
+            return old
     with open(cache, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=0)
     return out
@@ -364,11 +427,17 @@ def parse_section(kind, lines, issue):
     return rec
 
 
+# 文字ファイルの名前 <日付>-<号>.txt。号外は <日付>-g<n>.txt（stem_of と同じ形）
+TEXT_NAME = re.compile(r"(\d{4}-\d{2}-\d{2})-(\d+|g\d+)\.txt$")
+
+
 def parse_text_file(path):
-    """data/koho/text の 1 ファイル（1 号ぶん）から記録を返す。"""
+    """data/koho/text の 1 ファイル（1 号ぶん）から記録を返す。名前が読めなければ None。"""
+    m = TEXT_NAME.match(os.path.basename(path))
+    if not m:
+        return None                                # 呼び出し側が記録に残す（共通仕様9節）
     with open(path, encoding="utf-8") as f:
         text = f.read()
-    m = re.match(r"(\d{4}-\d{2}-\d{2})-(\d+)\.txt$", os.path.basename(path))
     issue = {"date": m.group(1), "no": m.group(2), "url": ""}
     first = text.split("\n", 1)[0]
     if first.startswith("# "):                     # 1 行目に PDF の URL を書いてある
@@ -513,6 +582,8 @@ def save_ledger(ledger):
 
 
 def main():
+    global _asked
+    _asked = 0
     lines = ["# 兵庫県公報の本体から読んだ大店立地法の公告", ""]
     fetched = 0
     if os.path.exists(ISSUES) and shutil.which("pdftotext"):
@@ -529,9 +600,17 @@ def main():
                      f"月別一覧 {len(index)} か月")
         todo = [k for k in sorted(issues, reverse=True) if needs_fetch(f"{k[0]}#{k[1]}", ledger)]
         again = sum(1 for k in todo if f"{k[0]}#{k[1]}" in ledger)
-        lines.append(f"- 未読の号 {len(todo)}（うち全文を残す前に取った取り直し {again} 号）。"
-                     f"今回は新しいほうから {MAX_ISSUES} 号まで")
+        # 積み直しが済んだかは「まだ一度も見ていない号」で見る。恒久失敗の確かめ直し
+        # （月ページに号が無い等。30日に1回）は県のサーバーに行かないので、数に入れない
+        fresh = sum(1 for k in todo if f"{k[0]}#{k[1]}" not in ledger)
+        lines.append(f"- 未読の号 {len(todo)}（まだ一度も見ていない {fresh}／"
+                     f"全文を残す前に取った取り直し {again}）。今回は県に {MAX_ISSUES} 回まで行く")
         today = date.today().isoformat()
+        # 追いついたら月2回（共通仕様3.4）。過去分の積み直しの間だけ毎日。手で押したときは行く
+        if todo and not fetch_today(fresh, date.today(), bool(os.environ.get("KOHO_ANYDAY"))):
+            lines.append(f"- まだ見ていない号が {fresh} で追いついている。公報は月2回"
+                         f"（{FETCH_DAYS[0]}日・{FETCH_DAYS[1]}日）だけ取りに行く（共通仕様3.4）。今日は取りに行かない")
+            todo = []
         ok, why = check_robots(HOST + "/")
         if ok is None:
             lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
@@ -540,43 +619,51 @@ def main():
             lines.append(f"- {why}。取りに行かない（共通仕様3.4）")
             todo = []
         try:
-            for (d, no) in todo[:MAX_ISSUES]:
+            for (d, no) in todo:
+                # 枠は「県のサーバーに出した要求の数」で数える（月ページも本体PDFも）。
+                # 月ページに号が無いと分かっただけの号は控えを見ただけなので枠を使わない
+                if _asked >= MAX_ISSUES:
+                    lines.append(f"- 今回の {MAX_ISSUES} 回を使い切った。残りは次回")
+                    break
                 key = f"{d}#{no}"
                 ym = d[:7]
                 murl = index.get(ym)
                 if not murl:
                     ledger[key] = {"status": "月ページが一覧に無い", "when": today}
-                    save_ledger(ledger)
                     continue
                 links = month_links(ym, murl, lines)
                 if links is None:
                     continue
+                if str(no).startswith("g") and links.get("_v") != MONTH_CACHE_V:
+                    # 号外は新しい版の控えでないと引けない。台帳には書かず、次回以降に回す
+                    continue
                 y, m, dd = d.split("-")
                 url = links.get(f"{int(m)}-{int(dd)}-{no}")
                 issue_date = d
-                if not url:
-                    # 目録の年が1年ずれていないか、前後1年の同じ月日で探す
+                if not url and not str(no).startswith("g"):
+                    # 目録の年が1年ずれていないか、前後1年の同じ月日で探す。
+                    # 号外は日ごとに1から振り直されるので、同じ月日の号外は別物。当てない
                     d2, url2 = find_in_neighbor_year(d, no, index, lines)
                     if url2:
                         url, issue_date = url2, d2
-                        lines.append(f"  - {d} 第{no}号: 目録の年がずれていた。実際は {d2}")
+                        lines.append(f"  - {d} {no_label(no)}: 目録の年がずれていた。実際は {d2}")
                 if not url:
+                    # 県には行っていない（控えを見ただけ）。枠は使わず、台帳もあとでまとめて書く
                     ledger[key] = {"status": "月ページに号が無い", "when": today}
-                    save_ledger(ledger)
-                    lines.append(f"  - {d} 第{no}号: 月ページに見つからない")
                     continue
                 try:
+                    _asked += 1
                     n = fetch_issue({"date": issue_date, "no": no}, url, lines)
                     ledger[key] = {"status": "done", "url": url, "sections": n,
                                    "v": TEXT_VERSION, "when": today}
                     if issue_date != d:
                         ledger[key]["date_actual"] = issue_date
                     fetched += 1
-                    lines.append(f"  - **{issue_date} 第{no}号** 大店立地法の公告 {n} 件"
+                    lines.append(f"  - **{issue_date} {no_label(no)}** 大店立地法の公告 {n} 件"
                                  f"（目録では {issues[(d, no)]} 件）")
                 except urllib.error.HTTPError as e:
                     ledger[key] = {"status": f"failed: HTTP {e.code}", "url": url, "when": today}
-                    lines.append(f"  - {d} 第{no}号: HTTP {e.code}")
+                    lines.append(f"  - {d} {no_label(no)}: HTTP {e.code}")
                     if is_busy(e):
                         save_ledger(ledger)
                         lines.append(f"  - **HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
@@ -585,7 +672,7 @@ def main():
                     # ValueError は「大きすぎる」「文字なし」。中身を残して恒久扱いにする
                     why = str(e) if isinstance(e, ValueError) else type(e).__name__
                     ledger[key] = {"status": f"failed: {why}", "url": url, "when": today}
-                    lines.append(f"  - {d} 第{no}号: {why[:50]}")
+                    lines.append(f"  - {d} {no_label(no)}: {why[:50]}")
                 save_ledger(ledger)               # 途中で落ちても、ここまでの分は残る
                 time.sleep(WAIT)
         except urllib.error.HTTPError as e:
@@ -599,13 +686,20 @@ def main():
     rebuild_from_full(lines)
 
     # 手元の文字ファイルを全部読み直す
-    recs, seen = [], set()
+    recs, seen, unreadable = [], set(), []
     for path in sorted(glob.glob(os.path.join(TEXTS, "*.txt"))):
-        for r in parse_text_file(path):
+        got = parse_text_file(path)
+        if got is None:
+            unreadable.append(os.path.basename(path))
+            continue
+        for r in got:
             if r["key"] in seen:
                 continue
             seen.add(r["key"])
             recs.append(r)
+    if unreadable:
+        lines.append(f"- 名前が読めなかった文字ファイル {len(unreadable)} 本: "
+                     + ", ".join(unreadable[:5]) + ("…" if len(unreadable) > 5 else ""))
     recs.sort(key=lambda r: (r["notified_on"], r["store"]))
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "all.json"), "w", encoding="utf-8") as f:

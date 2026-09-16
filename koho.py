@@ -98,16 +98,77 @@ def to_iso(v):
     return ""
 
 
-def sheet_rows(path):
-    """1 冊の目録の「告示」「公告」シートから、(発行日, 号, 件名) を全部返す。
+_Z2H = str.maketrans("０１２３４５６７８９", "0123456789")
 
-    大店立地法に絞らない。rows_of() が使っているシート選びより広く、
-    告示シートも読む。開発系の告示はそちらにしか出てこない。
+
+def norm_issue_no(s):
+    """公報番号を揃える。'423' → '423'、'号外' → 'g1'、'第2号外' → 'g2'、'-'（欠番）や空 → ''。
+
+    号外は日ごとに1から振り直される（本体 PDF の名前も 20251219g2.pdf）ので、定期号の
+    通し番号とは別の並びにする。姉妹サイトが読むファイル名も <日付>-g<n> になる（共通仕様3.4）。
+    """
+    s = re.sub(r"\s", "", str(s or "")).translate(_Z2H)
+    if s.isdigit():
+        return s
+    m = re.fullmatch(r"(?:第(\d+))?号外", s)
+    if m:
+        return f"g{m.group(1) or 1}"
+    return ""
+
+
+def merge_issue_dates(issues):
+    """発行日がずれた号をまとめる。
+
+    公報番号は通し番号なので、1 号に発行日は 1 つしかない。目録の一部（23-1-12h.xls の
+    告示シートなど）は、Excel のオートフィルの事故で発行日の「年」が 1 行ずつ増えている。
+    号番号のほうは正しいので、そちらでまとめ、いちばん多く出てくる日付（同数なら古いほう）を
+    本当の発行日として採る。号外（no が g で始まる）は日ごとに番号が振り直されるので、まとめない。
+    """
+    by_no = defaultdict(list)
+    fixed, merged = {}, []
+    for it in issues.values():
+        if str(it["no"]).startswith("g"):
+            fixed[f"{it['date']}#{it['no']}"] = {"date": it["date"], "no": it["no"],
+                                                 "titles": it["titles"], "topics": dict(it["topics"])}
+        else:
+            by_no[it["no"]].append(it)
+    for no, group in by_no.items():
+        if len(group) > 1:
+            best = Counter()
+            for it in group:
+                best[it["date"]] += it["titles"]
+            mx = max(best.values())
+            true_date = min(d for d, n in best.items() if n == mx)   # 同数なら古いほう
+            merged.append((no, sorted(best), true_date, len(group) - 1))
+        else:
+            true_date = group[0]["date"]
+        topics = Counter()
+        titles = 0
+        for it in group:
+            titles += it["titles"]
+            for t, n in it["topics"].items():
+                topics[t] += n
+        fixed[f"{true_date}#{no}"] = {"date": true_date, "no": no,
+                                      "titles": titles, "topics": dict(topics)}
+    return fixed, merged
+
+
+# 件名まで読むシート。ほかのシート（条例・規則・訓令・達・辞令など）は「号の一覧」にだけ使う。
+# 辞令や人事の件名には個人の氏名が入るので、件名は読まない（共通仕様3.1）
+TITLE_SHEETS = ("告示", "公告")
+
+
+def sheet_rows(path):
+    """1 冊の目録から (発行日, 号, 件名) を全部返す。
+
+    号の一覧は**全シート**から作る。号外は告示も公告も無い号（条例だけ、辞令だけ）が
+    多く、シートを絞ると本体PDFを取りに行く先から丸ごと落ちる。共通仕様9節
+    「取得の段階で絞らない。絞り込みは出力の段階だけ」。
+    件名は告示・公告シートからだけ読む（3.1。ほかのシートの件名には氏名が入る）。
     """
     out, dropped = [], []
     for name, rows in xlsx.read_any(path).items():
-        if name not in ("告示", "公告"):
-            continue
+        want_title = name in TITLE_SHEETS
         hdr = next((i for i, r in enumerate(rows[:8])
                     if any("件" in str(c) and "名" in str(c) for c in r)), None)
         if hdr is None:
@@ -117,19 +178,22 @@ def sheet_rows(path):
         ti = ci.get("件名")
         di = next((ci[k] for k in ("発行日", "発行年月日") if k in ci), None)
         ni = next((ci[k] for k in ("公報番号", "公報号数", "号数") if k in ci), None)
-        if ti is None or di is None or ni is None:
+        if di is None or ni is None or (want_title and ti is None):
             continue
         for r in rows[hdr + 1:]:
             cells = list(r)
-            if max(ti, di, ni) >= len(cells):
+            if max(di, ni) >= len(cells):
                 continue
-            title = re.sub(r"\s+", " ", str(cells[ti] or "")).strip()
+            title = ""
+            if want_title and ti < len(cells):
+                title = re.sub(r"\s+", " ", str(cells[ti] or "")).strip()
             d = to_iso(str(cells[di] or ""))
-            no = str(cells[ni] or "").strip()
-            if not title or not d or not no.isdigit():
+            no = norm_issue_no(cells[ni])          # 号外は g1, g2 …（落とさない）
+            if not d or not no or (want_title and not title):
                 continue
             if not (FIRST_DAY <= d <= LAST_DAY):    # 発行日として成り立たない行は数えない
-                dropped.append((d, no, title))      # 黙って捨てず、呼び出し側に返す
+                if want_title:
+                    dropped.append((d, no, title))  # 黙って捨てず、呼び出し側に返す
                 continue
             out.append((d, no, title))
     return out, dropped
@@ -165,7 +229,7 @@ def rows_of(path):
                 "date": to_iso(col(cells, "発行日", "発行年月日")),
                 "kind": kind_of(title),
                 "dept": col(cells, "担当課等", "担当課"),
-                "no": col(cells, "公報番号", "公報号数", "号数"),
+                "no": norm_issue_no(col(cells, "公報番号", "公報号数", "号数")),
                 "title": re.sub(r"\s+", " ", title),
                 "sheet": name,
                 "file": os.path.basename(path),
@@ -200,36 +264,11 @@ def main():
         for d, no, title in got:
             it = issues.setdefault(f"{d}#{no}", {"date": d, "no": no, "titles": 0, "topics": {}})
             it["titles"] += 1
-            t = topic_of(title)
+            t = topic_of(title) if title else None
             if t:
                 it["topics"][t] = it["topics"].get(t, 0) + 1
 
-    # 公報番号は通し番号なので、1 号に発行日は 1 つしかない。
-    # 目録の一部（23-1-12h.xls の告示シートなど）は、Excel のオートフィルの事故で
-    # 発行日の「年」が 1 行ずつ増えている。号番号のほうは正しいので、そちらでまとめ、
-    # いちばん多く出てくる日付（同数なら古いほう）を本当の発行日として採る。
-    by_no = defaultdict(list)
-    for it in issues.values():
-        by_no[it["no"]].append(it)
-    fixed, merged = {}, []
-    for no, group in by_no.items():
-        if len(group) > 1:
-            best = Counter()
-            for it in group:
-                best[it["date"]] += it["titles"]
-            mx = max(best.values())
-            true_date = min(d for d, n in best.items() if n == mx)   # 同数なら古いほう
-            merged.append((no, sorted(best), true_date, len(group) - 1))
-        else:
-            true_date = group[0]["date"]
-        topics = Counter()
-        titles = 0
-        for it in group:
-            titles += it["titles"]
-            for t, n in it["topics"].items():
-                topics[t] += n
-        fixed[f"{true_date}#{no}"] = {"date": true_date, "no": no,
-                                      "titles": titles, "topics": dict(topics)}
+    fixed, merged = merge_issue_dates(issues)
     if merged:
         lines.append("")
         lines.append(f"発行日がずれていた号 {len(merged)} 件をまとめた（偽の号 {sum(m[3] for m in merged)} を消した）：")
@@ -256,7 +295,8 @@ def main():
             topics[t] += n
     dev = sum(n for t, n in topics.items() if t != "大店立地法")
     lines.append("")
-    lines.append(f"## 目録に出てくる号 {len(issues):,} 号（本体 PDF はこれを全部取りに行く）")
+    extra = sum(1 for it in issues.values() if str(it["no"]).startswith("g"))
+    lines.append(f"## 目録に出てくる号 {len(issues):,} 号（うち号外 {extra:,}。本体 PDF はこれを全部取りに行く）")
     lines.append("")
     lines.append("| 制度 | 件名 | その制度がある号 |")
     lines.append("|---|---:|---:|")
