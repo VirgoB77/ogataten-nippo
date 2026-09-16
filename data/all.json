@@ -370,7 +370,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -450,7 +450,7 @@
   "ward": "",
   "area": "姫路市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第5条第1項",
@@ -491,7 +491,7 @@
   "ward": "",
   "area": "小野市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -531,7 +531,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第5条第1項",
@@ -574,7 +574,7 @@
   "area": "加古川市",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -612,7 +612,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -653,7 +653,7 @@
   "area": "姫路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -832,6 +832,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "bf0ac7727bd9"
   ],
@@ -881,7 +887,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -922,7 +928,7 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -962,7 +968,7 @@
   "ward": "",
   "area": "神戸市",
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1004,6 +1010,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "6c6f3d88339d"
   ],
@@ -1014,7 +1026,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -1053,7 +1065,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1129,7 +1141,7 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1168,7 +1180,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第2項",
@@ -1207,7 +1219,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "中規模",
@@ -1326,7 +1338,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -1445,7 +1457,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "スギホールディングス 株式会社",
    "店舗面積": "855.11 平方メートル",
    "駐車台数 (駐輪台数)": "31台 （66台）",
    "営業時間": "9時から22時",
@@ -1504,7 +1515,7 @@
   "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1545,7 +1556,7 @@
   "ward": "",
   "area": "朝来市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1587,7 +1598,7 @@
   "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1626,6 +1637,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "c6ea227bbeaf"
   ],
@@ -1635,7 +1652,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -1675,7 +1692,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -1828,7 +1845,7 @@
   "area": "三田市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1869,7 +1886,7 @@
   "area": "西宮市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -1911,6 +1928,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "97caaabd43ff"
   ],
@@ -1921,7 +1944,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2078,7 +2101,7 @@
   "area": "神戸市西区",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -2120,7 +2143,7 @@
   "area": "淡路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -2161,7 +2184,7 @@
   "ward": "",
   "area": "三木市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -2237,7 +2260,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -2278,7 +2301,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第11条第3項",
@@ -2453,6 +2476,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "81b6367bb8bc"
   ],
@@ -2463,7 +2492,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2538,6 +2567,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "395455918067"
   ],
@@ -2548,7 +2583,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2585,6 +2620,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "7f0d1f764b78"
   ],
@@ -2595,7 +2636,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -2674,6 +2715,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "f32e8933b71f"
   ],
@@ -2762,6 +2809,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "4fef8e75323c"
   ],
@@ -3048,7 +3101,7 @@
   "ward": "",
   "area": "赤穂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -3089,7 +3142,7 @@
   "ward": "",
   "area": "加古郡播磨町",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -3132,6 +3185,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-6-5.xlsx"
+  },
   "merged_keys": [
    "11cdfa019ac1",
    "aded198e5b2c"
@@ -3262,7 +3322,7 @@
   "area": "三木市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -3302,7 +3362,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -3343,7 +3403,7 @@
   "ward": "",
   "area": "明石市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -3970,7 +4030,7 @@
   "area": "姫路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -4010,7 +4070,6 @@
   "meeting": "令和8年7月9日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
   "city_opinion": "－",
   "extra": {
-   "店舗所在地": "泉南市信達岡中777",
    "市民等の意見提出期限": "令和8年10月16日",
    "意見の縦覧期間": "－"
   },
@@ -4018,8 +4077,14 @@
    "osaka-pref",
    "sennan-city"
   ],
+  "seen_by": {
+   "sennan-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-5-1.xlsx"
+  },
   "merged_keys": [
-   "64f10fbd2a83"
+   "1de432e7d95f"
   ],
   "pref": "大阪府",
   "ward": "",
@@ -4069,7 +4134,6 @@
   "meeting": "令和8年7月24日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
   "city_opinion": "－",
   "extra": {
-   "店舗所在地": "泉南市幡代三丁目154-1 付近",
    "市民等の意見提出期限": "令和8年10月16日",
    "意見の縦覧期間": "－"
   },
@@ -4077,8 +4141,14 @@
    "osaka-pref",
    "sennan-city"
   ],
+  "seen_by": {
+   "sennan-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-5-1.xlsx"
+  },
   "merged_keys": [
-   "bb8891fa097d"
+   "770c9686ccdd"
   ],
   "pref": "大阪府",
   "ward": "",
@@ -4179,7 +4249,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4217,7 +4287,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第11条第3項",
@@ -4344,7 +4414,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4382,7 +4452,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4422,7 +4492,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第5条第1項",
@@ -4461,7 +4531,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4501,7 +4571,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4542,7 +4612,7 @@
   "area": "西宮市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4580,7 +4650,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4621,7 +4691,7 @@
   "ward": "",
   "area": "伊丹市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -4690,7 +4760,7 @@
   "notified_on": "2026-05-21",
   "notified_raw": "令和8年5月21日",
   "store": "（仮称）サンディ八尾東久宝寺店 新築工事",
-  "address": "",
+  "address": "東久宝寺3丁目21番の一部、22番の一部、23番、24番の一部122番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -4704,11 +4774,10 @@
   "docs": [],
   "extra": {
    "年度": "8",
-   "所在地（地番）": "東久宝寺3丁目21番の一部、22番の一部、23番、24番の一部122番",
    "店舗面積": "556.62平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d5bed014de0c",
+  "key": "5b360f7cdd8b",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -4762,6 +4831,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "2e511edbeb53"
   ],
@@ -4814,7 +4889,7 @@
   "ward": "",
   "area": "川辺郡猪名川町",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4855,7 +4930,7 @@
   "ward": "",
   "area": "宝塚市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第2項",
@@ -4895,7 +4970,7 @@
   "place_guess": true,
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4933,7 +5008,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -4971,7 +5046,7 @@
   "area": "神戸市",
   "address_redacted": true,
   "source_url": "https://www.city.kobe.lg.jp/a31812/business/sangyoshinko/shokogyo/koritenporitchi/daitenhp/index.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -5190,6 +5265,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "b32a683132a8"
   ],
@@ -5237,6 +5316,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "deb5ea1249c0"
   ],
@@ -5284,6 +5367,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "45c662113af0"
   ],
@@ -5334,6 +5421,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "6ea1554b02d6",
    "fcc00cb1d8d3"
@@ -5346,7 +5440,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -5424,7 +5518,7 @@
   "area": "洲本市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5464,7 +5558,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5505,7 +5599,7 @@
   "area": "加古郡稲美町",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5545,7 +5639,7 @@
   "ward": "",
   "area": "兵庫県",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -5823,7 +5917,7 @@
   "ward": "",
   "area": "高砂市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -5899,7 +5993,7 @@
   "area": "宝塚市",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第2項",
@@ -5937,7 +6031,7 @@
   "area": "兵庫県",
   "address_redacted": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -5976,6 +6070,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "2aa4fe520713"
   ],
@@ -6028,7 +6128,7 @@
   "area": "姫路市",
   "place_guess": true,
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-city",
@@ -6117,7 +6217,7 @@
   "ward": "",
   "area": "川西市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-13"
+  "fetched_on": "2026-09-12"
  },
  {
   "article": "第6条第1項",
@@ -6158,7 +6258,7 @@
   "ward": "",
   "area": "尼崎市",
   "source_url": "https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html",
-  "fetched_on": "2026-09-14"
+  "fetched_on": "2026-09-12"
  },
  {
   "source": "osaka-pref",
@@ -6200,6 +6300,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r806-5-1.xlsx"
+  },
   "merged_keys": [
    "03b192f26899"
   ],
@@ -6323,7 +6429,7 @@
   "notified_on": "2026-04-16",
   "notified_raw": "令和8年4月16日",
   "store": "業務スーパー桜ヶ丘店",
-  "address": "",
+  "address": "桜ヶ丘2丁目206、207-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -6337,11 +6443,10 @@
   "docs": [],
   "extra": {
    "年度": "8",
-   "所在地（地番）": "桜ヶ丘2丁目206、207-1",
    "店舗面積": "999.22平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d22f31e9e4fa",
+  "key": "7f7d999e882a",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -6465,6 +6570,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r807-6-1.xlsx"
+  },
   "merged_keys": [
    "14edcfa1b53e",
    "5c53600d9260"
@@ -6477,7 +6589,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -6696,6 +6808,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "9b65fa33accf"
   ],
@@ -6706,7 +6824,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -6790,6 +6908,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "2be9f5e2dd7e"
   ],
@@ -6800,7 +6924,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -6876,6 +7000,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "86d5d977b32b"
   ],
@@ -6885,7 +7015,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -6929,6 +7059,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "2cc5ba8a40ad"
   ],
@@ -7795,6 +7931,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "e2840467c25c"
   ],
@@ -7805,7 +7947,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -7953,6 +8095,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "e1bb7d488362"
   ],
@@ -8045,6 +8193,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "7288c67a77da"
   ],
@@ -8366,6 +8520,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "581f5f3c871d"
   ],
@@ -8512,7 +8672,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社 クスリのアオキ",
    "店舗面積": "999.38 平方メートル",
    "駐車台数 (駐輪台数)": "33台 （75台）",
    "営業時間": "9時 から 22時",
@@ -8945,6 +9104,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "e28850ebad74"
   ],
@@ -8955,7 +9120,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -9434,7 +9599,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "グランマルシェ 株式会社",
    "店舗面積": "720.00 平方メートル",
    "駐車台数 (駐輪台数)": "43台 （0台）",
    "営業時間": "9時 から21時",
@@ -10116,7 +10280,7 @@
   "kind": "変更",
   "notified_on": "2025-12-23",
   "notified_raw": "令和7年12月23日",
-  "store": "ケーズデンキ松原天美店 松原市天美東4丁目297番1ほか",
+  "store": "ケーズデンキ松原天美店 松原市天美東4丁目",
   "address": "松 原 市 天 美 北 一 丁 目",
   "operator": "",
   "new_operator": "",
@@ -10153,7 +10317,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -10288,6 +10452,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "3a06b287c521",
    "8c99771fa838"
@@ -10300,7 +10471,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -10410,6 +10581,9 @@
    "hyogo-bukai",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "87b4bd545407"
   ],
@@ -10460,6 +10634,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "181facc79fc5"
   ],
@@ -10470,7 +10650,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -10817,6 +10997,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "734340500280"
   ],
@@ -10826,7 +11012,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -11301,6 +11487,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "2a98e2f49d9b"
   ],
@@ -11777,6 +11966,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "4827a1644d93"
   ],
@@ -12021,6 +12213,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "be354c8e44a7"
   ],
@@ -12070,6 +12265,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "9f2ab6da3ecc",
    "a16c679fcc32"
@@ -12081,7 +12279,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/20251216t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2026-03-16"
   }
@@ -12153,6 +12351,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "37935066311e"
   ],
@@ -12401,6 +12602,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "8c290408e8fb"
   ],
@@ -12411,7 +12618,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -12454,6 +12661,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-2.xlsx"
+  },
   "merged_keys": [
    "43936c46580d"
   ],
@@ -12503,6 +12716,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "96a278313030"
   ],
@@ -12513,7 +12732,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -12545,6 +12764,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2026-03-16"
+  },
   "merged_keys": [
    "2c382b22e893"
   ],
@@ -12667,6 +12889,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "54956a06a6f4",
    "54ea34757f13"
@@ -12679,7 +12908,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -13374,6 +13603,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "32698a150008"
   ],
@@ -13384,7 +13619,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -14158,6 +14393,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-5.xlsx"
+  },
   "merged_keys": [
    "59f577da8810"
   ],
@@ -14306,7 +14547,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社 あさひ",
    "店舗面積": "397.49平方メートル",
    "駐車台数 (駐輪台数)": "12台 （10台）",
    "営業時間": "10時から20時",
@@ -15700,6 +15940,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "fd2752aa79a9"
   ],
@@ -16243,6 +16489,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "f15ffb53b074"
   ],
@@ -16253,7 +16505,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -16299,7 +16551,7 @@
   "kind": "変更",
   "notified_on": "2025-08-26",
   "notified_raw": "令和7年8月26日",
-  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目350番1ほか",
+  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -16333,7 +16585,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -16521,6 +16773,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "13b73ac75d7c"
   ],
@@ -16531,7 +16789,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -16798,6 +17056,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "0084a327e551"
   ],
@@ -16808,7 +17072,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -16985,6 +17249,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "85f8069eccd3"
   ],
@@ -17317,6 +17587,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "ba4df7c1fe12"
   ],
@@ -17501,6 +17777,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "7ae286667c90"
   ],
@@ -17717,6 +17996,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "7530e80c8a64"
   ],
@@ -17925,7 +18210,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社 ツルハ",
    "店舗面積": "697.54平方メートル",
    "駐車台数 (駐輪台数)": "17台 （70台）",
    "営業時間": "9時 から22時",
@@ -18031,6 +18315,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "31887164dee9",
    "af39c6b0bacb"
@@ -18042,7 +18329,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250711t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-09-16"
   }
@@ -18092,6 +18379,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "9e56e34d203f"
   ],
@@ -18102,7 +18395,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -18588,6 +18881,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "4f39d30fe028"
   ],
@@ -18685,6 +18981,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "d39c9228fcf1"
   ],
@@ -18695,7 +18997,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -18831,6 +19133,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "008a0336069b"
   ],
@@ -18874,6 +19179,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "b8991063f296"
   ],
@@ -18957,6 +19265,12 @@
    "kaizuka-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kaizuka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "8c772740333b"
   ],
@@ -18967,7 +19281,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kaizuka-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -19007,6 +19321,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "3312ccae09c1"
   ],
@@ -19350,6 +19670,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "2f99d4d23527"
   ],
@@ -19360,7 +19681,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16"
   }
  },
@@ -19461,6 +19782,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "ef686715b03d"
   ],
@@ -19549,6 +19873,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "66170154cdfa",
    "bc74859633b9"
@@ -19560,7 +19887,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250617t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-09-16"
   }
@@ -19641,6 +19968,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "cc855dffc819"
   ],
@@ -19769,6 +20099,12 @@
    "kishiwada-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kishiwada-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "bfb2e34e70ae"
   ],
@@ -19779,7 +20115,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kishiwada-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -20109,6 +20445,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "576f25c3cabd",
    "592c6b7bc386"
@@ -20120,7 +20459,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250613t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-09-16"
   }
@@ -20205,6 +20544,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-5-1_1.xlsx"
+  },
   "merged_keys": [
    "201a049b9597"
   ],
@@ -20215,7 +20560,7 @@
   "fetched_on": "2026-09-11",
   "fetched_by": {
    "osaka-pref": "2026-09-11",
-   "toyonaka-city": "2026-09-15"
+   "toyonaka-city": "2026-09-16"
   }
  },
  {
@@ -20255,6 +20600,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "c08f1ac26f2e"
   ],
@@ -20264,7 +20615,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -20365,6 +20716,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "18f7811fc89f"
   ],
@@ -20532,6 +20886,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r803-6-1.xlsx"
+  },
   "merged_keys": [
    "70c7670f8c0b"
   ],
@@ -20574,6 +20934,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "d710a00fb602"
   ],
@@ -20617,6 +20980,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-09-16"
+  },
   "merged_keys": [
    "01c80f473dc3"
   ],
@@ -20750,7 +21116,7 @@
   "kind": "新設",
   "notified_on": "2025-04-30",
   "notified_raw": "令和7年4月30日",
-  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目350番1ほか",
+  "store": "（仮称）ラ・ムー松原天美店 松原市天美北一丁目",
   "address": "松 原 市 天 美 北 一 丁 目",
   "operator": "",
   "new_operator": "",
@@ -20787,7 +21153,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -20922,6 +21288,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "611c188107e3",
    "8f1a74f6735a"
@@ -20933,7 +21302,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250516t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -21188,6 +21557,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "985b9353c3fe"
   ],
@@ -21285,6 +21657,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "cd36e75978eb"
   ],
@@ -21596,6 +21971,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "06736903ee03"
   ],
@@ -21639,6 +22017,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "369ea5b7d726"
   ],
@@ -21682,6 +22063,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "c8c79edcabac"
   ],
@@ -21725,6 +22109,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "d8effce2f806"
   ],
@@ -21768,6 +22155,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "1c92fa27ea04"
   ],
@@ -22084,6 +22474,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "641d8af3aaca"
   ],
@@ -22166,6 +22559,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "03b586fdd116"
   ],
@@ -22215,6 +22611,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "10a9b8bc9a34",
    "bf10a12f6350"
@@ -22227,7 +22630,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -22367,6 +22770,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "fca798714aaf"
   ],
@@ -22454,6 +22860,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "0350599ac91e",
    "38103e7f159a"
@@ -22465,7 +22874,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250401t.pdf",
   "fetched_on": "2026-09-16",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-16",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-16",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -22590,6 +22999,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "c50cf51d48a5"
   ],
@@ -22633,6 +23045,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "72f83c657cbf"
   ],
@@ -22761,6 +23176,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "993349f668c4"
   ],
@@ -22805,6 +23223,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "e75cbf242088"
   ],
@@ -22943,6 +23364,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "43b298bee680"
   ],
@@ -23193,6 +23617,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "53493dec46bb",
    "6aeec5000f20"
@@ -23204,7 +23631,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250307t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -23282,6 +23709,12 @@
    "kaizuka-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kaizuka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "d5a9a0af4086"
   ],
@@ -23292,7 +23725,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kaizuka-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -23331,6 +23764,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "7395d643c4d5",
    "d5d45b0dcbcd"
@@ -23342,7 +23778,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250304t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-06-24"
   }
@@ -23384,6 +23820,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "03defff7c57a"
   ],
@@ -23807,6 +24249,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "9d4503905d0a"
   ],
@@ -23851,6 +24296,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "4bb9b2e22205"
   ],
@@ -23895,6 +24343,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-06-24"
+  },
   "merged_keys": [
    "81a7f76a8881"
   ],
@@ -23954,6 +24405,12 @@
    "minoh-2shi2cho",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "e6a15e8bb26e"
   ],
@@ -24138,6 +24595,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "8e07d85c4264"
   ],
@@ -24148,7 +24611,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -24181,6 +24644,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "e89da66b4a00"
   ],
@@ -24233,6 +24699,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "7dc4429d8774"
   ],
@@ -24386,6 +24858,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "0fc3aaf3658b",
    "613e76acd9c6"
@@ -24397,7 +24872,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250204t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-04-24"
   }
@@ -24432,6 +24907,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "c87f19ce05f5"
   ],
@@ -24996,7 +25474,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社イエローハット",
    "店舗面積": "501.95 平方メートル",
    "駐車台数 (駐輪台数)": "36台 （11台）",
    "営業時間": "10時 から 19時",
@@ -25292,6 +25769,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "dd86b4dd617a"
   ],
@@ -25338,6 +25818,9 @@
    "hyogo-bukai",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "0dcfd5a3f5d3"
   ],
@@ -25442,6 +25925,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "ff3dc0f22b2f"
   ],
@@ -25777,6 +26263,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-04-24"
+  },
   "merged_keys": [
    "c94f9918af77"
   ],
@@ -25977,6 +26466,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "670aa97e76ed",
    "9058849efb97"
@@ -25988,7 +26480,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20241210t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-01-12"
   }
@@ -26152,6 +26644,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "3b3aa29ddc4e"
   ],
@@ -27263,6 +27758,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "daefd60a227d"
   ],
@@ -27991,6 +28489,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "fccc8c8b394a"
   ],
@@ -28047,6 +28548,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703_6-2.xlsx"
+  },
   "merged_keys": [
    "751a14aec8fe"
   ],
@@ -28057,7 +28564,7 @@
   "fetched_on": "2026-09-11",
   "fetched_by": {
    "osaka-pref": "2026-09-11",
-   "toyonaka-city": "2026-09-15"
+   "toyonaka-city": "2026-09-16"
   }
  },
  {
@@ -28757,7 +29264,7 @@
   "notified_on": "2024-09-20",
   "notified_raw": "令和6年9月20日",
   "store": "八尾山本町南 計画",
-  "address": "",
+  "address": "山本町南四丁目7番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -28771,11 +29278,10 @@
   "docs": [],
   "extra": {
    "年度": "6",
-   "所在地（地番）": "山本町南四丁目7番",
    "店舗面積": "728.23平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "fbd333081143",
+  "key": "81d168f5bf2f",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -29286,7 +29792,7 @@
   "kind": "新設",
   "notified_on": "2024-09-09",
   "notified_raw": "令和6年9月9日",
-  "store": "（仮称）万代松原田井城店 松原市田井城六丁目322番1ほか",
+  "store": "（仮称）万代松原田井城店 松原市田井城六丁目",
   "address": "松原市田井城六丁目",
   "operator": "",
   "new_operator": "",
@@ -29323,7 +29829,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -29469,6 +29975,12 @@
    "kaizuka-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kaizuka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703_6-2.xlsx"
+  },
   "merged_keys": [
    "11fa1e0d0caa"
   ],
@@ -29519,6 +30031,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "abd49a6972cb"
   ],
@@ -29920,6 +30438,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "2e46a90df43e"
   ],
@@ -30029,6 +30553,12 @@
    "hirakata-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "hirakata-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "f19716c0b057"
   ],
@@ -30039,7 +30569,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "hirakata-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -30738,6 +31268,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2025-01-12"
+  },
   "merged_keys": [
    "52e922a10efc",
    "93187831ab4d"
@@ -30749,7 +31282,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240913t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2025-01-12"
   }
@@ -30990,7 +31523,7 @@
   "kind": "変更",
   "notified_on": "2024-08-16",
   "notified_raw": "令和6年8月16日",
-  "store": "近商ストア天美店 松原市天美南三丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南三丁目",
   "address": "松原市天美南三丁目",
   "operator": "",
   "new_operator": "",
@@ -31027,7 +31560,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -31117,7 +31650,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "コーナン商事 株式会社",
    "店舗面積": "991.11平方メートル",
    "駐車台数 (駐輪台数)": "27台 (100台)",
    "営業時間": "平日･祝日 6時30分から20時(日曜9時 から20時)",
@@ -31245,6 +31777,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "b54bc5e53050"
   ],
@@ -31255,7 +31793,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -31625,6 +32163,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-12-08"
+  },
   "merged_keys": [
    "e22fc79f36cd",
    "fd4ec8662250"
@@ -31636,7 +32177,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240806t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-12-08"
   }
@@ -31777,6 +32318,12 @@
    "kadoma-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "kadoma-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "f8997d99ddf1"
   ],
@@ -31787,7 +32334,7 @@
   "fetched_on": "2026-09-15",
   "fetched_by": {
    "kadoma-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32009,6 +32556,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "ecf1e24889d8"
   ],
@@ -32429,6 +32982,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "e3582c185bbb"
   ],
@@ -32567,6 +33126,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-12-08"
+  },
   "merged_keys": [
    "857ef48e31d2",
    "f9fd9d0217b6"
@@ -32578,7 +33140,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240730t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-12-08"
   }
@@ -32610,13 +33172,15 @@
   "notified_raw": "令和6年6月28日",
   "review_to": "2024-11-25",
   "extra": {
-   "縦覧場所 （県民局等）": "丹波",
    "公告": "公告（PDF：1,565KB）"
   },
   "sources": [
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "ac2d93d3834f"
   ],
@@ -32834,6 +33398,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "80c145ed3730",
    "9fa1ec639345"
@@ -32846,7 +33417,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32884,6 +33455,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "0223db4424a8",
    "7696bedcf41a"
@@ -32896,7 +33474,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32934,6 +33512,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "732004b072e7",
    "e4f9d5ce90d0"
@@ -32946,7 +33531,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -32984,6 +33569,13 @@
    "minoh-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "92c7e278afe6",
    "cdaff545fb40"
@@ -32996,7 +33588,7 @@
   "fetched_by": {
    "minoh-2shi2cho": "2026-09-15",
    "minoh-city": "2026-09-15",
-   "osaka-pref": "2026-09-15"
+   "osaka-pref": "2026-09-11"
   }
  },
  {
@@ -33037,6 +33629,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "491e99aa9185"
   ],
@@ -33165,6 +33763,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "c1683b37ced3",
    "da8355580195"
@@ -33176,7 +33777,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240709t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-09-07"
   }
@@ -34738,6 +35339,9 @@
    "hyogo-bukai",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "913bf66f9a5a"
   ],
@@ -34839,7 +35443,6 @@
   "meeting": "第134回",
   "review_to": "2024-10-18",
   "extra": {
-   "縦覧場所 （県民局等）": "丹波",
    "公告": "公告（PDF：305KB）"
   },
   "sources": [
@@ -34847,6 +35450,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "1c7dc4e5d016",
    "a9f5df63772e"
@@ -34858,7 +35464,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240618t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13",
    "hyogo-pref-juran": "2024-09-07"
   }
@@ -34897,6 +35503,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "ef6e20a5375c"
   ],
@@ -35038,6 +35647,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "12c40beadd93"
   ],
@@ -35094,6 +35706,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r710-5-1_r6.xlsx"
+  },
   "merged_keys": [
    "4a5157974d9c"
   ],
@@ -35104,7 +35722,7 @@
   "fetched_on": "2026-09-11",
   "fetched_by": {
    "osaka-pref": "2026-09-11",
-   "toyonaka-city": "2026-09-15"
+   "toyonaka-city": "2026-09-16"
   }
  },
  {
@@ -35767,6 +36385,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "f247b8f86e3f"
   ],
@@ -35972,6 +36593,9 @@
    "hyogo-koho",
    "hyogo-pref-juran"
   ],
+  "seen_by": {
+   "hyogo-pref-juran": "2024-09-07"
+  },
   "merged_keys": [
    "36208332544b"
   ],
@@ -36023,6 +36647,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703-6-1.xlsx"
+  },
   "merged_keys": [
    "7a6756b5c797"
   ],
@@ -36032,7 +36662,7 @@
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "osaka-pref": "2026-09-15",
+   "osaka-pref": "2026-09-11",
    "toyonaka-city": "2026-09-15"
   }
  },
@@ -36426,6 +37056,12 @@
    "ibaraki-city",
    "osaka-pref"
   ],
+  "seen_by": {
+   "ibaraki-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "r703_6-2.xlsx"
+  },
   "merged_keys": [
    "73f359129482"
   ],
@@ -36608,6 +37244,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "c6d4f833aae0"
   ],
@@ -36618,7 +37255,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240423t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -36903,7 +37540,7 @@
   "kind": "変更",
   "notified_on": "2024-03-25",
   "notified_raw": "令和6年3月25日",
-  "store": "イオンタウン松原 松原市新堂四丁目1154番ほか",
+  "store": "イオンタウン松原 松原市新堂四丁目",
   "address": "松原市新堂四丁目",
   "operator": "",
   "new_operator": "",
@@ -36942,7 +37579,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -37513,6 +38150,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "7eefb3925e4f"
   ],
@@ -37523,7 +38161,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240315t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -37532,7 +38170,7 @@
   "kind": "新設",
   "notified_on": "2024-02-28",
   "notified_raw": "令和6年2月28日",
-  "store": "（仮称）バロー松原別所店 松原市別所一丁目79番3ほか",
+  "store": "（仮称）バロー松原別所店 松原市別所一丁目",
   "address": "松原市別所一丁目",
   "operator": "",
   "new_operator": "",
@@ -37571,14 +38209,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2024-02-28",
   "notified_raw": "令和6年2月28日",
-  "store": "イズミヤショッピングセンター松原 松原市上田六丁目27番3ほか",
+  "store": "イズミヤショッピングセンター松原 松原市上田六丁目",
   "address": "松原市上田六丁目",
   "operator": "",
   "new_operator": "",
@@ -37617,7 +38255,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -37917,6 +38555,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "35e143cf7455"
   ],
@@ -37927,7 +38566,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240226t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -38703,6 +39342,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "c18b76682ae6"
   ],
@@ -38713,7 +39353,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240123t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -38837,6 +39477,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "747a42712618"
   ],
@@ -38847,7 +39488,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20240123t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -39488,7 +40129,7 @@
   "notified_on": "2023-11-09",
   "notified_raw": "令和5年11月9日",
   "store": "（仮称）サンドラッグ八尾小畑店",
-  "address": "",
+  "address": "小畑町三丁目1-1、四丁目11-1の一部、13-1外、121-2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -39502,11 +40143,10 @@
   "docs": [],
   "extra": {
    "年度": "5",
-   "所在地（地番）": "小畑町三丁目1-1、四丁目11-1の一部、13-1外、121-2",
    "店舗面積": "993.46平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "407f0cd11007",
+  "key": "f418528039b4",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -39555,6 +40195,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "fa1c4938e577"
   ],
@@ -39565,7 +40206,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20231128t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -39602,6 +40243,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "8334a5667d42"
   ],
@@ -39612,7 +40254,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20231128t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -39899,7 +40541,7 @@
   "kind": "新設",
   "notified_on": "2023-11-01",
   "notified_raw": "令和5年11月1日",
-  "store": "近商ストア天美店 松原市天美南三丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南三丁目",
   "address": "松原市天美南三丁目",
   "operator": "",
   "new_operator": "",
@@ -39936,7 +40578,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -40825,6 +41467,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "3a95e59e3044"
   ],
@@ -42718,6 +43364,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "21bebefbe4be"
   ],
@@ -42728,7 +43375,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230905t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -42790,7 +43437,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社アルコン堺",
    "店舗面積": "371.71平方メートル",
    "駐車台数 (駐輪台数)": "19台 (63台)",
    "営業時間": "10時 から 19時",
@@ -42877,6 +43523,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "49c1f0c8e926"
   ],
@@ -42887,7 +43534,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230825t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -43581,6 +44228,10 @@
    "minoh-2shi2cho",
    "minoh-city"
   ],
+  "seen_by": {
+   "minoh-2shi2cho": "2026-09-15",
+   "minoh-city": "2026-09-15"
+  },
   "merged_keys": [
    "991e81c60b93"
   ],
@@ -44259,6 +44910,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "89d72e276d26"
   ],
@@ -44269,7 +44921,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230707t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -45224,7 +45876,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社ビッグモーター",
    "店舗面積": "394平方メートル",
    "駐車台数 (駐輪台数)": "12台 (118台)",
    "営業時間": "9時 から 20時",
@@ -45336,7 +45987,7 @@
   "notified_on": "2023-04-20",
   "notified_raw": "令和5年4月20日",
   "store": "サンディ八尾高安店",
-  "address": "",
+  "address": "高安町北一丁目79番2、83番2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -45350,11 +46001,10 @@
   "docs": [],
   "extra": {
    "年度": "5",
-   "所在地（地番）": "高安町北一丁目79番2、83番2",
    "店舗面積": "721.25平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "33fe677ca689",
+  "key": "f9139a2efd2a",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -45852,6 +46502,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "6c015a481b3f"
   ],
@@ -45862,7 +46513,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230414t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -46352,7 +47003,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "ウエルシア薬局株式会社",
    "店舗面積": "629平方メートル",
    "駐車台数 (駐輪台数)": "17台 (62台)",
    "営業時間": "10時から22時",
@@ -47121,6 +47771,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "584290a1f40c"
   ],
@@ -47131,7 +47782,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20230221t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -47169,6 +47820,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "738426b4a0a3"
   ],
@@ -47829,7 +48481,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社リーフ",
    "店舗面積": "613平方メートル",
    "駐車台数 (駐輪台数)": "23台 (65台)",
    "営業時間": "8時から22時",
@@ -49346,7 +49997,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社ツルハ",
    "店舗面積": "984平方メートル",
    "駐車台数 (駐輪台数)": "24台 (83台)",
    "営業時間": "8時から24時",
@@ -51430,7 +52080,7 @@
   "kind": "新設",
   "notified_on": "2022-09-30",
   "notified_raw": "令和4年9月30日",
-  "store": "（仮称）イオンタウン松原新堂 松原市新堂四丁目25 外94筆、水路敷",
+  "store": "（仮称）イオンタウン松原新堂 松原市新堂四丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -51464,14 +52114,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2022-09-29",
   "notified_raw": "令和4年9月29日",
-  "store": "ケーズデンキ松原天美店 松原市天美東4丁目297番1ほか",
+  "store": "ケーズデンキ松原天美店 松原市天美東4丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -51505,7 +52155,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -52308,7 +52958,7 @@
   "kind": "変更",
   "notified_on": "2022-08-17",
   "notified_raw": "令和4年8月17日",
-  "store": "セブンパーク天美 松原市天美東3丁目500番地",
+  "store": "セブンパーク天美 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -52345,7 +52995,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -52705,7 +53355,7 @@
   "kind": "変更",
   "notified_on": "2022-07-26",
   "notified_raw": "令和4年7月26日",
-  "store": "イズミヤ松原店 松原市上田六丁目27番3ほか",
+  "store": "イズミヤ松原店 松原市上田六丁目",
   "address": "松原市上田六丁目",
   "operator": "",
   "new_operator": "",
@@ -52743,14 +53393,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第2項",
   "kind": "変更",
   "notified_on": "2022-07-26",
   "notified_raw": "令和4年7月26日",
-  "store": "イズミヤ松原店 松原市上田六丁目27番3ほか",
+  "store": "イズミヤ松原店 松原市上田六丁目",
   "address": "松原市上田六丁目",
   "operator": "",
   "new_operator": "",
@@ -52788,7 +53438,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -52906,7 +53556,7 @@
   "kind": "新設",
   "notified_on": "2022-07-21",
   "notified_raw": "令和4年7月21日",
-  "store": "松源熊取五門店 熊取町五門東2丁目7番17号",
+  "store": "松源熊取五門店 熊取町五門東2丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -53069,7 +53719,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社こくぶや",
    "店舗面積": "692平方メートル",
    "駐車台数 (駐輪台数)": "50台 (40台)",
    "営業時間": "9時から21時",
@@ -53305,6 +53954,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "a54c3300e4ff"
   ],
@@ -53315,7 +53965,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20220726t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -54676,7 +55326,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -55433,7 +56083,7 @@
   "kind": "変更",
   "notified_on": "2022-04-28",
   "notified_raw": "令和4年4月28日",
-  "store": "近商ストア天美店 松原市天美南三丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南三丁目",
   "address": "松原市天美南三丁目",
   "operator": "",
   "new_operator": "",
@@ -55471,7 +56121,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -55527,7 +56177,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "スギホールディングス株式会社",
    "店舗面積": "998平方メートル",
    "駐車台数 (駐輪台数)": "45台 (20台)",
    "営業時間": "9時から23時",
@@ -55569,7 +56218,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "ウエルシア薬局株式会社",
    "店舗面積": "968平方メートル",
    "駐車台数 (駐輪台数)": "40台 (80台)",
    "営業時間": "0時から24時",
@@ -55795,7 +56443,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "ダイレックス株式会社",
    "店舗面積": "999平方メートル",
    "駐車台数 (駐輪台数)": "45台 (50台)",
    "営業時間": "9時から22時",
@@ -55854,7 +56501,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -56827,7 +57474,7 @@
   "notified_on": "2022-03-03",
   "notified_raw": "令和4年3月3日",
   "store": "(仮称)八尾市志紀PJ",
-  "address": "",
+  "address": "志紀町二丁目43-1、43-4、43-5",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -56841,11 +57488,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "志紀町二丁目43-1、43-4、43-5",
    "店舗面積": "918.8平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "cb88ec5dea40",
+  "key": "35cf66a64085",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -57024,7 +57670,7 @@
   "notified_on": "2022-02-28",
   "notified_raw": "令和4年2月28日",
   "store": "(仮称)ウエルシア八尾高美町店",
-  "address": "",
+  "address": "高美町三丁目3番1,3番2、3番3、3番5、3番7、3番8、4番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -57038,11 +57684,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "高美町三丁目3番1,3番2、3番3、3番5、3番7、3番8、4番",
    "店舗面積": "768.60平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "a79320c5c0f6",
+  "key": "3b99285adc6e",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -58297,6 +58942,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "1631f4d52028"
   ],
@@ -58307,7 +58953,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20220118t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -58951,7 +59597,7 @@
   "notified_on": "2021-11-25",
   "notified_raw": "令和3年11月25日",
   "store": "クスリのアオキ",
-  "address": "",
+  "address": "南久宝寺一丁目40番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -58965,11 +59611,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "南久宝寺一丁目40番",
    "店舗面積": "923.20平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d98672dad65a",
+  "key": "59acdfdca184",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -59271,7 +59916,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "スギホールディングス株式会社",
    "店舗面積": "994平方メートル",
    "駐車台数 (駐輪台数)": "23台（80台）",
    "営業時間": "10時から22時",
@@ -59639,7 +60283,7 @@
   "kind": "変更",
   "notified_on": "2021-10-28",
   "notified_raw": "令和3年10月28日",
-  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目地内",
+  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -59677,14 +60321,14 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
   "kind": "変更",
   "notified_on": "2021-10-28",
   "notified_raw": "令和3年10月28日",
-  "store": "セブンパーク天美 松原市天美東3丁目500番地",
+  "store": "セブンパーク天美 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -59723,7 +60367,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -59879,7 +60523,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社サンフェステ",
    "店舗面積": "498平方メートル",
    "駐車台数 (駐輪台数)": "17台 (27台)",
    "営業時間": "9時から21時",
@@ -62244,7 +62887,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "大阪ダイハツ販売株式会社",
    "店舗面積": "315平方メートル",
    "駐車台数 (駐輪台数)": "33台 (78台)",
    "営業時間": "10時から19時",
@@ -62571,7 +63213,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社ダイコク",
    "店舗面積": "470平方メートル",
    "駐車台数 (駐輪台数)": "13台（36台）",
    "営業時間": "7時から17時",
@@ -62631,7 +63272,7 @@
   "notified_on": "2021-07-05",
   "notified_raw": "令和3年7月5日",
   "store": "(仮称)ウエルシア八尾安中店",
-  "address": "",
+  "address": "安中町四丁目38番3、38番63、38番64",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -62645,11 +63286,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "安中町四丁目38番3、38番63、38番64",
    "店舗面積": "727.75平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "da63d23eff67",
+  "key": "19d893798986",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -63238,7 +63878,7 @@
   "notified_on": "2021-06-25",
   "notified_raw": "令和3年6月25日",
   "store": "藤増興産ビル",
-  "address": "",
+  "address": "光町二丁目69番1、69番2の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -63252,11 +63892,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "光町二丁目69番1、69番2の一部",
    "店舗面積": "444.84平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "16eb1365e8e2",
+  "key": "e2b311c0728f",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -64200,7 +64839,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "ウエルシア薬局株式会社",
    "店舗面積": "738平方メートル",
    "駐車台数 (駐輪台数)": "19台（10台）",
    "営業時間": "9時から21時",
@@ -64666,7 +65304,6 @@
   "note": "",
   "docs": [],
   "extra": {
-   "小売業者": "株式会社クスリのアオキ",
    "店舗面積": "993平方メートル",
    "駐車台数 (駐輪台数)": "30台 (20台)",
    "営業時間": "9時から22時",
@@ -64929,12 +65566,12 @@
   "kind": "変更",
   "notified_on": "2021-04-09",
   "notified_raw": "令和3年4月9日",
-  "store": "ココカラファイン河内松原駅北店・ダイソー河内松原上田店 上田二丁目409番1 ほか",
+  "store": "ココカラファイン河内松原駅北店・ダイソー河内松原上田店 上田二丁目",
   "address": "松原市上田二丁目",
   "operator": "",
   "new_operator": "",
   "event_on": null,
-  "content": "松原市阿保１丁目１番１号 松原市役所６階",
+  "content": "",
   "review_from": "2021-05-14",
   "review_to": "2021-09-14",
   "meeting": "",
@@ -64958,8 +65595,7 @@
   "mode": "snapshot",
   "listed": true,
   "from_ocr": [
-   "address",
-   "content"
+   "address"
   ],
   "pref": "大阪府",
   "city": "松原市",
@@ -64967,7 +65603,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -65119,6 +65755,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "92740f43d129"
   ],
@@ -65129,7 +65766,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/030427t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -65205,6 +65842,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "741c687209de"
   ],
@@ -65215,7 +65853,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/030420t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -66041,7 +66679,7 @@
   "notified_on": "2021-02-25",
   "notified_raw": "令和3年2月25日",
   "store": "（仮称）サンドラッグ八尾中田店",
-  "address": "",
+  "address": "中田五丁目158番、159番の各一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -66055,11 +66693,10 @@
   "docs": [],
   "extra": {
    "年度": "2",
-   "所在地（地番）": "中田五丁目158番、159番の各一部",
    "店舗面積": "682.65平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "feea5c654388",
+  "key": "08f9e1051aec",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -66120,7 +66757,7 @@
   "notified_on": "2021-02-22",
   "notified_raw": "令和3年2月22日",
   "store": "サンディ八尾モール店",
-  "address": "",
+  "address": "山城町1丁目123番13、37、39",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -66134,11 +66771,10 @@
   "docs": [],
   "extra": {
    "年度": "2",
-   "所在地（地番）": "山城町1丁目123番13、37、39",
    "店舗面積": "722.49平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "cf5f73044e2a",
+  "key": "e6dbc9aab37a",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -68996,7 +69632,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第11条第3項",
@@ -69898,7 +70534,7 @@
   "kind": "新設",
   "notified_on": "2020-08-17",
   "notified_raw": "令和2年8月17日",
-  "store": "（仮称）ドラッグコスモス松原インター店 別所一丁目74番1 ほか",
+  "store": "（仮称）ドラッグコスモス松原インター店 別所一丁目",
   "address": "松原市別所一丁目",
   "operator": "",
   "new_operator": "",
@@ -69935,7 +70571,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -73908,7 +74544,7 @@
   "notified_on": "2020-05-08",
   "notified_raw": "令和2年5月8日",
   "store": "（仮称）スズキアリーナ八尾",
-  "address": "",
+  "address": "志紀町南二丁目135番、136番、137番、138番、139番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -73922,11 +74558,10 @@
   "docs": [],
   "extra": {
    "年度": "2",
-   "所在地（地番）": "志紀町南二丁目135番、136番、137番、138番、139番",
    "店舗面積": "316.28平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "1252a6afffbc",
+  "key": "7ac5e1376e8e",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -74102,6 +74737,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "500896531adb"
   ],
@@ -74112,7 +74748,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020529t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -74121,7 +74757,7 @@
   "kind": "変更",
   "notified_on": "2020-04-28",
   "notified_raw": "令和2年4月28日",
-  "store": "万代松原店 上田2丁目409番1ほか",
+  "store": "万代松原店 上田2丁目",
   "address": "松原市上田二丁目",
   "operator": "",
   "new_operator": "",
@@ -74158,7 +74794,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "",
@@ -74306,6 +74942,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "73118d7bb785"
   ],
@@ -74316,7 +74953,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/020522t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -76216,7 +76853,7 @@
   "kind": "変更",
   "notified_on": "2020-03-09",
   "notified_raw": "令和2年3月9日",
-  "store": "万代松原店 上田2丁目409番1ほか",
+  "store": "万代松原店 上田2丁目",
   "address": "松原市上田二丁目",
   "operator": "",
   "new_operator": "",
@@ -76254,7 +76891,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -77568,7 +78205,7 @@
   "notified_on": "2020-01-07",
   "notified_raw": "令和2年1月7日",
   "store": "（仮称）ワークマン八尾宮町店 新築工事",
-  "address": "",
+  "address": "宮町三丁目52－3、52－1の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -77582,11 +78219,10 @@
   "docs": [],
   "extra": {
    "年度": "1",
-   "所在地（地番）": "宮町三丁目52－3、52－1の一部",
    "店舗面積": "288.22平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "231283c50256",
+  "key": "ec31479f34ab",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -77963,7 +78599,7 @@
   "kind": "新設",
   "notified_on": "2019-12-16",
   "notified_raw": "令和元年12月16日",
-  "store": "（仮称）万代松原上田店 上田2丁目334番11の一部",
+  "store": "（仮称）万代松原上田店 上田2丁目",
   "address": "松原市上田２丁目",
   "operator": "",
   "new_operator": "",
@@ -78000,7 +78636,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -78708,7 +79344,7 @@
   "kind": "変更",
   "notified_on": "2019-11-15",
   "notified_raw": "令和元年11月15日",
-  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目地内",
+  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -78745,7 +79381,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -80449,6 +81085,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "db69b7e37c95"
   ],
@@ -80459,7 +81096,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/011008t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -81276,7 +81913,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -81563,7 +82200,7 @@
   "kind": "新設",
   "notified_on": "2019-07-29",
   "notified_raw": "令和元年7月29日",
-  "store": "（仮称）ケーズデンキ松原天美店 松原市天美東4丁目297番1ほか",
+  "store": "（仮称）ケーズデンキ松原天美店 松原市天美東4丁目",
   "address": "松原市天美東４丁目",
   "operator": "",
   "new_operator": "",
@@ -81600,7 +82237,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -83653,7 +84290,7 @@
   "kind": "新設",
   "notified_on": "2019-04-23",
   "notified_raw": "平成31年4月23日",
-  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目地内",
+  "store": "（仮称）松原天美ショッピングセンター 松原市天美東3丁目",
   "address": "松原市天美東３丁目",
   "operator": "",
   "new_operator": "",
@@ -83690,7 +84327,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -84918,7 +85555,7 @@
   "notified_on": "2019-02-12",
   "notified_raw": "平成31年2月12日",
   "store": "（仮称）ウエルシア八尾跡部北の町店",
-  "address": "",
+  "address": "跡部北の町三丁目3番2、3番3の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -84932,11 +85569,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "跡部北の町三丁目3番2、3番3の一部",
    "店舗面積": "723.96平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "e84165df362e",
+  "key": "545b4520447a",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -85472,7 +86108,7 @@
   "notified_on": "2019-01-24",
   "notified_raw": "平成31年1月24日",
   "store": "（仮称）近商ストア山本店 新築工事",
-  "address": "",
+  "address": "山本町南一丁目151-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -85486,11 +86122,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "山本町南一丁目151-1",
    "店舗面積": "994.83平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "8bb7a9cc5bdb",
+  "key": "ea09418acdd6",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -85729,6 +86364,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "f9b6f83291ab"
   ],
@@ -85739,7 +86375,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/310122t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -86308,7 +86944,7 @@
   "notified_on": "2018-11-21",
   "notified_raw": "平成30年11月21日",
   "store": "（仮称）ホンダカーズ大阪 八尾志紀店新築工事",
-  "address": "",
+  "address": "都塚二丁目68-3、69、70、71、都塚四丁目5-5、6-1、6-2、7-1、7-2番地各一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -86322,11 +86958,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "都塚二丁目68-3、69、70、71、都塚四丁目5-5、6-1、6-2、7-1、7-2番地各一部",
    "店舗面積": "268.142平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "625d70ceb667",
+  "key": "66f4edb92363",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -86695,6 +87330,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "50f3ad54dd7b"
   ],
@@ -86705,7 +87341,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/301126t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -86780,6 +87416,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "31468dbec160"
   ],
@@ -86790,7 +87427,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/301120t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -86924,7 +87561,7 @@
   "notified_on": "2018-10-03",
   "notified_raw": "平成30年10月3日",
   "store": "（仮称）林五様貸店舗新築工事",
-  "address": "",
+  "address": "南木の本二丁目19番1、20番1、121番1、122番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -86938,11 +87575,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "南木の本二丁目19番1、20番1、121番1、122番1",
    "店舗面積": "912.26平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "8cfd951c9d68",
+  "key": "2e6e4b74d01d",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -87416,7 +88052,7 @@
   "notified_on": "2018-09-12",
   "notified_raw": "平成30年9月12日",
   "store": "大阪中河内農業協同組合 畑のつづき八尾店",
-  "address": "",
+  "address": "山本町南七丁目13番22号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -87430,11 +88066,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "山本町南七丁目13番22号",
    "店舗面積": "232.38平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "0a0879724de7",
+  "key": "0daf0db0b6b8",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -87526,7 +88161,7 @@
   "notified_on": "2018-09-06",
   "notified_raw": "平成30年9月6日",
   "store": "(仮称）ドラッグセイムス太子堂店",
-  "address": "",
+  "address": "南植松町五丁目1-1、1-4、2-1の一部、2-4、2-5、3-1の一部、3-2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -87540,11 +88175,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "南植松町五丁目1-1、1-4、2-1の一部、2-4、2-5、3-1の一部、3-2",
    "店舗面積": "749.68平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "da55b46a73d2",
+  "key": "7509d0e725b6",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -87676,7 +88310,7 @@
   "notified_on": "2018-08-29",
   "notified_raw": "平成30年8月29日",
   "store": "大阪ダイハツ販売株式会社八尾店",
-  "address": "",
+  "address": "南植松町二丁目15番2、15番3、15番4、28番2、29番2、31番1、31番25",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -87690,11 +88324,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "南植松町二丁目15番2、15番3、15番4、28番2、29番2、31番1、31番25",
    "店舗面積": "266.27平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "74ece03ba590",
+  "key": "95e7db589b1d",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -87743,6 +88376,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "3c70f7b00806"
   ],
@@ -87753,7 +88387,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300928t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -87883,7 +88517,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -89806,6 +90440,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "de15bbe21492"
   ],
@@ -89816,7 +90451,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300522t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -89910,7 +90545,7 @@
   "notified_on": "2018-04-11",
   "notified_raw": "平成30年4月11日",
   "store": "シグマ薬品 南植松店",
-  "address": "",
+  "address": "南植松町四丁目1番の一部、2番、3番、4番、5番の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -89924,11 +90559,10 @@
   "docs": [],
   "extra": {
    "年度": "30",
-   "所在地（地番）": "南植松町四丁目1番の一部、2番、3番、4番、5番の一部",
    "店舗面積": "557.05平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "13ecdbdb534a",
+  "key": "2a0c5f801985",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -89977,6 +90611,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "8e99d5767e2b"
   ],
@@ -89987,7 +90622,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300501t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -90096,7 +90731,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "埼玉県本庄市早稲田の杜一丁目",
   "retailer_display": "株式会社カインズ",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -90184,7 +90818,7 @@
   "notified_on": "2018-03-29",
   "notified_raw": "平成30年3月29日",
   "store": "（仮称）スーパーヤオヒコ八尾木の本店 新築工事",
-  "address": "",
+  "address": "木の本一丁目7番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -90198,11 +90832,10 @@
   "docs": [],
   "extra": {
    "年度": "29",
-   "所在地（地番）": "木の本一丁目7番1",
    "店舗面積": "984.48平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "04bcf18c8c28",
+  "key": "9cfd7c28de36",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -90303,7 +90936,7 @@
   "notified_on": "2018-03-26",
   "notified_raw": "平成30年3月26日",
   "store": "大阪トヨペット 八尾店",
-  "address": "",
+  "address": "山賀町一丁目53-1、53-2、53-3、55-2、楠根町四丁目1-2、1-3、2-2、3-2、4-2、6-2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -90317,11 +90950,10 @@
   "docs": [],
   "extra": {
    "年度": "29",
-   "所在地（地番）": "山賀町一丁目53-1、53-2、53-3、55-2、楠根町四丁目1-2、1-3、2-2、3-2、4-2、6-2",
    "店舗面積": "866.16平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "3a0358b4914f",
+  "key": "3dae0564b495",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -90669,6 +91301,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "d2022e2eaf2e"
   ],
@@ -90679,7 +91312,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300403t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -90821,7 +91454,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -90879,7 +91512,7 @@
   "notified_on": "2018-02-28",
   "notified_raw": "平成30年2月28日",
   "store": "セブン-イレブン八尾南駅前店",
-  "address": "",
+  "address": "若林町一丁目76番3",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -90893,11 +91526,10 @@
   "docs": [],
   "extra": {
    "年度": "29",
-   "所在地（地番）": "若林町一丁目76番3",
    "店舗面積": "241.34平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "cf1e3144ccc9",
+  "key": "43425ec364c3",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -90980,6 +91612,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "01bc7b2a2fc4"
   ],
@@ -90990,7 +91623,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300320t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -91141,6 +91774,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "4b045b591f1b"
   ],
@@ -91151,7 +91785,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300316t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -91230,7 +91864,7 @@
   "notified_on": "2018-02-01",
   "notified_raw": "平成30年2月1日",
   "store": "スギ薬局南久宝寺店",
-  "address": "",
+  "address": "南久宝寺一丁目60番6、60番7、61番、62番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -91244,11 +91878,10 @@
   "docs": [],
   "extra": {
    "年度": "29",
-   "所在地（地番）": "南久宝寺一丁目60番6、60番7、61番、62番",
    "店舗面積": "809.78平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d1653d9aa4ad",
+  "key": "c2a037b9cf0d",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -91374,6 +92007,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "475b62cbbde1"
   ],
@@ -91384,7 +92018,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/300216t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -91415,7 +92049,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市北区角田町",
   "retailer_display": "未定",
   "retailer_kind": "individual",
   "first_seen": null,
@@ -91594,7 +92227,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市淀川区西中島三丁目",
   "retailer_display": "株式会社ドン・キホーテ",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -91697,7 +92329,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市北区芝田二丁目",
   "retailer_display": "未定",
   "retailer_kind": "individual",
   "first_seen": null,
@@ -91836,7 +92467,7 @@
   "notified_on": "2017-12-07",
   "notified_raw": "平成29年12月7日",
   "store": "（仮称）スーパーヤオヒコ八尾木の本店 新築工事",
-  "address": "",
+  "address": "木の本一丁目7番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -91850,11 +92481,10 @@
   "docs": [],
   "extra": {
    "年度": "29",
-   "所在地（地番）": "木の本一丁目7番1",
    "店舗面積": "935.73平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "2aa2385a2374",
+  "key": "b5123e316051",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -91928,7 +92558,7 @@
   "notified_on": "2017-12-04",
   "notified_raw": "平成29年12月4日",
   "store": "シグマ薬品 南植松町",
-  "address": "",
+  "address": "南植松町四丁目1番の一部、2番、3番、4番、5番の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -91942,11 +92572,10 @@
   "docs": [],
   "extra": {
    "年度": "29",
-   "所在地（地番）": "南植松町四丁目1番の一部、2番、3番、4番、5番の一部",
    "店舗面積": "564.50平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d4558d67ef8c",
+  "key": "a38a85a51828",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -92179,7 +92808,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "岡山県倉敷市堀南",
   "retailer_display": "大黒天物産株式会社",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -92664,6 +93292,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "1b1154c8c2a9"
   ],
@@ -92674,7 +93303,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291128t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -92809,7 +93438,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市西成区花園南一丁目",
   "retailer_display": "イズミヤ株式会社",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -92856,6 +93484,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "04b1800645c7"
   ],
@@ -92866,7 +93495,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291117t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -92934,6 +93563,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "3a2fb722e346"
   ],
@@ -92944,7 +93574,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/291031t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -92975,7 +93605,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市生野区小路東三丁目",
   "retailer_display": "株式会社万代",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -93016,7 +93645,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市西区立売堀五丁目",
   "retailer_display": "株式会社光伸真珠",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -93276,7 +93904,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "埼玉県本庄市早稲田の杜一丁目",
   "retailer_display": "株式会社カインズ",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -93553,7 +94180,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市生野区小路東三丁目",
   "retailer_display": "株式会社万代",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -95226,6 +95852,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "63d2a179730a"
   ],
@@ -95236,7 +95863,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290721t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -95267,7 +95894,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "埼玉県さいたま市北区宮原町二丁目",
   "retailer_display": "株式会社しまむら",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -95828,7 +96454,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市西成区花園南一丁目",
   "retailer_display": "イズミヤ株式会社",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -95900,7 +96525,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "堺市西区鳳東町四丁",
   "retailer_display": "コーナン商事株式会社",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -95972,7 +96596,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "東京都品川区東五反田二丁目",
   "retailer_display": "株式会社コスモス薬品",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -96744,7 +97367,7 @@
   "kind": "変更",
   "notified_on": "2017-05-02",
   "notified_raw": "平成29年5月2日",
-  "store": "ゆめニティまつばら 松原市上田3丁目6-1",
+  "store": "ゆめニティまつばら 松原市上田3丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -96778,7 +97401,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -97183,7 +97806,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "東大阪市下小阪二丁目",
   "retailer_display": "株式会社ライフコーポレーション",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -97311,7 +97933,6 @@
   "operator_display": "不詳（届出の一覧では設置者の欄に住所だけが書かれています）",
   "operator_kind": "individual",
   "operator_suspect": "address",
-  "operator_suspect_value": "大阪市北区中之島二丁目",
   "retailer_display": "佐竹食品株式会社",
   "retailer_kind": "corp",
   "first_seen": null,
@@ -97432,6 +98053,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "4f39b558c073"
   ],
@@ -97991,6 +98613,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "e81ac790d806"
   ],
@@ -98656,6 +99279,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "9c0d86c17209"
   ],
@@ -98666,7 +99290,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290328t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -98932,6 +99556,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "738bc7665b87"
   ],
@@ -98942,7 +99567,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/290324t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -100317,6 +100942,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "b9f576d9814b"
   ],
@@ -100406,7 +101032,7 @@
   "notified_on": "2016-12-08",
   "notified_raw": "平成28年12月8日",
   "store": "（仮称）八尾木の本一丁目店舗 新築工事",
-  "address": "",
+  "address": "木ノ本一丁目15番1、15番2、16番、18番、19番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -100420,11 +101046,10 @@
   "docs": [],
   "extra": {
    "年度": "28",
-   "所在地（地番）": "木ノ本一丁目15番1、15番2、16番、18番、19番",
    "店舗面積": "868.81平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "21f405ee0414",
+  "key": "74c6b3a37f7f",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -100723,7 +101348,7 @@
   "notified_on": "2016-11-17",
   "notified_raw": "平成28年11月17日",
   "store": "フレッシュマーケットアオイ八尾山本駅前南店",
-  "address": "",
+  "address": "山本町南一丁目5番2号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -100737,11 +101362,10 @@
   "docs": [],
   "extra": {
    "年度": "28",
-   "所在地（地番）": "山本町南一丁目5番2号",
    "店舗面積": "494.5平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d58c1ff36bba",
+  "key": "5b4610c78e85",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -101109,6 +101733,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0a3ec9af655f"
   ],
@@ -101119,7 +101744,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/281111t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -101255,7 +101880,7 @@
   "notified_on": "2016-09-21",
   "notified_raw": "平成28年9月21日",
   "store": "（仮称）大阪マツダ八尾店",
-  "address": "",
+  "address": "南植松町四丁目7番の一部、8番、9番、10番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -101269,11 +101894,10 @@
   "docs": [],
   "extra": {
    "年度": "28",
-   "所在地（地番）": "南植松町四丁目7番の一部、8番、9番、10番",
    "店舗面積": "346.82平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "978be39495dd",
+  "key": "e7c26c8902f8",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -101584,6 +102208,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "dca63d70e4b8"
   ],
@@ -101594,7 +102219,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/281007t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -101833,6 +102458,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "969ca1b206c1"
   ],
@@ -101943,6 +102569,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "e78993f38a91"
   ],
@@ -102622,6 +103249,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "72c938d8c90d"
   ],
@@ -102632,7 +103260,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280715t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -102667,6 +103295,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "4c8a4581f1a2"
   ],
@@ -102677,7 +103306,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280701t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -102985,7 +103614,7 @@
   "notified_on": "2016-05-25",
   "notified_raw": "平成28年5月25日",
   "store": "（仮称）ウエルシア八尾東久宝寺店",
-  "address": "",
+  "address": "東久宝寺三丁目7番、8番2、9番2、121番（東大阪市金岡四丁目1番90）",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -102999,11 +103628,10 @@
   "docs": [],
   "extra": {
    "年度": "28",
-   "所在地（地番）": "東久宝寺三丁目7番、8番2、9番2、121番（東大阪市金岡四丁目1番90）",
    "店舗面積": "902.75平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "9fceb6a3326d",
+  "key": "bf2b1b3c516d",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -103316,6 +103944,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "8ab1c2e24ded"
   ],
@@ -103326,7 +103955,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280614t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -103770,7 +104399,7 @@
   "notified_on": "2016-03-30",
   "notified_raw": "平成28年3月30日",
   "store": "ゲオ八尾店",
-  "address": "",
+  "address": "東本町四丁目2番50号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -103784,11 +104413,10 @@
   "docs": [],
   "extra": {
    "年度": "27",
-   "所在地（地番）": "東本町四丁目2番50号",
    "店舗面積": "936.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "c06ed404abe2",
+  "key": "4e04544b9499",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -103910,6 +104538,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "444bb6682889"
   ],
@@ -103920,7 +104549,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280426t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -103930,7 +104559,7 @@
   "notified_on": "2016-03-16",
   "notified_raw": "平成28年3月16日",
   "store": "（仮称）八尾市高美町店舗〈新八尾店〉",
-  "address": "",
+  "address": "高美町一丁目29番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -103944,11 +104573,10 @@
   "docs": [],
   "extra": {
    "年度": "27",
-   "所在地（地番）": "高美町一丁目29番1",
    "店舗面積": "617.51平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "197fc4300ad2",
+  "key": "6eabc7beae97",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -104453,6 +105081,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "a2abc7ede515"
   ],
@@ -104463,7 +105092,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280325t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -104501,6 +105130,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "82d88151be91"
   ],
@@ -104633,6 +105263,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "a9d3a937761c"
   ],
@@ -104643,7 +105274,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280318t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -104750,6 +105381,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "7fbf53e80cab"
   ],
@@ -104760,7 +105392,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -104867,6 +105499,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "f3de1d451cbd"
   ],
@@ -104877,7 +105510,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280308t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -105151,6 +105784,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "ba4c043b381a"
   ],
@@ -105161,7 +105795,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280219t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -105606,6 +106240,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "c926d0108fd9"
   ],
@@ -105616,7 +106251,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280126t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -105626,7 +106261,7 @@
   "notified_on": "2015-12-25",
   "notified_raw": "平成27年12月25日",
   "store": "（仮称）バイクエース八尾新家店舗",
-  "address": "",
+  "address": "新家町七丁目1番地1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -105640,11 +106275,10 @@
   "docs": [],
   "extra": {
    "年度": "27",
-   "所在地（地番）": "新家町七丁目1番地1",
    "店舗面積": "266.32平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "9a0630de20fe",
+  "key": "5900826542bd",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -105731,6 +106365,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "9ca3aa95e821"
   ],
@@ -105741,7 +106376,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/280209t.pdf",
   "fetched_on": "2026-09-13",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-13",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-13"
   }
  },
@@ -105958,7 +106593,7 @@
   "notified_on": "2015-12-21",
   "notified_raw": "平成27年12月21日",
   "store": "AUショップ八尾南本町増築工事",
-  "address": "",
+  "address": "南本町一丁目28番1の一部、29番1、30番、31番の一部、32番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -105972,11 +106607,10 @@
   "docs": [],
   "extra": {
    "年度": "27",
-   "所在地（地番）": "南本町一丁目28番1の一部、29番1、30番、31番の一部、32番",
    "店舗面積": "278.51平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "49adcc7fabfa",
+  "key": "76dc3eb09e6b",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -107303,7 +107937,7 @@
   "notified_on": "2015-11-24",
   "notified_raw": "平成27年11月24日",
   "store": "（仮称）八尾市本町七丁目店舗",
-  "address": "",
+  "address": "本町七丁目29番、31番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -107317,11 +107951,10 @@
   "docs": [],
   "extra": {
    "年度": "27",
-   "所在地（地番）": "本町七丁目29番、31番",
    "店舗面積": "212.07平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "25fd97ad11de",
+  "key": "c5664116584b",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -107621,7 +108254,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -107964,6 +108597,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "658e808524d4"
   ],
@@ -107974,7 +108608,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271124t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -108265,6 +108899,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "bf9f2560f041"
   ],
@@ -108275,7 +108910,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/271023t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -109352,7 +109987,7 @@
   "kind": "変更",
   "notified_on": "2015-07-31",
   "notified_raw": "平成27年7月31日",
-  "store": "ホームセンターコーナン松原市役所前店 松原市三宅西1丁目313番地1",
+  "store": "ホームセンターコーナン松原市役所前店 松原市三宅西1丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -109386,7 +110021,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -110155,7 +110790,7 @@
   "notified_on": "2015-06-15",
   "notified_raw": "平成27年6月15日",
   "store": "（仮称）キリン堂 八尾東本町店新築工事",
-  "address": "",
+  "address": "東本町五丁目31番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -110169,11 +110804,10 @@
   "docs": [],
   "extra": {
    "年度": "27",
-   "所在地（地番）": "東本町五丁目31番1",
    "店舗面積": "814.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "e0766ef29a89",
+  "key": "038a739a0acc",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -110256,7 +110890,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -110364,7 +110998,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -110534,7 +111168,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -112958,7 +113592,7 @@
   "notified_on": "2015-03-25",
   "notified_raw": "平成27年3月25日",
   "store": "有限会社マルス貸店舗",
-  "address": "",
+  "address": "山城町五丁目4番17号",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -112972,11 +113606,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "山城町五丁目4番17号",
    "店舗面積": "459.73平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "21fdec928b14",
+  "key": "dab202ecf0f4",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -113653,7 +114286,7 @@
   "kind": "新設",
   "notified_on": "2015-03-03",
   "notified_raw": "平成27年3月3日",
-  "store": "じゃんぼスクエア熊取 熊取町紺屋1丁目26番1号",
+  "store": "じゃんぼスクエア熊取 熊取町紺屋1丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -113793,7 +114426,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
@@ -113831,7 +114464,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第2項",
@@ -114211,7 +114844,7 @@
   "notified_on": "2015-02-16",
   "notified_raw": "平成27年2月16日",
   "store": "（仮称）サンディ八尾旭ヶ丘店",
-  "address": "",
+  "address": "旭ヶ丘一丁目110番、111番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -114225,11 +114858,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "旭ヶ丘一丁目110番、111番",
    "店舗面積": "531.81平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "1c06ac372efd",
+  "key": "748e360c6bd9",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -114560,7 +115192,7 @@
   "kind": "変更",
   "notified_on": "2015-01-29",
   "notified_raw": "平成27年1月29日",
-  "store": "（仮称）ドン・キホーテ松原店 松原市丹南3丁目237番地の4ほか",
+  "store": "（仮称）ドン・キホーテ松原店 松原市丹南3丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -114594,7 +115226,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -115897,7 +116529,7 @@
   "notified_on": "2014-10-27",
   "notified_raw": "平成26年10月27日",
   "store": "西松屋八尾太田橋店",
-  "address": "",
+  "address": "太田三丁目223番1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -115911,11 +116543,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "太田三丁目223番1",
    "店舗面積": "869.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "4d8ea147739a",
+  "key": "59bf36cc1e06",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -116007,7 +116638,7 @@
   "notified_on": "2014-10-23",
   "notified_raw": "平成26年10月23日",
   "store": "（仮称）岩﨑様貸店舗 新築工事",
-  "address": "",
+  "address": "楠根町四丁目34番1、34番14の各一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -116021,11 +116652,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "楠根町四丁目34番1、34番14の各一部",
    "店舗面積": "480.77平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "b2681e9cd5c1",
+  "key": "64f1d2cd5126",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -116455,6 +117085,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "9146e433536f"
   ],
@@ -116465,7 +117096,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/koho/documents/261114t.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -116505,7 +117136,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第2項",
@@ -116543,7 +117174,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -117049,7 +117680,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -118967,7 +119598,7 @@
   "notified_on": "2014-06-17",
   "notified_raw": "平成26年6月17日",
   "store": "（仮称）コノミヤ八尾店",
-  "address": "",
+  "address": "北本町二丁目215－1～215－4",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -118981,11 +119612,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "北本町二丁目215－1～215－4",
    "店舗面積": "947.24平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "1257dfd73c0b",
+  "key": "df3fbcf7665c",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -119120,7 +119750,7 @@
   "notified_on": "2014-06-10",
   "notified_raw": "平成26年6月10日",
   "store": "（仮称）八尾市南太子堂3丁目",
-  "address": "",
+  "address": "南太子堂三丁目33-7の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -119134,11 +119764,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "南太子堂三丁目33-7の一部",
    "店舗面積": "663.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "e44a50bd45c5",
+  "key": "d03e7e43cb1f",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -120113,7 +120742,7 @@
   "notified_on": "2014-05-14",
   "notified_raw": "平成26年5月14日",
   "store": "スーパーマルヒ中田店",
-  "address": "",
+  "address": "中田三丁目34番1～34番4",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -120127,11 +120756,10 @@
   "docs": [],
   "extra": {
    "年度": "26",
-   "所在地（地番）": "中田三丁目34番1～34番4",
    "店舗面積": "394.20平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "e8c21079b05b",
+  "key": "1241dac4f068",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -120682,7 +121310,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -121885,7 +122513,7 @@
   "kind": "変更",
   "notified_on": "2014-02-21",
   "notified_raw": "平成26年2月21日",
-  "store": "近商ストア天美店 松原市天美南3丁目65番地の3",
+  "store": "近商ストア天美店 松原市天美南3丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -121920,7 +122548,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -122123,7 +122751,7 @@
   "notified_on": "2014-01-30",
   "notified_raw": "平成26年1月30日",
   "store": "コンビニ店舗、薬局",
-  "address": "",
+  "address": "福万寺町一丁目93-13、93-1～93-3 福万寺町南一丁目16-3、16-4、17-3、17-17～17-19",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -122137,11 +122765,10 @@
   "docs": [],
   "extra": {
    "年度": "25",
-   "所在地（地番）": "福万寺町一丁目93-13、93-1～93-3 福万寺町南一丁目16-3、16-4、17-3、17-17～17-19",
    "店舗面積": "842.37平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "635aa6676824",
+  "key": "4bedd334bf6e",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -125254,7 +125881,7 @@
   "notified_on": "2013-07-08",
   "notified_raw": "平成25年7月8日",
   "store": "ペントモールやお",
-  "address": "",
+  "address": "光町1丁目65番～67番,601番～610番,北本町2丁目601～605番、東本町3丁目173番92",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -125268,11 +125895,10 @@
   "docs": [],
   "extra": {
    "年度": "25",
-   "所在地（地番）": "光町1丁目65番～67番,601番～610番,北本町2丁目601～605番、東本町3丁目173番92",
    "店舗面積": "844.4平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "ed284a64d895",
+  "key": "2dbbbf6ef8d5",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -127094,7 +127720,7 @@
   "notified_on": "2013-04-15",
   "notified_raw": "平成25年4月15日",
   "store": "（仮称）志紀PJ店舗改装工事",
-  "address": "",
+  "address": "志紀町2丁目43の1,4,5",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -127108,11 +127734,10 @@
   "docs": [],
   "extra": {
    "年度": "25",
-   "所在地（地番）": "志紀町2丁目43の1,4,5",
    "店舗面積": "446.01平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "fd0cb930f396",
+  "key": "1b19ed7d87cb",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -127871,7 +128496,7 @@
   "notified_on": "2013-03-12",
   "notified_raw": "平成25年3月12日",
   "store": "NTT西日本アセット・プランニング貸店舗",
-  "address": "",
+  "address": "志紀町1丁目152,155,156,157,169番の各一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -127885,11 +128510,10 @@
   "docs": [],
   "extra": {
    "年度": "24",
-   "所在地（地番）": "志紀町1丁目152,155,156,157,169番の各一部",
    "店舗面積": "377.84平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "b7bd6cec3c25",
+  "key": "e62fe8dd74b0",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -128233,7 +128857,7 @@
   "notified_on": "2013-02-27",
   "notified_raw": "平成25年2月27日",
   "store": "倉庫管理棟",
-  "address": "",
+  "address": "服部川1丁目34番1,37番1,37番2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -128247,11 +128871,10 @@
   "docs": [],
   "extra": {
    "年度": "24",
-   "所在地（地番）": "服部川1丁目34番1,37番1,37番2",
    "店舗面積": "294.36平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "a4d95a32d032",
+  "key": "7aa750d3daa2",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -129032,7 +129655,7 @@
   "notified_on": "2013-01-16",
   "notified_raw": "平成25年1月16日",
   "store": "業務スーパー八尾志紀店",
-  "address": "",
+  "address": "志紀町南3丁目93",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -129046,11 +129669,10 @@
   "docs": [],
   "extra": {
    "年度": "24",
-   "所在地（地番）": "志紀町南3丁目93",
    "店舗面積": "354.37平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "7b902125c276",
+  "key": "f5937aa1fa5a",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -129167,14 +129789,14 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第5条第1項",
   "kind": "新設",
   "notified_on": "2012-12-26",
   "notified_raw": "平成24年12月26日",
-  "store": "（仮称）イズミヤ松原市役所前店 松原市田井城一丁目139-2",
+  "store": "（仮称）イズミヤ松原市役所前店 松原市田井城一丁目",
   "address": "",
   "operator": "",
   "new_operator": "",
@@ -129208,7 +129830,7 @@
   "area": "松原市",
   "address_redacted": true,
   "source_url": "https://www.city.matsubara.lg.jp/docs/page3041.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-pref",
@@ -130381,7 +131003,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -131629,7 +132251,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "source": "osaka-city",
@@ -132001,7 +132623,7 @@
   "area": "豊中市",
   "address_redacted": true,
   "source_url": "https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html",
-  "fetched_on": "2026-09-15"
+  "fetched_on": "2026-09-16"
  },
  {
   "article": "第6条第1項",
@@ -132118,7 +132740,7 @@
   "notified_on": "2012-08-21",
   "notified_raw": "平成24年8月21日",
   "store": "オリックス貸店舗",
-  "address": "",
+  "address": "旭ヶ丘1丁目110番,111番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -132132,11 +132754,10 @@
   "docs": [],
   "extra": {
    "年度": "24",
-   "所在地（地番）": "旭ヶ丘1丁目110番,111番",
    "店舗面積": "581.40平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "ab10f80a75d8",
+  "key": "0c9562aae912",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -132228,7 +132849,7 @@
   "notified_on": "2012-08-09",
   "notified_raw": "平成24年8月9日",
   "store": "（仮称）イレブン八尾青山店",
-  "address": "",
+  "address": "青山町4丁目165番1,168番,169番2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -132242,11 +132863,10 @@
   "docs": [],
   "extra": {
    "年度": "24",
-   "所在地（地番）": "青山町4丁目165番1,168番,169番2",
    "店舗面積": "676.73平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "34857e7fa341",
+  "key": "557e457aa2ee",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -133728,6 +134348,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0009ca9ba197"
   ],
@@ -135965,7 +136586,7 @@
   "notified_on": "2012-05-08",
   "notified_raw": "平成24年5月8日",
   "store": "シグマ薬局",
-  "address": "",
+  "address": "高美町6丁目33番1の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -135979,11 +136600,10 @@
   "docs": [],
   "extra": {
    "年度": "24",
-   "所在地（地番）": "高美町6丁目33番1の一部",
    "店舗面積": "680.75平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "a249095f2879",
+  "key": "80d14f392fdc",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -137246,6 +137866,12 @@
    "osaka-pref",
    "toyonaka-city"
   ],
+  "seen_by": {
+   "toyonaka-city": "2026-09-15"
+  },
+  "file_by": {
+   "osaka-pref": "shinsetsu_12-r5.xlsx"
+  },
   "merged_keys": [
    "d015bc52271a"
   ],
@@ -140817,7 +141443,7 @@
   "notified_on": "2011-12-07",
   "notified_raw": "平成23年12月7日",
   "store": "ワークマン八尾東山本店",
-  "address": "",
+  "address": "東山本新町3丁目12-6,13-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -140831,11 +141457,10 @@
   "docs": [],
   "extra": {
    "年度": "23",
-   "所在地（地番）": "東山本新町3丁目12-6,13-1",
    "店舗面積": "274.85平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "ed9bda94f022",
+  "key": "e18c7285bf2b",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -147635,6 +148260,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "802da58c49c6"
   ],
@@ -147645,7 +148271,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000171291.pdf",
   "fetched_on": "2026-09-14",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-14",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-14"
   }
  },
@@ -150193,7 +150819,7 @@
   "notified_on": "2010-06-21",
   "notified_raw": "平成22年6月21日",
   "store": "（仮称）サイクルベース あさひ八尾北店",
-  "address": "",
+  "address": "萱振町1丁目54番3、54番4、54番10",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -150207,11 +150833,10 @@
   "docs": [],
   "extra": {
    "年度": "22",
-   "所在地（地番）": "萱振町1丁目54番3、54番4、54番10",
    "店舗面積": "459.65平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "752dee93726d",
+  "key": "f587b0aeb9c2",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -154598,6 +155223,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "db81bc682a63"
   ],
@@ -154851,7 +155477,7 @@
   "notified_on": "2009-07-30",
   "notified_raw": "平成21年7月30日",
   "store": "（仮称）セガミ薬局 北久宝寺1丁目店",
-  "address": "",
+  "address": "北久宝寺1丁目133番3、143番2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -154865,11 +155491,10 @@
   "docs": [],
   "extra": {
    "年度": "21",
-   "所在地（地番）": "北久宝寺1丁目133番3、143番2",
    "店舗面積": "547.47平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "0cc7e3696fe6",
+  "key": "d94ce0713633",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -156664,6 +157289,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0c0383567ad5"
   ],
@@ -156674,7 +157300,7 @@
   "source_url": "https://web.pref.hyogo.lg.jp/kk32/documents/000125580.pdf",
   "fetched_on": "2026-09-15",
   "fetched_by": {
-   "hyogo-bukai": "2026-09-15",
+   "hyogo-bukai": "",
    "hyogo-koho": "2026-09-15"
   }
  },
@@ -158841,6 +159467,7 @@
    "hyogo-bukai",
    "hyogo-koho"
   ],
+  "seen_by": {},
   "merged_keys": [
    "0ed79df4b3d4"
   ],
@@ -160346,7 +160973,7 @@
   "notified_on": "2008-10-10",
   "notified_raw": "平成20年10月10日",
   "store": "（仮称）プロパレス八尾高安町新築工事",
-  "address": "",
+  "address": "高安北1丁目1-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -160360,11 +160987,10 @@
   "docs": [],
   "extra": {
    "年度": "20",
-   "所在地（地番）": "高安北1丁目1-1",
    "店舗面積": "499.94平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "a355698453ba",
+  "key": "75dec9c8e608",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -164826,7 +165452,7 @@
   "notified_on": "2007-12-06",
   "notified_raw": "平成19年12月6日",
   "store": "八尾スーパーマルヒ",
-  "address": "",
+  "address": "山本町北2丁目26番8他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -164840,11 +165466,10 @@
   "docs": [],
   "extra": {
    "年度": "19",
-   "所在地（地番）": "山本町北2丁目26番8他",
    "店舗面積": "499.93平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "8445b0521253",
+  "key": "536a03effffb",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -171464,7 +172089,7 @@
   "notified_on": "2006-01-24",
   "notified_raw": "平成18年1月24日",
   "store": "（仮称）八尾のむのむ新築工事",
-  "address": "",
+  "address": "小畑町2‐31番1の一部 他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -171478,11 +172103,10 @@
   "docs": [],
   "extra": {
    "年度": "17",
-   "所在地（地番）": "小畑町2‐31番1の一部 他",
    "店舗面積": "510.20平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "f8d949da5e52",
+  "key": "9f708112bc71",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -171714,7 +172338,7 @@
   "notified_on": "2005-12-06",
   "notified_raw": "平成17年12月6日",
   "store": "（仮称）佐竹食品物販店舗",
-  "address": "",
+  "address": "跡部北の町三丁目7番他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -171728,11 +172352,10 @@
   "docs": [],
   "extra": {
    "年度": "17",
-   "所在地（地番）": "跡部北の町三丁目7番他",
    "店舗面積": "883.38平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "b4bdcd802d77",
+  "key": "fac98a8cc027",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -173974,7 +174597,7 @@
   "notified_on": "2005-07-19",
   "notified_raw": "平成17年7月19日",
   "store": "YBM八尾志紀町南",
-  "address": "",
+  "address": "志紀町南2‐135‐4",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -173988,11 +174611,10 @@
   "docs": [],
   "extra": {
    "年度": "17",
-   "所在地（地番）": "志紀町南2‐135‐4",
    "店舗面積": "560.40平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "5e68e17aa79b",
+  "key": "6bc527a6f7c5",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -174475,7 +175097,7 @@
   "notified_on": "2005-06-16",
   "notified_raw": "平成17年6月16日",
   "store": "フレッツ 八尾店",
-  "address": "",
+  "address": "光町1丁目9番",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -174489,11 +175111,10 @@
   "docs": [],
   "extra": {
    "年度": "17",
-   "所在地（地番）": "光町1丁目9番",
    "店舗面積": "726.47平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "9aea98a5ae18",
+  "key": "ce3249c681d1",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -174680,7 +175301,7 @@
   "notified_on": "2005-05-20",
   "notified_raw": "平成17年5月20日",
   "store": "（仮称）太口リース建物",
-  "address": "",
+  "address": "南太子堂5-34-1の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -174694,11 +175315,10 @@
   "docs": [],
   "extra": {
    "年度": "17",
-   "所在地（地番）": "南太子堂5-34-1の一部",
    "店舗面積": "282.40平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "ff0784a21634",
+  "key": "e257acdc168a",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -175376,7 +175996,7 @@
   "notified_on": "2005-04-13",
   "notified_raw": "平成17年4月13日",
   "store": "スーパーはやし",
-  "address": "",
+  "address": "山城町1-1ペントモール八尾1番街",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -175390,11 +176010,10 @@
   "docs": [],
   "extra": {
    "年度": "17",
-   "所在地（地番）": "山城町1-1ペントモール八尾1番街",
    "店舗面積": "635.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "64caaee84be9",
+  "key": "64e28a16d57e",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -175693,7 +176312,7 @@
   "notified_on": "2005-03-28",
   "notified_raw": "平成17年3月28日",
   "store": "物販店舗",
-  "address": "",
+  "address": "志紀町一丁目4番1他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -175707,11 +176326,10 @@
   "docs": [],
   "extra": {
    "年度": "16",
-   "所在地（地番）": "志紀町一丁目4番1他",
    "店舗面積": "529.81平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "5d20721f46b6",
+  "key": "c9d4ef415b74",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -176485,7 +177103,7 @@
   "notified_on": "2005-01-13",
   "notified_raw": "平成17年1月13日",
   "store": "物販店舗",
-  "address": "",
+  "address": "志紀町2-34他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -176499,11 +177117,10 @@
   "docs": [],
   "extra": {
    "年度": "16",
-   "所在地（地番）": "志紀町2-34他",
    "店舗面積": "269.99平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "7d9168289eed",
+  "key": "bcbd8ba12e02",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -177932,7 +178549,7 @@
   "notified_on": "2004-10-13",
   "notified_raw": "平成16年10月13日",
   "store": "（仮称）的場店舗",
-  "address": "",
+  "address": "水越1-98他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -177946,11 +178563,10 @@
   "docs": [],
   "extra": {
    "年度": "16",
-   "所在地（地番）": "水越1-98他",
    "店舗面積": "279.30平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "63d585cdb408",
+  "key": "d3f326a57f65",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -178540,7 +179156,7 @@
   "notified_on": "2004-09-15",
   "notified_raw": "平成16年9月15日",
   "store": "ジップドラッグ東洋八尾萱振店",
-  "address": "",
+  "address": "萱振町7-19-1他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -178554,11 +179170,10 @@
   "docs": [],
   "extra": {
    "年度": "16",
-   "所在地（地番）": "萱振町7-19-1他",
    "店舗面積": "651.30平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "360ba01e8aec",
+  "key": "46e66c7f6e80",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -179483,7 +180098,7 @@
   "notified_on": "2004-07-07",
   "notified_raw": "平成16年7月7日",
   "store": "万代山本店",
-  "address": "",
+  "address": "山本町南4-2他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -179497,11 +180112,10 @@
   "docs": [],
   "extra": {
    "年度": "16",
-   "所在地（地番）": "山本町南4-2他",
    "店舗面積": "992.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "5995a92aa41c",
+  "key": "5fba70e99d80",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -182240,7 +182854,7 @@
   "notified_on": "2004-01-14",
   "notified_raw": "平成16年1月14日",
   "store": "薬ヒグチ八尾店",
-  "address": "",
+  "address": "本町7-34",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -182254,11 +182868,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "本町7-34",
    "店舗面積": "330.07平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "503050e8cb85",
+  "key": "68c518027c9d",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -183386,7 +183999,7 @@
   "notified_on": "2003-11-11",
   "notified_raw": "平成15年11月11日",
   "store": "株式会社ドンキホーテ",
-  "address": "",
+  "address": "南植松町2-11他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -183400,11 +184013,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "南植松町2-11他",
    "店舗面積": "988.21平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "7189d0decd16",
+  "key": "ea9484860932",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -183688,7 +184300,7 @@
   "notified_on": "2003-10-30",
   "notified_raw": "平成15年10月30日",
   "store": "シューズ愛ランド",
-  "address": "",
+  "address": "沼4-152",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -183702,11 +184314,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "沼4-152",
    "店舗面積": "996.50平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "9fc15639ced0",
+  "key": "c870b38e9915",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -185011,7 +185622,7 @@
   "notified_on": "2003-08-18",
   "notified_raw": "平成15年8月18日",
   "store": "スーパー玉出山本店",
-  "address": "",
+  "address": "東山本新町8-14-18",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -185025,11 +185636,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "東山本新町8-14-18",
    "店舗面積": "700.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "acb18c91249e",
+  "key": "3f1d67930665",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -185957,7 +186567,7 @@
   "notified_on": "2003-07-14",
   "notified_raw": "平成15年7月14日",
   "store": "スーパードラッグイレブン八尾山城店",
-  "address": "",
+  "address": "山城町5-1-5の一部",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -185971,11 +186581,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "山城町5-1-5の一部",
    "店舗面積": "410.70平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "7f991d476d8b",
+  "key": "b1b80e2eeb17",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -186465,7 +187074,7 @@
   "notified_on": "2003-06-16",
   "notified_raw": "平成15年6月16日",
   "store": "万代八尾楽音寺店",
-  "address": "",
+  "address": "楽音寺1-140他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -186479,11 +187088,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "楽音寺1-140他",
    "店舗面積": "985.15平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "b1bc35deb7d3",
+  "key": "e0b82499e15b",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -187039,7 +187647,7 @@
   "notified_on": "2003-05-27",
   "notified_raw": "平成15年5月27日",
   "store": "ユニクロ八尾青山店",
-  "address": "",
+  "address": "南本町1-1-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -187053,11 +187661,10 @@
   "docs": [],
   "extra": {
    "年度": "15",
-   "所在地（地番）": "南本町1-1-1",
    "店舗面積": "844.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "2a5d87023e4d",
+  "key": "31fa9800e4e4",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -188849,7 +189456,7 @@
   "notified_on": "2003-02-21",
   "notified_raw": "平成15年2月21日",
   "store": "本荘ドラッグストアー",
-  "address": "",
+  "address": "沼4-153",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -188863,11 +189470,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "沼4-153",
    "店舗面積": "277.05平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "ce32442cfd3f",
+  "key": "c1c1a33c9f85",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -189088,7 +189694,7 @@
   "notified_on": "2003-02-14",
   "notified_raw": "平成15年2月14日",
   "store": "万代久宝寺駅南店",
-  "address": "",
+  "address": "太子堂2-5他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -189102,11 +189708,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "太子堂2-5他",
    "店舗面積": "985.40平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "ba585accc52f",
+  "key": "69f3c2dfa7dc",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -190180,7 +190785,7 @@
   "notified_on": "2002-10-10",
   "notified_raw": "平成14年10月10日",
   "store": "サーバ八尾老原店",
-  "address": "",
+  "address": "老原1-13-15他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -190194,11 +190799,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "老原1-13-15他",
    "店舗面積": "986.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "8de13d18a336",
+  "key": "8b772f282994",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -190898,7 +191502,7 @@
   "notified_on": "2002-08-26",
   "notified_raw": "平成14年8月26日",
   "store": "ジップドラッグ東洋八尾高美店",
-  "address": "",
+  "address": "高美町1-34-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -190912,11 +191516,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "高美町1-34-1",
    "店舗面積": "647.11平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "22e5b333ba91",
+  "key": "f676662dba97",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -191432,7 +192035,7 @@
   "notified_on": "2002-07-03",
   "notified_raw": "平成14年7月3日",
   "store": "こども写真城スタジオアリス八尾店",
-  "address": "",
+  "address": "老原1-12他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -191446,11 +192049,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "老原1-12他",
    "店舗面積": "240.20平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "0f074be9bc98",
+  "key": "a82a40c5f879",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -191845,7 +192447,7 @@
   "notified_on": "2002-06-25",
   "notified_raw": "平成14年6月25日",
   "store": "ライフコーポレーション",
-  "address": "",
+  "address": "天王寺屋7-44",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -191859,11 +192461,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "天王寺屋7-44",
    "店舗面積": "929.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "e5fab2cda33d",
+  "key": "413dcf2c70b3",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -192156,7 +192757,7 @@
   "notified_on": "2002-05-27",
   "notified_raw": "平成14年5月27日",
   "store": "ジップドラッグ東洋八尾水越店",
-  "address": "",
+  "address": "水越1-122他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -192170,11 +192771,10 @@
   "docs": [],
   "extra": {
    "年度": "14",
-   "所在地（地番）": "水越1-122他",
    "店舗面積": "663.07平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "eb724adecae8",
+  "key": "a1678d7cb472",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -193262,7 +193862,7 @@
   "notified_on": "2002-02-22",
   "notified_raw": "平成14年2月22日",
   "store": "カーテンじゅうたん王国八尾店",
-  "address": "",
+  "address": "東山本新町8-8",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -193276,11 +193876,10 @@
   "docs": [],
   "extra": {
    "年度": "13",
-   "所在地（地番）": "東山本新町8-8",
    "店舗面積": "433.75平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "f4e705b5b7ff",
+  "key": "76eaa9515f93",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -193485,7 +194084,7 @@
   "notified_on": "2002-02-04",
   "notified_raw": "平成14年2月4日",
   "store": "ドラッグストアーサーバ八尾跡部北店",
-  "address": "",
+  "address": "跡部北の町2-54他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -193499,11 +194098,10 @@
   "docs": [],
   "extra": {
    "年度": "13",
-   "所在地（地番）": "跡部北の町2-54他",
    "店舗面積": "928.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "d7daf7bb4c03",
+  "key": "9ef1caaefc41",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -193825,7 +194423,7 @@
   "notified_on": "2001-12-09",
   "notified_raw": "平成13年12月9日",
   "store": "万代八尾ドラッグ",
-  "address": "",
+  "address": "北本町3-143他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -193839,11 +194437,10 @@
   "docs": [],
   "extra": {
    "年度": "13",
-   "所在地（地番）": "北本町3-143他",
    "店舗面積": "508.60平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "af67cae5bdac",
+  "key": "f6b575946407",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -194772,7 +195369,7 @@
   "notified_on": "2001-07-02",
   "notified_raw": "平成13年7月2日",
   "store": "東洋薬局八尾南支店",
-  "address": "",
+  "address": "沼4-151",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -194786,11 +195383,10 @@
   "docs": [],
   "extra": {
    "年度": "13",
-   "所在地（地番）": "沼4-151",
    "店舗面積": "489.98平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "82fcb855037b",
+  "key": "94d48881a55c",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -194812,7 +195408,7 @@
   "notified_on": "2001-07-02",
   "notified_raw": "平成13年7月2日",
   "store": "キリン堂八尾高安店",
-  "address": "",
+  "address": "山本高安町1-149-1他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -194826,11 +195422,10 @@
   "docs": [],
   "extra": {
    "年度": "13",
-   "所在地（地番）": "山本高安町1-149-1他",
    "店舗面積": "652.20平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "0b2923c99d07",
+  "key": "32959f392877",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -195088,7 +195683,7 @@
   "notified_on": "2001-05-01",
   "notified_raw": "平成13年5月1日",
   "store": "シグマ薬局",
-  "address": "",
+  "address": "南木の本2-77-7",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -195102,11 +195697,10 @@
   "docs": [],
   "extra": {
    "年度": "13",
-   "所在地（地番）": "南木の本2-77-7",
    "店舗面積": "331.38平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "115e109d4c02",
+  "key": "29688a3fef99",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -196160,7 +196754,7 @@
   "notified_on": "2000-11-17",
   "notified_raw": "平成12年11月17日",
   "store": "株式会社ジャパン木の本店",
-  "address": "",
+  "address": "木の本1-2",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -196174,11 +196768,10 @@
   "docs": [],
   "extra": {
    "年度": "12",
-   "所在地（地番）": "木の本1-2",
    "店舗面積": "722.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "86ca17959c95",
+  "key": "e5dcbc54497b",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -196359,7 +196952,7 @@
   "notified_on": "2000-10-17",
   "notified_raw": "平成12年10月17日",
   "store": "ドラッグス 八尾北店",
-  "address": "",
+  "address": "萱振町3-44-1他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -196373,11 +196966,10 @@
   "docs": [],
   "extra": {
    "年度": "12",
-   "所在地（地番）": "萱振町3-44-1他",
    "店舗面積": "460.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "8aaec1e47a91",
+  "key": "1a2fc05e8291",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -196848,7 +197440,7 @@
   "notified_on": "1996-11-21",
   "notified_raw": "平成8年11月21日",
   "store": "サンディ八尾本町店",
-  "address": "",
+  "address": "本町7-92",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -196862,11 +197454,10 @@
   "docs": [],
   "extra": {
    "年度": "8",
-   "所在地（地番）": "本町7-92",
    "店舗面積": "349.80平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "4a018d7928c9",
+  "key": "65822ad1c4ce",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -196888,7 +197479,7 @@
   "notified_on": "1995-02-23",
   "notified_raw": "平成7年2月23日",
   "store": "ユニクロ八尾店",
-  "address": "",
+  "address": "亀井町2-4-2他",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -196902,11 +197493,10 @@
   "docs": [],
   "extra": {
    "年度": "6",
-   "所在地（地番）": "亀井町2-4-2他",
    "店舗面積": "481.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "1a97f7be98ff",
+  "key": "8ed8920aa1be",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -196928,7 +197518,7 @@
   "notified_on": "1994-12-05",
   "notified_raw": "平成6年12月5日",
   "store": "サンディ八尾木店",
-  "address": "",
+  "address": "八尾木北5-11",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -196942,11 +197532,10 @@
   "docs": [],
   "extra": {
    "年度": "6",
-   "所在地（地番）": "八尾木北5-11",
    "店舗面積": "495.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "df483679e758",
+  "key": "c8f60aedf7a0",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -196968,7 +197557,7 @@
   "notified_on": "1992-02-26",
   "notified_raw": "平成4年2月26日",
   "store": "メンズプラザアオキ八尾店",
-  "address": "",
+  "address": "青山町4-124-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -196982,11 +197571,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "青山町4-124-1",
    "店舗面積": "495.00平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "cc16416c3535",
+  "key": "061b76bfe8c1",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",
@@ -197008,7 +197596,7 @@
   "notified_on": "1991-08-13",
   "notified_raw": "平成3年8月13日",
   "store": "シーグラー高美",
-  "address": "",
+  "address": "高美町3-1",
   "operator": "",
   "new_operator": "",
   "event_on": null,
@@ -197022,11 +197610,10 @@
   "docs": [],
   "extra": {
    "年度": "3",
-   "所在地（地番）": "高美町3-1",
    "店舗面積": "427.34平方メートル"
   },
   "source": "yao-chukibo",
-  "key": "12a1ed2b5b71",
+  "key": "cf20ff7b5264",
   "operator_display": "",
   "operator_kind": "undisclosed",
   "new_operator_display": "",

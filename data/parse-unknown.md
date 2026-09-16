@@ -1,5 +1,5 @@
 # 読まなかったもの（parse.py）
-合計 4079 件（収集先 15）
+合計 3584 件（収集先 15）
 
 解析中に出会ったが、どの欄にも対応づけられなかった列と、読まなかった表。
 様式が変わったサインなので、増えていたら parse.py の列の対応（HTML_COLS）を足す。
@@ -97,7 +97,6 @@
 
 | 種類 | 列名・見出し | 回数 | 例 |
 |---|---|---:|---|
-| 読まなかった列 | 店舗所在地 | 10 | 泉南市幡代三丁目154-1 付近 |
 | 読まなかった列 | 市民等の意見提出期限 | 10 | 令和8年10月16日 |
 | 読まなかった列 | 意見の縦覧期間 | 10 | － |
 
@@ -113,7 +112,6 @@
 | 種類 | 列名・見出し | 回数 | 例 |
 |---|---|---:|---|
 | 読まなかった列 | 年度 | 485 | 8 |
-| 読まなかった列 | 所在地（地番） | 485 | 東久宝寺3丁目21番の一部、22番の一部、23番、24番の一部122番 |
 | 読まなかった列 | 店舗面積 | 485 | 556.62平方メートル |
 
 ## yao-city
@@ -126,23 +124,23 @@
 
 ## 個人に化けた疑いのある値（設置者の欄に住所の形）
 
-16 件。個人として伏せてあるが、列ずれの疑いがある。値は町丁目まで丸めてある。
+16 件。個人として伏せてある。値は載せない（住所の前に氏名が付いていることがあるため。元の表で確かめる）。
 
-| 収集先 | ファイル | 鍵 | 店舗 | 値（丸めたもの） |
-|---|---|---|---|---|
-| osaka-pref | shinsetsu_12-r5.xlsx | 25a9c5157498 | 万代南津の辺店 | 大阪市生野区小路東三丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 32c7eea64aeb | イズミヤ住道店 | 大阪市西成区花園南一丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 38a9b64d38b3 | （仮称）ラ･ムー寝屋川店 | 岡山県倉敷市堀南 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 4051b6b2d341 | 吹田グリーンプレイスⅡ期開発 | 大阪市北区角田町 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 435b7e9c3a34 | 光伸真珠OSAKAルクス店 | 大阪市西区立売堀五丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 49645e8c328e | （仮称）ドラッグコスモス鳥飼西店 | 東京都品川区東五反田二丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 49649e9d4580 | カインズ太子店 | 埼玉県本庄市早稲田の杜一丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 4bd653fc84f7 | 山田西ショッピングタウン | 大阪市西成区花園南一丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 56e9561d8798 | モアイプラザ | 大阪市淀川区西中島三丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 752605d366f5 | （仮称）コーナンＰＲＯ高槻下田部店 | 堺市西区鳳東町四丁 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 854e6650a073 | （仮称）下田部ファッションモール | 埼玉県さいたま市北区宮原町二丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 8a0be9307d6c | ビエラ千里丘 | 大阪市北区中之島二丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 8ed0e79a2bf2 | （仮称）ライフ八戸ノ里駅前店 | 東大阪市下小阪二丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | 972fd1673ad6 | （仮称）万代太子橋店 | 大阪市生野区小路東三丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | d012866e3d10 | （仮称）ＪＲ岸辺駅ビル開発 | 大阪市北区芝田二丁目 |
-| osaka-pref | shinsetsu_12-r5.xlsx | e4a713376668 | （仮称）星田北二丁目計画 | 埼玉県本庄市早稲田の杜一丁目 |
+| 収集先 | ファイル | 鍵 | 店舗 |
+|---|---|---|---|
+| osaka-pref | shinsetsu_12-r5.xlsx | 25a9c5157498 | 万代南津の辺店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 32c7eea64aeb | イズミヤ住道店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 38a9b64d38b3 | （仮称）ラ･ムー寝屋川店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 4051b6b2d341 | 吹田グリーンプレイスⅡ期開発 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 435b7e9c3a34 | 光伸真珠OSAKAルクス店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 49645e8c328e | （仮称）ドラッグコスモス鳥飼西店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 49649e9d4580 | カインズ太子店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 4bd653fc84f7 | 山田西ショッピングタウン |
+| osaka-pref | shinsetsu_12-r5.xlsx | 56e9561d8798 | モアイプラザ |
+| osaka-pref | shinsetsu_12-r5.xlsx | 752605d366f5 | （仮称）コーナンＰＲＯ高槻下田部店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 854e6650a073 | （仮称）下田部ファッションモール |
+| osaka-pref | shinsetsu_12-r5.xlsx | 8a0be9307d6c | ビエラ千里丘 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 8ed0e79a2bf2 | （仮称）ライフ八戸ノ里駅前店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | 972fd1673ad6 | （仮称）万代太子橋店 |
+| osaka-pref | shinsetsu_12-r5.xlsx | d012866e3d10 | （仮称）ＪＲ岸辺駅ビル開発 |
+| osaka-pref | shinsetsu_12-r5.xlsx | e4a713376668 | （仮称）星田北二丁目計画 |
