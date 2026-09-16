@@ -39,7 +39,7 @@ URL: https://github.com/VirgoB77/ogataten-nippo/blob/main/docs/kyotsu-shiyo.md
 
 | サイト | 内容 | リポジトリ | 公開 |
 |---|---|---|---|
-| 大型店日報 | 大規模小売店舗立地法の届出 | `VirgoB77/ogataten-nippo` | https://ogataten-nippo.com/ |
+| 大型店日報 | 大規模小売店舗立地法の届出 | `VirgoB77/ogataten-nippo`（公開用）＋ `VirgoB77/ogataten-nippo-raw`（収集用・private。9節。移行中） | https://ogataten-nippo.com/ |
 | 開発系（仮） | 開発許可・工事完了公告・環境影響評価・公有財産の売却など | 準備中 | 未 |
 | 競売統計（仮） | 裁判所の競売・国税や自治体の公売（集計のみ） | `VirgoB77/keibai-data` | 未 |
 | 街頭窃盗統計 | 町丁目ごとの街頭窃盗の認知件数（7手口） | 準備中 | `gaitou-settou.com`（取得ずみ・未公開） |
@@ -813,6 +813,69 @@ COOP コープ 生協
 
   迷ったら分ける。あとから1本にまとめることはできるが、
   1本にしたものを2本には戻せない。
+
+  **2本にするときの形**（大型店日報の `.github/workflows/shutten-recon.yml` が実物。
+  他のサイトも同じ形にする。名前は揃える）
+
+  - 走るのは**公開用の Actions**。public なので Actions の分は無料で、`GITHUB_TOKEN` で
+    自分に push できる。収集用は**置き場**。収集用の Actions は止め、workflow は持たせない
+    （名前が `-raw` で終わるか `-raw-` を含むリポジトリでは workflow が自分で止まるようにしてある）
+  - 公開用の Actions が **deploy key** で収集用を `_raw/` に checkout する。鍵は収集用の
+    Settings → Deploy keys（書き込み可）に公開鍵、公開用の Secret **`RAW_DEPLOY_KEY`** に秘密鍵。
+    鍵は `ssh-keygen -t ed25519 -N "" -f raw_deploy_key -C <公開用の名前>-actions` で作る
+    （**パスフレーズは空**。Actions は対話できない）。Secret には秘密鍵ファイルの全文
+    （`-----BEGIN OPENSSH PRIVATE KEY-----` から `END` の行まで）を貼る。
+    PAT は期限で黙って止まるので使わない。deploy key は1本のリポジトリにしか効かない。
+    公開用の Actions は走る前に、収集用が公開側から見えない（private）ことを確かめ、
+    見えたら生データを送らずに止まる
+    Secret は**生データを持たない公開用にだけ**入れる（生データを追跡しているリポジトリに
+    入れると二重持ちの見張りで止まる。意図どおり）
+  - `data/raw` `data/files` `data/ocr` `data/wayback` を `ln -s` で**今までのパスにつなぐ**。
+    Python は置き場の違いを知らない。置き場を変えるためにコードを直さない
+  - 公開用への commit は**許可リスト**。公開してよいと決めたパスだけを列挙して `git add` する。
+    `git add data` のような丸ごとはしない。新しい出力を公開したいときは列挙に1つ足す
+    （足し忘れると「載らない」だけで済む。逆は済まない）。commit の直前に、生データ・記録・
+    symlink が混ざっていないかを機械で見て、混ざっていたら止まる
+  - しまう順番は **収集用 → 公開用**。取り直せないものを先にしまい、そこで失敗したら
+    公開用にも送らない。収集用は private なので、公開側の検査を待たずに先に入れてよい
+  - ページを作ったあとに**もう一度テストを通してから**公開用に push する。最初のテストは
+    昨日の出力に対してなので、それだけだと今日の伏せ忘れが翌朝まで公開される。
+    この2回目のテストが止めるのは公開用への push だけ。生データはその前に収集用に入っている
+  - 走らせた記録（`data/*.md`・`data/koho/*.md`）は生の値を含みうるので、収集用の
+    `data/reports/` に写す。公開用には commit しない（`data/parse-unknown.md` も収集用で見る）
+  - 鍵が無いときに1本の形（`git add data` の丸ごと）で動くのは、**生データを既に追跡している
+    移行前のリポジトリだけ**。生データを持たない公開用で鍵が無ければ、取りに行かずに止まる。
+    鍵が無いまま走ると、その日の生データが public に載るため
+  - 収集用が 2GB を超えそうになったら都道府県ごとに分ける（`-raw-<pref>`）。そのときは
+    checkout と Secret と private の確認をもう1組ずつ足し、つなぐ段を収集先ごとのリンクに
+    直す。公開 URL と公開用の木は変わらない
+  - 一度でも生データを public に commit していたら、そのリポジトリを**名前ごと private に
+    して収集用にし**、公開用は履歴ゼロで同じ名前に作り直す。同じ public リポジトリの中で
+    履歴を書き換える手（filter-repo・orphan の force-push）は採らない。PR の参照
+    （`refs/pull/*`）と PR の題名・本文は force-push でも消えず、そこから旧コミットに届く。
+    作り直す順番（サイトが止まる窓と独自ドメインが空く窓を短くし、収集用が public のまま
+    生データを受けないため）：
+    ⓪ アカウントの Settings → Pages → **Verified domains** で独自ドメインを検証済みにしておく
+    （③〜⑧ の間はどのリポジトリもドメインを主張していない。検証していないと他人が自分の
+    Pages に付けられる）→ ① 新を**仮の名前**で作り、公開用の木を1コミットで入れる。
+    **入れないもの**：`data/raw` `data/files` `data/ocr` `data/wayback`・`data/*.md`・
+    `data/koho/*.md`（workflow の見張りが見る一覧と同じ。残すと初回から止まる）・`CNAME`
+    （入れると旧と同じドメインを取り合う。⑧ で GitHub が書き戻す）。作り方は「main を
+    `git archive` で展開 → 上を消す → 1コミット」。Pages を有効にしてよい（CNAME が無いので
+    github.io の仮 URL で配信される。動作確認に使う）→ ② 旧の Actions を止める →
+    ③ 旧の Pages を **Unpublish**（独自ドメインを外すだけでは github.io 側が配信を続ける。
+    Free なら private 化で落ちるが、それに頼らない）。直後に
+    `https://<owner>.github.io/<公開用の名前>/data/raw/<id>/<日付>.html` が 200 でないことを見る →
+    ④ 旧を **`<公開用の名前>-raw`** に rename（workflow の checkout・private の確認・名前による
+    自己停止が全部この名前を見る）→ ⑤ **すぐ旧を private** にし、旧の main から
+    `.github/workflows/` を消す commit を入れる（収集用に workflow を持たせない）→
+    ⑥ 収集用（旧）に Deploy key → ⑦ 新を同じ名前に rename → ⑧ 新の Pages に独自ドメインを
+    付け（GitHub が `CNAME` を commit する）、それから Secret を入れる →
+    ⑨ **`https://<owner>.github.io/<公開用の名前>-raw/data/raw/<id>/<日付>.html`** が 404 で
+    あることを見る（`…/<公開用の名前>/` は ⑦ 以降は新のサイトなので確認にならない）。
+    Secret を入れるのは収集用が private になった**後**。
+    **古い clone は全部 remote を付け替えるか消す。** 同じ名前で作り直したあと、古い clone
+    からの push は新しい公開用に届く（新しい枝を push すると、旧履歴ごと public に戻る）
 
 - **生データを公開してよい場合でも、そこから氏名で引ける索引やページを作らない。**
   公報の全文には、法令に基づいて行政が公示した氏名が入っている

@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# 金庫（private の収集用リポジトリ）を Actions が隣に出す場所。共通仕様9節
+_raw/
