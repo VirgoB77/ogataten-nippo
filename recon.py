@@ -34,7 +34,7 @@ from datetime import date
 from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
 

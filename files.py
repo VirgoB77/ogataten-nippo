@@ -38,7 +38,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "data", "raw")
 FILES = os.path.join(HERE, "data", "files")
 
-UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90
 PDF_TIMEOUT = 25          # PDFは1本ずつ多いので短く諦める。90秒×50本で1時間止まった
@@ -135,6 +135,28 @@ def browser_session(page_url):
     return opener
 
 
+FETCHED_LEDGER = os.path.join(FILES, "fetched.json")
+
+
+def note_fetched(dest, when=None):
+    """取った日を data/files/fetched.json に書き留める（共通仕様 3.5 の fetched_on の元）。
+
+    キーは data/files からの相対パス。すでに載っているファイルは上書きしない
+    （最初に取った日を残す）。過去分は git の履歴から種をまいてある。
+    """
+    import datetime as _dt
+    try:
+        with open(FETCHED_LEDGER, encoding="utf-8") as f:
+            led = json.load(f)
+    except Exception:
+        led = {}
+    key = os.path.relpath(dest, FILES).replace(os.sep, "/")
+    if key not in led:
+        led[key] = when or _dt.date.today().isoformat()
+        with open(FETCHED_LEDGER, "w", encoding="utf-8") as f:
+            json.dump(led, f, ensure_ascii=False, indent=1, sort_keys=True)
+
+
 def download(url, dest, limit=MAX_BYTES, referer=None, timeout=TIMEOUT, opener=None):
     """ファイルを落とす。
 
@@ -157,6 +179,7 @@ def download(url, dest, limit=MAX_BYTES, referer=None, timeout=TIMEOUT, opener=N
         raise ValueError("大きすぎるので見送った")
     with open(dest, "wb") as f:
         f.write(data)
+    note_fetched(dest)
     return len(data)
 
 

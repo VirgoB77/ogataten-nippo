@@ -56,7 +56,7 @@ OUT = os.path.join(HERE, "data", "parsed", "hyogo-koho")
 REPORT = os.path.join(HERE, "data", "koho", "pdf-report.md")
 SOURCE = "hyogo-koho"
 
-UA = "kujiraya archive bot (ogataten-nippo; https://ogataten-nippo.com/about.html)"
+from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024

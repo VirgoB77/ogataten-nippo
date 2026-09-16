@@ -247,6 +247,65 @@ def scrub_parsed():
     return changed
 
 
+# ------------------------------------------------------- 出典と取得日（3.5）
+# 共通仕様 3.5「全レコードに source_url と fetched_on」。監査で 4,790 件とも
+# 無かった。2,185 ページの出典が「（URL、取得）」と日付が空のまま出ていた。
+SOURCES = os.path.join(HERE, "sources.json")
+KOHO_LEDGER = os.path.join(HERE, "data", "koho", "issues.json")
+FILES_LEDGER = os.path.join(HERE, "data", "files", "fetched.json")
+# 一覧ページではなく文書そのものが出どころの収集先。source_url は文書のURL
+DOC_SOURCES = {"hyogo-koho", "hyogo-bukai"}
+
+
+def stamp_sources(recs):
+    """各レコードに source_url と fetched_on を付ける。付けられなかった件数を返す。
+
+    fetched_on の決め方（上から順に、最初にあるもの）
+      1. last_seen / first_seen … 毎日巡回している収集先。実際に見た日
+      2. 公報の台帳 issues.json の when … 兵庫県公報。PDFを取った日
+      3. data/files/fetched.json … Excel・PDF をダウンロードした日
+    どれも無ければ空にして、テストで落とす（黙って今日の日付にしない）。
+    """
+    try:
+        with open(SOURCES, encoding="utf-8") as f:
+            meta = {x["id"]: x for x in json.load(f)["sources"]}
+    except Exception:
+        meta = {}
+    try:
+        with open(KOHO_LEDGER, encoding="utf-8") as f:
+            koho_when = {v.get("url"): v.get("when") for v in json.load(f).values() if v.get("url")}
+    except Exception:
+        koho_when = {}
+    try:
+        with open(FILES_LEDGER, encoding="utf-8") as f:
+            file_when = json.load(f)
+    except Exception:
+        file_when = {}
+
+    missing = 0
+    for r in recs:
+        src = r.get("source", "")
+        docs = r.get("docs") or []
+        m = meta.get(src, {})
+        if src in DOC_SOURCES and docs:
+            r["source_url"] = docs[0]
+        else:
+            r["source_url"] = m.get("url") or (docs[0] if docs else "")
+
+        when = r.get("last_seen") or r.get("first_seen") or ""
+        if not when and docs:
+            when = koho_when.get(docs[0], "") or ""
+        if not when and r.get("file"):
+            when = file_when.get(f"{src}/{r['file']}", "") or ""
+        if not when and docs:
+            # 文書のURLの末尾がそのまま data/files/<収集先>/ のファイル名（部会の議案など）
+            when = file_when.get(f"{src}/{os.path.basename(docs[0].split('?')[0])}", "") or ""
+        r["fetched_on"] = when
+        if not r["source_url"] or not when:
+            missing += 1
+    return missing
+
+
 # ------------------------------------------------------------ 個人情報を落とす
 # 共通仕様 3.1。設置者には個人がまざる（届出は建物の持ち主が出すので、
 # 地主が個人のことがある）。氏名と地番の両方をそのまま出していた。
@@ -286,11 +345,16 @@ def apply_privacy(recs):
             raw = r.get(f)
             if raw is None:
                 continue
-            if r.get(f + "_display") == "個人":
-                # 個人だったので名前を消してある。もう一度通すと、空になった
+            if r.get(f + "_display") == "個人" and not (raw or "").strip():
+                # 個人だったので名前を消してあり、値も空。もう一度通すと、空の
                 # 値を見て画面用の「個人」まで消してしまう。ここだけは止める。
                 # 消した名前は戻せないので、規則を変えたくなったら
-                # data/raw から作り直す
+                # data/raw から作り直す。
+                #
+                # 「値が空」の条件が要る。消したあとに OCR や収集先の合流で
+                # 名前が入り直すことがあり、そのとき止めてしまうと、入った氏名が
+                # privacy.py を通らず index 用の欄に残る（監査で再現された穴）。
+                # 値があるなら下に落として、毎回判定し直す
                 kinds[f] = r.get(f + "_kind", "individual")
                 continue
 
@@ -392,6 +456,9 @@ def main():
                       key=lambda r: (r.get("notified_on") or "", r["source"], r["store"]), reverse=True)
 
     hidden = apply_privacy(all_recs)
+    unstamped = stamp_sources(all_recs)
+    if unstamped:
+        print(f"注意: source_url か fetched_on を付けられなかったレコード {unstamped} 件")
 
     with open(OUT_ALL, "w", encoding="utf-8") as f:
         json.dump(all_recs, f, ensure_ascii=False, indent=1)
