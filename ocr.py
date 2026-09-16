@@ -102,6 +102,11 @@ def pick(text):
     names = applicants_of(text)
     if names:
         out["applicant"] = "／".join(names)
+    elif out.get("address"):
+        # 届出者が読めていない＝個人かもしれない。merge の apply_privacy と同じ判断で、
+        # ここ（data/ocr/<id>.json）の時点で町丁目までに丸める。地番を残さない（3.1）
+        out["address"] = privacy.redact_addr(out["address"], "individual")
+        out["address_redacted"] = True
     return out
 
 

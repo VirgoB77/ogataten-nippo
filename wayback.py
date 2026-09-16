@@ -10,7 +10,7 @@ recon.py が保存するのと同じ場所・同じ名前（data/raw/<id>/<YYYY-
 - 同じ中身（digest が同じ）の保存は飛ばす
 - 1回の実行で取る本数に上限を置く。続きは次回。
 - 失敗した保存は台帳（data/wayback/<id>.json）に残して、何度も叩かない
-- Wayback には 3 秒あけて、名乗りは他と同じ
+- Wayback には 5 秒あけて（共通仕様 3.4）、名乗りは他と同じ
 
 使い方: python3 shutten/wayback.py [source-id ...]
 """

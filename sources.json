@@ -33,7 +33,8 @@
    "area": "hyogo",
    "url": "https://web.pref.hyogo.lg.jp/ks21/r03_daitennrittihou.html",
    "note": "手引と様式のページ。過去分の一覧が別にぶら下がっていないか確かめる用",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "kobe-city",
@@ -132,7 +133,8 @@
    "area": "ref",
    "url": "https://www.sangyo-rodo.metro.tokyo.lg.jp/chushou/shoko/chiiki/daikibo",
    "note": "前のURLは一覧ページではなかった。親ページに変更。年度別の一覧はこの下にぶら下がっている",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "toyonaka-city",
@@ -274,7 +276,11 @@
    "area": "chukibo",
    "url": "https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/chukouritenpo/chukiboichiran.html",
    "enabled": true,
-   "note": "中規模で一覧を公開している数少ない例。大店立地法が拾えない1000平米以下を拾える"
+   "note": "中規模で一覧を公開している数少ない例。大店立地法が拾えない1000平米以下を拾える",
+   "terms": "https://www.city.sakai.lg.jp/aboutweb/linkchosakuken.html",
+   "terms_name": "リンク・著作権・免責事項",
+   "terms_summary": "著作権ページ：文書・画像等は無断で複製・転用不可（私的利用・引用を除く）。出典表記の形の指定なし",
+   "terms_note": "堺市 大規模小売店舗の届出状況 と同じサイトなので、同じ利用規約を写した"
   },
   {
    "id": "yao-chukibo",
@@ -306,7 +312,8 @@
    "area": "ref",
    "url": "https://www.pref.osaka.lg.jp/o070050/koho/information/use.html",
    "note": "届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "terms-hyogo-pref",
@@ -314,7 +321,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/about_link.html",
    "note": "届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "terms-sakai-city",
@@ -322,7 +330,8 @@
    "area": "ref",
    "url": "https://www.city.sakai.lg.jp/aboutweb/linkchosakuken.html",
    "note": "届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "terms-kobe-city",
@@ -330,7 +339,8 @@
    "area": "ref",
    "url": "https://www.city.kobe.lg.jp/homepage/index.html",
    "note": "届出ページの下部から辿った「ホームページのご利用案内」。中身は目次で、利用規約は /a57337/homepage/rule.html にある（2026-09-12に読んだ）",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "osaka-opendata-www",
@@ -348,7 +358,8 @@
    "note": "神戸市の利用規約本体（2026-09-12に読んだ）。PDF「神戸市ウェブサイト利用規約」は政府標準利用規約 第2.0版準拠・CC BY 4.0互換で、サイト全体のコンテンツを出典明記で複製・加工・商用利用できる。規約が変わったら分かるよう毎日保存を続ける",
    "enabled": true,
    "pdf": true,
-   "pdf_labels": "利用規約"
+   "pdf_labels": "利用規約",
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata",
@@ -356,7 +367,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/pref/cate3_661.html",
    "note": "兵庫県の著作権ページから辿ったオープンデータの入口。大店立地法の縦覧状況がオープンデータに含まれるか、利用規約（政府標準利用規約か）を見る（2026-09-12追加）",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-terms",
@@ -364,7 +376,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/kk26/johoseisaku/opendata.html",
    "note": "兵庫県オープンデータの本体（2026-09-12に読んだ）。カタログ専用の利用規約PDF kiyaku_opendata.pdf を落として読んだ：カタログ掲載の著作物は注があるものを除き CC BY 4.0。加工時は「この○○は、以下の著作物を改変して利用しています。[タイトル]、[兵庫県]」と書く。県HPにも同じデータがある場合はカタログ規約が優先（第2条1項）。pdf:true を付けたら同じページのExcel/CSV 116本まで落としてしまったので外した（files.py 側でも参考ソースはExcel/CSVを取らないようにした）",
-   "enabled": true
+   "enabled": true,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog",
@@ -372,7 +385,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php",
    "note": "兵庫県オープンデータカタログの入口。2026-09-12に全924件を100件ずつ10ページで見たが、大店立地法の縦覧状況・届出は登録されていなかった（小売関係は商業統計・経済センサスのみ）。キーワード「大規模小売」も0件。カタログ規約（CC BY 4.0）は縦覧状況には及ばない。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p1",
@@ -380,7 +394,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=1_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p2",
@@ -388,7 +403,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=2_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p3",
@@ -396,7 +412,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=3_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p4",
@@ -404,7 +421,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=4_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p5",
@@ -412,7 +430,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=5_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p6",
@@ -420,7 +439,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=6_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p7",
@@ -428,7 +448,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=7_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p8",
@@ -436,7 +457,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=8_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p9",
@@ -444,7 +466,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=9_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-p10",
@@ -452,7 +475,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?p=10_1&asc=data_link_title&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-opendata-catalog-kw",
@@ -460,7 +484,8 @@
    "area": "ref",
    "url": "https://web.pref.hyogo.lg.jp/opendata/index.php?keyword=%E5%A4%A7%E8%A6%8F%E6%A8%A1%E5%B0%8F%E5%A3%B2&displayedresults=100",
    "note": "2026-09-12に一度見た。924件の一覧に大店立地法の縦覧状況・届出は無く、キーワード「大規模小売」も0件だった。止めた",
-   "enabled": false
+   "enabled": false,
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-koho-mokuroku",
@@ -480,7 +505,11 @@
    "pdf_labels": "議案|議事|結果",
    "pdf_max_mb": 5,
    "enabled": true,
-   "note": "部会の議案PDF（第54回〜、2016年〜）の冒頭「届出内容」に、店舗名・所在地・設置者・店舗面積と、その店の届出（過去分も）の届出年月日・条文が載る。parse_bukai.py が pdftotext で読んで届出の記録にする。部会にかかるのは新設と主な変更だけ。「基本計画書」で始まる議案は大規模集客施設条例の計画段階なので今は扱わない。議事録PDFも保存しているが読んでいない。上限3MBだと第59回の議案書(3.8MB)が見送りになったので5MBにした（2026-09-13）"
+   "note": "部会の議案PDF（第54回〜、2016年〜）の冒頭「届出内容」に、店舗名・所在地・設置者・店舗面積と、その店の届出（過去分も）の届出年月日・条文が載る。parse_bukai.py が pdftotext で読んで届出の記録にする。部会にかかるのは新設と主な変更だけ。「基本計画書」で始まる議案は大規模集客施設条例の計画段階なので今は扱わない。議事録PDFも保存しているが読んでいない。上限3MBだと第59回の議案書(3.8MB)が見送りになったので5MBにした（2026-09-13）",
+   "terms": "https://web.pref.hyogo.lg.jp/about_link.html",
+   "terms_name": "リンク・著作権・免責事項",
+   "terms_summary": "サイト全体の著作権ページは無断で複製・転用不可（私的使用・引用を除く）。出典表記の形の指定なし。オープンデータカタログ（CC BY 4.0）には縦覧状況は登録されていない（2026年9月12日に全924件を確認）",
+   "terms_note": "兵庫県 大規模小売店舗立地法 縦覧状況 と同じサイトなので、同じ利用規約を写した"
   },
   {
    "id": "hyogo-shingikai",
@@ -491,7 +520,8 @@
    "pdf_labels": "調査審議|審議の結果|大規模小売",
    "pdf_max_mb": 3,
    "enabled": true,
-   "note": "「大規模小売店舗等立地部会における調査審議の結果（令和7年2月分〜令和8年2月分）」のような年次PDFがある。まず落として形を見る（2026-09-13追加）"
+   "note": "「大規模小売店舗等立地部会における調査審議の結果（令和7年2月分〜令和8年2月分）」のような年次PDFがある。まず落として形を見る（2026-09-13追加）",
+   "freq": "biweekly"
   },
   {
    "id": "meti-todokede",
@@ -510,7 +540,8 @@
    "area": "ref",
    "url": "https://www.jcsc.or.jp/sc_data/sc_open/daitenhou",
    "enabled": true,
-   "note": "経産省が経済産業局ごとにまとめた月次の新設届出を転載しているページ。2006年7月分からの月別ページがあり、経産省の公表終了後も更新が続いている。民間団体の一覧なので転載はせず、件数の答え合わせにだけ使う。2023年度までの大元は経産省の PDF（政府標準利用規約）を使う（2026-09-13）"
+   "note": "経産省が経済産業局ごとにまとめた月次の新設届出を転載しているページ。2006年7月分からの月別ページがあり、経産省の公表終了後も更新が続いている。民間団体の一覧なので転載はせず、件数の答え合わせにだけ使う。2023年度までの大元は経産省の PDF（政府標準利用規約）を使う（2026-09-13）",
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-koho-index",
@@ -542,7 +573,8 @@
    "area": "ref",
    "url": "https://www.jcsc.or.jp/pt_location/p_20260821_114467",
    "enabled": true,
-   "note": "民間の業界団体が集めた一覧なので、そのままの転載や機械での吸い上げはしない（規約と、一覧のまるごと複製を不法行為とした判例への配慮）。兵庫県の件数の答え合わせのためにページを保存するだけ。PDF は落とさない（2026-09-13）"
+   "note": "民間の業界団体が集めた一覧なので、そのままの転載や機械での吸い上げはしない（規約と、一覧のまるごと複製を不法行為とした判例への配慮）。兵庫県の件数の答え合わせのためにページを保存するだけ。PDF は落とさない（2026-09-13）",
+   "freq": "quarterly"
   },
   {
    "id": "jcsc-daitenhou-old",
@@ -550,7 +582,8 @@
    "area": "ref",
    "url": "https://www.jcsc.or.jp/public_policy/location/index.html",
    "enabled": false,
-   "note": "2014年以前の月別ページの入口。転載はしない方針にしたので止めた（2026-09-13）"
+   "note": "2014年以前の月別ページの入口。転載はしない方針にしたので止めた（2026-09-13）",
+   "freq": "quarterly"
   },
   {
    "id": "hyogo-koho",

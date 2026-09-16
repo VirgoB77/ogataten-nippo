@@ -59,6 +59,7 @@ PDF_NOT_DATA = re.compile(r"手引|要綱|しおり|フロー|意見書|様式|�
 # 大きさは PDF_MAX_BYTES（2MB）で切るので、図面つきの重いものは自然に外れる。
 PDF_LABEL_RULE = {}
 _current_source = None
+DROPPED = []        # ラベルで「中身ではない」と見て取りに行かなかったリンク。記録に出す（共通仕様9節）
 
 # PDFそのものが一覧になっている収集先だけ、PDFも落とす。
 # 兵庫県のように「届出1件ごとの資料8MB」を並べているところは対象外。
@@ -95,13 +96,16 @@ def excel_links(path, base_url, want=WANT):
         label = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(2))).strip()
         if want is WANT_PDF:
             if PDF_NOT_DATA.search(label):
+                DROPPED.append((url, label[:60]))
                 continue
             # 収集先ごとの決まり（兵庫県は「資料」、神戸市は「届出書」が中身）
             rule = PDF_LABEL_RULE.get(_current_source) if _current_source else None
             if rule:
                 if not re.search(rule, label):
+                    DROPPED.append((url, label[:60]))
                     continue
             elif not PDF_IS_DATA.search(label):
+                DROPPED.append((url, label[:60]))
                 continue
         seen.add(url)
         out.append((url, label[:60]))
@@ -245,6 +249,7 @@ def main():
             continue
         global _current_source
         _current_source = sid
+        DROPPED.clear()
         if src.get("pdf_labels"):
             PDF_LABEL_RULE[sid] = src["pdf_labels"]
         raw = newest_raw(sid)
@@ -267,6 +272,13 @@ def main():
         lines.append(f"### {src['name']}")
         lines.append("")
         lines.append(f"- {'/'.join(kinds)} のリンク: {len(links)} 本")
+        if DROPPED:
+            # 取りに行かなかったものも名前を残す。次に見直すときの一覧になる
+            lines.append(f"- ラベルで取らなかった PDF: {len(DROPPED)} 本")
+            for u, l in DROPPED[:40]:
+                lines.append(f"  - 取らなかった {safe_name(u)} … {l}")
+            if len(DROPPED) > 40:
+                lines.append(f"  - …ほか {len(DROPPED) - 40} 本")
 
         d = os.path.join(FILES, sid)
         os.makedirs(d, exist_ok=True)
