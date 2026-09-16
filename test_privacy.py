@@ -692,6 +692,19 @@ def test_koho_extra_issues():
     eq(k.issue_no_of_label("目次"), None, "見出しでないものは None")
     eq(k.issue_no_of_label("12月の公報"), None, "日が無いものは None")
     eq(k.stem_of({"date": "2025-12-19", "no": "g2"}), "2025-12-19-g2", "号外のファイル名")
+    # 書いた名前を読み返せること（書く側だけ号外に直して、読む側が取り残されていた）
+    import tempfile
+    d = tempfile.mkdtemp()
+    for no in ("679", "g1", "g2", "g39"):
+        name = k.stem_of({"date": "2025-12-19", "no": no}) + ".txt"
+        with open(os.path.join(d, name), "w", encoding="utf-8") as f:
+            f.write("# https://example.test/a.pdf\n")
+        eq(k.parse_text_file(os.path.join(d, name)) is not None, True, f"{name} を読み返せる")
+    with open(os.path.join(d, "へんな名前.txt"), "w", encoding="utf-8") as f:
+        f.write("# x\n")
+    eq(k.parse_text_file(os.path.join(d, "へんな名前.txt")), None, "読めない名前は None（落ちない）")
+    # 号外は通し番号ではないので、年ずれの復旧を当てない
+    eq(k.find_in_neighbor_year("2025-12-19", "g2", {}, []), (None, None), "号外に年ずれ復旧を当てない")
     eq(k.no_label("679"), "第679号", "人が読む文（定期号）")
     eq(k.no_label("g1"), "号外", "人が読む文")
     eq(k.no_label("g2"), "第2号外", "人が読む文")
@@ -708,6 +721,40 @@ def test_koho_extra_issues():
     })
     eq(sorted(fixed), ["2025-01-10#423", "2025-01-10#g1", "2025-02-10#g1"], "号外は別々のまま、定期号の年ずれはまとまる")
     eq(len(merged), 1, "まとめたのは定期号の1件だけ")
+
+
+def test_parsed_is_scrubbed():
+    """5節：data/parsed も公開するので、伏せ処理を通っていること。
+
+    apply_privacy は何度通しても同じ（冪等）なので、もう一度通して値が変わるなら
+    その日ごとのファイルは伏せ処理を通っていない。生成物だけ手で作り直して
+    commit した日に、地番が公開側に戻るのを止める。
+    """
+    import copy
+    import merge
+    paths = sorted(glob.glob(os.path.join(HERE, "data", "parsed", "*", "*.json")))
+    if not paths:
+        return
+    bad = Counter()
+    for p in paths:
+        with open(p, encoding="utf-8") as f:
+            try:
+                recs = json.load(f)
+            except Exception:
+                continue
+        if not isinstance(recs, list):
+            continue
+        for r in recs:
+            if not isinstance(r, dict):
+                continue
+            again = copy.deepcopy(r)
+            merge.apply_privacy([again])
+            if again != r:
+                bad[os.path.relpath(p, HERE)] += 1
+    for k_, v in bad.most_common(5):
+        fails.append(f"data/parsed が伏せ処理を通っていない: {k_} で {v} 件（merge.py を通してから commit する）")
+    if len(bad) > 5:
+        fails.append(f"…ほか {len(bad) - 5} ファイル")
 
 
 def main():

@@ -191,6 +191,16 @@ def month_links(ym, url, lines):
         k = issue_no_of_label(re.sub(r"<[^>]+>", "", label))
         if k:
             out[f"{k[0]}-{k[1]}-{k[2]}"] = urllib.parse.urljoin(HOST, href)
+    # 取り直しで定期号が減っていたら、県のページの作りが変わった疑い。古い控えを残す。
+    # 減ったまま新しい版として書くと、その月の号が全部「月ページに号が無い」になり、
+    # 版が新しいので二度と取り直さない（直らなくなる）
+    if old is not None:
+        old_n = sum(1 for k in old if k != "_v" and not k.rsplit("-", 1)[-1].startswith("g"))
+        new_n = sum(1 for k in out if k != "_v" and not k.rsplit("-", 1)[-1].startswith("g"))
+        if new_n < old_n:
+            lines.append(f"  - 月ページの定期号が {old_n} → {new_n} に減った {ym}。"
+                         "ページの作りが変わったかもしれない。古い控えのままにする")
+            return old
     with open(cache, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=0)
     return out
@@ -415,11 +425,17 @@ def parse_section(kind, lines, issue):
     return rec
 
 
+# 文字ファイルの名前 <日付>-<号>.txt。号外は <日付>-g<n>.txt（stem_of と同じ形）
+TEXT_NAME = re.compile(r"(\d{4}-\d{2}-\d{2})-(\d+|g\d+)\.txt$")
+
+
 def parse_text_file(path):
-    """data/koho/text の 1 ファイル（1 号ぶん）から記録を返す。"""
+    """data/koho/text の 1 ファイル（1 号ぶん）から記録を返す。名前が読めなければ None。"""
+    m = TEXT_NAME.match(os.path.basename(path))
+    if not m:
+        return None                                # 呼び出し側が記録に残す（共通仕様9節）
     with open(path, encoding="utf-8") as f:
         text = f.read()
-    m = re.match(r"(\d{4}-\d{2}-\d{2})-(\d+)\.txt$", os.path.basename(path))
     issue = {"date": m.group(1), "no": m.group(2), "url": ""}
     first = text.split("\n", 1)[0]
     if first.startswith("# "):                     # 1 行目に PDF の URL を書いてある
@@ -613,8 +629,9 @@ def main():
                 y, m, dd = d.split("-")
                 url = links.get(f"{int(m)}-{int(dd)}-{no}")
                 issue_date = d
-                if not url:
-                    # 目録の年が1年ずれていないか、前後1年の同じ月日で探す
+                if not url and not str(no).startswith("g"):
+                    # 目録の年が1年ずれていないか、前後1年の同じ月日で探す。
+                    # 号外は日ごとに1から振り直されるので、同じ月日の号外は別物。当てない
                     d2, url2 = find_in_neighbor_year(d, no, index, lines)
                     if url2:
                         url, issue_date = url2, d2
@@ -658,13 +675,20 @@ def main():
     rebuild_from_full(lines)
 
     # 手元の文字ファイルを全部読み直す
-    recs, seen = [], set()
+    recs, seen, unreadable = [], set(), []
     for path in sorted(glob.glob(os.path.join(TEXTS, "*.txt"))):
-        for r in parse_text_file(path):
+        got = parse_text_file(path)
+        if got is None:
+            unreadable.append(os.path.basename(path))
+            continue
+        for r in got:
             if r["key"] in seen:
                 continue
             seen.add(r["key"])
             recs.append(r)
+    if unreadable:
+        lines.append(f"- 名前が読めなかった文字ファイル {len(unreadable)} 本: "
+                     + ", ".join(unreadable[:5]) + ("…" if len(unreadable) > 5 else ""))
     recs.sort(key=lambda r: (r["notified_on"], r["store"]))
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "all.json"), "w", encoding="utf-8") as f:
