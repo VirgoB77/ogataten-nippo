@@ -29,12 +29,11 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-import urllib.robotparser
 from datetime import date
 from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-from common.fetch import UA  # 名乗りは common/fetch.py の1か所だけ（共通仕様3.4）
+from common.fetch import UA, check_robots  # 名乗りと robots は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
 
@@ -160,18 +159,7 @@ def slug_of(url):
     return (name or "page")[-60:]
 
 
-def check_robots(url):
-    """robots.txt で禁じられていないか確かめる。分からないときは True。"""
-    p = urllib.parse.urlparse(url)
-    robots = f"{p.scheme}://{p.netloc}/robots.txt"
-    rp = urllib.robotparser.RobotFileParser()
-    rp.set_url(robots)
-    try:
-        rp.read()
-    except Exception:
-        return True, "robots.txt が読めなかった（取得は続ける）"
-    ok = rp.can_fetch(UA, url)
-    return ok, ("許可" if ok else "robots.txt で拒否されている")
+# check_robots は common/fetch.py に移した。こちらの名乗りで取り、429/503 を「許可」に倒さない
 
 
 def fetch(url):
@@ -352,7 +340,7 @@ def main():
 
         ok, why = check_robots(src["url"])
         res["robots"] = why
-        if not ok:
+        if not ok:                     # False＝拒否、None＝robots.txt が混んでいる。どちらも今回は行かない
             res["skipped"] = why
             lines.append(report_one(src, res))
             counts["拒否"] = counts.get("拒否", 0) + 1
