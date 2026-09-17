@@ -1,6 +1,6 @@
-# 大店立地法 届出ページ 偵察レポート（2026-09-15）
+# 大店立地法 届出ページ 偵察レポート（2026-09-16）
 
-**まとめ: Excel 2件 / PDF 19件 / わからない 45件 / 失敗 2件 / 表 51件**
+**まとめ: Excel 1件 / PDF 18件 / わからない 23件 / 表 52件**
 
 「そのページが機械で読める形か」だけを見ている。
 判定が **表** か **Excel** なら自動化しやすい。**PDF** なら一手間、
@@ -10,7 +10,7 @@
 
 - URL: https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html
 - メモ: 本命。縦覧中の案件が並ぶ。届出ごとの「資料」PDF 44本のうち2MB以下の33本を取った。ただし33本中32本は紙をスキャンした画像で文字が入っておらず、機械では読めない（2026-09-12確認）。読むならOCRが要る。保存はしてあるので、いまは表の3項目（届出日・店名・縦覧期間）だけを使う。2026-09-12から8MB級も取る（上限12MB）。読むにはOCRが要るので別の仕組みで。いま縦覧中の分しか載らないので、Wayback Machine の月1回の保存から過去分を積み直す（wayback.py、2026-09-12〜）。2019〜2023年のページは一覧を todokede_jyuuranYYMMDD.pdf に置いていたので、その PDF もアーカイブから前方一致で拾う
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 34,164 バイト
 - **判定: 表**
 - 表 3 個 / PDFリンク 41 本 / Excel 0 本
@@ -28,18 +28,7 @@
 
 - URL: https://web.pref.hyogo.lg.jp/ks21/r03_daitennrittihou.html
 - メモ: 手引と様式のページ。過去分の一覧が別にぶら下がっていないか確かめる用
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 23,276 バイト
-- **判定: Excel**
-- 表 0 個 / PDFリンク 8 本 / Excel 1 本
-  - PDF: 手続の流れ（PDF：91KB） → https://web.pref.hyogo.lg.jp/ks21/documents/tetuduki011121.pdf
-  - PDF: 詳細（PDF：142KB） → https://web.pref.hyogo.lg.jp/ks21/documents/onlinechirashi.pdf
-  - PDF: 大規模小売店舗を設置する者が配慮すべき事項に関する指針（PDF：92KB） → https://web.pref.hyogo.lg.jp/ks21/documents/sisin_saikaitei.pdf
-  - PDF: 主要鉄道駅近郊の商業地区における駐車場必要台数の自動車分担率に係る基準（PDF：60KB） → https://web.pref.hyogo.lg.jp/ks21/documents/buntanritu.pdf
-  - PDF: 大規模小売店舗立地法に係る届出の手引（令和8年2月）（PDF：9,612KB） → https://web.pref.hyogo.lg.jp/ks21/documents/tebiki0802.pdf
-  - Excel: 駐車場法チェックリスト（エクセル：20KB） → https://web.pref.hyogo.lg.jp/ks21/documents/parkinglawcl260511.xlsx
-- 出てきた言葉: 新設 / 変更 / 廃止 / 縦覧 / 届出 / 店舗面積 / 開店
-- 年度らしき表記: 令和7年 / 令和8年
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### 神戸市 大規模小売店舗立地法 届出状況等
 
@@ -74,7 +63,7 @@
 
 - URL: https://www.pref.osaka.lg.jp/o110060/shogyoshien/daikibokouritenpo/index.html
 - メモ: 本命。2026年4月に手続きがオンライン化し、縦覧も府のHPで見られるようになった
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 29,157 バイト
 - **判定: 表**
 - 表 1 個 / PDFリンク 18 本 / Excel 17 本
@@ -97,7 +86,7 @@
 
 - URL: https://www.city.osaka.lg.jp/keizaisenryaku/page/0000373985.html
 - メモ: Excel 3本。サーバーがこの仕組みからの取得に404を返す（ブラウザからは落とせる）。参照元ヘッダー、ページを先に開いてクッキーを持つ経路、どちらも404のまま（2026-09-12に確認）。名乗りを偽って取る手は使わない。運用は「利用者がブラウザで落として data/files/osaka-city/ に置く」。ページに新しいファイル名が出たら files-report に太字で合図を出す。毎日3本を取り直して、通るようになったら分かる。届出一覧.xls は平成12年からの全届出1,421件・75列で、いちばん濃い。大阪市はこのページのデータを CC-BY 4.0 で提供すると明記している。オープンデータカタログ（resource.csv 2,609件）にも届出一覧は無かった（2026-09-12確認）
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 45,619 バイト
 - **判定: Excel**
 - 表 0 個 / PDFリンク 6 本 / Excel 3 本
@@ -116,22 +105,24 @@
 
 - URL: https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.html
 - メモ: 政令市。新設・名称変更・配置変更が届出種別×年度で整理された階層インデックス。長らく空けていた穴
-- robots.txt: 許可
-- HTTP 200 / UTF-8 / 13,903 バイト
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
+- HTTP 200 / UTF-8 / 13,918 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 新設 / 変更 / 廃止 / 届出
-- **この先を辿った: 23本** 
+- 年度らしき表記: 令和8年
+- **この先を辿った: 25本** 
   -  新設の届出（法第5条第1項関係）について … **わからない**
   -  名称・代表者等の変更の届出（法第6条第1項関係）について … **わからない**
   -  施設の配置・運営方法等の変更の届出（法第6条第2項関係）について … **わからない**
   -  廃止の届出（法第6条第5項関係）について … **わからない**
   -  既存店の変更の届出（法附則第5条第1項関係）について … **わからない**
   -  承継の届出（法第11条第3項関係）について … **表** 20行×6列
-  -    令和8年度 新設の届出（法第5条第1項関係）について … **表** 3行×11列 PDF2本
+  -  令和8年度 新設の届出（法第5条第1項関係）について … **表** 3行×11列 PDF2本
   -    令和7年度 新設の届出（法第5条第1項関係）について … **表** 6行×11列 PDF5本
   -    令和6年度 新設の届出（法第5条第1項関係）について … **表** 5行×11列 PDF4本
   -    令和5年度 新設の届出（法第5条第1項関係）について … **表** 2行×11列 PDF1本
+  -    令和4年度 新設の届出（法第5条第1項関係）について … **表** 4行×11列 PDF3本
   -    令和8年度 名称・代表者等の変更の届出（法第6条第1項関係）について … **表** 10行×8列
   -    令和7年度 名称・代表者等の変更の届出（法第6条第1項関係）について … **表** 19行×8列
   -    令和6年度 名称・代表者等の変更の届出（法第6条第1項関係）について … **表** 16行×8列
@@ -145,6 +136,7 @@
   -    令和5年度 廃止の届出（法第6条第5項関係）について … **わからない**
   -    令和4年度 廃止の届出（法第6条第5項関係）について … **表** 2行×5列
   -    既存店の変更の届出（法附則第5条第1項関係）について … **わからない**
+  -    大規模小売店舗の届出 … **表** 7行×3列 PDF9本
 
 ### 高槻市 大規模小売店舗立地法に基づく大阪府への届出一覧
 
@@ -183,29 +175,13 @@
 
 - URL: https://www.sangyo-rodo.metro.tokyo.lg.jp/chushou/shoko/chiiki/daikibo
 - メモ: 前のURLは一覧ページではなかった。親ページに変更。年度別の一覧はこの下にぶら下がっている
-- robots.txt: 許可
-- HTTP 200 / UTF-8 / 553,229 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 0 本 / Excel 0 本
-- 出てきた言葉: 縦覧 / 届出
-- 年度らしき表記: 令和５年 / 令和８年 / 平成12年
-- **この先を辿った: 10本** 
-  -  ４．公告・縦覧の状況 … **わからない**
-  -  8．届出状況一覧（平成12年度～） … **わからない**
-  -    届出状況（新設） … **わからない**
-  -    届出状況（変更） … **わからない**
-  -    届出状況（廃止） … **わからない**
-  -    届出状況（承継） … **わからない**
-  -    平成27年度届出状況一覧 （341.5KB） … **わからない**
-  -    平成26年度届出状況一覧 （317.9KB） … **わからない**
-  -    平成25年度届出状況一覧 （405.4KB） … **わからない**
-  -    平成24年度届出状況一覧 （383.9KB） … **わからない**
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### 豊中市 届出状況
 
 - URL: https://www.city.toyonaka.osaka.jp/machi/sangyoushinkou/kigyoricchi/daikibokouritenpo/todokede.html
 - メモ: 制度解説のindexとは別の「届出状況」専用ページ
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / UTF-8 / 86,034 バイト
 - **判定: 表**
 - 表 5 個 / PDFリンク 24 本 / Excel 0 本
@@ -237,7 +213,7 @@
 
 - URL: https://www.city.hirakata.osaka.jp/0000003373.html
 - メモ: アルプラザ枚方・枚方T-SITE・フォレオひらかた等の個別届出が並ぶ。告示PDFも同じ配下
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / UTF-8 / 88,940 バイト
 - **判定: 表**
 - 表 6 個 / PDFリンク 45 本 / Excel 0 本
@@ -255,7 +231,7 @@
 
 - URL: https://www.city.ibaraki.osaka.jp/kikou/sangyo/shoukou/menu/daikibotyukibokouritenpo/tensyutsu/48906.html
 - メモ: 届出年月日と縦覧期間つきで案件が載る。サイト改編でパスが移行中の可能性ありとの指摘あり
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 70,044 バイト
 - **判定: 表**
 - 表 6 個 / PDFリンク 0 本 / Excel 0 本
@@ -268,7 +244,7 @@
 
 - URL: https://www.city.osaka-izumi.lg.jp/bizisan/shoukou/rixcchihou/todokedejoukyou/index.html
 - メモ: 12年分すべてPDF。「届出の概要・縦覧期間等」が58本ある。大阪でいちばん本数が多い。ページに市のサイト移転前の古いリンク（ikkrwebBrowse/…/Ion.pdf、marunaka-izumi.pdf）が残っていて404になる。同じ「届出の概要・縦覧期間等」は新しいURL（material/files/group/113/…）にあり、そちらは取得済み。市側のリンク切れなので、こちらでは追わない（2026-09-13確認）
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 39,218 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
@@ -310,7 +286,7 @@
 
 - URL: https://www.city.kaizuka.lg.jp/kakuka/sogoseisaku/sangyo/menu/daitenrittihounituite/daitenrittihoutodokedejoukyou.html
 - メモ: 表もPDFも0だが、箇条書きが62個ある。リストの形で出している可能性。辿る先も0本なので、別の読み方が要る
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 51,305 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
@@ -340,7 +316,7 @@
 
 - URL: https://www.city.sennan.lg.jp/kakuka/shiminseikatu/sangyoushinkou/shokorodokakari/town/daikibo/todokede/12417.html
 - メモ: 移譲市町村。届出状況の一覧ページと判定
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 44,378 バイト
 - **判定: 表**
 - 表 2 個 / PDFリンク 0 本 / Excel 0 本
@@ -353,7 +329,7 @@
 
 - URL: https://www.city.hannan.lg.jp/kakuka/mirai/kikaku/daikibokouritennporittihou/index.html
 - メモ: 移譲市町村。届出状況の一覧ページと判定
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 41,290 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
@@ -392,7 +368,7 @@
 
 - URL: https://www.city.kadoma.osaka.jp/soshiki/shiminbunkabu/6/3/4/2484.html
 - メモ: 案内ページと見られる。平成28年度以前は大阪府側にあるとの案内あり。実地で確かめる
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 75,431 バイト
 - **判定: 表**
 - 表 7 個 / PDFリンク 30 本 / Excel 0 本
@@ -410,7 +386,7 @@
 
 - URL: https://www.city.osakasayama.osaka.jp/sosiki/siminseikatsubu/sangyounigiwaizukuri/4/1/1410228705740.html
 - メモ: PDFが4本あるが、実地で見たら「手引き」「要綱」「しおり」「フロー図」だけで届出の一覧ではなかった（2026-09-11）。一覧を出していない自治体
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 168,967 バイト
 - **判定: PDF**
 - 表 0 個 / PDFリンク 4 本 / Excel 0 本
@@ -425,7 +401,7 @@
 
 - URL: https://www.town.kumatori.lg.jp/soshiki/sangyo_shinko/gyomu/sangyo_shinko/shokogyo/2357.html
 - メモ: 案内ページと見られる。実地で確かめる
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 69,185 バイト
 - **判定: 表**
 - 表 1 個 / PDFリンク 2 本 / Excel 0 本
@@ -440,7 +416,7 @@
 
 - URL: https://www.city.izumisano.lg.jp/kakuka/seikatsu/shoko/menu/jigyosyo/todokede/1613433836928.html
 - メモ: PDFが4本あるが、実地で見たら「手引き」「要綱」「しおり」「フロー図」だけで届出の一覧ではなかった（2026-09-11）。一覧を出していない自治体
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 61,437 バイト
 - **判定: PDF**
 - 表 0 個 / PDFリンク 4 本 / Excel 0 本
@@ -470,7 +446,7 @@
 
 - URL: https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/chukouritenpo/chukiboichiran.html
 - メモ: 中規模で一覧を公開している数少ない例。大店立地法が拾えない1000平米以下を拾える
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / UTF-8 / 14,026 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
@@ -513,49 +489,25 @@
 
 - URL: https://www.pref.osaka.lg.jp/o070050/koho/information/use.html
 - メモ: 届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 18,154 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 0 本 / Excel 0 本
-- 出てきた言葉: 変更
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）兵庫県 リンク・著作権・免責事項
 
 - URL: https://web.pref.hyogo.lg.jp/about_link.html
 - メモ: 届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 17,678 バイト
-- **判定: わからない**
-- 表 1 個 / PDFリンク 0 本 / Excel 0 本
-- いちばん大きい表: 2 行 × 2 列
-  - 見出しらしき行: 【HTMLの記述方法】
-			<a href="
-- 出てきた言葉: 変更
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）堺市 リンク・著作権・免責事項
 
 - URL: https://www.city.sakai.lg.jp/aboutweb/linkchosakuken.html
 - メモ: 届出ページの下部から辿った利用規約ページ。出典表記の書き方を読むために保存する（2026-09-12追加）
-- robots.txt: 許可
-- HTTP 200 / UTF-8 / 14,356 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 0 本 / Excel 0 本
-- 出てきた言葉: 変更 / 届出
-- **この先を辿った: 5本** 
-  -  大規模小売店舗の届出状況 … **わからない**
-  -    新設の届出（法第5条第1項関係）について … **わからない**
-  -    名称・代表者等の変更の届出（法第6条第1項関係）について … **わからない**
-  -    施設の配置・運営方法等の変更の届出（法第6条第2項関係）について … **わからない**
-  -    廃止の届出（法第6条第5項関係）について … **わからない**
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）神戸市 ホームページのご利用案内
 
 - URL: https://www.city.kobe.lg.jp/homepage/index.html
 - メモ: 届出ページの下部から辿った「ホームページのご利用案内」。中身は目次で、利用規約は /a57337/homepage/rule.html にある（2026-09-12に読んだ）
-- robots.txt: 許可
-- HTTP 200 / UTF-8 / 12,807 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 0 本 / Excel 0 本
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）大阪市オープンデータポータル（www側の入口）
 
@@ -567,44 +519,19 @@
 
 - URL: https://www.city.kobe.lg.jp/a57337/homepage/rule.html
 - メモ: 神戸市の利用規約本体（2026-09-12に読んだ）。PDF「神戸市ウェブサイト利用規約」は政府標準利用規約 第2.0版準拠・CC BY 4.0互換で、サイト全体のコンテンツを出典明記で複製・加工・商用利用できる。規約が変わったら分かるよう毎日保存を続ける
-- robots.txt: 許可
-- HTTP 200 / UTF-8 / 17,155 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 1 本 / Excel 0 本
-  - PDF: 神戸市ウェブサイト利用規約（PDF：124KB） → https://www.city.kobe.lg.jp/documents/19135/20170630041802-1.pdf
-- 出てきた言葉: 変更
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）兵庫県 オープンデータ
 
 - URL: https://web.pref.hyogo.lg.jp/pref/cate3_661.html
 - メモ: 兵庫県の著作権ページから辿ったオープンデータの入口。大店立地法の縦覧状況がオープンデータに含まれるか、利用規約（政府標準利用規約か）を見る（2026-09-12追加）
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 15,071 バイト
-- **判定: わからない**
-- 表 0 個 / PDFリンク 0 本 / Excel 0 本
-- 出てきた言葉: 変更
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）兵庫県 関連サイトに掲載のオープンデータ（デジタル戦略課）
 
 - URL: https://web.pref.hyogo.lg.jp/kk26/johoseisaku/opendata.html
 - メモ: 兵庫県オープンデータの本体（2026-09-12に読んだ）。カタログ専用の利用規約PDF kiyaku_opendata.pdf を落として読んだ：カタログ掲載の著作物は注があるものを除き CC BY 4.0。加工時は「この○○は、以下の著作物を改変して利用しています。[タイトル]、[兵庫県]」と書く。県HPにも同じデータがある場合はカタログ規約が優先（第2条1項）。pdf:true を付けたら同じページのExcel/CSV 116本まで落としてしまったので外した（files.py 側でも参考ソースはExcel/CSVを取らないようにした）
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 68,432 バイト
-- **判定: 表**
-- 表 1 個 / PDFリンク 2 本 / Excel 116 本
-- いちばん大きい表: 4 行 × 6 列
-  - 見出しらしき行: 神戸 | 神戸市（外部サイトへリンク） | 北播磨 | 西脇市（外部サイトへリンク）
-			三木市（外部 | 但馬 | 豊岡市（外部サイトへリンク）
-			養父市（外部
-  - PDF: オープンデータカタログページ利用規約（PDF：115KB） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/kiyaku_opendata.pdf
-  - PDF: 犯罪発生状況のウェブサイトに掲載する統一的注記（PDF：67KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/noter7renew.pdf
-  - Excel: 令和7年中の犯罪発生状況（窃盗・自転車盗）（CSV：943KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/hyogo_2025zitensyatou.csv
-  - Excel: 令和7年中の犯罪発生状況（窃盗・オートバイ盗）（CSV：74KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/hyogo_2025ootobaitou.csv
-  - Excel: 令和7年中の犯罪発生状況（窃盗・自動車盗）（CSV：15KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/hyogo_2025zidousyatou.csv
-  - Excel: 令和7年中の犯罪発生状況（窃盗・自動販売機ねらい）（CSV：11KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/hyogo_2025zidouhanbaikinerai.csv
-  - Excel: 令和7年中の犯罪発生状況（窃盗・部品ねらい）（CSV：64KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/kk26/johoseisaku/documents/hyogo_2025buhinnerai.csv
-- 出てきた言葉: 変更
-- 年度らしき表記: 令和2年 / 令和3年 / 令和4年 / 令和5年 / 令和6年 / 令和7年 / 令和8年 / 平成12年
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）兵庫県 オープンデータカタログ
 
@@ -682,8 +609,8 @@
 
 - URL: https://web.pref.hyogo.lg.jp/kk32/pa13_000000105.html
 - メモ: 兵庫県公報の目録 Excel（2007年1月〜、年1冊、20冊）。「公告」シートに大店立地法の公告が 2007〜2025 年で 2,032 件（変更 1,262 / 新設 326 / 廃止 48 / 市町の意見 377 ほか）。件名に店舗名は無いが、種類・公告日・担当・公報番号が分かる。koho.py が数える。2015年以降は発行日が Excel の通し番号（2026-09-13に読んだ）
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 23,779 バイト
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
+- HTTP 200 / utf-8 / 23,913 バイト
 - **判定: 表**
 - 表 3 個 / PDFリンク 2 本 / Excel 20 本
 - いちばん大きい表: 7 行 × 3 列
@@ -702,7 +629,7 @@
 
 - URL: https://web.pref.hyogo.lg.jp/ks21/wd24_000000025.html
 - メモ: 部会の議案PDF（第54回〜、2016年〜）の冒頭「届出内容」に、店舗名・所在地・設置者・店舗面積と、その店の届出（過去分も）の届出年月日・条文が載る。parse_bukai.py が pdftotext で読んで届出の記録にする。部会にかかるのは新設と主な変更だけ。「基本計画書」で始まる議案は大規模集客施設条例の計画段階なので今は扱わない。議事録PDFも保存しているが読んでいない。上限3MBだと第59回の議案書(3.8MB)が見送りになったので5MBにした（2026-09-13）
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 42,136 バイト
 - **判定: PDF**
 - 表 0 個 / PDFリンク 191 本 / Excel 0 本
@@ -718,17 +645,7 @@
 
 - URL: https://web.pref.hyogo.lg.jp/ks18/wd20_000000202.html
 - メモ: 「大規模小売店舗等立地部会における調査審議の結果（令和7年2月分〜令和8年2月分）」のような年次PDFがある。まず落として形を見る（2026-09-13追加）
-- robots.txt: 許可
-- HTTP 200 / utf-8 / 73,384 バイト
-- **判定: PDF**
-- 表 0 個 / PDFリンク 265 本 / Excel 0 本
-  - PDF: 議事要旨（PDF：258KB） → https://web.pref.hyogo.lg.jp/ks18/documents/r0702gijiyoushi.pdf
-  - PDF: 【資料1-1】「福祉のまちづくり基本方針」の見直しについて（報告）（PDF：145KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/ks18/documents/1-1r702.pdf
-  - PDF: 【資料1-2】福祉のまちづくり検討小委員会における検討経過（PDF：748KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/ks18/documents/1-2r702.pdf
-  - PDF: 【資料1-3】前回審議会における主な意見とその対応（PDF：2,129KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/ks18/documents/1-3r702.pdf
-  - PDF: 【資料1-4】福祉のまちづくり基本方針（改定案）（PDF：1,939KB）（別ウィンドウで開きます） → https://web.pref.hyogo.lg.jp/ks18/documents/1-4r702.pdf
-- 出てきた言葉: 変更
-- 年度らしき表記: 令和2年 / 令和3年 / 令和4年 / 令和5年 / 令和6年 / 令和7年 / 令和8年 / 平成11年
+- **結果: 取りに行かなかった（biweekly：前回 2026-09-15 から 14 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）経済産業省 大店立地法の届出状況について
 
@@ -740,13 +657,13 @@
 
 - URL: https://www.jcsc.or.jp/sc_data/sc_open/daitenhou
 - メモ: 経産省が経済産業局ごとにまとめた月次の新設届出を転載しているページ。2006年7月分からの月別ページがあり、経産省の公表終了後も更新が続いている。民間団体の一覧なので転載はせず、件数の答え合わせにだけ使う。2023年度までの大元は経産省の PDF（政府標準利用規約）を使う（2026-09-13）
-- **結果: 取得できなかった — URLError: <urlopen error timed out>**
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）兵庫県公報 月別一覧
 
 - URL: https://web.pref.hyogo.lg.jp/kk32/pa13_000000081.html
 - メモ: 月別一覧。/kk32/koho/YYMM.html が約180か月分並ぶ（古い年は pa13_… のページ）。目録（2007年〜）の公告 1,636 件を本体 PDF までたどる入口（2026-09-13に保存）
-- robots.txt: 許可
+- robots.txt: robots.txt が HTTP 404（無いものとして続ける）
 - HTTP 200 / utf-8 / 25,480 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
@@ -769,7 +686,7 @@
 
 - URL: https://www.jcsc.or.jp/pt_location/p_20260821_114467
 - メモ: 民間の業界団体が集めた一覧なので、そのままの転載や機械での吸い上げはしない（規約と、一覧のまるごと複製を不法行為とした判例への配慮）。兵庫県の件数の答え合わせのためにページを保存するだけ。PDF は落とさない（2026-09-13）
-- **結果: 取得できなかった — URLError: <urlopen error timed out>**
+- **結果: 取りに行かなかった（quarterly：前回 2026-09-15 から 90 日たっていないので今回は見ない（共通仕様3.4））**
 
 ### （参考）日本SC協会 大店立地法新設届出情報 2014年以前
 

@@ -1054,7 +1054,7 @@
   "key": "382fc11340aa",
   "operator_display": "",
   "operator_kind": "individual",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual",
   "address_redacted": true
  },
@@ -1262,7 +1262,7 @@
   "key": "63d2a179730a",
   "operator_display": "マルイト株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "未定３者",
   "retailer_kind": "individual"
  },
  {
@@ -1308,7 +1308,7 @@
   "key": "04b1800645c7",
   "operator_display": "株式会社マルハチホールディングス",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual"
  },
  {
@@ -1354,7 +1354,7 @@
   "key": "475b62cbbde1",
   "operator_display": "オリックス株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual"
  },
  {
@@ -1469,7 +1469,7 @@
   "key": "de15bbe21492",
   "operator_display": "株式会社ニトリ",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual"
  },
  {
@@ -1584,7 +1584,7 @@
   "key": "50f3ad54dd7b",
   "operator_display": "日鉄興和不動産株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual"
  },
  {
@@ -1630,7 +1630,7 @@
   "key": "f9b6f83291ab",
   "operator_display": "マックスバリュ西日本株式会社",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual"
  },
  {
@@ -1653,7 +1653,7 @@
   "key": "db69b7e37c95",
   "operator_display": "株式会社コスモス薬品",
   "operator_kind": "corp",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual"
  },
  {
@@ -1676,7 +1676,7 @@
   "key": "f825a2402d35",
   "operator_display": "",
   "operator_kind": "individual",
-  "retailer_display": "",
+  "retailer_display": "物品販売業を営む店舗",
   "retailer_kind": "individual",
   "address_redacted": true
  },
