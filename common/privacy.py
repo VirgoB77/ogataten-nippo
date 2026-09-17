@@ -251,12 +251,45 @@ def redact_addr(addr, kind):
 
 # ---------------------------------------------------------------- 小さい母数
 
+# 伏せる上限。1件と2件は伏せる。0件と3件以上はそのまま出す（3.2）。
+SUPPRESS_MAX = 2
+
+# 率を出さない人口の下限（3.2）。
+MIN_POPULATION = 500
+
+
 def suppress_rate(count, population):
-    """率を伏せるべきか。人口500人未満、または件数2件以下で True（3.2）。"""
-    return (population or 0) < 500 or (count or 0) <= 2
+    """率を伏せるべきか。人口500人未満、または件数が1件か2件で True（3.2）。
+
+    **0件は伏せない。** 3.2 が心配しているのは「小さい母数で率が跳ね上がる」
+    ことで、0件はその逆。件数そのものを 0 と出しているので、率を出しても
+    戻るものが無い。0件を伏せると、本当に0件の升が「率を出していない」側に
+    落ちて、3.2 の「伏せた升と本当に0件の升は見た目で分ける」と食い違う。
+    """
+    if (population or 0) < MIN_POPULATION:
+        return True
+    return 1 <= (count or 0) <= SUPPRESS_MAX
+
+
+def masked(n):
+    """升の値そのもの。1件と2件は None（伏せた）、0件と3件以上はその数（3.2）。
+
+    bucket_count() は人に見せる文字列、こちらは機械が持つ値。
+    6節の count / count_label の2本立てと同じ分け方で、count 側がこれ。
+
+    **出力に実数を書くときは必ずここを通す。** 画面が伏せ字にしていても、
+    元のファイルに実数が入っていれば伏せたことにならない。
+
+    この関数が無かったあいだ、3つのサイトが同じ判断をそれぞれ手で書いていた。
+    たまたま3つとも合っていたが、次に書く人が外す（2026-09-17）。
+    """
+    n = int(n or 0)
+    return None if 1 <= n <= SUPPRESS_MAX else n
 
 
 def bucket_count(n):
-    """件数の表示。1〜2件は "1-2"、それ以外は str(n)（3.2）。"""
-    n = n or 0
-    return "1-2" if 1 <= n <= 2 else str(n)
+    """件数の表示。1件と2件は "1-2"、それ以外は str(n)（3.2）。"""
+    n = int(n or 0)
+    if n <= 0:
+        return "0"
+    return f"1-{SUPPRESS_MAX}" if n <= SUPPRESS_MAX else str(n)
