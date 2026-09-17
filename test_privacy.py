@@ -993,6 +993,51 @@ def test_placeholder_is_not_a_duplicate():
     eq(rec.get("extra", {}).get("小売業者"), "―", "「―」の列が黙って消えている")
 
 
+# ---------------------------------------------------------------- 巡回の実測から
+
+def test_month_page_is_not_refetched_after_refusal():
+    """3.4：一度「取り直さない」と決めた月を、同じ実行の中で何度も取りに行かない。
+
+    月ページの取り直しで定期号が減っていたら控えを書かずに返す（作りが変わった
+    疑い）。印を付けないと、その月は次に呼ばれてもまた「古い版」に見えるので、
+    その月の号の数だけ県のサーバーに行く。
+    実測（2026-09-17 の巡回）：2025-12 に27回、4か月で40回＝取り直しの枠ぜんぶ。
+    ネットには出ない。get を差し替えて回数だけ数える。
+    """
+    import koho_pdf, json as _json, tempfile, time, os as _os
+    YM = "2025-12"
+    PAGE = ('<a href="/a/202512-560.pdf">12月3日第560号</a>')   # 定期号は1つだけ
+    calls = []
+
+    def fake_get(url, limit=None):
+        calls.append(url)
+        return PAGE.encode()
+
+    keep = (koho_pdf.MONTHS, koho_pdf.get, dict(koho_pdf._month_failed),
+            koho_pdf._month_refreshed, koho_pdf._asked, time.sleep)
+    with tempfile.TemporaryDirectory() as d:
+        koho_pdf.MONTHS = d
+        with open(_os.path.join(d, f"{YM}.json"), "w", encoding="utf-8") as f:
+            _json.dump({"_v": 1, "12-3-560": "u1", "12-6-561": "u2", "12-9-562": "u3"}, f)
+        koho_pdf.get = fake_get
+        koho_pdf._month_failed.clear()
+        koho_pdf._month_refreshed = 0
+        koho_pdf._asked = 0
+        time.sleep = lambda *_a, **_k: None
+        lines = []
+        try:
+            for _ in range(5):                       # その月の号を5つ処理したつもり
+                koho_pdf.month_links(YM, "https://example.test/m", lines)
+        finally:
+            (koho_pdf.MONTHS, koho_pdf.get, _f,
+             koho_pdf._month_refreshed, koho_pdf._asked, time.sleep) = keep
+            koho_pdf._month_failed.clear(); koho_pdf._month_failed.update(_f)
+
+    eq(len(calls), 1, f"断った月を何度も取りに行っている（{len(calls)}回。1回で止まるはず）")
+    eq(sum(1 for l in lines if "減った" in l), 1,
+       f"同じ警告を報告に何度も書いている（{sum(1 for l in lines if '減った' in l)}回）")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
