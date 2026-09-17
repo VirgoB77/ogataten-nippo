@@ -566,7 +566,7 @@ def koho_page(notices, src_meta, today):
         parts = [c.get(k, 0) for k in ("新設", "変更", "廃止")]
         # 1〜2件のセルを伏せても、合計から他を引けば戻ってしまう（3.2「引き算で戻せる」）。
         # 伏せたセルが1つでもある行は、合計も出さない
-        total = "–" if any(1 <= v <= 2 for v in parts) else str(sum(parts))
+        total = "–" if any(privacy.masked(v) is None for v in parts) else str(sum(parts))
         lab = f'<a href="{href}">{esc(label)}</a>' if href else esc(label)
         return f"<tr><td>{lab}</td>{cells}<td class=\"n\"><b>{total}</b></td></tr>"
 
@@ -711,7 +711,7 @@ def build_index(recs, today):
     counts = []
     for (code, city, kind, period), c in sorted(cells.items(), key=lambda x: (x[0][1], x[0][2], x[0][3]), reverse=False):
         counts.append({"city_code": code, "city": city, "kind": kind, "period": period,
-                       "count": None if 1 <= c <= 2 else c,
+                       "count": privacy.masked(c),
                        "count_label": privacy.bucket_count(c)})
     return {"site": "ogataten-nippo", "site_name": SITE_NAME, "generated_at": today,
             "records": records, "counts_by_city": counts}

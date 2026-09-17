@@ -1038,6 +1038,61 @@ def test_month_page_is_not_refetched_after_refusal():
        f"同じ警告を報告に何度も書いている（{sum(1 for l in lines if '減った' in l)}回）")
 
 
+def test_masked_splits_zero_from_hidden():
+    """3.2「伏せた升と本当に0件の升は見た目で分ける」の count 側。
+
+    masked() は機械が持つ値、bucket_count() は人に見せる文字列。
+    6節の count / count_label の2本立てと同じ分け方。
+    """
+    eq(privacy.masked(0), 0, "0件は 0 のまま（伏せた升と分ける）")
+    eq(privacy.masked(1), None, "1件は None（伏せる）")
+    eq(privacy.masked(2), None, "2件は None（伏せる）")
+    eq(privacy.masked(3), 3, "3件はそのまま")
+    eq(privacy.masked(None), 0, "値が無いときは 0")
+
+
+def test_zero_count_keeps_its_rate():
+    """0件は率を伏せない。3.2 が心配しているのは小さい母数で率が跳ね上がること。
+
+    0件を伏せると、本当に0件の升が「率を出していない」側に落ちて、
+    伏せた升と見分けがつかなくなる。2026-09-17 に正本が直ったが、
+    ここの実装は「件数2件以下」のままだった（率は本番未使用で実害は無かった）。
+    """
+    eq(privacy.suppress_rate(0, 10000), False, "0件は率を出してよい")
+    eq(privacy.suppress_rate(1, 10000), True, "1件は率を出さない")
+    eq(privacy.suppress_rate(2, 10000), True, "2件は率を出さない")
+    eq(privacy.suppress_rate(3, 10000), False, "3件は率を出してよい")
+    eq(privacy.suppress_rate(0, 400), True, "人口が足りなければ0件でも出さない")
+
+
+_HAND_WRITTEN_SUPPRESS = re.compile(
+    r"1\s*<=\s*\w+\s*<=\s*2"          # 1 <= c <= 2
+    r"|\w+\s+in\s*\(\s*1\s*,\s*2\s*\)"   # c in (1, 2)
+)
+
+
+def test_count_side_goes_through_masked():
+    """伏せる判断を privacy の外に手で書いていないか（共通仕様5節）。
+
+    masked() が無かったあいだ、3つのサイトが同じ判断をそれぞれ手で書いていた。
+    たまたま3つとも合っていたので誰も気づかなかった。次に書く人が外す。
+    判断は1か所に置き、出力する経路は必ずそこを通す（2026-09-17）。
+    """
+    bad = []
+    targets = glob.glob(os.path.join(HERE, "*.py")) + glob.glob(os.path.join(HERE, "common", "*.py"))
+    for path in targets:
+        name = os.path.basename(path)
+        if name.startswith("test_") or name == "privacy.py":
+            continue   # 検査そのものと、判断を持っている当人は除く
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            for i, line in enumerate(f, 1):
+                if _HAND_WRITTEN_SUPPRESS.search(line):
+                    bad.append(f"{os.path.relpath(path, HERE)}:{i}")
+    if bad:
+        fails.append(f"伏せる判断を privacy の外に手で書いている箇所 {len(bad)}"
+                     f"（{bad[:4]}）。privacy.masked() を通すこと")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
