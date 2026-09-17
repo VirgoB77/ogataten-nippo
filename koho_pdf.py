@@ -202,6 +202,10 @@ def month_links(ym, url, lines):
         if new_n < old_n:
             lines.append(f"  - 月ページの定期号が {old_n} → {new_n} に減った {ym}。"
                          "ページの作りが変わったかもしれない。古い控えのままにする")
+            # 控えを書かずに返すので、この月は次に呼ばれてもまた「古い版」に見える。
+            # 印を付けないと、その月の号の数だけ取り直しに行く（実測：2025-12 に27回、
+            # 4か月で40回＝取り直しの枠ぜんぶ。県のサーバーへの空振りが1日40回）
+            _month_failed[ym] = "定期号が減った"
             return old
     with open(cache, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=0)
