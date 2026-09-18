@@ -2694,5 +2694,74 @@
   "operator_kind": "corp",
   "retailer_display": "",
   "retailer_kind": "individual"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2026-02-20",
+  "notified_raw": "令和８年２月 20 日",
+  "store": "（仮称）ドラッグコスモス三木末広",
+  "address": "三木市末広３丁目125番３外",
+  "operator": "株式会社コスモス薬品",
+  "retailer": "",
+  "content": "",
+  "area_m2": 1297,
+  "event_on": "2026-10-21",
+  "meeting": "第152回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/152_gian.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "b476e4263110",
+  "operator_display": "株式会社コスモス薬品",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2026-02-26",
+  "notified_raw": "令和８年２月 26 日",
+  "store": "エディオン塚口店",
+  "address": "尼崎市塚口本町４丁目８番40号",
+  "operator": "株式会社エディオン",
+  "retailer": "",
+  "content": "",
+  "area_m2": 2445,
+  "event_on": "2026-11-01",
+  "meeting": "第152回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/152_gian.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "0297062af69a",
+  "operator_display": "株式会社エディオン",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2026-03-03",
+  "notified_raw": "令和８年３月３日",
+  "store": "スーパーセンタートライアル高砂曽根店",
+  "address": "高砂市曽根町字入喜濱2526番１外",
+  "operator": "株式会社トライアルカンパニー",
+  "retailer": "",
+  "content": "",
+  "area_m2": 3432,
+  "event_on": "2026-11-04",
+  "meeting": "第152回",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/ks21/documents/152_gian.pdf"
+  ],
+  "source": "hyogo-bukai",
+  "key": "2f8fe7806bbb",
+  "operator_display": "株式会社トライアルカンパニー",
+  "operator_kind": "corp",
+  "retailer_display": "",
+  "retailer_kind": "individual"
  }
 ]

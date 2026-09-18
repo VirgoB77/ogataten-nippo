@@ -1,6 +1,6 @@
-# 大店立地法 届出ページ 偵察レポート（2026-09-16）
+# 大店立地法 届出ページ 偵察レポート（2026-09-17）
 
-**まとめ: Excel 1件 / PDF 18件 / わからない 23件 / 表 52件**
+**まとめ: Excel 1件 / PDF 18件 / わからない 24件 / 表 52件**
 
 「そのページが機械で読める形か」だけを見ている。
 判定が **表** か **Excel** なら自動化しやすい。**PDF** なら一手間、
@@ -11,7 +11,7 @@
 - URL: https://web.pref.hyogo.lg.jp/ks21/wd24_000000018.html
 - メモ: 本命。縦覧中の案件が並ぶ。届出ごとの「資料」PDF 44本のうち2MB以下の33本を取った。ただし33本中32本は紙をスキャンした画像で文字が入っておらず、機械では読めない（2026-09-12確認）。読むならOCRが要る。保存はしてあるので、いまは表の3項目（届出日・店名・縦覧期間）だけを使う。2026-09-12から8MB級も取る（上限12MB）。読むにはOCRが要るので別の仕組みで。いま縦覧中の分しか載らないので、Wayback Machine の月1回の保存から過去分を積み直す（wayback.py、2026-09-12〜）。2019〜2023年のページは一覧を todokede_jyuuranYYMMDD.pdf に置いていたので、その PDF もアーカイブから前方一致で拾う
 - robots.txt: robots.txt が HTTP 404（無いものとして続ける）
-- HTTP 200 / utf-8 / 34,164 バイト
+- HTTP 200 / utf-8 / 34,165 バイト
 - **判定: 表**
 - 表 3 個 / PDFリンク 41 本 / Excel 0 本
 - いちばん大きい表: 31 行 × 4 列
@@ -106,12 +106,12 @@
 - URL: https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/daikibo/todokede/index.html
 - メモ: 政令市。新設・名称変更・配置変更が届出種別×年度で整理された階層インデックス。長らく空けていた穴
 - robots.txt: robots.txt が HTTP 404（無いものとして続ける）
-- HTTP 200 / UTF-8 / 13,918 バイト
+- HTTP 200 / UTF-8 / 13,856 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 新設 / 変更 / 廃止 / 届出
 - 年度らしき表記: 令和8年
-- **この先を辿った: 25本** 
+- **この先を辿った: 26本** 
   -  新設の届出（法第5条第1項関係）について … **わからない**
   -  名称・代表者等の変更の届出（法第6条第1項関係）について … **わからない**
   -  施設の配置・運営方法等の変更の届出（法第6条第2項関係）について … **わからない**
@@ -136,7 +136,8 @@
   -    令和5年度 廃止の届出（法第6条第5項関係）について … **わからない**
   -    令和4年度 廃止の届出（法第6条第5項関係）について … **表** 2行×5列
   -    既存店の変更の届出（法附則第5条第1項関係）について … **わからない**
-  -    大規模小売店舗の届出 … **表** 7行×3列 PDF9本
+  -    中規模小売店舗の届出状況 … **わからない**
+  -    中規模小売店舗の届出状況（令和8年度） … **表** 3行×9列
 
 ### 高槻市 大規模小売店舗立地法に基づく大阪府への届出一覧
 
@@ -447,7 +448,7 @@
 - URL: https://www.city.sakai.lg.jp/sangyo/shienyuushi/kojoricchi/chukouritenpo/chukiboichiran.html
 - メモ: 中規模で一覧を公開している数少ない例。大店立地法が拾えない1000平米以下を拾える
 - robots.txt: robots.txt が HTTP 404（無いものとして続ける）
-- HTTP 200 / UTF-8 / 14,026 バイト
+- HTTP 200 / UTF-8 / 13,856 バイト
 - **判定: わからない**
 - 表 0 個 / PDFリンク 0 本 / Excel 0 本
 - 出てきた言葉: 届出
@@ -630,14 +631,14 @@
 - URL: https://web.pref.hyogo.lg.jp/ks21/wd24_000000025.html
 - メモ: 部会の議案PDF（第54回〜、2016年〜）の冒頭「届出内容」に、店舗名・所在地・設置者・店舗面積と、その店の届出（過去分も）の届出年月日・条文が載る。parse_bukai.py が pdftotext で読んで届出の記録にする。部会にかかるのは新設と主な変更だけ。「基本計画書」で始まる議案は大規模集客施設条例の計画段階なので今は扱わない。議事録PDFも保存しているが読んでいない。上限3MBだと第59回の議案書(3.8MB)が見送りになったので5MBにした（2026-09-13）
 - robots.txt: robots.txt が HTTP 404（無いものとして続ける）
-- HTTP 200 / utf-8 / 42,136 バイト
+- HTTP 200 / utf-8 / 42,298 バイト
 - **判定: PDF**
-- 表 0 個 / PDFリンク 191 本 / Excel 0 本
-  - PDF: 過去審議案件一覧(令和6年度以降)（PDF：217KB） → https://web.pref.hyogo.lg.jp/ks21/documents/151_list.pdf
+- 表 0 個 / PDFリンク 192 本 / Excel 0 本
+  - PDF: 過去審議案件一覧(令和6年度以降)（PDF：217KB） → https://web.pref.hyogo.lg.jp/ks21/documents/152_list.pdf
+  - PDF: 議案書（PDF：1,369KB） → https://web.pref.hyogo.lg.jp/ks21/documents/152_gian.pdf
   - PDF: 議案書（PDF：695KB） → https://web.pref.hyogo.lg.jp/ks21/documents/151_gian.pdf
   - PDF: 議案書（PDF：986KB） → https://web.pref.hyogo.lg.jp/ks21/documents/150_gian.pdf
   - PDF: 議案書（PDF：1,066KB） → https://web.pref.hyogo.lg.jp/ks21/documents/149_gian.pdf
-  - PDF: 議案書（PDF：689KB） → https://web.pref.hyogo.lg.jp/ks21/documents/148gian.pdf
 - 出てきた言葉: 新設 / 変更
 - 年度らしき表記: 令和2年 / 令和3年 / 令和4年 / 令和5年 / 令和6年 / 令和7年 / 令和8年 / 令和9年
 
