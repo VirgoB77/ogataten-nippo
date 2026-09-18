@@ -1093,6 +1093,53 @@ def test_count_side_goes_through_masked():
                      f"（{bad[:4]}）。privacy.masked() を通すこと")
 
 
+def test_taiten_hides_how_long_individuals_stayed():
+    """退店の一覧で、個人の設置者に「何年いたか」を出していないか（3.1）。
+
+    「誰がいつまでそこにいたか」になる。一覧には出すが、年数は出さない。
+    住所は merge の時点で町丁目まで丸めてある。
+    """
+    path = os.path.join(HERE, "data", "taiten.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        rows = json.load(f)["records"]
+
+    bad = [r for r in rows
+           if r.get("operator_kind") == "individual" and r.get("lasted_days")]
+    if bad:
+        fails.append(f"個人の設置者に在店年数が出ている {len(bad)}件。3.1")
+
+    ban = re.compile(r"[0-9０-９]+\s*[-‐−－ー―]\s*[0-9０-９]+|[0-9０-９]+番地?[0-9０-９]*号?")
+    addr_bad = [r for r in rows
+                if r.get("operator_kind") == "individual" and ban.search(r.get("addr", ""))]
+    if addr_bad:
+        fails.append(f"個人の記録に地番が残っている {len(addr_bad)}件。3.1")
+
+    name_bad = [r for r in rows
+                if r.get("operator_kind") == "individual"
+                and r.get("operator") not in ("個人", "", "非公開", None)]
+    if name_bad:
+        fails.append(f"個人の設置者名がそのまま出ている {len(name_bad)}件。3.1")
+
+
+def test_taiten_matches_only_on_store_name():
+    """突き合わせが「町丁目だけ」で繋がっていないか。
+
+    同じ町丁目の別の店を拾う。実測で、町丁目の一致 55件のうち
+    店名まで一致したのは 9件だけだった（2026-09-19）。
+    繋いだものには必ず店名の一致を含める。
+    """
+    path = os.path.join(HERE, "data", "taiten.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        rows = json.load(f)["records"]
+    bad = [r for r in rows if r.get("lasted_days") and "店名" not in (r.get("match") or "")]
+    if bad:
+        fails.append(f"店名の一致なしで在店年数を出している {len(bad)}件")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
