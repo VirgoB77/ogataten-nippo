@@ -747,7 +747,7 @@ def test_既定値で黙って埋めていないか():
 
 
 def test_探される語が_description_に入っているか():
-    """役所の語だけで書くと、人に見つからない。
+    """役所の語だけで書くと人に見つからない。**だが言い換えて主張にしない。**
 
     2026-09-19、Search Console の実測。検索されているのは
     「◯◯ 開店」「◯◯ 閉店」で、**「新設」「廃止」では1件も当たっていない。**
@@ -755,22 +755,176 @@ def test_探される語が_description_に入っているか():
         箕面 コストコ ／ 出屋敷 コスモス ／ エバーグリーン 狭山 閉店
         イズミヤ西神戸 閉店 ／ カナエ今川店 開店
 
-    言い換えではない。**届出が「新設する日／廃止する日」として出した日**なので、
-    そのまま開店・閉店と書ける。変更・承継・中規模はその日ではないので書かない。
+    **それでも「◯月◯日に開店予定」とは書かない。** 2つ外れる。
+
+    ① 届出が出しているのは「大規模小売店舗として新設する日」であって、
+       開店日ではない。**新設してから開ける日は別に決まる**
+       （2026-09-19、中島さんの指摘。僕が一度「に開店予定」と書き、
+       その日のうちに直した。「事実の主張は外れる」と正本に書いた当日）。
+
+    ② **「予定」そのものが外れる。** 4,809件を数えたら、届出日より前の日が
+       入っていた：変更1,760・承継143・廃止94・新設2・中規模2、**計2,001件。**
+       過ぎた日を「予定日」と呼んでいた。
+
+    だから書くのは「**届出に書かれた新設日は**◯月◯日」。主語が届出なので
+    外れようがない。探される語は「（開店日とは別に決まります）」の側に入れる。
+    ページには「開店」「閉店」が入り、しかも外れない。
+
+    この検査は3つを見張る。
+    ① 探される語が添え字に入っていること
+    ② **呼び名に「予定」「開店」「閉店」が入っていないこと**（表を直接見る）
+    ③ **「に開店予定」が戻ってきていないこと**（説明の # 行は数えない）
 
     **捕まえないもの**：実際に検索順位が上がるか。それは後日 Search Console で見る。
     """
-    src = open(os.path.join(HERE, "build_site.py"), encoding="utf-8").read()
-    for word in ("に開店予定", "に閉店予定"):
-        if word not in src:
+    import importlib
+    bs = importlib.import_module("build_site")
+    hyo = bs.KIND_HIZUKE
+
+    # ① 探される語は添え字の側に入れる。
+    # **表に無い種類は、ここでは KeyError にしない。** 表の取りこぼしは
+    # test_日付の呼び名が種類を取りこぼしていないか が実データ付きで鳴らす。
+    # ここで落ちると、あちらの良い言い分けが読まれないまま終わる
+    for kind, kotoba in (("新設", "開店"), ("廃止", "閉店")):
+        if kotoba not in hyo.get(kind, ("", ""))[1]:
             raise AssertionError(
-                f"description に「{word}」が入っていない。"
-                "役所の語（新設・廃止）だけでは、人が探している語に当たらない")
-    # **変更に開店と書かない。** 変更届の日は開店日ではない
-    i = src.index("に開店予定")
-    near = src[max(0, i - 300):i + 300]
-    if '"変更"' in near:
-        raise AssertionError("変更届にも開店・閉店を付けている。その日は開店日ではない")
+                f"{kind} の添え字に「{kotoba}」が入っていない。"
+                "役所の語だけでは、人が探している語に当たらない")
+
+    # ② **呼び名のほうには入れない。** 呼び名は届出が呼んでいる名前だけ
+    for kind, (yobina, soeru) in hyo.items():
+        for warui in ("予定", "開店", "閉店"):
+            if warui in yobina:
+                raise AssertionError(
+                    f"{kind} の呼び名「{yobina}」に「{warui}」が入っている。"
+                    "呼び名は届出が呼んでいる名前だけにする。"
+                    "「予定」は2,001件で外れ、「開店」は届出が言っていない")
+        # 添え字で「別に決まります」と断らずに開店・閉店を書くのも主張になる
+        if ("開店" in soeru or "閉店" in soeru) and "別に決まります" not in soeru:
+            raise AssertionError(
+                f"{kind} の添え字「{soeru}」が、開店・閉店を断らずに書いている")
+
+    # **変更・承継に開店・閉店を付けない。** その日は開店日でも閉店日でもない
+    for kind in ("変更", "承継", "中規模"):
+        if hyo.get(kind, ("", ""))[1]:
+            raise AssertionError(
+                f"{kind} に添え字「{hyo[kind][1]}」が付いている。"
+                "その日は開店日でも閉店日でもない")
+
+    # ③ **言い換えて主張にしない。** ただし**説明の # 行は数えない。**
+    # 「書いてはいけない言葉」を説明ごと禁じると、理由を残せなくなる
+    src = open(os.path.join(HERE, "build_site.py"), encoding="utf-8").read()
+    for warui in ("に開店予定", "に閉店予定"):
+        i = src.find(warui)
+        while i >= 0:
+            atama = src.rfind("\n", 0, i) + 1
+            if not src[atama:i].lstrip().startswith("#"):
+                raise AssertionError(
+                    f"{src[:i].count(chr(10)) + 1}行目に「{warui}」がある。"
+                    "届出が出しているのは「新設する日」で、開店日は別に決まる。"
+                    "書くと事実の主張になる")
+            i = src.find(warui, i + 1)
+
+
+def test_中規模を大店立地法と書いていないか():
+    """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
+
+    2026-09-19。個票の description が 4,809件ぜんぶ
+    「大規模小売店舗立地法の◯◯届出」で始まっていて、**中規模137件で外れていた。**
+
+    面白いのは、**出典の注には最初から正しく書いてあった**こと
+    （「八尾市・堺市の『中規模』は、法ではなく市の条例に基づく届出です」）。
+    文書と実装は別の場所なので、**別々にずれる**（正本9節）。
+
+    **捕まえないもの**：条例の名前が市ごとに正しいか。そこまでは書かない。
+    """
+    src = open(os.path.join(HERE, "build_site.py"), encoding="utf-8").read()
+    if "市の条例" not in src:
+        raise AssertionError("中規模の届出を、条例ではなく法にもとづくものとして書いている")
+
+    # **実際に作った説明文で見る。** ソースの字面だけだと、
+    # 分岐を書いたのに使っていない、を見逃す（正本9節「別の行で組み立てた書き先」）
+    import glob
+    atta = False
+    for michi in glob.glob(os.path.join(HERE, "s", "*.html"))[:20000]:
+        with open(michi, encoding="utf-8") as f:
+            honbun = f.read(1200)
+        if "の中規模届出" not in honbun:
+            continue
+        atta = True
+        if "大規模小売店舗立地法の中規模届出" in honbun:
+            raise AssertionError(
+                f"{os.path.basename(michi)} が中規模を大店立地法と書いている")
+    if not atta:
+        return   # まだ組み立てていない（CI の順番による）
+
+
+def test_日付の呼び名が種類を取りこぼしていないか():
+    """**知らない種類が来たら、黙って「予定日」と書かずに止まる。**
+
+    build_site の KIND_HIZUKE に無い種類に日付が付いていたら ValueError。
+    ゆるい既定値にすると、外（4,809ページ）に「予定日」と出てしまう。
+    **その既定値で動いたとき外に何かが出るなら、止まる側に倒す**（正本9節）。
+
+    実データで見る。「意見・勧告」は 4,809件で日付を持たないので表に無くてよい。
+    **持ちはじめた日に、ここが鳴る。**
+
+    **捕まえないもの**：呼び名が日本語として正しいか。それは人が読む。
+    """
+    import importlib, json
+    michi = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(michi):
+        return
+    bs = importlib.import_module("build_site")
+    recs = json.load(open(michi, encoding="utf-8"))
+
+    motsu = {}
+    for r in recs:
+        if r.get("event_on") or r.get("planned_on"):
+            motsu[r.get("kind")] = motsu.get(r.get("kind"), 0) + 1
+    morashi = {k: n for k, n in motsu.items() if k not in bs.KIND_HIZUKE}
+    if morashi:
+        raise AssertionError(
+            f"日付を持つのに KIND_HIZUKE に無い種類がある: {morashi}。"
+            "このままだと個票に「予定日」と出る")
+
+
+def test_過ぎた日を予定と呼んでいないか():
+    """**「予定」は事実の主張で、2,001件で外れていた。**
+
+    2026-09-19 に数えた。届出日より前の日が入っているもの：
+    変更1,760・承継143・廃止94・新設2・中規模2。
+    それまで個票には「予定日」、新設には「開店予定日」と書いていた。
+
+    **数は動く**（毎朝増える）ので、この検査は数を固定しない。
+    固定するのは「**過ぎた日が現に有る**」という形のほうで、
+    それが1件でも有る限り「予定」とは書けない、という理由を残す。
+
+    **捕まえないもの**：なぜ届出より前の日が入るのか。
+    変更届は事後に出せるものがあるため、と読んでいるが確かめていない。
+    """
+    import importlib, json
+    michi = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(michi):
+        return
+    bs = importlib.import_module("build_site")
+    recs = json.load(open(michi, encoding="utf-8"))
+
+    sugita = 0
+    for r in recs:
+        ev = r.get("event_on") or r.get("planned_on")
+        if ev and ev < r["notified_on"]:
+            sugita += 1
+    if sugita == 0:
+        # 0件になったら「予定」と呼んでよくなるが、**勝手に戻さない。**
+        # 数え方が壊れたほうを先に疑う（正本9節「鳴らなかったら壊し方を疑う」）
+        raise AssertionError(
+            "届出日より前の日が1件も無い。2026-09-19 には2,001件あった。"
+            "数え方が壊れていないか先に見る")
+    for kind, (yobina, _) in bs.KIND_HIZUKE.items():
+        if "予定" in yobina:
+            raise AssertionError(
+                f"過ぎた日が{sugita}件あるのに、{kind} を「{yobina}」と呼んでいる")
 
 
 def test_split_city():

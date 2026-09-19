@@ -109,6 +109,31 @@ KIND_DESC = {
     "意見・勧告": "市が意見や勧告を出した記録。",
 }
 
+# 届出に書かれている日を、**届出が呼んでいる名前で**呼ぶための表。
+# （呼び名, 探される語を入れる添え字）。**2か所から引く。表は1つ。**
+#
+# ここには「予定」も「開店」も入れない。理由は2つある。
+#
+# ① **届出が出しているのは「大規模小売店舗として新設する日」で、開店日ではない。**
+#    新設してから開ける日は別に決まる（2026-09-19、中島さんの指摘。
+#    僕が一度「に開店予定」と書き、その日のうちに直した）。
+#    役所が「開店日」という欄を持っているときだけ開店日と書く（opened_on）。
+#
+# ② **「予定」も外れる。** 4,809件を数えたら、届出日より前の日が入っていた：
+#    変更1,760・承継143・廃止94・新設2・中規模2、**計2,001件。**
+#    過ぎた日を「予定」と呼ぶのは事実の主張で、その2,001件で外れていた。
+#
+# 書くのは「届出に書かれた◯◯日は」。**主語を届出にすると外れようがない。**
+# 探される語（開店・閉店）は、外れない添え字の側に入れる
+KIND_HIZUKE = {
+    "新設": ("新設日", "（開店日とは別に決まります）"),
+    "廃止": ("廃止日", "（閉店日とは別に決まります）"),
+    "変更": ("変更日", ""),
+    "承継": ("承継日", ""),
+    "中規模": ("日付", ""),
+    # 「意見・勧告」は日付を持たない（4,809件で0件）。増えたら下で止まる
+}
+
 
 def esc(s):
     return html.escape(str(s if s is not None else ""), quote=True)
@@ -225,7 +250,7 @@ def row_link(r, rel, show_area=True):
 
 
 def table(rows, rel, show_area=True, limit=None):
-    head = "<tr><th>届出日</th><th>種類</th><th>店舗</th>" + ("<th class=\"hide\">市区町村</th>" if show_area else "") + "<th class=\"hide\">予定日</th><th>面積</th></tr>"
+    head = "<tr><th>届出日</th><th>種類</th><th>店舗</th>" + ("<th class=\"hide\">市区町村</th>" if show_area else "") + "<th class=\"hide\">届出の日</th><th>面積</th></tr>"
     body = "".join(row_link(r, rel, show_area) for r in (rows[:limit] if limit else rows))
     return f"<table>{head}{body}</table>"
 
@@ -244,8 +269,13 @@ def detail_page(r, by_ref, src_meta):
     add("届出日", esc(jp_date(r["notified_on"])))
     ev = r.get("event_on") or r.get("planned_on")
     if ev:
-        label = {"新設": "開店予定日", "廃止": "廃止日", "承継": "承継日", "変更": "変更日"}.get(r["kind"], "予定日")
-        add(label, esc(jp_date(ev)))
+        yobina = KIND_HIZUKE.get(r["kind"], (None, ""))[0]
+        if yobina is None:
+            # **ゆるい既定値だと、知らない種類に「予定日」と書いてしまう。**
+            # ここで書いたものは外（ページ）に出るので、止まる側に倒す
+            raise ValueError(
+                f"{r['kind']} の日付を何と呼ぶか KIND_HIZUKE に無い（{r['key']}）")
+        add(f"{yobina}（届出記載）", esc(jp_date(ev)))
     if r.get("opened_on"):
         add("開店日", esc(jp_date(r["opened_on"])))
     addr_note = ""
@@ -339,17 +369,27 @@ def detail_page(r, by_ref, src_meta):
             f'<li><a href="{esc(u)}">{esc(u.rsplit("/",1)[-1])}</a></li>' for u in r["docs"][:8]) + "</ul>"
 
     title = f"{r['store']}（{r['area']}）の{r['kind']}届出 {jp_date(r['notified_on'])}"
-    desc = f"{r['area']}の{r['store']}について、{jp_date(r['notified_on'])}に大規模小売店舗立地法の{r['kind']}届出。"
+    # **どの決まりで出た届出かは、種類で違う。** 「中規模」（1,000㎡以下）は
+    # 大店立地法ではなく、八尾市・堺市が独自に条例で求めているもの。
+    # 全部を「大規模小売店舗立地法の」と書いていて、**137件で外れていた**
+    # （2026-09-19。出典の注（上）には正しく書いてあったのに、個票だけ違った。
+    # **文書と実装は別の場所なので、別々にずれる**＝正本9節）
+    nemoto = "市の条例にもとづく" if r["kind"] == "中規模" else "大規模小売店舗立地法の"
+    desc = f"{r['area']}の{r['store']}について、{jp_date(r['notified_on'])}に{nemoto}{r['kind']}届出。"
     if r.get("area_m2"):
         desc += f" 店舗面積{fmt_area(r['area_m2'])}。"
     if ev:
         # **役所の語だけで書くと、人に見つからない。** 検索されているのは
         # 「◯◯ 開店」「◯◯ 閉店」で、「新設」「廃止」では1件も当たっていない
         # （2026-09-19、Search Console の実測）。
-        # 言い換えではなく、**届出が「新設する日／廃止する日」として出した日**なので
-        # そのまま開店・閉店と書ける。変更・承継・中規模はその日ではないので書かない
-        nanino = {"新設": "に開店予定", "廃止": "に閉店予定"}.get(r["kind"], "予定")
-        desc += f" {jp_date(ev)}{nanino}。"
+        #
+        # **だが言い換えて主張にはしない。** 「に開店予定」も「予定日」も外れる。
+        # 理由と実数は KIND_HIZUKE（上）に書いた。
+        #
+        # 書くのは「届出に書かれた◯◯日は」。主語が届出なので外れようがない。
+        # 探される語は、外れない添え字の側に入れる
+        yobina, soeru = KIND_HIZUKE[r["kind"]]
+        desc += f" 届出に書かれた{yobina}は{jp_date(ev)}{soeru}。"
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>
@@ -952,7 +992,7 @@ def index_page(all_recs, today):
 </div>
 
 <h2>これから起きる予定（{len(future)}件）</h2>
-<p class="lead">届出に書かれた開店・変更・廃止の予定日が、今日より先のもの。</p>
+<p class="lead">届出に書かれた新設・変更・廃止の日が、今日より先のもの。<span class="note">（新設日と実際の開店日は別に決まります）</span></p>
 {table(future, rel)}
 
 <h2>最近の廃止の届出</h2>
