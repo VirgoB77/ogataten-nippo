@@ -80,8 +80,15 @@ _KANJI_NUM = re.compile(r"([〇零一二三四五六七八九十]+)(?=(丁目|�
 # 「丁目・番地・番・号」は直後が数字か終わりのときだけハイフンにする（「番町」の番は置き換えない）
 # 「847番地の1」の「の」は単位の続き。単位ごと置き換える
 # 堺市は「鳳東町七丁733」のように「丁」だけで丁目を表す。直後が数字か終わりのときだけ単位と見る
-_UNIT = re.compile(r"(丁目|丁|番地|番|号)の?(?=[0-9]|$)")
-_MARK = chr(1)          # 自分が置き換えた場所の印。入力にもとからあるハイフンと区別する
+# **印は2種類。町丁目の切れ目と、地番の区切りは別のもの。**
+# 1種類にして「最初の印まで」を町丁目にすると、丁目の無い住所で
+# 「本町847番地の1」の 847（地番）が町丁目に入る。実データ4,809件のうち
+# **1,007件がそうなっていて、公開している index.json に出ていた**
+# （2026-09-19、開発系が自分の実装と見比べて見つけた）
+_CHOME = re.compile(r"(丁目|丁)(?=[0-9]|$)")       # ここまでが町丁目
+_BAN = re.compile(r"(番地|番|号)の?(?=[0-9]|$)")    # ここからは地番
+_MARK = chr(1)          # 地番の区切り。入力にもとからあるハイフンと区別する
+_CMARK = chr(2)         # 町丁目の切れ目
 
 
 def _kanji_to_int(s):
@@ -105,6 +112,91 @@ def _clean(addr):
     a = _KANJI_NUM.sub(lambda m: str(_kanji_to_int(m.group(1))), a)   # 2. 漢数字 → 算用数字
     a = re.sub(r"(?<=[0-9])の(?=[0-9])", "-", a)          # 「2463番地の1」の「の」
     return a
+
+
+# 市区町村の索引。`load_codes()` から作る。長いものから当てる
+_BY_PREF = None
+_PREFS = None
+# 郡は市区町村コードの表に入っていない（「川辺郡猪名川町」は「猪名川町」で載る）
+_GUN = re.compile(r"^(.{1,5}?郡)")
+
+
+def _index(codes=None):
+    """{都道府県: [市区町村, ...]}（長い順）と、都道府県の一覧（長い順）。"""
+    global _BY_PREF, _PREFS
+    codes = load_codes() if codes is None else codes
+    if _BY_PREF is not None and _BY_PREF.get("__src__") is codes:
+        return _BY_PREF["by"], _PREFS
+    by = {}
+    for (pref, city) in codes:
+        by.setdefault(pref, []).append(city)
+    for v in by.values():
+        v.sort(key=len, reverse=True)
+    _BY_PREF = {"__src__": codes, "by": by}
+    _PREFS = sorted(by, key=len, reverse=True)
+    return by, _PREFS
+
+
+def split_city(addr, pref="", city="", codes=None):
+    """「所在地」の1列から、都道府県と市区町村を切り出す。
+
+    pref / city は収集先の台帳が知っている値を渡す**ヒント**。
+    **文字列のほうを先に信じる。** 大阪市が岡山県備前市の土地を売って
+    いることが実際にあるので、収集先の市をそのまま被せると、
+    他県の土地が大阪市の升に入る（4節「収集先の市を、そのまま住所に被せない」）。
+
+    戻り値は2つの欄で、**別のことを測る。**
+
+        city_precision  どこまで決まったか（細かさ）。層の粒度に使う
+          "区" / "市" / ""
+
+        city_source     どこから取ったか（確かさ）。突き合わせてよいかに使う
+          "住所"  所在地そのものから切れた。いちばん確か
+          "台帳"  呼ぶ側の市で補った。**たぶんその市。**
+                  住所と食い違ったら "住所" のほうを信じる
+          ""      決められなかった。**推測で埋めない**
+
+    **1つの欄に2つの意味を入れない。** 細かさだけを持っていたとき、
+    住所から切れた「大阪市福島区」と、台帳の"大阪市"＋住所の"福島区"を
+    足した「大阪市福島区」が、どちらも "区" で見分けられなかった
+    （実データ456件のうち121件がヒントで補った行。開発系・2026-09-19）。
+
+    **ヒントは狭めるためにだけ使う。探す範囲を広げるためには使わない。**
+    ヒントを外して全国から探すと、大阪市の「北区梅田一丁目」が
+    **東京都北区**になる（121件のうち23件がこの形）。
+    """
+    codes = load_codes() if codes is None else codes
+    by, prefs = _index(codes)
+    s = re.sub(r"[\s\u3000]+", "", addr or "")
+    got_pref = ""
+    for p in prefs:                        # 文字列に都道府県名が書いてあれば、それ
+        if s.startswith(p):
+            got_pref, s = p, s[len(p):]
+            break
+    if not got_pref and pref:
+        got_pref = pref
+    bare = _GUN.sub("", s)                 # 郡を落とした形でも当てる
+    for p in ([got_pref] if got_pref else prefs):
+        for c in by.get(p, ()):
+            for t in (s, bare):
+                if t.startswith(c):
+                    return {"pref": p, "city": c, "rest": t[len(c):],
+                            "city_precision": "区" if "区" in c else "市",
+                            "city_source": "住所"}
+    # 市名が省かれて区から書いてある（大阪市のページの「福島区海老江…」）
+    m = re.match(r"^(.+?区)", s)
+    if city and m and (got_pref, city + m.group(1)) in codes:
+        return {"pref": got_pref, "city": city + m.group(1),
+                "rest": s[len(m.group(1)):], "city_precision": "区",
+                "city_source": "台帳"}
+    # 区も書かれていない（大阪市のページの「矢田五丁目」）。
+    # **ここに来るのは、他の都道府県・市区町村の名前で始まっていないときだけ。**
+    if city and ((not got_pref) or got_pref == pref):
+        if ((got_pref or pref), city) in codes:
+            return {"pref": got_pref or pref, "city": city, "rest": s,
+                    "city_precision": "市", "city_source": "台帳"}
+    return {"pref": got_pref, "city": "", "rest": s,
+            "city_precision": "", "city_source": ""}
 
 
 def _conflicting_head(a, pref, city, codes=None):
@@ -149,28 +241,34 @@ def normalize(pref, city, addr, codes=None):
                 "住所が別の市区町村を名乗っている。呼ぶ側の市を被せない： "
                 f"呼ぶ側={pref}{city} / 住所の先頭={other} / 原文={raw!r}")
 
-    # 3. 単位をハイフンに。置き換えた場所を印で覚えておく（① のため）
-    marked = _UNIT.sub(_MARK, a)
-    first = marked.find(_MARK)
+    # 3. 単位をハイフンに。置き換えた場所を印で覚えておく（① のため）。
+    #    **丁目だけは別の印にする。** 町丁目がどこで終わるかは、
+    #    自分が「丁目」を置き換えた場所しか確実に分からない（4節①）
+    marked = _BAN.sub(_MARK, _CHOME.sub(_CMARK, a))
+    marks = [i for i in (marked.find(_MARK), marked.find(_CMARK)) if i >= 0]
+    first = min(marks) if marks else -1
+    ci = marked.find(_CMARK)
 
     if first >= 0:
-        # ① 印の手前が town。地番の連なりは印の直前の数字から始まる
-        town = marked[:first]
+        # ① **丁目の印の手前だけが town。** 番地の印は町丁目を決めない。
+        #    丁目が無ければ町丁目は決まらない → ③ で空のまま
+        town = marked[:ci] if ci >= 0 else ""
         start = first
         while start > 0 and marked[start - 1].isdigit():
             start -= 1
         end = first
-        while end < len(marked) and (marked[end].isdigit() or marked[end] in (_MARK, "-")):
+        while end < len(marked) and (marked[end].isdigit()
+                                     or marked[end] in (_MARK, _CMARK, "-")):
             end += 1
-        chain = marked[start:end].replace(_MARK, "-").strip("-")
-        building = marked[end:].replace(_MARK, "-")
+        chain = marked[start:end].replace(_MARK, "-").replace(_CMARK, "-").strip("-")
+        building = marked[end:].replace(_MARK, "-").replace(_CMARK, "-")
         key = marked[:start] + chain
         display = (key + (building if building else "")).rstrip("-")   # 末尾の「号」が印になって残る
-        town = re.sub(r"-+$", "", town)
+        town = re.sub(r"-+$", "", town.replace(_MARK, "-").replace(_CMARK, "-"))
     else:
         # ② 置き換えが無かった。町丁目の一覧で最長一致。無ければ ③ 空
-        display = marked
-        key = marked
+        display = marked.replace(_MARK, '-').replace(_CMARK, '-')
+        key = marked.replace(_MARK, '-').replace(_CMARK, '-')
         towns = load_towns().get(code, []) if code else []
         town = ""
         for t in sorted(towns, key=len, reverse=True):

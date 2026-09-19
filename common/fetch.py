@@ -64,7 +64,13 @@ def check_robots(url):
                                      headers={"User-Agent": UA, "Accept": "text/plain,*/*"})
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-                body, note = r.read(200_000).decode("utf-8", "replace"), ""
+                # **robots.txt も utf-8 と決めつけない。** 役所のサーバーには
+                # Shift_JIS が残っている。`Disallow` は ASCII なので判断は当たるが、
+                # 日本語の注記が置換文字になり、**壊れたことにどこでも気づけない**
+                # （2026-09-19、4サイトのうち3つが同じ場所で見つけた）
+                body, _enc = decode_html(r.read(200_000),
+                                         r.headers.get("Content-Type") or "")
+                note = ""
         except urllib.error.HTTPError as e:
             if e.code in BUSY:
                 body, note = None, f"robots.txt が HTTP {e.code}（混んでいる）"
@@ -106,6 +112,24 @@ def ja_score(text):
         return 0.0
     n = len(text)
     return (len(_JA.findall(text)) - 3 * len(_NOISE.findall(text))) / n
+
+
+def bakete_inai(text):
+    """化けていないか。0.0〜1.0。**日本語かどうかは見ない。**（開発系の版）
+
+    `ja_score()` と**測っているものが違う。** 使い分ける。
+
+        ja_score()     日本語として読めたか   英数字だけのページでは 0.0（外す）
+        bakete_inai()  化けているか           英数字だけのページでも 1.0（外さない）
+
+    大型店日報の収集先には、英数字だけのページが**実測0枚**なので
+    `ja_score()` を使う（生ページ955枚、2026-09-19）。
+    **英数字だけのページが来る置き場では、こちらを使う。**
+    どちらも片方だけだと外すので、置き場ごとに選ぶこと。
+    """
+    if not text:
+        return 0.0
+    return 1.0 - len(_NOISE.findall(text)) / len(text)
 
 
 def decode_html(raw, content_type=""):

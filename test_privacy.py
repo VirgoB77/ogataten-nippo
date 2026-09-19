@@ -479,7 +479,10 @@ def test_parse_keeps_unknown_columns():
 # 2026-09-19 に測った値。**増えたら鳴る。減っても鳴る**（減ったのに
 # この数を直し忘れたら、次の悪化に気づけなくなる）。
 # 直すには町丁目の一覧（data/ref/towns.json）が要る。まだ無い
-TOWN_GAP = 1369
+# 2026-09-19 に 1369 → 2209 に増えた。**直した結果として増えた。**
+# 丁目の無い住所で、地番が町丁目に入っていたのを空にしたため（845件）。
+# 丁目のある行を巻き込んでいないことは、直す前後を全件比べて確かめた（0件）
+TOWN_GAP = 2209
 TOWN_TOTAL = 4809
 
 
@@ -565,18 +568,174 @@ def test_文字コードは例外の有無で選ばない():
     if not ja_score("大阪府の市区町村コード") > ja_score("ﾂ郤衙ﾜﾃﾓﾅﾄｻﾔﾈｪ"):
         raise AssertionError("化けた文字列のほうが日本語らしいと判定された")
 
-    # ④ 決め打ちが戻っていないか。取りに行くスクリプトを文字として見る
+    # ③-2 2つの点は**測っているものが違う**。取り違えると、英数字だけの
+    #     ページを「化けている」と判定して落とす（開発系の指摘・2026-09-19）
+    from common.fetch import bakete_inai
+    eisuu = "GET /index.html HTTP/1.1 200 OK"
+    if ja_score(eisuu) > 0:
+        raise AssertionError("ja_score は日本語の字を数えるので、英数字だけなら 0 以下")
+    if bakete_inai(eisuu) < 0.99:
+        raise AssertionError("bakete_inai は化けを数えるので、英数字だけでも 1.0 に近い")
+    if bakete_inai("ﾂ郤衙ﾜﾃﾓﾅﾄｻﾔﾈｪ") >= bakete_inai(eisuu):
+        raise AssertionError("化けた文字列のほうが化けていないと判定された")
+
+    # ④ 決め打ちが戻っていないか。**取りに行くもの全部**を文字として見る。
+    #    ref_*.py だけ見ていたので、robots.txt と月ページを見落としていた
+    #    （2026-09-19、4サイトのうち3つが同じ場所で同じものを見つけた）。
+    #    ただし**正しいものを壊れていると言わない。** 外から来た文字列でない
+    #    ものは決め打ちでよいので、理由つきの許可リストで外す
     import glob
+    ok_riyuu = (
+        ("r.stdout", "外部コマンドの出力。utf-8 と決まっている"),
+        ("json.loads", "JSON の API。utf-8 と決まっている"),
+        ("化けたまま", "decode_html 自身の最後の逃げ道。もう手が無い"),
+        ("LookupError", "宣言された名前が引けなかったときの逃げ道"),
+    )
+    targets = [os.path.join(HERE, f) for f in
+               ("common/fetch.py", "koho_pdf.py", "recon.py", "wayback.py")]
+    targets += sorted(glob.glob(os.path.join(HERE, "ref_*.py")))
     bad = []
-    for path in sorted(glob.glob(os.path.join(HERE, "ref_*.py"))):
+    for path in targets:
+        if not os.path.exists(path):
+            continue
         text = open(path, encoding="utf-8").read()
         for m in re.finditer(r'\.decode\(\s*["\']utf-8["\']', text):
+            near = text[max(0, m.start() - 160):m.start() + 160]
+            if any(w in near for w, _ in ok_riyuu):
+                continue
             line = text[:m.start()].count("\n") + 1
             bad.append(f"{os.path.basename(path)}:{line}")
     if bad:
         raise AssertionError(
             "取りに行くところで文字コードを決め打ちしている（decode_html を使う）："
             + " / ".join(bad))
+
+
+def test_取ってきた生データを文字にしてから保存していないか():
+    """`data/raw/` に置換文字だらけのファイルが無いか。
+
+    2026-09-19、`data/raw/hyogo-pref-juran/` に5枚あった。
+    相手が gzip で返した回に、`wayback.py` が**文字にしてから保存**していた。
+    先頭が `1f 8b 08`（gzip）ではなく `1f ef bf bd` になっていて、
+    `0x8b` が U+FFFD に潰れている。**元のバイトはもう戻らない。**
+
+    `recon.py` は最初から `"wb"` でバイトのまま書いていた
+    （「生のまま残す。これがアーカイブの最初の1枚になる」）。
+    **同じ判断が2か所にあって、片方だけ正しかった。**
+    """
+    import glob
+    root = os.path.join(HERE, "data", "raw")
+    if not os.path.isdir(root):
+        return
+    bad = []
+    for fp in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
+        raw = open(fp, "rb").read()
+        n = raw.count(b"\xef\xbf\xbd")
+        if raw and n * 40 > len(raw):          # 40バイトに1個より多い
+            bad.append(f"{os.path.relpath(fp, HERE)}（置換文字 {n} 個 / {len(raw)} バイト）")
+    if bad:
+        raise AssertionError(
+            "生データが文字にしてから保存されている（バイトのまま書くこと）：\n  "
+            + "\n  ".join(bad[:5])
+            + (f"\n  ほか {len(bad) - 5} 件" if len(bad) > 5 else ""))
+
+
+def test_split_city():
+    """4節。**開発系が実データ456件で確かめた形を、そのまま固定する。**
+
+    値は要約ではなく、向こうが実際に踏んだ住所（2026-09-19 に受け取った）。
+    """
+    from common import addr
+    codes = addr.load_codes()
+    if not codes:
+        return
+
+    # ① 住所そのものから切れる。**呼ぶ側の市は被せない**
+    for text, want_pref, want_city in (
+            ("岡山県備前市三石字山鼻731番11", "岡山県", "備前市"),
+            ("兵庫県洲本市由良町由良字小佐毘濱2452番1", "兵庫県", "洲本市"),
+            ("大阪府泉南郡岬町多奈川小島467番", "大阪府", "岬町")):
+        got = addr.split_city(text, "大阪府", "大阪市", codes)
+        eq((got["pref"], got["city"], got["city_source"]),
+           (want_pref, want_city, "住所"), f"住所から切れる（{want_city}）")
+
+    # ② 郡を落とした形でも当てる（コード表に郡は入っていない）
+    got = addr.split_city("赤穂郡上郡町大持字段68番1", "兵庫県", "", codes)
+    eq((got["city"], got["city_source"]), ("上郡町", "住所"), "郡を落として当てる")
+
+    # ③ 台帳で補う。**補ったと記録する**
+    got = addr.split_city("福島区海老江八丁目44番6", "大阪府", "大阪市", codes)
+    eq((got["city"], got["city_precision"], got["city_source"]),
+       ("大阪市福島区", "区", "台帳"), "区だけ書いてある")
+    got = addr.split_city("矢田五丁目", "大阪府", "大阪市", codes)
+    eq((got["city"], got["city_precision"], got["city_source"]),
+       ("大阪市", "市", "台帳"), "市も区も書いていない")
+
+    # ④ 決まらないものは空。**読み替えない**（篠山市→丹波篠山市 に直さない）
+    got = addr.split_city("篠山市山内町64番３", "兵庫県", "", codes)
+    eq((got["city"], got["city_source"]), ("", ""), "コード表に無い市は空のまま")
+
+    # ⑤ **ヒントは狭めるためにだけ使う。**
+    #    外して全国から探すと、大阪市の「北区梅田一丁目」が東京都北区になる。
+    #    開発系の実データでは、台帳で補った121件のうち23件がこの形だった
+    hazard = addr.split_city("北区梅田一丁目", "", "", codes)
+    eq((hazard["pref"], hazard["city"]), ("東京都", "北区"),
+       "ヒントを外すと他県に当たる（この形があるので広げてはいけない）")
+    safe = addr.split_city("北区梅田一丁目", "大阪府", "大阪市", codes)
+    eq((safe["pref"], safe["city"], safe["city_source"]),
+       ("大阪府", "大阪市北区", "台帳"), "ヒントがあれば狭まる")
+
+    # ⑥ 同じ名前の町が2つの府県にある。**管轄で絞る側の仕事**。
+    #    split_city 自身は渡された府県で答える。勝手に選ばない
+    for pref in ("大阪府", "兵庫県"):
+        got = addr.split_city("太子町鵤123番", pref, "", codes)
+        eq((got["pref"], got["city"]), (pref, "太子町"),
+           f"太子町は渡された府県で答える（{pref}）")
+
+
+def test_正本に書いた署名が実装にあるか():
+    """5節の code block に書いた `def` が、`common/privacy.py` に実在するか。
+
+    2026-09-19、開発系が突き合わせて見つけた。**2件ずれていた。**
+
+        residential_reason(*texts)    文書に署名あり／**実装に無い**
+        redact_name(name, names=())   文書は names あり／実装は (name)
+
+    どちらも**文書を直して、コードを直していない**形。
+    `common/MANIFEST.txt` は置き場どうしを比べる紙なので、
+    **文書とコードのずれは映らない。** 4つの置き場が同じようにずれていたら
+    全部通る。見る向きが違うので、別の検査が要る。
+    """
+    import ast
+    import re as _re
+    from common import privacy
+
+    doc = open(os.path.join(HERE, "docs", "kyotsu-shiyo.md"), encoding="utf-8").read()
+    sec = doc[doc.index("\n## 5."):doc.index("\n## 6.")]
+    want = {}
+    for m in _re.finditer(r"^def (\w+)\(([^)]*)\)", sec, _re.M):
+        want[m.group(1)] = m.group(2)
+    if len(want) < 5:
+        raise AssertionError(f"5節から署名を{len(want)}個しか拾えていない。拾い方が壊れている")
+
+    tree = ast.parse(open(privacy.__file__, encoding="utf-8").read())
+    have = {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
+
+    bad = []
+    for name, params in sorted(want.items()):
+        fn = have.get(name)
+        if fn is None:
+            bad.append(f"{name}(): 文書にあるが **実装に無い**")
+            continue
+        # 型の注記と既定値を落として、引数の名前だけを比べる
+        doc_args = [a.split(":")[0].split("=")[0].strip().lstrip("*")
+                    for a in params.split(",") if a.strip()]
+        code_args = ([a.arg for a in fn.args.args]
+                     + ([fn.args.vararg.arg] if fn.args.vararg else []))
+        if doc_args != code_args:
+            bad.append(f"{name}(): 文書 {doc_args} / 実装 {code_args}")
+    if bad:
+        raise AssertionError("正本の文書と実装がずれている：\n  " + "\n  ".join(bad))
 
 
 def test_common_の指紋が中身と合っているか():
@@ -822,6 +981,16 @@ def test_addr_normalize():
     r = addr.normalize("大阪府", "大阪市北区", "大阪府大阪市北区梅田1-1-1", codes)
     eq(r["addr"], "大阪市北区梅田1-1-1", "自分の都道府県＋市は落とすだけ")
     eq(r["addr_key"], "27127|梅田1-1-1", "落としたあとのキー")
+
+    # 丁目が無い住所で、**地番が町丁目に入っていないか**（2026-09-19）。
+    # 印を1種類にして「最初の印まで」を町丁目にすると、847 が町丁目に入る。
+    # 実データ4,809件のうち845件がそうなっていて、index.json に出ていた
+    for text, want_key in (("服部西町847番地の1", "27203|服部西町847-1"),
+                           ("本町847番地の1", "27203|本町847-1"),
+                           ("日本橋2番地", "27203|日本橋2")):
+        got = addr.normalize("大阪府", "豊中市", text, codes)
+        eq(got["addr_key_town"], "", f"丁目が無ければ町丁目は空（{text}）")
+        eq(got["addr_key"], want_key, f"地番までの鍵は作れる（{text}）")
 
     r = addr.normalize("兵庫県", "三田市", "三田市天神1丁目", codes)
     eq(r["addr_key_town"], "28219|天神1", "地名の漢数字（三田）を壊さず、先頭の市名を落とす")
