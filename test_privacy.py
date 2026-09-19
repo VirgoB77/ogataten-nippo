@@ -1474,6 +1474,44 @@ def test_zoning_handles_wrapped_cell_text():
             fails.append(f"用途地域の読み取りが違う（{raw!r} → {got} 余り{unknown}・期待 {want}）")
 
 
+def test_every_python_file_parses():
+    """このリポジトリの .py が、全部ちゃんと読めるか。
+
+    検査は `*.py` を**文字として**走査しているが、**構文が通るかは見ていなかった。**
+    2026-09-19、マージの衝突マーカーが入ったまま `git add -A` でコミットされ、
+    `build_site.py` が `SyntaxError` になったのに、47本の検査は全部通った。
+    **読んでいるのに、読めているかを見ていなかった。**
+
+    衝突マーカー（`<<<<<<<`）も、ここで落ちる。
+    """
+    import ast
+    bad = []
+    for f in sorted(glob.glob(os.path.join(HERE, "*.py"))
+                    + glob.glob(os.path.join(HERE, "common", "*.py"))
+                    + glob.glob(os.path.join(HERE, "scripts", "*.py"))):
+        try:
+            with open(f, encoding="utf-8") as fh:
+                ast.parse(fh.read(), filename=f)
+        except SyntaxError as e:
+            bad.append(f"{os.path.basename(f)}:{e.lineno} {e.msg}")
+        except Exception as e:
+            bad.append(f"{os.path.basename(f)} {type(e).__name__}")
+    if bad:
+        fails.append(f"読めない .py が {len(bad)}本（{bad[:3]}）")
+
+    # マージの衝突マーカーは、.py 以外にも残る
+    marks = []
+    for f in (glob.glob(os.path.join(HERE, "*.md"))
+              + glob.glob(os.path.join(HERE, "docs", "*.md"))
+              + glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+        with open(f, encoding="utf-8", errors="ignore") as fh:
+            t = fh.read()
+        if "\n<<<<<<< " in t or "\n>>>>>>> " in t:
+            marks.append(os.path.basename(f))
+    if marks:
+        fails.append(f"マージの衝突マーカーが残っている {marks}")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
