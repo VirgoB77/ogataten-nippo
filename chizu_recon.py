@@ -30,6 +30,7 @@
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -48,10 +49,41 @@ REPORT = os.path.join(HERE, "data", "ref", "chizu-recon.md")
 TIMEOUT = 40
 
 
+# 目録に並んでいるデータセットの名前（画面で見た実物）
+#     【データセット名】札幌市中央区（札幌法務局）登記所備付地図データ
+# **都道府県は入っていない。** こちらの `name` は「大阪府大阪市都島区」なので、
+# そのまま投げると1件も当たらない（2026-09-19、実際に3件とも0件で返った）
+_PREF = re.compile(r"^(..[都道府県]|.{2,3}県)")
+
+
+def shichoson(name):
+    """「大阪府大阪市都島区」→「大阪市都島区」。**都道府県だけ落とす。**
+
+    市区町村の名前に「県」で始まるものは無い（県庁所在地でも市が付く）。
+    だから頭の都道府県だけを外せば足りる。
+    """
+    return _PREF.sub("", name or "", count=1) or (name or "")
+
+
 def ask(city_name):
     """1市区町村ぶんの目録を引く URL。**キーワードは画面に出ていた語をそのまま使う。**"""
-    q = f'{city_name} 登記所備付地図データ'
+    q = f'{shichoson(city_name)} 登記所備付地図データ'
     return SEARCH + "?" + urllib.parse.urlencode({"q": q, "rows": 50})
+
+
+def mitsukatta(raw):
+    """**いくつ見つかったか**だけ読む。中身は読まない。
+
+    「返ってきた」と「見つかった」は別（2026-09-19、3件とも 200 で
+    210バイト＝0件だったのに、記録は「目録が返ってきた 3」と書いていた）。
+
+    返り値は件数。**読めなければ None。** 0 と None を混ぜない——
+    0 は「向こうが無いと言った」、None は「こちらが読めなかった」。
+    """
+    try:
+        return int(json.loads(raw.decode("utf-8"))["result"]["count"])
+    except Exception:                              # noqa: BLE001
+        return None
 
 
 def get(url):
@@ -115,17 +147,28 @@ def main():
         michi = os.path.join(INBOX, f"{c['code']}.json")
         with open(michi, "wb") as f:
             f.write(raw)
-        totta.append(c["code"])
-        print(f"○ {c['code']} {c['name']}  {status} {ctype} {len(raw):,} バイト → {michi}")
+        n_ken = mitsukatta(raw)
+        totta.append((c["code"], n_ken))
+        shirushi = "○" if n_ken else ("？" if n_ken is None else "×0件")
+        print(f"{shirushi} {c['code']} {c['name']}  {status} {ctype} "
+              f"{len(raw):,} バイト / 見つかった {n_ken} → {michi}")
+        # **小さい返事は、そのままログに出す。** 実物を見ないと読み取りが書けない。
+        # 大きいものは出さない（ログが読めなくなる）。中身は保存せずログだけ
+        if len(raw) <= 4000:
+            print("  ↳ " + raw.decode("utf-8", "replace"))
 
     mita = len(totta) + len(kotaeta_ga_dame) + len(deraretakatta)
+    # **「返ってきた」と「見つかった」は別。** 200 が返っても 0件のことがある
+    # （2026-09-19、3件とも 200・210バイト・0件。記録は「返ってきた 3」だった）
     lines = [
         "# 目録を引いた記録", "",
         "**このファイルは `chizu_recon.py` が書く。** 手で直さない。", "",
         "ここは**見に行っただけ**で、まだ1件も読み取っていない。",
         "返事の形を決め打ちすると、自分が書いた見本に合わせた読み取りになる（9節）。", "",
         f"| | 件数 |", "|---|---:|",
-        f"| 目録が返ってきた | {len(totta):,} |",
+        f"| **見つかった**（1件以上） | {sum(1 for _, n in totta if n):,} |",
+        f"| 返ってきたが **0件** | {sum(1 for _, n in totta if n == 0):,} |",
+        f"| 返ってきたが **件数を読めなかった** | {sum(1 for _, n in totta if n is None):,} |",
         f"| 相手が「だめ」と答えた | {len(kotaeta_ga_dame):,} |",
         f"| **こちらが出られなかった** | {len(deraretakatta):,} |",
         f"| **混んでいて中止した** | {len(yamete):,} |",
