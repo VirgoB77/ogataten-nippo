@@ -204,6 +204,9 @@ jobs:
       - name: 設置者と小売業者の一覧を作り直す
         run: python3 settisha.py
 
+      - name: 町丁目までつながらなかった行を数えて記録に残す
+        run: python3 town_gap.py
+
       # all.json から見せるページを作る（GitHub Pages がそのまま配信する）
       - name: ページを作る
         run: python3 build_site.py
