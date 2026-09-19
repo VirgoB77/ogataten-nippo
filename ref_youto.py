@@ -123,6 +123,79 @@ def fresh():
     return (runday.today_date() - d).days < MAX_AGE_DAYS
 
 
+# 報告に**実物**を持って帰るための切り出し。
+#
+# 2026-09-19 の1回目は「cgi が3本ありました」と**数だけ**持って帰り、
+# 中身を置いてきた。数は実物ではない。ページの実物は金庫に置くが、
+# **金庫は統括のセッションから読めない**ので、次の一手が決められなかった。
+# 共通仕様3.4「届かない相手のことは、報告に実物を持って帰る」。
+#
+# 出すのは government の公開ページの URL と見出しだけ。個人の情報は入らない。
+EV_SLICE = 700          # 1か所あたりの切り出しの長さ
+EV_MAX = 12             # 1種類あたりの本数
+
+
+def _uniq(xs):
+    seen, out = set(), []
+    for x in xs:
+        if x not in seen:
+            seen.add(x)
+            out.append(x)
+    return out
+
+
+def evidence(html, pat):
+    """報告に載せる実物。zip の直リンクが無いときに、次の一手を決めるためのもの。"""
+    out = []
+
+    cgis = _uniq(re.findall(r'(?:href|action|src)="([^"]*\.cgi[^"]*)"', html, re.I))
+    out.append(f"- **`.cgi` の実物 {len(cgis)} 本**（数ではなく URL そのもの）:")
+    for c in cgis[:EV_MAX]:
+        out.append(f"  - `{c[:200]}`")
+    if not cgis:
+        out.append("  - （無し）")
+
+    srcs = _uniq(re.findall(r'<script[^>]+src="([^"]+)"', html, re.I))
+    out.append(f"- **script の src {len(srcs)} 本**（どれが URL を組み立てているか）:")
+    for c in srcs[:EV_MAX]:
+        out.append(f"  - `{c[:200]}`")
+
+    # 府県の印（#prefecture27 など）の**まわりの実物**。
+    # ここに zip の id や data-* が置かれていることがある
+    for code in PREFS:
+        for m in re.finditer(r'(?:id|name)="[^"]*(?:prefecture|pref)[^"]*%s[^"]*"' % code,
+                             html, re.I):
+            i = max(0, m.start() - 200)
+            out.append(f"- **{code} の印のまわり**（前後を切り出した実物）:")
+            out.append("  ```html")
+            for ln in html[i:m.start() + EV_SLICE].splitlines():
+                ln = ln.strip()
+                if ln:
+                    out.append("  " + ln[:200])
+            out.append("  ```")
+            break
+
+    # 中に書かれている script で、zip や download に触れているところ
+    inline = re.findall(r'<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>', html, re.S | re.I)
+    hit = [t for t in inline if re.search(r"zip|download|cgi|\.csv|shape", t, re.I)]
+    out.append(f"- **中に書かれた script {len(inline)} 個、うち zip/download に触れるもの {len(hit)} 個**")
+    for t in hit[:3]:
+        t = re.sub(r"\s+", " ", t).strip()
+        out.append("  ```js")
+        out.append("  " + t[:EV_SLICE])
+        out.append("  ```")
+
+    # 探している形（都道府県コード付きの zip）が、href 以外の場所に無いか。
+    # JS の文字列や data-* に入っていることがある
+    anywhere = _uniq(m.group(0) for m in pat.finditer(html))
+    out.append(f"- **ページ全体（href に限らず）で、探している形に当たるもの {len(anywhere)} 本**:")
+    for a in anywhere[:EV_MAX]:
+        out.append(f"  - `{a[:200]}`")
+    if not anywhere:
+        out.append("  - （無し。**配り方が変わった**と見てよい）")
+    return out
+
+
 def main():
     force = "--force" in sys.argv
     dry = "--dry-run" in sys.argv
@@ -184,6 +257,9 @@ def main():
         for h in cand:
             lines.append(f"  - `{h[:110]}`")
         lines.append(f"- ページの実物を置いた → `{tag}-page.html`（金庫）")
+        # 金庫は統括のセッションから読めない。**次の一手に要るものは、
+        # この公開側の報告に持って帰る**（共通仕様3.4）
+        lines += evidence(html, pat)
 
         found = links(html, page, pat)
         if not found and pi + 1 < len(pages):

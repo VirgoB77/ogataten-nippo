@@ -476,6 +476,51 @@ def test_parse_keeps_unknown_columns():
     eq(parse.UNKNOWN["test-src"][("読まなかった列", "謎の列")] >= 1, True, "読まなかった列を書き留める")
 
 
+def test_報告は数ではなく実物を持って帰る():
+    """3.4「届かない相手のことは、報告に実物を持って帰る」。
+
+    1回目の ref_youto.py は「cgi が3本ありました」と**数だけ**書いて、
+    URL を置いてきた。ページの実物は金庫にあるが、金庫はセッションから
+    読めないので、次の一手が決められなかった（2026-09-19）。
+    """
+    import re
+    import ref_youto
+    html = (
+        '<script src="/js/datalist.js"></script>'
+        '<a href="/ksj/gml/cgi/downloadfile.cgi?id=A29-27">大阪府</a>'
+        '<h3 id="prefecture27">大阪府</h3>'
+        '<td data-file="A29-11_27_GML.zip">令和5年</td>'
+        '<script>var b="/ksj/gml/cgi/downloadfile.cgi";</script>')
+    pat = re.compile(r"A29[-_][^\"']*?_(\d{2})[_.][^\"']*\.zip", re.I)
+    lines = ref_youto.evidence(html, pat)
+
+    # **節ごとに見る。** 最初はまとめて `in` で見ていたが、cgi の URL が
+    # 「印のまわり」の切り出しにも入っていたので、cgi の節を空にしても通った。
+    # 別の道で通る検査は、鳴らない（9節「書いた検査が鳴らないのが、いちばんこわい」）
+    sections, cur = {}, None
+    for ln in lines:
+        if ln.startswith("- **"):
+            cur = ln
+            sections[cur] = []
+        elif cur:
+            sections[cur].append(ln)
+
+    def under(word, must):
+        for head, body in sections.items():
+            if word in head:
+                if any(must in b for b in body):
+                    return
+                raise AssertionError(
+                    f"報告の「{word}」の節に実物が無い： {must!r}。"
+                    "数だけ持って帰ると、金庫を読めない側は次の一手を決められない")
+        raise AssertionError(f"報告に「{word}」の節が無い")
+
+    under(".cgi", "/ksj/gml/cgi/downloadfile.cgi?id=A29-27")   # cgi の URL そのもの
+    under("script の src", "/js/datalist.js")                  # 組み立てている JS
+    under("27 の印のまわり", 'id="prefecture27"')              # 印のまわりの実物
+    under("ページ全体", "A29-11_27_GML.zip")                   # href の外にある zip
+
+
 # ---------------------------------------------------------------- 4節 addr.py と 6節 index.json
 def test_住所が別の市を名乗る行は0件のまま():
     """食い違いの数を、一度数えて終わりにしない。0でなくなった日に止まる。
