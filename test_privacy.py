@@ -476,6 +476,65 @@ def test_parse_keeps_unknown_columns():
     eq(parse.UNKNOWN["test-src"][("読まなかった列", "謎の列")] >= 1, True, "読まなかった列を書き留める")
 
 
+# 2026-09-19 に測った値。**増えたら鳴る。減っても鳴る**（減ったのに
+# この数を直し忘れたら、次の悪化に気づけなくなる）。
+# 直すには町丁目の一覧（data/ref/towns.json）が要る。まだ無い
+TOWN_GAP = 1369
+TOWN_TOTAL = 4809
+
+
+def test_町丁目までつながらない数が動いたら気づく():
+    """4節③「空にして**記録する**」の、記録のほう。
+
+    1,369件（28.5%）が空だった。**空にするのは正しいが、
+    空になったことをどこにも書いていなかった**（2026-09-19）。
+    一覧が入れば減る。様式が変われば増える。どちらも気づけるようにする。
+    """
+    import json
+    import town_gap
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+    total, empty, _by_city, _unread = town_gap.measure(recs)
+    if (total, empty) != (TOWN_TOTAL, TOWN_GAP):
+        raise AssertionError(
+            f"町丁目までつながらない数が動いた： {TOWN_TOTAL}件中{TOWN_GAP}件 → "
+            f"{total}件中{empty}件。減ったなら towns.json が効いた（この数を直す）。"
+            "増えたなら様式が変わったか、住所の読み方が壊れた（先に理由を見る）")
+
+    # 記録のファイルが、いまの数と食い違っていないか。
+    # **作った一覧を巡回に入れないと、古いまま検査を通る**（9節）
+    rep = os.path.join(HERE, "data", "ref", "town-gap.md")
+    if os.path.exists(rep):
+        with open(rep, encoding="utf-8") as f:
+            text = f.read()
+        if f"{empty:,}" not in text:
+            raise AssertionError(
+                f"data/ref/town-gap.md が古い（いまは {empty:,} 件）。"
+                "town_gap.py を走らせ直すこと")
+
+
+def test_正本に同じ行が2度続いていないか():
+    """直すときに1行を複製して、片方だけ直す形。
+
+    2026-09-19 に2か所あった（404 の URL の話と、コードブロックの話）。
+    どちらも「その行を強調しようとして貼り直した」あと。
+    見た目では気づけないので、機械で見る。
+    """
+    path = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
+    lines = open(path, encoding="utf-8").read().splitlines()
+    dups = []
+    for i in range(1, len(lines)):
+        t = lines[i].strip()
+        # 表の行・箇条書き・コードブロックの中は、同じ行が並んでよい
+        if t and lines[i] == lines[i - 1] and t[0] not in "|-" and not t.startswith("```"):
+            dups.append(f"{i + 1}行目: {t[:60]}")
+    if dups:
+        raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
+
+
 def test_報告は数ではなく実物を持って帰る():
     """3.4「届かない相手のことは、報告に実物を持って帰る」。
 
