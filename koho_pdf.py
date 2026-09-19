@@ -59,7 +59,7 @@ OUT = os.path.join(HERE, "data", "parsed", "hyogo-koho")
 REPORT = os.path.join(HERE, "data", "koho", "pdf-report.md")
 SOURCE = "hyogo-koho"
 
-from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
+from common.fetch import UA, check_robots, is_busy, decode_html  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024
@@ -179,7 +179,8 @@ def month_links(ym, url, lines):
         return old                       # この実行で一度取れなかった月は、もう叩かない
     _asked += 1                          # ここから県のサーバーに出す
     try:
-        html_ = get(url, limit=2_000_000).decode("utf-8", errors="replace")
+        # utf-8 と決めつけない（9節）。県のページは Shift_JIS のことがある
+        html_, _enc = decode_html(get(url, limit=2_000_000))
     except (urllib.error.URLError, urllib.error.HTTPError, OSError, ValueError) as e:
         lines.append(f"  - 月ページが取れなかった {ym} — {type(e).__name__}: {str(e)[:60]}")
         _month_failed[ym] = e

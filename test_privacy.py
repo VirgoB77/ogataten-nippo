@@ -579,12 +579,30 @@ def test_文字コードは例外の有無で選ばない():
     if bakete_inai("ﾂ郤衙ﾜﾃﾓﾅﾄｻﾔﾈｪ") >= bakete_inai(eisuu):
         raise AssertionError("化けた文字列のほうが化けていないと判定された")
 
-    # ④ 決め打ちが戻っていないか。取りに行くスクリプトを文字として見る
+    # ④ 決め打ちが戻っていないか。**取りに行くもの全部**を文字として見る。
+    #    ref_*.py だけ見ていたので、robots.txt と月ページを見落としていた
+    #    （2026-09-19、4サイトのうち3つが同じ場所で同じものを見つけた）。
+    #    ただし**正しいものを壊れていると言わない。** 外から来た文字列でない
+    #    ものは決め打ちでよいので、理由つきの許可リストで外す
     import glob
+    ok_riyuu = (
+        ("r.stdout", "外部コマンドの出力。utf-8 と決まっている"),
+        ("json.loads", "JSON の API。utf-8 と決まっている"),
+        ("化けたまま", "decode_html 自身の最後の逃げ道。もう手が無い"),
+        ("LookupError", "宣言された名前が引けなかったときの逃げ道"),
+    )
+    targets = [os.path.join(HERE, f) for f in
+               ("common/fetch.py", "koho_pdf.py", "recon.py", "wayback.py")]
+    targets += sorted(glob.glob(os.path.join(HERE, "ref_*.py")))
     bad = []
-    for path in sorted(glob.glob(os.path.join(HERE, "ref_*.py"))):
+    for path in targets:
+        if not os.path.exists(path):
+            continue
         text = open(path, encoding="utf-8").read()
         for m in re.finditer(r'\.decode\(\s*["\']utf-8["\']', text):
+            near = text[max(0, m.start() - 160):m.start() + 160]
+            if any(w in near for w, _ in ok_riyuu):
+                continue
             line = text[:m.start()].count("\n") + 1
             bad.append(f"{os.path.basename(path)}:{line}")
     if bad:

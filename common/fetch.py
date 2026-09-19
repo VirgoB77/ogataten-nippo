@@ -64,7 +64,13 @@ def check_robots(url):
                                      headers={"User-Agent": UA, "Accept": "text/plain,*/*"})
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-                body, note = r.read(200_000).decode("utf-8", "replace"), ""
+                # **robots.txt も utf-8 と決めつけない。** 役所のサーバーには
+                # Shift_JIS が残っている。`Disallow` は ASCII なので判断は当たるが、
+                # 日本語の注記が置換文字になり、**壊れたことにどこでも気づけない**
+                # （2026-09-19、4サイトのうち3つが同じ場所で見つけた）
+                body, _enc = decode_html(r.read(200_000),
+                                         r.headers.get("Content-Type") or "")
+                note = ""
         except urllib.error.HTTPError as e:
             if e.code in BUSY:
                 body, note = None, f"robots.txt が HTTP {e.code}（混んでいる）"
