@@ -92,6 +92,63 @@ def get(url, limit, meta=None):
     return data
 
 
+def decode_html(raw, content_type=""):
+    """バイト列を文字にする。**UTF-8 と決めつけない。**
+
+    2026-09-19、国交省の位置参照情報のページは **EUC-JP** だった。
+    Content-Type に charset が無く、`utf-8` で読んだのでタイトルが化けた
+    （`位置参照情報 ダウンロードサービス` → `���ֻ��Ⱦ���  …`）。
+    URL は ASCII なので探し物には響かなかったが、**化けたまま
+    「読めている」と思っていた**（9節「読んでいるものを、読めているか見ていない」）。
+
+    見る順は、Content-Type → ページの中の meta → 総当たり。
+    **どれで読んだかを返す。** 黙って選ぶと、次に見る人が確かめられない。
+    """
+    cands = []
+    m = re.search(r"charset\s*=\s*[\"']?([\w-]+)", content_type or "", re.I)
+    if m:
+        cands.append(m.group(1))
+    # ページの中の宣言。まだ文字にできていないので、ASCII として先頭だけ見る
+    head_txt = raw[:4096].decode("ascii", "replace")
+    m = re.search(r"charset\s*=\s*[\"']?([\w-]+)", head_txt, re.I)
+    if m:
+        cands.append(m.group(1))
+    cands += ["utf-8", "cp932", "euc-jp"]
+
+    for enc in cands:
+        try:
+            return raw.decode(enc), enc
+        except (UnicodeDecodeError, LookupError):
+            continue
+    return raw.decode("utf-8", "replace"), "utf-8（化けたまま）"
+
+
+def zip_names(path):
+    """zip の中の名前。**cp437 のまま出さない。**
+
+    zipfile は UTF-8 の印が立っていない名前を cp437 として読む。
+    日本語の名前は `âVâFü[âvâtâ@âCâïî\`Ä«` のようになる（中身は Shift-JIS）。
+    印が立っていないものだけ、cp932 として読み直す（2026-09-19）。
+    """
+    import zipfile
+    with zipfile.ZipFile(path) as z:
+        return [_zname(i.filename, i.flag_bits) for i in z.infolist()]
+
+
+def _zname(filename, flag_bits):
+    """zipfile が cp437 として読んだ名前を、Shift-JIS として読み直す。
+
+    UTF-8 の印が立っているものは触らない。読み直せないものも触らない
+    （**直せなかったら元のまま返す。**推測で作らない）。
+    """
+    if flag_bits & 0x800:
+        return filename
+    try:
+        return filename.encode("cp437").decode("cp932")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return filename
+
+
 def head(url):
     """落とす前に大きさを聞く。大きすぎるものを掴まないため。"""
     req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
@@ -177,6 +234,18 @@ def evidence(html, pat):
     if not cgis:
         out.append("  - （無し）")
 
+    # POST のフォームで配っていることがある。**押す前に、何を送る欄があるかを見る。**
+    # 2026-09-19、位置参照情報は `_view_cities_wards.cgi` への POST だった
+    forms = re.findall(r"<form[^>]*>(.*?)</form>", html, re.S | re.I)
+    if forms:
+        out.append(f"- **form の中の入力欄**（POST で配っている場合に要る）:")
+        for i, body in enumerate(forms[:3]):
+            ins = re.findall(r"<(?:input|select|option)[^>]*>", body, re.I)
+            out.append(f"  - form {i + 1}: 入力欄 {len(ins)} 個")
+            for tag in ins[:8]:
+                flat = re.sub(r"\s+", " ", tag)[:160]      # 先に組み立てる（9節）
+                out.append(f"    - `{flat}`")
+
     srcs = _uniq(re.findall(r'<script[^>]+src="([^"]+)"', html, re.I))
     out.append(f"- **script の src {len(srcs)} 本**（どれが URL を組み立てているか）:")
     for c in srcs[:EV_MAX]:
@@ -242,7 +311,7 @@ def main():
         pm = {}
         try:
             raw = get(page, 20_000_000, pm)
-            html = raw.decode("utf-8", "replace")
+            html, enc = decode_html(raw, pm.get("content_type", ""))
         except Exception as e:
             lines.append(f"- 一覧ページが読めなかった：{type(e).__name__} {e}")
             lines.append("")
@@ -255,7 +324,8 @@ def main():
         with open(os.path.join(OUT, f"{tag}-page.html"), "wb") as f:
             f.write(raw)
         title = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
-        lines.append(f"- HTTP {pm.get('status')} / {pm.get('content_type')} / {len(raw):,} バイト")
+        lines.append(f"- HTTP {pm.get('status')} / {pm.get('content_type')} / {len(raw):,} バイト"
+                     f" / **{enc} として読んだ**")
         if pm.get("final_url") and pm["final_url"] != page:
             lines.append(f"- **飛ばされた先**: {pm['final_url']}")
         lines.append(f"- title: {(title.group(1).strip()[:80] if title else '（無し）')}")
@@ -332,9 +402,7 @@ def main():
             lines.append(f"  - 落とした → `{os.path.basename(fn)}`（{len(data):,} バイト）")
             # 中に何が入っているかを書き出す。**次の段はこれを読んでから書く**
             try:
-                import zipfile
-                with zipfile.ZipFile(fn) as z:
-                    names = z.namelist()
+                names = zip_names(fn)
                 lines.append(f"  - 中身 {len(names)} 件: " + ", ".join(n[-40:] for n in names[:12]))
             except Exception as e:
                 lines.append(f"  - 中身が読めなかった：{type(e).__name__} {e}")
