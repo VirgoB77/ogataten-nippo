@@ -1366,7 +1366,14 @@ def main():
     with open(os.path.join(HERE, "robots.txt"), "w", encoding="utf-8") as f:
         f.write(f"User-agent: *\nDisallow: {BASE}data/\nSitemap: {host}sitemap.xml\n")
 
-    print(f"ページを書いた: 詳細{len(recs)} / 市区町村{len(by_area)} / 種類{len(by_kind)} / index / sitemap({len(urls)+1} URL)")
+    # **名乗りを直した**（2026-09-19）。`by_area` は「場所の見出し」の種類で、
+    # **市区町村の数ではない**（「兵庫県」「所在地不明」が混ざる。116 対 112）。
+    # 競売統計が同じ日に「市区町村92」を「升92／市区町村46」と訂正した。
+    # **出している中身は正しくて、人に読ませる語だけが間違っている**形
+    shikuchoson = len({r["city_code"] for r in index["records"] if r.get("city_code")})
+    print(f"ページを書いた: 詳細{len(recs)} / 場所の見出し{len(by_area)}"
+          f"（うち市区町村 {shikuchoson}） / 種類{len(by_kind)}"
+          f" / index / sitemap({len(urls) + 1} URL)")
 
 
 if __name__ == "__main__":
