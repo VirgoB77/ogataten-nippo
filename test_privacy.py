@@ -477,11 +477,40 @@ def test_parse_keeps_unknown_columns():
 
 
 # ---------------------------------------------------------------- 4節 addr.py と 6節 index.json
+def test_住所が別の市を名乗る行は0件のまま():
+    """食い違いの数を、一度数えて終わりにしない。0でなくなった日に止まる。
+
+    4節「測った、は『そのときの一覧では』の意味しかない」。
+    出どころは、ある日から別の市の土地を載せはじめる。
+    """
+    import json
+    from common import addr
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    bad = []
+    with open(path, encoding="utf-8") as f:
+        for r in json.load(f):
+            try:
+                addr.normalize(r.get("pref", ""), r.get("city", ""), r.get("address", ""))
+            except ValueError as e:
+                bad.append(str(e))
+            except Exception:
+                pass          # 読めないのは別の話（6節 unresolved）
+    if bad:
+        raise AssertionError(
+            f"住所が呼ぶ側と別の市を名乗っている行が {len(bad)} 件。"
+            f"市を被せずに、どう扱うか決めること（4節）：\n  " + "\n  ".join(bad[:5]))
+
+
 def test_addr_normalize():
     """共通仕様4節のテスト値をそのまま通す。期待値は具体的に書く。"""
     from common import addr
     codes = {("大阪府", "大阪市北区"): "27127", ("兵庫県", "尼崎市"): "28202", ("兵庫県", "西宮市"): "28204",
-             ("大阪府", "豊中市"): "27203", ("兵庫県", "三田市"): "28219", ("大阪府", "大阪市淀川区"): "27123"}
+             ("大阪府", "豊中市"): "27203", ("兵庫県", "三田市"): "28219", ("大阪府", "大阪市淀川区"): "27123",
+             # 同じ都道府県の別の市。これが無いと「堺市…」の食い違いを見つけられない。
+             # 見張りは、知っている名前しか見つけられない（jis-codes.json から引いた）
+             ("大阪府", "堺市"): "27140"}
     r = addr.normalize("大阪府", "大阪市北区", "梅田一丁目１番１号", codes)
     eq(r["addr"], "大阪市北区梅田1-1-1", "4節 1件目 addr")
     eq(r["town"], "梅田1", "4節 1件目 town（丁目を含む）")
@@ -500,6 +529,19 @@ def test_addr_normalize():
     eq(r["addr_key_town"], "27203|服部西町1", "town は丁目まで")
     r = addr.normalize("大阪府", "大阪市淀川区", "十三本町1-2-3", codes)
     eq(r["addr_key"], "27123|十三本町1-2-3", "地名の漢数字（十三）を壊さない")
+    # 呼ぶ側と違う市を住所が名乗っていたら、繋げずに止める（2026-09-19）
+    for bad in ("兵庫県西宮市甲子園町1-1", "堺市西区鳳東町7-733"):
+        try:
+            got = addr.normalize("大阪府", "大阪市北区", bad, codes)
+            raise AssertionError(
+                f"別の市を名乗る住所を繋げてしまった： {bad} -> {got['addr']}")
+        except ValueError:
+            pass
+    # 同じ市を名乗っているのは落とすだけ。止めない
+    r = addr.normalize("大阪府", "大阪市北区", "大阪府大阪市北区梅田1-1-1", codes)
+    eq(r["addr"], "大阪市北区梅田1-1-1", "自分の都道府県＋市は落とすだけ")
+    eq(r["addr_key"], "27127|梅田1-1-1", "落としたあとのキー")
+
     r = addr.normalize("兵庫県", "三田市", "三田市天神1丁目", codes)
     eq(r["addr_key_town"], "28219|天神1", "地名の漢数字（三田）を壊さず、先頭の市名を落とす")
     r = addr.normalize("大阪府", "豊中市", "", codes)
