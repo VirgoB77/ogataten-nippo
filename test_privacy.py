@@ -811,19 +811,98 @@ def test_探される語が_description_に入っているか():
                 f"{kind} に添え字「{hyo[kind][1]}」が付いている。"
                 "その日は開店日でも閉店日でもない")
 
-    # ③ **言い換えて主張にしない。** ただし**説明の # 行は数えない。**
-    # 「書いてはいけない言葉」を説明ごと禁じると、理由を残せなくなる
+    # ③ **言い換えて主張にしない。**
+    #
+    # ここは一度、見張り方を間違えた（2026-09-19）。ソースの字面で
+    # 「に開店予定」を禁じたら、**「『◯月◯日に開店予定』とは書きません」と
+    # 説明しているページ自身が鳴った。**
+    # 正本9節の「見張りが探す言葉は、文中に出てこない目印にする」の裏返しで、
+    # **禁じたい言葉そのものは、説明にも出てくる。**
+    #
+    # なので見るのは2つに分けた。
+    #   ・出来上がった個票（s/*.html）——読む人に届くのはここだけ
+    #   ・ソースでは、**日付を差し込んでいる行だけ**（f-string の { がある行）
     src = open(os.path.join(HERE, "build_site.py"), encoding="utf-8").read()
     for warui in ("に開店予定", "に閉店予定"):
         i = src.find(warui)
         while i >= 0:
             atama = src.rfind("\n", 0, i) + 1
-            if not src[atama:i].lstrip().startswith("#"):
+            gyou = src[atama:src.find("\n", i)]
+            if not gyou.lstrip().startswith("#") and "{" in gyou:
                 raise AssertionError(
-                    f"{src[:i].count(chr(10)) + 1}行目に「{warui}」がある。"
-                    "届出が出しているのは「新設する日」で、開店日は別に決まる。"
-                    "書くと事実の主張になる")
+                    f"{src[:i].count(chr(10)) + 1}行目が、日付を差し込みながら"
+                    f"「{warui}」と書いている。届出が出しているのは「新設する日」で、"
+                    "開店日は別に決まる。事実の主張になる")
             i = src.find(warui, i + 1)
+
+    # **出来上がった個票を読む。** 読む人に届くのはここだけ
+    import glob
+    for michi in glob.glob(os.path.join(HERE, "s", "*.html")):
+        with open(michi, encoding="utf-8") as f:
+            h = f.read(3000)
+        for warui in ("に開店予定", "に閉店予定"):
+            if warui in h:
+                raise AssertionError(
+                    f"{os.path.basename(michi)} に「{warui}」と出ている。"
+                    "届出が言っていない")
+
+
+def test_新設と開店の違いを説明する1枚があるか():
+    """**役所の語では見つからない。だが言い換えて主張にしない。** その代わりの1枚。
+
+    2026-09-19、中島さんの案——
+
+    > 新設と廃止で閉店と開店とは異なります。の記載で１位目指せないかにゃ？
+
+    「◯◯ 開店」で1位は取れない（町の情報サイトもニュースも書く）。
+    だが「**新設 開店 違い**」なら取れる。**役所が自分で2つの欄を
+    分けて持っている**ことを、数えて示せるのはこちらだけだから。
+
+    この検査が見張るのは3つ。
+    ① 1枚が在ること
+    ② **新設・廃止からだけつなぐこと。** 変更・承継の日は開店日ではないので、
+       つなぐと「関係がある」と言ったことになる
+    ③ **文章に数を書き写していないこと。** ページの合計が、いま data から
+       数え直した値と合うこと
+
+    **捕まえないもの**：実際に1位になるか。それは後日 Search Console で見る。
+    """
+    import glob, json
+    michi = os.path.join(HERE, "shinsetsu-to-kaiten.html")
+    if not os.path.exists(michi):
+        return   # まだ組み立てていない
+    honbun = open(michi, encoding="utf-8").read()
+
+    # ② つなぐのは新設・廃止だけ
+    tsunagu, tsunaganai = set(), set()
+    for f in glob.glob(os.path.join(HERE, "s", "*.html")):
+        with open(f, encoding="utf-8") as fh:
+            h = fh.read(3000)
+        m = re.search(r"の(新設|廃止|変更|承継|中規模|意見・勧告)届出", h)
+        if not m:
+            continue
+        (tsunagu if "shinsetsu-to-kaiten" in h else tsunaganai).add(m.group(1))
+    yokei = tsunagu - {"新設", "廃止"}
+    if yokei:
+        raise AssertionError(
+            f"{sorted(yokei)} からも説明の1枚につないでいる。"
+            "その日は開店日でも閉店日でもないので、つなぐと関係があると言ったことになる")
+    for kind in ("新設", "廃止"):
+        if kind in tsunaganai and kind not in tsunagu:
+            raise AssertionError(f"{kind} の個票が説明の1枚につながっていない")
+
+    # ③ **数を書き写していない。** いま数え直した値と合うか
+    zairyo = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(zairyo):
+        return
+    recs = json.load(open(zairyo, encoding="utf-8"))
+    kazoeta = sum(1 for r in recs
+                  if r.get("kind") == "新設" and r.get("planned_on") and r.get("opened_on")
+                  and r["opened_on"] >= r["notified_on"])
+    if kazoeta and f"<b>{kazoeta:,}</b>" not in honbun and f"<b>{kazoeta}</b>" not in honbun:
+        raise AssertionError(
+            f"ページの合計が、いま数え直した {kazoeta} 件と合わない。"
+            "文章に数を書き写していないか")
 
 
 def test_中規模を大店立地法と書いていないか():
