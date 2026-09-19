@@ -1219,17 +1219,54 @@ def test_1日に2回以上取りに行かないか():
     """
     import glob
     import re as _re
-    # 外に出て行くもの。`ref_*.py` は90日に1回だが、出て行くことに変わりはない
-    TORINIIKU = _re.compile(r"\b(recon|koho|koho_pdf|files|wayback|ref_\w+)\.py\b")
-    daily = []
+
+    # **名前の一覧で数えない。**
+    #
+    # 2026-09-19、ここは一度外れた。`\b(recon|...)\.py\b` という名前の
+    # 一覧で見ていたので、**`chizu_recon.py` を1文字も見ていなかった。**
+    # `_` は語の文字なので `\brecon` が当たらない。
+    # 新しい取得スクリプトを足しても、この見張りは黙ったままになる。
+    #
+    # なので**構造で見る。** workflow が走らせている `.py` を拾い、
+    # **その中身が外に出て行くか**を読む（`common.fetch` を使うか、
+    # `urlopen` を呼ぶか）。名前は関係ない。
+    HASHIRU = _re.compile(r"python3?\s+([A-Za-z0-9_./-]+\.py)")
+    DERU = _re.compile(r"from\s+common\.fetch\s+import|common\.fetch\b|urlopen\s*\(")
+
+    def deru_ka(name):
+        """その .py が外に出て行くか。**無いファイルは、無いと言う。**"""
+        michi = os.path.join(HERE, name)
+        if not os.path.exists(michi):
+            return None
+        return bool(DERU.search(open(michi, encoding="utf-8").read()))
+
+    daily, nai, mita = [], [], 0
     for path in sorted(glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
         text = open(path, encoding="utf-8").read()
-        if not TORINIIKU.search(text):
+        deru = False
+        for name in set(HASHIRU.findall(text)):
+            mita += 1
+            d = deru_ka(name)
+            if d is None:
+                nai.append(f"{os.path.basename(path)} → {name}")
+            elif d:
+                deru = True
+        if not deru:
             continue                      # 取りに行かない workflow は数えない
         for m in _re.finditer(r'cron:\s*"([^"]+)"', text):
             fields = m.group(1).split()
             if len(fields) == 5 and fields[2:] == ["*", "*", "*"]:
                 daily.append(f"{os.path.basename(path)}: {m.group(1)}")
+
+    # **走らせている .py が無いのは、名前を変えたのに直し忘れた形。**
+    # workflow はその場で落ちるが、落ちるのは押した日。ここなら今日わかる
+    if nai:
+        raise AssertionError("workflow が、無い .py を走らせようとしている：\n  "
+                             + "\n  ".join(nai))
+    if mita == 0:
+        raise AssertionError(
+            "workflow から走らせている .py が1つも見つからない。"
+            "数え方（python3 ◯◯.py の探し方）が壊れている")
     if len(daily) > 1:
         raise AssertionError(
             "毎日 外に取りに行く workflow が2つ以上ある（about に「1日1回」と書いてある）：\n  "
