@@ -172,38 +172,11 @@ td.d{white-space:nowrap;color:var(--sub);font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--sub);line-height:1.8}
 input.q{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink)}
 #hits li{padding:8px 0}
-/* 長い表のための絞り込み。**行を隠す**ので、ブラウザの検索（Ctrl+F）とも噛み合う */
-.tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--rule);margin-bottom:4px}
-.tools .q{margin-bottom:8px}
-.facets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.facets label{background:var(--soft);color:var(--sub);padding:4px 12px;border-radius:999px;font-size:13px;cursor:pointer;user-select:none;border:1px solid transparent}
-.facets label:has(input:checked){background:var(--key);color:#fff;border-color:var(--key)}
-.facets input{position:absolute;opacity:0;width:0;height:0}
-.facets .n{margin-left:auto;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
-th.s{cursor:pointer;user-select:none;white-space:nowrap}
-/* 並べ替えできる見出しの印。**場所取りに見えない文字を使わない**
-   （em space は font によって□で出た。2026-09-19 に実機幅で確かめた） */
-th.s::after{content:"";display:inline-block;width:.9em;color:var(--rule);text-align:right}
-th.s[data-o="1"]::after{content:"\25B2";color:var(--key)}
-th.s[data-o="-1"]::after{content:"\25BC";color:var(--key)}
-tr.off{display:none}
-.empty{padding:24px 0;color:var(--sub);font-size:14px}
-/* 長い表は、幅が足りないと横スクロールになる。**画面の外に出た列は無いのと同じ。**
-   狭い画面では列を減らし、長い文字は折り返す（2026-09-19 に実機幅390pxで確かめた） */
-table.wide td{overflow-wrap:anywhere}
-/* .d は日付用に nowrap だが、**長い語が入る欄は折り返さないと画面から出る。**
-   折り返してよい欄には .w を付ける（taiten の「町丁目のみ（店名が違う）」） */
-table.wide td.w{white-space:normal}
-@media (max-width:560px){table.wide th.hide2,table.wide td.hide2{display:none}
-  table.wide{font-size:13px}table.wide th,table.wide td{padding:8px 4px}
-  /* **見出しが折り返さないと、見出しの長さが列の幅を決めてしまう。**
-     「建物を用意した人」の8文字で105px取っていた（320px幅で12pxはみ出した） */
-  table.wide th{white-space:normal}}
 @media (max-width:560px){h1{font-size:21px}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}th.hide,td.hide{display:none}}
 """
 
 
-def page(title, body, rel, desc="", canonical=""):
+def page(title, body, rel, desc="", canonical="", extra_css=""):
     """共通の外枠。rel はこのページから見た shutten/ への相対パス（'' か '../'）。"""
     d = esc(desc or TAGLINE)
     can = f'<link rel="canonical" href="{SITE_URL}{canonical}">' if canonical is not None else ""
@@ -218,7 +191,7 @@ def page(title, body, rel, desc="", canonical=""):
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{d}">
 <meta property="og:type" content="website">
-<style>{CSS}</style>
+<style>{CSS}{extra_css}</style>
 </head>
 <body><div class="wrap">
 <header class="top"><div class="name"><a href="{rel}index.html">{esc(SITE_NAME)}</a></div><div class="tag">{esc(TAGLINE)}</div></header>
@@ -643,11 +616,44 @@ def koho_page(notices, src_meta, today):
 # 届出そのものではなく、届出をまとめて作った2つの一覧。
 # **見出しは「そのデータが何であるか」を書く。何に使えるかではない**（共通仕様3.3）。
 
+FILTER_CSS = """
+/* 長い表のための絞り込み。**行を隠す**ので、ブラウザの検索（Ctrl+F）とも噛み合う */
+.tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+.tools .q{margin-bottom:8px}
+.facets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.facets label{background:var(--soft);color:var(--sub);padding:4px 12px;border-radius:999px;font-size:13px;cursor:pointer;user-select:none;border:1px solid transparent}
+.facets label:has(input:checked){background:var(--key);color:#fff;border-color:var(--key)}
+.facets input{position:absolute;opacity:0;width:0;height:0}
+.facets .n{margin-left:auto;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
+.facets select{font:inherit;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);max-width:11em}
+th.s{cursor:pointer;user-select:none;white-space:nowrap}
+/* 並べ替えできる見出しの印。**場所取りに見えない文字を使わない**
+   （em space は font によって□で出た。2026-09-19 に実機幅で確かめた） */
+th.s::after{content:"";display:inline-block;width:.9em;color:var(--rule);text-align:right}
+th.s[data-o="1"]::after{content:"\25B2";color:var(--key)}
+th.s[data-o="-1"]::after{content:"\25BC";color:var(--key)}
+tr.off{display:none}
+.empty{padding:24px 0;color:var(--sub);font-size:14px}
+/* 長い表は、幅が足りないと横スクロールになる。**画面の外に出た列は無いのと同じ。**
+   狭い画面では列を減らし、長い文字は折り返す（2026-09-19 に実機幅390pxで確かめた） */
+table.wide td{overflow-wrap:anywhere}
+/* .d は日付用に nowrap だが、**長い語が入る欄は折り返さないと画面から出る。**
+   折り返してよい欄には .w を付ける（taiten の「町丁目のみ（店名が違う）」） */
+table.wide td.w{white-space:normal}
+@media (max-width:560px){table.wide th.hide2,table.wide td.hide2{display:none}
+  table.wide{font-size:13px}table.wide th,table.wide td{padding:8px 4px}
+  /* **見出しが折り返さないと、見出しの長さが列の幅を決めてしまう。**
+     「建物を用意した人」の8文字で105px取っていた（320px幅で12pxはみ出した） */
+  table.wide th{white-space:normal}}
+"""
+
+
 FILTER_JS = """
 <script>
 (function(){
   var box=document.querySelector('.tools'); if(!box) return;
   var q=box.querySelector('.q'), out=box.querySelector('.n'),
+      city=box.querySelector('.city'),
       facets=[].slice.call(box.querySelectorAll('.facets input')),
       tb=document.querySelector('tbody'),
       rows=[].slice.call(tb.rows), total=rows.length,
@@ -657,7 +663,9 @@ FILTER_JS = """
   function run(){
     var v=norm(q.value), on=facets.filter(function(f){return f.checked}), n=0;
     rows.forEach(function(r){
-      var ok=(!v||r._t.indexOf(v)>=0)&&on.every(function(f){return r.dataset[f.value]==='1'});
+      var ok=(!v||r._t.indexOf(v)>=0)
+             &&(!city||!city.value||r.dataset.city===city.value)
+             &&on.every(function(f){return r.dataset[f.value]==='1'});
       r.classList.toggle('off',!ok); if(ok) n++;
     });
     out.textContent = (n===total) ? total.toLocaleString()+'件'
@@ -665,6 +673,7 @@ FILTER_JS = """
     if(empty) empty.style.display = n ? 'none' : '';
   }
   q.addEventListener('input',run);
+  if(city) city.addEventListener('change',run);
   facets.forEach(function(f){ f.addEventListener('change',run) });
   var ths=[].slice.call(document.querySelectorAll('th.s'));
   ths.forEach(function(th){
@@ -690,16 +699,24 @@ FILTER_JS = """
 """
 
 
-def tools_bar(placeholder, facets):
+def tools_bar(placeholder, facets, cities=None):
     """長い表の上に置く絞り込み。facets は (data の名前, 見出し) の並び。
 
     **行を隠す形にする。** 別の一覧に出し直すと、ブラウザの検索（Ctrl+F）で
     見つけたものと画面が食い違う。並べ替えも、元の順番に戻せるようにする。
+
+    市は数が多い（58）ので札ではなくプルダウンにする。**札を58個並べると、
+    絞り込みの帯のほうが表より高くなる。**
     """
     ch = "".join(f'<label><input type="checkbox" value="{esc(k)}">{esc(v)}</label>'
                  for k, v in facets)
+    sel = ""
+    if cities:
+        opts = "".join(f'<option value="{esc(c)}">{esc(c)}（{n_(n)}）</option>'
+                       for c, n in cities)
+        sel = f'<select class="city"><option value="">市区町村ぜんぶ</option>{opts}</select>'
     return (f'<div class="tools"><input class="q" type="search" placeholder="{esc(placeholder)}" '
-            f'autocomplete="off"><div class="facets">{ch}<span class="n"></span></div></div>')
+            f'autocomplete="off"><div class="facets">{sel}{ch}<span class="n"></span></div></div>')
 
 
 def _load(name):
@@ -758,9 +775,12 @@ def taiten_page():
         if r.get("lasted_days"):
             y = f'{r["lasted_days"] // 365}年' if r["lasted_days"] >= 365 else f'{r["lasted_days"]}日'
         op = esc(r.get("operator") or "")
+        # f-string の中にバックスラッシュを入れられないので、先に組み立てる
+        ret = f'<br><span class="d">{esc(r["retailer"])}</span>' if r.get("retailer") else ""
         tsubo = f'<br><span class="d">{r["area_tsubo"]:,.0f}坪</span>' if r.get("area_tsubo") else ""
         tr.append(
-            f'<tr data-closed="{esc(r.get("closed_on") or "")}" data-area="{r.get("area_m2") or ""}"'
+            f'<tr data-city="{esc(r.get("city") or "")}"'
+            f' data-closed="{esc(r.get("closed_on") or "")}" data-area="{r.get("area_m2") or ""}"'
             f' data-hasarea="{1 if r.get("area_m2") else 0}"'
             f' data-lasted="{1 if r.get("lasted_days") else 0}"'
             f' data-near="{1 if r.get("near_candidates") else 0}">'
@@ -768,22 +788,23 @@ def taiten_page():
             f'<td><a href="{rel}s/{esc(r["id"])}.html">{esc(r["store"])}</a>'
             f'<br><span class="d">{esc(r.get("addr") or "")}</span></td>'
             f'<td class="n">{_m2(r.get("area_m2"))}{tsubo}</td>'
-            f'<td class="hide">{op}</td>'
+            f'<td class="hide">{op}{ret}</td>'
             f'<td class="d w">{esc(y)}{("<br>" + esc(r["match"])) if r.get("match") else ""}</td></tr>')
 
     body = head + f"""
 <h2>一覧（{n_(len(rows))}件）</h2>
-{tools_bar("店名・所在地・設置者でしぼる", [
-    ("hasarea", "店舗面積あり"), ("lasted", "何年いたか分かる"), ("near", "近い候補あり")])}
+{tools_bar("店名・所在地・会社名でしぼる（表に出ている語なら何でも）", [
+    ("hasarea", "店舗面積あり"), ("lasted", "何年いたか分かる"), ("near", "近い候補あり")],
+    cities=Counter(r.get("city") for r in rows if r.get("city")).most_common())}
 <table class="wide"><thead><tr><th class="s" data-k="closed">閉じた日</th><th>店名・所在地</th>
 <th class="s n" data-k="area">店舗面積<br>（㎡）</th>
-<th class="hide">設置者</th><th>何年いたか<br>つなぎ方</th></tr></thead>
+<th class="hide">設置者<br>店をやる人</th><th>何年いたか<br>つなぎ方</th></tr></thead>
 <tbody>{"".join(tr)}</tbody></table>
 <p class="empty" id="empty" style="display:none">当てはまるものがありませんでした。</p>
 {FILTER_JS}"""
     return page("大型店が閉じた届出の一覧（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の廃止の届出 {len(rows)}件。大阪府・兵庫県。公告された日の順。",
-                canonical="taiten.html")
+                canonical="taiten.html", extra_css=FILTER_CSS)
 
 
 def settisha_page():
@@ -848,7 +869,8 @@ def settisha_page():
             co.append("小売業者に共有者")
         sub = "<br>".join(f'<span class="d">{esc(x)}</span>' for x in ("、".join(ch), "、".join(co)) if x)
         tr.append(
-            f'<tr data-last="{esc(r.get("last_on") or "")}" data-area="{r.get("area_m2") or ""}"'
+            f'<tr data-city="{esc(r.get("city") or "")}"'
+            f' data-last="{esc(r.get("last_on") or "")}" data-area="{r.get("area_m2") or ""}"'
             f' data-notices="{r.get("notices") or 0}"'
             f' data-hasarea="{1 if r.get("area_m2") else 0}"'
             f' data-haszoning="{1 if r.get("zoning_norm") else 0}"'
@@ -863,9 +885,10 @@ def settisha_page():
 
     body = head + f"""
 <h2>一覧（{n_(len(rows))}店）</h2>
-{tools_bar("店名・所在地・会社名でしぼる", [
+{tools_bar("店名・所在地・会社名でしぼる（表に出ている語なら何でも）", [
     ("changed", "名前が変わった"), ("shared", "共有者あり"),
-    ("hasarea", "店舗面積あり"), ("haszoning", "用途地域あり")])}
+    ("hasarea", "店舗面積あり"), ("haszoning", "用途地域あり")],
+    cities=Counter(r.get("city") for r in rows if r.get("city")).most_common())}
 <table class="wide"><thead><tr><th>店名・所在地</th><th>建物を用意した人</th><th>店をやる人</th>
 <th class="s n" data-k="area">店舗面積<br>（㎡）</th><th class="hide">用途地域</th>
 <th class="s hide2" data-k="last">最後の届出</th></tr></thead>
@@ -874,7 +897,7 @@ def settisha_page():
 {FILTER_JS}"""
     return page("建物を用意した人と、店をやる人が別の届出（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の届出で、設置者と小売業者が別の名前になっている店 {len(rows)}件。",
-                canonical="settisha.html")
+                canonical="settisha.html", extra_css=FILTER_CSS)
 
 
 def index_page(all_recs, today):
