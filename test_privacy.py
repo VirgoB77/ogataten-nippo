@@ -944,6 +944,59 @@ def test_住所の書かれ方は細かいほうから見るか():
         raise AssertionError(f"数えた合計 {sum(zentai.values())} が {len(recs)} と合わない")
 
 
+def test_not_counted_が4つとも出ているか():
+    """升に入らなかった行を、黙って落とさない（6節）。
+
+    2026-09-19、競売統計の blessing から4サイトに広げた。
+    **そのとき、うちだけ `not_counted` を1つも出していないことに気づいた。**
+
+    しかも落としてすらいなかった。`city_code` が空のまま升ができていて、
+    **`city_code: ""` の升が16枚、公開されていた**（中身は「兵庫県」。
+    県が市区町村を書かずに公表した分）。横断ハブは `city_code` で引くので、
+    **空の鍵に全部まとまるか、黙って落ちる。**
+
+    見張るのは3つ。
+    ① `not_counted` が在って、**4つとも在る**こと（欠けているキーは0ではない）
+    ② **`city_code` が空の升が1枚も無い**こと
+    ③ `unresolved` が、いま records から数え直した値と合うこと
+
+    **捕まえないもの**：升の合計と足して合うか。**升の数は伏せてある**ので
+    出来上がりからは足せない（3.2）。足し算は build_site の中で見ていて、
+    合わなければ ValueError で止まる。
+    """
+    import json
+    michi = os.path.join(HERE, "index.json")
+    if not os.path.exists(michi):
+        return
+    with open(michi, encoding="utf-8") as f:
+        d = json.load(f)
+
+    # ① 4つとも在る
+    nc = d.get("not_counted")
+    if nc is None:
+        raise AssertionError(
+            "index.json に not_counted が無い。升に入らなかった行を黙って落としている")
+    for key in ("unresolved", "unobserved", "undecided", "gone"):
+        if key not in nc:
+            raise AssertionError(
+                f"not_counted に {key} が無い。**欠けているキーは0ではない。**"
+                "横断で読む側は「0」と「このサイトは数えていない」を見分けられない")
+
+    # ② city_code が空の升を作らない
+    kara = [m for m in d["counts_by_city"] if not m.get("city_code")]
+    if kara:
+        raise AssertionError(
+            f"city_code が空の升が {len(kara)}枚ある（例 {kara[0].get('city')}）。"
+            "横断ハブは city_code で引く。空の鍵にまとまるか、黙って落ちる")
+
+    # ③ いま数え直した値と合う
+    kazoeta = sum(1 for r in d["records"] if not r.get("city_code"))
+    if nc["unresolved"] != kazoeta:
+        raise AssertionError(
+            f"not_counted.unresolved が {nc['unresolved']} だが、"
+            f"いま数えたら {kazoeta} 件。数え方が合っていない")
+
+
 def test_中規模を大店立地法と書いていないか():
     """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
 

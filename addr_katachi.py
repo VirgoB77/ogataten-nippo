@@ -77,6 +77,59 @@ def measure(recs):
     return zentai, rei
 
 
+KOMAKAI = ("住居表示（…番…号）", "地番（…番地…）", "…番 まで")
+
+
+def mise_key(r):
+    """市区町村＋店名。**突合の鍵であって、場所の鍵ではない。**
+
+    括弧の中（（仮称）など）と空白を落とす。**地番は入れない**——
+    4節の「台帳の鍵は並び順に頼らない」と同じで、
+    **鍵に場所を入れると、場所が分かっていない行が鍵を作れなくなる。**
+    """
+    mise = re.sub(r"\s|　|（.*?）|\(.*?\)", "", (r.get("store") or ""))
+    return ((r.get("area") or ""), mise)
+
+
+def mikomi(recs):
+    """場所が付く見込みを4段で数える。**それぞれ別の手で増える。**
+
+    2026-09-19、中島さん（不動産の実務）の——
+
+    > 町丁目しかない38.4%も、絶対 開発申請があるから大丈夫のはずにゃ
+
+    **方向は正しい。だが「全部」ではない。** 数えたので、ここに残す。
+
+    ① 住所だけ        いま出せるもの
+    ② ＋店名でつなぐ   同じ店の別の届出が細かい住所を持っている
+    ③ ＋開発許可       新設の地番が取れれば、その店の他の届出にも回る
+    ④ 残り            **その店の新設届を、うちがまだ持っていない**
+
+    ④は開発許可の問題ではない。**こちらの収集の穴**（6節 `unobserved`）。
+
+    **捕まえないもの**：開発許可が本当に全部当たるか。
+    既存ビルへの入居や増床は開発行為を伴わないことがある。**確かめていない。**
+    """
+    komakai = set()
+    for r in recs:
+        if katachi(r.get("address")) in KOMAKAI and r.get("store"):
+            komakai.add(mise_key(r))
+    arai = [r for r in recs if katachi(r.get("address")) not in KOMAKAI]
+    tsunagaru = [r for r in arai if mise_key(r) in komakai]
+    nokori = [r for r in arai if mise_key(r) not in komakai]
+    # 残ったものの中の「新設」に地番が付けば、同じ店の他の届出にも回る
+    shinsetsu = set(mise_key(r) for r in nokori if r.get("kind") == "新設")
+    mawaru = [r for r in nokori if mise_key(r) in shinsetsu]
+    saigo = [r for r in nokori if mise_key(r) not in shinsetsu]
+    n = len(recs)
+    return [
+        ("住所だけ（いま）", n - len(arai), "役所が番まで書いている"),
+        ("＋店名でつなぐ", n - len(nokori), "同じ店の別の届出が細かい住所を持っている"),
+        ("＋開発許可で新設に地番", n - len(saigo), "**中島さんの筋。** 兵庫と大阪の両方が要る"),
+        ("最後まで残る", len(saigo), "**その店の新設届を、うちがまだ持っていない**"),
+    ], saigo
+
+
 def main():
     if not os.path.exists(ALL):
         print(f"{ALL} が無い")
@@ -102,7 +155,25 @@ def main():
         v = zentai.get(name, 0)
         lines.append(f"| {name} | {v:,} | {v / n * 100:.1f}% | {doko} | {madde} | "
                      + "（数字は◯に伏せた）" + " ".join(rei.get(name, [])) + " |")
-    lines += ["", "## 数えていないこと", "",
+    dan, saigo = mikomi(recs)
+    lines += ["", "## 場所が付く見込み", "",
+              "住所の書かれ方だけでは決まらない。**店名でつなぐ**のと、",
+              "**開発許可で新設に地番を付ける**のが効く（2026-09-19、中島さん）。", "",
+              "| 手 | 場所が付く | 割合 | 何で増えるか |", "|---|---:|---:|---|"]
+    for name, v, naze in dan[:3]:
+        lines.append(f"| {name} | {v:,} | {v / n * 100:.1f}% | {naze} |")
+    nokoru = dan[3][1]
+    lines += [f"| **{dan[3][0]}** | {nokoru:,} | {nokoru / n * 100:.1f}% | {dan[3][2]} |", ""]
+    uchiwake = collections.Counter(r.get("kind") for r in saigo)
+    lines += ["最後まで残るものの内訳：" + "・".join(
+        f"{k} {v:,}" for k, v in uchiwake.most_common()), "",
+        "ほとんどが**変更**。変更届は既にある店の話なので、",
+        "その店の**新設届をうちが持っていれば**場所が付く。持っていない。",
+        "**開発許可の問題ではなく、こちらの収集の穴**（6節 `unobserved`）。", "",
+        "## 数えていないこと", "",
+        "**開発許可が本当に全部当たるかは、数えていない。**",
+        "既存ビルへの入居や増床は開発行為を伴わないことがある。",
+        "上の3段目は「全部当たれば」の数で、**実測ではない。**", "",
               "印があれば**本当に当たるか**は、ここでは分からない。",
               "実際に引き当ててから、当たった件数をここに足す。", ""]
 
