@@ -162,6 +162,15 @@ jobs:
       - name: まとめる
         run: python3 merge.py
 
+      # all.json から作る一覧。走らせないと、置いてあるファイルだけが古いまま残り、
+      # 検査は「古いファイル」を通してしまう（9節「実測値を説明文に書かない」と同じ形で、
+      # 誰も古さに気づかない）。まとめたあと・ページを作る前に、毎回作り直す
+      - name: 退店の一覧を作り直す
+        run: python3 taiten.py
+
+      - name: 設置者と小売業者の一覧を作り直す
+        run: python3 settisha.py
+
       # all.json から見せるページを作る（GitHub Pages がそのまま配信する）
       - name: ページを作る
         run: python3 build_site.py
