@@ -535,6 +535,53 @@ def test_正本に同じ行が2度続いていないか():
         raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
 
 
+def test_workflow_の中のシェルが読めるか():
+    """`run: |` の中身を bash -n にかける。
+
+    2026-09-19、街頭窃盗統計の検査ステップが**構文エラーで壊れていた。**
+    行継続を `\\`（バックスラッシュ2つ）にしていた。bash では行継続にならない。
+    月次の実行がそこで落ちていて、`cat -A` で見るまで気づかなかった。
+    **目で読むと `\` と `\\` は同じに見える。** だから機械で見る。
+
+    **この検査で捕まるのは、一覧や制御構文の途中で切れた形だけ。**
+    `python3 a.py \\` のように単純なコマンドの末尾だと、bash は
+    「バックスラッシュという引数」と読むので**合法**で、鳴らない。
+    見張りは、知っている形しか見つけられない。
+    """
+    import glob
+    import re
+    import subprocess
+    bad, n = [], 0
+    for path in sorted(glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+        lines = open(path, encoding="utf-8").read().splitlines()
+        i = 0
+        while i < len(lines):
+            m = re.match(r"^(\s*)run:\s*\|\s*$", lines[i])
+            if not m:
+                i += 1
+                continue
+            indent = len(m.group(1)) + 2
+            body, j = [], i + 1
+            while j < len(lines) and (
+                    not lines[j].strip()
+                    or len(lines[j]) - len(lines[j].lstrip()) >= indent):
+                body.append(lines[j][indent:] if lines[j].strip() else "")
+                j += 1
+            # GitHub が先に置き換えるところは、bash から見れば ただの文字
+            script = re.sub(r"\$\{\{[^}]*\}\}", "GH_EXPR", "\n".join(body))
+            n += 1
+            r = subprocess.run(["bash", "-n"], input=script, text=True,
+                               capture_output=True)
+            if r.returncode != 0:
+                first = (r.stderr.strip().splitlines() or ["(理由不明)"])[0]
+                bad.append(f"{os.path.basename(path)}:{i + 1} → {first}")
+            i = j
+    if n == 0:
+        raise AssertionError("`run: |` のブロックが1つも見つからない。数え方が壊れている")
+    if bad:
+        raise AssertionError("workflow の中のシェルが読めない：\n  " + "\n  ".join(bad))
+
+
 def test_文字コードを決めつけずに読む():
     """2026-09-19。国交省の位置参照情報のページは EUC-JP だった。
 
