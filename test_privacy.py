@@ -1140,6 +1140,124 @@ def test_taiten_matches_only_on_store_name():
         fails.append(f"店名の一致なしで在店年数を出している {len(bad)}件")
 
 
+def _settisha_rows():
+    path = os.path.join(HERE, "data", "settisha.json")
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)["stores"]
+
+
+def test_settisha_hides_individual_parties():
+    """設置者と小売業者の一覧に、個人の名前や地番が出ていないか（3.1）。
+
+    この一覧は「建物を用意した人」と「店をやる人」を並べる。片方が個人なら、
+    そこは住まいかもしれない。作った時点では両方の欄が法人だけだったので
+    地番まで出している（2026-09-19）。出どころが変わればすぐ個人が混ざる。
+    混ざった日に鳴るように、ここに置いておく（9節）。
+    """
+    rows = _settisha_rows()
+    if not rows:
+        return
+
+    def hidden(kind, shown):
+        if kind not in ("individual", "undisclosed"):
+            return True
+        n = (shown or "").strip()
+        return (not n) or n in ("個人", "非公開") or privacy.is_placeholder(n)
+
+    bad = [r for r in rows
+           if not hidden(r.get("operator_kind"), r.get("operator_now"))
+           or not hidden(r.get("retailer_kind"), r.get("retailer_now"))]
+    if bad:
+        fails.append(f"個人の当事者名がそのまま出ている {len(bad)}件。3.1")
+
+    hbad = [r for r in rows for h in r.get("history", [])
+            if not hidden(h.get("operator_kind"), h.get("operator"))
+            or not hidden(h.get("retailer_kind"), h.get("retailer"))]
+    if hbad:
+        fails.append(f"履歴に個人の当事者名がそのまま残っている {len(hbad)}件。3.1")
+
+    # 設置者が個人なら、住所は merge の時点で町丁目まで丸まっているはず。
+    # 丸め忘れをここでも見る（5節「迂回検査」）
+    ban = re.compile(r"[0-9０-９]+\s*[-‐−－ー―]\s*[0-9０-９]+|[0-9０-９]+番地?[0-9０-９]*号?")
+    addr_bad = [r for r in rows
+                if r.get("operator_kind") in ("individual", "undisclosed")
+                and (ban.search(r.get("addr") or "") or ban.search(r.get("addr_key") or ""))]
+    if addr_bad:
+        fails.append(f"個人の設置者の記録に地番が残っている {len(addr_bad)}件。3.1")
+
+
+def test_settisha_groups_by_banchi_not_town():
+    """店のまとめ方が「町丁目」に落ちていないか。
+
+    届出は同じ店に何度も出るので、まとめないと同じ店を何度も数える。
+    ただし町丁目でまとめると、同じ町丁目の別の店が1つの店として混ざる。
+    鍵を町丁目に落として作り直したら 733店が 657店になった（2026-09-19）。
+    退店履歴でも、町丁目の一致 55件のうち店名まで一致したのは
+    9件だけだった（2026-09-19）。まとめる鍵は必ず番地まで見ること。
+    """
+    rows = _settisha_rows()
+    if not rows:
+        return
+
+    sys.path.insert(0, os.path.join(HERE, "common"))
+    import addr as addrlib
+
+    bad = []
+    for r in rows:
+        try:
+            n = addrlib.normalize(r.get("pref", ""), r.get("city", ""), r.get("addr", ""))
+        except Exception:
+            continue
+        # 番地まで読めた住所なのに、町丁目の鍵でまとまっている
+        if n.get("addr_key") and r.get("addr_key") == n.get("addr_key_town") \
+                and n["addr_key"] != n["addr_key_town"]:
+            bad.append(r.get("store"))
+    if bad:
+        fails.append(f"町丁目でまとめている店 {len(bad)}件。別の店が混ざる")
+
+    # 同じ (店名, 番地) が2行に割れていないか。割れていると同じ店を二重に数える
+    seen = Counter((r.get("store"), r.get("addr_key")) for r in rows)
+    dup = [k for k, v in seen.items() if v > 1]
+    if dup:
+        fails.append(f"同じ店が複数行に分かれている {len(dup)}件")
+
+
+def test_settisha_changes_match_history():
+    """「途中で変わった回数」が、履歴と合っているか。
+
+    合っていなければ、データが言っていないことを画面に書いている。
+    履歴が日付の順に並んでいることも一緒に見る（並んでいなければ
+    「いまの設置者」が最後の届出のものにならない）。
+    """
+    rows = _settisha_rows()
+    if not rows:
+        return
+
+    order_bad, count_bad, now_bad = [], [], []
+    for r in rows:
+        h = r.get("history") or []
+        dates = [x.get("date") or "" for x in h]
+        if dates != sorted(dates):
+            order_bad.append(r.get("store"))
+        for field, shown in (("operator", "operator_changes"),
+                             ("retailer", "retailer_changes")):
+            names = [x.get(field) for x in h if x.get(field)]
+            want = len(dict.fromkeys(names)) - 1 if names else 0
+            if r.get(shown) != want:
+                count_bad.append((r.get("store"), field))
+            now = names[-1] if names else ""
+            if (r.get(field + "_now") or "") != now:
+                now_bad.append((r.get("store"), field))
+    if order_bad:
+        fails.append(f"履歴が日付の順に並んでいない店 {len(order_bad)}件")
+    if count_bad:
+        fails.append(f"変わった回数が履歴と合わない {len(count_bad)}件")
+    if now_bad:
+        fails.append(f"「いまの当事者」が履歴の最後と違う {len(now_bad)}件")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]
