@@ -78,6 +78,9 @@ def build(recs):
                            if isinstance(r.get("area_m2"), (int, float)) else None),
             "operator": r.get("operator_display") or "",
             "operator_kind": kind,
+            # 店をやる人。**同じ届出に書かれているものだけ。**
+            # 別の届出から引いてくると突き合わせになるので、ここではしない（4節）
+            "retailer": r.get("retailer_display") or r.get("retailer") or "",
             "source_url": r.get("source_url"),
             "fetched_on": r.get("fetched_on"),
             "opened_on": None,
