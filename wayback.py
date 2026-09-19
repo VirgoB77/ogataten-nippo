@@ -101,7 +101,7 @@ def load_ledger(sid):
     if os.path.exists(p):
         with open(p, encoding="utf-8") as f:
             return json.load(f)
-    return {"done": {}, "failed": {}, "digests": []}
+    return {"done": {}, "failed": {}, "digests": {}}
 
 
 def save_ledger(sid, led):
@@ -133,8 +133,26 @@ def backfill(sid, urls, budget, lines, prefixes=()):
     d = os.path.join(RAW, sid)
     os.makedirs(d, exist_ok=True)
     repair(sid, led, d, lines)
-    have_days = {n[:10] for n in os.listdir(d) if re.match(r"\d{4}-\d{2}-\d{2}", n)}
-    known = set(led["digests"])
+    # **壊れているものは、持っていないものとして扱う。**
+    # 置換文字がたくさん入っている＝文字にしてから保存した回のもの。
+    # 「ある」と数えると、二度と取り直されない（2026-09-19）
+    have_days = set()
+    for n in os.listdir(d):
+        if not re.match(r"\d{4}-\d{2}-\d{2}", n):
+            continue
+        try:
+            raw = open(os.path.join(d, n), "rb").read()
+        except OSError:
+            continue
+        if raw and raw.count(b"\xef\xbf\xbd") * 40 > len(raw):    # 置換文字だらけ
+            continue
+        have_days.add(n[:10])
+    # **どの回のものかが分かる形で持つ。** もとは並びだけのリストで、
+    # done の並びと対応している前提だった。**その前提はどこにも書いていなかった。**
+    # 1枚取り直したいときに、どれを消せばよいか分からなくなる（2026-09-19）
+    if isinstance(led.get("digests"), list):          # 古い形はそのまま読む
+        led["digests"] = dict(zip(led["done"], led["digests"]))
+    known = set(led["digests"].values())
     got = 0
     for url in urls:
         try:
@@ -171,12 +189,16 @@ def backfill(sid, urls, budget, lines, prefixes=()):
                 budget[0] -= 1
                 time.sleep(WAIT)
                 continue
-            text = to_text(data, headers)
-            with open(os.path.join(d, f"{day}.html"), "w", encoding="utf-8") as f:
-                f.write(text)
+            # **生のまま残す**（recon.py と同じ）。文字にしてから書くと、
+            # 相手が gzip で返した回に、圧縮されたバイト列を
+            # errors="replace" で潰して保存してしまう。0x8b が U+FFFD になり、
+            # **元のバイトはもう戻らない。** 実際に5枚こうなっていた
+            # （data/raw/hyogo-pref-juran、2026-09-19 に発見）
+            with open(os.path.join(d, f"{day}.html"), "wb") as f:
+                f.write(data)
             have_days.add(day)
             known.add(digest)
-            led["digests"].append(digest)
+            led["digests"][ts] = digest
             led["done"][ts] = f"{len(data):,}バイト"
             got += 1
             budget[0] -= 1
@@ -218,7 +240,7 @@ def backfill(sid, urls, budget, lines, prefixes=()):
             with open(os.path.join(fd, f"{day}--{name}"), "wb") as f:
                 f.write(data)
             known.add(digest)
-            led["digests"].append(digest)
+            led["digests"][key] = digest      # done と同じ鍵で持つ
             led["done"][key] = f"{len(data):,}バイト {name}"
             got += 1
             budget[0] -= 1

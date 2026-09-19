@@ -579,6 +579,35 @@ def test_文字コードは例外の有無で選ばない():
             + " / ".join(bad))
 
 
+def test_取ってきた生データを文字にしてから保存していないか():
+    """`data/raw/` に置換文字だらけのファイルが無いか。
+
+    2026-09-19、`data/raw/hyogo-pref-juran/` に5枚あった。
+    相手が gzip で返した回に、`wayback.py` が**文字にしてから保存**していた。
+    先頭が `1f 8b 08`（gzip）ではなく `1f ef bf bd` になっていて、
+    `0x8b` が U+FFFD に潰れている。**元のバイトはもう戻らない。**
+
+    `recon.py` は最初から `"wb"` でバイトのまま書いていた
+    （「生のまま残す。これがアーカイブの最初の1枚になる」）。
+    **同じ判断が2か所にあって、片方だけ正しかった。**
+    """
+    import glob
+    root = os.path.join(HERE, "data", "raw")
+    if not os.path.isdir(root):
+        return
+    bad = []
+    for fp in sorted(glob.glob(os.path.join(root, "**", "*.html"), recursive=True)):
+        raw = open(fp, "rb").read()
+        n = raw.count(b"\xef\xbf\xbd")
+        if raw and n * 40 > len(raw):          # 40バイトに1個より多い
+            bad.append(f"{os.path.relpath(fp, HERE)}（置換文字 {n} 個 / {len(raw)} バイト）")
+    if bad:
+        raise AssertionError(
+            "生データが文字にしてから保存されている（バイトのまま書くこと）：\n  "
+            + "\n  ".join(bad[:5])
+            + (f"\n  ほか {len(bad) - 5} 件" if len(bad) > 5 else ""))
+
+
 def test_split_city():
     """4節。**開発系が実データ456件で確かめた形を、そのまま固定する。**
 
