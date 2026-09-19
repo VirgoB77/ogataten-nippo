@@ -1172,6 +1172,62 @@ def test_空でよい欄には理由があるか():
             raise AssertionError(f"KARA_DE_YOI の {k} に理由が書かれていない")
 
 
+def test_消えるまでの日数を仮定で書いていないか():
+    """**仮定を書いたら、当たるかを測る。**
+
+    2026-09-19。案出しから「今週消える縦覧情報」の案が来た。作れる。
+    だが統括は「縦覧は4か月」という仮定を持っていた。**測ったら外れた。**
+
+        ±14日以内で当たった   25
+        **外れた**            89
+
+    しかも実績は**収集先ごとにまったく違う**（中央値 0日〜144日）。
+    ひとつの平均にまとめてはいけない。
+
+    見張るのは3つ。
+    ① 消えない置き場（`cumulative`）を混ぜないこと。混ぜると「ほとんど消えない」になる
+    ② 仮定が当たるかを**測っていること**（`katei_wa_ataru` が在る）
+    ③ 記録に「**こちらが見てから**」と書いてあること。「載ってから」は分からない
+
+    **捕まえないもの**：中央値が正しいか。数字は毎朝動く。
+    """
+    import importlib
+    import json
+    michi = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(michi):
+        return
+    ki = importlib.import_module("kieru")
+    recs = json.load(open(michi, encoding="utf-8"))
+
+    # ① 消えない置き場を混ぜない
+    nise = [{"mode": "cumulative", "listed": False, "source": "x",
+             "first_seen": "2026-01-01", "last_seen": "2026-06-01"}]
+    if ki.measure(nise):
+        raise AssertionError(
+            "cumulative（消えない置き場）を数えている。"
+            "混ぜると「ほとんど消えない」という嘘の数字になる")
+
+    # ② 仮定が当たるかを測っている。**当たっていなくてよい。測っていることが要る**
+    ok, ng, _ = ki.katei_wa_ataru(recs)
+    if ok + ng == 0:
+        raise AssertionError(
+            "「縦覧は4か月」の仮定を1件も突き合わせていない。"
+            "仮定を書いたら、当たるかを測る")
+
+    # ③ 記録の言い方。**主語をこちらにする**
+    kiroku = os.path.join(HERE, "data", "ref", "kieru.md")
+    if not os.path.exists(kiroku):
+        return
+    honbun = open(kiroku, encoding="utf-8").read()
+    if "こちらが見てから" not in honbun:
+        raise AssertionError(
+            "記録に「こちらが見てから」と書かれていない。"
+            "first_seen は相手が載せた日ではない（3.5）")
+    for warui in ("あと3日で消えます", "まもなく消えます"):
+        if warui in honbun.replace("❌ " + warui, ""):
+            raise AssertionError(f"記録に「{warui}」がある。予測は書かない")
+
+
 def test_中規模を大店立地法と書いていないか():
     """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
 
