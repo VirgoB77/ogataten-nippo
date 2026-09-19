@@ -633,10 +633,44 @@ def test_取ってきた生データを文字にしてから保存していな�
         n = raw.count(b"\xef\xbf\xbd")
         if raw and n * 40 > len(raw):          # 40バイトに1個より多い
             bad.append(f"{os.path.relpath(fp, HERE)}（置換文字 {n} 個 / {len(raw)} バイト）")
+        # **バイトのまま保存するようにしたら、こちらは置換文字が出なくなる。**
+        # **守りを直すと、その守りを見ていた検査の効き目も変わる**（2026-09-19）
     if bad:
         raise AssertionError(
             "生データが文字にしてから保存されている（バイトのまま書くこと）：\n  "
             + "\n  ".join(bad[:5])
+            + (f"\n  ほか {len(bad) - 5} 件" if len(bad) > 5 else ""))
+
+
+def test_生データの名前が中身と合っているか():
+    """拡張子と中身の先頭が合っているか。
+
+    2026-09-19、`data/raw/tokyo-ref/` に `%PDF` で始まる `.html` が **40枚**あった。
+    バイトは無事なので壊れてはいない。**名前が嘘をついている**だけ。
+    だが `*.html` を読む側は、黙って読み違える
+    （9節「名前が変わったことと、中身が変わったことは違う」）。
+
+    **捕まえないもの**：中身が正しいか。HTML と名乗る HTML が
+    壊れていないかは、ここでは見ていない。
+    """
+    import glob
+    import recon
+    root = os.path.join(HERE, "data", "raw")
+    if not os.path.isdir(root):
+        return
+    bad = []
+    for fp in sorted(glob.glob(os.path.join(root, "**", "*.*"), recursive=True)):
+        if os.path.isdir(fp):
+            continue
+        raw = open(fp, "rb").read(8)
+        want = recon.ext_of(raw)
+        have = os.path.splitext(fp)[1].lower()
+        # .html は「それ以外」の受け皿なので、中身が判る形のときだけ責める
+        if want != ".html" and have != want:
+            bad.append(f"{os.path.relpath(fp, HERE)} は {want} の中身")
+    if bad:
+        raise AssertionError(
+            "名前と中身が合っていない：\n  " + "\n  ".join(bad[:5])
             + (f"\n  ほか {len(bad) - 5} 件" if len(bad) > 5 else ""))
 
 
