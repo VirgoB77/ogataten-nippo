@@ -62,6 +62,32 @@ def decide_charset(raw, content_type):
     return "utf-8"
 
 
+def ext_of(raw, content_type=""):
+    """中身から拡張子を決める。**名前が中身と違うものを作らない。**
+
+    2026-09-19、`data/raw/tokyo-ref/` に `%PDF` で始まる `.html` が40枚あった。
+    バイトは無事だが、**名前が嘘をついている。** `*.html` を読む側が
+    黙って読み違える（9節「名前が変わったことと、中身が変わったことは違う」）。
+
+    見出し（Content-Type）ではなく**中身の先頭**を先に見る。
+    見出しを付け忘れるサーバーがあるため。
+    """
+    head = raw[:5]
+    if head[:4] == b"%PDF":
+        return ".pdf"
+    if head[:2] == b"PK":
+        return ".zip"          # xlsx / docx もこれ。中を開くまで区別しない
+    if head[:2] == b"\x1f\x8b":
+        return ".gz"
+    ct = (content_type or "").lower()
+    for key, ext in (("pdf", ".pdf"), ("zip", ".zip"),
+                     ("excel", ".zip"), ("sheet", ".zip"),
+                     ("csv", ".csv"), ("json", ".json"), ("xml", ".xml")):
+        if key in ct:
+            return ext
+    return ".html"
+
+
 def to_text(raw, content_type):
     cs = decide_charset(raw, content_type)
     for enc in (cs, "utf-8", "cp932", "euc_jp"):
@@ -405,7 +431,7 @@ def main():
         # 生のまま残す。これがアーカイブの最初の1枚になる
         d = os.path.join(raw_dir, src["id"])
         os.makedirs(d, exist_ok=True)
-        with open(os.path.join(d, f"{today}.html"), "wb") as f:
+        with open(os.path.join(d, f"{today}{ext_of(raw, ctype)}"), "wb") as f:
             f.write(raw)
 
         # 入口が目次だけのことが多い（堺市・和泉市・阪南市など）。
@@ -456,7 +482,8 @@ def main():
                     continue
                 t2, _ = to_text(raw2, ct2)
                 a2 = analyze(t2, url2)
-                with open(os.path.join(d, f"{today}--{slug_of(url2)}.html"), "wb") as f:
+                with open(os.path.join(d, f"{today}--{slug_of(url2)}{ext_of(raw2, ct2)}"),
+                          "wb") as f:
                     f.write(raw2)
                 res["followed"].append((label, a2, depth, None))
                 counts[a2["verdict"]] = counts.get(a2["verdict"], 0) + 1

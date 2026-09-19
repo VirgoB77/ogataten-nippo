@@ -57,8 +57,14 @@ def get(url, timeout=TIMEOUT, tries=2):
     if data[:2] == b"\x1f\x8b" or (headers.get("Content-Encoding") or "").lower() == "gzip":
         try:
             data = gzip.decompress(data)
-        except OSError:
-            pass
+        except OSError as e:
+            # **黙って先へ進まない。** 解けないまま保存すると、中身が
+            # 読めないファイルが「その日の記録」として残る。
+            # バイトのままなので消えはしないが、**誰も気づかない**
+            # （2026-09-19。before は文字にして潰していた）
+            raise RuntimeError(
+                f"gzip と名乗っているのに解けない（{len(data):,}バイト・"
+                f"先頭 {data[:4].hex()}）：{e}") from e
     return data, headers
 
 
