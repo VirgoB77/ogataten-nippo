@@ -50,10 +50,16 @@ TIMEOUT = 120
 PREFS = {"27": "大阪府", "28": "兵庫県"}
 
 SOURCES = [
-    # (名前, 一覧ページ, zip のリンクを見分ける正規表現)
-    ("A29", "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html",
+    # (名前, 見に行くページ（上から順に。1本目で zip が見つかればそこで止める）,
+    #  zip のリンクを見分ける正規表現)
+    # **1本目で空振りでも、そこで終わりにしない。** 一覧の作りが変わっていることが
+    # あるので、上の階層も見て、何が置いてあるかを報告に残す（2026-09-19）
+    ("A29", ["https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html",
+             "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29.html",
+             "https://nlftp.mlit.go.jp/ksj/index.html"],
      re.compile(r"A29[-_][^\"']*?_(\d{2})[_.][^\"']*\.zip", re.I)),
-    ("ISJ", "https://nlftp.mlit.go.jp/isj/",
+    ("ISJ", ["https://nlftp.mlit.go.jp/isj/",
+             "https://nlftp.mlit.go.jp/isj/index.html"],
      re.compile(r"(\d{2})000[^\"']*\.zip", re.I)),
 ]
 
@@ -62,11 +68,20 @@ MAX_ZIP = 200_000_000
 BUDGET = 700_000_000     # 1回の実行で落とす合計の上限
 
 
-def get(url, limit):
+def get(url, limit, meta=None):
+    """取ってくる。`meta` を渡すと、最後のURL・状態・型をそこに書く。
+
+    **「見つからなかった」だけでは、次に何をすればいいか分からない。**
+    どこに飛ばされたのか、何が返ってきたのかを持って帰る（2026-09-19）。
+    """
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
         if r.status in (429, 503):
             raise RuntimeError(f"HTTP {r.status}。相手が混んでいる。やめる（3.4）")
+        if meta is not None:
+            meta["status"] = r.status
+            meta["final_url"] = r.geturl()
+            meta["content_type"] = r.headers.get("Content-Type") or ""
         data = r.read(limit + 1)
     if len(data) > limit:
         raise ValueError(f"{limit} バイトを超えた")
@@ -119,23 +134,63 @@ def main():
     got, spent, meta = [], 0, {"fetched_on": runday.today(), "files": []}
     os.makedirs(OUT, exist_ok=True)
 
-    for name, page, pat in SOURCES:
+    for name, pages, pat in SOURCES:
+      for pi, page in enumerate(pages):
+        tag = f"{name}" if pi == 0 else f"{name}-{pi}"
         ok, why = check_robots(page)
-        lines.append(f"## {name}  {page}")
+        lines.append(f"## {tag}  {page}")
         lines.append(f"- robots: {why}")
         if not ok:
             lines.append("- **取りに行かない**（共通仕様3.4）")
             lines.append("")
             continue
+        pm = {}
         try:
-            html = get(page, 20_000_000).decode("utf-8", "replace")
+            raw = get(page, 20_000_000, pm)
+            html = raw.decode("utf-8", "replace")
         except Exception as e:
             lines.append(f"- 一覧ページが読めなかった：{type(e).__name__} {e}")
             lines.append("")
             continue
         time.sleep(WAIT)
 
+        # **ページの実物を金庫に置く。** 手元からは届かないので、
+        # ここで持って帰らないと、なぜ見つからなかったのかを調べられない
+        os.makedirs(OUT, exist_ok=True)
+        with open(os.path.join(OUT, f"{tag}-page.html"), "wb") as f:
+            f.write(raw)
+        title = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
+        lines.append(f"- HTTP {pm.get('status')} / {pm.get('content_type')} / {len(raw):,} バイト")
+        if pm.get("final_url") and pm["final_url"] != page:
+            lines.append(f"- **飛ばされた先**: {pm['final_url']}")
+        lines.append(f"- title: {(title.group(1).strip()[:80] if title else '（無し）')}")
+        hrefs = re.findall(r'href="([^"]+)"', html, re.I)
+        srcs = re.findall(r'src="([^"]+)"', html, re.I)
+        forms = re.findall(r'<form[^>]*>', html, re.I)
+        lines.append(f"- a/link の href {len(hrefs)} 本 ／ script などの src {len(srcs)} 本 ／ form {len(forms)} 個")
+        for f_ in forms[:3]:
+            lines.append(f"  - form: `{f_[:120]}`")
+        # 拡張子の内訳。zip がどこにも無いのか、別の形なのかを見る
+        ext = {}
+        for h in hrefs:
+            m = re.search(r"\.([a-z0-9]{2,5})(?:[?#]|$)", h, re.I)
+            ext[(m.group(1).lower() if m else "（拡張子なし）")] = \
+                ext.get((m.group(1).lower() if m else "（拡張子なし）"), 0) + 1
+        top = sorted(ext.items(), key=lambda x: -x[1])[:10]
+        lines.append(f"- href の拡張子: {top}")
+        # 府県コードらしきものを含むリンクを、拡張子を問わず拾う
+        cand = [h for h in hrefs if re.search(r"(^|[^0-9])(27|28)([^0-9]|$)", h)][:10]
+        lines.append(f"- 27／28 を含む href（拡張子を問わず）{len(cand)} 本:")
+        for h in cand:
+            lines.append(f"  - `{h[:110]}`")
+        lines.append(f"- ページの実物を置いた → `{tag}-page.html`（金庫）")
+
         found = links(html, page, pat)
+        if not found and pi + 1 < len(pages):
+            lines.append("- ここでは見つからなかった。次のページも見る")
+            lines.append("")
+            time.sleep(WAIT)
+            continue
         all_zip = len(re.findall(r'href="[^"]+\.zip"', html, re.I))
         lines.append(f"- ページの中の zip リンク（全部）: {all_zip} 本")
         for code, label in PREFS.items():
@@ -182,6 +237,7 @@ def main():
             except Exception as e:
                 lines.append(f"  - 中身が読めなかった：{type(e).__name__} {e}")
         lines.append("")
+        break
 
     lines += ["## 次にやること", "",
               "この報告を読んでから、当てるコードを書く（属性名・座標系・番地の粒度を見る）。",
