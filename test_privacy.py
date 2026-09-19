@@ -579,6 +579,51 @@ def test_文字コードは例外の有無で選ばない():
             + " / ".join(bad))
 
 
+def test_正本に書いた署名が実装にあるか():
+    """5節の code block に書いた `def` が、`common/privacy.py` に実在するか。
+
+    2026-09-19、開発系が突き合わせて見つけた。**2件ずれていた。**
+
+        residential_reason(*texts)    文書に署名あり／**実装に無い**
+        redact_name(name, names=())   文書は names あり／実装は (name)
+
+    どちらも**文書を直して、コードを直していない**形。
+    `common/MANIFEST.txt` は置き場どうしを比べる紙なので、
+    **文書とコードのずれは映らない。** 4つの置き場が同じようにずれていたら
+    全部通る。見る向きが違うので、別の検査が要る。
+    """
+    import ast
+    import re as _re
+    from common import privacy
+
+    doc = open(os.path.join(HERE, "docs", "kyotsu-shiyo.md"), encoding="utf-8").read()
+    sec = doc[doc.index("\n## 5."):doc.index("\n## 6.")]
+    want = {}
+    for m in _re.finditer(r"^def (\w+)\(([^)]*)\)", sec, _re.M):
+        want[m.group(1)] = m.group(2)
+    if len(want) < 5:
+        raise AssertionError(f"5節から署名を{len(want)}個しか拾えていない。拾い方が壊れている")
+
+    tree = ast.parse(open(privacy.__file__, encoding="utf-8").read())
+    have = {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
+
+    bad = []
+    for name, params in sorted(want.items()):
+        fn = have.get(name)
+        if fn is None:
+            bad.append(f"{name}(): 文書にあるが **実装に無い**")
+            continue
+        # 型の注記と既定値を落として、引数の名前だけを比べる
+        doc_args = [a.split(":")[0].split("=")[0].strip().lstrip("*")
+                    for a in params.split(",") if a.strip()]
+        code_args = ([a.arg for a in fn.args.args]
+                     + ([fn.args.vararg.arg] if fn.args.vararg else []))
+        if doc_args != code_args:
+            bad.append(f"{name}(): 文書 {doc_args} / 実装 {code_args}")
+    if bad:
+        raise AssertionError("正本の文書と実装がずれている：\n  " + "\n  ".join(bad))
+
+
 def test_common_の指紋が中身と合っているか():
     """`common/` を直したら、指紋の一覧も同じコミットで直す。
 
