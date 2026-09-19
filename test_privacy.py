@@ -579,6 +579,59 @@ def test_文字コードは例外の有無で選ばない():
             + " / ".join(bad))
 
 
+def test_split_city():
+    """4節。**開発系が実データ456件で確かめた形を、そのまま固定する。**
+
+    値は要約ではなく、向こうが実際に踏んだ住所（2026-09-19 に受け取った）。
+    """
+    from common import addr
+    codes = addr.load_codes()
+    if not codes:
+        return
+
+    # ① 住所そのものから切れる。**呼ぶ側の市は被せない**
+    for text, want_pref, want_city in (
+            ("岡山県備前市三石字山鼻731番11", "岡山県", "備前市"),
+            ("兵庫県洲本市由良町由良字小佐毘濱2452番1", "兵庫県", "洲本市"),
+            ("大阪府泉南郡岬町多奈川小島467番", "大阪府", "岬町")):
+        got = addr.split_city(text, "大阪府", "大阪市", codes)
+        eq((got["pref"], got["city"], got["city_source"]),
+           (want_pref, want_city, "住所"), f"住所から切れる（{want_city}）")
+
+    # ② 郡を落とした形でも当てる（コード表に郡は入っていない）
+    got = addr.split_city("赤穂郡上郡町大持字段68番1", "兵庫県", "", codes)
+    eq((got["city"], got["city_source"]), ("上郡町", "住所"), "郡を落として当てる")
+
+    # ③ 台帳で補う。**補ったと記録する**
+    got = addr.split_city("福島区海老江八丁目44番6", "大阪府", "大阪市", codes)
+    eq((got["city"], got["city_precision"], got["city_source"]),
+       ("大阪市福島区", "区", "台帳"), "区だけ書いてある")
+    got = addr.split_city("矢田五丁目", "大阪府", "大阪市", codes)
+    eq((got["city"], got["city_precision"], got["city_source"]),
+       ("大阪市", "市", "台帳"), "市も区も書いていない")
+
+    # ④ 決まらないものは空。**読み替えない**（篠山市→丹波篠山市 に直さない）
+    got = addr.split_city("篠山市山内町64番３", "兵庫県", "", codes)
+    eq((got["city"], got["city_source"]), ("", ""), "コード表に無い市は空のまま")
+
+    # ⑤ **ヒントは狭めるためにだけ使う。**
+    #    外して全国から探すと、大阪市の「北区梅田一丁目」が東京都北区になる。
+    #    開発系の実データでは、台帳で補った121件のうち23件がこの形だった
+    hazard = addr.split_city("北区梅田一丁目", "", "", codes)
+    eq((hazard["pref"], hazard["city"]), ("東京都", "北区"),
+       "ヒントを外すと他県に当たる（この形があるので広げてはいけない）")
+    safe = addr.split_city("北区梅田一丁目", "大阪府", "大阪市", codes)
+    eq((safe["pref"], safe["city"], safe["city_source"]),
+       ("大阪府", "大阪市北区", "台帳"), "ヒントがあれば狭まる")
+
+    # ⑥ 同じ名前の町が2つの府県にある。**管轄で絞る側の仕事**。
+    #    split_city 自身は渡された府県で答える。勝手に選ばない
+    for pref in ("大阪府", "兵庫県"):
+        got = addr.split_city("太子町鵤123番", pref, "", codes)
+        eq((got["pref"], got["city"]), (pref, "太子町"),
+           f"太子町は渡された府県で答える（{pref}）")
+
+
 def test_正本に書いた署名が実装にあるか():
     """5節の code block に書いた `def` が、`common/privacy.py` に実在するか。
 

@@ -107,6 +107,91 @@ def _clean(addr):
     return a
 
 
+# 市区町村の索引。`load_codes()` から作る。長いものから当てる
+_BY_PREF = None
+_PREFS = None
+# 郡は市区町村コードの表に入っていない（「川辺郡猪名川町」は「猪名川町」で載る）
+_GUN = re.compile(r"^(.{1,5}?郡)")
+
+
+def _index(codes=None):
+    """{都道府県: [市区町村, ...]}（長い順）と、都道府県の一覧（長い順）。"""
+    global _BY_PREF, _PREFS
+    codes = load_codes() if codes is None else codes
+    if _BY_PREF is not None and _BY_PREF.get("__src__") is codes:
+        return _BY_PREF["by"], _PREFS
+    by = {}
+    for (pref, city) in codes:
+        by.setdefault(pref, []).append(city)
+    for v in by.values():
+        v.sort(key=len, reverse=True)
+    _BY_PREF = {"__src__": codes, "by": by}
+    _PREFS = sorted(by, key=len, reverse=True)
+    return by, _PREFS
+
+
+def split_city(addr, pref="", city="", codes=None):
+    """「所在地」の1列から、都道府県と市区町村を切り出す。
+
+    pref / city は収集先の台帳が知っている値を渡す**ヒント**。
+    **文字列のほうを先に信じる。** 大阪市が岡山県備前市の土地を売って
+    いることが実際にあるので、収集先の市をそのまま被せると、
+    他県の土地が大阪市の升に入る（4節「収集先の市を、そのまま住所に被せない」）。
+
+    戻り値は2つの欄で、**別のことを測る。**
+
+        city_precision  どこまで決まったか（細かさ）。層の粒度に使う
+          "区" / "市" / ""
+
+        city_source     どこから取ったか（確かさ）。突き合わせてよいかに使う
+          "住所"  所在地そのものから切れた。いちばん確か
+          "台帳"  呼ぶ側の市で補った。**たぶんその市。**
+                  住所と食い違ったら "住所" のほうを信じる
+          ""      決められなかった。**推測で埋めない**
+
+    **1つの欄に2つの意味を入れない。** 細かさだけを持っていたとき、
+    住所から切れた「大阪市福島区」と、台帳の"大阪市"＋住所の"福島区"を
+    足した「大阪市福島区」が、どちらも "区" で見分けられなかった
+    （実データ456件のうち121件がヒントで補った行。開発系・2026-09-19）。
+
+    **ヒントは狭めるためにだけ使う。探す範囲を広げるためには使わない。**
+    ヒントを外して全国から探すと、大阪市の「北区梅田一丁目」が
+    **東京都北区**になる（121件のうち23件がこの形）。
+    """
+    codes = load_codes() if codes is None else codes
+    by, prefs = _index(codes)
+    s = re.sub(r"[\s\u3000]+", "", addr or "")
+    got_pref = ""
+    for p in prefs:                        # 文字列に都道府県名が書いてあれば、それ
+        if s.startswith(p):
+            got_pref, s = p, s[len(p):]
+            break
+    if not got_pref and pref:
+        got_pref = pref
+    bare = _GUN.sub("", s)                 # 郡を落とした形でも当てる
+    for p in ([got_pref] if got_pref else prefs):
+        for c in by.get(p, ()):
+            for t in (s, bare):
+                if t.startswith(c):
+                    return {"pref": p, "city": c, "rest": t[len(c):],
+                            "city_precision": "区" if "区" in c else "市",
+                            "city_source": "住所"}
+    # 市名が省かれて区から書いてある（大阪市のページの「福島区海老江…」）
+    m = re.match(r"^(.+?区)", s)
+    if city and m and (got_pref, city + m.group(1)) in codes:
+        return {"pref": got_pref, "city": city + m.group(1),
+                "rest": s[len(m.group(1)):], "city_precision": "区",
+                "city_source": "台帳"}
+    # 区も書かれていない（大阪市のページの「矢田五丁目」）。
+    # **ここに来るのは、他の都道府県・市区町村の名前で始まっていないときだけ。**
+    if city and ((not got_pref) or got_pref == pref):
+        if ((got_pref or pref), city) in codes:
+            return {"pref": got_pref or pref, "city": city, "rest": s,
+                    "city_precision": "市", "city_source": "台帳"}
+    return {"pref": got_pref, "city": "", "rest": s,
+            "city_precision": "", "city_source": ""}
+
+
 def _conflicting_head(a, pref, city, codes=None):
     """整形後の住所 `a` の先頭が、呼ぶ側と違う都道府県／市を名乗っていたら、その名前。
 
