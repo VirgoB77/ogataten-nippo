@@ -37,6 +37,31 @@ def eq(got, want, what):
 
 
 # ---------------------------------------------------------------- is_corp
+def soto_ni_deru():
+    """**外に出て行く .py を、実物から拾う。** 名前で並べない。
+
+    2026-09-19、開発系のやり方（`urlopen` を呼ぶか）を自分に当てたら、
+    検査の中に**名前の一覧が2か所**あった。
+
+        test_every_fetcher_stops_when_busy   ("recon.py", "files.py", …)
+        decode の検査                        ("common/fetch.py", "koho_pdf.py", …)
+
+    **同じ日に足した `chizu_recon.py` が、両方に入っていない。**
+    429/503 を見ていなくても、文字コードを決め打ちしていても、**黙る。**
+    """
+    import glob
+    import re as _re
+    DERU = _re.compile(r"from\s+common\.fetch\s+import|common\.fetch\b|urlopen\s*\(")
+    de = []
+    for michi in sorted(glob.glob(os.path.join(HERE, "*.py"))
+                        + glob.glob(os.path.join(HERE, "common", "*.py"))):
+        if os.path.basename(michi).startswith("test_"):
+            continue
+        if DERU.search(open(michi, encoding="utf-8").read()):
+            de.append(michi)
+    return de
+
+
 def workflow_files():
     """workflow の一覧。**拡張子を1つに決め打ちしない。**
 
@@ -606,9 +631,8 @@ def test_文字コードは例外の有無で選ばない():
         ("化けたまま", "decode_html 自身の最後の逃げ道。もう手が無い"),
         ("LookupError", "宣言された名前が引けなかったときの逃げ道"),
     )
-    targets = [os.path.join(HERE, f) for f in
-               ("common/fetch.py", "koho_pdf.py", "recon.py", "wayback.py")]
-    targets += sorted(glob.glob(os.path.join(HERE, "ref_*.py")))
+    # **名前で並べない**（2026-09-19）。外に出るものを実物から拾う
+    targets = soto_ni_deru()
     bad = []
     for path in targets:
         if not os.path.exists(path):
@@ -947,6 +971,11 @@ def test_住所の書かれ方は細かいほうから見るか():
             # 向こうで199件中145件（72.9%）、こちらで1,406件中975件（69.3%）。
             # **2サイトが独立に同じ割合を出した**ので、印を1つ足した
             ("北区長曽根町3456－7 ほか", "略記（印が無いが数字はある）"),
+            # **括弧の中と「外◯筆」は場所の細かさではない。**
+            # 開発系が「食い違うとしたらここ」と教えてくれた形。
+            # 向こうの199件では1件も違わなかったが、**こちらでは5件出た**
+            ("川西市火打一丁目（中央北地区特定土地区画整理事業6街区20―3画地ほか）", "町名まで"),
+            ("美方郡香美町香住区山手外1筆", "町名まで"),
             ("南区晴美台4丁 1-2の一部", "略記（印が無いが数字はある）"),
             # **丁目の数字は町名の一部。** 落としてから数字を探す
             ("豊中市庄内西町5丁目", "町名まで"),
@@ -1242,6 +1271,167 @@ def test_消えるまでの日数を仮定で書いていないか():
         raise AssertionError(
             "「消えた日」を点として書いている。"
             "持っているのは最後に在るのを見た日で、消えたのはその後のどこか（3.5）")
+
+
+def test_消えたことの書き方():
+    """**「消えた」も主張。主語をこちらにする。**
+
+    2026-09-19、中島さんの——
+
+    > ネットから消えた日の件は、**SEO対策で語句を選ばないといけない**にゃね
+
+    そのとおりで、しかも語句を選ぶ前に**外れない形**にする必要があった。
+    それまでこう書いていた。
+
+        ❌ 自治体のページには載らなくなりました
+           → **自治体のページの話。** こちらが見に行けなかっただけかもしれない
+             （URL が変わった・取得に失敗した・robots が変わった）
+        ✅ ◯月◯日を最後に、自治体のページでは**見つかっていません**
+
+    そして**消えた日は点ではない**ので、そこも書く。
+
+    見張るのは3つ。
+    ① 「載らなくなりました」のような、相手を主語にした断定が無いこと
+    ② 消えたものは**説明文（description）にも入る**こと
+       —— 検索から着いた人が「役所のページに無い」をそこで知る
+    ③ 「まだ在る」側も主語がこちらであること
+
+    **捕まえないもの**：実際に検索で上がるか。後日 Search Console で見る。
+    """
+    src = open(os.path.join(HERE, "build_site.py"), encoding="utf-8").read()
+
+    # ① 相手を主語にした断定
+    for warui in ("載らなくなりました", "削除されました", "消滅しました"):
+        i = src.find(warui)
+        while i >= 0:
+            atama = src.rfind("\n", 0, i) + 1
+            if not src[atama:i].lstrip().startswith("#"):
+                raise AssertionError(
+                    f"{src[:i].count(chr(10)) + 1}行目の「{warui}」は相手を主語にした断定。"
+                    "こちらが見に行けなかっただけかもしれない（3.5）")
+            i = src.find(warui, i + 1)
+
+    # ②③ 出来上がった個票で見る
+    import glob
+    import json
+    zairyo = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(zairyo):
+        return
+    recs = json.load(open(zairyo, encoding="utf-8"))
+    kieta = [r for r in recs if r.get("mode") == "snapshot"
+             and not r.get("listed") and r.get("last_seen")]
+    aru = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed")]
+    for rows, kotoba, nani in (
+            (kieta[:30], "見つかっていません", "消えたもの"),
+            (aru[:30], "こちらが最後に見た", "まだ在るもの")):
+        for r in rows:
+            michi = os.path.join(HERE, "s", f"{r['key']}.html")
+            if not os.path.exists(michi):
+                continue
+            h = open(michi, encoding="utf-8").read()
+            if kotoba not in h:
+                raise AssertionError(
+                    f"{nani}の個票に「{kotoba}」が入っていない（{os.path.basename(michi)}）")
+
+    # ② 説明文にも入る
+    for r in kieta[:30]:
+        michi = os.path.join(HERE, "s", f"{r['key']}.html")
+        if not os.path.exists(michi):
+            continue
+        h = open(michi, encoding="utf-8").read()
+        m = re.search(r'name="description" content="([^"]*)"', h)
+        if m and "見つかっていません" not in m.group(1):
+            raise AssertionError(
+                f"消えたものの説明文に入っていない（{os.path.basename(michi)}）。"
+                "検索から着いた人が、役所のページに無いことをそこで知る")
+
+
+def test_辿れる側の一覧を手で書いていないか():
+    """**印を足す所と、辿れる側に数える所が別だと、片方を忘れる。**
+
+    2026-09-19、開発系の報告——
+
+    > `KOMAKAI` から印を1つ落としたら**鳴らなかった**。①定数を読む検査も、
+    > ②実データで数える検査も通る。変わるのは「番まで辿れる見込み」の1行だけ。
+
+    **統括でも試したら同じだった。** 81.9% が 61.6% になっても、
+    **検査77本すべて通った。**
+
+    直し方は見張りを足すことではなく、**2か所を1か所にすること。**
+    `KOMAKAI` は `KATACHI` の「どこまで当たるか」から作る。
+
+    そのうえで、**紙に書いた割合を、いま数え直した割合と突き合わせる。**
+    導き方そのものが壊れたときに鳴る。
+
+    **捕まえないもの**：印があれば本当に座標が当たるか。まだ引き当てていない。
+    """
+    import importlib
+    import json
+    ak = importlib.import_module("addr_katachi")
+
+    # ① **手で書いていない。** 表から作られている
+    hyo = {name for name, _d, made in ak.KATACHI if "置けない" not in made}
+    if set(ak.KOMAKAI) != hyo:
+        raise AssertionError(
+            f"KOMAKAI {sorted(ak.KOMAKAI)} が、表から作った {sorted(hyo)} と違う。"
+            "2か所あると、印を足した日に片方を忘れる")
+
+    # ② **紙の割合と、いま数え直した割合が合うか**
+    zairyo = os.path.join(HERE, "data", "all.json")
+    kami = os.path.join(HERE, "data", "ref", "addr-katachi.md")
+    if not (os.path.exists(zairyo) and os.path.exists(kami)):
+        return
+    recs = json.load(open(zairyo, encoding="utf-8"))
+    zentai, _rei = ak.measure(recs)
+    okeru = sum(zentai.get(k, 0) for k in ak.KOMAKAI)
+    honbun = open(kami, encoding="utf-8").read()
+    if f"{okeru:,}件" not in honbun:
+        raise AssertionError(
+            f"紙の「番まで辿れる見込み」が、いま数えた {okeru:,}件 と合わない。"
+            "印を足したのに、辿れる側に数えていないか")
+
+
+def test_括弧の中だけに数字がある住所():
+    """**括弧の中と「外◯筆」は、場所の細かさではない。**
+
+    開発系が測って教えてくれた（2026-09-19）。向こうの実データ199件では
+    **2つの書き方で1件も違わなかった**が——
+
+    > 0件なのは開発系の話で、4サイトの話ではないにゃ
+
+    **そのとおりだった。こちらでは5件出た。**
+
+        川西市火打一丁目（中央北地区特定土地区画整理事業◯街区◯◯―◯画地ほか）
+
+    括弧の中は区画整理の仮換地表示で、**地番ではない。**
+    印は4サイト共通なので、統括が直して4本とも同じ日に変える。
+
+    直したあとは**0件が正しい姿**。0でなくなったら、括弧の中の
+    書き方が増えたということなので、そこで見直す。
+    """
+    import importlib
+    import json
+    ak = importlib.import_module("addr_katachi")
+
+    # **見本は実物から取る**（開発系が送ってきた形と、こちらの実データ）
+    for text, hoshii in (
+            ("美方郡香美町香住区山手外1筆", True),
+            ("京都市北区上賀茂薮田町（12街区）", True),
+            ("北区長曽根町3456－7 ほか", False),
+            ("門真市江端町", False),
+    ):
+        if ak.kakko_dake(text) != hoshii:
+            raise AssertionError(f"「{text}」の判定が違う（{ak.kakko_dake(text)}）")
+
+    zairyo = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(zairyo):
+        return
+    nokori = ak.kuichigai(json.load(open(zairyo, encoding="utf-8")))
+    if nokori:
+        raise AssertionError(
+            f"略記と読んだもので、数字が括弧か「外◯筆」にしかないものが {len(nokori)}件ある"
+            f"（例 {nokori[0].get('address')}）。"
+            "括弧の中は場所の細かさではない。**正本に上げること**")
 
 
 def test_中規模を大店立地法と書いていないか():
@@ -2254,8 +2444,19 @@ def test_every_fetcher_stops_when_busy():
 
     recon.py だけ is_busy を見ていなかった。1本忘れると、そこだけ押し込む。
     """
-    for name in ("recon.py", "files.py", "wayback.py", "koho_pdf.py"):
-        src = open(os.path.join(HERE, name), encoding="utf-8").read()
+    # **名前で並べない**（2026-09-19）。同じ日に足した chizu_recon.py が
+    # 一覧に入っていなかった。足した日に黙る形だった
+    michi_ra = soto_ni_deru()
+    if not michi_ra:
+        raise AssertionError("外に出る .py が1つも見つからない。拾い方が壊れている")
+    for michi in michi_ra:
+        name = os.path.relpath(michi, HERE)
+        src = open(michi, encoding="utf-8").read()
+        # **`is_busy` を定義している側は、止める側ではない。**
+        # 道具（common/fetch.py）と、道具を使う側を分ける。
+        # **名前で外さない。** 「定義しているか」で外す
+        if re.search(r"^def is_busy\(", src, re.M):
+            continue
         eq("is_busy" in src, True, f"{name} が 429/503 を見ていない（共通仕様3.4）")
         stops = re.search(r"if is_busy\(e\):(?:[^\n]*\n){1,8}?[ \t]*(break|raise|return)", src)
         eq(bool(stops), True, f"{name} は 429/503 を見ているが、そこで止めていない")
