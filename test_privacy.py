@@ -907,6 +907,41 @@ def test_common_の指紋が中身と合っているか():
             "（common/ を直したら、同じコミットで一覧も作り直す）")
 
 
+def test_1日に2回以上取りに行かないか():
+    """about ページに書いた「毎朝1回」を、機械で見張る。
+
+    **書いたら約束になる。** 競売統計が 2026-09-19 に踏む手前で止めた——
+    金庫と公開用の cron が**両方 `30 22 * * *`** で、消していなければ
+    その晩に裁判所と自治体へ**2回**行っていた。ページには「1日1回」と
+    書いてある（3.4／8節）。
+
+    **捕まえないもの**：手で押した回。`workflow_dispatch` は数えない。
+    人が押す回数は、この検査では守れない。
+    """
+    import glob
+    import re as _re
+    # 外に出て行くもの。`ref_*.py` は90日に1回だが、出て行くことに変わりはない
+    TORINIIKU = _re.compile(r"\b(recon|koho|koho_pdf|files|wayback|ref_\w+)\.py\b")
+    daily = []
+    for path in sorted(glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+        text = open(path, encoding="utf-8").read()
+        if not TORINIIKU.search(text):
+            continue                      # 取りに行かない workflow は数えない
+        for m in _re.finditer(r'cron:\s*"([^"]+)"', text):
+            fields = m.group(1).split()
+            if len(fields) == 5 and fields[2:] == ["*", "*", "*"]:
+                daily.append(f"{os.path.basename(path)}: {m.group(1)}")
+    if len(daily) > 1:
+        raise AssertionError(
+            "毎日 外に取りに行く workflow が2つ以上ある（about に「1日1回」と書いてある）：\n  "
+            + "\n  ".join(daily)
+            + "\n  相手のサーバーに出る回数なので、1つにまとめること（3.4）")
+    if not daily:
+        raise AssertionError(
+            "毎日 取りに行く workflow が1つも見つからない。数え方が壊れているか、"
+            "巡回が止まっている（どちらも見たい）")
+
+
 def test_workflow_の中のシェルが読めるか():
     """`run: |` の中身を bash -n にかける。
 
