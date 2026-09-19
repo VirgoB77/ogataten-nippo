@@ -27,6 +27,7 @@ from datetime import date
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "common"))
 import addr as addrlib
+import zoning as zoninglib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ALL = os.path.join(HERE, "data", "all.json")
@@ -88,9 +89,16 @@ def build(recs):
             "operator_changes": len(dict.fromkeys(ops)) - 1 if ops else 0,
             "retailer_changes": len(dict.fromkeys(rets)) - 1 if rets else 0,
             "area_m2": last.get("area_m2"),
+            # 延床面積は「建物ぜんぶ」、店舗面積は「店の部分」。別の数なので欄を分ける。
+            # 建物を用意した人を並べる一覧なので、建物のほうの数も持たせる
+            "floor_area_m2": last.get("floor_area_m2"),
             "area_tsubo": (round(last["area_m2"] / TSUBO, 1)
                            if isinstance(last.get("area_m2"), (int, float)) else None),
             "zoning": last.get("zoning") or "",
+            # 書かれていた形は残したまま、そろえた形も持つ。
+            # 実測で31通りの書き方があり、同じ用途地域が4つに割れていた（2026-09-19）。
+            # 片方だけにすると、数えられないか、出どころの言い方が消える
+            "zoning_norm": zoninglib.normalize(last.get("zoning"))[0],
             "first_on": day(rows[0]),
             "last_on": day(last),
             "notices": len(rows),

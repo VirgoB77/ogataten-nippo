@@ -1258,6 +1258,107 @@ def test_settisha_changes_match_history():
         fails.append(f"「いまの当事者」が履歴の最後と違う {len(now_bad)}件")
 
 
+def test_free_text_columns_do_not_hold_bare_numbers():
+    """自由記入の欄に、数字だけの値が入っていないか。
+
+    大阪府の一覧は見出しが2段で、「17. 備考欄」の下に「延床面積」
+    「施設の用途地域」「その他」がぶら下がる。上の段しか読んでいなかったので、
+    **延床面積を「備考」として拾い、用途地域は丸ごと落ちていた。**
+    画面には「備考 10909」という、意味の分からない数だけが出ていた（2026-09-19）。
+
+    **列がずれたことは、値の形に出る。** 自由記入の欄に数字しか入っていなければ、
+    それは文章ではなく、どこかの列の数がそこに来ている。
+    他の収集先の備考は「現店舗を閉鎖し、建て替えを行うため」のような文章で、
+    数字だけのものは1件も無い。
+    """
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    # 自由記入の欄。数だけが入る欄（area_m2 など）はここに入れない
+    FREE = ("note", "content", "citizen_opinion", "city_opinion",
+            "pref_opinion", "recommendation")
+    bad = Counter()
+    for r in recs:
+        for k in FREE:
+            v = str(r.get(k) or "").strip()
+            # 「3」のような短い数は台数の記載などでありうる。4桁以上を見る
+            if v.isdigit() and len(v) >= 4:
+                bad[(r.get("source"), k)] += 1
+    if bad:
+        fails.append(f"自由記入の欄に数字だけの値がある {sum(bad.values())}件"
+                     f"（{dict(list(bad.items())[:4])}）。列がずれている")
+
+
+def test_floor_area_is_not_smaller_than_store_area():
+    """延床面積が店舗面積より小さくなっていないか。
+
+    延床面積は建物ぜんぶ、店舗面積は店の部分なので、**延床 ≧ 店舗** になる。
+    逆転していたら、2つの列が入れ替わっているか、別の行の値を拾っている。
+    見出しが2段の表では、上の段だけを読むとこれが起きる。
+
+    同じ値になることはある（建物ぜんぶが店の場合）。そこは通す。
+    """
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    both = [r for r in recs
+            if isinstance(r.get("floor_area_m2"), (int, float))
+            and isinstance(r.get("area_m2"), (int, float))]
+    if not both:
+        return
+    bad = [r for r in both if r["floor_area_m2"] < r["area_m2"]]
+    # 一次情報の側が逆転していることが、わずかにある（複数棟にまたがる店で、
+    # 延床が1棟ぶんだけ書かれているなど）。**列が入れ替わっていれば、
+    # わずかではなくほとんど全部が逆転する。** だから数ではなく割合で見る
+    share = len(bad) / len(both)
+    if share > 0.2:
+        fails.append(f"延床面積が店舗面積より小さい記録が {share:.0%}。列が入れ替わっている")
+
+
+def test_zoning_values_are_real_categories():
+    """用途地域の欄に、用途地域でないものが入っていないか。
+
+    都市計画法の用途地域は13種類と、市街化調整区域・市街化区域。
+    それ以外の文字列が入っていたら、別の列を拾っている。
+    複数の地域にまたがる店は「準工業地域、第一種住居地域」のように並ぶので、
+    区切って1つずつ見る。
+    """
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    sys.path.insert(0, os.path.join(HERE, "common"))
+    import zoning as zoninglib
+
+    got = unknown = 0
+    names = Counter()
+    for r in recs:
+        if not r.get("zoning"):
+            continue
+        g, u = zoninglib.normalize(r["zoning"])
+        got += len(g)
+        unknown += len(u)
+        for x in u:
+            names[x] += 1
+    if not (got + unknown):
+        return
+    # **列がずれると、ほとんど全部が読めなくなる。** 少し読めないのは
+    # 出どころの言い方のばらつきで、そちらは common/zoning.py が吸収する。
+    # 数ではなく割合で見る（9節「実測値を説明文に書かない」）
+    share = unknown / (got + unknown)
+    if share > 0.2:
+        fails.append(f"用途地域の欄の {share:.0%} が用途地域として読めない"
+                     f"（{list(names)[:4]}）。列がずれている")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]

@@ -12,6 +12,8 @@
   "retailer": "",
   "event_on": "2025-05-29",
   "area_m2": 3473,
+  "floor_area_m2": null,
+  "zoning": "",
   "content": "",
   "parking": null,
   "bicycle": null,

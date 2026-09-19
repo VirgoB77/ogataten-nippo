@@ -185,6 +185,17 @@ PREF_COLS = [
     ("note",        r"^(備考|備考欄)$"),
 ]
 
+# 大阪府の一覧は見出しが2段になっている。「17. 備考欄」の下に
+# 「延床面積」「施設の用途地域」「その他」がぶら下がる（2026-09-19 に実物で確かめた）。
+# 上の段しか読まないと、**延床面積を「備考」として拾い、用途地域は丸ごと落ちる。**
+# 画面には「備考 10909」という、意味の分からない数だけが出ていた。
+# 見出しは、下の段まで読んでから決める。
+PREF_SUBCOLS = [
+    ("floor_area_m2", r"^延床面積$"),
+    ("zoning",        r"^施設の用途地域$"),
+    ("note",          r"^その他$"),   # 備考欄の本体はここ
+]
+
 # ファイル名から、何の届出かを決める
 PREF_KIND = [
     (r"shinsetsu|-5-1", "第5条第1項", "新設"),
@@ -221,6 +232,14 @@ def parse_osaka_pref(path):
                 idx[field] = i
                 break
 
+    # 下の段の小見出しで上書きする。上の段だけでは別の欄の値を拾う
+    subs = [norm_head(c) for c in rows[h + 1]] if h + 1 < len(rows) else []
+    for field, pat in PREF_SUBCOLS:
+        for i, hd in enumerate(subs):
+            if hd and re.search(pat, hd):
+                idx[field] = i
+                break
+
     def g(r, k):
         i = idx.get(k)
         return clean(r[i]) if i is not None and i < len(r) else ""
@@ -246,6 +265,8 @@ def parse_osaka_pref(path):
             "retailer": g(r, "retailer"),
             "event_on": to_iso(g(r, "event_on")),
             "area_m2": num(g(r, "area_m2")),
+            "floor_area_m2": num(g(r, "floor_area_m2")),
+            "zoning": g(r, "zoning"),
             "content": g(r, "content"),
             "parking": num(g(r, "parking")),
             "bicycle": num(g(r, "bicycle")),
