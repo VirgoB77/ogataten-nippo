@@ -368,6 +368,16 @@ def detail_page(r, by_ref, src_meta):
         docs = "<h2>自治体の資料</h2><ul class=\"list\">" + "".join(
             f'<li><a href="{esc(u)}">{esc(u.rsplit("/",1)[-1])}</a></li>' for u in r["docs"][:8]) + "</ul>"
 
+    # **新設・廃止だけ、説明の1枚へつなぐ。** 変更・承継は開店とも閉店とも
+    # 関係がないので、つなぐと「関係がある」と言ったことになる
+    kaisetsu = ""
+    if r["kind"] in ("新設", "廃止"):
+        kotoba = "開店" if r["kind"] == "新設" else "閉店"
+        kaisetsu = (f'<p class="note">この「{r["kind"]}」は、'
+                    f'{kotoba}そのものの届出ではありません。'
+                    f'<a href="{rel}shinsetsu-to-kaiten.html">'
+                    f'新設・廃止と、開店・閉店の違い</a></p>')
+
     title = f"{r['store']}（{r['area']}）の{r['kind']}届出 {jp_date(r['notified_on'])}"
     # **どの決まりで出た届出かは、種類で違う。** 「中規模」（1,000㎡以下）は
     # 大店立地法ではなく、八尾市・堺市が独自に条例で求めているもの。
@@ -395,6 +405,7 @@ def detail_page(r, by_ref, src_meta):
 <h1>{esc(r['store'])}</h1>
 <div class="card"><dl class="kv">{''.join(kv)}</dl></div>
 <p class="note">{esc(DISCLAIMER)} 内容に誤りがある場合は<a href="{rel}contact.html">訂正・削除のご依頼</a>からお知らせください。</p>
+{kaisetsu}
 {status}
 {ocr_note}
 {hist}
@@ -610,6 +621,131 @@ def teisei_page(today):
 <p style="font-size:13px;color:var(--sub)">このページの更新日：{esc(today)}</p>
 """
     return page(f"訂正履歴｜{SITE_NAME}", body, rel, desc=f"{SITE_NAME}の訂正履歴。いつ・何を・なぜ直したか。", canonical="teisei.html")
+
+
+def shinsetsu_to_kaiten_page(recs, today):
+    """「新設」と「開店」は違う、を1枚で説明する。
+
+    **役所の語では人が探している語に当たらない**（Search Console の実測。
+    2026-09-19、「新設」「廃止」で当たったクエリは0件）。だからといって
+    「開店予定」と書き換えると**事実の主張**になって外れる（3.5）。
+
+    その代わりにこの1枚を置く。ここは**「新設 開店 違い」を探した人**の
+    ページで、うちが誰より正確に答えられる。**役所が自分で2つの欄を
+    分けて持っているから**（大阪市の一覧に「新設(変更）予定日」と「開店日」）。
+
+    **数字はここで数える。書き写さない。** 毎朝の巡回で増えるたびに動く。
+    文章に数を埋め込むと、その日から嘘になる（9節）。
+
+    **捕まえないもの**：なぜずれるのか。工事の遅れか、内装か、
+    許認可か。**確かめていないので書かない**（3.3）。
+    """
+    rel = ""
+    # 市が「新設予定日」と「開店日」の**両方を自分で書いている**ものだけ数える。
+    # こちらが突き合わせて作った opened_on（taiten.py）は混ぜない。
+    # 混ぜると「役所が2つの欄を分けている」という話の根拠でなくなる（4節）
+    zure, motomoto = [], 0
+    for r in recs:
+        if r.get("kind") != "新設":
+            continue
+        yotei, kaiten = r.get("planned_on"), r.get("opened_on")
+        if not (yotei and kaiten):
+            continue
+        # **開店日が届出の日より前のものは、別に数える。**
+        # 届出より前に開いている＝もともとあった店が、あとから大型店になった。
+        # これを混ぜると「ずれ」の最大が何十年になって、数字が読めなくなる
+        if kaiten < r["notified_on"]:
+            motomoto += 1
+            continue
+        zure.append((date.fromisoformat(kaiten) - date.fromisoformat(yotei)).days)
+
+    kazu = ""
+    if zure:
+        kumi = [sum(1 for x in zure if x == 0),
+                sum(1 for x in zure if x > 0),
+                sum(1 for x in zure if x < 0)]
+        # 3.2：**伏せた升が1つでもあったら、合計も出さない。**
+        # 合計から他を引けば、伏せた升が戻る
+        gokei = ("–" if any(privacy.masked(v) is None for v in kumi)
+                 else n_(len(zure)))
+        saidai_ato = max([x for x in zure if x > 0], default=0)
+        saidai_mae = -min([x for x in zure if x < 0], default=0)
+
+        # **「3件に1件」のような文を書かない。** 数えた値をそのまま置く。
+        # 書き写すと、翌朝から嘘になる（9節「書いたら約束になる」）
+        zureta = n_(kumi[1] + kumi[2]) if gokei != "–" else "–"
+
+        def hito(n, nichi):
+            return f'{n_(n)}' + (f'<span class="note">（最大 {nichi}日）</span>' if nichi else "")
+
+        kazu = f"""
+<h2>実際、どれくらいずれているか</h2>
+<p class="lead">大阪市の一覧には「新設(変更）予定日」と「開店日」が<b>別の欄</b>で入っています。
+<b>役所が自分で2つに分けている</b>ということです。両方が書かれている新設届を数えました。</p>
+<div style="overflow-x:auto"><table>
+<tr><th>予定日と開店日</th><th>件数</th></tr>
+<tr><td>同じ日</td><td class="n"><b>{n_(kumi[0])}</b></td></tr>
+<tr><td>開店のほうが<b>あと</b></td><td class="n"><b>{hito(kumi[1], saidai_ato)}</b></td></tr>
+<tr><td>開店のほうが<b>さき</b></td><td class="n"><b>{hito(kumi[2], saidai_mae)}</b></td></tr>
+<tr><td><b>合計</b></td><td class="n"><b>{gokei}</b></td></tr>
+</table></div>
+<p class="note"><b>ずれたのは {zureta}件</b>です。
+ずれの向きは両方あります。予定より遅れて開く店もあれば、早く開く店もあります。
+{f'このほかに、開店日が<b>届出の日より前</b>のものが {n_(motomoto)}件ありました。もともとあった店が、あとから大型店（1,000㎡超）になったものです。ここには数えていません。' if motomoto else ''}<br>
+この表は毎朝、そのときのデータから数え直しています。<b>文章に数を書き写していません。</b>
+なぜずれるのか（工事か、内装か、許認可か）は<b>確かめていないので書きません。</b></p>
+"""
+
+    body = f"""
+<h1>届出の「新設」と、店が開く日は違います</h1>
+<p class="lead">大規模小売店舗立地法の<b>新設届出</b>は、「店が開きます」という届出ではありません。
+<b>建物が大型店（店舗面積1,000㎡超）になる</b>ことの届出です。
+<b>店が開く日は、そのあとで別に決まります。</b></p>
+
+<div class="card">
+<h2>言葉の対応</h2>
+<div style="overflow-x:auto"><table>
+<tr><th>届出の語</th><th>何の日か</th><th>ふだんの言い方</th></tr>
+<tr><td><b>新設</b></td><td>大型店として新設する日</td><td>おおよそ「開店」だが<b>同じではない</b></td></tr>
+<tr><td><b>廃止</b></td><td>店舗面積が1,000㎡以下になる日</td><td>「閉店」のほか、<b>縮小・建て替え</b>もある</td></tr>
+<tr><td><b>変更</b></td><td>店名・営業時間・駐車場などが変わる日</td><td>開店とも閉店とも関係ない</td></tr>
+<tr><td><b>承継</b></td><td>建物の持ち主が変わる日</td><td>店はそのまま続く</td></tr>
+</table></div>
+</div>
+
+<h2>とくに「廃止」は閉店とは限りません</h2>
+<p class="lead">廃止届が出る理由は、少なくとも3つあります。</p>
+<ul class="list">
+<li><b>閉店</b> — 店がなくなる</li>
+<li><b>縮小</b> — 売り場を減らして1,000㎡以下になった。<b>店は続いている</b></li>
+<li><b>建て替え・移転</b> — 建て直して、あとで新設届がまた出る</li>
+</ul>
+<p class="note">届出に理由が書かれているものは、各ページに載せています。
+<b>書かれていないものについて、こちらで理由を決めることはしません。</b></p>
+
+{kazu}
+
+<h2>このサイトの書き方</h2>
+<p class="lead">だからこのサイトは、各ページにこう書いています。</p>
+<div class="card"><p style="margin:0">届出に書かれた<b>新設日</b>は2004年4月1日<span class="note">（開店日とは別に決まります）</span></p></div>
+<p class="note">「◯月◯日に開店予定」とは書きません。<b>届出が言っていないこと</b>だからです。
+役所の一覧に「開店日」の欄があって、そこに日付が入っているときだけ、開店日として載せます。</p>
+
+<h2>届出はいつ出るか</h2>
+<p class="lead">新設届は、開店のかなり前に出ます。法律は<b>新設する日の8か月前まで</b>に
+届け出ることを求めています。ニュースになるより先に、ここに出ます。</p>
+
+<p style="margin-top:28px"><a href="{rel}k/新設.html">新設の届出をすべて見る</a>　
+<a href="{rel}k/廃止.html">廃止の届出をすべて見る</a>　
+<a href="{rel}index.html">トップへ</a></p>
+<p style="font-size:13px;color:var(--sub)">このページの更新日：{esc(today)}</p>
+"""
+    desc = ("大規模小売店舗立地法の「新設届出」は、店が開く日の届出ではありません。"
+            "大型店になる日の届出で、開店日はそのあと別に決まります。"
+            "「廃止」も閉店とは限らず、縮小や建て替えを含みます。"
+            + (f"役所が両方の日を書いている{len(zure)}件を数えました。" if zure else ""))
+    return page("届出の「新設」と、店が開く日は違います｜大規模小売店舗立地法",
+                body, rel, desc=desc, canonical="shinsetsu-to-kaiten.html")
 
 
 def koho_page(notices, src_meta, today):
@@ -992,7 +1128,7 @@ def index_page(all_recs, today):
 </div>
 
 <h2>これから起きる予定（{len(future)}件）</h2>
-<p class="lead">届出に書かれた新設・変更・廃止の日が、今日より先のもの。<span class="note">（新設日と実際の開店日は別に決まります）</span></p>
+<p class="lead">届出に書かれた新設・変更・廃止の日が、今日より先のもの。<span class="note">（<a href="shinsetsu-to-kaiten.html">新設日と実際の開店日は別に決まります</a>）</span></p>
 {table(future, rel)}
 
 <h2>最近の廃止の届出</h2>
@@ -1149,7 +1285,9 @@ def main():
         f.write(contact_page(today))
     with open(os.path.join(HERE, "teisei.html"), "w", encoding="utf-8") as f:
         f.write(teisei_page(today))
-    urls += ["about.html", "contact.html", "teisei.html"]
+    with open(os.path.join(HERE, "shinsetsu-to-kaiten.html"), "w", encoding="utf-8") as f:
+        f.write(shinsetsu_to_kaiten_page(recs, today))
+    urls += ["about.html", "contact.html", "teisei.html", "shinsetsu-to-kaiten.html"]
     if os.path.exists(KOHO):
         with open(KOHO, encoding="utf-8") as f:
             notices = json.load(f)
