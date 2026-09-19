@@ -71,6 +71,29 @@ def ask(city_name):
     return SEARCH + "?" + urllib.parse.urlencode({"q": q, "rows": 50})
 
 
+def shigen(raw):
+    """**見つかったものの「名前と置き場」だけ**を取り出す。中身は取りに行かない。
+
+    ここまでが「見に行く」。**目録に何が並んでいたかは、記録に残してよい。**
+    URL は向こうが公開している目録の値で、生データではない。
+    これが残っていないと、**次にダウンロードを書く人が URL を作文する**（9節）。
+
+    返り値は [(データセット名, リソース名, 形式, URL)]。
+    **読めなかったら空。** 空と「0件」は呼ぶ側で区別する。
+    """
+    try:
+        d = json.loads(raw.decode("utf-8"))["result"]["results"]
+    except Exception:                              # noqa: BLE001
+        return []
+    de = []
+    for pkg in d:
+        na = pkg.get("title") or pkg.get("name") or ""
+        for r in pkg.get("resources", []):
+            de.append((na, r.get("name") or "", r.get("format") or "",
+                       r.get("url") or ""))
+    return de
+
+
 def mitsukatta(raw):
     """**いくつ見つかったか**だけ読む。中身は読まない。
 
@@ -121,6 +144,7 @@ def main():
     # 一緒にすると、こちらのネットワークの都合が
     # 「目録に無い」に見える（6節 unresolved / unobserved）
     totta, kotaeta_ga_dame, deraretakatta, yamete = [], [], [], []
+    mokuroku = []      # 見つかったものの名前と置き場。**中身ではない**
     mokuhyo = cities[:args.limit]
     for i, c in enumerate(mokuhyo):
         if i:
@@ -154,8 +178,8 @@ def main():
               f"{len(raw):,} バイト / 見つかった {n_ken} → {michi}")
         # **小さい返事は、そのままログに出す。** 実物を見ないと読み取りが書けない。
         # 大きいものは出さない（ログが読めなくなる）。中身は保存せずログだけ
-        if len(raw) <= 4000:
-            print("  ↳ " + raw.decode("utf-8", "replace"))
+        for row in shigen(raw):
+            mokuroku.append((c["code"], c["name"]) + row)
 
     mita = len(totta) + len(kotaeta_ga_dame) + len(deraretakatta)
     # **「返ってきた」と「見つかった」は別。** 200 が返っても 0件のことがある
@@ -183,6 +207,21 @@ def main():
         "リソースの URL がどのキーに入っているか、年度がいくつ並ぶか、",
         "**GeoJSON が本当に在るか**を実物で見てから、読み取りを書く。", "",
     ]
+    # **目録に何が並んでいたかを、記録に残す。**
+    # これが無いと、次にダウンロードを書くとき URL を作文することになる（9節）
+    if mokuroku:
+        lines += ["## 目録に並んでいたもの", "",
+                  f"引いた {len(totta)} 市区町村ぶん。**中身は取りに行っていない。**", "",
+                  "| 市区町村 | データセット | リソース | 形式 | 置き場 |",
+                  "|---|---|---|---|---|"]
+        for code, name, ds, rn, fmt, url in mokuroku:
+            lines.append(f"| `{code}` {name} | {ds} | {rn} | {fmt} | {url} |")
+        lines.append("")
+    else:
+        lines += ["## 目録に並んでいたもの", "",
+                  "**1つも取り出せなかった。** 0件だったのか、返事の形が違うのか、",
+                  "上の表で分ける。", ""]
+
     os.makedirs(os.path.dirname(REPORT), exist_ok=True)
     with open(REPORT, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))

@@ -1114,6 +1114,64 @@ def test_目録の問い合わせと件数の読み():
             "0（向こうが無いと言った）と混ざる")
 
 
+def test_空でよい欄には理由があるか():
+    """**空でよい欄には理由を書く。理由が書けないなら、それは穴**（競売統計）。
+
+    2026-09-19。競売統計が「向きが逆だと捕まらない」をそのまま実行した——
+    **出す欄を1つずつ空にして走らせた。** 向こうは3つ黙った。
+
+    **こちらで同じことをしたら、25欄のうち17欄が黙った。**
+
+        上     site / site_name / generated_at
+        升     city / kind / period / count
+        個票   title / date / pref / city / addr / addr_key / …
+
+    `city_code` を見る検査は在った。だが**「ある値が入っているか」しか見ていない。**
+    「**空のものが出ていないか**」は誰も見ていなかった。**同じ欄に向いていて、向きが逆。**
+
+    この検査は `build_site.KARA_DE_YOI` を読む。**そこに理由が書いてある欄だけが
+    空になってよい。** 書いていない欄が空なら鳴る。
+    欄を足した日に「空でよいか」を決めさせる形（「見ないものを並べる」と同じ向き）。
+
+    **捕まえないもの**：値が正しいか。ここが見るのは「空でないか」だけ。
+    """
+    import importlib
+    import json
+    michi = os.path.join(HERE, "index.json")
+    if not os.path.exists(michi):
+        return
+    bs = importlib.import_module("build_site")
+    yoi = bs.KARA_DE_YOI
+    with open(michi, encoding="utf-8") as f:
+        d = json.load(f)
+
+    def kara(v):
+        return v in (None, "", [], {})
+
+    warui = []
+    for k, v in d.items():
+        if k in ("records", "counts_by_city"):
+            continue
+        if kara(v) and k not in yoi:
+            warui.append(f"上の {k}")
+    for nm, rows in (("升", d["counts_by_city"]), ("個票", d["records"])):
+        if not rows:
+            continue
+        for k in rows[0]:
+            n = sum(1 for r in rows if kara(r.get(k)))
+            if n and k not in yoi:
+                warui.append(f"{nm}の {k}（{n:,}行が空）")
+    if warui:
+        raise AssertionError(
+            "空なのに、空でよい理由が書かれていない欄がある：\n  " + "\n  ".join(warui)
+            + "\n  build_site.KARA_DE_YOI に理由を書くか、空にしないこと")
+
+    # **理由のほうも空にしない。** 「空でよい」と書いただけでは理由にならない
+    for k, riyu in yoi.items():
+        if not (riyu or "").strip():
+            raise AssertionError(f"KARA_DE_YOI の {k} に理由が書かれていない")
+
+
 def test_中規模を大店立地法と書いていないか():
     """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
 
