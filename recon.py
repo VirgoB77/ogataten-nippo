@@ -37,6 +37,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
+from common import hikisu   # 知らない引数で止める（3.4）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
 
@@ -370,6 +371,10 @@ def main():
     with open(os.path.join(HERE, "sources.json"), encoding="utf-8") as f:
         sources = json.load(f)["sources"]
 
+    # **知らない引数で止める**（common/hikisu.py）。打ち間違いが本番の収集になるのを防ぐ
+    hikisu.check(set(sources) | {s["id"] for s in sources} if isinstance(sources, dict)
+                 else {s["id"] for s in sources},
+                 tsukaikata="使い方: python3 recon.py [収集先のid]")
     only = sys.argv[1] if len(sys.argv) > 1 else None
     today = runday.today()
     raw_dir = os.path.join(HERE, "data", "raw")

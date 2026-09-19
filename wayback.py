@@ -30,6 +30,7 @@ LEDGER = os.path.join(HERE, "data", "wayback")
 FILES = os.path.join(HERE, "data", "files")
 
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
+from common import hikisu   # 知らない引数で止める（3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90               # Wayback は混んでいると遅い。40秒では時間切れが多かった
 MAX_PER_RUN = int(os.environ.get("WAYBACK_MAX", "24"))     # 全部合わせて1回にこれだけ
@@ -259,6 +260,8 @@ def backfill(sid, urls, budget, lines, prefixes=()):
 def main():
     with open(os.path.join(HERE, "sources.json"), encoding="utf-8") as f:
         sources = json.load(f)["sources"]
+    hikisu.check({s["id"] for s in sources} if isinstance(sources, list) else set(sources),
+                 tsukaikata="使い方: python3 wayback.py [収集先のid ...]")
     wanted = sys.argv[1:]
     lines = ["# アーカイブから取ってきた結果", ""]
     budget = [MAX_PER_RUN]

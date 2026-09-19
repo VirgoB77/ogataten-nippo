@@ -37,6 +37,21 @@ def eq(got, want, what):
 
 
 # ---------------------------------------------------------------- is_corp
+def workflow_files():
+    """workflow の一覧。**拡張子を1つに決め打ちしない。**
+
+    2026-09-19、競売統計が見つけた。`*.yml` しか見ていない見張りは、
+    **`.yaml` で書かれたものを1本も見ない**（向こうでは18本が黙っていた）。
+    GitHub は両方を読む。**見張りだけが片方しか読まない。**
+
+    「見張りを名前の一覧で作らない」（9節）の、拡張子版。
+    """
+    import glob
+    michi = os.path.join(HERE, ".github", "workflows")
+    return sorted(glob.glob(os.path.join(michi, "*.yml"))
+                  + glob.glob(os.path.join(michi, "*.yaml")))
+
+
 def test_is_corp():
     corps = [
         "株式会社あいうえ", "㈱あいうえ", "(株)あいうえ", "（株）あいうえ",
@@ -997,6 +1012,54 @@ def test_not_counted_が4つとも出ているか():
             f"いま数えたら {kazoeta} 件。数え方が合っていない")
 
 
+def test_外に出るものが知らない引数で止まるか():
+    """**打ち間違いが、本番の収集になってはいけない。**
+
+    2026-09-19、開発系の事故報告——
+
+    > `python3 recon.py --help` と打ちました。**`--help` は受け取らないので、
+    > そのまま毎日の収集が走り出しました。**
+
+    `sys.argv[1]` をそのまま対象の名前にする書き方だと、知らない語が
+    「当たらない名前」になり、当たらなければ全部走る形なら**全部走る。**
+
+    9節の「既定値は倒す向きが問題」。そこで出るのは役所への接続なので、
+    **既定は止まる側**に倒す。
+
+    **名前の一覧では探さない**（9節）。`common.fetch` を使っているか
+    `urlopen` を呼んでいるかで、外に出るものを構造で拾う。
+    そのうえで**実際に走らせて**、知らない引数で終了コードが0にならないことを見る。
+
+    **捕まえないもの**：受け取る引数を正しく処理するか。ここが見るのは
+    「知らない引数で外に出ないこと」だけ。
+    """
+    import glob
+    import re
+    import subprocess
+    DERU = re.compile(r"from\s+common\.fetch\s+import|common\.fetch\b|urlopen\s*\(")
+    warui, mita = [], 0
+    for michi in sorted(glob.glob(os.path.join(HERE, "*.py"))):
+        na = os.path.basename(michi)
+        if na.startswith("test_"):
+            continue
+        honbun = open(michi, encoding="utf-8").read()
+        if not DERU.search(honbun) or "__main__" not in honbun:
+            continue
+        mita += 1
+        r = subprocess.run(
+            ["python3", na, "--zzz-shiranai-hikisu"],
+            cwd=HERE, capture_output=True, text=True, timeout=60)
+        if r.returncode == 0:
+            warui.append(f"{na}（終了コード0。**そのまま走った**）")
+    if mita == 0:
+        raise AssertionError(
+            "外に出るスクリプトが1つも見つからない。拾い方が壊れている")
+    if warui:
+        raise AssertionError(
+            "知らない引数を渡しても止まらないものがある：\n  " + "\n  ".join(warui)
+            + "\n  打ち間違いが本番の収集になる（common/hikisu.py を通すこと）")
+
+
 def test_中規模を大店立地法と書いていないか():
     """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
 
@@ -1294,7 +1357,7 @@ def test_1日に2回以上取りに行かないか():
         return bool(DERU.search(open(michi, encoding="utf-8").read()))
 
     daily, nai, mita = [], [], 0
-    for path in sorted(glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+    for path in sorted(workflow_files()):
         text = open(path, encoding="utf-8").read()
         deru = False
         for name in set(HASHIRU.findall(text)):
@@ -1348,7 +1411,7 @@ def test_workflow_の中のシェルが読めるか():
     import re
     import subprocess
     bad, n = [], 0
-    for path in sorted(glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+    for path in sorted(workflow_files()):
         lines = open(path, encoding="utf-8").read().splitlines()
         i = 0
         while i < len(lines):
@@ -2604,7 +2667,7 @@ def test_every_python_file_parses():
     marks = []
     for f in (glob.glob(os.path.join(HERE, "*.md"))
               + glob.glob(os.path.join(HERE, "docs", "*.md"))
-              + glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+              + workflow_files()):
         with open(f, encoding="utf-8", errors="ignore") as fh:
             t = fh.read()
         if "\n<<<<<<< " in t or "\n>>>>>>> " in t:

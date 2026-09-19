@@ -39,6 +39,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
 from common.fetch import UA, WAIT, check_robots, decode_html   # noqa: E402
+from common import hikisu   # 知らない引数で止める（3.4）
 
 OUT = os.path.join(HERE, "data", "raw", "youto")   # 金庫（private）。取ってきた生データ（9節）
 META = os.path.join(OUT, "meta.json")
@@ -257,6 +258,8 @@ def evidence(html, pat):
 
 
 def main():
+    hikisu.check({"--force", "--dry-run"},
+                 tsukaikata="使い方: python3 ref_youto.py [--force] [--dry-run]")
     force = "--force" in sys.argv
     dry = "--dry-run" in sys.argv
     if fresh() and not (force or dry):

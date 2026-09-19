@@ -26,6 +26,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
 from common.fetch import UA, WAIT, check_robots, decode_html   # noqa: E402
+from common import hikisu   # 知らない引数で止める（3.4）
 import xlsx                                        # noqa: E402
 
 PAGE = "https://www.soumu.go.jp/denshijiti/code.html"
@@ -123,6 +124,7 @@ def fresh():
 
 
 def main():
+    hikisu.check({"--force"}, tsukaikata="使い方: python3 ref_jis.py [--force]")
     force = "--force" in sys.argv
     if fresh() and not force:
         print(f"jis-codes.json は{MAX_AGE_DAYS}日以内に取っている。取りに行かない")
