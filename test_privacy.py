@@ -535,6 +535,44 @@ def test_正本に同じ行が2度続いていないか():
         raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
 
 
+def test_zip_は_href_の外にもある():
+    """2026-09-19。href だけを見ていたので「0本」だった。実物はこう：
+
+        onclick="javascript:DownLd('3.77MB','A29-11_27_GML.zip',
+                 '../data/A29/A29-11/A29-11_27_GML.zip' ,this);"
+
+    「0本」は「無い」ではなく「その探し方では見えない」だった。
+    """
+    import re
+    import ref_youto
+    # 報告が持って帰った実物を、そのまま使う
+    html = (
+        '<td class="bgc6" id="prefecture27">大阪</td>'
+        '<td class="txtCenter">A29-11_27_GML.zip</td>'
+        '<a onclick="javascript:DownLd(\'3.77MB\',\'A29-11_27_GML.zip\','
+        '\'../data/A29/A29-11/A29-11_27_GML.zip\' ,this);"></a>'
+        '<a onclick="javascript:DownLd(\'4.10MB\',\'A29-19_27_GML.zip\','
+        '\'../data/A29/A29-19/A29-19_27_GML.zip\' ,this);"></a>'
+        '<a onclick="javascript:DownLd(\'1.00MB\',\'A29-11_26_GML.zip\','
+        '\'../data/A29/A29-11/A29-11_26_GML.zip\' ,this);"></a>')
+    pat = re.compile(r"A29[-_][^\"']*?_(\d{2})[_.][^\"']*\.zip", re.I)
+    base = "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html"
+    found = ref_youto.links(html, base, pat)
+
+    if "27" not in found:
+        raise AssertionError("onclick の中の zip を拾えていない（href だけ見ている）")
+    eq(len(found["27"]), 2, "大阪府の候補は2本（A29-11 と A29-19）")
+    eq(sorted(found["27"], key=ref_youto._ver)[-1],
+       "https://nlftp.mlit.go.jp/ksj/gml/data/A29/A29-19/A29-19_27_GML.zip",
+       "いちばん新しい年を選ぶ")
+    # 対象の府県だけ。京都（26）は PREFS に無いので入らない
+    eq("26" in found, False, "対象外の府県は入らない")
+
+    # 数として比べる。文字として並べると A29-9 が A29-11 の後ろに来る
+    v = sorted(["/A29-9/a_27.zip", "/A29-11/a_27.zip"], key=ref_youto._ver)
+    eq(v[-1], "/A29-11/a_27.zip", "版の数字は数として比べる")
+
+
 def test_報告は数ではなく実物を持って帰る():
     """3.4「届かない相手のことは、報告に実物を持って帰る」。
 

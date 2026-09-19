@@ -58,7 +58,11 @@ SOURCES = [
              "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29.html",
              "https://nlftp.mlit.go.jp/ksj/index.html"],
      re.compile(r"A29[-_][^\"']*?_(\d{2})[_.][^\"']*\.zip", re.I)),
-    ("ISJ", ["https://nlftp.mlit.go.jp/isj/",
+    # ISJ の `/isj/` は「位置参照情報**とは**」の説明ページで、配っていない。
+    # 配り口は、そのページ自身が載せていた `_choose_method.cgi`。
+    # **決め打ちではなく、1回目の報告が持って帰った URL**（2026-09-19）
+    ("ISJ", ["https://nlftp.mlit.go.jp/cgi-bin/isj/dls/_choose_method.cgi",
+             "https://nlftp.mlit.go.jp/isj/",
              "https://nlftp.mlit.go.jp/isj/index.html"],
      re.compile(r"(\d{2})000[^\"']*\.zip", re.I)),
 ]
@@ -98,16 +102,34 @@ def head(url):
         return 0
 
 
+# 引用符で囲まれた「/ を含む .zip」を、どこにあっても拾う。
+# **href だけを見ていたので 0 本だった**（2026-09-19）。実物はこうだった：
+#   onclick="javascript:DownLd('3.77MB','A29-11_27_GML.zip',
+#            '../data/A29/A29-11/A29-11_27_GML.zip' ,this);"
+# / を含まないもの（引数の2つめのファイル名だけ）は落とす。
+# 同じ onclick の3つめに、道つきのものが必ず入っている
+_ZIP_ANY = re.compile(r"""['"]([^'"\s<>]*/[^'"\s<>]*\.zip)['"]""", re.I)
+
+
+def _ver(url):
+    """新しさの順に並べるための鍵。`A29-11` と `A29-19` を数として比べる。
+
+    文字として並べると `A29-9` が `A29-11` より後ろに来る。
+    いまは2桁しか無いが、桁が増えた日に黙って古いほうを選ばないようにする。
+    """
+    return [int(x) for x in re.findall(r"\d+", url)]
+
+
 def links(html, base, pat):
-    """一覧ページから、対象の府県の zip へのリンクを拾う。URL は決め打ちしない。"""
+    """一覧ページから、対象の府県の zip を拾う。URL は決め打ちしない。"""
     found = {}
-    for m in re.finditer(r'href="([^"]+\.zip)"', html, re.I):
+    for m in _ZIP_ANY.finditer(html):
         href = urllib.parse.urljoin(base, m.group(1))
         g = pat.search(href)
         if not g:
             continue
         code = g.group(1)
-        if code in PREFS:
+        if code in PREFS and href not in found.get(code, []):
             found.setdefault(code, []).append(href)
     return found
 
@@ -275,8 +297,12 @@ def main():
             if not urls:
                 lines.append("  - **見つからなかった。ページの作りが変わったかもしれない**")
                 continue
-            # いちばん新しそうなもの（URL を並べて末尾）を1本だけ
-            url = sorted(urls)[-1]
+            # 候補を全部出す。**どの年のものがあるか**が分からないと、
+            # 「いちばん新しい」を選んだことを確かめられない
+            for u in sorted(urls, key=_ver):
+                lines.append(f"  - 候補: `{u}`")
+            url = sorted(urls, key=_ver)[-1]      # いちばん新しいもの（数として比べる）
+            lines.append(f"  - **選んだ**（いちばん新しい）:")
             size = head(url)
             time.sleep(WAIT)
             lines.append(f"  - {url}")
