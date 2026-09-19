@@ -374,9 +374,21 @@ def detail_page(r, by_ref, src_meta):
     src_block = '<ul class="list" style="font-size:14px">' + "".join(src_items) + "</ul>"
     status = ""
     if r.get("mode") == "snapshot":
-        status = ("いまも自治体のページに載っています" if r.get("listed") else
-                  f"自治体のページには載らなくなりました（最後に確認した日 {esc(r.get('last_seen'))}）")
-        status = f'<p class="note">{status}。このサイトには残しています。</p>'
+        # **主語をこちらにする**（3.5）。「載らなくなりました」は自治体のページの話で、
+        # こちらが見に行けなかっただけかもしれない（URL が変わった・取得に失敗した）。
+        # 「こちらが最後に見たとき」なら外れようがない。
+        #
+        # **探される語も、この文に入れる。** 「縦覧」「公告」は誰も検索しない。
+        # 検索されるのは店名で、この一文は**その人が着いたあとに効く**——
+        # 「もう役所のページには無い」を知って、ここを出典に使う（3.3）
+        if r.get("listed"):
+            status = (f"こちらが最後に見た {esc(r.get('last_seen') or '')} の時点では、"
+                      "自治体のページに載っていました")
+        else:
+            status = (f"<b>{esc(r.get('last_seen') or '')} を最後に、"
+                      "自治体のページでは見つかっていません。</b>"
+                      "消えた日そのものは分かりません（こちらが見た日と見た日のあいだ）")
+        status = f'<p class="note">{status}。このサイトには残しています。</p>' 
     ocr_note = ""
     if r.get("from_ocr"):
         names = {"address": "所在地", "operator": "設置者", "content": "内容", "area_m2": "店舗面積"}
@@ -419,6 +431,10 @@ def detail_page(r, by_ref, src_meta):
         # 探される語は、外れない添え字の側に入れる
         yobina, soeru = KIND_HIZUKE[r["kind"]]
         desc += f" 届出に書かれた{yobina}は{jp_date(ev)}{soeru}。"
+    # **消えたものは、それを説明に入れる。** 検索から着いた人が
+    # 「役所のページに無い」ことをここで知る。**主語はこちら**（3.5）
+    if r.get("mode") == "snapshot" and not r.get("listed") and r.get("last_seen"):
+        desc += f" {jp_date(r['last_seen'])}を最後に自治体のページでは見つかっていません。"
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>

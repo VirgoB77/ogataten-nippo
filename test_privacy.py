@@ -1244,6 +1244,79 @@ def test_消えるまでの日数を仮定で書いていないか():
             "持っているのは最後に在るのを見た日で、消えたのはその後のどこか（3.5）")
 
 
+def test_消えたことの書き方():
+    """**「消えた」も主張。主語をこちらにする。**
+
+    2026-09-19、中島さんの——
+
+    > ネットから消えた日の件は、**SEO対策で語句を選ばないといけない**にゃね
+
+    そのとおりで、しかも語句を選ぶ前に**外れない形**にする必要があった。
+    それまでこう書いていた。
+
+        ❌ 自治体のページには載らなくなりました
+           → **自治体のページの話。** こちらが見に行けなかっただけかもしれない
+             （URL が変わった・取得に失敗した・robots が変わった）
+        ✅ ◯月◯日を最後に、自治体のページでは**見つかっていません**
+
+    そして**消えた日は点ではない**ので、そこも書く。
+
+    見張るのは3つ。
+    ① 「載らなくなりました」のような、相手を主語にした断定が無いこと
+    ② 消えたものは**説明文（description）にも入る**こと
+       —— 検索から着いた人が「役所のページに無い」をそこで知る
+    ③ 「まだ在る」側も主語がこちらであること
+
+    **捕まえないもの**：実際に検索で上がるか。後日 Search Console で見る。
+    """
+    src = open(os.path.join(HERE, "build_site.py"), encoding="utf-8").read()
+
+    # ① 相手を主語にした断定
+    for warui in ("載らなくなりました", "削除されました", "消滅しました"):
+        i = src.find(warui)
+        while i >= 0:
+            atama = src.rfind("\n", 0, i) + 1
+            if not src[atama:i].lstrip().startswith("#"):
+                raise AssertionError(
+                    f"{src[:i].count(chr(10)) + 1}行目の「{warui}」は相手を主語にした断定。"
+                    "こちらが見に行けなかっただけかもしれない（3.5）")
+            i = src.find(warui, i + 1)
+
+    # ②③ 出来上がった個票で見る
+    import glob
+    import json
+    zairyo = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(zairyo):
+        return
+    recs = json.load(open(zairyo, encoding="utf-8"))
+    kieta = [r for r in recs if r.get("mode") == "snapshot"
+             and not r.get("listed") and r.get("last_seen")]
+    aru = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed")]
+    for rows, kotoba, nani in (
+            (kieta[:30], "見つかっていません", "消えたもの"),
+            (aru[:30], "こちらが最後に見た", "まだ在るもの")):
+        for r in rows:
+            michi = os.path.join(HERE, "s", f"{r['key']}.html")
+            if not os.path.exists(michi):
+                continue
+            h = open(michi, encoding="utf-8").read()
+            if kotoba not in h:
+                raise AssertionError(
+                    f"{nani}の個票に「{kotoba}」が入っていない（{os.path.basename(michi)}）")
+
+    # ② 説明文にも入る
+    for r in kieta[:30]:
+        michi = os.path.join(HERE, "s", f"{r['key']}.html")
+        if not os.path.exists(michi):
+            continue
+        h = open(michi, encoding="utf-8").read()
+        m = re.search(r'name="description" content="([^"]*)"', h)
+        if m and "見つかっていません" not in m.group(1):
+            raise AssertionError(
+                f"消えたものの説明文に入っていない（{os.path.basename(michi)}）。"
+                "検索から着いた人が、役所のページに無いことをそこで知る")
+
+
 def test_中規模を大店立地法と書いていないか():
     """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
 
