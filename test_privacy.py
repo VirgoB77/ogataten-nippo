@@ -535,6 +535,50 @@ def test_正本に同じ行が2度続いていないか():
         raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
 
 
+def test_文字コードは例外の有無で選ばない():
+    """cp932 はほとんどのバイト列を受け取るので、EUC-JP がそこで「成功」する。
+
+        "大阪府".encode("euc-jp").decode("cp932")  →  "ﾂ郤衙ﾜ"   例外は出ない
+
+    2026-09-19、開発系が自分の to_text() で見つけ、こちらの decode_html にも
+    同じ穴があった（総当たりの順で cp932 が euc-jp より先だった）。
+    **例外の有無ではなく、中身の見た目で選ぶ。**
+
+    これが実害になっていた実物が `ref_jis.py`。総務省のページを utf-8 で
+    決め打ちして読み、meta の label が化け、**その化けた文字列に
+    「政令」「廃置」「変更」で点を付けていた。**
+    """
+    from common.fetch import decode_html, ja_score
+
+    # ① 宣言が無く、cp932 でも「読めてしまう」EUC-JP
+    for word in ("大阪府の市区町村コード一覧", "兵庫県神戸市の統計"):
+        got, enc = decode_html(word.encode("euc-jp"), "text/html")
+        eq(got, word, f"宣言の無い EUC-JP を読む（{word[:4]}…）")
+        eq(enc, "euc-jp", "どれで読んだかを返す")
+
+    # ② 宣言があれば信じる
+    eq(decode_html("Excelファイル".encode("cp932"),
+                   "text/html; charset=Shift_JIS")[0], "Excelファイル",
+       "宣言された Shift_JIS")
+
+    # ③ 点そのもの。化けたほうが必ず低い
+    if not ja_score("大阪府の市区町村コード") > ja_score("ﾂ郤衙ﾜﾃﾓﾅﾄｻﾔﾈｪ"):
+        raise AssertionError("化けた文字列のほうが日本語らしいと判定された")
+
+    # ④ 決め打ちが戻っていないか。取りに行くスクリプトを文字として見る
+    import glob
+    bad = []
+    for path in sorted(glob.glob(os.path.join(HERE, "ref_*.py"))):
+        text = open(path, encoding="utf-8").read()
+        for m in re.finditer(r'\.decode\(\s*["\']utf-8["\']', text):
+            line = text[:m.start()].count("\n") + 1
+            bad.append(f"{os.path.basename(path)}:{line}")
+    if bad:
+        raise AssertionError(
+            "取りに行くところで文字コードを決め打ちしている（decode_html を使う）："
+            + " / ".join(bad))
+
+
 def test_common_の指紋が中身と合っているか():
     """`common/` を直したら、指紋の一覧も同じコミットで直す。
 

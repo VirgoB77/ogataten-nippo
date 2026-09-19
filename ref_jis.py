@@ -25,7 +25,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
-from common.fetch import UA, WAIT, check_robots   # noqa: E402
+from common.fetch import UA, WAIT, check_robots, decode_html   # noqa: E402
 import xlsx                                        # noqa: E402
 
 PAGE = "https://www.soumu.go.jp/denshijiti/code.html"
@@ -131,7 +131,13 @@ def main():
     if not ok:
         print(f"{why}。取りに行かない（共通仕様3.4）")
         return 0
-    html = get(PAGE).decode("utf-8", "replace")
+    # **utf-8 と決め打ちしていた。総務省は Shift_JIS。**
+    # meta の label が "Excel\ufffdt\ufffd@\ufffdC\ufffd\ufffd" と化けていて、
+    # しかも find_code_file() はその化けた文字列に「政令」「廃置」「変更」で
+    # 点を付けていた。**正しいものが選ばれていたのは href の形のおかげで、
+    # 理由が無かった**（2026-09-19、開発系が写しに来て見つけた）
+    html, enc = decode_html(get(PAGE))
+    print(f"ページは {enc} として読んだ")
     time.sleep(WAIT)
     cands = find_code_file(html, PAGE)
     if not cands:

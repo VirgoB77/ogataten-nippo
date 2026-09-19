@@ -38,7 +38,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
-from common.fetch import UA, WAIT, check_robots   # noqa: E402
+from common.fetch import UA, WAIT, check_robots, decode_html   # noqa: E402
 
 OUT = os.path.join(HERE, "data", "raw", "youto")   # 金庫（private）。取ってきた生データ（9節）
 META = os.path.join(OUT, "meta.json")
@@ -90,37 +90,6 @@ def get(url, limit, meta=None):
     if len(data) > limit:
         raise ValueError(f"{limit} バイトを超えた")
     return data
-
-
-def decode_html(raw, content_type=""):
-    """バイト列を文字にする。**UTF-8 と決めつけない。**
-
-    2026-09-19、国交省の位置参照情報のページは **EUC-JP** だった。
-    Content-Type に charset が無く、`utf-8` で読んだのでタイトルが化けた
-    （`位置参照情報 ダウンロードサービス` → `���ֻ��Ⱦ���  …`）。
-    URL は ASCII なので探し物には響かなかったが、**化けたまま
-    「読めている」と思っていた**（9節「読んでいるものを、読めているか見ていない」）。
-
-    見る順は、Content-Type → ページの中の meta → 総当たり。
-    **どれで読んだかを返す。** 黙って選ぶと、次に見る人が確かめられない。
-    """
-    cands = []
-    m = re.search(r"charset\s*=\s*[\"']?([\w-]+)", content_type or "", re.I)
-    if m:
-        cands.append(m.group(1))
-    # ページの中の宣言。まだ文字にできていないので、ASCII として先頭だけ見る
-    head_txt = raw[:4096].decode("ascii", "replace")
-    m = re.search(r"charset\s*=\s*[\"']?([\w-]+)", head_txt, re.I)
-    if m:
-        cands.append(m.group(1))
-    cands += ["utf-8", "cp932", "euc-jp"]
-
-    for enc in cands:
-        try:
-            return raw.decode(enc), enc
-        except (UnicodeDecodeError, LookupError):
-            continue
-    return raw.decode("utf-8", "replace"), "utf-8（化けたまま）"
 
 
 def zip_names(path):
