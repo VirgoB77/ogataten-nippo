@@ -343,7 +343,13 @@ def detail_page(r, by_ref, src_meta):
     if r.get("area_m2"):
         desc += f" 店舗面積{fmt_area(r['area_m2'])}。"
     if ev:
-        desc += f" {jp_date(ev)}予定。"
+        # **役所の語だけで書くと、人に見つからない。** 検索されているのは
+        # 「◯◯ 開店」「◯◯ 閉店」で、「新設」「廃止」では1件も当たっていない
+        # （2026-09-19、Search Console の実測）。
+        # 言い換えではなく、**届出が「新設する日／廃止する日」として出した日**なので
+        # そのまま開店・閉店と書ける。変更・承継・中規模はその日ではないので書かない
+        nanino = {"新設": "に開店予定", "廃止": "に閉店予定"}.get(r["kind"], "予定")
+        desc += f" {jp_date(ev)}{nanino}。"
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>
