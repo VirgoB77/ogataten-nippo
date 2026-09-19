@@ -47,7 +47,7 @@ def build(recs):
     opened = [r for r in recs if r.get("kind") == "新設"]
 
     # 新設を「番地キー + 店名」で引けるようにする。町丁目だけでは繋がない
-    idx = {}
+    idx, town_idx = {}, {}
     for r in opened:
         store = (r.get("store") or "").strip()
         if not store:
@@ -56,6 +56,10 @@ def build(recs):
             k = norm(r, f)
             if k:
                 idx.setdefault((k, store), []).append(r)
+                # 店名を問わない索引も持つ。**当たらなかったことを残すため。**
+                # 町丁目では当たったが店名が違ったものを捨てると、あとで番地が
+                # 手に入っても拾い直せない（共通仕様9節「知らないものを捨てない」）
+                town_idx.setdefault(k, []).append(r)
 
     out, matched = [], 0
     for r in closed:
@@ -79,6 +83,8 @@ def build(recs):
             "opened_on": None,
             "lasted_days": None,
             "match": None,
+            # 町丁目では当たったが店名が違った、を残す。拾い直す手がかり
+            "near_candidates": 0,
         }
 
         # 開店日を探す。店名が一致するものだけ
@@ -98,6 +104,18 @@ def build(recs):
                                       - date.fromisoformat(o)).days
                 matched += 1
             break
+
+        # 繋がらなかったものにも、近い場所に何件あったかを残す（共通仕様4節）。
+        # **当たらなかったことが残らないと、数が減ったことにしか見えない。**
+        if not rec["match"]:
+            kt = norm(r, "addr_key_town")
+            near = town_idx.get(kt) or [] if kt else []
+            rec["near_candidates"] = sum(
+                1 for c in near
+                if (c.get("store") or "").strip() != store
+                and day(c) and rec["closed_on"] and day(c) < rec["closed_on"])
+            if rec["near_candidates"]:
+                rec["match"] = "町丁目のみ（店名が違う）"
         out.append(rec)
 
     out.sort(key=lambda x: (x["closed_on"] or ""), reverse=True)

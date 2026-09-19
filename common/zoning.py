@@ -40,7 +40,12 @@ for _n in ("一", "二"):
     _ALIAS[f"第{_n}種低層住居"] = f"第{_n}種低層住居専用地域"
     _ALIAS[f"第{_n}種低層"] = f"第{_n}種低層住居専用地域"
 
-# 区切り。全角読点・半角読点（､）・改行・スラッシュ・中黒
+# 区切り。全角読点・半角読点（､）・改行・スラッシュ・中黒。
+# **改行は、区切りのときと折り返しのときがある。** 表のセルの中で
+# 語の途中に入ることがある（2026-09-19 の実物）。
+#     商業\n第一種住居                → 改行が区切り
+#     第二種中高層\n住居専用地域        → 改行が折り返し（1つの語）
+# 見分けられないので、**切ってから、解けなかったら次とくっつけて試す。**
 _SPLIT = re.compile(r"[、,､\n/／・]")
 _DIGIT = {"1": "一", "2": "二", "１": "一", "２": "二"}
 
@@ -62,15 +67,24 @@ def normalize(value):
     1つの店が複数の用途地域にまたがることがあるので、どちらも一覧で返す。
     並び順は書かれていた順のまま。同じものは1つにする。
     """
+    parts = [p.strip() for p in _SPLIT.split(str(value or "")) if p.strip()]
     got, unknown = [], []
-    for part in _SPLIT.split(str(value or "")):
-        part = part.strip()
-        if not part:
+    i = 0
+    while i < len(parts):
+        # **くっつけたほうを先に試す（最長一致）。**
+        # 「第二種中高層」は単体でも解けるので、先に取ると
+        # 「住居専用地域」が余る。4節の町丁目の最長一致と同じ理由
+        j = _one(parts[i] + parts[i + 1]) if i + 1 < len(parts) else None
+        if j is not None:
+            if j not in got:
+                got.append(j)
+            i += 2
             continue
-        c = _one(part)
+        c = _one(parts[i])
         if c is None:
-            if part not in unknown:
-                unknown.append(part)
+            if parts[i] not in unknown:
+                unknown.append(parts[i])
         elif c not in got:
             got.append(c)
+        i += 1
     return got, unknown
