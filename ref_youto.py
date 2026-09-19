@@ -31,6 +31,7 @@ import re
 import sys
 import time
 import urllib.parse
+import urllib.error
 import urllib.request
 from datetime import date
 
@@ -38,7 +39,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
-from common.fetch import UA, WAIT, check_robots, decode_html   # noqa: E402
+from common.fetch import Konde, UA, WAIT, check_robots, decode_html   # noqa: E402
 from common import hikisu   # 知らない引数で止める（3.4）
 
 OUT = os.path.join(HERE, "data", "raw", "youto")   # 金庫（private）。取ってきた生データ（9節）
@@ -80,9 +81,16 @@ def get(url, limit, meta=None):
     どこに飛ばされたのか、何が返ってきたのかを持って帰る（2026-09-19）。
     """
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        if r.status in (429, 503):
-            raise RuntimeError(f"HTTP {r.status}。相手が混んでいる。やめる（3.4）")
+    # **`urlopen` は 4xx/5xx で先に HTTPError を投げる。**
+    # だから `r.status in (429, 503)` は**1度も通らない道**だった
+    # （2026-09-19 の監査）。例外の側で見る
+    try:
+        deta = urllib.request.urlopen(req, timeout=TIMEOUT)
+    except urllib.error.HTTPError as e:
+        if is_busy(e):
+            raise Konde(f"相手が混んでいると言っている（HTTP {e.code}）") from e
+        raise
+    with deta as r:
         if meta is not None:
             meta["status"] = r.status
             meta["final_url"] = r.geturl()
@@ -284,6 +292,10 @@ def main():
         try:
             raw = get(page, 20_000_000, pm)
             html, enc = decode_html(raw, pm.get("content_type", ""))
+        except Konde:
+            # **押し込まない。** 混んでいると言われたら、その回は中止（3.4）
+            lines.append("- **相手が混んでいると言っている。この回は中止**（3.4）")
+            break
         except Exception as e:
             lines.append(f"- 一覧ページが読めなかった：{type(e).__name__} {e}")
             lines.append("")
@@ -359,6 +371,9 @@ def main():
                 continue
             try:
                 data = get(url, MAX_ZIP)
+            except Konde:
+                lines.append("  - **相手が混んでいると言っている。この回は中止**（3.4）")
+                break
             except Exception as e:
                 lines.append(f"  - 落とせなかった：{type(e).__name__} {e}")
                 time.sleep(WAIT)

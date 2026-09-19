@@ -18,6 +18,7 @@ import re
 import sys
 import time
 import urllib.parse
+import urllib.error
 import urllib.request
 from datetime import date
 
@@ -25,7 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
-from common.fetch import UA, WAIT, check_robots, decode_html   # noqa: E402
+from common.fetch import UA, WAIT, check_robots, decode_html, is_busy   # noqa: E402
 from common import hikisu   # 知らない引数で止める（3.4）
 import xlsx                                        # noqa: E402
 
@@ -39,9 +40,21 @@ TIMEOUT = 60
 
 
 def get(url, limit=30_000_000):
+    """**429/503 が返ったら、その回は中止**（3.4）。リトライで突破しない。
+
+    2026-09-19 の監査で出た。ここは `is_busy` を1度も見ていなかった。
+    検査のほうが**名前の一覧**（`recon.py` / `files.py` / …）で見ていたので、
+    `ref_*.py` は**1度も見られていなかった。**
+    """
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        data = r.read(limit + 1)
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+            data = r.read(limit + 1)
+    except urllib.error.HTTPError as e:
+        if is_busy(e):
+            raise RuntimeError(
+                f"相手が混んでいると言っている（HTTP {e.code}）。この回は中止する") from e
+        raise
     if len(data) > limit:
         raise ValueError("大きすぎる")
     return data

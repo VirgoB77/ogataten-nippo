@@ -37,6 +37,31 @@ def eq(got, want, what):
 
 
 # ---------------------------------------------------------------- is_corp
+def soto_ni_deru():
+    """**外に出て行く .py を、実物から拾う。** 名前で並べない。
+
+    2026-09-19、開発系のやり方（`urlopen` を呼ぶか）を自分に当てたら、
+    検査の中に**名前の一覧が2か所**あった。
+
+        test_every_fetcher_stops_when_busy   ("recon.py", "files.py", …)
+        decode の検査                        ("common/fetch.py", "koho_pdf.py", …)
+
+    **同じ日に足した `chizu_recon.py` が、両方に入っていない。**
+    429/503 を見ていなくても、文字コードを決め打ちしていても、**黙る。**
+    """
+    import glob
+    import re as _re
+    DERU = _re.compile(r"from\s+common\.fetch\s+import|common\.fetch\b|urlopen\s*\(")
+    de = []
+    for michi in sorted(glob.glob(os.path.join(HERE, "*.py"))
+                        + glob.glob(os.path.join(HERE, "common", "*.py"))):
+        if os.path.basename(michi).startswith("test_"):
+            continue
+        if DERU.search(open(michi, encoding="utf-8").read()):
+            de.append(michi)
+    return de
+
+
 def workflow_files():
     """workflow の一覧。**拡張子を1つに決め打ちしない。**
 
@@ -606,9 +631,8 @@ def test_文字コードは例外の有無で選ばない():
         ("化けたまま", "decode_html 自身の最後の逃げ道。もう手が無い"),
         ("LookupError", "宣言された名前が引けなかったときの逃げ道"),
     )
-    targets = [os.path.join(HERE, f) for f in
-               ("common/fetch.py", "koho_pdf.py", "recon.py", "wayback.py")]
-    targets += sorted(glob.glob(os.path.join(HERE, "ref_*.py")))
+    # **名前で並べない**（2026-09-19）。外に出るものを実物から拾う
+    targets = soto_ni_deru()
     bad = []
     for path in targets:
         if not os.path.exists(path):
@@ -2327,8 +2351,19 @@ def test_every_fetcher_stops_when_busy():
 
     recon.py だけ is_busy を見ていなかった。1本忘れると、そこだけ押し込む。
     """
-    for name in ("recon.py", "files.py", "wayback.py", "koho_pdf.py"):
-        src = open(os.path.join(HERE, name), encoding="utf-8").read()
+    # **名前で並べない**（2026-09-19）。同じ日に足した chizu_recon.py が
+    # 一覧に入っていなかった。足した日に黙る形だった
+    michi_ra = soto_ni_deru()
+    if not michi_ra:
+        raise AssertionError("外に出る .py が1つも見つからない。拾い方が壊れている")
+    for michi in michi_ra:
+        name = os.path.relpath(michi, HERE)
+        src = open(michi, encoding="utf-8").read()
+        # **`is_busy` を定義している側は、止める側ではない。**
+        # 道具（common/fetch.py）と、道具を使う側を分ける。
+        # **名前で外さない。** 「定義しているか」で外す
+        if re.search(r"^def is_busy\(", src, re.M):
+            continue
         eq("is_busy" in src, True, f"{name} が 429/503 を見ていない（共通仕様3.4）")
         stops = re.search(r"if is_busy\(e\):(?:[^\n]*\n){1,8}?[ \t]*(break|raise|return)", src)
         eq(bool(stops), True, f"{name} は 429/503 を見ているが、そこで止めていない")

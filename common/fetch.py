@@ -31,6 +31,19 @@ BUSY = (429, 503)
 _robots_cache = {}
 
 
+class Konde(Exception):
+    """相手が「いま受けられない」と言った（429/503）。
+
+    **ふつうの失敗と分けるための型。** `except Exception` で拾って
+    「次へ」と進む書き方をしていると、**混んでいると言われても回り続ける。**
+    型で分けておけば、呼ぶ側が `except Konde: raise` を1行足すだけで止まる。
+
+    2026-09-19 の監査で出た。`ref_youto.py` は 429/503 を見ているつもりで、
+    **`urlopen` が先に HTTPError を投げるので、その行は1度も通っていなかった。**
+    しかも外側の `except Exception` が拾って次の URL へ進んでいた。
+    """
+
+
 def is_busy(exc):
     """HTTPError が 429 / 503 か。"""
     return isinstance(exc, urllib.error.HTTPError) and exc.code in BUSY
