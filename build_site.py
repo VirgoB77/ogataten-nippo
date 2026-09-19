@@ -1180,6 +1180,11 @@ def index_kind(kind):
 
 def build_index(recs, today):
     records = []
+    # 升に入らなかった行を、入らなかった理由で数える（6節）。
+    # **4つとも出す。0でも出す。** 欠けているキーは0ではない——
+    # 3つしか出さないサイトがあると、横断で読む側は「0」と
+    # 「このサイトは数えていない」を見分けられない
+    hairanai = {"unresolved": 0, "unobserved": 0, "undecided": 0, "gone": 0}
     cells = Counter()
     label = {}
     for r in recs:
@@ -1204,19 +1209,41 @@ def build_index(recs, today):
             "source_url": r.get("source_url", ""),
             "fetched_on": r.get("fetched_on", ""),
         })
-        if city and date_:
+        # **市区町村コードが無い行は、升にしない。**
+        #
+        # 2026-09-19 まで、ここは `if city and date_` だけを見ていた。
+        # コードが空でも升ができて、`city_code: ""` の升が**16枚** 公開されていた
+        # （中身は「兵庫県」——県が市区町村を書かずに公表した分）。
+        # 横断ハブは `city_code` で引くので、**空の鍵に全部まとまるか、黙って落ちる。**
+        # **升に入らなかった行は、落とさずに数えて出す**（6節）。
+        if n["city_code"] and city and date_:
             # 升の期間は年。月にすると 3,713 升のうち 95% が 1〜2件になり、伏せ字だらけで
             # 意味をなさない（3.2「ほとんどが伏せ字になる層は、期間を長くまとめる」）。
             # 月と年の両方は出さない。粗さが2つあると引き算で伏せた値が戻る（3.2）
             k = (n["city_code"], city, kind, date_[:4])
             cells[k] += 1
+        else:
+            # **なぜ入らなかったかで分ける。減らせる主体が違う**（6節）
+            if not n["city_code"]:
+                # 市区町村が決まらない。旧市町村名（篠山市・美原町など）や、
+                # 県が市区町村を書かずに公表した分。**コード表を足せば減る**
+                hairanai["unresolved"] += 1
+            else:
+                # 年が決まらない。届出日が読めていない
+                hairanai["undecided"] += 1
     counts = []
     for (code, city, kind, period), c in sorted(cells.items(), key=lambda x: (x[0][1], x[0][2], x[0][3]), reverse=False):
         counts.append({"city_code": code, "city": city, "kind": kind, "period": period,
                        "count": privacy.masked(c),
                        "count_label": privacy.bucket_count(c)})
+    # **足したときに数が合うこと**（6節）。合わなければ黙って落としている
+    masu = sum(cells.values())
+    if masu + sum(hairanai.values()) != len(records):
+        raise ValueError(
+            f"升 {masu} ＋ 入らなかった {sum(hairanai.values())} が "
+            f"個票 {len(records)} と合わない。どこかで黙って落としている")
     return {"site": "ogataten-nippo", "site_name": SITE_NAME, "generated_at": today,
-            "records": records, "counts_by_city": counts}
+            "records": records, "counts_by_city": counts, "not_counted": hairanai}
 
 
 def main():
