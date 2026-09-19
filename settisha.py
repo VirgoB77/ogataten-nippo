@@ -119,6 +119,10 @@ def build(recs):
             # 判定そのものを持たせる（taiten.json と同じ形）
             "operator_kind": last.get("operator_kind"),
             "retailer_kind": last.get("retailer_kind"),
+            # 共有者がいると書かれているか。「ほか6者」が付いたり消えたりするのは
+            # 書き方の違いではなく中身の話なので、名前とは別に持つ
+            "operator_co_owners": privacy.co_owners(ops[-1] if ops else ""),
+            "retailer_co_owners": privacy.co_owners(rets[-1] if rets else ""),
             # 名前が**書き換わった回数**。持ち主が変わった回数ではない（下の注)
             "operator_changes": renamed(ops),
             "retailer_changes": renamed(rets),
