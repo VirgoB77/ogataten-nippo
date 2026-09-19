@@ -535,6 +535,24 @@ def test_正本に同じ行が2度続いていないか():
         raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
 
 
+def test_common_の指紋が中身と合っているか():
+    """`common/` を直したら、指紋の一覧も同じコミットで直す。
+
+    2026-09-19、開発系が突き合わせたら `common/addr.py` が
+    369行 と 197行で**別物**だった。しかも向こうが読んだのはさらに古い
+    169行の版で、**ずれが二重になっていた。**
+    正本11節の手順3「各サイトの common/ を更新する」は、人が覚える形
+    だったので守られていなかった。機械が言うようにする。
+    """
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(HERE, "common_manifest.py"),
+                        "--check"], capture_output=True, text=True, cwd=HERE)
+    if r.returncode != 0:
+        raise AssertionError(
+            (r.stderr.strip() or r.stdout.strip()) +
+            "（common/ を直したら、同じコミットで一覧も作り直す）")
+
+
 def test_workflow_の中のシェルが読めるか():
     """`run: |` の中身を bash -n にかける。
 
