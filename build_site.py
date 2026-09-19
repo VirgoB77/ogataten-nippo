@@ -177,8 +177,15 @@ input.q{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--rule);b
 
 
 def page(title, body, rel, desc="", canonical="", extra_css=""):
-    """共通の外枠。rel はこのページから見た shutten/ への相対パス（'' か '../'）。"""
+    """共通の外枠。rel はこのページから見た shutten/ への相対パス（'' か '../'）。
+
+    **CSS は外に出す。** 埋め込むと、1行直すたびに4,809ページが変わる。
+    1ページの55%がCSSで、同じものが14MB分ぶら下がっていた（2026-09-19）。
+    外に出すと、読む人のブラウザは1回だけ取って使い回す。
+    2ページしか使わない分（絞り込み）は、そのページの中に置く。
+    """
     d = esc(desc or TAGLINE)
+    extra = f"\n<style>{extra_css}</style>" if extra_css else ""
     can = f'<link rel="canonical" href="{SITE_URL}{canonical}">' if canonical is not None else ""
     return f"""<!DOCTYPE html>
 <html lang="ja">
@@ -191,7 +198,7 @@ def page(title, body, rel, desc="", canonical="", extra_css=""):
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{d}">
 <meta property="og:type" content="website">
-<style>{CSS}{extra_css}</style>
+<link rel="stylesheet" href="{rel}style.css">{extra}
 </head>
 <body><div class="wrap">
 <header class="top"><div class="name"><a href="{rel}index.html">{esc(SITE_NAME)}</a></div><div class="tag">{esc(TAGLINE)}</div></header>
@@ -1060,6 +1067,9 @@ def main():
         with open(os.path.join(HERE, "k", f"{kind}.html"), "w", encoding="utf-8") as f:
             f.write(kind_page(kind, rows))
         urls.append(f"k/{kind}.html")
+
+    with open(os.path.join(HERE, "style.css"), "w", encoding="utf-8") as f:
+        f.write(CSS.strip() + "\n")
 
     # まとめた一覧（届出そのものではなく、届出から作ったもの）
     made = []
