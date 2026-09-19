@@ -1370,7 +1370,28 @@ def test_辿れる側の一覧を手で書いていないか():
     ak = importlib.import_module("addr_katachi")
 
     # ① **手で書いていない。** 表から作られている
-    hyo = {name for name, _d, made in ak.KATACHI if "置けない" not in made}
+    # **語ではなく真偽で見る**（2026-09-19、開発系の指摘）。
+    # 「置けない」という語で当てていたら、「点を置けません」と
+    # 書き換えただけで黙る。**名前の一覧をやめて、語の一致にしただけだった**
+    hyo = {name for name, _d, tadoreru, _m in ak.KATACHI if tadoreru}
+    if any("置けない" in (m or "") for _n, _d, _t, m in ak.KATACHI):
+        raise AssertionError(
+            "KATACHI の「どこまで当たるか」に判定用の語が混ざっている。"
+            "画面に出す文（OKENAI）は真偽から作ること")
+
+    # **本数を留める**（開発系のやり方、2026-09-19）。
+    # 真偽から導くと、導く側と確かめる側が同じものを見ることになり、
+    # **真偽を1つ裏返しても鳴らない**（実際に試して鳴らなかった）。
+    # 構造にできない所は本数で見る——壊し方の表と同じ扱い。
+    #
+    # 印を足したら、ここも直す。**直すときに「辿れる側か」を1回決めさせる**のが狙い
+    TADORERU, OKENAI_KAZU = 4, 2
+    if (len(ak.KOMAKAI), len(ak.KATACHI) - len(ak.KOMAKAI)) != (TADORERU, OKENAI_KAZU):
+        raise AssertionError(
+            f"辿れる印が {len(ak.KOMAKAI)}・置けない印が "
+            f"{len(ak.KATACHI) - len(ak.KOMAKAI)} になっている"
+            f"（{TADORERU}・{OKENAI_KAZU} のはず）。"
+            "印を足したか、真偽を裏返したか。**どちらも1回決め直すこと**")
     if set(ak.KOMAKAI) != hyo:
         raise AssertionError(
             f"KOMAKAI {sorted(ak.KOMAKAI)} が、表から作った {sorted(hyo)} と違う。"
