@@ -172,6 +172,33 @@ td.d{white-space:nowrap;color:var(--sub);font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--sub);line-height:1.8}
 input.q{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink)}
 #hits li{padding:8px 0}
+/* 長い表のための絞り込み。**行を隠す**ので、ブラウザの検索（Ctrl+F）とも噛み合う */
+.tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+.tools .q{margin-bottom:8px}
+.facets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.facets label{background:var(--soft);color:var(--sub);padding:4px 12px;border-radius:999px;font-size:13px;cursor:pointer;user-select:none;border:1px solid transparent}
+.facets label:has(input:checked){background:var(--key);color:#fff;border-color:var(--key)}
+.facets input{position:absolute;opacity:0;width:0;height:0}
+.facets .n{margin-left:auto;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
+th.s{cursor:pointer;user-select:none;white-space:nowrap}
+/* 並べ替えできる見出しの印。**場所取りに見えない文字を使わない**
+   （em space は font によって□で出た。2026-09-19 に実機幅で確かめた） */
+th.s::after{content:"";display:inline-block;width:.9em;color:var(--rule);text-align:right}
+th.s[data-o="1"]::after{content:"\25B2";color:var(--key)}
+th.s[data-o="-1"]::after{content:"\25BC";color:var(--key)}
+tr.off{display:none}
+.empty{padding:24px 0;color:var(--sub);font-size:14px}
+/* 長い表は、幅が足りないと横スクロールになる。**画面の外に出た列は無いのと同じ。**
+   狭い画面では列を減らし、長い文字は折り返す（2026-09-19 に実機幅390pxで確かめた） */
+table.wide td{overflow-wrap:anywhere}
+/* .d は日付用に nowrap だが、**長い語が入る欄は折り返さないと画面から出る。**
+   折り返してよい欄には .w を付ける（taiten の「町丁目のみ（店名が違う）」） */
+table.wide td.w{white-space:normal}
+@media (max-width:560px){table.wide th.hide2,table.wide td.hide2{display:none}
+  table.wide{font-size:13px}table.wide th,table.wide td{padding:8px 4px}
+  /* **見出しが折り返さないと、見出しの長さが列の幅を決めてしまう。**
+     「建物を用意した人」の8文字で105px取っていた（320px幅で12pxはみ出した） */
+  table.wide th{white-space:normal}}
 @media (max-width:560px){h1{font-size:21px}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}th.hide,td.hide{display:none}}
 """
 
@@ -612,6 +639,244 @@ def koho_page(notices, src_meta, today):
                 canonical="hyogo-koho.html")
 
 
+# ---------------------------------------------------------------- まとめた一覧
+# 届出そのものではなく、届出をまとめて作った2つの一覧。
+# **見出しは「そのデータが何であるか」を書く。何に使えるかではない**（共通仕様3.3）。
+
+FILTER_JS = """
+<script>
+(function(){
+  var box=document.querySelector('.tools'); if(!box) return;
+  var q=box.querySelector('.q'), out=box.querySelector('.n'),
+      facets=[].slice.call(box.querySelectorAll('.facets input')),
+      tb=document.querySelector('tbody'),
+      rows=[].slice.call(tb.rows), total=rows.length,
+      empty=document.getElementById('empty');
+  function norm(s){return (s||'').toLowerCase().replace(/[\s　,]/g,'')}
+  rows.forEach(function(r,i){ r._t=norm(r.textContent); r._i=i });
+  function run(){
+    var v=norm(q.value), on=facets.filter(function(f){return f.checked}), n=0;
+    rows.forEach(function(r){
+      var ok=(!v||r._t.indexOf(v)>=0)&&on.every(function(f){return r.dataset[f.value]==='1'});
+      r.classList.toggle('off',!ok); if(ok) n++;
+    });
+    out.textContent = (n===total) ? total.toLocaleString()+'件'
+                                  : n.toLocaleString()+' / '+total.toLocaleString()+'件';
+    if(empty) empty.style.display = n ? 'none' : '';
+  }
+  q.addEventListener('input',run);
+  facets.forEach(function(f){ f.addEventListener('change',run) });
+  var ths=[].slice.call(document.querySelectorAll('th.s'));
+  ths.forEach(function(th){
+    th.addEventListener('click',function(){
+      var o = th.dataset.o==='1' ? -1 : 1;
+      ths.forEach(function(x){ x.dataset.o='' });
+      th.dataset.o=String(o);
+      var k=th.dataset.k;
+      rows.slice().sort(function(a,b){
+        var x=a.dataset[k]||'', y=b.dataset[k]||'';
+        if(x===y) return a._i-b._i;
+        if(x==='') return 1;
+        if(y==='') return -1;
+        var nx=parseFloat(x), ny=parseFloat(y);
+        if(!isNaN(nx)&&!isNaN(ny)) return (nx-ny)*o;
+        return (x<y?-1:1)*o;
+      }).forEach(function(r){ tb.appendChild(r) });
+    });
+  });
+  run();
+})();
+</script>
+"""
+
+
+def tools_bar(placeholder, facets):
+    """長い表の上に置く絞り込み。facets は (data の名前, 見出し) の並び。
+
+    **行を隠す形にする。** 別の一覧に出し直すと、ブラウザの検索（Ctrl+F）で
+    見つけたものと画面が食い違う。並べ替えも、元の順番に戻せるようにする。
+    """
+    ch = "".join(f'<label><input type="checkbox" value="{esc(k)}">{esc(v)}</label>'
+                 for k, v in facets)
+    return (f'<div class="tools"><input class="q" type="search" placeholder="{esc(placeholder)}" '
+            f'autocomplete="off"><div class="facets">{ch}<span class="n"></span></div></div>')
+
+
+def _load(name):
+    path = os.path.join(HERE, "data", name)
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _m2(v):
+    return f"{v:,.0f}" if isinstance(v, (int, float)) else "–"
+
+
+def taiten_page():
+    """閉じた届出の一覧。**「撤退」とは書かない**（3.3・評価しない）。"""
+    doc = _load("taiten.json")
+    if not doc:
+        return None
+    rows = doc["records"]
+    rel = ""
+    years = [r["closed_on"][:4] for r in rows if r.get("closed_on")]
+    lasted = [r for r in rows if r.get("lasted_days")]
+    near = [r for r in rows if r.get("near_candidates")]
+
+    head = f"""<h1>大型店が閉じた届出の一覧</h1>
+<p class="lead">大規模小売店舗立地法の廃止の届出を、公告された日の順に並べたものです。
+{esc(years and min(years) or "")}年から{esc(years and max(years) or "")}年まで。
+大型店の出退店を追う方のために作りました。</p>
+
+<div class="stat">
+  <div><b>{n_(len(rows))}</b><span>閉じた届出</span></div>
+  <div><b>{n_(sum(1 for r in rows if r.get("area_m2")))}</b><span>店舗面積が書かれていた</span></div>
+  <div><b>{n_(len(lasted))}</b><span>開店日までつながった</span></div>
+</div>
+
+<div class="note"><b>開店日までつながったのは {n_(len(lasted))} 件だけです。</b>
+残りは、始まりの側の届出が手元にありません。役所の縦覧は数か月で消えるので、
+こちらが集め始める前に閉じた店は、あとから取りに行っても埋まりません。
+<b>平均何年もったか、は出しません。</b>{n_(len(lasted))}件の平均は、
+一覧全体について何も言っていないからです。<br>
+つながらないのは過去の分だけです。<b>これから開店の届出を取れた店は、
+閉じるときにつながります。</b>年数の欄は空のまま持っておきます。</div>
+
+<div class="note">個人が設置者の届出には、<b>何年そこにいたかを出していません。</b>
+所在地も町丁目までにしています（<a href="{rel}about.html">このサイトについて</a>）。</div>
+"""
+    if near:
+        head += f"""<div class="note">「町丁目のみ（店名が違う）」は、<b>同じ町丁目に開店の届出はあったが、
+店名が一致しなかった</b>ものです（{n_(len(near))}件）。同じ町丁目に別の店があるだけかもしれないので、
+つないでいません。<b>当たらなかったことも消さずに残しています。</b></div>"""
+
+    tr = []
+    for r in rows:
+        y = ""
+        if r.get("lasted_days"):
+            y = f'{r["lasted_days"] // 365}年' if r["lasted_days"] >= 365 else f'{r["lasted_days"]}日'
+        op = esc(r.get("operator") or "")
+        tsubo = f'<br><span class="d">{r["area_tsubo"]:,.0f}坪</span>' if r.get("area_tsubo") else ""
+        tr.append(
+            f'<tr data-closed="{esc(r.get("closed_on") or "")}" data-area="{r.get("area_m2") or ""}"'
+            f' data-hasarea="{1 if r.get("area_m2") else 0}"'
+            f' data-lasted="{1 if r.get("lasted_days") else 0}"'
+            f' data-near="{1 if r.get("near_candidates") else 0}">'
+            f'<td class="d">{esc(r.get("closed_on") or "")}</td>'
+            f'<td><a href="{rel}s/{esc(r["id"])}.html">{esc(r["store"])}</a>'
+            f'<br><span class="d">{esc(r.get("addr") or "")}</span></td>'
+            f'<td class="n">{_m2(r.get("area_m2"))}{tsubo}</td>'
+            f'<td class="hide">{op}</td>'
+            f'<td class="d w">{esc(y)}{("<br>" + esc(r["match"])) if r.get("match") else ""}</td></tr>')
+
+    body = head + f"""
+<h2>一覧（{n_(len(rows))}件）</h2>
+{tools_bar("店名・所在地・設置者でしぼる", [
+    ("hasarea", "店舗面積あり"), ("lasted", "何年いたか分かる"), ("near", "近い候補あり")])}
+<table class="wide"><thead><tr><th class="s" data-k="closed">閉じた日</th><th>店名・所在地</th>
+<th class="s n" data-k="area">店舗面積<br>（㎡）</th>
+<th class="hide">設置者</th><th>何年いたか<br>つなぎ方</th></tr></thead>
+<tbody>{"".join(tr)}</tbody></table>
+<p class="empty" id="empty" style="display:none">当てはまるものがありませんでした。</p>
+{FILTER_JS}"""
+    return page("大型店が閉じた届出の一覧（大阪・兵庫）", body, rel,
+                f"大規模小売店舗立地法の廃止の届出 {len(rows)}件。大阪府・兵庫県。公告された日の順。",
+                canonical="taiten.html")
+
+
+def settisha_page():
+    """建物を用意した人と、店をやる人が別の届出。
+
+    **「賃貸物件の一覧」とは書かない**（共通仕様3.3「見出しで性質が変わる」）。
+    デベロッパーと核テナント、同じ企業グループ内の分社も同じように見える。
+    """
+    doc = _load("settisha.json")
+    if not doc:
+        return None
+    rows = doc["stores"]
+    rel = ""
+    oc = sum(1 for r in rows if r.get("operator_changes"))
+    rc = sum(1 for r in rows if r.get("retailer_changes"))
+    ar = sum(1 for r in rows if r.get("area_m2"))
+    zo = sum(1 for r in rows if r.get("zoning_norm"))
+
+    head = f"""<h1>建物を用意した人と、店をやる人が別の届出</h1>
+<p class="lead">大規模小売店舗立地法の届出には「設置者」と「小売業者」が別の欄で入ります。
+その2つが別の名前になっている届出を、店ごとにまとめたものです。
+大型店の出退店を追う方のために作りました。</p>
+
+<div class="note"><b>これは賃貸物件の一覧ではありません。</b>
+建物を用意した会社と店をやる会社が別に書かれている、というだけです。
+デベロッパーと核テナントの関係も、同じ企業グループの中で会社が分かれている形も、
+届出の上では同じように見えます。<b>「建物を用意した人と店をやる人が別」までが、
+このデータが言っていることです。</b></div>
+
+<div class="stat">
+  <div><b>{n_(len(rows))}</b><span>店</span></div>
+  <div><b>{n_(oc)}</b><span>設置者の表記が変わった</span></div>
+  <div><b>{n_(rc)}</b><span>小売業者の表記が変わった</span></div>
+  <div><b>{n_(ar)}</b><span>店舗面積あり</span></div>
+  <div><b>{n_(zo)}</b><span>用途地域あり</span></div>
+</div>
+
+<div class="note"><b>「表記が変わった」であって、「持ち主が変わった」ではありません。</b>
+商号変更・合併・持株会社化でも名前は変わります。届出だけでは売買と見分けられません
+（見分けるには法人番号が要ります）。<br>
+書き方の違いだけのもの（<code>近鉄不動産(株)</code> と <code>近鉄不動産株式会社</code>）は
+数えていません。ただし「ほか◯者」が付いたり消えたりしたものは、
+<b>共有者が変わったか書き落としたかのどちらか</b>なので数えています。</div>
+
+<div class="note">店舗面積は {n_(len(rows) - ar)} 店、用途地域は {n_(len(rows) - zo)} 店で
+<b>届出に書かれていません。</b>欄のある自治体とない自治体があります。
+用途地域は、届出の書き方をそろえた形で出しています（書かれていた形もデータに残しています）。</div>
+"""
+    tr = []
+    for r in rows:
+        z = "、".join(r.get("zoning_norm") or []) or "–"
+        tsubo = f'<br><span class="d">{r["area_tsubo"]:,.0f}坪</span>' if r.get("area_tsubo") else ""
+        ch = []
+        if r.get("operator_changes"):
+            ch.append(f'設置者{r["operator_changes"]}回')
+        if r.get("retailer_changes"):
+            ch.append(f'小売{r["retailer_changes"]}回')
+        co = []
+        if r.get("operator_co_owners"):
+            co.append("設置者に共有者")
+        if r.get("retailer_co_owners"):
+            co.append("小売業者に共有者")
+        sub = "<br>".join(f'<span class="d">{esc(x)}</span>' for x in ("、".join(ch), "、".join(co)) if x)
+        tr.append(
+            f'<tr data-last="{esc(r.get("last_on") or "")}" data-area="{r.get("area_m2") or ""}"'
+            f' data-notices="{r.get("notices") or 0}"'
+            f' data-hasarea="{1 if r.get("area_m2") else 0}"'
+            f' data-haszoning="{1 if r.get("zoning_norm") else 0}"'
+            f' data-changed="{1 if (r.get("operator_changes") or r.get("retailer_changes")) else 0}"'
+            f' data-shared="{1 if (r.get("operator_co_owners") or r.get("retailer_co_owners")) else 0}">'
+            f'<td>{esc(r["store"])}<br><span class="d">{esc(r.get("addr") or "")}</span></td>'
+            f'<td>{esc(r.get("operator_now") or "")}</td>'
+            f'<td>{esc(r.get("retailer_now") or "")}</td>'
+            f'<td class="n">{_m2(r.get("area_m2"))}{tsubo}</td>'
+            f'<td class="hide">{esc(z)}</td>'
+            f'<td class="d hide2">{esc(r.get("last_on") or "")}<br>届出{n_(r.get("notices") or 0)}件{("<br>" + sub) if sub else ""}</td></tr>')
+
+    body = head + f"""
+<h2>一覧（{n_(len(rows))}店）</h2>
+{tools_bar("店名・所在地・会社名でしぼる", [
+    ("changed", "名前が変わった"), ("shared", "共有者あり"),
+    ("hasarea", "店舗面積あり"), ("haszoning", "用途地域あり")])}
+<table class="wide"><thead><tr><th>店名・所在地</th><th>建物を用意した人</th><th>店をやる人</th>
+<th class="s n" data-k="area">店舗面積<br>（㎡）</th><th class="hide">用途地域</th>
+<th class="s hide2" data-k="last">最後の届出</th></tr></thead>
+<tbody>{"".join(tr)}</tbody></table>
+<p class="empty" id="empty" style="display:none">当てはまるものがありませんでした。</p>
+{FILTER_JS}"""
+    return page("建物を用意した人と、店をやる人が別の届出（大阪・兵庫）", body, rel,
+                f"大規模小売店舗立地法の届出で、設置者と小売業者が別の名前になっている店 {len(rows)}件。",
+                canonical="settisha.html")
+
+
 def index_page(all_recs, today):
     rel = ""
     future = sorted([r for r in all_recs if (r.get("event_on") or r.get("planned_on") or "") > today],
@@ -634,6 +899,13 @@ def index_page(all_recs, today):
 <p class="lead">大規模小売店舗立地法の届出（店舗面積1,000㎡超）を、各自治体の公表ページから毎朝あつめています。届出は開店の8か月以上前に出るので、ニュースになる前に分かります。</p>
 <div class="stat"><div><b>{len(all_recs):,}</b><span>届出（{min(yrs)}〜{max(yrs)}年{yr_note}）</span></div><div><b>{kinds.get('新設',0)}</b><span>新設</span></div><div><b>{kinds.get('廃止',0)}</b><span>廃止</span></div><div><b>{len(areas)}</b><span>市区町村</span></div></div>
 <input class="q" id="q" type="search" placeholder="店名・市区町村でさがす（例：イオン、枚方市）" autocomplete="off"><ul class="list" id="hits"></ul>
+
+<h2>届出をまとめた一覧</h2>
+<p class="lead">届出を1件ずつではなく、店ごと・出来事ごとにまとめ直したもの。</p>
+<div class="chips">
+<a href="taiten.html">大型店が閉じた届出の一覧</a>
+<a href="settisha.html">建物を用意した人と、店をやる人が別の届出</a>
+</div>
 
 <h2>これから起きる予定（{len(future)}件）</h2>
 <p class="lead">届出に書かれた開店・変更・廃止の予定日が、今日より先のもの。</p>
@@ -741,6 +1013,8 @@ def main():
 
     by_ref = {r["ref"]: r for r in recs if r.get("ref")}
     urls = []
+    # まとめた一覧。**作っただけでは誰も辿りつけない。** index からのリンクと
+    # sitemap の両方に入れる（片方だけだと、人か機械のどちらかが見つけられない）
 
     for r in recs:
         with open(os.path.join(HERE, "s", f"{r['key']}.html"), "w", encoding="utf-8") as f:
@@ -764,8 +1038,24 @@ def main():
             f.write(kind_page(kind, rows))
         urls.append(f"k/{kind}.html")
 
+    # まとめた一覧（届出そのものではなく、届出から作ったもの）
+    made = []
+    for fn, fnc in (("taiten.html", taiten_page), ("settisha.html", settisha_page)):
+        # 変数名に html を使わない。**標準の html モジュールを隠す**（同じ関数の
+        # 下のほうで html.escape を呼んでいる）。9節「標準ライブラリと同じ名前」の、
+        # ファイル名ではなく変数名の版（2026-09-19）
+        doc_html = fnc()
+        if doc_html:
+            with open(os.path.join(HERE, fn), "w", encoding="utf-8") as f:
+                f.write(doc_html)
+            made.append(fn)
+
+    urls += made
+
     with open(os.path.join(HERE, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_page(recs, today))
+    if made:
+        print("まとめた一覧: " + " / ".join(made))
     with open(os.path.join(HERE, "about.html"), "w", encoding="utf-8") as f:
         f.write(about_page(src_meta, today))
     with open(os.path.join(HERE, "contact.html"), "w", encoding="utf-8") as f:

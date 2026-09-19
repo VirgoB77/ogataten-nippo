@@ -340,7 +340,10 @@ _RAW_SMALL = re.compile(
     r"<b>[12]</b></a>"                 # チップ（市区町村・種別）
     r"|<td class=\"n\">[12]</td>"       # 公報の表のセル
     r"|<td class=\"n\"><b>[12]</b>"     # 公報の表の合計
-    r"|class=\"lead\">[12]件"           # 市区町村ページ・種別ページの先頭行
+    # 「1件ずつ」のような**数えた件数でない言い回し**には当てない。
+    # 誤報を出す見張りは、そのうち読まれなくなる（9節）。件数のあとに来るのは
+    # 「。」「の」「（」などで、「ずつ」は来ない（2026-09-19）
+    r"|class=\"lead\">[12]件(?!ずつ)"    # 市区町村ページ・種別ページの先頭行
     r"|届出[12]件。"                     # meta description
     r"|(?:新設|廃止|変更)[12][・。]"      # meta description の内訳
 )
@@ -1469,6 +1472,44 @@ def test_zoning_handles_wrapped_cell_text():
         got, unknown = zoninglib.normalize(raw)
         if got != want or unknown:
             fails.append(f"用途地域の読み取りが違う（{raw!r} → {got} 余り{unknown}・期待 {want}）")
+
+
+def test_every_python_file_parses():
+    """このリポジトリの .py が、全部ちゃんと読めるか。
+
+    検査は `*.py` を**文字として**走査しているが、**構文が通るかは見ていなかった。**
+    2026-09-19、マージの衝突マーカーが入ったまま `git add -A` でコミットされ、
+    `build_site.py` が `SyntaxError` になったのに、47本の検査は全部通った。
+    **読んでいるのに、読めているかを見ていなかった。**
+
+    衝突マーカー（`<<<<<<<`）も、ここで落ちる。
+    """
+    import ast
+    bad = []
+    for f in sorted(glob.glob(os.path.join(HERE, "*.py"))
+                    + glob.glob(os.path.join(HERE, "common", "*.py"))
+                    + glob.glob(os.path.join(HERE, "scripts", "*.py"))):
+        try:
+            with open(f, encoding="utf-8") as fh:
+                ast.parse(fh.read(), filename=f)
+        except SyntaxError as e:
+            bad.append(f"{os.path.basename(f)}:{e.lineno} {e.msg}")
+        except Exception as e:
+            bad.append(f"{os.path.basename(f)} {type(e).__name__}")
+    if bad:
+        fails.append(f"読めない .py が {len(bad)}本（{bad[:3]}）")
+
+    # マージの衝突マーカーは、.py 以外にも残る
+    marks = []
+    for f in (glob.glob(os.path.join(HERE, "*.md"))
+              + glob.glob(os.path.join(HERE, "docs", "*.md"))
+              + glob.glob(os.path.join(HERE, ".github", "workflows", "*.yml"))):
+        with open(f, encoding="utf-8", errors="ignore") as fh:
+            t = fh.read()
+        if "\n<<<<<<< " in t or "\n>>>>>>> " in t:
+            marks.append(os.path.basename(f))
+    if marks:
+        fails.append(f"マージの衝突マーカーが残っている {marks}")
 
 
 def main():
