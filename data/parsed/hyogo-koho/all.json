@@ -30279,6 +30279,30 @@
   "operator_kind": "corp"
  },
  {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "source": "hyogo-koho",
+  "gazette_date": "2025-01-07",
+  "gazette_no": "580",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250107t.pdf"
+  ],
+  "store": "オーケー北伊丹店",
+  "address": "伊丹市北園一丁目38番２号ほか",
+  "operator": "株式会社小西園芸社",
+  "retailer": "オーケー株式会社",
+  "event_on": "2025-08-10",
+  "notified_on": "2024-12-09",
+  "area_m2": 1559,
+  "region": "阪神北",
+  "review_from": "2025-01-07",
+  "key": "e848ee04255a",
+  "operator_display": "株式会社小西園芸社",
+  "operator_kind": "corp",
+  "retailer_display": "オーケー株式会社",
+  "retailer_kind": "corp"
+ },
+ {
   "article": "第6条第1項",
   "kind": "変更",
   "source": "hyogo-koho",
@@ -30297,6 +30321,45 @@
   "review_from": "2024-12-27",
   "key": "54e42061c09b",
   "operator_display": "株式会社パン・パシフィック・インター",
+  "operator_kind": "corp"
+ },
+ {
+  "article": "第6条第5項",
+  "kind": "廃止",
+  "source": "hyogo-koho",
+  "gazette_date": "2025-01-07",
+  "gazette_no": "580",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250107t.pdf"
+  ],
+  "store": "フラワータウンショッピングセンター",
+  "address": "三田市弥生が丘一丁目",
+  "event_on": "2025-03-01",
+  "notified_on": "2024-12-13",
+  "area_m2": 16494,
+  "review_from": "2025-01-07",
+  "key": "aab514eb027e",
+  "address_redacted": true
+ },
+ {
+  "article": "第6条第1項",
+  "kind": "変更",
+  "source": "hyogo-koho",
+  "gazette_date": "2025-01-10",
+  "gazette_no": "581",
+  "docs": [
+   "https://web.pref.hyogo.lg.jp/kk32/koho/documents/20250110t.pdf"
+  ],
+  "store": "ホームセンターコーナン西宮今津港町店",
+  "address": "西宮市今津港町13番１ほか",
+  "operator": "三井住友信託銀行株式会社",
+  "event_on": "2024-12-17",
+  "notified_on": "2024-12-17",
+  "content": "大規模小売店舗において小売業を行う者の氏名又は名称及び住所並びに法人にあっては代表者の氏名",
+  "region": "阪神北",
+  "review_from": "2025-01-10",
+  "key": "566286fa8907",
+  "operator_display": "三井住友信託銀行株式会社",
   "operator_kind": "corp"
  },
  {
