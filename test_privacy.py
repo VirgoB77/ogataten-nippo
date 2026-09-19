@@ -1225,7 +1225,7 @@ def test_settisha_groups_by_banchi_not_town():
 
 
 def test_settisha_changes_match_history():
-    """「途中で変わった回数」が、履歴と合っているか。
+    """「表記が変わった回数」が、履歴と合っているか。
 
     合っていなければ、データが言っていないことを画面に書いている。
     履歴が日付の順に並んでいることも一緒に見る（並んでいなければ
@@ -1244,7 +1244,13 @@ def test_settisha_changes_match_history():
         for field, shown in (("operator", "operator_changes"),
                              ("retailer", "retailer_changes")):
             names = [x.get(field) for x in h if x.get(field)]
-            want = len(dict.fromkeys(names)) - 1 if names else 0
+            # 書き方の違いだけのもの（近鉄不動産(株) と 近鉄不動産株式会社）は
+            # 数えない。ひと続きの並びとして数えるので、A→B→A→C は3回
+            want, prev = 0, None
+            for x in names:
+                if prev is not None and prev != x and not privacy.same_corp(prev, x):
+                    want += 1
+                prev = x
             if r.get(shown) != want:
                 count_bad.append((r.get("store"), field))
             now = names[-1] if names else ""
@@ -1357,6 +1363,39 @@ def test_zoning_values_are_real_categories():
     if share > 0.2:
         fails.append(f"用途地域の欄の {share:.0%} が用途地域として読めない"
                      f"（{list(names)[:4]}）。列がずれている")
+
+
+def test_same_corp_sees_through_notation_only():
+    """書き方が違うだけの社名を、同じ会社と見られるか。
+
+    一覧によって ㈱／(株)／株式会社 が混ざり、全角と半角も混ざる。
+    見分けられないと、**1ミリも変わっていないものを「変わった」と数える。**
+    実測で、設置者が変わったとされる98件のうち17件がこれだった（2026-09-19）。
+
+    **逆に、見えすぎてもいけない。** 商号変更・合併・持株会社化は名前が
+    本当に変わるので、ここで同じと言ってはいけない。見分けるには法人番号が要る。
+
+    社名は架空のものを使う。
+    """
+    same = [
+        ("鯨屋不動産(株)", "鯨屋不動産株式会社"),
+        ("㈱鯨屋不動産", "株式会社鯨屋不動産"),
+        ("ＫＵＪＩＲＡリース(株)", "KUJIRAリース株式会社"),
+        ("鯨屋建設(株)　ほか1者", "鯨屋建設株式会社　ほか１者"),
+        ("鯨屋商事㈲", "鯨屋商事有限会社"),
+    ]
+    diff = [
+        ("鯨屋電鉄株式会社", "鯨屋ホールディングス株式会社"),   # 持株会社化
+        ("鯨屋信託銀行㈱", "海猫信託銀行㈱"),                   # 合併
+        ("株式会社鯨屋", "株式会社海猫"),
+        ("株式会社", "株式会社"),                               # 芯が無い。同じと言わない
+    ]
+    for a, b in same:
+        if not privacy.same_corp(a, b):
+            fails.append(f"書き方が違うだけの社名を別の会社と見ている（{a} / {b}）")
+    for a, b in diff:
+        if privacy.same_corp(a, b):
+            fails.append(f"名前そのものが違う社名を同じ会社と見ている（{a} / {b}）")
 
 
 def main():

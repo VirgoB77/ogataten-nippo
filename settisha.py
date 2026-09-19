@@ -19,14 +19,24 @@
 
 時間の値打ちはここにある（共通仕様1節）。
 
-    設置者が途中で変わった店    建物の持ち主が変わった
-    小売業者が途中で変わった店  店をやる人が変わった
+    設置者の表記が変わった店    建物を用意した人の**名前**が書き換わった
+    小売業者の表記が変わった店  店をやる人の**名前**が書き換わった
+
+**「持ち主が変わった」とは書かない。** 商号変更・合併・持株会社化は
+名前だけが変わるので、売買と見分けられない。実物にあった例：
+
+    京阪電気鉄道株式会社 → 京阪ホールディングス株式会社   持株会社化
+    中央三井信託銀行㈱   → 三井住友信託銀行㈱            合併
+
+見分けるには法人番号が要る。無いうちは「表記が変わった」までが、
+データが言っていること（共通仕様3.3）。
 """
 import json, os, sys
 from datetime import date
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "common"))
 import addr as addrlib
+import privacy
 import zoning as zoninglib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +60,26 @@ def day(r):
 def name(r, field):
     """画面に出す名前。個人は merge の時点で「個人」になっている（3.1）。"""
     return (r.get(field + "_display") or r.get(field) or "").strip()
+
+
+def renamed(names):
+    """名前が書き換わった回数。
+
+    **「持ち主が変わった回数」ではない。** 商号変更・合併・持株会社化は
+    名前だけが変わるので、ここでは売買と見分けられない（見分けるには法人番号が要る）。
+    書き方の違いだけのもの（`近鉄不動産(株)` と `近鉄不動産株式会社`）は
+    `privacy.same_corp()` で落とす。実測で98件中17件がこれだった（2026-09-19）。
+
+    A → B → A → C は **3回**。ひと続きの並びとして数える。
+    出てきた名前の種類を数えると、A に戻ったことが消えて2回になる。
+    """
+    n = 0
+    prev = None
+    for x in names:
+        if prev is not None and not privacy.same_corp(prev, x) and prev != x:
+            n += 1
+        prev = x
+    return n
 
 
 def build(recs):
@@ -85,9 +115,9 @@ def build(recs):
             # 判定そのものを持たせる（taiten.json と同じ形）
             "operator_kind": last.get("operator_kind"),
             "retailer_kind": last.get("retailer_kind"),
-            # 途中で変わった回数。同じ名前が続くぶんは数えない
-            "operator_changes": len(dict.fromkeys(ops)) - 1 if ops else 0,
-            "retailer_changes": len(dict.fromkeys(rets)) - 1 if rets else 0,
+            # 名前が**書き換わった回数**。持ち主が変わった回数ではない（下の注)
+            "operator_changes": renamed(ops),
+            "retailer_changes": renamed(rets),
             "area_m2": last.get("area_m2"),
             # 延床面積は「建物ぜんぶ」、店舗面積は「店の部分」。別の数なので欄を分ける。
             # 建物を用意した人を並べる一覧なので、建物のほうの数も持たせる
@@ -129,8 +159,8 @@ def main():
     oc = sum(1 for r in rows if r["operator_changes"])
     rc = sum(1 for r in rows if r["retailer_changes"])
     print(f"設置者と小売業者が別の店 {len(rows)} 件  →  {OUT}")
-    print(f"  設置者が途中で変わった店    {oc}")
-    print(f"  小売業者が途中で変わった店  {rc}")
+    print(f"  設置者の表記が変わった店    {oc}")
+    print(f"  小売業者の表記が変わった店  {rc}")
     print(f"  面積あり                    {sum(1 for r in rows if r['area_m2'])}")
     print(f"  用途地域あり                {sum(1 for r in rows if r['zoning'])}")
     return 0
