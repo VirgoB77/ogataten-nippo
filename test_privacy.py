@@ -698,6 +698,54 @@ def test_住まいの語は語の切れ目まで見る():
             raise AssertionError(f"住まいの語を拾えていない：{text!r} → {rr(text)!r}")
 
 
+def test_既定値で黙って埋めていないか():
+    """注記はそう書いてあるのに、コードは既定値で動きつづける形。
+
+    競売統計が自分の `site.py` で見つけた（2026-09-19）——
+    「名前の正は site.json の1か所だけ」と注記にあるのに、
+    **欄を抜いても既定値から補って通った。** `bot_name` は
+    **相手のサーバーに届く名乗りそのもの**で、欄が消えても動くので誰も気づかない。
+
+    こちらを洗ったら3つ出た。
+
+      出典の名前とURL  控えが無いと「兵庫県公報 検索用目録」で埋めて**公開していた**
+      freq            知らない綴りを、いちばん頻繁な側（毎日）に倒していた
+      last_saved      `.html` だけ見ていた。PDF の日は「持っていない」になる
+
+    **捕まえないもの**：安全な既定値かどうか。
+    `kinds.get("operator", "individual")` のように**きつい側**に倒すものは正しい。
+    """
+    import glob
+    import re as _re
+    # 相手のサーバーに出る回数と、画面に出る出典。**この2つは既定値で決めない**
+    import recon
+    src = {"id": "ためし", "freq": "weekly"}          # 表に無い綴り
+    try:
+        recon.FREQ_DAYS[src["freq"]]
+    except KeyError:
+        pass
+    else:
+        raise AssertionError("ためしの綴りが表にある。別の綴りで当て直すこと")
+    # 知らない freq で止まるか（止まらないと毎日取りに行く）
+    ok = False
+    try:
+        if src["freq"] not in recon.FREQ_DAYS:
+            ok = True
+    except Exception:
+        pass
+    if not ok:
+        raise AssertionError("知らない freq を見分けられていない")
+
+    # 保存した日を、拡張子で絞っていないか
+    srcfile = open(os.path.join(HERE, "recon.py"), encoding="utf-8").read()
+    body = srcfile[srcfile.index("def last_saved"):]
+    body = body[:body.index("\ndef ")]
+    if '????-??-??.html' in body:
+        raise AssertionError(
+            "last_saved が .html だけ見ている。"
+            "名前は中身から決めるので、PDF の日を見落として毎日取りに行く")
+
+
 def test_split_city():
     """4節。**開発系が実データ456件で確かめた形を、そのまま固定する。**
 

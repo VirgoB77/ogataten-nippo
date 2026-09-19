@@ -226,10 +226,16 @@ FREQ_DAYS = {"daily": 0, "biweekly": 14, "quarterly": 90}
 
 
 def last_saved(sid):
-    """その収集先を最後に保存した日（data/raw/<id>/YYYY-MM-DD.html）。無ければ None。"""
+    """その収集先を最後に保存した日（data/raw/<id>/YYYY-MM-DD.*）。無ければ None。
+
+    **拡張子で絞らない。** 2026-09-19 に「名前は中身から決める」に直したので、
+    相手が PDF を返した日は `{日付}.pdf` になる。`.html` だけ見ていると
+    **その日の分を「持っていない」と数えて、毎日取りに行く**（3.4 違反）。
+    **直した日に、直したものを見ていた別の場所が壊れる**（9節）。
+    """
     days = []
-    for p in glob.glob(os.path.join(HERE, "data", "raw", sid, "????-??-??.html")):
-        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.html", os.path.basename(p))
+    for p in glob.glob(os.path.join(HERE, "data", "raw", sid, "????-??-??.*")):
+        m = re.match(r"(\d{4}-\d{2}-\d{2})\.", os.path.basename(p))
         if m:
             days.append(m.group(1))
     if not days:
@@ -389,7 +395,15 @@ def main():
             continue
 
         # 相手ごとの頻度（共通仕様3.4）。前回からその日数たっていなければ取りに行かない
-        wait_days = FREQ_DAYS.get(src.get("freq", "daily"), 0)
+        # **知らない値を、いちばん頻繁な側に倒さない。** 綴りを間違えると
+        # 「weekly」が毎日になる。相手のサーバーに出る回数なので、
+        # 分からないときは止める（3.4「1日1回」。2026-09-19）
+        freq = src.get("freq", "daily")
+        if freq not in FREQ_DAYS:
+            raise ValueError(
+                f"{src['id']}: 知らない freq「{freq}」。"
+                f"使えるのは {'/'.join(FREQ_DAYS)}。取りに行く回数なので黙って決めない")
+        wait_days = FREQ_DAYS[freq]
         if wait_days:
             last = last_saved(src["id"])
             if last and (runday.today_date() - last).days < wait_days:
