@@ -674,6 +674,30 @@ def test_生データの名前が中身と合っているか():
             + (f"\n  ほか {len(bad) - 5} 件" if len(bad) > 5 else ""))
 
 
+def test_住まいの語は語の切れ目まで見る():
+    """文字列を含むかだけで見ると、**逆のものを拾う。**
+
+    2026-09-19、足したその日に実データで2件誤って拾った。
+    どちらも別の語の一部だった。
+    """
+    from common.privacy import residential_reason as rr
+
+    # 実データにあった誤検知（どちらも住まいではない）
+    eq(rr("（仮称）三井アウトレットパークマリンピア神戸建替計画"), "",
+       "「神戸建替」の『戸建』を拾わない")
+    eq(rr("ライフコーポレーション"), "",
+       "「コーポレーション」の『コーポ』を拾わない（むしろ法人の語）")
+    eq(rr("長屋町1-2-3 倉庫"), "", "「長屋町」は地名")
+
+    # 本物は拾う（実データにあったもの）
+    for text in ("緑地東グランドマンション（阪急オアシス服部緑地店）",
+                 "浪速住宅ビル", "ハンリョウ八尾ハイツ",
+                 "ＡＳＴＭ芦屋浜高層住宅プロジェクト商業施設",
+                 "一戸建て 木造"):
+        if rr(text) != "居住用途の建物":
+            raise AssertionError(f"住まいの語を拾えていない：{text!r} → {rr(text)!r}")
+
+
 def test_split_city():
     """4節。**開発系が実データ456件で確かめた形を、そのまま固定する。**
 
@@ -770,6 +794,51 @@ def test_正本に書いた署名が実装にあるか():
             bad.append(f"{name}(): 文書 {doc_args} / 実装 {code_args}")
     if bad:
         raise AssertionError("正本の文書と実装がずれている：\n  " + "\n  ".join(bad))
+
+
+def test_呼ばれていない守りの関数にそう書いてあるか():
+    """5節は「人の判断ではなくコードで守る層」。
+
+    **署名だけあって呼ばれていない関数は、守っているように見えて
+    何も守っていない。** 次に読む人が「ここを通っているから安全」と
+    思い込む（9節・2026-09-19）。だから**呼ばれていないと書く。**
+
+    **捕まえないもの**：書いてある理由が正しいか。
+    「呼んでいない」と書いてあるだけで通る。
+    """
+    import ast
+    import glob
+    from common import privacy
+
+    tree = ast.parse(open(privacy.__file__, encoding="utf-8").read())
+    funcs = {n.name: n for n in tree.body
+             if isinstance(n, ast.FunctionDef) and not n.name.startswith("_")}
+    called = set()
+    for fp in sorted(glob.glob(os.path.join(HERE, "*.py"))) + \
+            sorted(glob.glob(os.path.join(HERE, "common", "*.py"))):
+        base = os.path.basename(fp)
+        if base.startswith("test_") or base == "privacy.py":
+            continue
+        for node in ast.walk(ast.parse(open(fp, encoding="utf-8").read())):
+            if isinstance(node, ast.Call):
+                name = getattr(node.func, "attr", None) or getattr(node.func, "id", None)
+                if name in funcs:
+                    called.add(name)
+
+    bad = []
+    for name, node in sorted(funcs.items()):
+        if name in called:
+            continue
+        doc = ast.get_docstring(node) or ""
+        # **目印を1つに決める。** ふつうの言い回しで見ると、
+        # 説明の中の同じ言葉で通ってしまう（実際に通った。2026-09-19）
+        if "【本番から呼ばれていない】" not in doc:
+            bad.append(name)
+    if bad:
+        raise AssertionError(
+            "本番から呼ばれていないのに、呼ばれていないと書いていない関数："
+            + " / ".join(bad)
+            + "（守っているように見えて何も守っていない。docstring に書くこと）")
 
 
 def test_common_の指紋が中身と合っているか():
