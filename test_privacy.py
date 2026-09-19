@@ -1065,7 +1065,14 @@ def test_zero_count_keeps_its_rate():
     eq(privacy.suppress_rate(1, 10000), True, "1件は率を出さない")
     eq(privacy.suppress_rate(2, 10000), True, "2件は率を出さない")
     eq(privacy.suppress_rate(3, 10000), False, "3件は率を出してよい")
-    eq(privacy.suppress_rate(0, 400), True, "人口が足りなければ0件でも出さない")
+    # ここは 2026-09-19 まで True を期待していた。正本違反のほうを固定していた。
+    # 0件は、人口がいくら小さくても率を出す。率を伏せるのは「率×人口」で件数が
+    # 戻るからで、0件には戻る先が無い。人口の小ささも同じ理由で効かない
+    eq(privacy.suppress_rate(0, 400), False, "0件は人口が小さくても率を出す")
+    eq(privacy.suppress_rate(0, 1), False, "人口1人でも、0件なら率を出す")
+    eq(privacy.suppress_rate(0, 0), False, "人口0でも、0件なら率を出す")
+    eq(privacy.suppress_rate(1, 400), True, "1件で人口も小さいなら伏せる")
+    eq(privacy.suppress_rate(9, 400), True, "0件でなければ人口の小ささが効く")
 
 
 _HAND_WRITTEN_SUPPRESS = re.compile(
