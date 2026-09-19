@@ -30,9 +30,14 @@ TSUBO = 3.305785
 
 def norm(r, field):
     """住所の突き合わせキー。取れなければ None。"""
+    # ValueError（住所が別の市を名乗っている）は握りつぶさない。
+    # 黙って None にすると、食い違いが「読めなかった」に混ざって消える。
+    # 読めないのは自分が減らすもの、食い違いは止めて見るもの（6節）
     try:
         return addrlib.normalize(r.get("pref", ""), r.get("city", ""),
                                  r.get("address", "")).get(field)
+    except ValueError:
+        raise
     except Exception:
         return None
 

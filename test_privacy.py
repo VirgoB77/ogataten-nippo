@@ -477,11 +477,40 @@ def test_parse_keeps_unknown_columns():
 
 
 # ---------------------------------------------------------------- 4節 addr.py と 6節 index.json
+def test_住所が別の市を名乗る行は0件のまま():
+    """食い違いの数を、一度数えて終わりにしない。0でなくなった日に止まる。
+
+    4節「測った、は『そのときの一覧では』の意味しかない」。
+    出どころは、ある日から別の市の土地を載せはじめる。
+    """
+    import json
+    from common import addr
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    bad = []
+    with open(path, encoding="utf-8") as f:
+        for r in json.load(f):
+            try:
+                addr.normalize(r.get("pref", ""), r.get("city", ""), r.get("address", ""))
+            except ValueError as e:
+                bad.append(str(e))
+            except Exception:
+                pass          # 読めないのは別の話（6節 unresolved）
+    if bad:
+        raise AssertionError(
+            f"住所が呼ぶ側と別の市を名乗っている行が {len(bad)} 件。"
+            f"市を被せずに、どう扱うか決めること（4節）：\n  " + "\n  ".join(bad[:5]))
+
+
 def test_addr_normalize():
     """共通仕様4節のテスト値をそのまま通す。期待値は具体的に書く。"""
     from common import addr
     codes = {("大阪府", "大阪市北区"): "27127", ("兵庫県", "尼崎市"): "28202", ("兵庫県", "西宮市"): "28204",
-             ("大阪府", "豊中市"): "27203", ("兵庫県", "三田市"): "28219", ("大阪府", "大阪市淀川区"): "27123"}
+             ("大阪府", "豊中市"): "27203", ("兵庫県", "三田市"): "28219", ("大阪府", "大阪市淀川区"): "27123",
+             # 同じ都道府県の別の市。これが無いと「堺市…」の食い違いを見つけられない。
+             # 見張りは、知っている名前しか見つけられない（jis-codes.json から引いた）
+             ("大阪府", "堺市"): "27140"}
     r = addr.normalize("大阪府", "大阪市北区", "梅田一丁目１番１号", codes)
     eq(r["addr"], "大阪市北区梅田1-1-1", "4節 1件目 addr")
     eq(r["town"], "梅田1", "4節 1件目 town（丁目を含む）")
@@ -500,6 +529,19 @@ def test_addr_normalize():
     eq(r["addr_key_town"], "27203|服部西町1", "town は丁目まで")
     r = addr.normalize("大阪府", "大阪市淀川区", "十三本町1-2-3", codes)
     eq(r["addr_key"], "27123|十三本町1-2-3", "地名の漢数字（十三）を壊さない")
+    # 呼ぶ側と違う市を住所が名乗っていたら、繋げずに止める（2026-09-19）
+    for bad in ("兵庫県西宮市甲子園町1-1", "堺市西区鳳東町7-733"):
+        try:
+            got = addr.normalize("大阪府", "大阪市北区", bad, codes)
+            raise AssertionError(
+                f"別の市を名乗る住所を繋げてしまった： {bad} -> {got['addr']}")
+        except ValueError:
+            pass
+    # 同じ市を名乗っているのは落とすだけ。止めない
+    r = addr.normalize("大阪府", "大阪市北区", "大阪府大阪市北区梅田1-1-1", codes)
+    eq(r["addr"], "大阪市北区梅田1-1-1", "自分の都道府県＋市は落とすだけ")
+    eq(r["addr_key"], "27127|梅田1-1-1", "落としたあとのキー")
+
     r = addr.normalize("兵庫県", "三田市", "三田市天神1丁目", codes)
     eq(r["addr_key_town"], "28219|天神1", "地名の漢数字（三田）を壊さず、先頭の市名を落とす")
     r = addr.normalize("大阪府", "豊中市", "", codes)
@@ -1070,9 +1112,25 @@ def test_zero_count_keeps_its_rate():
     # 戻るからで、0件には戻る先が無い。人口の小ささも同じ理由で効かない
     eq(privacy.suppress_rate(0, 400), False, "0件は人口が小さくても率を出す")
     eq(privacy.suppress_rate(0, 1), False, "人口1人でも、0件なら率を出す")
-    eq(privacy.suppress_rate(0, 0), False, "人口0でも、0件なら率を出す")
+    # ここは 2026-09-19 に統括が False で書いた。**間違いだった。**
+    # 人口0は伏せるのではなく、率そのものが定義できない（0では割れない）。
+    # False にすると呼ぶ側が 0/0 でゼロ除算する。街頭窃盗統計が実際に踏んだ
+    eq(privacy.suppress_rate(0, 0), True, "人口0は0件でも率を出さない（0では割れない）")
+    eq(privacy.suppress_rate(0, -1), True, "人口が負でも率を出さない")
     eq(privacy.suppress_rate(1, 400), True, "1件で人口も小さいなら伏せる")
     eq(privacy.suppress_rate(9, 400), True, "0件でなければ人口の小ささが効く")
+
+    # 条件が2つあるので、交差を全部当てる（9節）。片方ずつ当てると、
+    # 不具合のある升（0件かつ小人口／0件かつ人口0）を一度も踏まない
+    grid = {
+        #  件数     人口0   人口400（小）  人口5000（十分）
+        (0,    0): True,  (0,   400): False, (0,   5000): False,
+        (1,    0): True,  (1,   400): True,  (1,   5000): True,
+        (2,    0): True,  (2,   400): True,  (2,   5000): True,
+        (3,    0): True,  (3,   400): True,  (3,   5000): False,
+    }
+    for (c, pop), want in grid.items():
+        eq(privacy.suppress_rate(c, pop), want, f"交差 件数{c}×人口{pop}")
 
 
 _HAND_WRITTEN_SUPPRESS = re.compile(

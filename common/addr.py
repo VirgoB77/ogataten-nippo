@@ -107,6 +107,24 @@ def _clean(addr):
     return a
 
 
+def _conflicting_head(a, pref, city, codes=None):
+    """整形後の住所 `a` の先頭が、呼ぶ側と違う都道府県／市を名乗っていたら、その名前。
+
+    見るのは**都道府県名**と、**「市」で終わる市名**だけ。町丁目の名前は
+    この2つと衝突しない（「甲子園町」で終わる市は無い）。区・町・村は
+    町丁目と衝突しうるので見ない——**見落とすほうに倒す。**
+    ここで拾えなかったぶんは、呼ぶ側が住所から市を読んで防ぐ。
+    """
+    codes = load_codes() if codes is None else codes
+    for p in {p for (p, _) in codes}:
+        if p != pref and a.startswith(p):
+            return p
+    code = city_code_of(pref, city, codes)
+    hits = [n for (p, n), c in codes.items()
+            if n.endswith("市") and c != code and a.startswith(n)]
+    return max(hits, key=len) if hits else ""
+
+
 def normalize(pref, city, addr, codes=None):
     pref = (pref or "").strip()
     city = (city or "").strip()
@@ -120,6 +138,16 @@ def normalize(pref, city, addr, codes=None):
         if head and a.startswith(head):
             a = a[len(head):]
             break
+    else:
+        # 落とせなかった。**それが「別の市の名前」だったら、繋げずに止める。**
+        # 市は自分の市の外の土地も売る。繋げると
+        # 「大阪市北区兵庫県西宮市甲子園町1-1」のような、形は正しいのに
+        # この世に無い住所ができて、検査を通ってしまう（4節・2026-09-19）
+        other = _conflicting_head(a, pref, city, codes)
+        if other:
+            raise ValueError(
+                "住所が別の市区町村を名乗っている。呼ぶ側の市を被せない： "
+                f"呼ぶ側={pref}{city} / 住所の先頭={other} / 原文={raw!r}")
 
     # 3. 単位をハイフンに。置き換えた場所を印で覚えておく（① のため）
     marked = _UNIT.sub(_MARK, a)
