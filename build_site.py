@@ -593,7 +593,15 @@ def koho_page(notices, src_meta, today):
     total = sum(sum(c.get(k, 0) for k in ("新設", "変更", "廃止")) for c in by_year.values())
     first = min(n["date"] for n in notices if n.get("date"))
     last = max(n["date"] for n in notices if n.get("date"))
-    m = src_meta.get("hyogo-koho-mokuroku", {})
+    # **出典は既定値で埋めない。** 控えが無いのに出典が出ると、
+    # 読者には「ここから取った」に見えるが、取っていない。
+    # 8節の「指定された出典表記」は、控えから出すもの（2026-09-19）
+    m = src_meta.get("hyogo-koho-mokuroku") or {}
+    for k in ("name", "url"):
+        if not m.get(k):
+            raise ValueError(
+                f"兵庫県公報のページを作れない：出典の {k} が控えに無い。"
+                "既定値で埋めない（8節）")
     body = f"""
 <p class="lead"><a href="{rel}index.html">トップ</a> › 兵庫県の推移</p>
 <h1>兵庫県の大型店の届出、2007年からの推移</h1>
@@ -611,7 +619,7 @@ def koho_page(notices, src_meta, today):
 <p class="note">目録に載っているのは {esc(last)} の号までです。それより後の月は、県がまだ目録を出していないので数えられません。</p>
 <div style="overflow-x:auto"><table>{head}{months}</table></div>
 <h2>この数字の元</h2>
-<p style="font-size:14px">出典：「{esc(m.get("name", "兵庫県公報 検索用目録"))}」（<a href="{esc(m.get("url", ""))}">{esc(m.get("url", ""))}</a>、{esc(_mokuroku_fetched() or today)}取得）を加工して作成。
+<p style="font-size:14px">出典：「{esc(m["name"])}」（<a href="{esc(m["url"])}">{esc(m["url"])}</a>、{esc(_mokuroku_fetched() or today)}取得）を加工して作成。
 目録の「公告」シートから件名に「大規模小売」を含む行を数えました。公告の本文（店舗名・所在地など）は公報の本体にあり、順に読み取っていく予定です。</p>
 """
     return page(f"兵庫県の大型店の届出、2007年からの推移｜{SITE_NAME}", body, rel,
