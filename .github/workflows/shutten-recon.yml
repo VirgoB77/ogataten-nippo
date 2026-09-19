@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       area:
-        description: "どこを見るか（hyogo / osaka / ref。空なら全部）"
+        description: "どこを見るか（hyogo / osaka / ref / youto。空なら全部）"
         required: false
         default: ""
   schedule:
@@ -37,6 +37,9 @@ jobs:
       # 金庫の名前は公開用の名前から決める（<公開用>-raw）。見張りと checkout が同じ名前を見る。
       # 仮の名前のリポジトリや fork では存在しない名前になり、checkout で止まる（別の金庫には届かない）
       RAW_REPO: ${{ github.repository }}-raw
+      # 用途地域の元データだけを取りに行く回。ふだんの巡回（毎朝）では立たない。
+      # 手で `youto` を入れて回したときだけ、自治体を見に行く段を飛ばす
+      YOUTO_ONLY: ${{ github.event.inputs.area == 'youto' }}
     steps:
       # **この実行の「今日」を、走り始めに1回だけ決める。**
       # 巡回は 07:00 JST に始まり、終わるのは 09:10 JST ごろ。日付をまたぐ時刻に
@@ -135,6 +138,13 @@ jobs:
 
       # 大阪市の届出一覧（平成12年からの全届出）が古い .xls 形式で、
       # これを読むためだけに xlrd を入れる。入らなくても他は動く。
+      # 用途地域のポリゴンと、住所→座標の対応表を国交省から取ってくる（取るだけ）。
+      # **落ちてくる中身を見てから、当てるコードを書く。** 見ていないものには当てない。
+      # 手で `youto` を入れて回したときだけ走る。毎朝は走らせない（大きいので）
+      - name: 用途地域の元データを取ってくる
+        if: env.YOUTO_ONLY == 'true'
+        run: python3 ref_youto.py --force
+
       - name: 古いExcelを読む道具
         run: pip install -q xlrd || echo "xlrd が入らなかった。.xls は読まずに進む"
 
@@ -142,27 +152,34 @@ jobs:
         run: sudo apt-get install -y -qq poppler-utils > /dev/null || echo "poppler が入らなかった。部会の議案は読まずに進む"
 
       - name: 偵察する
+        if: env.YOUTO_ONLY != 'true'
         run: python3 recon.py ${{ github.event.inputs.area }}
 
       - name: むかしのページをアーカイブから取ってくる
+        if: env.YOUTO_ONLY != 'true'
         run: python3 wayback.py || echo "アーカイブが取れなかった。今日の分だけで進む"
 
       - name: 届出を取り出す
+        if: env.YOUTO_ONLY != 'true'
         run: python3 parse.py
 
 
       # 大阪府・大阪市は届出をExcelで出している。
       # すでに持っている版は飛ばすので、更新された時だけ増える。
       - name: Excelを取ってくる
+        if: env.YOUTO_ONLY != 'true'
         run: python3 files.py
 
       - name: Excelから届出を取り出す
+        if: env.YOUTO_ONLY != 'true'
         run: python3 parse_excel.py
 
       - name: 兵庫県公報の目録から公告を数える
+        if: env.YOUTO_ONLY != 'true'
         run: python3 koho.py || echo "公報の目録が読めなかった。今日は数えずに進む"
 
       - name: 兵庫県公報の本体から公告を読む
+        if: env.YOUTO_ONLY != 'true'
         run: python3 koho_pdf.py || echo "公報の本体が読めなかった。今日は飛ばして進む"
         env:
           KOHO_MAX: "80"   # 過去分の積み直しの間は1日80号（共通仕様3.4の例外）。5秒あけて同時1本なので、
@@ -171,6 +188,7 @@ jobs:
           KOHO_ANYDAY: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}   # 手で押したときは日に関係なく取りに行く
 
       - name: 部会の議案から届出を取り出す
+        if: env.YOUTO_ONLY != 'true'
         run: python3 parse_bukai.py || echo "部会の議案が読めなかった。今日は飛ばして進む"
 
       # 日ごとの取り出し結果を1件1行にまとめ、消えた届出とこれからの予定を出す
