@@ -1060,6 +1060,60 @@ def test_外に出るものが知らない引数で止まるか():
             + "\n  打ち間違いが本番の収集になる（common/hikisu.py を通すこと）")
 
 
+def test_目録の問い合わせと件数の読み():
+    """**「返ってきた」は「見つかった」ではない。**
+
+    2026-09-19、1回目の実行。3件とも `200` で返り、記録はこう書いた。
+
+        | 目録が返ってきた | 3 |
+
+    **中身は空だった。** 3件とも**きっちり 210 バイト**＝0件。
+    問い合わせに都道府県を入れていたのが原因（目録のデータセット名は
+    「大阪市都島区（大阪法務局）登記所備付地図データ」で、都道府県は入っていない）。
+
+    見張るのは2つ。
+    ① 都道府県だけを落とすこと。**市区町村の名前は削らない**
+    ② **0 と「読めなかった」を混ぜないこと**
+       0 は向こうが「無い」と言った。None はこちらが読めなかった（6節）
+
+    **捕まえないもの**：その語で本当に当たるか。それは走らせて数える。
+    """
+    import importlib
+    cr = importlib.import_module("chizu_recon")
+
+    # ① **見本は実物から取る**（index.json に実際に入っている市区町村名）
+    for moto, hoshii in (
+            ("大阪府大阪市都島区", "大阪市都島区"),
+            ("兵庫県姫路市", "姫路市"),
+            ("大阪府南河内郡美原町", "南河内郡美原町"),
+            ("兵庫県丹波篠山市", "丹波篠山市"),
+    ):
+        deta = cr.shichoson(moto)
+        if deta != hoshii:
+            raise AssertionError(f"「{moto}」→「{deta}」。「{hoshii}」のはず")
+
+    # **落として空になるなら、落とさない。** 空の語で問い合わせない
+    if cr.shichoson("兵庫県") != "兵庫県":
+        raise AssertionError("都道府県だけの名前を空にしている。空の語で目録を引くことになる")
+
+    # 問い合わせの語に都道府県が残っていないか
+    url = cr.ask("大阪府大阪市都島区")
+    import urllib.parse
+    q = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)["q"][0]
+    if "大阪府" in q:
+        raise AssertionError(f"問い合わせに都道府県が残っている：{q}")
+
+    # ② 0 と「読めなかった」を混ぜない
+    if cr.mitsukatta(b'{"result":{"count":0}}') != 0:
+        raise AssertionError("0件を0として読めていない")
+    if cr.mitsukatta(b'{"result":{"count":2}}') != 2:
+        raise AssertionError("件数を読めていない")
+    if cr.mitsukatta(b'zzz not json') is not None:
+        raise AssertionError(
+            "読めなかったものを None にしていない。"
+            "0（向こうが無いと言った）と混ざる")
+
+
 def test_中規模を大店立地法と書いていないか():
     """**「中規模」は大店立地法ではなく、八尾市・堺市の条例。**
 
