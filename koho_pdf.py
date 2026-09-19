@@ -60,6 +60,7 @@ REPORT = os.path.join(HERE, "data", "koho", "pdf-report.md")
 SOURCE = "hyogo-koho"
 
 from common.fetch import UA, check_robots, is_busy, decode_html  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
+from common import hikisu   # 知らない引数で止める（3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024
@@ -589,6 +590,10 @@ def save_ledger(ledger):
 
 
 def main():
+    # **引数を1つも受け取らない。** それでも見る。
+    # 見ないと、`--help` と打っただけで兵庫県公報を取りに行く
+    # （2026-09-19、開発系が同じ形で本番を走らせた）
+    hikisu.check(set(), tsukaikata="使い方: python3 koho_pdf.py（引数は取らない）")
     global _asked
     _asked = 0
     lines = ["# 兵庫県公報の本体から読んだ大店立地法の公告", ""]

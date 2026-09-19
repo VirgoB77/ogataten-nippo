@@ -39,6 +39,7 @@ RAW = os.path.join(HERE, "data", "raw")
 FILES = os.path.join(HERE, "data", "files")
 
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
+from common import hikisu   # 知らない引数で止める（3.4）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90
 PDF_TIMEOUT = 25          # PDFは1本ずつ多いので短く諦める。90秒×50本で1時間止まった
@@ -240,6 +241,8 @@ def main():
     with open(os.path.join(HERE, "sources.json"), encoding="utf-8") as f:
         sources = {s["id"]: s for s in json.load(f)["sources"]}
 
+    hikisu.check(set(sources),
+                 tsukaikata="使い方: python3 files.py [収集先のid ...]")
     wanted = sys.argv[1:] or [s for s, v in sources.items()
                               if s.startswith("osaka") or v.get("pdf") or v.get("files")]
     lines = ["# Excelを取ってきた結果", ""]
