@@ -1,12 +1,20 @@
 # 用途地域の元データ（2026-09-19 に見た）
 
 ## A29  https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html
-- robots: robots.txt が読めなかった URLError（続ける）
-- 一覧ページが読めなかった：URLError <urlopen error Tunnel connection failed: 403 Forbidden>
+- robots: robots.txt が HTTP 404（無いものとして続ける）
+- ページの中の zip リンク（全部）: 0 本
+- 大阪府（27）: 0 本
+  - **見つからなかった。ページの作りが変わったかもしれない**
+- 兵庫県（28）: 0 本
+  - **見つからなかった。ページの作りが変わったかもしれない**
 
 ## ISJ  https://nlftp.mlit.go.jp/isj/
-- robots: robots.txt が読めなかった URLError（続ける）
-- 一覧ページが読めなかった：URLError <urlopen error Tunnel connection failed: 403 Forbidden>
+- robots: robots.txt が HTTP 404（無いものとして続ける）
+- ページの中の zip リンク（全部）: 0 本
+- 大阪府（27）: 0 本
+  - **見つからなかった。ページの作りが変わったかもしれない**
+- 兵庫県（28）: 0 本
+  - **見つからなかった。ページの作りが変わったかもしれない**
 
 ## 次にやること
 
