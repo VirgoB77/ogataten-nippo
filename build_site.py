@@ -643,6 +643,7 @@ def koho_page(notices, src_meta, today):
 # 届出そのものではなく、届出をまとめて作った2つの一覧。
 # **見出しは「そのデータが何であるか」を書く。何に使えるかではない**（共通仕様3.3）。
 
+<<<<<<< HEAD
 FILTER_JS = """
 <script>
 (function(){
@@ -702,6 +703,8 @@ def tools_bar(placeholder, facets):
             f'autocomplete="off"><div class="facets">{ch}<span class="n"></span></div></div>')
 
 
+=======
+>>>>>>> origin/claude/primary-info-monetization-g31fs3
 def _load(name):
     path = os.path.join(HERE, "data", name)
     if not os.path.exists(path):
@@ -760,15 +763,20 @@ def taiten_page():
         op = esc(r.get("operator") or "")
         tsubo = f'<br><span class="d">{r["area_tsubo"]:,.0f}坪</span>' if r.get("area_tsubo") else ""
         tr.append(
+<<<<<<< HEAD
             f'<tr data-closed="{esc(r.get("closed_on") or "")}" data-area="{r.get("area_m2") or ""}"'
             f' data-hasarea="{1 if r.get("area_m2") else 0}"'
             f' data-lasted="{1 if r.get("lasted_days") else 0}"'
             f' data-near="{1 if r.get("near_candidates") else 0}">'
             f'<td class="d">{esc(r.get("closed_on") or "")}</td>'
+=======
+            f'<tr><td class="d">{esc(r.get("closed_on") or "")}</td>'
+>>>>>>> origin/claude/primary-info-monetization-g31fs3
             f'<td><a href="{rel}s/{esc(r["id"])}.html">{esc(r["store"])}</a>'
             f'<br><span class="d">{esc(r.get("addr") or "")}</span></td>'
             f'<td class="n">{_m2(r.get("area_m2"))}{tsubo}</td>'
             f'<td class="hide">{op}</td>'
+<<<<<<< HEAD
             f'<td class="d w">{esc(y)}{("<br>" + esc(r["match"])) if r.get("match") else ""}</td></tr>')
 
     body = head + f"""
@@ -781,6 +789,16 @@ def taiten_page():
 <tbody>{"".join(tr)}</tbody></table>
 <p class="empty" id="empty" style="display:none">当てはまるものがありませんでした。</p>
 {FILTER_JS}"""
+=======
+            f'<td class="d">{esc(y)}{("<br>" + esc(r["match"])) if r.get("match") else ""}</td></tr>')
+
+    body = head + f"""
+<h2>一覧（{n_(len(rows))}件）</h2>
+<table><thead><tr><th>閉じた日</th><th>店名・所在地</th><th>店舗面積<br>（㎡）</th>
+<th class="hide">設置者</th><th>何年いたか<br>つなぎ方</th></tr></thead>
+<tbody>{"".join(tr)}</tbody></table>
+"""
+>>>>>>> origin/claude/primary-info-monetization-g31fs3
     return page("大型店が閉じた届出の一覧（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の廃止の届出 {len(rows)}件。大阪府・兵庫県。公告された日の順。",
                 canonical="taiten.html")
@@ -848,6 +866,7 @@ def settisha_page():
             co.append("小売業者に共有者")
         sub = "<br>".join(f'<span class="d">{esc(x)}</span>' for x in ("、".join(ch), "、".join(co)) if x)
         tr.append(
+<<<<<<< HEAD
             f'<tr data-last="{esc(r.get("last_on") or "")}" data-area="{r.get("area_m2") or ""}"'
             f' data-notices="{r.get("notices") or 0}"'
             f' data-hasarea="{1 if r.get("area_m2") else 0}"'
@@ -855,10 +874,14 @@ def settisha_page():
             f' data-changed="{1 if (r.get("operator_changes") or r.get("retailer_changes")) else 0}"'
             f' data-shared="{1 if (r.get("operator_co_owners") or r.get("retailer_co_owners")) else 0}">'
             f'<td>{esc(r["store"])}<br><span class="d">{esc(r.get("addr") or "")}</span></td>'
+=======
+            f'<tr><td>{esc(r["store"])}<br><span class="d">{esc(r.get("addr") or "")}</span></td>'
+>>>>>>> origin/claude/primary-info-monetization-g31fs3
             f'<td>{esc(r.get("operator_now") or "")}</td>'
             f'<td>{esc(r.get("retailer_now") or "")}</td>'
             f'<td class="n">{_m2(r.get("area_m2"))}{tsubo}</td>'
             f'<td class="hide">{esc(z)}</td>'
+<<<<<<< HEAD
             f'<td class="d hide2">{esc(r.get("last_on") or "")}<br>届出{n_(r.get("notices") or 0)}件{("<br>" + sub) if sub else ""}</td></tr>')
 
     body = head + f"""
@@ -872,6 +895,16 @@ def settisha_page():
 <tbody>{"".join(tr)}</tbody></table>
 <p class="empty" id="empty" style="display:none">当てはまるものがありませんでした。</p>
 {FILTER_JS}"""
+=======
+            f'<td class="d">{esc(r.get("last_on") or "")}<br>届出{n_(r.get("notices") or 0)}件{("<br>" + sub) if sub else ""}</td></tr>')
+
+    body = head + f"""
+<h2>一覧（{n_(len(rows))}店）</h2>
+<table><thead><tr><th>店名・所在地</th><th>建物を用意した人</th><th>店をやる人</th>
+<th>店舗面積<br>（㎡）</th><th class="hide">用途地域</th><th>最後の届出</th></tr></thead>
+<tbody>{"".join(tr)}</tbody></table>
+"""
+>>>>>>> origin/claude/primary-info-monetization-g31fs3
     return page("建物を用意した人と、店をやる人が別の届出（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の届出で、設置者と小売業者が別の名前になっている店 {len(rows)}件。",
                 canonical="settisha.html")
