@@ -1112,9 +1112,25 @@ def test_zero_count_keeps_its_rate():
     # 戻るからで、0件には戻る先が無い。人口の小ささも同じ理由で効かない
     eq(privacy.suppress_rate(0, 400), False, "0件は人口が小さくても率を出す")
     eq(privacy.suppress_rate(0, 1), False, "人口1人でも、0件なら率を出す")
-    eq(privacy.suppress_rate(0, 0), False, "人口0でも、0件なら率を出す")
+    # ここは 2026-09-19 に統括が False で書いた。**間違いだった。**
+    # 人口0は伏せるのではなく、率そのものが定義できない（0では割れない）。
+    # False にすると呼ぶ側が 0/0 でゼロ除算する。街頭窃盗統計が実際に踏んだ
+    eq(privacy.suppress_rate(0, 0), True, "人口0は0件でも率を出さない（0では割れない）")
+    eq(privacy.suppress_rate(0, -1), True, "人口が負でも率を出さない")
     eq(privacy.suppress_rate(1, 400), True, "1件で人口も小さいなら伏せる")
     eq(privacy.suppress_rate(9, 400), True, "0件でなければ人口の小ささが効く")
+
+    # 条件が2つあるので、交差を全部当てる（9節）。片方ずつ当てると、
+    # 不具合のある升（0件かつ小人口／0件かつ人口0）を一度も踏まない
+    grid = {
+        #  件数     人口0   人口400（小）  人口5000（十分）
+        (0,    0): True,  (0,   400): False, (0,   5000): False,
+        (1,    0): True,  (1,   400): True,  (1,   5000): True,
+        (2,    0): True,  (2,   400): True,  (2,   5000): True,
+        (3,    0): True,  (3,   400): True,  (3,   5000): False,
+    }
+    for (c, pop), want in grid.items():
+        eq(privacy.suppress_rate(c, pop), want, f"交差 件数{c}×人口{pop}")
 
 
 _HAND_WRITTEN_SUPPRESS = re.compile(
