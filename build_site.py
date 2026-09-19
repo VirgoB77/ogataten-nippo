@@ -34,6 +34,8 @@ def n_(v):
     return privacy.bucket_count(v) if v else "–"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "common"))
+import runday
 ALL = os.path.join(HERE, "data", "all.json")
 SOURCES = os.path.join(HERE, "sources.json")
 # 公開URL。既定は CNAME ファイルから読む。CNAME は GitHub Pages が
@@ -726,7 +728,7 @@ def main():
         recs = json.load(f)
     with open(SOURCES, encoding="utf-8") as f:
         src_meta = {s["id"]: s for s in json.load(f)["sources"]}
-    today = date.today().isoformat()
+    today = runday.today()
 
     for d in ("a", "k", "s"):
         os.makedirs(os.path.join(HERE, d), exist_ok=True)

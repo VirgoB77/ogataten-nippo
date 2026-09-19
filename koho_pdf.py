@@ -43,6 +43,8 @@ from datetime import date, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "common"))
+import runday
 import parse as P  # noqa: E402
 
 HOST = "https://web.pref.hyogo.lg.jp"
@@ -556,7 +558,7 @@ def needs_fetch(key, ledger, today=None):
         when = e.get("when")
         if not when:
             return True                           # いつ調べたか分からないなら、もう一度だけ
-        return (today or date.today()) - date.fromisoformat(when) >= timedelta(days=RECHECK_DAYS)
+        return (today or runday.today_date()) - date.fromisoformat(when) >= timedelta(days=RECHECK_DAYS)
     return True                                   # 一時的な失敗は次回やり直す
 
 
@@ -609,9 +611,9 @@ def main():
         fresh = sum(1 for k in todo if f"{k[0]}#{k[1]}" not in ledger)
         lines.append(f"- 未読の号 {len(todo)}（まだ一度も見ていない {fresh}／"
                      f"全文を残す前に取った取り直し {again}）。今回は県に {MAX_ISSUES} 回まで行く")
-        today = date.today().isoformat()
+        today = runday.today()
         # 追いついたら月2回（共通仕様3.4）。過去分の積み直しの間だけ毎日。手で押したときは行く
-        if todo and not fetch_today(fresh, date.today(), bool(os.environ.get("KOHO_ANYDAY"))):
+        if todo and not fetch_today(fresh, runday.today_date(), bool(os.environ.get("KOHO_ANYDAY"))):
             lines.append(f"- まだ見ていない号が {fresh} で追いついている。公報は月2回"
                          f"（{FETCH_DAYS[0]}日・{FETCH_DAYS[1]}日）だけ取りに行く（共通仕様3.4）。今日は取りに行かない")
             todo = []

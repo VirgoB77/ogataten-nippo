@@ -1398,6 +1398,39 @@ def test_same_corp_sees_through_notation_only():
             fails.append(f"名前そのものが違う社名を同じ会社と見ている（{a} / {b}）")
 
 
+def test_no_script_reads_the_clock_twice():
+    """走らせるスクリプトが、時計を直に見ていないか。
+
+    毎朝の巡回は 07:00 JST に始まり、終わるのは 09:10 JST ごろ。
+    日付をまたぐ時刻に動くと、**同じ実行の中で日付が2つになる。**
+
+        取ってきた日（recon が打つ）   2026-09-18
+        commit の日（git が打つ）      2026-09-19
+
+    サイトに出ていた取得日が、毎日1日早いほうだった（2026-09-19 に気づいた）。
+    **決めるのは走り始めの1回。** 以降は common/runday.py だけが時計を見る。
+
+    時間帯を日本時間に寄せるだけでは足りない。それは「たまたま日付を
+    またがない」だけで、走る時刻が動けばまた起きる（3.5）。
+    """
+    targets = [f for f in glob.glob(os.path.join(HERE, "*.py"))
+               + glob.glob(os.path.join(HERE, "common", "*.py"))
+               if os.path.basename(f) not in ("runday.py", "test_privacy.py")]
+    # date.today() / datetime.now() / time.time() を直に呼んでいる行
+    clock = re.compile(r"\b(date\.today\(\)|datetime\.(now|today|utcnow)\(\)|time\.time\(\))")
+    bad = []
+    for f in targets:
+        with open(f, encoding="utf-8") as fh:
+            for i, line in enumerate(fh, 1):
+                if line.lstrip().startswith("#"):
+                    continue
+                if clock.search(line):
+                    bad.append(f"{os.path.basename(f)}:{i}")
+    if bad:
+        fails.append(f"時計を直に見ている箇所 {len(bad)}（{bad[:4]}）。"
+                     f"common/runday.py の today() を通すこと")
+
+
 def main():
     # 定義した test_ を名前で全部拾う（一覧に書き足し忘れて、走っていない検査があった）
     tests = [f for name, f in list(globals().items()) if name.startswith("test_") and callable(f)]

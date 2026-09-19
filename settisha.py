@@ -35,6 +35,7 @@ import json, os, sys
 from datetime import date
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "common"))
+import runday
 import addr as addrlib
 import privacy
 import zoning as zoninglib
@@ -152,7 +153,7 @@ def main():
     with open(ALL, encoding="utf-8") as f:
         recs = json.load(f)
     rows = build(recs)
-    doc = {"generated_at": date.today().isoformat(), "count": len(rows), "stores": rows}
+    doc = {"generated_at": runday.today(), "count": len(rows), "stores": rows}
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, separators=(",", ":"))
 
