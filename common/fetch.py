@@ -7,6 +7,8 @@
 - ここ以外に UA の文字列を直書きしない（監査で4ファイルに重複していた）
 """
 
+import re
+
 ABOUT_URL = "https://ogataten-nippo.com/about.html"
 CONTACT_FORM_URL = "https://forms.gle/pp93tSJ5p8SAMEMk8"
 
@@ -75,3 +77,66 @@ def check_robots(url):
         return None, note
     ok = robots_allows(body, url) if body else True
     return ok, (note or ("許可" if ok else "robots.txt で拒否されている"))
+
+
+# ---------------------------------------------------------------- 文字コード
+
+# 半角カナと置換文字。**化けたときに増えるもの。**
+_NOISE = re.compile(r"[�｡-ﾟ\x00-\x08\x0B\x0C\x0E-\x1F]")
+# 日本語らしさ。ひらがな・カタカナ・漢字
+_JA = re.compile(r"[぀-ゟ゠-ヿ一-鿿]")
+_CHARSET = re.compile(r"charset\s*=\s*[\"']?([\w-]+)", re.I)
+# 総当たりの順。**この順に並べても足りない。**下の点で選ぶ
+_TRY = ("utf-8", "cp932", "euc-jp", "iso-2022-jp")
+
+
+def ja_score(text):
+    """日本語として読めていそうか。大きいほどよい。
+
+    **「例外が出なかった」は「読めた」ではない。** cp932 はほとんどのバイト列を
+    受け取るので、EUC-JP のページがそこで「成功」する（2026-09-19、開発系が発見）。
+
+        "大阪府".encode("euc-jp").decode("cp932")  →  "ﾂ郤衙ﾜ"   例外は出ない
+
+    だから**例外の有無ではなく、中身の見た目で選ぶ。**
+    化けると増えるもの（置換文字・半角カナ・制御文字）を引き、
+    日本語らしい字を足す。
+    """
+    if not text:
+        return 0.0
+    n = len(text)
+    return (len(_JA.findall(text)) - 3 * len(_NOISE.findall(text))) / n
+
+
+def decode_html(raw, content_type=""):
+    """バイト列を文字にする。**UTF-8 と決めつけない。**（共通仕様9節）
+
+    宣言（Content-Type → ページの中の meta）があれば信じる。
+    無ければ**総当たりして、いちばん日本語らしく読めたもの**を採る。
+    **どれで読んだかを返す。** 黙って選ぶと、次に見る人が確かめられない。
+    """
+    declared = []
+    m = _CHARSET.search(content_type or "")
+    if m:
+        declared.append(m.group(1))
+    m = _CHARSET.search(raw[:4096].decode("ascii", "replace"))
+    if m:
+        declared.append(m.group(1))
+    for enc in declared:
+        try:
+            return raw.decode(enc), enc
+        except (UnicodeDecodeError, LookupError):
+            continue
+
+    best = None
+    for enc in _TRY:
+        try:
+            text = raw.decode(enc)
+        except (UnicodeDecodeError, LookupError):
+            continue
+        score = ja_score(text)
+        if best is None or score > best[0]:
+            best = (score, text, enc)
+    if best:
+        return best[1], best[2]
+    return raw.decode("utf-8", "replace"), "utf-8（化けたまま）"
