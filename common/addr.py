@@ -80,8 +80,15 @@ _KANJI_NUM = re.compile(r"([〇零一二三四五六七八九十]+)(?=(丁目|�
 # 「丁目・番地・番・号」は直後が数字か終わりのときだけハイフンにする（「番町」の番は置き換えない）
 # 「847番地の1」の「の」は単位の続き。単位ごと置き換える
 # 堺市は「鳳東町七丁733」のように「丁」だけで丁目を表す。直後が数字か終わりのときだけ単位と見る
-_UNIT = re.compile(r"(丁目|丁|番地|番|号)の?(?=[0-9]|$)")
-_MARK = chr(1)          # 自分が置き換えた場所の印。入力にもとからあるハイフンと区別する
+# **印は2種類。町丁目の切れ目と、地番の区切りは別のもの。**
+# 1種類にして「最初の印まで」を町丁目にすると、丁目の無い住所で
+# 「本町847番地の1」の 847（地番）が町丁目に入る。実データ4,809件のうち
+# **1,007件がそうなっていて、公開している index.json に出ていた**
+# （2026-09-19、開発系が自分の実装と見比べて見つけた）
+_CHOME = re.compile(r"(丁目|丁)(?=[0-9]|$)")       # ここまでが町丁目
+_BAN = re.compile(r"(番地|番|号)の?(?=[0-9]|$)")    # ここからは地番
+_MARK = chr(1)          # 地番の区切り。入力にもとからあるハイフンと区別する
+_CMARK = chr(2)         # 町丁目の切れ目
 
 
 def _kanji_to_int(s):
@@ -234,28 +241,34 @@ def normalize(pref, city, addr, codes=None):
                 "住所が別の市区町村を名乗っている。呼ぶ側の市を被せない： "
                 f"呼ぶ側={pref}{city} / 住所の先頭={other} / 原文={raw!r}")
 
-    # 3. 単位をハイフンに。置き換えた場所を印で覚えておく（① のため）
-    marked = _UNIT.sub(_MARK, a)
-    first = marked.find(_MARK)
+    # 3. 単位をハイフンに。置き換えた場所を印で覚えておく（① のため）。
+    #    **丁目だけは別の印にする。** 町丁目がどこで終わるかは、
+    #    自分が「丁目」を置き換えた場所しか確実に分からない（4節①）
+    marked = _BAN.sub(_MARK, _CHOME.sub(_CMARK, a))
+    marks = [i for i in (marked.find(_MARK), marked.find(_CMARK)) if i >= 0]
+    first = min(marks) if marks else -1
+    ci = marked.find(_CMARK)
 
     if first >= 0:
-        # ① 印の手前が town。地番の連なりは印の直前の数字から始まる
-        town = marked[:first]
+        # ① **丁目の印の手前だけが town。** 番地の印は町丁目を決めない。
+        #    丁目が無ければ町丁目は決まらない → ③ で空のまま
+        town = marked[:ci] if ci >= 0 else ""
         start = first
         while start > 0 and marked[start - 1].isdigit():
             start -= 1
         end = first
-        while end < len(marked) and (marked[end].isdigit() or marked[end] in (_MARK, "-")):
+        while end < len(marked) and (marked[end].isdigit()
+                                     or marked[end] in (_MARK, _CMARK, "-")):
             end += 1
-        chain = marked[start:end].replace(_MARK, "-").strip("-")
-        building = marked[end:].replace(_MARK, "-")
+        chain = marked[start:end].replace(_MARK, "-").replace(_CMARK, "-").strip("-")
+        building = marked[end:].replace(_MARK, "-").replace(_CMARK, "-")
         key = marked[:start] + chain
         display = (key + (building if building else "")).rstrip("-")   # 末尾の「号」が印になって残る
-        town = re.sub(r"-+$", "", town)
+        town = re.sub(r"-+$", "", town.replace(_MARK, "-").replace(_CMARK, "-"))
     else:
         # ② 置き換えが無かった。町丁目の一覧で最長一致。無ければ ③ 空
-        display = marked
-        key = marked
+        display = marked.replace(_MARK, '-').replace(_CMARK, '-')
+        key = marked.replace(_MARK, '-').replace(_CMARK, '-')
         towns = load_towns().get(code, []) if code else []
         town = ""
         for t in sorted(towns, key=len, reverse=True):

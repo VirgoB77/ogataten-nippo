@@ -479,7 +479,10 @@ def test_parse_keeps_unknown_columns():
 # 2026-09-19 に測った値。**増えたら鳴る。減っても鳴る**（減ったのに
 # この数を直し忘れたら、次の悪化に気づけなくなる）。
 # 直すには町丁目の一覧（data/ref/towns.json）が要る。まだ無い
-TOWN_GAP = 1369
+# 2026-09-19 に 1369 → 2209 に増えた。**直した結果として増えた。**
+# 丁目の無い住所で、地番が町丁目に入っていたのを空にしたため（845件）。
+# 丁目のある行を巻き込んでいないことは、直す前後を全件比べて確かめた（0件）
+TOWN_GAP = 2209
 TOWN_TOTAL = 4809
 
 
@@ -564,6 +567,17 @@ def test_文字コードは例外の有無で選ばない():
     # ③ 点そのもの。化けたほうが必ず低い
     if not ja_score("大阪府の市区町村コード") > ja_score("ﾂ郤衙ﾜﾃﾓﾅﾄｻﾔﾈｪ"):
         raise AssertionError("化けた文字列のほうが日本語らしいと判定された")
+
+    # ③-2 2つの点は**測っているものが違う**。取り違えると、英数字だけの
+    #     ページを「化けている」と判定して落とす（開発系の指摘・2026-09-19）
+    from common.fetch import bakete_inai
+    eisuu = "GET /index.html HTTP/1.1 200 OK"
+    if ja_score(eisuu) > 0:
+        raise AssertionError("ja_score は日本語の字を数えるので、英数字だけなら 0 以下")
+    if bakete_inai(eisuu) < 0.99:
+        raise AssertionError("bakete_inai は化けを数えるので、英数字だけでも 1.0 に近い")
+    if bakete_inai("ﾂ郤衙ﾜﾃﾓﾅﾄｻﾔﾈｪ") >= bakete_inai(eisuu):
+        raise AssertionError("化けた文字列のほうが化けていないと判定された")
 
     # ④ 決め打ちが戻っていないか。取りに行くスクリプトを文字として見る
     import glob
@@ -949,6 +963,16 @@ def test_addr_normalize():
     r = addr.normalize("大阪府", "大阪市北区", "大阪府大阪市北区梅田1-1-1", codes)
     eq(r["addr"], "大阪市北区梅田1-1-1", "自分の都道府県＋市は落とすだけ")
     eq(r["addr_key"], "27127|梅田1-1-1", "落としたあとのキー")
+
+    # 丁目が無い住所で、**地番が町丁目に入っていないか**（2026-09-19）。
+    # 印を1種類にして「最初の印まで」を町丁目にすると、847 が町丁目に入る。
+    # 実データ4,809件のうち845件がそうなっていて、index.json に出ていた
+    for text, want_key in (("服部西町847番地の1", "27203|服部西町847-1"),
+                           ("本町847番地の1", "27203|本町847-1"),
+                           ("日本橋2番地", "27203|日本橋2")):
+        got = addr.normalize("大阪府", "豊中市", text, codes)
+        eq(got["addr_key_town"], "", f"丁目が無ければ町丁目は空（{text}）")
+        eq(got["addr_key"], want_key, f"地番までの鍵は作れる（{text}）")
 
     r = addr.normalize("兵庫県", "三田市", "三田市天神1丁目", codes)
     eq(r["addr_key_town"], "28219|天神1", "地名の漢数字（三田）を壊さず、先頭の市名を落とす")
