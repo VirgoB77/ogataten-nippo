@@ -172,39 +172,11 @@ td.d{white-space:nowrap;color:var(--sub);font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--sub);line-height:1.8}
 input.q{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink)}
 #hits li{padding:8px 0}
-/* 長い表のための絞り込み。**行を隠す**ので、ブラウザの検索（Ctrl+F）とも噛み合う */
-.tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--rule);margin-bottom:4px}
-.tools .q{margin-bottom:8px}
-.facets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.facets label{background:var(--soft);color:var(--sub);padding:4px 12px;border-radius:999px;font-size:13px;cursor:pointer;user-select:none;border:1px solid transparent}
-.facets label:has(input:checked){background:var(--key);color:#fff;border-color:var(--key)}
-.facets input{position:absolute;opacity:0;width:0;height:0}
-.facets .n{margin-left:auto;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
-.facets select{font:inherit;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);max-width:11em}
-th.s{cursor:pointer;user-select:none;white-space:nowrap}
-/* 並べ替えできる見出しの印。**場所取りに見えない文字を使わない**
-   （em space は font によって□で出た。2026-09-19 に実機幅で確かめた） */
-th.s::after{content:"";display:inline-block;width:.9em;color:var(--rule);text-align:right}
-th.s[data-o="1"]::after{content:"\25B2";color:var(--key)}
-th.s[data-o="-1"]::after{content:"\25BC";color:var(--key)}
-tr.off{display:none}
-.empty{padding:24px 0;color:var(--sub);font-size:14px}
-/* 長い表は、幅が足りないと横スクロールになる。**画面の外に出た列は無いのと同じ。**
-   狭い画面では列を減らし、長い文字は折り返す（2026-09-19 に実機幅390pxで確かめた） */
-table.wide td{overflow-wrap:anywhere}
-/* .d は日付用に nowrap だが、**長い語が入る欄は折り返さないと画面から出る。**
-   折り返してよい欄には .w を付ける（taiten の「町丁目のみ（店名が違う）」） */
-table.wide td.w{white-space:normal}
-@media (max-width:560px){table.wide th.hide2,table.wide td.hide2{display:none}
-  table.wide{font-size:13px}table.wide th,table.wide td{padding:8px 4px}
-  /* **見出しが折り返さないと、見出しの長さが列の幅を決めてしまう。**
-     「建物を用意した人」の8文字で105px取っていた（320px幅で12pxはみ出した） */
-  table.wide th{white-space:normal}}
 @media (max-width:560px){h1{font-size:21px}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}th.hide,td.hide{display:none}}
 """
 
 
-def page(title, body, rel, desc="", canonical=""):
+def page(title, body, rel, desc="", canonical="", extra_css=""):
     """共通の外枠。rel はこのページから見た shutten/ への相対パス（'' か '../'）。"""
     d = esc(desc or TAGLINE)
     can = f'<link rel="canonical" href="{SITE_URL}{canonical}">' if canonical is not None else ""
@@ -219,7 +191,7 @@ def page(title, body, rel, desc="", canonical=""):
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{d}">
 <meta property="og:type" content="website">
-<style>{CSS}</style>
+<style>{CSS}{extra_css}</style>
 </head>
 <body><div class="wrap">
 <header class="top"><div class="name"><a href="{rel}index.html">{esc(SITE_NAME)}</a></div><div class="tag">{esc(TAGLINE)}</div></header>
@@ -644,6 +616,38 @@ def koho_page(notices, src_meta, today):
 # 届出そのものではなく、届出をまとめて作った2つの一覧。
 # **見出しは「そのデータが何であるか」を書く。何に使えるかではない**（共通仕様3.3）。
 
+FILTER_CSS = """
+/* 長い表のための絞り込み。**行を隠す**ので、ブラウザの検索（Ctrl+F）とも噛み合う */
+.tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+.tools .q{margin-bottom:8px}
+.facets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.facets label{background:var(--soft);color:var(--sub);padding:4px 12px;border-radius:999px;font-size:13px;cursor:pointer;user-select:none;border:1px solid transparent}
+.facets label:has(input:checked){background:var(--key);color:#fff;border-color:var(--key)}
+.facets input{position:absolute;opacity:0;width:0;height:0}
+.facets .n{margin-left:auto;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
+.facets select{font:inherit;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);max-width:11em}
+th.s{cursor:pointer;user-select:none;white-space:nowrap}
+/* 並べ替えできる見出しの印。**場所取りに見えない文字を使わない**
+   （em space は font によって□で出た。2026-09-19 に実機幅で確かめた） */
+th.s::after{content:"";display:inline-block;width:.9em;color:var(--rule);text-align:right}
+th.s[data-o="1"]::after{content:"\25B2";color:var(--key)}
+th.s[data-o="-1"]::after{content:"\25BC";color:var(--key)}
+tr.off{display:none}
+.empty{padding:24px 0;color:var(--sub);font-size:14px}
+/* 長い表は、幅が足りないと横スクロールになる。**画面の外に出た列は無いのと同じ。**
+   狭い画面では列を減らし、長い文字は折り返す（2026-09-19 に実機幅390pxで確かめた） */
+table.wide td{overflow-wrap:anywhere}
+/* .d は日付用に nowrap だが、**長い語が入る欄は折り返さないと画面から出る。**
+   折り返してよい欄には .w を付ける（taiten の「町丁目のみ（店名が違う）」） */
+table.wide td.w{white-space:normal}
+@media (max-width:560px){table.wide th.hide2,table.wide td.hide2{display:none}
+  table.wide{font-size:13px}table.wide th,table.wide td{padding:8px 4px}
+  /* **見出しが折り返さないと、見出しの長さが列の幅を決めてしまう。**
+     「建物を用意した人」の8文字で105px取っていた（320px幅で12pxはみ出した） */
+  table.wide th{white-space:normal}}
+"""
+
+
 FILTER_JS = """
 <script>
 (function(){
@@ -800,7 +804,7 @@ def taiten_page():
 {FILTER_JS}"""
     return page("大型店が閉じた届出の一覧（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の廃止の届出 {len(rows)}件。大阪府・兵庫県。公告された日の順。",
-                canonical="taiten.html")
+                canonical="taiten.html", extra_css=FILTER_CSS)
 
 
 def settisha_page():
@@ -893,7 +897,7 @@ def settisha_page():
 {FILTER_JS}"""
     return page("建物を用意した人と、店をやる人が別の届出（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の届出で、設置者と小売業者が別の名前になっている店 {len(rows)}件。",
-                canonical="settisha.html")
+                canonical="settisha.html", extra_css=FILTER_CSS)
 
 
 def index_page(all_recs, today):

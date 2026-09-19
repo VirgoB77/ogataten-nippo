@@ -45,6 +45,8 @@ td.d{white-space:nowrap;color:var(--sub);font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--sub);line-height:1.8}
 input.q{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink)}
 #hits li{padding:8px 0}
+@media (max-width:560px){h1{font-size:21px}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}th.hide,td.hide{display:none}}
+
 /* 長い表のための絞り込み。**行を隠す**ので、ブラウザの検索（Ctrl+F）とも噛み合う */
 .tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--rule);margin-bottom:4px}
 .tools .q{margin-bottom:8px}
@@ -73,7 +75,6 @@ table.wide td.w{white-space:normal}
   /* **見出しが折り返さないと、見出しの長さが列の幅を決めてしまう。**
      「建物を用意した人」の8文字で105px取っていた（320px幅で12pxはみ出した） */
   table.wide th{white-space:normal}}
-@media (max-width:560px){h1{font-size:21px}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}th.hide,td.hide{display:none}}
 </style>
 </head>
 <body><div class="wrap">
