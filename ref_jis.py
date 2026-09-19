@@ -23,6 +23,8 @@ from datetime import date
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "common"))
+import runday
 from common.fetch import UA, WAIT, check_robots   # noqa: E402
 import xlsx                                        # noqa: E402
 
@@ -117,7 +119,7 @@ def fresh():
             d = date.fromisoformat(json.load(f)["fetched_on"])
     except Exception:
         return False
-    return (date.today() - d).days < MAX_AGE_DAYS
+    return (runday.today_date() - d).days < MAX_AGE_DAYS
 
 
 def main():
@@ -152,7 +154,7 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(codes, f, ensure_ascii=False, indent=0)
     with open(META, "w", encoding="utf-8") as f:
-        json.dump({"fetched_on": date.today().isoformat(), "source_url": url, "label": label,
+        json.dump({"fetched_on": runday.today(), "source_url": url, "label": label,
                    "page": PAGE, "rows": len(codes)}, f, ensure_ascii=False, indent=1)
     print(f"jis-codes.json を書いた：{len(codes)} 市区町村（{label}）")
     return 0

@@ -34,6 +34,8 @@ from datetime import date
 from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "common"))
+import runday
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
@@ -337,7 +339,7 @@ def main():
         sources = json.load(f)["sources"]
 
     only = sys.argv[1] if len(sys.argv) > 1 else None
-    today = date.today().isoformat()
+    today = runday.today()
     raw_dir = os.path.join(HERE, "data", "raw")
 
     lines = [
@@ -364,7 +366,7 @@ def main():
         wait_days = FREQ_DAYS.get(src.get("freq", "daily"), 0)
         if wait_days:
             last = last_saved(src["id"])
-            if last and (date.today() - last).days < wait_days:
+            if last and (runday.today_date() - last).days < wait_days:
                 res["skipped"] = f"{src.get('freq')}：前回 {last.isoformat()} から {wait_days} 日たっていないので今回は見ない（共通仕様3.4）"
                 lines.append(report_one(src, res))
                 continue

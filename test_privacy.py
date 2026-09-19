@@ -1193,7 +1193,8 @@ def test_settisha_groups_by_banchi_not_town():
 
     届出は同じ店に何度も出るので、まとめないと同じ店を何度も数える。
     ただし町丁目でまとめると、同じ町丁目の別の店が1つの店として混ざる。
-    鍵を町丁目に落として作り直したら 733店が 657店になった（2026-09-19）。
+    鍵を町丁目に落として作り直したら店が76減った。うち別の店に吸われたのが
+    16件だった（2026-09-19）。
     退店履歴でも、町丁目の一致 55件のうち店名まで一致したのは
     9件だけだった（2026-09-19）。まとめる鍵は必ず番地まで見ること。
     """
@@ -1225,7 +1226,7 @@ def test_settisha_groups_by_banchi_not_town():
 
 
 def test_settisha_changes_match_history():
-    """「途中で変わった回数」が、履歴と合っているか。
+    """「表記が変わった回数」が、履歴と合っているか。
 
     合っていなければ、データが言っていないことを画面に書いている。
     履歴が日付の順に並んでいることも一緒に見る（並んでいなければ
@@ -1244,7 +1245,13 @@ def test_settisha_changes_match_history():
         for field, shown in (("operator", "operator_changes"),
                              ("retailer", "retailer_changes")):
             names = [x.get(field) for x in h if x.get(field)]
-            want = len(dict.fromkeys(names)) - 1 if names else 0
+            # 書き方の違いだけのもの（近鉄不動産(株) と 近鉄不動産株式会社）は
+            # 数えない。ひと続きの並びとして数えるので、A→B→A→C は3回
+            want, prev = 0, None
+            for x in names:
+                if prev is not None and prev != x and not privacy.same_corp(prev, x):
+                    want += 1
+                prev = x
             if r.get(shown) != want:
                 count_bad.append((r.get("store"), field))
             now = names[-1] if names else ""
@@ -1256,6 +1263,173 @@ def test_settisha_changes_match_history():
         fails.append(f"変わった回数が履歴と合わない {len(count_bad)}件")
     if now_bad:
         fails.append(f"「いまの当事者」が履歴の最後と違う {len(now_bad)}件")
+
+
+def test_free_text_columns_do_not_hold_bare_numbers():
+    """自由記入の欄に、数字だけの値が入っていないか。
+
+    大阪府の一覧は見出しが2段で、「17. 備考欄」の下に「延床面積」
+    「施設の用途地域」「その他」がぶら下がる。上の段しか読んでいなかったので、
+    **延床面積を「備考」として拾い、用途地域は丸ごと落ちていた。**
+    画面には「備考 10909」という、意味の分からない数だけが出ていた（2026-09-19）。
+
+    **列がずれたことは、値の形に出る。** 自由記入の欄に数字しか入っていなければ、
+    それは文章ではなく、どこかの列の数がそこに来ている。
+    他の収集先の備考は「現店舗を閉鎖し、建て替えを行うため」のような文章で、
+    数字だけのものは1件も無い。
+    """
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    # 自由記入の欄。数だけが入る欄（area_m2 など）はここに入れない
+    FREE = ("note", "content", "citizen_opinion", "city_opinion",
+            "pref_opinion", "recommendation")
+    bad = Counter()
+    for r in recs:
+        for k in FREE:
+            v = str(r.get(k) or "").strip()
+            # 「3」のような短い数は台数の記載などでありうる。4桁以上を見る
+            if v.isdigit() and len(v) >= 4:
+                bad[(r.get("source"), k)] += 1
+    if bad:
+        fails.append(f"自由記入の欄に数字だけの値がある {sum(bad.values())}件"
+                     f"（{dict(list(bad.items())[:4])}）。列がずれている")
+
+
+def test_floor_area_is_not_smaller_than_store_area():
+    """延床面積が店舗面積より小さくなっていないか。
+
+    延床面積は建物ぜんぶ、店舗面積は店の部分なので、**延床 ≧ 店舗** になる。
+    逆転していたら、2つの列が入れ替わっているか、別の行の値を拾っている。
+    見出しが2段の表では、上の段だけを読むとこれが起きる。
+
+    同じ値になることはある（建物ぜんぶが店の場合）。そこは通す。
+    """
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    both = [r for r in recs
+            if isinstance(r.get("floor_area_m2"), (int, float))
+            and isinstance(r.get("area_m2"), (int, float))]
+    if not both:
+        return
+    bad = [r for r in both if r["floor_area_m2"] < r["area_m2"]]
+    # 一次情報の側が逆転していることが、わずかにある（複数棟にまたがる店で、
+    # 延床が1棟ぶんだけ書かれているなど）。**列が入れ替わっていれば、
+    # わずかではなくほとんど全部が逆転する。** だから数ではなく割合で見る
+    share = len(bad) / len(both)
+    if share > 0.2:
+        fails.append(f"延床面積が店舗面積より小さい記録が {share:.0%}。列が入れ替わっている")
+
+
+def test_zoning_values_are_real_categories():
+    """用途地域の欄に、用途地域でないものが入っていないか。
+
+    都市計画法の用途地域は13種類と、市街化調整区域・市街化区域。
+    それ以外の文字列が入っていたら、別の列を拾っている。
+    複数の地域にまたがる店は「準工業地域、第一種住居地域」のように並ぶので、
+    区切って1つずつ見る。
+    """
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    sys.path.insert(0, os.path.join(HERE, "common"))
+    import zoning as zoninglib
+
+    got = unknown = 0
+    names = Counter()
+    for r in recs:
+        if not r.get("zoning"):
+            continue
+        g, u = zoninglib.normalize(r["zoning"])
+        got += len(g)
+        unknown += len(u)
+        for x in u:
+            names[x] += 1
+    if not (got + unknown):
+        return
+    # **列がずれると、ほとんど全部が読めなくなる。** 少し読めないのは
+    # 出どころの言い方のばらつきで、そちらは common/zoning.py が吸収する。
+    # 数ではなく割合で見る（9節「実測値を説明文に書かない」）
+    share = unknown / (got + unknown)
+    if share > 0.2:
+        fails.append(f"用途地域の欄の {share:.0%} が用途地域として読めない"
+                     f"（{list(names)[:4]}）。列がずれている")
+
+
+def test_same_corp_sees_through_notation_only():
+    """書き方が違うだけの社名を、同じ会社と見られるか。
+
+    一覧によって ㈱／(株)／株式会社 が混ざり、全角と半角も混ざる。
+    見分けられないと、**1ミリも変わっていないものを「変わった」と数える。**
+    実測で、設置者が変わったとされる98件のうち17件がこれだった（2026-09-19）。
+
+    **逆に、見えすぎてもいけない。** 商号変更・合併・持株会社化は名前が
+    本当に変わるので、ここで同じと言ってはいけない。見分けるには法人番号が要る。
+
+    社名は架空のものを使う。
+    """
+    same = [
+        ("鯨屋不動産(株)", "鯨屋不動産株式会社"),
+        ("㈱鯨屋不動産", "株式会社鯨屋不動産"),
+        ("ＫＵＪＩＲＡリース(株)", "KUJIRAリース株式会社"),
+        ("鯨屋建設(株)　ほか1者", "鯨屋建設株式会社　ほか１者"),
+        ("鯨屋商事㈲", "鯨屋商事有限会社"),
+    ]
+    diff = [
+        ("鯨屋電鉄株式会社", "鯨屋ホールディングス株式会社"),   # 持株会社化
+        ("鯨屋信託銀行㈱", "海猫信託銀行㈱"),                   # 合併
+        ("株式会社鯨屋", "株式会社海猫"),
+        ("株式会社", "株式会社"),                               # 芯が無い。同じと言わない
+    ]
+    for a, b in same:
+        if not privacy.same_corp(a, b):
+            fails.append(f"書き方が違うだけの社名を別の会社と見ている（{a} / {b}）")
+    for a, b in diff:
+        if privacy.same_corp(a, b):
+            fails.append(f"名前そのものが違う社名を同じ会社と見ている（{a} / {b}）")
+
+
+def test_no_script_reads_the_clock_twice():
+    """走らせるスクリプトが、時計を直に見ていないか。
+
+    毎朝の巡回は 07:00 JST に始まり、終わるのは 09:10 JST ごろ。
+    日付をまたぐ時刻に動くと、**同じ実行の中で日付が2つになる。**
+
+        取ってきた日（recon が打つ）   2026-09-18
+        commit の日（git が打つ）      2026-09-19
+
+    サイトに出ていた取得日が、毎日1日早いほうだった（2026-09-19 に気づいた）。
+    **決めるのは走り始めの1回。** 以降は common/runday.py だけが時計を見る。
+
+    時間帯を日本時間に寄せるだけでは足りない。それは「たまたま日付を
+    またがない」だけで、走る時刻が動けばまた起きる（3.5）。
+    """
+    targets = [f for f in glob.glob(os.path.join(HERE, "*.py"))
+               + glob.glob(os.path.join(HERE, "common", "*.py"))
+               if os.path.basename(f) not in ("runday.py", "test_privacy.py")]
+    # date.today() / datetime.now() / time.time() を直に呼んでいる行
+    clock = re.compile(r"\b(date\.today\(\)|datetime\.(now|today|utcnow)\(\)|time\.time\(\))")
+    bad = []
+    for f in targets:
+        with open(f, encoding="utf-8") as fh:
+            for i, line in enumerate(fh, 1):
+                if line.lstrip().startswith("#"):
+                    continue
+                if clock.search(line):
+                    bad.append(f"{os.path.basename(f)}:{i}")
+    if bad:
+        fails.append(f"時計を直に見ている箇所 {len(bad)}（{bad[:4]}）。"
+                     f"common/runday.py の today() を通すこと")
 
 
 def main():

@@ -19,12 +19,22 @@ jobs:
   ocr:
     runs-on: ubuntu-latest
     env:
+      # **走っている途中で日付が変わらないようにする。**
+      # cron は 22:00 UTC だが、終わるのは翌日の 00:10 UTC ごろ。UTC のままだと
+      # 取ってきた日（22時台＝その日）と commit の日（翌日）が1日ずれる。
+      # 日本の役所の情報を日本の読者に出すサイトなので、基準は日本時間にする。
+      # 日本時間なら 07:00〜09:10 で、走っている間ずっと同じ日になる
+      TZ: Asia/Tokyo
       # 金庫（生データの置き場・private）の鍵があるか。無ければ今まで通り1本で動く
       HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' }}
       # 金庫の名前は公開用の名前から決める（<公開用>-raw）。見張りと checkout が同じ名前を見る。
       # 仮の名前のリポジトリや fork では存在しない名前になり、checkout で止まる（別の金庫には届かない）
       RAW_REPO: ${{ github.repository }}-raw
     steps:
+      # この実行の「今日」を走り始めに1回だけ決める（shutten-recon.yml と同じ理由）
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
       # 走り出す時点の main から始める（枝から手で押しても、枝の commit を main に載せない）
       - uses: actions/checkout@v4
         with:
@@ -128,7 +138,7 @@ jobs:
             echo "変わりなし"
             exit 0
           fi
-          git commit -m "スキャンPDFの文字を $(date -u +%Y-%m-%d) に起こした"
+          git commit -m "スキャンPDFの文字を ${RUN_DATE} に起こした"
           for i in 1 2 3 4 5; do
             if git push origin HEAD:main; then exit 0; fi
             git pull --rebase --autostash -X theirs origin main || { git rebase --abort 2>/dev/null || true; exit 1; }

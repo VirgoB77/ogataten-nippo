@@ -68,6 +68,8 @@ DROPPED = []        # ラベルで「中身ではない」と見て取りに行�
 socket.setdefaulttimeout(TIMEOUT)
 
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "common"))
+import runday
 import xlsx  # noqa: E402
 import pdf as pdflib  # noqa: E402
 
@@ -156,7 +158,7 @@ def note_fetched(dest, when=None):
         led = {}
     key = os.path.relpath(dest, FILES).replace(os.sep, "/")
     if key not in led:
-        led[key] = when or _dt.date.today().isoformat()
+        led[key] = when or runday.today()
         with open(FETCHED_LEDGER, "w", encoding="utf-8") as f:
             json.dump(led, f, ensure_ascii=False, indent=1, sort_keys=True)
 

@@ -34,6 +34,8 @@ def n_(v):
     return privacy.bucket_count(v) if v else "–"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "common"))
+import runday
 ALL = os.path.join(HERE, "data", "all.json")
 SOURCES = os.path.join(HERE, "sources.json")
 # 公開URL。既定は CNAME ファイルから読む。CNAME は GitHub Pages が
@@ -69,6 +71,14 @@ DELEGATED_MISSING = ["岬町"]              # 移譲先だが届出ページが�
 SITE_START = "2026-09-11"   # このサイトが自分で取りに行き始めた日。これより前の日付は Internet Archive の保存から
 # 訂正履歴（7節「氏名の代わりに信用を作るもの」の3つめ）。いつ・何を・なぜ。氏名は書かない
 TEISEI = [
+    ("2026-09-19", "全ての届出ページの「取得日」が、実際に取りに行った日より1日早く出ていたのを直した。"
+     "毎朝の巡回が日付をまたぐ時刻に走っていたため、取りに行った時刻と記録した時刻で日付が違っていた。",
+     "共通仕様3.5。取得日は「こちらが取った日」なので、1つの実行の中で2つになってはいけない。"
+     "走り始めに1回だけ決める形にした。"),
+    ("2026-09-19", "大阪府の届出33件で、延床面積の数字が「備考」として表示されていたのを直し、"
+     "同じ33件に落ちていた用途地域を表示するようにした。用途地域の書き方（「第１種住居」「第一種住居地域」など31通り）をそろえた。",
+     "大阪府の一覧は見出しが2段で、「備考欄」の下に「延床面積」「施設の用途地域」が"
+     "ぶら下がっている。上の段しか読んでいなかったため（共通仕様4節）。"),
     ("2026-09-15", "設置者が個人の届出で、氏名が検索用の欄に、地番が所在地に残っていたのを伏せ直した（22件）。",
      "共通仕様3.1（個人は「個人」と書き、所在地は町丁目まで）。自治体のページは数か月で消えるが、このサイトは消えないため。"),
     ("2026-09-16", "法人なのに個人と判定していた設置者（15件）を法人に直し、地番の丸めを戻した。",
@@ -722,7 +732,7 @@ def main():
         recs = json.load(f)
     with open(SOURCES, encoding="utf-8") as f:
         src_meta = {s["id"]: s for s in json.load(f)["sources"]}
-    today = date.today().isoformat()
+    today = runday.today()
 
     for d in ("a", "k", "s"):
         os.makedirs(os.path.join(HERE, d), exist_ok=True)

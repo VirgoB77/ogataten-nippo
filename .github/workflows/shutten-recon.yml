@@ -26,12 +26,27 @@ jobs:
   recon:
     runs-on: ubuntu-latest
     env:
+      # **走っている途中で日付が変わらないようにする。**
+      # cron は 22:00 UTC だが、終わるのは翌日の 00:10 UTC ごろ。UTC のままだと
+      # 取ってきた日（22時台＝その日）と commit の日（翌日）が1日ずれる。
+      # 日本の役所の情報を日本の読者に出すサイトなので、基準は日本時間にする。
+      # 日本時間なら 07:00〜09:10 で、走っている間ずっと同じ日になる
+      TZ: Asia/Tokyo
       # 金庫（生データの置き場・private）の鍵があるか。無ければ今まで通り1本で動く
       HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' }}
       # 金庫の名前は公開用の名前から決める（<公開用>-raw）。見張りと checkout が同じ名前を見る。
       # 仮の名前のリポジトリや fork では存在しない名前になり、checkout で止まる（別の金庫には届かない）
       RAW_REPO: ${{ github.repository }}-raw
     steps:
+      # **この実行の「今日」を、走り始めに1回だけ決める。**
+      # 巡回は 07:00 JST に始まり、終わるのは 09:10 JST ごろ。日付をまたぐ時刻に
+      # 動くと、取ってきた日と commit の日が1日ずれる（2026-09-19 に気づいた。
+      # サイトに出ていた取得日が毎日1日早かった）。TZ を寄せても「たまたま
+      # またがない」だけなので、**時刻ではなく値を1回に決める。**
+      # 以降の Python は common/runday.py 経由でこの値だけを見る
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
       # 押したときのコミットではなく、走り出す時点の main から始める。
       # 前の実行が main を進めたあとに古いところから作ると、保存でぶつかる
       - uses: actions/checkout@v4
@@ -196,7 +211,7 @@ jobs:
             echo "生データに変わりなし"
             exit 0
           fi
-          git commit -m "生データを $(date -u +%Y-%m-%d) の時点でためた"
+          git commit -m "生データを ${RUN_DATE} の時点でためた"
           for i in 1 2 3 4 5; do
             if git push origin HEAD:main; then
               echo "金庫に送れた"
@@ -259,7 +274,7 @@ jobs:
             echo "変わりなし。今日は何も起きていない"
             exit 0
           fi
-          git commit -m "大店立地法の届出を $(date -u +%Y-%m-%d) の時点でためた"
+          git commit -m "大店立地法の届出を ${RUN_DATE} の時点でためた"
 
           # 走っている間に、誰かが別の作業を main に入れていることがある。
           # そのまま送ると押し戻されて、集めたデータが消えてしまう。
