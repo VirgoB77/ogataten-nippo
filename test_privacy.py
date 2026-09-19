@@ -535,6 +535,36 @@ def test_正本に同じ行が2度続いていないか():
         raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
 
 
+def test_文字コードを決めつけずに読む():
+    """2026-09-19。国交省の位置参照情報のページは EUC-JP だった。
+
+    Content-Type に charset が無く、utf-8 で読んでタイトルが化けた。
+    URL は ASCII なので探し物には響かなかったが、**化けたまま
+    「読めている」と思っていた。**
+    """
+    import ref_youto
+
+    # ① charset の宣言がどこにも無い EUC-JP のページ（実物がこれだった）
+    t, enc = ref_youto.decode_html("位置参照情報 ダウンロードサービス".encode("euc-jp"),
+                                   "text/html")
+    eq(t, "位置参照情報 ダウンロードサービス", "宣言が無くても EUC-JP を読む")
+    eq(enc, "euc-jp", "どれで読んだかを返す")
+
+    # ② Content-Type にあるほうを先に使う
+    t, enc = ref_youto.decode_html("ふつうのページ".encode("utf-8"),
+                                   "text/html; charset=UTF-8")
+    eq(t, "ふつうのページ", "UTF-8 のページはそのまま")
+
+    # ③ zip の中の名前。zipfile が cp437 として読んだものを読み直す。
+    #    左は 2026-09-19 の報告に実際に出ていた文字列
+    eq(ref_youto._zname("âVâFü[âvâtâ@âCâïî`Ä«", 0), "シェープファイル形式",
+       "zip の中の日本語の名前を読み直す")
+    eq(ref_youto._zname("シェープファイル形式", 0x800), "シェープファイル形式",
+       "UTF-8 の印が立っていれば触らない")
+    eq(ref_youto._zname("A29-19_27140.shp", 0), "A29-19_27140.shp",
+       "ASCII の名前は変わらない")
+
+
 def test_zip_は_href_の外にもある():
     """2026-09-19。href だけを見ていたので「0本」だった。実物はこう：
 
