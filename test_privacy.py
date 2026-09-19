@@ -971,6 +971,11 @@ def test_住所の書かれ方は細かいほうから見るか():
             # 向こうで199件中145件（72.9%）、こちらで1,406件中975件（69.3%）。
             # **2サイトが独立に同じ割合を出した**ので、印を1つ足した
             ("北区長曽根町3456－7 ほか", "略記（印が無いが数字はある）"),
+            # **括弧の中と「外◯筆」は場所の細かさではない。**
+            # 開発系が「食い違うとしたらここ」と教えてくれた形。
+            # 向こうの199件では1件も違わなかったが、**こちらでは5件出た**
+            ("川西市火打一丁目（中央北地区特定土地区画整理事業6街区20―3画地ほか）", "町名まで"),
+            ("美方郡香美町香住区山手外1筆", "町名まで"),
             ("南区晴美台4丁 1-2の一部", "略記（印が無いが数字はある）"),
             # **丁目の数字は町名の一部。** 落としてから数字を探す
             ("豊中市庄内西町5丁目", "町名まで"),
@@ -1339,6 +1344,94 @@ def test_消えたことの書き方():
             raise AssertionError(
                 f"消えたものの説明文に入っていない（{os.path.basename(michi)}）。"
                 "検索から着いた人が、役所のページに無いことをそこで知る")
+
+
+def test_辿れる側の一覧を手で書いていないか():
+    """**印を足す所と、辿れる側に数える所が別だと、片方を忘れる。**
+
+    2026-09-19、開発系の報告——
+
+    > `KOMAKAI` から印を1つ落としたら**鳴らなかった**。①定数を読む検査も、
+    > ②実データで数える検査も通る。変わるのは「番まで辿れる見込み」の1行だけ。
+
+    **統括でも試したら同じだった。** 81.9% が 61.6% になっても、
+    **検査77本すべて通った。**
+
+    直し方は見張りを足すことではなく、**2か所を1か所にすること。**
+    `KOMAKAI` は `KATACHI` の「どこまで当たるか」から作る。
+
+    そのうえで、**紙に書いた割合を、いま数え直した割合と突き合わせる。**
+    導き方そのものが壊れたときに鳴る。
+
+    **捕まえないもの**：印があれば本当に座標が当たるか。まだ引き当てていない。
+    """
+    import importlib
+    import json
+    ak = importlib.import_module("addr_katachi")
+
+    # ① **手で書いていない。** 表から作られている
+    hyo = {name for name, _d, made in ak.KATACHI if "置けない" not in made}
+    if set(ak.KOMAKAI) != hyo:
+        raise AssertionError(
+            f"KOMAKAI {sorted(ak.KOMAKAI)} が、表から作った {sorted(hyo)} と違う。"
+            "2か所あると、印を足した日に片方を忘れる")
+
+    # ② **紙の割合と、いま数え直した割合が合うか**
+    zairyo = os.path.join(HERE, "data", "all.json")
+    kami = os.path.join(HERE, "data", "ref", "addr-katachi.md")
+    if not (os.path.exists(zairyo) and os.path.exists(kami)):
+        return
+    recs = json.load(open(zairyo, encoding="utf-8"))
+    zentai, _rei = ak.measure(recs)
+    okeru = sum(zentai.get(k, 0) for k in ak.KOMAKAI)
+    honbun = open(kami, encoding="utf-8").read()
+    if f"{okeru:,}件" not in honbun:
+        raise AssertionError(
+            f"紙の「番まで辿れる見込み」が、いま数えた {okeru:,}件 と合わない。"
+            "印を足したのに、辿れる側に数えていないか")
+
+
+def test_括弧の中だけに数字がある住所():
+    """**括弧の中と「外◯筆」は、場所の細かさではない。**
+
+    開発系が測って教えてくれた（2026-09-19）。向こうの実データ199件では
+    **2つの書き方で1件も違わなかった**が——
+
+    > 0件なのは開発系の話で、4サイトの話ではないにゃ
+
+    **そのとおりだった。こちらでは5件出た。**
+
+        川西市火打一丁目（中央北地区特定土地区画整理事業◯街区◯◯―◯画地ほか）
+
+    括弧の中は区画整理の仮換地表示で、**地番ではない。**
+    印は4サイト共通なので、統括が直して4本とも同じ日に変える。
+
+    直したあとは**0件が正しい姿**。0でなくなったら、括弧の中の
+    書き方が増えたということなので、そこで見直す。
+    """
+    import importlib
+    import json
+    ak = importlib.import_module("addr_katachi")
+
+    # **見本は実物から取る**（開発系が送ってきた形と、こちらの実データ）
+    for text, hoshii in (
+            ("美方郡香美町香住区山手外1筆", True),
+            ("京都市北区上賀茂薮田町（12街区）", True),
+            ("北区長曽根町3456－7 ほか", False),
+            ("門真市江端町", False),
+    ):
+        if ak.kakko_dake(text) != hoshii:
+            raise AssertionError(f"「{text}」の判定が違う（{ak.kakko_dake(text)}）")
+
+    zairyo = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(zairyo):
+        return
+    nokori = ak.kuichigai(json.load(open(zairyo, encoding="utf-8")))
+    if nokori:
+        raise AssertionError(
+            f"略記と読んだもので、数字が括弧か「外◯筆」にしかないものが {len(nokori)}件ある"
+            f"（例 {nokori[0].get('address')}）。"
+            "括弧の中は場所の細かさではない。**正本に上げること**")
 
 
 def test_中規模を大店立地法と書いていないか():
