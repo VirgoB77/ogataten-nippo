@@ -620,6 +620,24 @@ def _shirushi_no_naka(text):
     return out
 
 
+def _ichiran_no_shi():
+    """いま町丁目の一覧を持っている市の名前。**検査に名前を書かない。**
+
+    `data/ref/towns.json` の鍵（市区町村コード）を、
+    `data/ref/jis-codes.json`（総務省の全国地方公共団体コード）で名前に直す。
+    市が増えても、この検査は直さなくてよい。
+    """
+    import json
+    t = os.path.join(HERE, "data", "ref", "towns.json")
+    c = os.path.join(HERE, "data", "ref", "jis-codes.json")
+    if not (os.path.exists(t) and os.path.exists(c)):
+        return []
+    with open(t, encoding="utf-8") as f:
+        code = set(json.load(f))
+    with open(c, encoding="utf-8") as f:
+        return [r.get("city", "") for r in json.load(f) if r.get("code") in code]
+
+
 def test_数えた値を書かない印の中に件数が無いか():
     """**手で書いた数には、持ち主がいない**（2026-09-22 に4件見つけた）。
 
@@ -676,11 +694,14 @@ def test_数えた値を書かない印の中に件数が無いか():
                     f"「{na}」の区間に、現在値の見に行き先が書かれていない。"
                     "**数字を消したなら、どこを見ればよいかを書く**")
 
-            # ④ 市の名前を書かない（一覧が増えたら古くなる）
-            if "西宮" in s:
-                raise AssertionError(
-                    f"「{na}」の区間に市の名前が書かれている。"
-                    "**どの市の一覧を持っているかは data/ref/towns.json が持つ**")
+            # ④ 市の名前を書かない（一覧が増えたら古くなる）。
+            #    **名前を検査に書かない。**いま一覧を持っている市を
+            #    data/ref/towns.json と data/ref/jis-codes.json から引く
+            for shi in _ichiran_no_shi():
+                if shi and shi in s:
+                    raise AssertionError(
+                        f"「{na}」の区間に市の名前「{shi}」が書かれている。"
+                        "**どの市の一覧を持っているかは data/ref/towns.json が持つ**")
 
 
 def test_文書が案内する参照先が実在するか():
@@ -8220,47 +8241,39 @@ def test_町丁目_住所が無い行を読めた行に混ぜていないか():
         raise AssertionError("記録に、こちらが読めなかった行の欄が無い")
 
 
-def test_正本_取り返しのつかない作業の前に読む決まりが在るか():
-    """**この決まりが無かったから、正本が「採らない」と書いた手を実行した**
-    （2026-09-21）。
+def test_履歴を書き換える手が実行される所に無いか():
+    """**正本が「採らない」と書いた手を、実行した**（2026-09-21）。
 
     正本9節には 2026-09-17 の時点で「同じ public リポジトリの中で履歴を
     書き換える手は採らない」と書いてあり、作り直しの順番まで在った。
     **参謀はどちらも読まずに走った。**
 
-    捕まえるのは2つ。
+    以前ここでは**正本にその文が書いてあるか**を見ていた。
+    だが書いてあっても読まなければ同じで、**実際に起きたのはそれだった。**
+    見るものを、文章から**走るもの**へ移す——
+    `filter-repo` や `force-push` が、**実行されるファイルに入っていないか。**
 
-    ① 「先に読む」という決まりが正本に在る
-    ② **同じ事実を2か所で「新しく分かった」と書いていない**
-       （書いてあったなら、それは発見ではなく再測定）
+    決まりそのもの（先に読む・再測定を発見と書かない）は正本に残す。
+    **文章が在るかは見ない。**言い回しを直せるようにしておく。
     """
-    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    if not os.path.exists(seihon):
-        return
-    with open(seihon, encoding="utf-8") as f:
-        text = f.read()
-    for kotoba in ("取り返しのつかない作業の前に、該当する節を先に読む",
-                   "それは発見ではなく"):
-        if kotoba not in text:
-            raise AssertionError(f"正本に「{kotoba}」が無い")
-
-    # ② `refs/pull` の話は、**規則としては1か所**。ほかは測定値か参照でよい。
-    #    「採らない」と決めている行が2つ以上あると、片方だけ直される（11節）。
-    #    **引用（`>` で始まる行）は数えない。**
-    #    正本9節「逐語の引用と、こちらの読みを、印で分ける」——
-    #    引用は規則の写しであって、2つ目の規則ではない
-    kimari = 0
-    for line in text.split("\n"):
-        if line.lstrip().startswith(">"):
-            continue
-        if "filter-repo・orphan の force-push）は" in line and "採らない" in line:
-            kimari += 1
-    if kimari != 1:
+    import re as _re
+    ABUNAI = _re.compile(r"filter[-_]repo|force[-\s]push|push\s+--force|push\s+-f\b|rebase\s+--root")
+    warui = []
+    for fp in subete_no_py() + sorted(workflow_files()):
+        if os.path.basename(fp) == "test_privacy.py":
+            continue                      # 検査自身は、危ない語を**探す側**
+        with open(fp, encoding="utf-8") as f:
+            for i, ln in enumerate(f, 1):
+                if ln.lstrip().startswith("#"):
+                    continue              # 覚書は走らない
+                if ABUNAI.search(ln):
+                    warui.append(f"{os.path.relpath(fp, HERE)}:{i}")
+    if warui:
         raise AssertionError(
-            f"履歴を書き換える手を「採らない」と決めている行が、引用を除いて "
-            f"{kimari} か所ある。**規則は1か所。** 増えると片方だけ直される（11節）")
-
-
+            "履歴を書き換える手が、実行されるファイルに入っている： "
+            + " / ".join(warui[:5])
+            + "。**正本9節は採らないと決めている。**"
+            "消したいものが在るなら、作り直す順番のほうを通す")
 
 def test_失効した規則が引用の中に在るか():
     """**消した判断は残す。ただし、生きた規則として立たせない。**
@@ -8313,34 +8326,6 @@ def test_失効した規則が引用の中に在るか():
         raise AssertionError(
             "正本に「失効」の印が1つも無い。**消した判断を残す決まりが消えている**"
             "（印が無ければ、この検査は黙って通る）")
-
-def test_正本_取得元と題材を分ける決まりが在るか():
-    """**1社が止まっても、題材ごと却下しない**（運営者・2026-09-21）。
-
-        九州電力送配電の Web が止まった  ≠ 停電の記録が成立しない
-        ある入札サイトが止まった         ≠ 入札・公募の記録が成立しない
-        ある自治体の解体届出が非公開     ≠ 解体の記録が成立しない
-
-    あわせて、**競合がいることも落とす理由にしない。**
-    「他社ができている＝こちらも同じ取り方をしてよい」ともしない。
-    """
-    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    if not os.path.exists(seihon):
-        return
-    with open(seihon, encoding="utf-8") as f:
-        text = f.read()
-    for kotoba in (
-            "「その取得元が使えない」と「その題材が成立しない」を分ける",
-            "競合がいることは、落とす理由にならない",
-            "事業として届け出られた所在地は、生活住所と同じ扱いにしない"):
-        if kotoba not in text:
-            raise AssertionError(f"正本に「{kotoba}」の節が無い")
-    # **例外を勝手に広げない**の戒めが落ちていないか
-    if "民泊から一般の個人住宅の住所へ勝手に広げない" not in text:
-        raise AssertionError(
-            "住所の例外を広げない、という戒めが無い。"
-            "**例外は、書いた範囲より広がるほうへ壊れる**")
-
 
 def test_停電_1社止めても残りが消えていないか():
     """**取得元の「だめ」を、題材の「だめ」にしない**（正本9節）。
