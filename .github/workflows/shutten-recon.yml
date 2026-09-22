@@ -340,11 +340,11 @@ jobs:
           if [ "$HAS_VAULT" = "true" ]; then
             # 金庫がある形では、公開してよいと決めたものだけを列挙して入れる（許可リスト）。
             # data をまるごと add しない。新しい出力を公開したいときは、ここに1つ足す。
-            # **県公報（data/koho）はここに入れない**（統括判断 2026-09-21・正本6776行）。
+            # **県公報（data/koho）はここに入れない**（統括判断 2026-09-21・正本9節「公開側に置いてよいかは、姉妹が読んでいるかでは決まらない」）。
             # 本文921本のうち714本に「氏名」の語が在り、人の名の形をした語が94種類。
             # 法人と確かめられたのは48種類で、46種類は未測定。測り終わるまで公開しない。
             # 「姉妹サイトが読む約束だから置く」とは書かない——
-            # **約束は置き場を決める理由にならない。置いてよいかは中身で決まる**（正本6776行）
+            # **約束は置き場を決める理由にならない。置いてよいかは中身で決まる**（正本9節「公開側に置いてよいかは、姉妹が読んでいるかでは決まらない」）
             for p in data/all.json data/ref/shinsetsu-sokuho.md data/ref/shinsetsu-sokuho.json data/parsed data/ref \
                      index.html about.html contact.html hyogo-koho.html teisei.html \
                      taiten.html settisha.html shinsetsu-to-kaiten.html style.css \
