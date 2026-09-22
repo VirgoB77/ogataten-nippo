@@ -9,7 +9,10 @@ normalize(pref, city, addr) → dict
 
 town の決め方（4節）
   ① 正規化で自分がハイフンにした場所があれば、その手前まで（確実）
-  ② 1つも置き換えなかったときは、町丁目の一覧（data/ref/towns.json）で最長一致
+  ② 1つも置き換えなかったときは、町丁目の一覧（data/ref/towns.json）で最長一致。
+     **当たった直後が数字か末尾のときだけ採る**（短い町名へ化けさせない）
+  ①' 丁目が無くて①で決まらなかったときは、数字の手前が一覧の町名と
+     **丸ごと同じときだけ**決める（前方一致にはしない）
   ③ どちらでも決まらなければ空文字。推測で埋めない
 
 city_code は data/ref/jis-codes.json（総務省「全国地方公共団体コード」を
@@ -51,6 +54,26 @@ def load_towns(path=TOWNS_PATH):
             with open(path, encoding="utf-8") as f:
                 _towns = json.load(f)
     return _towns
+
+
+def machi_wo_ateru(s, towns):
+    """町丁目の一覧で最長一致。**当たった直後が数字か、末尾のときだけ採る。**
+
+    4節②は「きつい側に外す」の例外で、**外れると別の町丁目になる。**
+    だから「短い町名が、長い別の町名の頭に一致しただけ」では決めない。
+
+        一覧に「甲子園」だけ在って「甲子園口北町」が無いとき
+          甲子園口北町5-6  →  「甲子園」に当たってしまう（旧）
+                           →  直後が「口」なので採らない（いま）
+
+    **当たったのに境目が合わなければ、より短い候補へは下がらない。**
+    下がると、もっと粗い町名へ化けるだけになる。決まらない側に倒す（4節③）。
+    """
+    for t in sorted(towns, key=len, reverse=True):
+        if s.startswith(t):
+            nokori = s[len(t):]
+            return t if (nokori == "" or nokori[0].isdigit()) else ""
+    return ""
 
 
 def city_code_of(pref, city, codes=None):
@@ -265,16 +288,22 @@ def normalize(pref, city, addr, codes=None):
         key = marked[:start] + chain
         display = (key + (building if building else "")).rstrip("-")   # 末尾の「号」が印になって残る
         town = re.sub(r"-+$", "", town.replace(_MARK, "-").replace(_CMARK, "-"))
+        if ci < 0 and not town:
+            # **丁目が無いので町丁目が決まらなかった行。** ここは一覧を
+            # 一度も見ていなかった（2026-09-22 に測った。西宮市で51件）。
+            # 見るのは「数字の連なりが始まる手前」だけ。start は上で出ている。
+            # **前方一致ではなく、丸ごと同じときだけ採る。**
+            # 前方一致にすると「町A139番、町B2-3」のように1行に町が2つ在る
+            # ときに片方を選んでしまう（実測で1件あった）。
+            # first より前なので、marked[:start] に印は入らない
+            mae = marked[:start]
+            if code and mae and mae in load_towns().get(code, []):
+                town = mae
     else:
         # ② 置き換えが無かった。町丁目の一覧で最長一致。無ければ ③ 空
         display = marked.replace(_MARK, '-').replace(_CMARK, '-')
         key = marked.replace(_MARK, '-').replace(_CMARK, '-')
-        towns = load_towns().get(code, []) if code else []
-        town = ""
-        for t in sorted(towns, key=len, reverse=True):
-            if key.startswith(t):
-                town = t
-                break
+        town = machi_wo_ateru(key, load_towns().get(code, []) if code else [])
         # 建物名は地番の連なりの後ろ。「上ケ原2番町3-5」なら 3-5 の後ろ。
         # 地番の連なりは「ハイフンを含む最初の数字の列」。無ければ最後の数字の列。
         # 最後の列にすると「○○ビル3F」の 3 を地番と取り違える
