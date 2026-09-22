@@ -571,14 +571,22 @@ def test_parse_keeps_unknown_columns():
 # 動いたのは**店名の寄せ方を直した**ぶん（`merge.py`・法人格を正本に通した）で、
 # **29件の鍵が付け替わり、3件が重複としてまとまった。**
 # **数えた日に数を直す。理由を見ないまま直さない。**
-TOWN_GAP = 1764
+# 2026-09-22 に動いた。**減ったので、理由を見てから直した**（検査が言うとおり）。
+#   前 4,361件中 1,764件 → いま 4,361件中 1,669件
+# 西宮市の町丁目一覧435件（国交省2025年版）を data/ref/towns.json に入れた。
+# **西宮市だけ。**他の市は一覧がまだ無いので、これまでどおり空のまま。
+#   西宮市の空 105 → 10（②で47・①'で48 が決まった）
+#   もとから決まっていた行の値が変わったのは **0件**
+TOWN_GAP = 1669
 TOWN_TOTAL = 4361     # **住所が読めた行だけ。** 原典に住所が無い行は下で別に数える
 TOWN_NASHI = 464      # 原典に住所が書かれていなかった行（こちらでは減らせない）
 
 
 # 2026-09-22 に測った値。**いま町丁目まで決まっている行の数。**
 # 一覧を入れたら増える。**減ったら、決まっていたものが決まらなくなった**ので鳴る
-TOWN_KIMATTA = 2597
+# **2つの数を分ける。** 片方だけだと「一覧が効いた」と「決まらなくなった」が混ざる
+TOWN_KIMATTA_NASHI = 2597   # 一覧を外したとき＝丁目から決まる行だけ。ここが減ったら壊れた
+TOWN_KIMATTA_ARI = 2692     # いまの towns.json を当てたとき（2026-09-22。西宮市435件）
 
 
 def _towns_wo_sashikomu(ichiran):
@@ -587,6 +595,60 @@ def _towns_wo_sashikomu(ichiran):
     moto = _a._towns
     _a._towns = ichiran
     return moto
+
+
+def test_町丁目の一覧が読める形で在るか():
+    """西宮市の一覧を入れた日（2026-09-22）に足した。
+
+    **出典を `towns.json` に混ぜない。** 混ぜると、説明の鍵（`_source` など）が
+    **市区町村コードとして数えられる。** 姉妹サイトの `town_list.json` は
+    `{"_note":…, "towns": {…}}` の形で、これをそのまま置くと
+    `load_towns().get(code)` が毎回 `None` になり、**エラーも出さずに②が効かない。**
+    ③に落ちるだけなので検査も通ってしまう（2026-09-22 に見つけた形）。
+    """
+    import json
+    import addr
+    path = os.path.join(HERE, "data", "ref", "towns.json")
+    if not os.path.exists(path):
+        return                      # **まだ無い日もある。**無いこと自体は違反ではない
+    with open(path, encoding="utf-8") as f:
+        ichiran = json.load(f)
+
+    eq(isinstance(ichiran, dict), True, "towns.json は {コード: [町名]} の形")
+    for code, machi in ichiran.items():
+        if not (code.isdigit() and len(code) == 5):
+            raise AssertionError(
+                f"towns.json の鍵が市区町村コードでない: {code!r}。"
+                "**出典や説明を混ぜない**（data/ref/towns.meta.json に置く）")
+        eq(isinstance(machi, list), True, f"{code} の中身は一覧")
+        if len(machi) != len(set(machi)):
+            raise AssertionError(f"{code} の町名に重複が在る: {len(machi)} → {len(set(machi))}")
+        for m in machi:
+            if addr._clean(m) != m:
+                raise AssertionError(
+                    f"{code} の「{m}」が下ごしらえ済みでない。"
+                    "**当てる相手と同じ形でないと当たらない**（common/addr.py の _clean）")
+
+    # 出典が別ファイルに在るか。**在るか**だけを見る（中身の正しさは見ていない）
+    meta = os.path.join(HERE, "data", "ref", "towns.meta.json")
+    if not os.path.exists(meta):
+        raise AssertionError("towns.json は在るが towns.meta.json が無い。**出どころが追えない**")
+    with open(meta, encoding="utf-8") as f:
+        m = json.load(f)
+    for k in ("fetched_on", "source", "edition", "cities"):
+        if k not in m:
+            raise AssertionError(f"towns.meta.json に「{k}」が無い")
+    for code in ichiran:
+        if code not in m.get("cities", {}):
+            raise AssertionError(f"towns.json の {code} が towns.meta.json に無い")
+
+    # **一覧が無い市では、従来どおり空になる。**
+    moto = _towns_wo_sashikomu(ichiran)
+    try:
+        d = addr.normalize("大阪府", "枚方市", "岡東町12-1")
+        eq(d["town"], "", "一覧が無い市では、従来どおり空のまま")
+    finally:
+        _towns_wo_sashikomu(moto)
 
 
 def test_町丁目の照合が短い町名へ化けない():
@@ -676,11 +738,26 @@ def test_町丁目が決まっている行を一覧が書き換えない():
     moto = _towns_wo_sashikomu({})
     try:
         mae = hakaru()
-        if len(mae) != TOWN_KIMATTA:
+        if len(mae) != TOWN_KIMATTA_NASHI:
             raise AssertionError(
-                f"町丁目まで決まっている行が動いた： {TOWN_KIMATTA} → {len(mae)}。"
-                "**増えたなら一覧が効いた（この数を直す）。減ったなら決まっていたものが"
-                "決まらなくなった（先に理由を見る）**")
+                f"一覧を外したときに決まる行が動いた： {TOWN_KIMATTA_NASHI} → {len(mae)}。"
+                "**ここは一覧と関係なく、丁目から決まる行。減ったら読み方が壊れた**")
+
+        # いまの towns.json を当てたときの数。**増える方向にしか動かないはず**
+        honban = os.path.join(HERE, "data", "ref", "towns.json")
+        if os.path.exists(honban):
+            with open(honban, encoding="utf-8") as f:
+                _towns_wo_sashikomu(json.load(f))
+            ima = hakaru()
+            if len(ima) != TOWN_KIMATTA_ARI:
+                raise AssertionError(
+                    f"いまの一覧で決まる行が動いた： {TOWN_KIMATTA_ARI} → {len(ima)}。"
+                    "**増えたなら一覧が増えた（この数を直す）。減ったなら先に理由を見る**")
+            kawatta_honban = [i for i, v in mae.items() if ima.get(i) != v]
+            if kawatta_honban:
+                raise AssertionError(
+                    f"いまの一覧で、決まっていた町丁目が {len(kawatta_honban)}件 変わった。"
+                    "**一覧は、決まっていないものだけを決める**")
         # 一覧を差し込む。**いま決まっている行の値が1つでも変わったら鳴る**
         _towns_wo_sashikomu({"28204": ["甲子園町", "今津曙町", "浜町", "本町", "甲子園"]})
         ato = hakaru()
@@ -3224,7 +3301,10 @@ def test_addr_normalize():
     eq(r["addr_key_town"], "28202|潮江1", "4節 2件目 addr_key_town")
     r = addr.normalize("兵庫県", "西宮市", "大字上ケ原　二番町3-5", codes)
     eq(r["addr_key"], "28204|上ケ原2番町3-5", "4節 3件目：「番町」の番を置き換えない")
-    eq(r["addr_key_town"], "", "4節 3件目：一覧が無いうちは空（③）。「上ケ原2番町3」にしない")
+    # 2026-09-22 に西宮市の一覧（435件）を入れたので、ここは②で決まるようになった。
+    # **地番の 3 を町丁目に含めない**という元の狙いはそのまま見ている
+    eq(r["addr_key_town"], "28204|上ケ原2番町",
+       "4節 3件目：一覧が在るので②で決まる。「上ケ原2番町3」にはしない")
     r = addr.normalize("大阪府", "大阪市北区", "大阪市北区梅田1-1-1 ○○ビル3F", codes)
     eq(r["addr_key"], "27127|梅田1-1-1", "建物名の数字を地番に混ぜない（6.）")
     r = addr.normalize("大阪府", "豊中市", "服部西町一丁目８４７番地の１ほか", codes)

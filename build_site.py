@@ -171,7 +171,7 @@ KARA_DE_YOI = {
     "count": "1〜2件は伏せる（3.2）。count_label が「1-2」を持つ",
     "city_code": "市区町村が決まらない37件。not_counted.unresolved と同じ行",
     "addr_key": "住所が読めない、または地番まで無い",
-    "addr_key_town": "町丁目の一覧（data/ref/towns.json）がまだ無い（4節②）",
+    "addr_key_town": "その市の町丁目の一覧がまだ無い、または一覧に無い町名（4節②③）",
     "party": "設置者が個人のときは空。名前を出さない（5節）",
 }
 
