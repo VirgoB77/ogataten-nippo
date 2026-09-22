@@ -597,6 +597,54 @@ def _towns_wo_sashikomu(ichiran):
     return moto
 
 
+def test_町丁目が決まらない件数を手で書いていないか():
+    """4節③の「空にして記録する」の、**記録の置き場は1つ**（2026-09-22）。
+
+    `addr_key_town` が空になる件数は `town_gap.py` が数えて
+    `data/ref/town-gap.md` に書き、`test_privacy.py` が同じ数を留めている。
+    その古い写し（`4,809件中1,369件（28.5%）`）が正本に残っていた。
+    母数も分け方も変わったあと（原典に住所が無い行を混ぜなくなった）だったので、
+    **新しい数に書き換えるのではなく、手書きをやめた。**
+
+    ここで見るのは③の節だけ。**過去の実測や事故の記録は禁じない**
+    （日付つきで残すべきもの。機械で一律に止めると、履歴まで消える）。
+    """
+    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
+    if not os.path.exists(seihon):
+        return
+    import re as _re
+    with open(seihon, encoding="utf-8") as f:
+        text = f.read()
+
+    hajime = text.find("**③ ①でも②でも決まらないときは、`addr_key_town` を空にして記録する**")
+    if hajime < 0:
+        raise AssertionError(
+            "正本4節に③（空にして記録する）の見出しが無い。**決まりごと消えている**")
+    owari = text.find("**丁目は必ず含める。**", hajime)
+    if owari < 0:
+        raise AssertionError("正本4節③の終わり（「丁目は必ず含める」）が見つからない")
+    setsu = text[hajime:owari]
+
+    warui = [m.group(0).strip()
+             for m in _re.finditer(r"([0-9][0-9,]{2,})\s*件|([0-9]+\.[0-9])\s*%", setsu)]
+    if warui:
+        raise AssertionError(
+            "正本4節③に、件数か割合が手で書かれている： " + " / ".join(warui[:5])
+            + "。**現在値は data/ref/town-gap.md（town_gap.py が書く）に置く**")
+
+    for michi in ("data/ref/town-gap.md", "data/ref/towns.json"):
+        if michi not in setsu:
+            raise AssertionError(
+                f"正本4節③に `{michi}` への案内が無い。"
+                "**数字を消したなら、どこを見ればよいかを書く**")
+
+    # **市の名前を書かない。**一覧が増えたら古くなる
+    if "西宮" in setsu:
+        raise AssertionError(
+            "正本4節③に市の名前が書かれている。"
+            "**どの市に一覧が在るかは data/ref/towns.json が持つ。増えたら古くなる**")
+
+
 def test_地図の細かさの件数を手で書いていないか():
     """**手で書いた数には、持ち主がいない**（2026-09-22 に数えて分かった）。
 
