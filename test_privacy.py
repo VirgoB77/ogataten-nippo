@@ -597,6 +597,71 @@ def _towns_wo_sashikomu(ichiran):
     return moto
 
 
+def test_地図の細かさの件数を手で書いていないか():
+    """**手で書いた数には、持ち主がいない**（2026-09-22 に数えて分かった）。
+
+    「地図に点を置ける細かさ」の件数は `addr_katachi.py` が数えて
+    `data/ref/addr-katachi.md` に書く。**生成物のほうは正しかった。**
+    ところが同じ数の古い写しが、正本と `nokori.md` に手書きで残っていた。
+
+        生成物   4,825件・6分類（いま）
+        手書き   4,809件・5分類・「1,845件（38.4%）」（3世代ぶん古い）
+
+    **数字を新しくするのではなく、手書きをやめる。**
+    ここでは「その節に件数や割合が書かれていないこと」を見る。
+    語を名指しで禁じると、**別の言い方で書き戻されたときに黙る**。
+    """
+    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
+    nokori = os.path.join(HERE, "docs", "nokori.md")
+    if not (os.path.exists(seihon) and os.path.exists(nokori)):
+        return
+    import re as _re
+
+    with open(seihon, encoding="utf-8") as f:
+        text = f.read()
+
+    # 「出せる細かさは…」から、次の ## （大見出し）まで
+    hajime = text.find("#### 出せる細かさは、相手が書いた細かさで決まる")
+    if hajime < 0:
+        raise AssertionError(
+            "正本に「出せる細かさは、相手が書いた細かさで決まる」が無い。"
+            "**地図の細かさの決まりごと消えている**")
+    # **範囲は小見出し2つぶん。** `##` まで取ると385行・7小見出しに広がり、
+    # 日付つきの過去の実測（別の話）まで鳴らしてしまう（2026-09-22 に踏んだ）
+    tsugi = "#### 住所の書かれ方は、1つのサイトの中でも混ざる"
+    owari = text.find(tsugi, hajime)
+    if owari < 0:
+        raise AssertionError(f"正本に「{tsugi}」が無い。**見張りの範囲が決められない**")
+    setsu = text[hajime:owari]
+
+    # 件数・割合の形。**3桁以上の数**（節番号・丁目・年は拾わない）
+    warui = []
+    for m in _re.finditer(r"([0-9][0-9,]{2,})\s*件|([0-9]+\.[0-9])\s*%", setsu):
+        warui.append(m.group(0).strip())
+    if warui:
+        raise AssertionError(
+            "正本の「出せる細かさ」の節に、件数か割合が手で書かれている： "
+            + " / ".join(warui[:5])
+            + "。**現在値は data/ref/addr-katachi.md（addr_katachi.py が書く）に置く。"
+              "ここに写すと、写した日から古くなる**")
+
+    # 現在値の見に行き先が、両方の文書から分かるか
+    for path, na in ((seihon, "正本"), (nokori, "nokori.md")):
+        with open(path, encoding="utf-8") as f:
+            if "data/ref/addr-katachi.md" not in f.read():
+                raise AssertionError(
+                    f"{na} に `data/ref/addr-katachi.md` への案内が無い。"
+                    "**数字を消したなら、どこを見ればよいかを書く**")
+
+    # nokori 側にも、地図の件数が戻っていないか
+    with open(nokori, encoding="utf-8") as f:
+        for ln in f:
+            if "点を置かない" in ln and _re.search(r"[0-9][0-9,]{2,}\s*件", ln):
+                raise AssertionError(
+                    "nokori.md の地図の行に件数が手で書かれている： " + ln.strip()[:80]
+                    + "。**data/ref/addr-katachi.md を見る形にする**")
+
+
 def test_町丁目の一覧が読める形で在るか():
     """西宮市の一覧を入れた日（2026-09-22）に足した。
 
