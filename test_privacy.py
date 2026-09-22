@@ -597,6 +597,48 @@ def _towns_wo_sashikomu(ichiran):
     return moto
 
 
+def test_空でよい欄の理由に件数を書いていないか():
+    """**理由は意味を書く場所で、件数を置く場所ではない**（2026-09-22）。
+
+    `KARA_DE_YOI` の `city_code` の理由に「市区町村が決まらない37件」と
+    件数が手で書かれていた。**2026-09-19 に書かれてから一度も更新されておらず、
+    そのとき実数は 44 になっていた。**
+
+    この数はコードの判定に使われていない（`37` はこの文字列の中にしか無かった）。
+    検査も「理由が空でないか」しか見ていないので、**古くなっても誰も鳴らない。**
+
+    数を新しくするのではなく、**ここで件数を持つのをやめた。**
+    現在値は `index.json` の `not_counted` が持つ（`build_site.py` が毎回書く）。
+    """
+    import re as _re
+    import build_site as bs
+
+    # **しきい値と実数を分ける。** 最初に書いた見張りは
+    # `count` の「1〜2件は伏せる」（3.2 の境目）にも当たった。
+    # しきい値は境目として書く（`1〜2件` `3件以下`）、実数はそのまま書く（`37件`）。
+    # だから「範囲の一部」と「以上・以下・未満・超が続くもの」は数えない
+    warui = []
+    for k, riyuu in bs.KARA_DE_YOI.items():
+        for m in _re.finditer(r"([0-9][0-9,]*)\s*(件|本|行|枚|欄)", riyuu):
+            mae = riyuu[max(0, m.start() - 1):m.start()]
+            ato = riyuu[m.end():m.end() + 2]
+            if mae in ("〜", "～", "-", "–"):
+                continue                       # 範囲の後ろ側（1〜2件）
+            if ato[:2] in ("以上", "以下", "未満") or ato[:1] == "超":
+                continue                       # 境目（3件以下）
+            warui.append(f"{k}: {m.group(0)}")
+    if warui:
+        raise AssertionError(
+            "KARA_DE_YOI の理由に件数が書かれている： " + " / ".join(warui[:5])
+            + "。**理由は意味を書く場所。現在件数は index.json の not_counted が持つ**")
+
+    # **見に行き先が書いてあるか。**数を消したなら、どこを見るかは要る
+    if "not_counted" not in bs.KARA_DE_YOI.get("city_code", ""):
+        raise AssertionError(
+            "KARA_DE_YOI の city_code の理由に `not_counted` への案内が無い。"
+            "**件数を消したなら、どこを見ればよいかを書く**")
+
+
 def test_空でよい欄の一覧を正本へ写していないか():
     """**写しには見張りが付かない**（2026-09-22）。
 
