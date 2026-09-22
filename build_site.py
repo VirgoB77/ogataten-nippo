@@ -169,7 +169,9 @@ KIND_HIZUKE = {
 # 欄を足した日に「空でよいか」を決めさせる形にする。
 KARA_DE_YOI = {
     "count": "1〜2件は伏せる（3.2）。count_label が「1-2」を持つ",
-    "city_code": "市区町村が決まらない37件。not_counted.unresolved と同じ行",
+    "city_code": "市区町村が決まらない行。旧市町村名や、県が市区町村を書かずに"
+                 "公表した分。コード表を足せば減る。"
+                 "件数は index.json の not_counted.unresolved（ここには書かない）",
     "addr_key": "住所が読めない、または地番まで無い",
     "addr_key_town": "その市の町丁目の一覧がまだ無い、または一覧に無い町名（4節②③）",
     "party": "設置者が個人のときは空。名前を出さない（5節）",
