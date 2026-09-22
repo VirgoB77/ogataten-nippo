@@ -1,0 +1,129 @@
+name: 地図データを1組だけ取って比べる
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# 統括の案B（2026-09-21）——
+#   同じ市区町村・同じ年度の zip が2つの目録に並ぶ。**1回だけ両方取って**、
+#   大きさ・SHA-256・zip の中のファイル一覧を比べる。
+#   **1組一致しただけで、全市区町村・全年度が同一とは一般化しない。**
+#   不一致ならその時点で止めて報告する。
+#
+# 規約は統括が読んだ。**取ってよい**（複製可・加工可・商用可・出典必須）。
+# **規約と robots は別の欄。** 取りに行く前に robots も見る（chizu_get.py の中）。
+#
+# 取った zip は `inbox/`（公開側では .gitignore に入っている）に置く。
+# 金庫がつながっている回は金庫へしまう。**公開リポジトリには台帳だけが入る。**
+on:
+  workflow_dispatch:
+    inputs:
+      kumi:
+        description: "比べる組の数（既定1。まとめて叩かない）"
+        required: false
+        default: "1"
+      code:
+        description: "市区町村コード（空なら目録の記録の先頭から）"
+        required: false
+        default: ""
+
+concurrency:
+  group: chizu-get
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: zip の置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox/chizu
+          mkdir -p "_raw/inbox/chizu/zip"
+          rm -rf "inbox/chizu/zip"
+          ln -s "../../_raw/inbox/chizu/zip" "inbox/chizu/zip"
+          ls -la inbox/chizu
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # **外に出る前に止まる**形にする
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 1組だけ取って比べる（同時1本・5秒以上あける）
+        timeout-minutes: 60
+        run: |
+          ARG=""
+          if [ -n "${{ github.event.inputs.code }}" ]; then
+            ARG="--code ${{ github.event.inputs.code }}"
+          fi
+          python3 chizu_get.py --kumi "${{ github.event.inputs.kumi || 1 }}" $ARG
+
+      - name: zip を金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          if [ -n "$(find inbox/chizu -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox/chizu)" ]; then
+            echo "inbox/chizu にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "地図データの zip（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # 入るのは**出典の8つと、比べた結果だけ。** zip の中身は1バイトも入らない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/chizu-get.md data/ref/chizu-get.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "地図データを1組取って比べた記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

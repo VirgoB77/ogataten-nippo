@@ -1,0 +1,135 @@
+name: 停電の記録を毎日ためる
+
+# **毎日走る。** 7日で消えるので、**今日ためなかった分は、もう作れない。**
+#
+# ここは「ためるだけ」。**読み取らない。**
+# 返ってきたバイトをそのまま置いて、**指紋を取って前と比べる**だけ。
+#
+# **1段目（teiden-recon）を押した日は、この段が自分で止まる。**
+# 同じ相手に1日2回行かないため（3.4・**相手の数で数える**）。
+on:
+  schedule:
+    # 07:20 JST（毎朝の巡回とは別の相手なので、時間をずらすだけでよい）
+    - cron: "20 22 * * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "行き先の数（0=全部）"
+        required: false
+        default: "0"
+
+concurrency:
+  group: teiden-get
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      # 金庫（生データの置き場・private）。**無い回も走る。**
+      # 金庫はしまい方の話で、取りに行くかどうかの話ではない（2026-09-20）。
+      # 鍵は2通り。**どちらか片方あればよい。**
+      #   RAW_DEPLOY_KEY  SSH の deploy key。期限が無い。**作るのにターミナルが要る**
+      #   RAW_TOKEN       fine-grained PAT。**GitHubの画面だけで作れる（スマホで足りる）**
+      #                   ただし**最長1年で切れる。切れた日は赤くなって止まる**（黙らない）
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          # **両方渡す。** checkout は ssh-key が空なら token のほうを使う
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox
+          mkdir -p "_raw/inbox/teiden"
+          rm -rf "inbox/teiden"
+          ln -s "../_raw/inbox/teiden" "inbox/teiden"
+          ls -la inbox
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
+      - name: 検査する
+        run: ./check.sh
+
+      # **条件を付けない。** 金庫の有無は「しまい方」の話で、
+      # 「取りに行くかどうか」の話ではない（2026-09-20、1度も走らない段を作った）
+      - name: ためる（同時1本・5秒以上あける・robots を見る）
+        timeout-minutes: 45
+        run: python3 teiden_get.py --limit "${{ github.event.inputs.limit || 0 }}"
+
+      # **取り直せないものを先にしまう。** 金庫は private なので、公開側の検査を待たない。
+      # **7日で消えるものなので、ここが本番。** 成果物は金庫が無い回の保険
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          # **金庫側が inbox を無視していると、黙って1件も入らない**（3.4・0件は0件ではない）
+          if git status --porcelain inbox | grep -q .; then :; else
+            echo "金庫に1件も入らなかった。金庫の .gitignore が inbox を無視していないか"
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "停電の生データ（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # **金庫が無い回の保険。** 90日で消えるので、これだけに頼らない
+      - name: 取ってきた HTML を成果物として置く
+        if: ${{ env.HAS_VAULT != 'true' && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: teiden-${{ env.RUN_DATE }}
+          path: inbox/teiden/
+          if-no-files-found: warn
+          retention-days: 90
+
+      # 入れるのは**指紋の台帳と記録だけ。** 中身は入れない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/teiden-get.md data/ref/teiden-ledger.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "停電の記録をためた（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

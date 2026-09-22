@@ -1,0 +1,89 @@
+{
+ "hi": "2026-09-21",
+ "kekka": [
+  {
+   "id": "gardens",
+   "mei": "阪急西宮ガーデンズ",
+   "unei": "阪急阪神",
+   "url": "https://nishinomiya-gardens.com/shopguide",
+   "yakusoku": "取ってはいけない",
+   "yakusoku_hi": "2026-09-21",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "拒否",
+   "riyuu": "利用規約が断っている"
+  },
+  {
+   "id": "abeno-qs",
+   "mei": "あべのキューズモール",
+   "unei": "東急不動産",
+   "url": "https://qs-mall.jp/abeno/shop/floor",
+   "yakusoku": "未確認",
+   "yakusoku_hi": "",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "未確認",
+   "riyuu": "まだ人が利用規約を読んでいない"
+  },
+  {
+   "id": "namba-parks",
+   "mei": "なんばパークス",
+   "unei": "南海",
+   "url": "https://nambaparks.com/floor/map2",
+   "yakusoku": "未確認",
+   "yakusoku_hi": "",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "未確認",
+   "riyuu": "まだ人が利用規約を読んでいない"
+  },
+  {
+   "id": "aeon-itami",
+   "mei": "イオンモール伊丹",
+   "unei": "イオンモール",
+   "url": "https://itami.aeonmall.jp/floormap",
+   "yakusoku": "未確認",
+   "yakusoku_hi": "",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "未確認",
+   "riyuu": "まだ人が利用規約を読んでいない"
+  },
+  {
+   "id": "aeon-shijonawate",
+   "mei": "イオンモール四條畷",
+   "unei": "イオンモール",
+   "url": "https://shijonawate.aeonmall.jp/floormap",
+   "yakusoku": "未確認",
+   "yakusoku_hi": "",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "未確認",
+   "riyuu": "まだ人が利用規約を読んでいない"
+  },
+  {
+   "id": "lalaport-koshien",
+   "mei": "ららぽーと甲子園",
+   "unei": "三井不動産",
+   "url": "https://mitsui-shopping-park.com/lalaport/koshien/floor/",
+   "yakusoku": "取ってはいけない",
+   "yakusoku_hi": "2026-09-21",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "拒否",
+   "riyuu": "利用規約が断っている"
+  },
+  {
+   "id": "kuzuha",
+   "mei": "くずはモール",
+   "unei": "京阪",
+   "url": "https://kuzuha-mall.com/shopguide/floor/",
+   "yakusoku": "未確認",
+   "yakusoku_hi": "",
+   "hi": "2026-09-21",
+   "robots": "見ていない",
+   "wake": "未確認",
+   "riyuu": "まだ人が利用規約を読んでいない"
+  }
+ ]
+}

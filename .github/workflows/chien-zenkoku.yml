@@ -1,0 +1,84 @@
+name: 遅延証明書の会社の一覧を全国ぶん作る
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# ここは「一覧を作るだけ」の回。遅延証明書はまだ1件も探さない。
+#
+# **ドメインを作文しない。** 全国200社ぶんを思い出して並べると、
+# 当たっているかを誰も確かめられない。外れていれば
+# **関係のない誰かのサーバーを叩く**（3.4）。
+# なので国土交通省の鉄道関連リンク集を引いて、向こうが書いたリンクを拾う。
+#
+# 走らせる順番はこう。**1段ずつ、人が実物を見てから次に進む。**
+#
+#   ① この手順書        役所の一覧から「事業者の候補」を作る
+#   ② chien-recon       候補のトップから遅延証明書のページを辿る
+#   ③ 毎朝の巡回        見つけたページを毎日ためる（もう入っている）
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "辿る別紙の数（既定3）"
+        required: false
+        default: "3"
+
+concurrency:
+  group: chien-zenkoku
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  zenkoku:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 役所の一覧から事業者の候補を作る（同時1本・5秒以上あける）
+        run: python3 chien_zenkoku.py --limit "${{ github.event.inputs.limit || 3 }}"
+
+      # **返ってきたバイトは、そのまま置く。** 読み取らない。
+      # public なリポジトリには入れない（外から取ってきた生データなので）
+      - name: 取ってきた HTML を成果物として置く
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chien-zenkoku-${{ env.RUN_DATE }}
+          path: inbox/chien-zenkoku/
+          if-no-files-found: warn
+          retention-days: 7
+
+      # 入れるのは**数えた記録と、見つけたリンクだけ。** 中身は入れない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/chien-zenkoku.md
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "遅延証明書の会社の一覧を全国ぶん探した記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

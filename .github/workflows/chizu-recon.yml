@@ -1,0 +1,80 @@
+name: 地図データの目録を1回だけ見に行く
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# ここは「見に行くだけ」の回。読み取りはまだ書いていない（9節「見本は実物から取る」）。
+# 返ってきた JSON は**成果物（artifact）として置く**だけで、リポジトリには入れない。
+# 外から取ってきた生データなので、入れるなら金庫（-raw）のほう（9節「2本のリポジトリ」）。
+# まず1回、人が中身を見る。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "いくつの市区町村を引くか（既定3。全部なら 112）"
+        required: false
+        default: "3"
+
+concurrency:
+  group: chizu-recon
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # **外に出る前に止まる**形にする（監査 r1-43・2026-09-20）
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 取りに行く先の一覧を作る
+        run: python3 chizu_worklist.py
+
+      - name: 目録を引く（同時1本・5秒以上あける）
+        run: python3 chizu_recon.py --limit "${{ github.event.inputs.limit || 3 }}"
+
+      # **返ってきたバイトは、そのまま置く。** 読み取らない。
+      # public なリポジトリには入れない（外から取ってきた生データなので）
+      - name: 返ってきた JSON を成果物として置く
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chizu-mokuroku-${{ env.RUN_DATE }}
+          path: inbox/chizu/search/
+          if-no-files-found: warn
+          retention-days: 7
+
+      # 入れるのは**数えた記録だけ。** 中身は入れない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/chizu-recon.md data/ref/chizu-worklist.md data/ref/chizu-worklist.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "地図データの目録を引いた記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

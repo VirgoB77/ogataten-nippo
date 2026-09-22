@@ -1,0 +1,74 @@
+name: フロアマップの関所（取らない）
+
+# **手で押す段。定期実行にしない。**
+#
+# ここは「取ってよいかだけ」を確かめる。**フロアマップは1枚も取らない。**
+#
+# なぜ Actions で走らせるか：**チャットの箱からは外に出られない**（9節）。
+# 2026-09-21、6施設とも proxy が CONNECT に 403 を返した。
+# **手元で走らせると、相手が何と言っているかに関わらず全部「分からない」になる。**
+on:
+  workflow_dispatch:
+    inputs:
+      tops:
+        description: "人が直に渡す（名前=トップ=フロアマップ をカンマ区切り。空なら手元の候補）"
+        required: false
+        default: ""
+      limit:
+        description: "上から何件だけ見るか（0=全部）"
+        required: false
+        default: "0"
+
+concurrency:
+  group: floor-kanmon
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  kanmon:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 関所を見る（同時1本・5秒以上あける）
+        timeout-minutes: 20
+        run: |
+          python3 floor_kanmon.py \
+            --limit "${{ github.event.inputs.limit || 0 }}" \
+            ${{ github.event.inputs.tops && format('--tops "{0}"', github.event.inputs.tops) || '' }}
+
+      # 入れるのは**関所の答えだけ。** フロアマップの中身は1バイトも入らない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/floor-kanmon.md
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "フロアマップの関所を見た（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

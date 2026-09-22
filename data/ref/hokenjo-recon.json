@@ -1,0 +1,427 @@
+{
+ "hi": "2026-09-21",
+ "tane": [
+  {
+   "id": "hyogo-pref",
+   "mei": "兵庫県（神戸・姫路・尼崎・明石・西宮を除く）",
+   "url": "https://web.pref.hyogo.lg.jp/kf14/shokuhineigyoushisetsu_list.html",
+   "mita_hi": "2026-09-21",
+   "file": [
+    {
+     "text": "許可営業施設（エクセル：4,403KB）（別ウィンドウで開きます）",
+     "url": "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_lisence_all.xlsx"
+    },
+    {
+     "text": "許可営業施設（PDF：6,365KB）（別ウィンドウで開きます）",
+     "url": "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_lisence_all.pdf"
+    },
+    {
+     "text": "届出営業施設（エクセル：6,831KB）（別ウィンドウで開きます）",
+     "url": "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_notification_all.xlsx"
+    },
+    {
+     "text": "届出営業施設（PDF：3,274KB）（別ウィンドウで開きます）",
+     "url": "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_notification_all.pdf"
+    }
+   ],
+   "tadashi": [
+    "食品関係営業施設リストの閲覧 兵庫県下（神戸市・姫路市・尼崎市・明石市・西宮市を除く"
+   ],
+   "note": "",
+   "koushin": [
+    "更新は毎月20日頃です"
+   ],
+   "katachi": {
+    "mieru_moji": 1458,
+    "zenbu_moji": 1458,
+    "kai_hyouki": [],
+    "kai_kazu": 0,
+    "kotei_url": {
+     "katachi": "/＊/＊",
+     "kazu": 8
+    },
+    "link_katachi": 44,
+    "mise_katachi": 0,
+    "shisetsu_go": 1,
+    "news_kazu": 2
+   }
+  },
+  {
+   "id": "kobe-city",
+   "mei": "神戸市",
+   "url": "https://www.city.kobe.lg.jp/a99427/kenko/health/hygiene/dataset.html",
+   "mita_hi": "2026-09-21",
+   "file": [
+    {
+     "text": "全ての許可施設（2026年3月末現在。同時点で許可満了日を過ぎている施設を除く。）（CSV：3,",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/20260407150739.csv"
+    },
+    {
+     "text": "2026年4月新規許可施設（CSV：60KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/0804_syokuhin.csv"
+    },
+    {
+     "text": "2026年5月新規許可施設（CSV：86KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0805shokuhin.csv"
+    },
+    {
+     "text": "2026年6月新規許可施設（CSV：61KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0806shokuhin.csv"
+    },
+    {
+     "text": "2026年7月新規許可施設（CSV：63KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0807shokuhin.csv"
+    },
+    {
+     "text": "2026年8月新規許可施設（CSV：73KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0808shokuhin.csv"
+    },
+    {
+     "text": "全ての許可施設（2021年5月末現在。同時点で許可満了日を過ぎている施設を除く。）（CSV：5,",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r30531_all_.csv"
+    },
+    {
+     "text": "理容所施設一覧（2026年3月末現在)（CSV：135KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r7_riyousho.csv"
+    },
+    {
+     "text": "美容所施設一覧（2026年3月末現在）（CSV：554KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r7_biyousho.csv"
+    },
+    {
+     "text": "クリーニング所施設一覧（2026年3月末現在）（CSV：175KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r7_cleaning.csv"
+    },
+    {
+     "text": "旅館業施設一覧（2026年3月末現在）（CSV：58KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r7_ryokan.csv"
+    },
+    {
+     "text": "理容所（2026年4月新規確認施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0804_riyousho.csv"
+    },
+    {
+     "text": "美容所（2026年4月新規確認施設）（CSV：2KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0804_biyousho.csv"
+    },
+    {
+     "text": "旅館業（2026年4月新規許可施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0804_ryokan.csv"
+    },
+    {
+     "text": "美容所（2026年5月新規確認施設）（CSV：2KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0805_biyousho.csv"
+    },
+    {
+     "text": "旅館業（2026年5月新規許可施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0805_ryokan.csv"
+    },
+    {
+     "text": "理容所（2026年6月新規確認施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0806_riyousho.csv"
+    },
+    {
+     "text": "美容所（2026年6月新規確認施設）（CSV：3KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0806_biyousho.csv"
+    },
+    {
+     "text": "クリーニング所（2026年6月新規確認施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0806_cleaning.csv"
+    },
+    {
+     "text": "旅館業（2026年6月新規許可施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0806_ryokan.csv"
+    },
+    {
+     "text": "理容所（2026年7月新規確認施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0807_riyousho.csv"
+    },
+    {
+     "text": "美容所（2026年7月新規確認施設）（CSV：3KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0807_biyousho.csv"
+    },
+    {
+     "text": "クリーニング所（2026年7月新規確認施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0807_cleaning.csv"
+    },
+    {
+     "text": "美容所（2026年8月新規確認施設）（CSV：2KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0808_biyousho.csv"
+    },
+    {
+     "text": "旅館業（2026年8月新規許可施設）（CSV：1KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/r0808_ryokan.csv"
+    },
+    {
+     "text": "外字コード表（PDF：276KB）",
+     "url": "https://www.city.kobe.lg.jp/documents/6359/gaizi.pdf"
+    }
+   ],
+   "tadashi": [
+    "同時点で許可満了日を過ぎている施設を除く",
+    "同時点で許可満了日を過ぎている施設を除く"
+   ],
+   "note": "",
+   "koushin": [
+    "営業許可制度の再編と営業届出制度の創設について このページでは、飲食店営業をはじめとする許可施設の一覧を掲載いたします",
+    "厚生労働省から「施行日以前に取得した営業許可の期間の終了に伴い、営業者が引き続き従前の営業を継続する場合は、食品衛生法施行令第35条が全面的に改正されていることを踏まえ、営業許可の更新ではなく、新規の許可申請として取り扱うこと",
+    "本市要綱の廃止により、食品製造業等の届出制度が廃止されたことから、施設一覧の掲載を削除しました",
+    "厚生労働省のオープンデータ掲載ページ（外部リンク） 改正前の食品衛生法に基づく許可施設の一覧を掲載します",
+    "）（CSV：5,840KB） 環境衛生関係施設（理容所、美容所、クリーニング所、旅館業） 理容所、美容所、クリーニング所、旅館業の施設一覧を掲載します",
+    "掲載時点で休業を届出済みの施設は含まれません"
+   ],
+   "katachi": {
+    "mieru_moji": 2740,
+    "zenbu_moji": 2740,
+    "kai_hyouki": [],
+    "kai_kazu": 0,
+    "kotei_url": {
+     "katachi": "/documents/＊/＊",
+     "kazu": 23
+    },
+    "link_katachi": 19,
+    "mise_katachi": 0,
+    "shisetsu_go": 0,
+    "news_kazu": 1
+   }
+  },
+  {
+   "id": "himeji-city",
+   "mei": "姫路市",
+   "url": "https://city.himeji.gkan.jp/gkan/dataset/shokuhinn",
+   "mita_hi": "2026-09-21",
+   "file": [],
+   "tadashi": [],
+   "note": "robots が分からない：robots.txt が HTTP 403（**確かめられなかった**）"
+  },
+  {
+   "id": "amagasaki-city",
+   "mei": "尼崎市",
+   "url": "https://www.city.amagasaki.hyogo.jp/op_data/1000922/1001025.html",
+   "mita_hi": "2026-09-21",
+   "file": [
+    {
+     "text": "食品営業許可施設【令和8年(2026年）8月31日現在】 （CSV 1.7MB）",
+     "url": "https://www.city.amagasaki.hyogo.jp/_res/projects/default_project/_page_/001/001/025/kyoka202608.csv"
+    },
+    {
+     "text": "食品営業届出施設【令和8年(2026年）8月31日現在】 （CSV 456.2KB）",
+     "url": "https://www.city.amagasaki.hyogo.jp/_res/projects/default_project/_page_/001/001/025/todoke202608.csv"
+    }
+   ],
+   "tadashi": [],
+   "note": "",
+   "koushin": [
+    "食品関係営業施設 印刷 ページ番号1001025 更新日 2026年9月8日 オープンデータ 食品関係営業施設 この 作品 は クリエイティブ・コモンズ 表示 4.0 国際 ライセンスの下に提供されています"
+   ],
+   "katachi": {
+    "mieru_moji": 2510,
+    "zenbu_moji": 3735,
+    "kai_hyouki": [
+     "5階"
+    ],
+    "kai_kazu": 1,
+    "kotei_url": {
+     "katachi": "/op_data/＊/＊",
+     "kazu": 10
+    },
+    "link_katachi": 95,
+    "mise_katachi": 0,
+    "shisetsu_go": 2,
+    "news_kazu": 1
+   }
+  },
+  {
+   "id": "akashi-city",
+   "mei": "明石市",
+   "url": "https://www.city.akashi.lg.jp/soumu/j_kanri_ka/opendata/hokensyo.html",
+   "mita_hi": "2026-09-21",
+   "file": [
+    {
+     "text": "新規食品営業許可施設一覧（令和8年7月分）（2026年8月31日）（CSV：8KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260701_20260731.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和8年6月分）（2026年7月31日）（CSV：6KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260601_20260630.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和8年5月分）（2026年6月30日）（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260501_20260531.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和8年4月分）（2026年5月28日）（CSV：5KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260401_20260430.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和8年3月分）（2026年4月28日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260301_20260331.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和8年2月分）（2026年3月30日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260201_20260228.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和8年1月分）（2026年2月24日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20260101_20260131.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年12月分）（2026年1月27日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20251201_20251231.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年11月分）（2025年12月18日）（CSV：5KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20251101_20251130.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年10月分）（2025年11月25日）（CSV：3KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20251001_20251031.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年9月分）（2025年10月29日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20250901_20250930.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年8月分）（2025年9月29日）（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20250801_20250831.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年7月分）（2025年8月25日）（CSV：6KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20250701_20250731.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年6月分）（2025年7月22日）（CSV：5KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20250601_20250630.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年5月分）（2025年6月27日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20250501_20250531.csv"
+    },
+    {
+     "text": "新規食品営業許可施設一覧（令和7年4月分）（2025年5月23日）（CSV：4KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_food_business_new_20250401_20250430.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和8年7月分）(2026年8月31日)（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20260701_20260731.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和8年6月分）(2026年7月31日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20260601_20260630.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和8年4月分）(2026年5月28日)（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20260401_20260430.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和8年2月分）(2026年3月30日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20260201_20260228.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和8年1月分）(2026年2月24日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20260101_20260131.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年12月分）(2026年1月27日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20251201_20251231.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年11月分）(2025年12月18日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20251101_20251130.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年10月分）(2025年11月25日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20251001_20251031.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年9月分）(2025年10月29日)（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20250901_20250930.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年8月分）(2025年9月29日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20250801_20250831.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年7月分）(2025年8月25日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20250701_20250731.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年6月分）(2025年7月22日)（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20250601_20250630.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年5月分）(2025年6月27日)（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20250501_20250531.csv"
+    },
+    {
+     "text": "新規美容所開設施設一覧（令和7年4月分）(2025年5月23日)（CSV：2KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_beauty_salon_new_20250401_20250430.csv"
+    },
+    {
+     "text": "新規理容所開設施設一覧（令和8年6月分）（2026年7月31日）（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_barbar_shop_new_20260601_20260630.csv"
+    },
+    {
+     "text": "新規理容所開設施設一覧（令和8年3月分）（2026年4月28日）（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_barbar_shop_new_20260301_20260331.csv"
+    },
+    {
+     "text": "新規理容所開設施設一覧（令和8年2月分）（2026年3月30日）（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_barbar_shop_new_20260201_20260228.csv"
+    },
+    {
+     "text": "新規理容所開設施設一覧（令和7年6月分）（2025年7月22日）（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_barbar_shop_new_20250601_20250630.csv"
+    },
+    {
+     "text": "新規理容所開設施設一覧（令和7年4月分）（2025年5月23日）（CSV：1KB）",
+     "url": "https://www.city.akashi.lg.jp/documents/30025/282031_barbar_shop_new_20250401_20250430.csv"
+    }
+   ],
+   "tadashi": [
+    "あかし保健所に関するオープンデータ 食品営業許可施設 自動販売機、自動車営業、露店営業を除く固定店舗のみ 既に廃業している施設が含まれる場合があります"
+   ],
+   "note": "",
+   "koushin": [
+    "令和8年6月分以降の掲載については、デジタル庁が公開を推奨している「自治体標準オープンデータセット」に基づく形式に変更いたします"
+   ],
+   "katachi": {
+    "mieru_moji": 3511,
+    "zenbu_moji": 3511,
+    "kai_hyouki": [],
+    "kai_kazu": 0,
+    "kotei_url": {
+     "katachi": "/soumu/j_kanri_ka/opendata/hokensyo.html",
+     "kazu": 3
+    },
+    "link_katachi": 61,
+    "mise_katachi": 0,
+    "shisetsu_go": 0,
+    "news_kazu": 3
+   }
+  },
+  {
+   "id": "nishinomiya-city",
+   "mei": "西宮市",
+   "url": "https://opendata.nishi.or.jp/opendata/ResultList.php",
+   "mita_hi": "2026-09-21",
+   "file": [],
+   "tadashi": [],
+   "note": "ファイルへのリンクが0本。**無いとは限らない**",
+   "koushin": [],
+   "katachi": {
+    "mieru_moji": 4236,
+    "zenbu_moji": 4262,
+    "kai_hyouki": [
+     "3階"
+    ],
+    "kai_kazu": 1,
+    "kotei_url": null,
+    "link_katachi": 0,
+    "mise_katachi": 0,
+    "shisetsu_go": 0,
+    "news_kazu": 0
+   }
+  }
+ ]
+}

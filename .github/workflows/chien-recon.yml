@@ -1,0 +1,83 @@
+name: 遅延証明書のページを探しに行く
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# ここは「探すだけ」の回。読み取りはまだ書いていない（9節「見本は実物から取る」）。
+# **URL は作文していない。** 各社のトップから、リンクの文字で辿る。
+#
+# **出どころが民間**なのが、既存4サイトと違うところ。
+# 鉄道会社には公表する義務が無い。robots を守り、嫌がられたら止める（3.4）。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "いくつの会社を見に行くか（既定3。全部なら 10）"
+        required: false
+        default: "3"
+
+concurrency:
+  group: chien-recon
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # **外に出る前に止まる**（監査 r1-43 と同じ穴・2026-09-20）
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 遅延証明書のページを探す（同時1本・5秒以上あける）
+        run: python3 chien_recon.py --limit "${{ github.event.inputs.limit || 3 }}"
+
+      # 2段目。**1段目の記録から行き先を読む。**
+      # 見つからなければ何もしない（記録が無ければ 1 で止まる）
+      - name: 見つけたページを取ってくる（ホストごとに robots を見直す）
+        run: python3 chien_get.py
+
+      # **返ってきたバイトは、そのまま置く。** 読み取らない。
+      # public なリポジトリには入れない（外から取ってきた生データなので）
+      - name: 取ってきた HTML を成果物として置く
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chien-${{ env.RUN_DATE }}
+          path: inbox/chien/
+          if-no-files-found: warn
+          retention-days: 7
+
+      # 入れるのは**数えた記録と、見つけたリンクだけ。** 中身は入れない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/chien-recon.md data/ref/chien-get.md
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "遅延証明書のページを探した記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

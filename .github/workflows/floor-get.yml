@@ -1,0 +1,136 @@
+name: フロアマップを毎日ためる
+
+# **毎日走る。ただし、人が利用規約を読んだ施設だけ。**
+# `floor_kanmon.py` の `ok_hi` が空の施設は、走っても見送られる（**緑のまま0件**）。
+# それが正しい。robots は機械が読めるが、規約は読めない。
+#
+# ここは「ためるだけ」。**読み取らない。**
+# 返ってきたバイトをそのまま置いて、**指紋を取って前と比べる**だけ。
+on:
+  schedule:
+    # 08:10 JST（毎朝の巡回・停電のどちらとも相手が違うので、時間をずらすだけでよい）
+    - cron: "10 23 * * *"
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "この施設だけ（空なら全部）"
+        required: false
+        default: ""
+      limit:
+        description: "上から何件だけ見るか（0=全部）"
+        required: false
+        default: "0"
+
+concurrency:
+  group: floor-get
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      # 金庫（生データの置き場・private）。**無い回も走る。**
+      # 金庫はしまい方の話で、取りに行くかどうかの話ではない
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          # **両方渡す。** checkout は ssh-key が空なら token のほうを使う
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox
+          mkdir -p "_raw/inbox/floor"
+          rm -rf "inbox/floor"
+          ln -s "../_raw/inbox/floor" "inbox/floor"
+          ls -la inbox
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
+      - name: 検査する
+        run: ./check.sh
+
+      - name: ためる（同時1本・5秒以上あける・robots を毎回見る）
+        timeout-minutes: 30
+        run: |
+          python3 floor_get.py \
+            --limit "${{ github.event.inputs.limit || 0 }}" \
+            ${{ github.event.inputs.id && format('--id "{0}"', github.event.inputs.id) || '' }}
+
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          # **金庫側が inbox を無視していると、黙って1件も入らない**
+          if [ -n "$(find inbox -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox)" ]; then
+            echo "inbox にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "フロアマップの生データ（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # **金庫が無い回の保険。** 90日で消えるので、これだけに頼らない
+      - name: 取ってきた HTML を成果物として置く
+        if: ${{ env.HAS_VAULT != 'true' && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: floor-${{ env.RUN_DATE }}
+          path: inbox/floor/
+          if-no-files-found: warn
+          retention-days: 90
+
+      # 入れるのは**指紋の台帳と記録だけ。** 店の名前は1つも入らない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/floor-get.md data/ref/floor-ledger.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "フロアマップの記録をためた（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

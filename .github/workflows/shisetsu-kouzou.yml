@@ -1,0 +1,134 @@
+# **手で押したときだけ動く。** schedule は無い。
+#
+# 統括の見立て（2026-09-21）——SC GATE は全国6,000超のSCのショップ一覧を
+# 毎月確認していると公式に説明している。**施設 Web からの継続把握には実運用例がある。**
+# ただし**同社の取得方法・許諾関係は不明**なので、**鯨屋の取得可否とは別問題。**
+#
+# **関所は3つ。** 規約が「取ってよい」→ robots が許可 → そこで初めて形を見る。
+# **規約で止まった施設には行かない**（二度と行かない）。
+#
+# **店の名前は1つも持ち帰らない。1レスポンスまで。URL を組み立てない。**
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "何施設見るか（既定 1。他施設へ自動的に進まない）"
+        required: false
+        default: "1"
+      id:
+        description: "この施設だけ（空なら、規約を人が読んで通した施設の先頭）"
+        required: false
+        default: ""
+      url:
+        description: "その施設の別のページ（原典が書いたリンクだけ。作文しない）。id と一緒に使う"
+        required: false
+        default: ""
+
+concurrency:
+  group: shisetsu-kouzou
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  kouzou:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox
+          mkdir -p "_raw/inbox/shisetsu-kouzou"
+          rm -rf "inbox/shisetsu-kouzou"
+          ln -s "../_raw/inbox/shisetsu-kouzou" "inbox/shisetsu-kouzou"
+          ls -la inbox
+
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 1施設だけ見る（同時1本・5秒以上あける）
+        timeout-minutes: 20
+        run: |
+          python3 shisetsu_kouzou.py \
+            --limit "${{ github.event.inputs.limit || 1 }}" \
+            ${{ github.event.inputs.id && format('--id "{0}"', github.event.inputs.id) || '' }} \
+            ${{ github.event.inputs.url && format('--url "{0}"', github.event.inputs.url) || '' }}
+
+      - name: 取ってきた HTML を成果物として置く
+        if: ${{ env.HAS_VAULT != 'true' && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: shisetsu-kouzou-${{ env.RUN_DATE }}
+          path: inbox/shisetsu-kouzou/
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          if [ -n "$(find inbox -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox)" ]; then
+            echo "inbox にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "施設のショップ一覧の生データ（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # 入るのは**形と、向こうが書いた見出しと、規約の在りか**だけ
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/shisetsu-kouzou.md data/ref/shisetsu-kouzou.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "ショップ一覧が何から作られているかを見た記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

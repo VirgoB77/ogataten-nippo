@@ -1,0 +1,106 @@
+name: 保健所の営業許可の一覧を探しに行く
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# ここは「探すだけ」の回。読み取りはまだ書いていない（9節「見本は実物から取る」）。
+# **URL は作文していない。** 既に収集先に在る兵庫県のオープンデータ目録を
+# キーワードで引いて、向こうが書いたリンクを拾う。
+#
+# **急ぐ理由**：兵庫県は**毎月20日頃に上書き**（ファイル名固定）。
+# いま始めないと、過去は取り返せない。
+#
+# **対象区域の但し書きを実物で読むまで、読み取りは書かない。**
+# 兵庫県の一覧からは神戸市・姫路市・尼崎市・明石市・西宮市が除かれている。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "引くキーワードの数（既定3）"
+        required: false
+        default: "3"
+      tane_limit:
+        description: "人が渡した入口を上から何件開くか（0=全部）"
+        required: false
+        default: "0"
+      dake:
+        description: "片方だけ走らせる（空=両方 / mokuroku / tane）"
+        required: false
+        default: ""
+      fukasa:
+        description: "2 にすると、向こうが書いた導線を1段だけ辿る（2本まで。id の総当たりはしない）"
+        required: false
+        default: "1"
+      tane_id:
+        description: "この入口だけ（例 nishinomiya-city）"
+        required: false
+        default: ""
+
+concurrency:
+  group: hokenjo-recon
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # **外に出る前に止まる**（監査 r1-43 と同じ穴・2026-09-20）
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 目録を引き、人が渡した入口も開く（同時1本・5秒以上あける）
+        run: |
+          python3 hokenjo_recon.py \
+            --limit "${{ github.event.inputs.limit || 3 }}" \
+            --tane-limit "${{ github.event.inputs.tane_limit || 0 }}" \
+            --fukasa "${{ github.event.inputs.fukasa || 1 }}" \
+            --tane-id "${{ github.event.inputs.tane_id }}" \
+            ${{ github.event.inputs.dake && format('--dake {0}', github.event.inputs.dake) || '' }}
+
+      # **返ってきたバイトは、そのまま置く。** 読み取らない。
+      # public なリポジトリには入れない（外から取ってきた生データなので）
+      - name: 取ってきた HTML を成果物として置く
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokenjo-${{ env.RUN_DATE }}
+          path: inbox/hokenjo/
+          if-no-files-found: warn
+          retention-days: 7
+
+      # 入れるのは**数えた記録と、見つけたリンクだけ。** 中身は入れない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # **台帳も一緒にコミットする。** ためる段が読むのはこちら。
+          # 2026-09-21、md だけを add していて、**台帳が1度も main に出なかった**
+          git add data/ref/hokenjo-recon.md data/ref/hokenjo-recon.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "保健所の営業許可を探した記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

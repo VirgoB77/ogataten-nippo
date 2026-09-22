@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /data/
+Sitemap: https://ogataten-nippo.com/sitemap.xml

@@ -1,0 +1,101 @@
+{
+ "file": {
+  "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_lisence_all.xlsx": {
+   "tane_mei": "兵庫県（神戸・姫路・尼崎・明石・西宮を除く）",
+   "text": "許可営業施設（エクセル：4,403KB）（別ウィンドウで開きます）",
+   "mita": [
+    {
+     "hi": "2026-09-21",
+     "yubiwa": "9ad40455b02cc5020740bee17d8355bcd6bf3b5232af68e66d9a4c84125eeeb8",
+     "bytes": 4507825,
+     "status": 200,
+     "ctype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "hozon": "hyogo-pref-000028_food_business_lisence_all.xlsx",
+     "etag": "\"44c8b1-659c663355acd\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:03 GMT"
+    }
+   ]
+  },
+  "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_lisence_all.pdf": {
+   "tane_mei": "兵庫県（神戸・姫路・尼崎・明石・西宮を除く）",
+   "text": "許可営業施設（PDF：6,365KB）（別ウィンドウで開きます）",
+   "mita": [
+    {
+     "hi": "2026-09-21",
+     "yubiwa": "04cba05b80797931b699973407e2669e3966adfdd2e5afb8975d042e02a141c3",
+     "bytes": 6516944,
+     "status": 200,
+     "ctype": "application/pdf",
+     "hozon": "hyogo-pref-000028_food_business_lisence_all.pdf",
+     "etag": "\"6370d0-659c6633fe216\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:03 GMT"
+    }
+   ]
+  },
+  "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_notification_all.xlsx": {
+   "tane_mei": "兵庫県（神戸・姫路・尼崎・明石・西宮を除く）",
+   "text": "届出営業施設（エクセル：6,831KB）（別ウィンドウで開きます）",
+   "mita": [
+    {
+     "hi": "2026-09-21",
+     "yubiwa": "6c9a1ea17676ae346f9dd39e3cd668dea46539e052a0b992ff03985100ae01b9",
+     "bytes": 6993934,
+     "status": 200,
+     "ctype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "hozon": "hyogo-pref-000028_food_business_notification_all.xlsx",
+     "etag": "\"6ab80e-659c6634ebebd\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:04 GMT"
+    }
+   ]
+  },
+  "https://web.pref.hyogo.lg.jp/kf14/documents/000028_food_business_notification_all.pdf": {
+   "tane_mei": "兵庫県（神戸・姫路・尼崎・明石・西宮を除く）",
+   "text": "届出営業施設（PDF：3,274KB）（別ウィンドウで開きます）",
+   "mita": [
+    {
+     "hi": "2026-09-21",
+     "yubiwa": "2d70fa34001b9d7465b2d7f775f2f2ee3d8cc94dfce0f9d658ae0eb235ac4dde",
+     "bytes": 3351874,
+     "status": 200,
+     "ctype": "application/pdf",
+     "hozon": "hyogo-pref-000028_food_business_notification_all.pdf",
+     "etag": "\"332542-659c663545081\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:05 GMT"
+    }
+   ]
+  },
+  "https://www.city.amagasaki.hyogo.jp/_res/projects/default_project/_page_/001/001/025/kyoka202608.csv": {
+   "tane_mei": "尼崎市",
+   "text": "食品営業許可施設【令和8年(2026年）8月31日現在】 （CSV 1.7MB）",
+   "mita": [
+    {
+     "hi": "2026-09-21",
+     "yubiwa": "df3c548ab3aec174cacf1ff7562ecab6c0d910620069540a73fbe4ce7f3988cd",
+     "bytes": 1752694,
+     "status": 200,
+     "ctype": "text/csv",
+     "hozon": "amagasaki-city-kyoka202608.csv",
+     "etag": "\"1abe76-65af388fb7e80\"",
+     "last_modified": "Tue, 08 Sep 2026 07:18:02 GMT"
+    }
+   ]
+  },
+  "https://www.city.amagasaki.hyogo.jp/_res/projects/default_project/_page_/001/001/025/todoke202608.csv": {
+   "tane_mei": "尼崎市",
+   "text": "食品営業届出施設【令和8年(2026年）8月31日現在】 （CSV 456.2KB）",
+   "mita": [
+    {
+     "hi": "2026-09-21",
+     "yubiwa": "568a0566975f231b403be0c86c747e00dbbd257bd2bb162c6934cb8d94307527",
+     "bytes": 467150,
+     "status": 200,
+     "ctype": "text/csv",
+     "hozon": "amagasaki-city-todoke202608.csv",
+     "etag": "\"720ce-65af38bb96600\"",
+     "last_modified": "Tue, 08 Sep 2026 07:18:48 GMT"
+    }
+   ]
+  }
+ },
+ "generated_at": "2026-09-21"
+}

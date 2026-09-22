@@ -1,0 +1,101 @@
+name: テナント一覧の下見（規約が先）
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# 順番は **規約 → robots → 下見**。
+# 規約が「取ってよい」になっていない施設は、**1バイトも開かない。**
+# いま押すと、ほぼ全部が「未確認」で返る。**それが正しい。**
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "この施設だけ（空なら全部）"
+        required: false
+        default: ""
+      limit:
+        description: "上から何件（0=全部）"
+        required: false
+        default: "0"
+      kaisha_ikkai:
+        description: "テナント企業を1社だけ、構造を1回見る（企業のidを入れる。継続取得の許可ではない）"
+        required: false
+        default: ""
+
+concurrency:
+  group: tenant-recon
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 下見する（同時1本・5秒以上あける）
+        if: ${{ !github.event.inputs.kaisha_ikkai }}
+        timeout-minutes: 20
+        run: |
+          python3 tenant_recon.py \
+            --limit "${{ github.event.inputs.limit || 0 }}" \
+            ${{ github.event.inputs.id && format('--id "{0}"', github.event.inputs.id) || '' }}
+
+      # **1社だけ、構造を1回見る。継続取得の許可ではない。**
+      # 規約の欄は未確認のまま動かない（分けは必ず「未確認」に落ちる）
+      - name: テナント企業を1社だけ1回見る
+        if: ${{ github.event.inputs.kaisha_ikkai }}
+        timeout-minutes: 20
+        run: |
+          python3 tenanto_kanmon.py --ikkai --id "${{ github.event.inputs.kaisha_ikkai }}"
+
+      # **取ってきた HTML は公開側に入れない。** 90日で消える成果物に置く
+      - name: 取ってきた HTML を成果物として置く
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tenant-recon-${{ env.RUN_DATE }}
+          # **企業側は `inbox/tenanto/` に置かれる。** 2026-09-21、ここが
+          # `inbox/floor/` だけだったので、**1回だけ見た HTML がどこにも残らなかった。**
+          # 取り直すには相手にもう一度行くことになる（同じ相手に1日2回行かない）
+          path: |
+            inbox/floor/
+            inbox/tenanto/
+          if-no-files-found: warn
+          retention-days: 90
+
+      # 入れるのは**数と形だけ。** 店の名前は1つも入らない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/tenant-recon.md data/ref/tenant-recon.json \
+                  data/ref/tenanto-kanmon.md data/ref/tenanto-kanmon.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "テナント一覧を下見した記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

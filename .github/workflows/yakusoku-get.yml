@@ -1,0 +1,144 @@
+name: 利用規約を探して1回取る（店舗情報は取らない）
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# **関所は robots.txt だけ。** 規約ページを1回読むことは、相手が robots で
+# 「機械が読んでよい」と書いているページを読むこと。
+#
+# **ここが通っても、店舗情報を毎日取ってよいことにはならない。** 関所が別。
+#
+# なぜ要るか：関所を「規約が通るまで1バイトも開かない」にしたら、
+# **規約のページも開けなくなった。**輪になっていた（2026-09-21）。
+on:
+  workflow_dispatch:
+    inputs:
+      taisho:
+        description: "kaisha（テナント企業）/ shisetsu（施設）/ unei（運営会社）/ denryoku（電力・1回見る段が拾った在りかから）"
+        required: false
+        default: "kaisha"
+      id:
+        description: "この相手だけ（空なら全部）"
+        required: false
+        default: ""
+      limit:
+        description: "上から何件（0=全部）"
+        required: false
+        default: "0"
+      url:
+        description: "人が渡した規約のURL（id と一緒に使う。探さずに直に取りに行く）"
+        required: false
+        default: ""
+
+concurrency:
+  group: yakusoku-get
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      # 金庫（生データの置き場・private）。**無い回も走る。**
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      # **取ってきた規約を金庫に置く。** 成果物は90日で消えるので、
+      # **もう一度取りに行かないと読み直せない**形にしない（2026-09-21）
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox
+          mkdir -p "_raw/inbox/yakusoku"
+          rm -rf "inbox/yakusoku"
+          ln -s "../_raw/inbox/yakusoku" "inbox/yakusoku"
+          ls -la inbox
+
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 規約を探して1回取る（同時1本・5秒以上あける）
+        timeout-minutes: 20
+        run: |
+          python3 yakusoku_get.py \
+            --taisho "${{ github.event.inputs.taisho || 'kaisha' }}" \
+            --limit "${{ github.event.inputs.limit || 0 }}" \
+            ${{ github.event.inputs.id && format('--id "{0}"', github.event.inputs.id) || '' }} \
+            ${{ github.event.inputs.url && format('--url "{0}"', github.event.inputs.url) || '' }}
+
+      # **相手の規約は相手の著作物。** 公開側には1文字も入れない
+      - name: 取ってきた HTML を成果物として置く
+        if: ${{ env.HAS_VAULT != 'true' && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: yakusoku-${{ env.RUN_DATE }}
+          path: inbox/yakusoku/
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          if [ -n "$(find inbox -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox)" ]; then
+            echo "inbox にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "利用規約の生データ（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # 入るのは**①〜⑤に当たる語が出たかどうかと、どの見出しの下か。** 本文は入らない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/yakusoku-get.md data/ref/yakusoku-get.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "利用規約を探して1回取った記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

@@ -1,0 +1,401 @@
+name: 大店立地法の届出をためる
+
+# 手で押して動かす。あわせて毎日1回、朝に自動で走る。
+# 自動を止めたいときは、下の schedule の3行を消す。
+on:
+  workflow_dispatch:
+    inputs:
+      area:
+        description: "どこを見るか（hyogo / osaka / ref / youto。空なら全部）"
+        required: false
+        default: ""
+  schedule:
+    # 毎日 日本時間 朝7時（UTCの22時）。縦覧は4か月で落ちるので、
+    # 毎日とっておくと「いつ消えたか」が git の履歴に残る。
+    - cron: "0 22 * * *"
+
+# 二重に走ると、お互いの結果を押し合うことになるので1本ずつ走らせる
+concurrency:
+  group: shutten
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    env:
+      # **走っている途中で日付が変わらないようにする。**
+      # cron は 22:00 UTC だが、終わるのは翌日の 00:10 UTC ごろ。UTC のままだと
+      # 取ってきた日（22時台＝その日）と commit の日（翌日）が1日ずれる。
+      # 日本の役所の情報を日本の読者に出すサイトなので、基準は日本時間にする。
+      # 日本時間なら 07:00〜09:10 で、走っている間ずっと同じ日になる
+      TZ: Asia/Tokyo
+      # 金庫（生データの置き場・private）の鍵があるか。無ければ今まで通り1本で動く
+      # 鍵は2通り。**どちらか片方あればよい。**
+      #   RAW_DEPLOY_KEY  SSH の deploy key。期限が無い。**作るのにターミナルが要る**
+      #   RAW_TOKEN       fine-grained PAT。**GitHubの画面だけで作れる（スマホで足りる）**
+      #                   ただし**最長1年で切れる。切れた日は赤くなって止まる**（黙らない）
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      # 金庫の名前は公開用の名前から決める（<公開用>-raw）。見張りと checkout が同じ名前を見る。
+      # 仮の名前のリポジトリや fork では存在しない名前になり、checkout で止まる（別の金庫には届かない）
+      RAW_REPO: ${{ github.repository }}-raw
+      # 用途地域の元データだけを取りに行く回。ふだんの巡回（毎朝）では立たない。
+      # 手で `youto` を入れて回したときだけ、自治体を見に行く段を飛ばす
+      YOUTO_ONLY: ${{ github.event.inputs.area == 'youto' }}
+    steps:
+      # **この実行の「今日」を、走り始めに1回だけ決める。**
+      # 巡回は 07:00 JST に始まり、終わるのは 09:10 JST ごろ。日付をまたぐ時刻に
+      # 動くと、取ってきた日と commit の日が1日ずれる（2026-09-19 に気づいた。
+      # サイトに出ていた取得日が毎日1日早かった）。TZ を寄せても「たまたま
+      # またがない」だけなので、**時刻ではなく値を1回に決める。**
+      # 以降の Python は common/runday.py 経由でこの値だけを見る
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      # 押したときのコミットではなく、走り出す時点の main から始める。
+      # 前の実行が main を進めたあとに古いところから作ると、保存でぶつかる
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # 共通仕様9節「2本のリポジトリ」。生データ（取ってきたページ・Excel・PDF・OCR・台帳）は
+      # private の金庫 VirgoB77/ogataten-nippo-raw に置き、ここには伏せ処理を通した結果とページ、
+      # それに公報の写し（9節の表で「公開できる」もの）だけを残す。
+      # 金庫を deploy key で隣に出し、data/raw などを今までのパスにつなぐ。Python は置き場を知らない。
+      #
+      # 鍵（Secret RAW_DEPLOY_KEY）が無いときに1本の形で動くのは、生データを既に追跡している
+      # （移行前の）リポジトリだけ。生データを持たない公開用で鍵が無ければ、取りに行かずに止まる。
+      # 鍵が無いまま data を丸ごと commit すると、その日の生データが public に載るため。
+      - name: 置き場を確かめる
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          case "$GITHUB_REPOSITORY" in
+            *-raw|*-raw-*) echo "ここは金庫（$GITHUB_REPOSITORY）。金庫では走らない"; exit 1 ;;
+          esac
+          raw_tracked=$(git ls-files -- data/raw data/files data/ocr data/wayback)
+          # :(glob) は data 直下と data/koho 直下だけ（git の * は / をまたぐので）
+          md_tracked=$(git ls-files -- ':(glob)data/*.md' ':(glob)data/koho/*.md')
+          if [ "$HAS_VAULT" = "true" ]; then
+            if [ -n "$raw_tracked" ]; then
+              echo "鍵があるのに、このリポジトリ自身が生データを追跡している。金庫と二重になるので止まる"
+              exit 1
+            fi
+            if [ -n "$md_tracked" ]; then
+              echo "走らせた記録がこのリポジトリに追跡されている。記録は金庫に置く決まり。止まる:"
+              echo "$md_tracked"
+              exit 1
+            fi
+            # 金庫が private であることを確かめる。公開側の GITHUB_TOKEN から見えるなら（200）public。
+            # private なら 404。それ以外（通信失敗・403 など）も止まる（疑わしきは止まる）
+            # curl は失敗しても -w の 000 を出す
+            code=$(curl -s -o /dev/null -w '%{http_code}' \
+                     -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
+                     "https://api.github.com/repos/${RAW_REPO}" || true)
+            case "$code" in
+              404) echo "金庫 ${RAW_REPO} は公開側から見えない（private か、まだ無い。無ければ次の checkout で止まる）" ;;
+              200) echo "金庫 ${RAW_REPO} が public のまま。生データを送らない。先に private にする"; exit 1 ;;
+              *)   echo "金庫の見え方を確かめられなかった（HTTP ${code:-なし}）。止まる"; exit 1 ;;
+            esac
+            echo "金庫の形で動く"
+          elif [ -n "$raw_tracked" ]; then
+            echo "鍵が無い。生データを追跡している旧来の形なので、今まで通り1本で動く"
+          else
+            echo "鍵が無く、このリポジトリは生データを追跡していない（作り直した公開用）。"
+            echo "このまま走ると今日の生データを public に commit してしまうので、取りに行かずに止まる。Secret RAW_DEPLOY_KEY を入れる"
+            exit 1
+          fi
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          # **両方渡す。** checkout は ssh-key が空なら token のほうを使う。
+          # どちらを入れたかで、手順書を書き分けなくてよい
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p data inbox
+          # koho（兵庫県公報の本文・目録）は 2026-09-22 に公開側から外した。
+          # **写しではなく、置き場そのものを金庫にする。**
+          # 公開側に目録（issues.json）を残さず、金庫にも無い形にすると、
+          # 次の回が「1号も取っていない」状態から始まり、兵庫県への行き来が
+          # 一気に増える（3.4）。つなぐことで、取った記憶は金庫に残る
+          for d in raw files ocr wayback koho; do
+            mkdir -p "_raw/data/$d"
+            rm -rf "data/$d"
+            ln -s "../_raw/data/$d" "data/$d"
+          done
+          # 遅延証明書の生 HTML。**鉄道会社のページなので公開側には置かない。**
+          # 成果物（artifact）は7日で消えるので、毎日ためるなら金庫に入れる
+          mkdir -p "_raw/inbox/chien"
+          rm -rf "inbox/chien"
+          ln -s "../_raw/inbox/chien" "inbox/chien"
+          ls -la data inbox
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # 落ちたらここで止まり、取りに行かない。
+      # 個人情報の伏せ忘れがあると、取りに行く前に止まる。
+      - name: 検査する
+        run: ./check.sh
+
+      # 共通仕様4節の city_code の元。総務省の全国地方公共団体コード。
+      # 90日以内に取っていれば取りに行かない（合併のとき以外は変わらない）
+      - name: 市区町村コードの一覧
+        run: python3 ref_jis.py || echo "市区町村コードの一覧が取れなかった。手元のもので進む"
+
+      # 大阪市の届出一覧（平成12年からの全届出）が古い .xls 形式で、
+      # これを読むためだけに xlrd を入れる。入らなくても他は動く。
+      # 用途地域のポリゴンと、住所→座標の対応表を国交省から取ってくる（取るだけ）。
+      # **落ちてくる中身を見てから、当てるコードを書く。** 見ていないものには当てない。
+      # 手で `youto` を入れて回したときだけ走る。毎朝は走らせない（大きいので）
+      - name: 用途地域の元データを取ってくる
+        if: env.YOUTO_ONLY == 'true'
+        run: python3 ref_youto.py --force
+
+      - name: 古いExcelを読む道具
+        run: pip install -q xlrd || echo "xlrd が入らなかった。.xls は読まずに進む"
+
+      - name: PDFの文字を取る道具
+        run: sudo apt-get install -y -qq poppler-utils > /dev/null || echo "poppler が入らなかった。部会の議案は読まずに進む"
+
+      - name: 偵察する
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 recon.py ${{ github.event.inputs.area }}
+
+      - name: むかしのページをアーカイブから取ってくる
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 wayback.py || echo "アーカイブが取れなかった。今日の分だけで進む"
+
+      - name: 届出を取り出す
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 parse.py
+
+
+      # 大阪府・大阪市は届出をExcelで出している。
+      # すでに持っている版は飛ばすので、更新された時だけ増える。
+      - name: Excelを取ってくる
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 files.py
+
+      - name: Excelから届出を取り出す
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 parse_excel.py
+
+      - name: 兵庫県公報の目録から公告を数える
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 koho.py || echo "公報の目録が読めなかった。今日は数えずに進む"
+
+      - name: 兵庫県公報の本体から公告を読む
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 koho_pdf.py || echo "公報の本体が読めなかった。今日は飛ばして進む"
+        env:
+          KOHO_MAX: "80"   # 過去分の積み直しの間は1日80号（共通仕様3.4の例外）。5秒あけて同時1本なので、
+                           # 県のサーバーには1日7分ほどしか触らない。追いついたら koho_pdf.py が
+                           # 自動的に月2回（1日・15日）だけにする
+          KOHO_ANYDAY: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}   # 手で押したときは日に関係なく取りに行く
+
+      - name: 部会の議案から届出を取り出す
+        if: env.YOUTO_ONLY != 'true'
+        run: python3 parse_bukai.py || echo "部会の議案が読めなかった。今日は飛ばして進む"
+
+      # 日ごとの取り出し結果を1件1行にまとめ、消えた届出とこれからの予定を出す
+      - name: まとめる
+        run: python3 merge.py
+
+      # all.json から作る一覧。走らせないと、置いてあるファイルだけが古いまま残り、
+      # 検査は「古いファイル」を通してしまう（9節「実測値を説明文に書かない」と同じ形で、
+      # 誰も古さに気づかない）。まとめたあと・ページを作る前に、毎回作り直す
+      - name: 退店の一覧を作り直す
+        run: python3 taiten.py
+
+      - name: 設置者と小売業者の一覧を作り直す
+        run: python3 settisha.py
+
+      - name: 町丁目までつながらなかった行を数えて記録に残す
+        run: python3 town_gap.py
+
+      # all.json から見せるページを作る（GitHub Pages がそのまま配信する）
+      - name: ページを作る
+        run: python3 build_site.py
+        env:
+          SITE_URL: https://ogataten-nippo.com/   # 独自ドメイン（CNAME ファイルと合わせる）
+
+      # **今日のぶんは今日しか取れない。** 5社（京阪・近鉄・南海・山陽・大阪メトロ）は
+      # 遅延証明書を**その日ぶんしか出していない。** 明日にはもう無い。
+      #
+      # 行き先は1段目の記録（data/ref/chien-recon.md）から読む。ここで作文しない。
+      # **神戸市営地下鉄は入っていない**——遅延証明書のページが見つかっていない社で、
+      # かつトップが www.city.kobe.lg.jp。毎朝の巡回で行く神戸市と同じ相手なので、
+      # 毎日の対象から外した（3.4「同じ相手に1日2回行かない」・2026-09-20）。
+      #
+      # ここが落ちても、大店立地法のほうは続ける（出どころが別の仕事）
+      #
+      # **時間の上限を置く。** 全国に広げると、5秒あけて200社で17分になる。
+      # 増やすのは構わないが、**毎朝の巡回を止めてはいけない**ので、
+      # ここで切れても大店立地法のほうは続く
+      #
+      # **金庫が無くても走らせる。** 2026-09-20、ここを金庫の形でだけ走る
+      # 条件にしていて、**このリポジトリは金庫の形ではない**（生データを
+      # 自分で追跡している旧来の形）。つまり**1度も走らない段**を入れて、
+      # 「毎日たまります」と報告していた。**今日いちばん大きな黙り。**
+      #
+      # 金庫があれば inbox/chien は金庫への symlink なので、そのまま永久に残る。
+      # 無ければ下の成果物（90日）に残す。**90日でも、0日よりはるかに良い**
+      # （5社は今日ぶんしか出していない。取得は取り返せない）。
+      # **鉄道会社のページなので、公開側には入れない**（inbox/ は .gitignore）
+      - name: 遅延証明書を取ってくる（今日ぶんしか出さない社がある）
+        continue-on-error: true
+        timeout-minutes: 45
+        run: python3 chien_get.py
+
+      # **金庫が無い回は、ここが唯一の置き場。** 90日で消えるので、
+      # 金庫を用意するまでの間に合わせ。**消える前に金庫へ移すこと**
+      - name: 遅延証明書を成果物に残す（金庫が無い回の置き場）
+        if: ${{ env.HAS_VAULT != 'true' && !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: chien-${{ env.RUN_DATE }}
+          path: inbox/chien/
+          if-no-files-found: warn
+          retention-days: 90
+
+      # 取り直せないもの（生データ）を先にしまう。金庫は private なので、公開側の検査を待たない。
+      # 途中の段（取り出し・まとめ・ページ作り）が落ちた日でも、取ってきた分は金庫に入れる
+      # （!cancelled()）。そのあとの検査と公開側の push は、落ちた日は走らない。
+      # ここで失敗したら公開側にも送らない
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          # 走らせた記録は生の値を含みうるので、公開側ではなく金庫に置く
+          mkdir -p data/reports
+          cp ../data/*.md data/reports/ 2>/dev/null || true
+          cp ../data/koho/*.md data/reports/ 2>/dev/null || true
+          # 県公報の本文を金庫にも置く（統括 2026-09-21・実行順序①）。
+          # **公開側からはまだ外さない。** 開発受付簿の読み先が金庫に切り替わり、
+          # 公開URLへの行き来が0になったのを確かめてから外す（④→⑤）。
+          # 先に公開側を消すと、あちらが止まって兵庫県への行き来が倍になる（3.4）
+          # 県公報を金庫へ「写す」段は、もう無い。data/koho は金庫への
+          # リンクなので、書いた時点で金庫に入っている。
+          # **ここで cp すると、金庫の中へ金庫を入れ子にする**（data/koho/full/full）
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data inbox
+          # **金庫側が inbox を無視していると、黙って1件も入らない。**
+          # 「変わりなし」と「そもそも追跡できていない」は別のこと（ルール⑥）
+          if [ -n "$(find inbox -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox)" ]; then
+            echo "inbox にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "生データに変わりなし"
+            exit 0
+          fi
+          git commit -m "生データを ${RUN_DATE} の時点でためた"
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "金庫に送れた"
+              exit 0
+            fi
+            echo "押し戻されたので取り込み直す（${i}回目）"
+            git pull --rebase --autostash -X theirs origin main || {
+              echo "取り込みに失敗した。手で見る必要がある"
+              git rebase --abort 2>/dev/null || true
+              exit 1
+            }
+            sleep $((i * 3))
+          done
+          echo "5回試したが金庫に送れなかった"
+          exit 1
+
+      # 作ったものをもう一度検査してから公開側に送る。最初の検査は昨日の出力に対してなので、
+      # 今日の出力に伏せ忘れがあると翌朝まで公開されてしまう。ここで止める（止まっても生データは
+      # もう金庫にある）。鍵の無い旧来の形では今まで通り（翌朝の最初の検査で止まる）
+      - name: もう一度検査する（作ったものに対して）
+        if: env.HAS_VAULT == 'true'
+        run: ./check.sh
+
+      # 新設届の**前向き観測**。90日ためてから判断する（商品は作らない）。
+      # 取りに行かない。手元の all.json を読んで、①②③を並べるだけ
+      - name: 新設届の前向き観測を書き直す
+        if: ${{ !cancelled() }}
+        run: python3 shinsetsu_sokuho.py
+
+      - name: 結果をしまう
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ "$HAS_VAULT" = "true" ]; then
+            # 金庫がある形では、公開してよいと決めたものだけを列挙して入れる（許可リスト）。
+            # data をまるごと add しない。新しい出力を公開したいときは、ここに1つ足す。
+            # **県公報（data/koho）はここに入れない**（統括判断 2026-09-21・正本6776行）。
+            # 本文921本のうち714本に「氏名」の語が在り、人の名の形をした語が94種類。
+            # 法人と確かめられたのは48種類で、46種類は未測定。測り終わるまで公開しない。
+            # 「姉妹サイトが読む約束だから置く」とは書かない——
+            # **約束は置き場を決める理由にならない。置いてよいかは中身で決まる**（正本6776行）
+            for p in data/all.json data/ref/shinsetsu-sokuho.md data/ref/shinsetsu-sokuho.json data/parsed data/ref \
+                     index.html about.html contact.html hyogo-koho.html teisei.html \
+                     taiten.html settisha.html shinsetsu-to-kaiten.html style.css \
+                     a k s \
+                     index.json search.json sitemap.xml robots.txt; do
+              # あるものは add（配下の削除も入る）。丸ごと消えたものは、追跡中なら削除を入れる
+              if [ -e "$p" ] || [ -n "$(git ls-files -- "$p")" ]; then git add -A -- "$p"; fi
+            done
+            # 見張り：許可リストをいじっても、生データ・記録・symlink が混ざったら止まる
+            # （-z：日本語や記号を含むパスも "…" で囲まずに出す。囲まれると ^data/ に当たらない）
+            if git diff --cached --name-only -z | tr '\0' '\n' | grep -E '^(data/(raw|files|ocr|wayback|koho)/|data/[^/]+\.md$|_raw/|inbox/)'; then
+              echo "公開側の commit に生データか記録が混ざった。止まる"
+              exit 1
+            fi
+            if git -c core.quotePath=false diff --cached --raw | awk '$2 == "120000"' | grep -q .; then
+              echo "公開側の commit に symlink が混ざった。止まる"
+              exit 1
+            fi
+          else
+            # 旧来の形（移行前）。生データを追跡しているリポジトリでだけ許す
+            if [ -z "$(git ls-files -- data/raw)" ]; then
+              echo "鍵が無く生データも追跡していないのに、ここまで来た。data を丸ごとは入れない"
+              exit 1
+            fi
+            git add data index.html about.html contact.html hyogo-koho.html teisei.html \
+                    taiten.html settisha.html shinsetsu-to-kaiten.html style.css \
+                    a k s index.json search.json sitemap.xml robots.txt
+          fi
+          if git diff --cached --quiet; then
+            echo "変わりなし。今日は何も起きていない"
+            exit 0
+          fi
+          git commit -m "大店立地法の届出を ${RUN_DATE} の時点でためた"
+
+          # 走っている間に、誰かが別の作業を main に入れていることがある。
+          # そのまま送ると押し戻されて、集めたデータが消えてしまう。
+          # 取り込み直してから送る。何度か試す。
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "送れた"
+              exit 0
+            fi
+            echo "押し戻されたので取り込み直す（${i}回目）"
+            # data の中身は毎回作り直す生成物なので、ぶつかったら今回のほうを採る
+            # （rebase では -X theirs が「いま載せようとしている自分の変更」を指す）
+            git pull --rebase --autostash -X theirs origin main || {
+              echo "取り込みに失敗した。手で見る必要がある"
+              git rebase --abort 2>/dev/null || true
+              exit 1
+            }
+            sleep $((i * 3))
+          done
+          echo "5回試したが送れなかった"
+          exit 1

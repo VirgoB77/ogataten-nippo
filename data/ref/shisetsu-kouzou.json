@@ -1,0 +1,51 @@
+{
+ "hi": "2026-09-21",
+ "kekka": [
+  {
+   "id": "gardens",
+   "mei": "阪急西宮ガーデンズ",
+   "unei": "阪急阪神",
+   "url": "https://nishinomiya-gardens.com/floor/1",
+   "michi": "**原典が書いたリンク**",
+   "hi": "2026-09-21",
+   "yakusoku": "取ってよい",
+   "robots": "許可",
+   "kouzou": {
+    "ldjson_kazu": 0,
+    "ldjson_kata": [],
+    "shirushi": [],
+    "json_saki": [],
+    "img_kazu": 70,
+    "shitami": {
+     "mieru_moji": 9328,
+     "zenbu_moji": 12970,
+     "kai_hyouki": [
+      "10F",
+      "1F",
+      "2F",
+      "3F",
+      "4F",
+      "5F",
+      "6F",
+      "7F",
+      "8F",
+      "9F"
+     ],
+     "kai_kazu": 10,
+     "kotei_url": {
+      "katachi": "/floor/＊",
+      "kazu": 12
+     },
+     "link_katachi": 27,
+     "mise_katachi": 0,
+     "shisetsu_go": 3,
+     "news_kazu": 3
+    }
+   },
+   "dokokara": "静的HTML",
+   "dokokara_riyuu": "落とした後の文字に、店ごとの形が残っている",
+   "kekka": "見た",
+   "json": null
+  }
+ ]
+}

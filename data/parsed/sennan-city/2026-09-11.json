@@ -1,0 +1,62 @@
+[
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2026-05-29",
+  "notified_raw": "令和8年5月29日",
+  "store": "（仮称）コメリパワー泉南店",
+  "address": "泉南市幡代三丁目",
+  "operator": "",
+  "new_operator": "",
+  "event_on": null,
+  "content": "",
+  "review_from": "2026-06-17",
+  "review_to": "2026-10-16",
+  "meeting": "令和8年7月24日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
+  "citizen_opinion": "",
+  "city_opinion": "－",
+  "note": "",
+  "docs": [],
+  "extra": {
+   "市民等の意見提出期限": "令和8年10月16日",
+   "意見の縦覧期間": "－"
+  },
+  "source": "sennan-city",
+  "key": "770c9686ccdd",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
+ },
+ {
+  "article": "第5条第1項",
+  "kind": "新設",
+  "notified_on": "2026-05-29",
+  "notified_raw": "令和8年5月29日",
+  "store": "（仮称）フォレストモール泉南",
+  "address": "泉南市信達岡中",
+  "operator": "",
+  "new_operator": "",
+  "event_on": null,
+  "content": "",
+  "review_from": "2026-06-17",
+  "review_to": "2026-10-16",
+  "meeting": "令和8年7月9日 19時から20時 泉南市総合福祉センター（あいぴあ泉南）3階研修室1･2",
+  "citizen_opinion": "",
+  "city_opinion": "－",
+  "note": "",
+  "docs": [],
+  "extra": {
+   "市民等の意見提出期限": "令和8年10月16日",
+   "意見の縦覧期間": "－"
+  },
+  "source": "sennan-city",
+  "key": "1de432e7d95f",
+  "operator_display": "",
+  "operator_kind": "individual",
+  "new_operator_display": "",
+  "new_operator_kind": "individual",
+  "address_redacted": true
+ }
+]

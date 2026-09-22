@@ -1,0 +1,110 @@
+name: 停電の記録がどこにあるかを探す
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# ここは「探すだけ」の回。停電の記録はまだ1件もためない。
+#
+# **種は人が入れる。** 全国10社のドメインを思い出して並べると、
+# 外れていれば**関係のない誰かのサーバーを叩く**（3.4）。
+#
+#   ① この手順書    公的な一覧から、会社の候補を拾う。**robots を見る**
+#   ② 人が見る      実物を1回開く。**速報か記録かは目で見ないと決まらない**
+#   ③ 毎朝の巡回    見つけたページを毎日ためる
+#
+# **急ぐ理由**：外の目いわく、短いところで7日しか残らない（**こちらは未確認**）。
+# 届出が数か月残るのとは違う。**今日ためなかった分は、もう作れない。**
+on:
+  workflow_dispatch:
+    inputs:
+      tane:
+        description: "役所の一覧ページのURL（ここから辿る）。tops と、どちらか一方"
+        required: false
+      tops:
+        description: "会社のトップを直に渡す（改行かカンマ区切り）。**辿っていないと記録に書く**"
+        required: false
+      limit:
+        description: "開く相手の数（既定3。10社ぶん入れたら10にする）"
+        required: false
+        default: "3"
+      fukasa:
+        description: "1=トップだけ / 2=速報リンクを1段だけ辿る。**3段目は無い**"
+        required: false
+        default: "1"
+      eda:
+        description: "1社あたり、もぐる本数（既定3）"
+        required: false
+        default: "3"
+
+concurrency:
+  group: teiden-recon
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
+      - name: 検査する
+        run: ./check.sh
+
+      # **条件を付けない。** 金庫の有無は「しまい方」の話で、
+      # 「取りに行くかどうか」の話ではない（2026-09-20、1度も走らない段を作った）
+      - name: 探す（同時1本・5秒以上あける・robots を見る）
+        timeout-minutes: 30
+        run: |
+          # **どちらも空なら、段が止まる**（0本として緑で終わらない）
+          python3 teiden_recon.py \
+            ${TANE:+--tane "$TANE"} \
+            ${TOPS:+--tops "$TOPS"} \
+            --limit "${{ github.event.inputs.limit || 3 }}" \
+            --fukasa "${{ github.event.inputs.fukasa || 1 }}" \
+            --eda "${{ github.event.inputs.eda || 3 }}"
+        env:
+          TANE: ${{ github.event.inputs.tane }}
+          TOPS: ${{ github.event.inputs.tops }}
+
+      # **返ってきたバイトは、そのまま置く。** 読み取らない。
+      # public なリポジトリには入れない（外から取ってきた生データなので）
+      - name: 取ってきた HTML を成果物として置く
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: teiden-recon-${{ env.RUN_DATE }}
+          path: inbox/teiden/
+          if-no-files-found: warn
+          retention-days: 7
+
+      # 入れるのは**記録だけ。** 中身は入れない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/teiden-recon.md
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "停電の記録がどこにあるかを探した記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

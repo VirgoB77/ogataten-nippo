@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+
+# 金庫（private の収集用リポジトリ）を Actions が隣に出す場所。共通仕様9節
+_raw/
+
+# 外から取ってきた生のバイト。**公開側には1バイトも入れない**（3.4）。
+# 金庫がある回は、ここは金庫への symlink になる
+inbox/
+
+# 生データ。金庫（VirgoB77/ogataten-nippo-raw）に置く（2026-09-21 に移した）。
+# **末尾の / を付けない。** 巡回中はここが金庫への symlink になるので、
+# `data/raw/` と書くとディレクトリにしか当たらず、symlink のほうが追跡されてしまう
+data/raw
+data/files
+data/ocr
+data/wayback
+# 兵庫県公報の本文と目録。2026-09-22 に公開側から外した（正本6776行）。
+# ここも金庫への symlink になる
+data/koho
+# 走らせた記録。生の値を含みうるので、金庫の data/reports へ置く
+data/*.md
+data/koho/*.md

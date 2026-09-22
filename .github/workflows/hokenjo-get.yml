@@ -1,0 +1,140 @@
+name: 保健所の営業許可の一覧をためる
+
+# **週に1回走る。** 手でも押せる。
+#
+# なぜ週1か：兵庫県の更新は**毎月20日頃**と書かれている（案出しの調査・2026-09-19）。
+# 月に1回しか変わらないものを毎日取っても、**相手の負荷が増えるだけで版は増えない。**
+# 週1なら、どの版も必ず1回は掴める。
+#
+# **⚠️ この一覧には営業者氏名の欄がある。**
+# だから**金庫がつながっていない回は、1バイトも取らない**（`KINKO` を立てない）。
+# 成果物（artifact）に逃がす道も作らない——90日で消えるうえ、氏名が入っている。
+#
+# **時刻をずらしてある。** 毎朝の巡回（07:00 JST）・停電（07:20）・
+# フロアマップ（08:10）と同じ相手を含むので、**13:00 JST**にしてある。
+on:
+  schedule:
+    # 水曜 13:00 JST（UTC の 04:00）
+    - cron: "0 4 * * 3"
+  workflow_dispatch:
+    inputs:
+      tane_id:
+        description: "入口（カンマ区切り。空なら既定の6本＝hyogo-pref,amagasaki-city）。all で全部"
+        required: false
+        default: ""
+      limit:
+        description: "上から何件（0=全部）"
+        required: false
+        default: "0"
+
+concurrency:
+  group: hokenjo-get
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      # 金庫（生データの置き場・private）
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox
+          mkdir -p "_raw/inbox/hokenjo-get"
+          rm -rf "inbox/hokenjo-get"
+          ln -s "../_raw/inbox/hokenjo-get" "inbox/hokenjo-get"
+          ls -la inbox
+
+      - name: 検査する
+        run: ./check.sh
+
+      # **KINKO を立てるのは、金庫がつながった回だけ。**
+      # 立っていなければ、この段は取りに行かずに終わる（氏名が入っているため）
+      - name: 一覧をためる（同時1本・5秒以上あける）
+        timeout-minutes: 30
+        env:
+          KINKO: ${{ steps.link.outcome == 'success' && '1' || '' }}
+        run: |
+          # **既定は6本**（兵庫県4＋尼崎2）。統括の決定・2026-09-21——
+          # 「まず6本で一連の観測系を確認してから、67本への展開を判断する」。
+          # **定期実行もここを通る。** 全部にするときは tane_id に all を入れる。
+          TANE="${{ github.event.inputs.tane_id }}"
+          [ -z "$TANE" ] && TANE="hyogo-pref,amagasaki-city"
+          if [ "$TANE" = "all" ]; then
+            python3 hokenjo_get.py --limit "${{ github.event.inputs.limit || 0 }}"
+          else
+            python3 hokenjo_get.py --limit "${{ github.event.inputs.limit || 0 }}" \
+              --tane-id "$TANE"
+          fi
+
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          if [ -n "$(find inbox -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox)" ]; then
+            echo "inbox にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "保健所の営業許可の生データ（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # 入るのは**指紋と大きさと日付だけ。** 一覧の中身は1文字も入らない
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/hokenjo-get.md data/ref/hokenjo-ledger.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "保健所の営業許可をためた記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

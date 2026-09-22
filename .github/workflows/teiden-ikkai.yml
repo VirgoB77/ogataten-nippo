@@ -1,0 +1,131 @@
+name: 停電の実データページを1社だけ見る（中身は取らない）
+
+# **手で押したときだけ動く。** schedule は無い。
+#
+# 2026-09-21、5候補を3軸で並べたら**停電だけ「③を1度も測っていないのに
+# 先頭に置かれていた」**。全国に広げる前に、**1社で仮説そのものを確かめる**
+# （統括の指示）。
+#
+# **順番を守る。** robots → 形だけ見る → 規約の在りか → （人が読む）→ 中身。
+# **この段は、発生日時・復旧日時・地域・戸数を1件も取らない。**
+#
+# **1回見たことを、許されたことにしない。** 毎日取る関所は別（9節）。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "何社見るか（既定 1。他社へ自動的に進まない）"
+        required: false
+        default: "1"
+      url:
+        description: "人が渡した入口（探さずに直に開く。robots は見る）"
+        required: false
+        default: ""
+
+concurrency:
+  group: teiden-ikkai
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  ikkai:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+      HAS_VAULT: ${{ secrets.RAW_DEPLOY_KEY != '' || secrets.RAW_TOKEN != '' }}
+      RAW_REPO: ${{ github.repository }}-raw
+    steps:
+      - name: この実行の日付を決める
+        run: echo "RUN_DATE=$(date +%Y-%m-%d)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 金庫を隣に出す
+        if: env.HAS_VAULT == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.RAW_REPO }}
+          ref: main
+          ssh-key: ${{ secrets.RAW_DEPLOY_KEY }}
+          token: ${{ secrets.RAW_TOKEN || github.token }}
+          path: _raw
+
+      - name: 生データの置き場を金庫につなぐ
+        id: link
+        if: env.HAS_VAULT == 'true'
+        run: |
+          mkdir -p inbox
+          mkdir -p "_raw/inbox/teiden-ikkai"
+          rm -rf "inbox/teiden-ikkai"
+          ln -s "../_raw/inbox/teiden-ikkai" "inbox/teiden-ikkai"
+          ls -la inbox
+
+      - name: 検査する
+        run: ./check.sh
+
+      - name: 1社だけ見る（同時1本・5秒以上あける）
+        timeout-minutes: 20
+        run: |
+          python3 teiden_ikkai.py \
+            --limit "${{ github.event.inputs.limit || 1 }}" \
+            ${{ github.event.inputs.url && format('--url "{0}"', github.event.inputs.url) || '' }}
+
+      - name: 取ってきた HTML を成果物として置く
+        if: ${{ env.HAS_VAULT != 'true' && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: teiden-ikkai-${{ env.RUN_DATE }}
+          path: inbox/teiden-ikkai/
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: 生データを金庫にしまう
+        if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
+        working-directory: _raw
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add inbox
+          if [ -n "$(find inbox -type f -print -quit 2>/dev/null)" ] \
+             && [ -z "$(git ls-files -- inbox)" ]; then
+            echo "inbox にファイルがあるのに、1件も追跡できていない。"
+            echo "金庫の .gitignore が inbox を外している疑い。止まる"
+            exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "停電の1社ぶんの生データ（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
+
+      # 入るのは**形と、向こうが書いた見出しと、規約の在りか**だけ
+      - name: 記録を残す
+        if: always()
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ref/teiden-ikkai.md data/ref/teiden-ikkai.json
+          if git diff --cached --quiet; then
+            echo "変わっていない"
+            exit 0
+          fi
+          git commit -m "停電の実データページを1社だけ見た記録（${RUN_DATE}）"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

@@ -1,0 +1,1116 @@
+{
+ "hi": "2026-09-21",
+ "taisho": "denryoku",
+ "kekka": [
+  {
+   "id": "aeon-itami",
+   "mei": "イオンモール伊丹",
+   "top": "https://itami.aeonmall.jp/",
+   "hi": "2026-09-21",
+   "arika": [],
+   "yonda": null,
+   "note": "相手が混んでいると言っている（HTTP 503）。その回は中止",
+   "robots_top": "許可"
+  },
+  {
+   "id": "francfranc",
+   "mei": "Francfranc",
+   "top": "https://francfranc.com/pages/stores",
+   "hi": "2026-09-21",
+   "arika": [
+    {
+     "text": "（人が渡した）",
+     "url": "https://help.francfranc.com/hc/ja/articles/360022766873",
+     "tsuyosa": -1,
+     "atta": []
+    }
+   ],
+   "yonda": null,
+   "note": "規約ページが開けなかった HTTPError: HTTP Error 403: Forbidden",
+   "hito_ga_watashita": true,
+   "robots_yakusoku": "許可"
+  },
+  {
+   "id": "gardens",
+   "mei": "阪急西宮ガーデンズ",
+   "top": "https://nishinomiya-gardens.com/",
+   "hi": "2026-09-21",
+   "arika": [
+    {
+     "text": "サイトポリシー",
+     "url": "https://nishinomiya-gardens.com/usage",
+     "tsuyosa": 1,
+     "atta": [
+      "サイトポリシー"
+     ]
+    }
+   ],
+   "yonda": {
+    "kou": [
+     {
+      "no": "1",
+      "mei": "著作物の複製・転載",
+      "atta": true,
+      "go": [
+       [
+        "著作権",
+        2
+       ]
+      ],
+      "kazu": 2,
+      "basho": [
+       {
+        "midashi": "サイトポリシー",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "2",
+      "mei": "掲載内容を広く対象にした複製・転用",
+      "atta": true,
+      "go": [
+       [
+        "二次利用",
+        1
+       ]
+      ],
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "サイトポリシー",
+        "anchor": "",
+        "go": [
+         "二次利用"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "3",
+      "mei": "商用・営利利用の制限",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "4",
+      "mei": "**自動取得の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "5",
+      "mei": "**データベース化の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     }
+    ],
+    "moji": 1477,
+    "nihongo": 0.731,
+    "midashi": [
+     {
+      "lv": 1,
+      "midashi": "サイトポリシー",
+      "anchor": ""
+     }
+    ],
+    "url": "https://nishinomiya-gardens.com/usage"
+   },
+   "note": "",
+   "hiraita": true,
+   "robots_top": "許可",
+   "robots_yakusoku": "許可",
+   "komaka": {
+    "go": [
+     {
+      "go": "複製",
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "サイトポリシー",
+        "anchor": ""
+       }
+      ],
+      "taishou": [
+       "イラスト",
+       "デジタル素材",
+       "写真",
+       "情報",
+       "文章",
+       "素材"
+      ],
+      "jijitsu": []
+     },
+     {
+      "go": "転載",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "転用",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "二次利用",
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "サイトポリシー",
+        "anchor": ""
+       }
+      ],
+      "taishou": [
+       "イラスト",
+       "デジタル素材",
+       "写真",
+       "情報",
+       "文章",
+       "素材"
+      ],
+      "jijitsu": []
+     },
+     {
+      "go": "改変",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "再配布",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "自動取得",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "クローリング",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "クロール",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "スクレイピング",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "ロボット",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "自動的",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "データベース",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "蓄積",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "商用",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "営利",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     }
+    ],
+    "kubetsu": false
+   }
+  },
+  {
+   "id": "gelatopique",
+   "mei": "gelato pique",
+   "top": "https://gelatopique.com/Page/shoplist.aspx",
+   "hi": "2026-09-21",
+   "arika": [
+    {
+     "text": "Terms of Service",
+     "url": "https://gelatopique.com/policies/terms-of-service",
+     "tsuyosa": 8,
+     "atta": [
+      "Terms"
+     ]
+    }
+   ],
+   "yonda": {
+    "kou": [
+     {
+      "no": "1",
+      "mei": "著作物の複製・転載",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "2",
+      "mei": "掲載内容を広く対象にした複製・転用",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "3",
+      "mei": "商用・営利利用の制限",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "4",
+      "mei": "**自動取得の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "5",
+      "mei": "**データベース化の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     }
+    ],
+    "moji": 12531,
+    "midashi": [
+     {
+      "lv": 4,
+      "midashi": "Popular search results:",
+      "anchor": ""
+     },
+     {
+      "lv": 1,
+      "midashi": "Japanese Luxury Loungewear, Sleepwear, Pajamas & More!",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "women's",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Men's",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "RANKING",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】【Unisex】One-Point Long Sleeve T-Shirt & Long Pants ",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】【Unisex】Baby Moco Jacquard Shawl Cardigan",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】Baby Moco Jacquard Pullover & Long Pants Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】Gelato Clefairy Hoodie & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】Gelato Marill Hoodie & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】Gelato Pikachu Hoodie & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "[DRAGON QUEST] [Unisex] Slime Hoodie",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Airy Moco Ribbon Pullover & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "[LE SSERAFIM] Flower Jacquard Pullover & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "[DRAGON QUEST] [Women’s] Jacquard Short-Sleeve Pullover & Sh",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Cool Rayon Ribbon Camisole & Pants Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【STAR WARS】Unisex Smoothie Character Patch Cardigan",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Bath Time Cat Pants",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Smoothie Lite Cool Striped Pants",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Airy Moco Sleeping Panda Jacquard Pullover & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Cool Rayon Cosmos Printed Flare Sleeve Dress with Built-In B",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Smoothie Eyelet Short Cardigan",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Peach Collection Pullover & Shorts SET",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Airy Moco Water Absorbent Gown",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "[SESAME STREET] Airy Moco Applique Cardigan",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】【Men’s】Gelato Raichu Hoodie & Shorts Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "【Pokémon】【Men’s】Baby Moco Jacquard Pullover & Long Pants Set",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "[DRAGON QUEST] [Men’s] Jacquard Short-Sleeve Pullover & Shor",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "[SESAME STREET×CPD HOOME meets GELATO PIQUE] Cotton French T",
+      "anchor": ""
+     },
+     {
+      "lv": 4,
+      "midashi": "Men's Smoothie Lite Casual Logo Jacquard Pullover & Shorts S",
+      "anchor": ""
+     }
+    ],
+    "url": "https://gelatopique.com/policies/terms-of-service"
+   },
+   "note": "",
+   "robots_top": "許可",
+   "robots_yakusoku": "許可"
+  },
+  {
+   "id": "hankyu-hanshin-hd",
+   "mei": "阪急阪神ホールディングス",
+   "top": "https://www.hankyu-hanshin.co.jp/release/",
+   "hi": "2026-09-21",
+   "arika": [
+    {
+     "text": "ご利用規約",
+     "url": "https://www.hankyu-hanshin.co.jp/terms/",
+     "tsuyosa": 0,
+     "atta": [
+      "利用規約"
+     ]
+    }
+   ],
+   "yonda": {
+    "kou": [
+     {
+      "no": "1",
+      "mei": "著作物の複製・転載",
+      "atta": true,
+      "go": [
+       [
+        "著作権",
+        4
+       ]
+      ],
+      "kazu": 4,
+      "basho": [
+       {
+        "midashi": "1. 禁止事項",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       },
+       {
+        "midashi": "2. 著作権・商標権",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       },
+       {
+        "midashi": "3. リンクについて",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "2",
+      "mei": "掲載内容を広く対象にした複製・転用",
+      "atta": true,
+      "go": [
+       [
+        "掲載内容",
+        1
+       ]
+      ],
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "5. 免責事項",
+        "anchor": "",
+        "go": [
+         "掲載内容"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "3",
+      "mei": "商用・営利利用の制限",
+      "atta": true,
+      "go": [
+       [
+        "営利",
+        2
+       ]
+      ],
+      "kazu": 2,
+      "basho": [
+       {
+        "midashi": "2. 著作権・商標権",
+        "anchor": "",
+        "go": [
+         "営利"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "4",
+      "mei": "**自動取得の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "5",
+      "mei": "**データベース化の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     }
+    ],
+    "moji": 3350,
+    "nihongo": 0.838,
+    "midashi": [
+     {
+      "lv": 1,
+      "midashi": "ご利用規約",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "1. 禁止事項",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "2. 著作権・商標権",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "3. リンクについて",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "4. 推奨環境について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "5. 免責事項",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "6. 準拠法および管轄裁判所",
+      "anchor": ""
+     }
+    ],
+    "url": "https://www.hankyu-hanshin.co.jp/terms/"
+   },
+   "note": "",
+   "robots_top": "許可",
+   "robots_yakusoku": "許可"
+  },
+  {
+   "id": "hhp",
+   "mei": "阪急阪神不動産",
+   "top": "https://www.hhp.co.jp/news/",
+   "hi": "2026-09-21",
+   "arika": [],
+   "yonda": null,
+   "note": "規約らしいリンクが0本。**無いとは限らない**（語の一覧が足りない／JSで出している）",
+   "robots_top": "許可",
+   "katachi": {
+    "mieru_moji": 4216,
+    "zenbu_moji": 8242,
+    "kai_hyouki": [
+     "１０階",
+     "１１階"
+    ],
+    "kai_kazu": 2,
+    "kotei_url": {
+     "katachi": "/news/＊/",
+     "kazu": 15
+    },
+    "link_katachi": 62,
+    "mise_katachi": 0,
+    "shisetsu_go": 16,
+    "news_kazu": 5
+   }
+  },
+  {
+   "id": "www.kansai-td.co.jp",
+   "mei": "関西電力送配電株式会社",
+   "top": "",
+   "hi": "2026-09-21",
+   "arika": [
+    {
+     "text": "（人が渡した）",
+     "url": "https://www.kansai-td.co.jp/siteinfo/index.html",
+     "tsuyosa": -1,
+     "atta": []
+    }
+   ],
+   "yonda": {
+    "kou": [
+     {
+      "no": "1",
+      "mei": "著作物の複製・転載",
+      "atta": true,
+      "go": [
+       [
+        "著作権",
+        6
+       ]
+      ],
+      "kazu": 6,
+      "basho": [
+       {
+        "midashi": "サイトのご利用にあたって",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       },
+       {
+        "midashi": "1．著作権について",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "2",
+      "mei": "掲載内容を広く対象にした複製・転用",
+      "atta": true,
+      "go": [
+       [
+        "掲載情報",
+        2
+       ],
+       [
+        "掲載内容",
+        1
+       ]
+      ],
+      "kazu": 3,
+      "basho": [
+       {
+        "midashi": "2．商標等について",
+        "anchor": "",
+        "go": [
+         "掲載内容"
+        ]
+       },
+       {
+        "midashi": "3．掲載内容について",
+        "anchor": "",
+        "go": [
+         "掲載情報"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "3",
+      "mei": "商用・営利利用の制限",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "4",
+      "mei": "**自動取得の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "5",
+      "mei": "**データベース化の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     }
+    ],
+    "moji": 5100,
+    "nihongo": 0.877,
+    "midashi": [
+     {
+      "lv": 1,
+      "midashi": "サイトのご利用にあたって",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "1．著作権について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "2．商標等について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "3．掲載内容について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "4．リンクについて",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "5．アイデア等のご提案について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "6．準拠法及び管轄裁判所について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "7．お問い合わせ",
+      "anchor": ""
+     }
+    ],
+    "url": "https://www.kansai-td.co.jp/siteinfo/index.html"
+   },
+   "note": "",
+   "hiraita": false,
+   "hito_ga_watashita": true,
+   "robots_yakusoku": "許可",
+   "komaka": {
+    "go": [
+     {
+      "go": "複製",
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "1．著作権について",
+        "anchor": ""
+       }
+      ],
+      "taishou": [
+       "データ"
+      ],
+      "jijitsu": []
+     },
+     {
+      "go": "転載",
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "1．著作権について",
+        "anchor": ""
+       }
+      ],
+      "taishou": [
+       "データ"
+      ],
+      "jijitsu": []
+     },
+     {
+      "go": "転用",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "二次利用",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "改変",
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "1．著作権について",
+        "anchor": ""
+       }
+      ],
+      "taishou": [
+       "データ"
+      ],
+      "jijitsu": []
+     },
+     {
+      "go": "再配布",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "自動取得",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "クローリング",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "クロール",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "スクレイピング",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "ロボット",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "自動的",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "データベース",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "蓄積",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "商用",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     },
+     {
+      "go": "営利",
+      "kazu": 0,
+      "basho": [],
+      "taishou": [],
+      "jijitsu": []
+     }
+    ],
+    "kubetsu": false
+   }
+  },
+  {
+   "id": "www.kyuden.co.jp",
+   "mei": "九州電力送配電 停電履歴表示期間の延長について",
+   "top": "",
+   "hi": "2026-09-21",
+   "arika": [
+    {
+     "text": "（人が渡した）",
+     "url": "https://www.kyuden.co.jp/td/sitepolicy/rule.html",
+     "tsuyosa": -1,
+     "atta": []
+    }
+   ],
+   "yonda": {
+    "kou": [
+     {
+      "no": "1",
+      "mei": "著作物の複製・転載",
+      "atta": true,
+      "go": [
+       [
+        "著作権",
+        3
+       ],
+       [
+        "著作物",
+        1
+       ]
+      ],
+      "kazu": 4,
+      "basho": [
+       {
+        "midashi": "サイト利用規約・免責事項",
+        "anchor": "",
+        "go": [
+         "著作権"
+        ]
+       },
+       {
+        "midashi": "著作権について",
+        "anchor": "",
+        "go": [
+         "著作権",
+         "著作物"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "2",
+      "mei": "掲載内容を広く対象にした複製・転用",
+      "atta": true,
+      "go": [
+       [
+        "掲載情報",
+        1
+       ]
+      ],
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "免責事項",
+        "anchor": "",
+        "go": [
+         "掲載情報"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "3",
+      "mei": "商用・営利利用の制限",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     },
+     {
+      "no": "4",
+      "mei": "**自動取得の明示的禁止**",
+      "atta": true,
+      "go": [
+       [
+        "スクレイピング",
+        1
+       ]
+      ],
+      "kazu": 1,
+      "basho": [
+       {
+        "midashi": "禁止事項",
+        "anchor": "",
+        "go": [
+         "スクレイピング"
+        ]
+       }
+      ]
+     },
+     {
+      "no": "5",
+      "mei": "**データベース化の明示的禁止**",
+      "atta": false,
+      "go": [],
+      "kazu": 0,
+      "basho": []
+     }
+    ],
+    "moji": 3027,
+    "nihongo": 0.847,
+    "midashi": [
+     {
+      "lv": 1,
+      "midashi": "サイト利用規約・免責事項",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "著作権について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "商標等について",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "免責事項",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "当社ホームページのリンクについて",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "禁止事項",
+      "anchor": ""
+     },
+     {
+      "lv": 2,
+      "midashi": "お問い合わせ",
+      "anchor": ""
+     }
+    ],
+    "url": "https://www.kyuden.co.jp/td/sitepolicy/rule.html"
+   },
+   "note": "",
+   "hito_ga_watashita": true,
+   "robots_yakusoku": "許可"
+  }
+ ]
+}
