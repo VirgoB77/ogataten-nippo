@@ -13,7 +13,7 @@
 決まりは、**[docs/kyotsu-shiyo.md](docs/kyotsu-shiyo.md) が唯一の正本**。
 
 **新しく入る人（Claude も含む）は、先に [docs/hikitsugi.md](docs/hikitsugi.md) を読む。**
-正本は6,200行あるので、**頭から読まずに grep で引く。**
+正本は**長い**ので、**頭から読まずに grep で引く。**
 
 住所の正規化（`addr.py`）、個人情報の伏せ方（`privacy.py`）、横断用の `index.json`、
 取得の作法、運営者情報の文面をここに置いている。
