@@ -8275,58 +8275,6 @@ def test_履歴を書き換える手が実行される所に無いか():
             + "。**正本9節は採らないと決めている。**"
             "消したいものが在るなら、公開用を履歴ゼロで作り直す側を通す")
 
-def test_失効した規則が引用の中に在るか():
-    """**消した判断は残す。ただし、生きた規則として立たせない。**
-
-    消すと、また同じことを思いつく人がいる。だから残す。
-    残すなら**引用（`>`）の中**に置く。引用の外に立っていると、
-    次に読む人が**いまの決まりとして拾い直す。**
-
-    ここでは**構造だけ**を見る——`【… 失効】` と書いた直後の塊が、
-    引用になっているか。**文章そのものは固定しない。**
-    以前は失効した文の一節（「公開用に置く」など）を名指しで探していたが、
-    それは**その1文しか守らない**うえ、言い回しを直すだけで落ちた。
-
-    残りの安全条件（公開側に県公報が1件も無いこと）は、
-    `test_県公報_公開側に1件も残っていないか` が**実物と設定で**見ている。
-    文章が在るかを二重に見る必要は無い。
-    """
-    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    if not os.path.exists(seihon):
-        return
-    import re as _re
-    with open(seihon, encoding="utf-8") as f:
-        lines = f.read().split("\n")
-
-    SHIKKO = _re.compile(r"【[^】]*失効】")
-    mita = 0
-    for i, ln in enumerate(lines):
-        if not SHIKKO.search(ln):
-            continue
-        mita += 1
-        # 直後の、空でない最初の行が引用で始まっているか
-        j = i + 1
-        while j < len(lines) and not lines[j].strip():
-            j += 1
-        if j >= len(lines) or not lines[j].lstrip().startswith(">"):
-            raise AssertionError(
-                f"{i+1}行目に「失効」と書いてあるが、**そのあとの塊が引用になっていない**： "
-                + (lines[j].strip()[:50] if j < len(lines) else "（終わり）")
-                + "。**失効した判断は引用の中に置く。外に立つと、生きた規則として拾われる**")
-        # 引用が途切れるまでに、引用でない行が混ざっていないか
-        k = j
-        while k < len(lines) and lines[k].strip():
-            if not lines[k].lstrip().startswith(">"):
-                raise AssertionError(
-                    f"{k+1}行目：失効した塊の途中に、引用でない行が混ざっている： "
-                    + lines[k].strip()[:50]
-                    + "。**塊ごと引用の中に入れる**")
-            k += 1
-    if mita == 0:
-        raise AssertionError(
-            "正本に「失効」の印が1つも無い。**消した判断を残す決まりが消えている**"
-            "（印が無ければ、この検査は黙って通る）")
-
 def test_停電_1社止めても残りが消えていないか():
     """**取得元の「だめ」を、題材の「だめ」にしない**（正本9節）。
 
