@@ -597,6 +597,52 @@ def _towns_wo_sashikomu(ichiran):
     return moto
 
 
+def test_空でよい欄の一覧を正本へ写していないか():
+    """**写しには見張りが付かない**（2026-09-22）。
+
+    「空でよい欄」の一覧は `build_site.KARA_DE_YOI` が持ち、検査もそこを読む。
+    その写しが正本5節に手書きで置かれていて、**両方ずれていた。**
+
+        コード 5欄（count / city_code / addr_key / addr_key_town / party）
+        正本   4欄（`addr_key` が抜け、`addr_key_town` の理由も古い）
+
+    **写しを直すのではなく、写しをやめた。**
+    ここでは「その節に欄の一覧が並んでいないこと」を見る。
+    """
+    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
+    if not os.path.exists(seihon):
+        return
+    import re as _re
+    with open(seihon, encoding="utf-8") as f:
+        text = f.read()
+
+    hajime = text.find("#### 空でよい欄には、理由を書く")
+    if hajime < 0:
+        raise AssertionError(
+            "正本5節に「空でよい欄には、理由を書く」が無い。**決まりごと消えている**")
+    owari = text.find("####", hajime + 4)
+    setsu = text[hajime:owari if owari > 0 else len(text)]
+
+    # 欄の一覧を写した形（字下げ＋英小文字の欄名＋空白2つ以上）が現れたら鳴る
+    utsushi = _re.findall(r"^    ([a-z_]{3,})\s{2,}\S", setsu, _re.M)
+    if utsushi:
+        raise AssertionError(
+            "正本5節に「空でよい欄」の一覧が写されている： " + " / ".join(utsushi[:5])
+            + "。**実物は build_site.py の KARA_DE_YOI。写すと片方だけ古くなる**")
+
+    for kotoba in ("KARA_DE_YOI", "data/ref/towns.json"):
+        if kotoba not in setsu:
+            raise AssertionError(
+                f"正本5節の「空でよい欄」に `{kotoba}` への案内が無い。"
+                "**写しをやめたなら、どこを見ればよいかを書く**")
+
+    # **市の名前を書かない。**一覧が増えたら古くなる
+    if "西宮" in setsu:
+        raise AssertionError(
+            "正本5節の「空でよい欄」に市の名前が書かれている。"
+            "**どの市の一覧を持っているかは data/ref/towns.json が持つ**")
+
+
 def test_町丁目が決まらない件数を手で書いていないか():
     """4節③の「空にして記録する」の、**記録の置き場は1つ**（2026-09-22）。
 
