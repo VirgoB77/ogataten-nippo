@@ -576,6 +576,123 @@ TOWN_TOTAL = 4361     # **住所が読めた行だけ。** 原典に住所が無
 TOWN_NASHI = 464      # 原典に住所が書かれていなかった行（こちらでは減らせない）
 
 
+# 2026-09-22 に測った値。**いま町丁目まで決まっている行の数。**
+# 一覧を入れたら増える。**減ったら、決まっていたものが決まらなくなった**ので鳴る
+TOWN_KIMATTA = 2597
+
+
+def _towns_wo_sashikomu(ichiran):
+    """町丁目の一覧を差し込む。**ファイルには書かない。**戻すのは呼ぶ側。"""
+    import addr as _a
+    moto = _a._towns
+    _a._towns = ichiran
+    return moto
+
+
+def test_町丁目の照合が短い町名へ化けない():
+    """**②が外れると、別の町丁目になる**（正本4節）。
+
+    2026-09-22、西宮市の105件で測って分かったこと。
+
+      ・「丁目なし・番地あり」の51件は、一覧を**一度も見ていなかった**
+      ・②の最長一致には「当たった直後が数字か」の条件が**コードに無かった**
+        （西宮市では偶然0件だったが、コードが守ったのではない）
+
+    A〜E をここで見る。**実在の町名を使う。**地番も人も出てこない。
+    """
+    import addr
+    moto = _towns_wo_sashikomu({})
+    try:
+        # A 数字の手前と町名が丸ごと同じ → ①で決まる
+        _towns_wo_sashikomu({"28204": ["甲子園町"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園町1番2号")
+        eq(d["town"], "甲子園町", "A ①：数字の手前と完全一致なら決まる")
+
+        # B 短い町名だけが前方一致 → 決めない
+        _towns_wo_sashikomu({"28204": ["甲子園"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園口北町5番6号")
+        eq(d["town"], "", "B ①：短い町名が頭に一致しただけでは決めない")
+
+        # C 1行に町が2つ → ①で誤って決めない
+        #   「139番、」の番は後ろが数字でないので印にならず、
+        #   数字の手前が「今津曙町139番、今津水波町」になる。丸ごと同じではない
+        _towns_wo_sashikomu({"28204": ["今津曙町", "今津水波町"]})
+        d = addr.normalize("兵庫県", "西宮市", "今津曙町139番、今津水波町2番3号")
+        eq(d["town"], "", "C ①：1行に町が2つあるとき、片方を選ばない")
+
+        # D ②で町名の直後が数字 → 従来どおり決まる
+        _towns_wo_sashikomu({"28204": ["甲子園町"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園町1-2")
+        eq(d["town"], "甲子園町", "D ②：直後が数字なら決まる")
+
+        # E ②で町名の直後が漢字 → 決めない
+        _towns_wo_sashikomu({"28204": ["甲子園"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園口北町1-2")
+        eq(d["town"], "", "E ②：直後が漢字なら決めない")
+
+        # **より短い候補へ下がらない**ことも見る。
+        # 「甲子園口北町」が無く「甲子園口」と「甲子園」が在っても、決めない
+        _towns_wo_sashikomu({"28204": ["甲子園", "甲子園口"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園口北町1-2")
+        eq(d["town"], "", "E' ②：境目が合わないとき、短い候補へ下がらない")
+
+        # 末尾で終わる形も採る（数字が1つも無い町名だけの住所）
+        _towns_wo_sashikomu({"28204": ["甲子園町"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園町")
+        eq(d["town"], "甲子園町", "②：末尾で終わるときも採る")
+    finally:
+        _towns_wo_sashikomu(moto)
+
+
+def test_町丁目が決まっている行を一覧が書き換えない():
+    """F **いま決まっているものを、あとから来た一覧が動かさない。**
+
+    9節「繋がらなかったことは残るが、まとまってしまったことは残らない」。
+    決まっていた町丁目が別の値に変わるのは、いちばん気づけない壊れ方。
+    """
+    import json
+    import addr
+    path = os.path.join(HERE, "data", "all.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        recs = json.load(f)
+
+    def hakaru():
+        out = {}
+        for i, r in enumerate(recs):
+            if not (r.get("address") or "").strip():
+                continue
+            try:
+                d = addr.normalize(r.get("pref", ""), r.get("city", ""), r.get("address", ""))
+            except ValueError:
+                raise
+            except Exception:
+                continue
+            if d.get("addr_key_town"):
+                out[i] = d["addr_key_town"]
+        return out
+
+    moto = _towns_wo_sashikomu({})
+    try:
+        mae = hakaru()
+        if len(mae) != TOWN_KIMATTA:
+            raise AssertionError(
+                f"町丁目まで決まっている行が動いた： {TOWN_KIMATTA} → {len(mae)}。"
+                "**増えたなら一覧が効いた（この数を直す）。減ったなら決まっていたものが"
+                "決まらなくなった（先に理由を見る）**")
+        # 一覧を差し込む。**いま決まっている行の値が1つでも変わったら鳴る**
+        _towns_wo_sashikomu({"28204": ["甲子園町", "今津曙町", "浜町", "本町", "甲子園"]})
+        ato = hakaru()
+        kawatta = [i for i, v in mae.items() if ato.get(i) != v]
+        if kawatta:
+            raise AssertionError(
+                f"一覧を入れたら、決まっていた町丁目が {len(kawatta)}件 変わった。"
+                "**一覧は、決まっていないものだけを決める**")
+    finally:
+        _towns_wo_sashikomu(moto)
+
+
 def test_町丁目までつながらない数が動いたら気づく():
     """4節③「空にして**記録する**」の、記録のほう。
 
