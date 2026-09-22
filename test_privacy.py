@@ -597,6 +597,133 @@ def _towns_wo_sashikomu(ichiran):
     return moto
 
 
+def _shirushi_no_naka(text):
+    """`<!-- 数えた値を書かない：ここから（…） -->` で挟まれた区間を返す。
+
+    **日本語の見出しで範囲を切らない**（2026-09-22）。
+    見出しの文言で挟むと、言い回しを整えただけで落ちる。
+    実際、範囲を `##` までにしたら385行・7小見出しに広がり、
+    **日付つきの過去の実測まで鳴った。**
+
+    目印は人が読んでも邪魔にならず、**何のための印かが読めばわかる**形にする。
+    """
+    HAJIME = re.compile(r"<!--\s*数えた値を書かない：ここから（([^）]*)）\s*-->")
+    OWARI = "<!-- 数えた値を書かない：ここまで -->"
+    out = []
+    for m in HAJIME.finditer(text):
+        e = text.find(OWARI, m.end())
+        if e < 0:
+            raise AssertionError(
+                f"「数えた値を書かない：ここから（{m.group(1)}）」に、"
+                "対になる「ここまで」が無い")
+        out.append((m.group(1), text[m.end():e]))
+    return out
+
+
+def test_数えた値を書かない印の中に件数が無いか():
+    """**手で書いた数には、持ち主がいない**（2026-09-22 に4件見つけた）。
+
+    現在の件数は、数えた段が生成物に書く。文書はそこを見る。
+
+        addr_katachi.py  →  data/ref/addr-katachi.md
+        town_gap.py      →  data/ref/town-gap.md
+        build_site.py    →  index.json の not_counted
+
+    その古い写しが文書に残っていた。**数字を新しくするのではなく、手書きをやめた。**
+    ここでは印で挟んだ区間だけを見る。**過去の実測や事故の記録は禁じない**
+    （日付つきで残すもの。機械で一律に止めると、履歴まで消える）。
+    """
+    for michi in (os.path.join(HERE, "docs", "kyotsu-shiyo.md"),
+                  os.path.join(HERE, "docs", "nokori.md")):
+        if not os.path.exists(michi):
+            continue
+        with open(michi, encoding="utf-8") as f:
+            text = f.read()
+        kukan = _shirushi_no_naka(text)
+        if michi.endswith("kyotsu-shiyo.md") and len(kukan) < 3:
+            raise AssertionError(
+                f"正本の「数えた値を書かない」の印が {len(kukan)} 区間しか無い。"
+                "**印を消すと、そこに件数を書き戻せる**")
+
+        for na, s in kukan:
+            # ① 件数・割合。**しきい値は別**（範囲の後ろ側・以上/以下/未満/超）
+            warui = []
+            for m in re.finditer(r"([0-9][0-9,]{1,})\s*(件|本|行|枚|欄)|([0-9]+\.[0-9])\s*%", s):
+                mae = s[max(0, m.start() - 1):m.start()]
+                ato = s[m.end():m.end() + 2]
+                if mae in ("〜", "～", "-", "–"):
+                    continue
+                if ato[:2] in ("以上", "以下", "未満") or ato[:1] == "超":
+                    continue
+                warui.append(m.group(0).strip())
+            if warui:
+                raise AssertionError(
+                    f"「{na}」の区間に、件数か割合が手で書かれている： "
+                    + " / ".join(warui[:5])
+                    + "。**現在値は、数えた段が書く生成物に置く**")
+
+            # ② コードの一覧を写していないか（字下げ＋英小文字の名前）
+            utsushi = re.findall(r"^    ([a-z_]{3,})\s{2,}\S", s, re.M)
+            if utsushi:
+                raise AssertionError(
+                    f"「{na}」の区間に、コード側の一覧が写されている： "
+                    + " / ".join(utsushi[:5])
+                    + "。**写すと片方だけ古くなる。実物のある場所を指す**")
+
+            # ③ 数を消したなら、どこを見ればよいかが書いてあるか
+            if not re.search(r"data/ref/[A-Za-z0-9_.-]+|index\.json|KARA_DE_YOI|[a-z_]+\.py", s):
+                raise AssertionError(
+                    f"「{na}」の区間に、現在値の見に行き先が書かれていない。"
+                    "**数字を消したなら、どこを見ればよいかを書く**")
+
+            # ④ 市の名前を書かない（一覧が増えたら古くなる）
+            if "西宮" in s:
+                raise AssertionError(
+                    f"「{na}」の区間に市の名前が書かれている。"
+                    "**どの市の一覧を持っているかは data/ref/towns.json が持つ**")
+
+
+def test_文書が案内する参照先が実在するか():
+    """**案内した先が消えても、誰も気づかない**（2026-09-22）。
+
+    文書は「現在値は `data/ref/…` を見る」と書くようになった。
+    だがその先が消えても、消えたことを見る検査が無かった
+    （`addr-katachi.md` も `town-gap.md` も、隠して走らせたら通った）。
+
+    **参照先が増えても、検査を書き足さなくてよい形**にする。
+    文面から拾って、在るかどうかだけ見る。**件数は1つも持たない。**
+
+    まだ作っていないものは、同じ行に `<!-- まだ無い -->` と書く。
+    **予定と現在を混ぜない**（7節「「まだ無い」と書いた記録は、記録が無いより悪い」）。
+    """
+    import glob as _glob
+    MICHI = re.compile(r"data/ref/[A-Za-z0-9_.-]+\.(?:md|json)")
+    nai = []
+    mita = 0
+    docs = [os.path.join(HERE, "CLAUDE.md"), os.path.join(HERE, "README.md")]
+    docs += sorted(_glob.glob(os.path.join(HERE, "docs", "**", "*.md"), recursive=True))
+    for d in docs:
+        if not os.path.exists(d):
+            continue
+        with open(d, encoding="utf-8") as f:
+            for i, ln in enumerate(f, 1):
+                if "まだ無い" in ln and "<!--" in ln:
+                    continue                      # これから作るもの
+                for m in MICHI.finditer(ln):
+                    mita += 1
+                    if not os.path.exists(os.path.join(HERE, m.group(0))):
+                        nai.append(f"{os.path.relpath(d, HERE)}:{i} {m.group(0)}")
+    if nai:
+        raise AssertionError(
+            "文書が案内している参照先が無い： " + " / ".join(nai[:5])
+            + "。**案内した先が消えたら、案内も直す。"
+            "まだ作っていないなら、その行に <!-- まだ無い --> と書く**")
+    if mita == 0:
+        raise AssertionError(
+            "文書から data/ref への案内が1本も拾えなかった。"
+            "**拾い方が壊れていると、この検査は黙って通る**")
+
+
 def test_空でよい欄の理由に件数を書いていないか():
     """**理由は意味を書く場所で、件数を置く場所ではない**（2026-09-22）。
 
@@ -637,165 +764,6 @@ def test_空でよい欄の理由に件数を書いていないか():
         raise AssertionError(
             "KARA_DE_YOI の city_code の理由に `not_counted` への案内が無い。"
             "**件数を消したなら、どこを見ればよいかを書く**")
-
-
-def test_空でよい欄の一覧を正本へ写していないか():
-    """**写しには見張りが付かない**（2026-09-22）。
-
-    「空でよい欄」の一覧は `build_site.KARA_DE_YOI` が持ち、検査もそこを読む。
-    その写しが正本5節に手書きで置かれていて、**両方ずれていた。**
-
-        コード 5欄（count / city_code / addr_key / addr_key_town / party）
-        正本   4欄（`addr_key` が抜け、`addr_key_town` の理由も古い）
-
-    **写しを直すのではなく、写しをやめた。**
-    ここでは「その節に欄の一覧が並んでいないこと」を見る。
-    """
-    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    if not os.path.exists(seihon):
-        return
-    import re as _re
-    with open(seihon, encoding="utf-8") as f:
-        text = f.read()
-
-    hajime = text.find("#### 空でよい欄には、理由を書く")
-    if hajime < 0:
-        raise AssertionError(
-            "正本5節に「空でよい欄には、理由を書く」が無い。**決まりごと消えている**")
-    owari = text.find("####", hajime + 4)
-    setsu = text[hajime:owari if owari > 0 else len(text)]
-
-    # 欄の一覧を写した形（字下げ＋英小文字の欄名＋空白2つ以上）が現れたら鳴る
-    utsushi = _re.findall(r"^    ([a-z_]{3,})\s{2,}\S", setsu, _re.M)
-    if utsushi:
-        raise AssertionError(
-            "正本5節に「空でよい欄」の一覧が写されている： " + " / ".join(utsushi[:5])
-            + "。**実物は build_site.py の KARA_DE_YOI。写すと片方だけ古くなる**")
-
-    for kotoba in ("KARA_DE_YOI", "data/ref/towns.json"):
-        if kotoba not in setsu:
-            raise AssertionError(
-                f"正本5節の「空でよい欄」に `{kotoba}` への案内が無い。"
-                "**写しをやめたなら、どこを見ればよいかを書く**")
-
-    # **市の名前を書かない。**一覧が増えたら古くなる
-    if "西宮" in setsu:
-        raise AssertionError(
-            "正本5節の「空でよい欄」に市の名前が書かれている。"
-            "**どの市の一覧を持っているかは data/ref/towns.json が持つ**")
-
-
-def test_町丁目が決まらない件数を手で書いていないか():
-    """4節③の「空にして記録する」の、**記録の置き場は1つ**（2026-09-22）。
-
-    `addr_key_town` が空になる件数は `town_gap.py` が数えて
-    `data/ref/town-gap.md` に書き、`test_privacy.py` が同じ数を留めている。
-    その古い写し（`4,809件中1,369件（28.5%）`）が正本に残っていた。
-    母数も分け方も変わったあと（原典に住所が無い行を混ぜなくなった）だったので、
-    **新しい数に書き換えるのではなく、手書きをやめた。**
-
-    ここで見るのは③の節だけ。**過去の実測や事故の記録は禁じない**
-    （日付つきで残すべきもの。機械で一律に止めると、履歴まで消える）。
-    """
-    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    if not os.path.exists(seihon):
-        return
-    import re as _re
-    with open(seihon, encoding="utf-8") as f:
-        text = f.read()
-
-    hajime = text.find("**③ ①でも②でも決まらないときは、`addr_key_town` を空にして記録する**")
-    if hajime < 0:
-        raise AssertionError(
-            "正本4節に③（空にして記録する）の見出しが無い。**決まりごと消えている**")
-    owari = text.find("**丁目は必ず含める。**", hajime)
-    if owari < 0:
-        raise AssertionError("正本4節③の終わり（「丁目は必ず含める」）が見つからない")
-    setsu = text[hajime:owari]
-
-    warui = [m.group(0).strip()
-             for m in _re.finditer(r"([0-9][0-9,]{2,})\s*件|([0-9]+\.[0-9])\s*%", setsu)]
-    if warui:
-        raise AssertionError(
-            "正本4節③に、件数か割合が手で書かれている： " + " / ".join(warui[:5])
-            + "。**現在値は data/ref/town-gap.md（town_gap.py が書く）に置く**")
-
-    for michi in ("data/ref/town-gap.md", "data/ref/towns.json"):
-        if michi not in setsu:
-            raise AssertionError(
-                f"正本4節③に `{michi}` への案内が無い。"
-                "**数字を消したなら、どこを見ればよいかを書く**")
-
-    # **市の名前を書かない。**一覧が増えたら古くなる
-    if "西宮" in setsu:
-        raise AssertionError(
-            "正本4節③に市の名前が書かれている。"
-            "**どの市に一覧が在るかは data/ref/towns.json が持つ。増えたら古くなる**")
-
-
-def test_地図の細かさの件数を手で書いていないか():
-    """**手で書いた数には、持ち主がいない**（2026-09-22 に数えて分かった）。
-
-    「地図に点を置ける細かさ」の件数は `addr_katachi.py` が数えて
-    `data/ref/addr-katachi.md` に書く。**生成物のほうは正しかった。**
-    ところが同じ数の古い写しが、正本と `nokori.md` に手書きで残っていた。
-
-        生成物   4,825件・6分類（いま）
-        手書き   4,809件・5分類・「1,845件（38.4%）」（3世代ぶん古い）
-
-    **数字を新しくするのではなく、手書きをやめる。**
-    ここでは「その節に件数や割合が書かれていないこと」を見る。
-    語を名指しで禁じると、**別の言い方で書き戻されたときに黙る**。
-    """
-    seihon = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    nokori = os.path.join(HERE, "docs", "nokori.md")
-    if not (os.path.exists(seihon) and os.path.exists(nokori)):
-        return
-    import re as _re
-
-    with open(seihon, encoding="utf-8") as f:
-        text = f.read()
-
-    # 「出せる細かさは…」から、次の ## （大見出し）まで
-    hajime = text.find("#### 出せる細かさは、相手が書いた細かさで決まる")
-    if hajime < 0:
-        raise AssertionError(
-            "正本に「出せる細かさは、相手が書いた細かさで決まる」が無い。"
-            "**地図の細かさの決まりごと消えている**")
-    # **範囲は小見出し2つぶん。** `##` まで取ると385行・7小見出しに広がり、
-    # 日付つきの過去の実測（別の話）まで鳴らしてしまう（2026-09-22 に踏んだ）
-    tsugi = "#### 住所の書かれ方は、1つのサイトの中でも混ざる"
-    owari = text.find(tsugi, hajime)
-    if owari < 0:
-        raise AssertionError(f"正本に「{tsugi}」が無い。**見張りの範囲が決められない**")
-    setsu = text[hajime:owari]
-
-    # 件数・割合の形。**3桁以上の数**（節番号・丁目・年は拾わない）
-    warui = []
-    for m in _re.finditer(r"([0-9][0-9,]{2,})\s*件|([0-9]+\.[0-9])\s*%", setsu):
-        warui.append(m.group(0).strip())
-    if warui:
-        raise AssertionError(
-            "正本の「出せる細かさ」の節に、件数か割合が手で書かれている： "
-            + " / ".join(warui[:5])
-            + "。**現在値は data/ref/addr-katachi.md（addr_katachi.py が書く）に置く。"
-              "ここに写すと、写した日から古くなる**")
-
-    # 現在値の見に行き先が、両方の文書から分かるか
-    for path, na in ((seihon, "正本"), (nokori, "nokori.md")):
-        with open(path, encoding="utf-8") as f:
-            if "data/ref/addr-katachi.md" not in f.read():
-                raise AssertionError(
-                    f"{na} に `data/ref/addr-katachi.md` への案内が無い。"
-                    "**数字を消したなら、どこを見ればよいかを書く**")
-
-    # nokori 側にも、地図の件数が戻っていないか
-    with open(nokori, encoding="utf-8") as f:
-        for ln in f:
-            if "点を置かない" in ln and _re.search(r"[0-9][0-9,]{2,}\s*件", ln):
-                raise AssertionError(
-                    "nokori.md の地図の行に件数が手で書かれている： " + ln.strip()[:80]
-                    + "。**data/ref/addr-katachi.md を見る形にする**")
 
 
 def test_町丁目の一覧が読める形で在るか():
