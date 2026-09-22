@@ -3709,7 +3709,22 @@ git log --oneline HEAD..origin/main | wc -l   # 本流に何本遅れている�
     Pages に付けられる）→
     ① 新を**仮の名前**で、**空のまま**作る（木はまだ入れない）→
     ② **最初の push より前に、新 repo の Actions を無効にする**
-    （Settings → Actions → General → Disable actions）。
+    （`Settings → Actions` の **Actions permissions** を **Disable actions** にして Save。
+    左の目次の「Actions」は畳まれていることがあるので、
+    `https://github.com/<owner>/<repo>/settings/actions` を直接開くほうが早い）。
+
+    **止まったかどうかは、repo 上部の「Actions」タブが消えたことで見る**（2026-09-22 実測）。
+
+    **API の `list_workflows` で判定しない。**
+    repo ごと Actions を止めていても、`list_workflows` は workflow の一覧を返し、
+    各行の `state` も `active` のまま返る。**「一覧が返る＝動く」ではない。**
+    2026-09-22、参謀はこれを根拠に「旧 repo の Actions はまだ止まっていない」と
+    報告したが、実際には止まっていた。**その検査が区別できるものを先に言わずに、
+    結果だけ読んだ。** 5節「「あるか」を見る検査は、「合っているか」を見ていない」。
+
+    なお、workflow がまだ1本も無い repo では、`list_workflows` は 0 本と返る。
+    **止まっているから 0 なのか、まだ入れていないから 0 なのか、この検査では分からない**
+    （6節「「0件」は、その道を1回も通っていないときにも出る」）。
 
     **「数時間なら cron に当たらないだろう」に頼らない。**
     `.github/workflows/` を含む木を push した時点で、push で起きる workflow は走りうる。
@@ -3720,8 +3735,13 @@ git log --oneline HEAD..origin/main | wc -l   # 本流に何本遅れている�
     **入れないもの**：`data/raw` `data/files` `data/ocr` `data/wayback`・`data/*.md`・
     **`data/koho/**`（ディレクトリごと全部）**・`CNAME`。
     作り方は「main を `git archive` で展開 → 上を消す → 1コミット」。
-    Pages を有効にしてよい（CNAME が無いので github.io の仮 URL で配信される。動作確認に使う。
-    **Pages の配信は Actions とは別**なので、②で止めていても見られる）→
+    **Pages はここではまだ出ない。**
+    **Pages の組み立ては Actions の仕組みに乗っている。**②で止めているあいだは
+    build が1回も走らない（2026-09-22 実測）。⑨で独自ドメインを保存して
+    GitHub が `CNAME` を commit した時点でも走らず、⑪で Actions を戻したあと、
+    ⑫の巡回が積んだ commit で初めて走った。
+    **旧版はここに「Pages の配信は Actions とは別なので、②で止めていても見られる」と
+    書いていた。実地では違った。** 仮 URL での動作確認は⑪より前にはできない →
     ④ 旧の Actions を止める →
     ⑤ 旧の Pages を **Unpublish**（独自ドメインを外すだけでは github.io 側が配信を続ける。
     Free なら private 化で落ちるが、それに頼らない）。直後に
@@ -3734,11 +3754,18 @@ git log --oneline HEAD..origin/main | wc -l   # 本流に何本遅れている�
     `.github/workflows/` を消す commit を入れる（archive は保全専用。
     private でも `schedule:` は走る）。
 
-    **private のまま rename できるかは、2026-09-22 の時点では確かめていない。**
-    GitHub の説明書きをこちらの網が塞いでいて読めなかった。
-    設定の画面では名前と公開範囲は別の欄なので通ると見ているが、**それは読みであって
-    測定ではない**。⑥で拒まれたらその場で分かる。そのときは旧の順（rename → private）に
-    戻すだけで、**失うものは無い**（public に戻す操作は要らない）→
+    **private のまま rename できる**（2026-09-22 実測。⑥→⑦ の順で通った。
+    改名しても先端は動かず、PR の頭 176 本・枝 30 本もそのまま残った）。
+
+    **Rename の場所は Danger Zone ではない。** `Settings` ページの**一番上**、
+    **Repository name** の入力欄と、その右の **Rename** ボタン。
+    Danger Zone に在るのは visibility・branch protection・Transfer・**Archive**・Delete で、
+    **rename は無い**。2026-09-22、参謀は「Danger Zone の Rename」と案内して外した。
+
+    **Danger Zone の「Archive this repository」を押さない。**
+    名前に `archive` と付けるのと、GitHub の Archive 機能は別物。
+    押すと read-only になり、この⑦の後半（`.github/workflows/` を消す commit）が
+    入れられなくなる →
     ⑧ 新を `<公開用の名前>` に rename →
     ⑨ 新の Pages に独自ドメインを付け（GitHub が `CNAME` を commit する）、
     **それから** Secret を入れる。入れるのは旧が private になった**後** →
@@ -3754,7 +3781,21 @@ git log --oneline HEAD..origin/main | wc -l   # 本流に何本遅れている�
       ・新 public に `data/koho/` が **0 本**
       ・`docs/` が戻っていて、**代表的な正本リンクが 200**
         （`https://github.com/<owner>/<公開用の名前>/blob/main/docs/kyotsu-shiyo.md`）
-      ・⑫の回で**金庫に保存されている**（生データが金庫側に増えている）→
+      ・⑫の回で**金庫に保存されている**（生データが金庫側に増えている。
+        **巡回の前に金庫の本数を数えておく。**あとから数えても、
+        増えたのか元からなのか分からない）
+
+    **⑬のうち、サイトと archive の生死は参謀からは測れない。運営者の目視が要る。**
+    作業容器から `<独自ドメイン>` へも `<owner>.github.io` へも出られない
+    （2026-09-22、proxy が CONNECT に 403。サイトが止まったからではなく、
+    この箱がそもそも見に行けない）。**繋がらない ≠ 止まった。**
+    次の2つは運営者に**シークレットウィンドウで**見てもらい、返事を待つ。
+
+      ・独自ドメインで**サイトが戻っている**
+      ・`<公開用の名前>-archive` が**匿名で 404**
+
+    参謀側で測れるのはここまで——新 public の木の中身、金庫の増減、
+    正本リンクの宛先（`docs/kyotsu-shiyo.md` を API で実際に引けるか）→
     ⑭ **古い clone は全部 remote を付け替えるか消す。** 同じ名前で作り直したあと、古い clone
     からの push は新しい公開用に届く（新しい枝を push すると、旧履歴ごと public に戻る）
 
