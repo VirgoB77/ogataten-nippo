@@ -59,7 +59,7 @@ def measure(recs):
             unreadable += 1                  # ② 住所は在るが読めなかった
             continue
         total += 1
-        if not d.get("addr_key_town"):       # ③ 町丁目の一覧がまだ無い
+        if not d.get("addr_key_town"):       # ③ 町丁目が決まらない（その市の一覧が無いか、町名が載っていない）
             empty += 1
             by_city[f'{r.get("pref", "")}{r.get("city", "")}'] += 1
     return total, empty, by_city, unreadable, nashi
