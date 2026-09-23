@@ -13,6 +13,16 @@
      "hozon": "hyogo-pref-000028_food_business_lisence_all.xlsx",
      "etag": "\"44c8b1-659c663355acd\"",
      "last_modified": "Mon, 24 Aug 2026 08:01:03 GMT"
+    },
+    {
+     "hi": "2026-09-23",
+     "yubiwa": "9ad40455b02cc5020740bee17d8355bcd6bf3b5232af68e66d9a4c84125eeeb8",
+     "bytes": 4507825,
+     "status": 200,
+     "ctype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "hozon": "hyogo-pref-000028_food_business_lisence_all.xlsx",
+     "etag": "\"44c8b1-659c663355acd\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:03 GMT"
     }
    ]
   },
@@ -22,6 +32,16 @@
    "mita": [
     {
      "hi": "2026-09-21",
+     "yubiwa": "04cba05b80797931b699973407e2669e3966adfdd2e5afb8975d042e02a141c3",
+     "bytes": 6516944,
+     "status": 200,
+     "ctype": "application/pdf",
+     "hozon": "hyogo-pref-000028_food_business_lisence_all.pdf",
+     "etag": "\"6370d0-659c6633fe216\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:03 GMT"
+    },
+    {
+     "hi": "2026-09-23",
      "yubiwa": "04cba05b80797931b699973407e2669e3966adfdd2e5afb8975d042e02a141c3",
      "bytes": 6516944,
      "status": 200,
@@ -45,6 +65,16 @@
      "hozon": "hyogo-pref-000028_food_business_notification_all.xlsx",
      "etag": "\"6ab80e-659c6634ebebd\"",
      "last_modified": "Mon, 24 Aug 2026 08:01:04 GMT"
+    },
+    {
+     "hi": "2026-09-23",
+     "yubiwa": "6c9a1ea17676ae346f9dd39e3cd668dea46539e052a0b992ff03985100ae01b9",
+     "bytes": 6993934,
+     "status": 200,
+     "ctype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "hozon": "hyogo-pref-000028_food_business_notification_all.xlsx",
+     "etag": "\"6ab80e-659c6634ebebd\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:04 GMT"
     }
    ]
   },
@@ -54,6 +84,16 @@
    "mita": [
     {
      "hi": "2026-09-21",
+     "yubiwa": "2d70fa34001b9d7465b2d7f775f2f2ee3d8cc94dfce0f9d658ae0eb235ac4dde",
+     "bytes": 3351874,
+     "status": 200,
+     "ctype": "application/pdf",
+     "hozon": "hyogo-pref-000028_food_business_notification_all.pdf",
+     "etag": "\"332542-659c663545081\"",
+     "last_modified": "Mon, 24 Aug 2026 08:01:05 GMT"
+    },
+    {
+     "hi": "2026-09-23",
      "yubiwa": "2d70fa34001b9d7465b2d7f775f2f2ee3d8cc94dfce0f9d658ae0eb235ac4dde",
      "bytes": 3351874,
      "status": 200,
@@ -77,6 +117,16 @@
      "hozon": "amagasaki-city-kyoka202608.csv",
      "etag": "\"1abe76-65af388fb7e80\"",
      "last_modified": "Tue, 08 Sep 2026 07:18:02 GMT"
+    },
+    {
+     "hi": "2026-09-23",
+     "yubiwa": null,
+     "bytes": 0,
+     "status": 304,
+     "ctype": "",
+     "etag": "\"1abe76-65af388fb7e80\"",
+     "last_modified": "Tue, 08 Sep 2026 07:18:02 GMT",
+     "hozon": ""
     }
    ]
   },
@@ -93,9 +143,19 @@
      "hozon": "amagasaki-city-todoke202608.csv",
      "etag": "\"720ce-65af38bb96600\"",
      "last_modified": "Tue, 08 Sep 2026 07:18:48 GMT"
+    },
+    {
+     "hi": "2026-09-23",
+     "yubiwa": null,
+     "bytes": 0,
+     "status": 304,
+     "ctype": "",
+     "etag": "\"720ce-65af38bb96600\"",
+     "last_modified": "Tue, 08 Sep 2026 07:18:48 GMT",
+     "hozon": ""
     }
    ]
   }
  },
- "generated_at": "2026-09-21"
+ "generated_at": "2026-09-23"
 }
