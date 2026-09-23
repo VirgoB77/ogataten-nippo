@@ -48,21 +48,16 @@
 
 ### 2本のリポジトリ（生データの置き場）
 
-（移行前。いまは鍵が無く、生データもこのリポジトリにあって1本で動いている。
-移行の手順と順番は `.github/workflows/shutten-recon.yml` のコメント）
-
 生データ（取ってきたページ・Excel・PDF・OCR の結果・台帳）は、そのまま公開できるとは
 限らないので、**private の収集用リポジトリ `VirgoB77/ogataten-nippo-raw`（金庫）** に置く。
 ここ（公開用）に残るのは、伏せ処理を通した結果とページ、それを作るコード。
-例外は兵庫県公報の写し（全文 `data/koho/full` と公告の抜粋 `data/koho/text`）で、
-共通仕様9節の表で「公開できる」ものにあたり、姉妹サイトが公開 URL から読むので公開用に置く。
 共通仕様9節「2本のリポジトリ」の実装。
 
 - 走るのは公開用（この）リポジトリの Actions。金庫の Actions は止め、workflow を持たせない
   （名前が `-raw` で終わるか `-raw-` を含むリポジトリでは workflow が自分で止まる）。
   走る前に金庫が private であることも確かめる
 - Actions が deploy key で金庫を `_raw/` に checkout し、`data/raw` `data/files` `data/ocr`
-  `data/wayback` を `ln -s` で**今までのパスにつなぐ**。Python は置き場の違いを知らない
+  `data/wayback` `data/koho` を `ln -s` で**今までのパスにつなぐ**。Python は置き場の違いを知らない
 - 公開用への commit は**許可リスト**。公開してよいと決めたパスだけを列挙して `git add` し、
   生データ・記録・symlink が混ざっていたら止まる（鍵がある形。無い間は従来どおり `data` を丸ごと）
 - しまう順番は 金庫 → 検査 → 公開用。生データを先にしまい、そこで失敗したら公開用にも送らない
@@ -72,9 +67,10 @@
 ```
 公開用 ogataten-nippo（public・Pages）        金庫 ogataten-nippo-raw（private）
   コード・共通仕様・all.json・parsed・         data/raw   取ってきたページ
-  koho/full,text・HTML・index.json     ←ln -s→ data/files Excel・PDF
+  HTML・index.json                     ←ln -s→ data/files Excel・PDF
   .github/workflows（ここで毎晩走る）           data/ocr   OCR の結果
                                               data/wayback 台帳
+                                              data/koho  兵庫県公報の写しと目録
                                               data/reports 走らせた記録
 ```
 
