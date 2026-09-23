@@ -18,7 +18,8 @@
 実際は 464 行が空だった。**0件は、その道を1回も通っていないときにも出る**（6節）。
 戒めを書いた当人が、同じ文の下で踏んでいた。
 
-一覧（`data/ref/towns.json`）はまだ無い。出どころは国土交通省の位置参照情報で、
+一覧は `data/ref/towns.json`（出典は `towns.meta.json`）。**どの市の一覧が在るかは
+ここに書かない**——この段が毎回その場で数えて記録に出す。出どころは国土交通省の位置参照情報で、
 `ref_youto.py` が既に同じ場所（`nlftp.mlit.go.jp/isj/`）を見に行っている。
 **用途地域と町丁目一覧は、同じ1回の実行で取りに行ける。**
 """
@@ -58,7 +59,7 @@ def measure(recs):
             unreadable += 1                  # ② 住所は在るが読めなかった
             continue
         total += 1
-        if not d.get("addr_key_town"):       # ③ 町丁目の一覧がまだ無い
+        if not d.get("addr_key_town"):       # ③ 町丁目が決まらない（その市の一覧が無いか、町名が載っていない）
             empty += 1
             by_city[f'{r.get("pref", "")}{r.get("city", "")}'] += 1
     return total, empty, by_city, unreadable, nashi
