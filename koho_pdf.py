@@ -19,8 +19,9 @@ koho.py が目録から拾った公告には（発行日, 公報番号）が付�
 出力：data/parsed/hyogo-koho/all.json（過去分を全部含む一覧として merge.py が読む）。
 文字ファイルは毎回読み直すので、読み取りを直せば過去の分にも効く。
 
-姉妹サイトへ：全文はここから読める。兵庫県のサーバーには触らないこと。
-  https://raw.githubusercontent.com/VirgoB77/ogataten-nippo/main/data/koho/full/<日付>-<号>.txt.gz
+姉妹サイトへ：全文は金庫の data/koho から読む（公開側には置いていない）。
+兵庫県のサーバーには触らないこと。
+  data/koho/full/<日付>-<号>.txt.gz
   号外は <日付>-g<n>.txt.gz（「号外」が g1、「第2号外」が g2。本体 PDF の名前 20251219g2.pdf と同じ数え方）
   号の一覧は data/koho/issues.json（status が done のものが取得済み）。
 
