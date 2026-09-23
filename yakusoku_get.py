@@ -400,7 +400,7 @@ def houkoku(kekka, hiduke):
         rb = d.get("robots_yakusoku") or d.get("robots_top") or "—"
         if not y:
             # **「開いて0本だった」と「開いていない」を、同じ顔で出さない。**
-            # 相手が混んでいた回・届かなかった回は、0本の側に入れない（9節）
+            # 相手が混んでいた回・届かなかった回は、0本の側に入れない（6節）
             ar = (f"{len(d['arika'])}本"
                   if d["arika"] or d.get("hiraita") else "**—（開いていない）**")
             a(f"| {d['mei']} | {hi} | {rb} "
