@@ -715,7 +715,7 @@ def test_文書が案内する参照先が実在するか():
     文面から拾って、在るかどうかだけ見る。**件数は1つも持たない。**
 
     まだ作っていないものは、同じ行に `<!-- まだ無い -->` と書く。
-    **予定と現在を混ぜない**（7節「「まだ無い」と書いた記録は、記録が無いより悪い」）。
+    **予定と現在を混ぜない**（6節「「まだ無い」とも書かない」）。
     """
     import glob as _glob
     MICHI = re.compile(r"data/ref/[A-Za-z0-9_.-]+\.(?:md|json)")
@@ -3735,7 +3735,7 @@ def test_address_shaped_operator_is_flagged():
 
 
 def test_teisei_and_about_pages():
-    """7節：訂正履歴のページがあり about から辿れる。8節：「やらないと決めたこと」が about にある。"""
+    """8節：訂正履歴のページがあり about から辿れる。「やらないと決めたこと」が about にある。"""
     about = os.path.join(HERE, "about.html")
     teisei = os.path.join(HERE, "teisei.html")
     if not (os.path.exists(about) and os.path.exists(teisei)):

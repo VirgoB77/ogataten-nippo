@@ -69,7 +69,7 @@ WINDOW_COVERS = {"minoh-2shi2cho": ["池田市", "豊能町", "能勢町"]}   # 
 NOT_DELEGATED = {"吹田市", "高槻市"}     # 移譲先ではなく府が受理する（sources.json の note）
 DELEGATED_MISSING = ["岬町"]              # 移譲先だが届出ページが見つからず、府のページに載る分だけ拾う
 SITE_START = "2026-09-11"   # このサイトが自分で取りに行き始めた日。これより前の日付は Internet Archive の保存から
-# 訂正履歴（7節「氏名の代わりに信用を作るもの」の3つめ）。いつ・何を・なぜ。氏名は書かない
+# 訂正履歴（8節「各サイトのページに必ず置くもの」）。いつ・何を・なぜ。氏名は書かない
 TEISEI = [
     ("2026-09-19", "全ての届出ページの「取得日」が、実際に取りに行った日より1日早く出ていたのを直した。"
      "毎朝の巡回が日付をまたぐ時刻に走っていたため、取りに行った時刻と記録した時刻で日付が違っていた。",
@@ -671,7 +671,7 @@ def _mokuroku_fetched():
 
 
 def teisei_page(today):
-    """訂正履歴。いつ・何を・なぜ（7節）。氏名は書かない。"""
+    """訂正履歴。いつ・何を・なぜ（8節）。氏名は書かない。"""
     rel = ""
     items = "".join(f"<tr><td style=\"white-space:nowrap\">{esc(d)}</td><td>{esc(what)}</td><td>{esc(why)}</td></tr>"
                     for d, what, why in sorted(TEISEI, reverse=True))
