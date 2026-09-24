@@ -67,6 +67,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          # **浅い履歴だと、カードの承認の出どころを確かめられない**
+          # （common/kado.py の shounin_dedokoro）。承認は git の履歴で見るので、
+          # 履歴を全部持ってくる
+          fetch-depth: 0
 
       # 共通仕様9節「2本のリポジトリ」。生データ（取ってきたページ・Excel・PDF・OCR・台帳）は
       # private の金庫 VirgoB77/ogataten-nippo-raw に置き、ここには伏せ処理を通した結果とページ、
@@ -149,6 +153,11 @@ jobs:
           rm -rf "inbox/chien"
           ln -s "../_raw/inbox/chien" "inbox/chien"
           ls -la data inbox
+          # **ここまで来た＝直前の「置き場を確かめる」で金庫が private だと確かめ、
+          # いま checkout もつないだ、その成功の道。** common/kado.py の門に、
+          # 金庫の場所を渡す（確かめられなかった道では書かない）
+          echo "KINKO_DIR=$(pwd)/_raw" >> "$GITHUB_ENV"
+          echo "KINKO_PRIVATE=1" >> "$GITHUB_ENV"
 
       # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
       # 落ちたらここで止まり、取りに行かない。
@@ -272,17 +281,6 @@ jobs:
         timeout-minutes: 45
         run: python3 chien_get.py
 
-      # **金庫が無い回は、ここが唯一の置き場。** 90日で消えるので、
-      # 金庫を用意するまでの間に合わせ。**消える前に金庫へ移すこと**
-      - name: 遅延証明書を成果物に残す（金庫が無い回の置き場）
-        if: ${{ env.HAS_VAULT != 'true' && !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: chien-${{ env.RUN_DATE }}
-          path: inbox/chien/
-          if-no-files-found: warn
-          retention-days: 90
-
       # 取り直せないもの（生データ）を先にしまう。金庫は private なので、公開側の検査を待たない。
       # 途中の段（取り出し・まとめ・ページ作り）が落ちた日でも、取ってきた分は金庫に入れる
       # （!cancelled()）。そのあとの検査と公開側の push は、落ちた日は走らない。
@@ -372,14 +370,11 @@ jobs:
               exit 1
             fi
           else
-            # 旧来の形（移行前）。生データを追跡しているリポジトリでだけ許す
-            if [ -z "$(git ls-files -- data/raw)" ]; then
-              echo "鍵が無く生データも追跡していないのに、ここまで来た。data を丸ごとは入れない"
-              exit 1
-            fi
-            git add data index.html about.html contact.html hyogo-koho.html teisei.html \
-                    taiten.html settisha.html shinsetsu-to-kaiten.html style.css \
-                    a k s index.json search.json sitemap.xml robots.txt
+            # **金庫が無い回に data/raw 等を公開側へ commit する、旧来の道はもう無い。**
+            # 生データは金庫（private）にしか置かない（5節）。金庫が無ければ、
+            # 「置き場を確かめる」で既に止まっているはずなので、ここに来るのは想定外
+            echo "金庫が無いのにここまで来た。公開側に data を丸ごとは入れない（旧来の道は閉じた）"
+            exit 1
           fi
           if git diff --cached --quiet; then
             echo "変わりなし。今日は何も起きていない"

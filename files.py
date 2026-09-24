@@ -40,6 +40,7 @@ FILES = os.path.join(HERE, "data", "files")
 
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 from common import hikisu   # 知らない引数で止める（3.4）
+from common import kado     # 取りに行く前の門。カードid = sources.json の id（共通指示書1）
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90
 PDF_TIMEOUT = 25          # PDFは1本ずつ多いので短く諦める。90秒×50本で1時間止まった
@@ -123,23 +124,35 @@ def safe_name(url):
 
 
 def browser_session(page_url):
-    """ページを先に開いて、サーバーがくれるクッキーを持った状態を作る。
+    """ページを先に開いて、サーバーがくれるクッキーを持った状態（`CookieJar`）を作る。
 
     大阪市はURLの組み立てが正しくブラウザからは落とせるのに、この仕組みからは
     404を返す。ページを見ずにいきなりファイルを取りに来る相手を弾いている
     可能性がある。人がブラウザでするのと同じ順（ページ→リンク）でたどる。
     名乗り（User-Agent）は変えない。
+
+    **ここだけの通信の道具を自分で組み立てると、門（common/kado.py）を
+    回り込む。** だからここでは opener を新しく組み立てない。
+    `urllib.request.urlopen()`（門を通る、いまの既定の opener）だけを使い、
+    クッキーは `CookieJar.add_cookie_header` / `extract_cookies` で手で出し入れする。
+    カードの門を通っているセッションの中でだけ、この関数を呼ぶこと。
     """
+    K = kado.genzai()
+    if K is None:
+        # **門が始まっていない。** ここだけの道で回り込ませない
+        raise kado.Tomeru("門（common/kado.py）が始まっていない")
     jar = http.cookiejar.CookieJar()
-    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
     req = urllib.request.Request(page_url, headers={
         "User-Agent": UA, "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
         "Accept-Language": "ja,en;q=0.5"})
+    jar.add_cookie_header(req)
     try:
-        opener.open(req, timeout=TIMEOUT).read(200000)
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+            jar.extract_cookies(r, req)
+            r.read(200000)
     except Exception:
         pass
-    return opener
+    return jar
 
 
 FETCHED_LEDGER = os.path.join(FILES, "fetched.json")
@@ -164,20 +177,27 @@ def note_fetched(dest, when=None):
             json.dump(led, f, ensure_ascii=False, indent=1, sort_keys=True)
 
 
-def download(url, dest, limit=MAX_BYTES, referer=None, timeout=TIMEOUT, opener=None):
-    """ファイルを落とす。
+def download(url, dest, limit=MAX_BYTES, referer=None, timeout=TIMEOUT, cookies=None):
+    """ファイルを落とす。**`urllib.request.urlopen()` だけを使う**（門を通る）。
 
     大阪市はURLの組み立てが正しいのに404を返した（大阪府は同じやり方で17本
     取れている）。ファイルを配るときに参照元を見るサーバーがあるので、
     どのページから来たのかを添える。素性は User-Agent に書いてあるとおり。
+
+    `cookies`（`browser_session()` が作った `CookieJar`）があれば、
+    ここだけの opener は作らず、リクエストにクッキーを足してから
+    既定の opener（門つき）で出す。
     """
     headers = {"User-Agent": UA, "Accept-Language": "ja,en;q=0.5", "Accept": "*/*",
                "Accept-Encoding": "identity"}
     if referer:
         headers["Referer"] = referer
     req = urllib.request.Request(url, headers=headers)
-    open_ = opener.open if opener else urllib.request.urlopen
-    with open_(req, timeout=timeout) as r:
+    if cookies is not None:
+        cookies.add_cookie_header(req)
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        if cookies is not None:
+            cookies.extract_cookies(r, req)
         size = int(r.headers.get("Content-Length") or 0)
         if size > limit:
             raise ValueError(f"大きすぎる（{size:,}バイト）ので見送った")
@@ -190,14 +210,14 @@ def download(url, dest, limit=MAX_BYTES, referer=None, timeout=TIMEOUT, opener=N
     return len(data)
 
 
-def recheck(url, dest, src, opener):
+def recheck(url, dest, src, cookies):
     """手持ちがあるファイルを、もう一度取りに行って結果を一行で返す。
 
     失敗しても手持ちはそのまま。取れて中身が変わっていたときだけ置き換える。
     """
     tmp = dest + ".new"
     try:
-        n = download(url, tmp, MAX_BYTES, referer=src["url"], timeout=TIMEOUT, opener=opener)
+        n = download(url, tmp, MAX_BYTES, referer=src["url"], timeout=TIMEOUT, cookies=cookies)
     except (ValueError, urllib.error.HTTPError, urllib.error.URLError, OSError, TimeoutError) as e:
         if os.path.exists(tmp):
             os.remove(tmp)
@@ -247,6 +267,88 @@ def main():
                               if s.startswith("osaka") or v.get("pdf") or v.get("files")]
     lines = ["# Excelを取ってきた結果", ""]
     got = skipped = failed = 0
+    # **取りに行く前の門。** カードid = sources.json の id（共通指示書「この置き場の具体」）。
+    K = kado.hajimeru(HERE, "ogataten-nippo", UA, today=runday.today())
+
+    def do_source(sid, src, links):
+        """1収集先ぶん。**カードの門を通ったセッションの中でだけ呼ぶ。**"""
+        nonlocal got, skipped, failed
+        d = os.path.join(FILES, sid)
+        os.makedirs(d, exist_ok=True)
+
+        streak = 0
+        cookies = browser_session(src["url"]) if src.get("session") else None
+        for url, label in links:
+            dest = os.path.join(d, safe_name(url))
+            # robots.txt はホストごとに1回だけ取る（キャッシュ）。拒否なら取りに行かない。
+            # robots.txt 自体が 429/503 なら、その収集先は今回ここまで（3.4）
+            allowed, why = check_robots(url)
+            if allowed is None:
+                lines.append(f"  - {why}。この収集先は今回ここまで")
+                break
+            if allowed is False:
+                lines.append(f"  - {why}: {safe_name(url)} は取りに行かない")
+                skipped += 1
+                continue
+            if os.path.exists(dest):
+                if cookies is not None:
+                    # クッキー経路の収集先は、手持ちがあっても取りに行って通るかを確かめる。
+                    # 大阪市は利用者がブラウザで落としたファイルを同じ名前で置いてあるので、
+                    # 飛ばすと「通るようになったか」がいつまでも分からない。
+                    # 取れて中身が変わっていれば置き換える（更新の検知にもなる）
+                    lines.append(recheck(url, dest, src, cookies))
+                    time.sleep(WAIT)
+                skipped += 1
+                continue
+            is_pdf = url.lower().endswith(".pdf")
+            # 収集先ごとにPDFの上限を変えられる（兵庫県の資料は8MB級が本体）
+            pdf_cap = int(src.get("pdf_max_mb", 0) * 1024 * 1024) or PDF_MAX_BYTES
+            try:
+                n = download(url, dest,
+                             pdf_cap if is_pdf else MAX_BYTES,
+                             referer=src["url"],
+                             timeout=PDF_TIMEOUT if is_pdf else TIMEOUT,
+                             cookies=cookies)
+            except ValueError as e:
+                # 「大きすぎるので見送った」は相手の不調ではない。失敗の連続には数えない。
+                # 兵庫県はリストの先頭3本が8MB級で、ここを失敗と数えて全部打ち切っていた
+                lines.append(f"  - 見送り {safe_name(url)} — {e}")
+                skipped += 1
+                time.sleep(WAIT)          # 上限まで読んでから見送っている。要求は出したので5秒あける
+                continue
+            except (urllib.error.HTTPError, urllib.error.URLError, OSError, TimeoutError) as e:
+                lines.append(f"  - 取れなかった {safe_name(url)} — {type(e).__name__}: {str(e)[:60]}")
+                if is_busy(e):
+                    lines.append(f"  - **HTTP {e.code}（混んでいる）。この収集先は今回ここまで**（共通仕様3.4）")
+                    failed += 1
+                    break
+                if cookies is not None:
+                    # 大阪市は機械からは取れないと分かっている（2026-09-12時点）。
+                    # ページに新しいファイル名が出たら、人がブラウザで落として置く合図にする
+                    lines.append(f"  - **新しいファイル名 {safe_name(url)} がページに出ています。"
+                                 f"ブラウザで落として data/files/{sid}/ に置いてください**")
+                failed += 1
+                streak += 1
+                if streak >= FAIL_STREAK:
+                    left = sum(1 for u, _ in links if not os.path.exists(os.path.join(d, safe_name(u))))
+                    lines.append(f"  - **{FAIL_STREAK}回続けて取れなかったので、この収集先は今日はここまで**（残り{left}本は次回）")
+                    break
+                time.sleep(WAIT)
+                continue
+            streak = 0
+            got += 1
+            lines.append(f"  - **{safe_name(url)}** {n:,}バイト … {label}")
+            info = peek(dest)
+            if info is None:
+                lines.append("    - 中は読んでいない")
+            elif "error" in info:
+                lines.append(f"    - 開けなかった: {info['error']}")
+            else:
+                for sheet, meta in info.items():
+                    h = " | ".join(x for x in meta["header"] if x)
+                    lines.append(f"    - シート「{sheet}」 {meta['rows']}行  {h}")
+            time.sleep(WAIT)
+        lines.append("")
 
     for sid in wanted:
         src = sources.get(sid)
@@ -285,82 +387,15 @@ def main():
             if len(DROPPED) > 40:
                 lines.append(f"  - …ほか {len(DROPPED) - 40} 本")
 
-        d = os.path.join(FILES, sid)
-        os.makedirs(d, exist_ok=True)
-
-        streak = 0
-        opener = browser_session(src["url"]) if src.get("session") else None
-        for url, label in links:
-            dest = os.path.join(d, safe_name(url))
-            # robots.txt はホストごとに1回だけ取る（キャッシュ）。拒否なら取りに行かない。
-            # robots.txt 自体が 429/503 なら、その収集先は今回ここまで（3.4）
-            allowed, why = check_robots(url)
-            if allowed is None:
-                lines.append(f"  - {why}。この収集先は今回ここまで")
-                break
-            if allowed is False:
-                lines.append(f"  - {why}: {safe_name(url)} は取りに行かない")
-                skipped += 1
-                continue
-            if os.path.exists(dest):
-                if opener is not None:
-                    # クッキー経路の収集先は、手持ちがあっても取りに行って通るかを確かめる。
-                    # 大阪市は利用者がブラウザで落としたファイルを同じ名前で置いてあるので、
-                    # 飛ばすと「通るようになったか」がいつまでも分からない。
-                    # 取れて中身が変わっていれば置き換える（更新の検知にもなる）
-                    lines.append(recheck(url, dest, src, opener))
-                    time.sleep(WAIT)
-                skipped += 1
-                continue
-            is_pdf = url.lower().endswith(".pdf")
-            # 収集先ごとにPDFの上限を変えられる（兵庫県の資料は8MB級が本体）
-            pdf_cap = int(src.get("pdf_max_mb", 0) * 1024 * 1024) or PDF_MAX_BYTES
-            try:
-                n = download(url, dest,
-                             pdf_cap if is_pdf else MAX_BYTES,
-                             referer=src["url"],
-                             timeout=PDF_TIMEOUT if is_pdf else TIMEOUT,
-                             opener=opener)
-            except ValueError as e:
-                # 「大きすぎるので見送った」は相手の不調ではない。失敗の連続には数えない。
-                # 兵庫県はリストの先頭3本が8MB級で、ここを失敗と数えて全部打ち切っていた
-                lines.append(f"  - 見送り {safe_name(url)} — {e}")
-                skipped += 1
-                time.sleep(WAIT)          # 上限まで読んでから見送っている。要求は出したので5秒あける
-                continue
-            except (urllib.error.HTTPError, urllib.error.URLError, OSError, TimeoutError) as e:
-                lines.append(f"  - 取れなかった {safe_name(url)} — {type(e).__name__}: {str(e)[:60]}")
-                if is_busy(e):
-                    lines.append(f"  - **HTTP {e.code}（混んでいる）。この収集先は今回ここまで**（共通仕様3.4）")
-                    failed += 1
-                    break
-                if opener is not None:
-                    # 大阪市は機械からは取れないと分かっている（2026-09-12時点）。
-                    # ページに新しいファイル名が出たら、人がブラウザで落として置く合図にする
-                    lines.append(f"  - **新しいファイル名 {safe_name(url)} がページに出ています。"
-                                 f"ブラウザで落として data/files/{sid}/ に置いてください**")
-                failed += 1
-                streak += 1
-                if streak >= FAIL_STREAK:
-                    left = sum(1 for u, _ in links if not os.path.exists(os.path.join(d, safe_name(u))))
-                    lines.append(f"  - **{FAIL_STREAK}回続けて取れなかったので、この収集先は今日はここまで**（残り{left}本は次回）")
-                    break
-                time.sleep(WAIT)
-                continue
-            streak = 0
-            got += 1
-            lines.append(f"  - **{safe_name(url)}** {n:,}バイト … {label}")
-            info = peek(dest)
-            if info is None:
-                lines.append("    - 中は読んでいない")
-            elif "error" in info:
-                lines.append(f"    - 開けなかった: {info['error']}")
-            else:
-                for sheet, meta in info.items():
-                    h = " | ".join(x for x in meta["header"] if x)
-                    lines.append(f"    - シート「{sheet}」 {meta['rows']}行  {h}")
-            time.sleep(WAIT)
-        lines.append("")
+        # **取得先1つ（カード1枚）ごとに、通信の前にカードの門を見る。**
+        # 通ったら、その取得先の通信は全部このセッションの中で行う（共通指示書1）。
+        hozon_saki = os.path.join(FILES, sid)
+        try:
+            with K.sesshon(sid, hozon_saki=hozon_saki):
+                do_source(sid, src, links)
+        except kado.Tomeru as e:
+            lines.append(f"  - **門で止めた：{'／'.join(e.riyuu)}**")
+            lines.append("")
 
     lines.insert(1, f"**新しく取れた {got}本 / すでに持っていた {skipped}本 / 取れなかった {failed}本**")
     text = "\n".join(lines)

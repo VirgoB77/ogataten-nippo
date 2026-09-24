@@ -65,21 +65,6 @@ jobs:
         run: |
           python3 tenanto_kanmon.py --ikkai --id "${{ github.event.inputs.kaisha_ikkai }}"
 
-      # **取ってきた HTML は公開側に入れない。** 90日で消える成果物に置く
-      - name: 取ってきた HTML を成果物として置く
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: tenant-recon-${{ env.RUN_DATE }}
-          # **企業側は `inbox/tenanto/` に置かれる。** 2026-09-21、ここが
-          # `inbox/floor/` だけだったので、**1回だけ見た HTML がどこにも残らなかった。**
-          # 取り直すには相手にもう一度行くことになる（同じ相手に1日2回行かない）
-          path: |
-            inbox/floor/
-            inbox/tenanto/
-          if-no-files-found: warn
-          retention-days: 90
-
       # 入れるのは**数と形だけ。** 店の名前は1つも入らない
       - name: 記録を残す
         if: always()

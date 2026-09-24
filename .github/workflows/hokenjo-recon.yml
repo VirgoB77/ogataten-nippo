@@ -73,17 +73,6 @@ jobs:
             --tane-id "${{ github.event.inputs.tane_id }}" \
             ${{ github.event.inputs.dake && format('--dake {0}', github.event.inputs.dake) || '' }}
 
-      # **返ってきたバイトは、そのまま置く。** 読み取らない。
-      # public なリポジトリには入れない（外から取ってきた生データなので）
-      - name: 取ってきた HTML を成果物として置く
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: hokenjo-${{ env.RUN_DATE }}
-          path: inbox/hokenjo/
-          if-no-files-found: warn
-          retention-days: 7
-
       # 入れるのは**数えた記録と、見つけたリンクだけ。** 中身は入れない
       - name: 記録を残す
         if: always()

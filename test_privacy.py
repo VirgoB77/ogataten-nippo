@@ -36,6 +36,46 @@ def eq(got, want, what):
         fails.append(f"{what}\n      出た値: {got!r}\n      ほしい値: {want!r}")
 
 
+import contextlib as _contextlib
+
+
+@_contextlib.contextmanager
+def toosu_kado_mon(mod):
+    """検査の中だけの**「通す偽の門」**。カードの門（common/kado.py）を素通りに差し替える。
+
+    2026-09-25、取りに行く各段に共通指示書1のカードの門を入れた。
+    門そのものの挙動（承認・robots・相手台帳・混雑）は tests/test_kado.py が
+    確かめている。ここより下の検査は**門を試していない**——利用規約の関所・
+    指紋の比べ方・条件付きGET・取得の完全性の判定など、**門を通ったあとの
+    中身**を見ている。その検査が「門で止めた」に化けて中身を試せなくなるのを
+    防ぐため、検査の中だけ `kado.hajimeru()` / `kado.genzai()` を、
+    素通りする偽物に差し替える（呼び方が段によって違う——`main()` が
+    `K = kado.hajimeru(...)` を局所変数で持つ段と、`kado.genzai()` を
+    その都度呼ぶ段の両方がある。**本番のコードには「検査のときは通す」
+    道を作らない**（共通指示書5）。
+    """
+    class _ToosuK:
+        cards = {}
+
+        def sesshon(self, cid, hozon_saki=None, **kw):
+            return _contextlib.nullcontext()
+
+        def card_mon(self, cid, hozon_saki=None, **kw):
+            return []
+
+        def install(self):
+            return self
+
+    fake = _ToosuK()
+    moto_genzai, moto_hajimeru = mod.kado.genzai, mod.kado.hajimeru
+    mod.kado.genzai = lambda: fake
+    mod.kado.hajimeru = lambda *a, **kw: fake
+    try:
+        yield fake
+    finally:
+        mod.kado.genzai, mod.kado.hajimeru = moto_genzai, moto_hajimeru
+
+
 # ---------------------------------------------------------------- is_corp
 def subete_no_py(nozoku=("test_",)):
     """**この置き場の .py を全部拾う。1か所で拾う。**
@@ -469,13 +509,24 @@ def _load_koho():
 
 
 def test_fetch_etiquette():
-    """robots の判定・混雑の判定・恒久失敗の扱い・目録の年ずれの復旧・空本文の見張り。ネットには出ない。"""
+    """robots の判定・混雑の判定・恒久失敗の扱い・目録の年ずれの復旧・空本文の見張り。ネットには出ない。
+
+    2026-09-25、robots.txt を取って判定する中身は `common/kado.py` の門へ引っ越した
+    （`common/fetch.py.check_robots` は `kado.robots_kekka()` に聞くだけの窓口）。
+    そちらの判定そのもの（404は許可・429/503は混んでいる・401/403/5xxは確かめられ
+    なかった・読めた規則の当てはめ）は tests/test_kado.py の robotsの応答／
+    robots照合器 で確かめてある。ここで見るのは**門を通っていないときに、
+    check_robots が許可／拒否を言い切らないか**——以前の「robots.txt が空なら許可」
+    のような fail-open の再発を防ぐ、fail-closed の側の確認。
+    """
     import urllib.error
     from datetime import date as _d
-    from common import fetch
-    eq(fetch.robots_allows("User-agent: *\nDisallow: /kk32/", "https://x/kk32/a.pdf"), False, "robots が拒否する")
-    eq(fetch.robots_allows("User-agent: *\nDisallow: /private/", "https://x/kk32/a.pdf"), True, "robots が許す")
-    eq(fetch.robots_allows("", "https://x/a"), True, "robots が空なら許可")
+    from common import fetch, kado
+    eq(kado.genzai(), None, "この検査の中では門（common/kado.py）を始めていない")
+    ok, why = fetch.check_robots("https://x.example.invalid/kk32/a.pdf")
+    eq(ok, None,
+       "門を始めていないのに check_robots が許可／拒否を言い切っている（fail-open の再発）")
+    eq(bool(why), True, "確かめられなかった理由を必ず返す（黙って None にしない）")
     eq(fetch.is_busy(urllib.error.HTTPError("u", 429, "", {}, None)), True, "429 は混んでいる")
     eq(fetch.is_busy(urllib.error.HTTPError("u", 503, "", {}, None)), True, "503 は混んでいる")
     eq(fetch.is_busy(urllib.error.HTTPError("u", 404, "", {}, None)), False, "404 は混んでいるではない")
@@ -1070,6 +1121,10 @@ def test_文字コードは例外の有無で選ばない():
         ("json.loads", "JSON の API。utf-8 と決まっている"),
         ("化けたまま", "decode_html 自身の最後の逃げ道。もう手が無い"),
         ("LookupError", "宣言された名前が引けなかったときの逃げ道"),
+        # common/kado.py の robots.txt 読み。RFC 9309 で robots.txt は
+        # UTF-8（ASCII 互換）と決まっている。**読めなければ推測せず、
+        # 「確かめられなかった」で fail-closed に倒す**（決め打ちではない）
+        ("UnicodeDecodeError", "robots.txt は規格で UTF-8。読めなければ確かめられなかったに倒す"),
     )
     # **名前で並べない**（2026-09-19）。外に出るものを実物から拾う
     targets = soto_ni_deru()
@@ -2487,9 +2542,15 @@ def test_作ったページが公開の許可リストから漏れていない�
     if not michi:
         return
     honbun = open(michi[0], encoding="utf-8").read()
+    kyoka = set()
+    # 金庫の形では、許可リストは `git add` 直書きではなく
+    # `for p in <一覧…>; do … git add -A -- "$p"; done`（許可リストの見張り・
+    # 2026-09-25）。**折り返し（末尾の \\）をまたいで**一覧全体を拾う
+    for m in _re.finditer(r"for\s+\S+\s+in\s+(.*?);\s*do", honbun, _re.S):
+        kyoka |= set(m.group(1).replace("\\", " ").split())
     # `git add` の行に並ぶ語を全部集める。**行の続き（末尾の \\）も拾う**——
     # 一覧が長くなると折り返すので、1行しか見ないと後ろ半分が「無い」ことになる
-    kyoka, tsuzuki = set(), False
+    tsuzuki = False
     for gyou in honbun.splitlines():
         if not (tsuzuki or "git add " in gyou):
             continue
@@ -3335,6 +3396,36 @@ def test_workflow_の中のシェルが読めるか():
         raise AssertionError("workflow の中のシェルが読めない：\n  " + "\n  ".join(bad))
 
 
+def test_公開側のworkflowにupload_artifactが無いか():
+    """**生データを成果物（artifact）へ逃がす道を、コードで閉じる。**
+
+    2026-09-25、共通指示書1で取得の入口をカードの門（common/kado.py）につないだ。
+    門を通っても、workflow 側に `actions/upload-artifact` の段が残っていれば、
+    そこから生データが public な成果物へ出てしまう（90日で消えるだけで、
+    消えるまでの90日は公開されている）。
+
+    ここは公開側の workflow（.github/workflows/*.yml・*.yaml。拡張子を
+    決め打ちしない・9節）を歩いて、`actions/upload-artifact` を使っている
+    段が無いかを見る。`actions/upload-pages-artifact`（GitHub Pages への
+    公開）は別物なので許す——公開してよいと決めたサイト本体を配る段であって、
+    生データではない。
+    """
+    import re as _re
+    bad = []
+    michi_ra = workflow_files()
+    if not michi_ra:
+        raise AssertionError("workflow が1本も見つからない。拾い方が壊れている")
+    for path in michi_ra:
+        for i, line in enumerate(open(path, encoding="utf-8").read().splitlines(), 1):
+            if _re.search(r"\bactions/upload-artifact\b", line):
+                bad.append(f"{os.path.basename(path)}:{i}")
+    if bad:
+        raise AssertionError(
+            "公開側の workflow に actions/upload-artifact が残っている"
+            "（生データが成果物へ逃げる道。upload-pages-artifact は別）：\n  "
+            + "\n  ".join(bad))
+
+
 def test_文字コードを決めつけずに読む():
     """2026-09-19。国交省の位置参照情報のページは EUC-JP だった。
 
@@ -3987,7 +4078,10 @@ def test_recon_stops_when_busy():
         recon.follow_links = lambda page, base: [(f"{ENTRY}y{i}", f"令和{i}年度") for i in range(10)]
         time.sleep = lambda *_a, **_k: None
         try:
-            with contextlib.redirect_stdout(_io.StringIO()):
+            # カードの門（common/kado.py）は**通す偽物**に差し替える（架空の
+            # 置き場には torimoto-card.json が無い）。ここで見たいのは
+            # 混雑（429）で止まるかどうかで、門そのものの挙動は別に確かめてある
+            with contextlib.redirect_stdout(_io.StringIO()), toosu_kado_mon(recon):
                 recon.main()
         finally:
             recon.HERE, recon.fetch, recon.check_robots, recon.follow_links, time.sleep = keep
@@ -4013,6 +4107,14 @@ def test_every_fetcher_stops_when_busy():
         # 道具（common/fetch.py）と、道具を使う側を分ける。
         # **名前で外さない。** 「定義しているか」で外す
         if re.search(r"^def is_busy\(", src, re.M):
+            continue
+        # **門（common/kado.py）自身も、道具を使う側ではない。**
+        # 429/503 は `is_busy`／`Konde` の慣用句ではなく、`KONDA` と
+        # `_tomeru()`（相手ごとに止める）で持っている。tests/test_kado.py の
+        # robotsの応答 クラス（test_429_503は混んでいる_その相手は止まる 等）で
+        # 別に確かめてある。**名前では外さない。** `hajimeru()` を定義している
+        # （＝門そのものである）かどうかで外す
+        if re.search(r"^def hajimeru\(", src, re.M):
             continue
         # **止め方は2通りある。どちらも「その回を中止する」形。**
         #
@@ -4930,70 +5032,98 @@ def test_robotsを確かめられなかったときに許可と言わないか()
         5xx          相手が壊れている           → 行かない
         つながらない  **こちらが出られていない**  → 行かない
 
-    ネットには出ない。`urlopen` を差し替えて、**返り値だけ**を見る。
+    2026-09-25、robots.txt を取って判定する中身は `common/kado.py` の門へ
+    引っ越した。**`urlopen` を差し替える代わりに、門の中の偽の相手（Nise）に
+    答えさせる**——tests/test_kado.py の Nise・Oki と同じ形（本番のコードには
+    「検査のときは通す」道を作らない。偽物は検査の中だけに置く）。
+    ネットには出ない。**返り値だけ**を見る。
     """
+    import email.message
+    import io
+    import json
+    import os as _os
+    import shutil
+    import tempfile
     import urllib.error as _ue
     import urllib.request as _ur
-    from common import fetch as _f
+    import urllib.response as _ures
+    from common import fetch as _f, kado as _kado
 
-    moto = _ur.urlopen
+    HOST = "kujiraya-kado-test.example.invalid"
+    URL = f"https://{HOST}/a"
 
-    class _R:
-        def __init__(self, body):
-            self._b = body.encode()
-            self.headers = {"Content-Type": "text/plain"}
-        def read(self, n=None):
-            return self._b
-        def __enter__(self):
-            return self
-        def __exit__(self, *a):
-            return False
+    class _Nise(_ur.BaseHandler):
+        """偽の相手。tests/test_kado.py の Nise と同じ形。ネットには出ない。"""
+        handler_order = 50
 
-    def kaeru(nan):
-        def f(req, timeout=None):
-            if isinstance(nan, Exception):
-                raise nan
-            return _R(nan)
-        return f
+        def __init__(self, kotae):
+            self.kotae = kotae
 
-    def shirabe(nan, url="https://例.example/a"):
-        _f._robots_cache.clear()
-        _ur.urlopen = kaeru(nan)
+        def _open(self, req):
+            if isinstance(self.kotae, Exception):
+                raise self.kotae
+            status, body = self.kotae
+            msg = email.message.Message()
+            msg["Content-Type"] = "text/plain"
+            r = _ures.addinfourl(io.BytesIO(body.encode("utf-8")), msg, req.full_url, status)
+            r.msg = "nise"
+            return r
+        https_open = _open
+        http_open = _open
+
+    def shirabe(kotae):
+        """カードの門の「セッションの中」を、カードや承認は使わずに作って確かめる。
+
+        `robots_kekka()` が見るのは `self._genzai`（いまのセッション）と
+        相手台帳だけ。カードの門そのもの（`card_mon`）は試していないので、
+        tests/test_kado.py の Oki が作る承認・git の履歴までは要らない。
+        """
+        root = tempfile.mkdtemp()
         try:
-            return _f.check_robots(url)
+            _os.makedirs(_os.path.join(root, "data", "ref"))
+            daicho = {"aite": {"ためし相手": {"host": [HOST], "担当": "ogataten-nippo"}}}
+            with open(_os.path.join(root, "data", "ref", "aite-daicho.json"),
+                     "w", encoding="utf-8") as f:
+                json.dump(daicho, f, ensure_ascii=False)
+            k = _kado.Kado(root, "ogataten-nippo", _f.UA, env={},
+                           transport=_Nise(kotae), sleep=lambda s: None)
+            k._genzai = ("tameshi", {"相手": "ためし相手"}, _kado.KOUI_TORU)
+            moto = _kado._KADO
+            _kado._KADO = k
+            try:
+                return _f.check_robots(URL)
+            finally:
+                _kado._KADO = moto
         finally:
-            _ur.urlopen = moto
+            shutil.rmtree(root, ignore_errors=True)
 
-    try:
-        # ① 本当に無い（404）→ 許可。**これは答え**
-        ok, _ = shirabe(_ue.HTTPError("u", 404, "nf", {}, None))
-        eq(ok, True, "robots.txt が無い（404）のに、許可にしていない")
+    # ① 本当に無い（404）→ 許可。**これは答え**
+    ok, _ = shirabe((404, ""))
+    eq(ok, True, "robots.txt が無い（404）のに、許可にしていない")
 
-        # ② 混んでいる → 行かない
-        ok, _ = shirabe(_ue.HTTPError("u", 503, "busy", {}, None))
-        eq(ok, None, "robots.txt が 503 なのに、行く側に倒している")
+    # ② 混んでいる → 行かない
+    ok, _ = shirabe((503, ""))
+    eq(ok, None, "robots.txt が 503 なのに、行く側に倒している")
 
-        # ③ 相手が拒んだ → 行かない
-        ok, naze = shirabe(_ue.HTTPError("u", 403, "forbidden", {}, None))
-        eq(ok, None, f"robots.txt が 403 なのに許可と言った（{naze}）")
+    # ③ 相手が拒んだ → 行かない
+    ok, naze = shirabe((403, ""))
+    eq(ok, None, f"robots.txt が 403 なのに許可と言った（{naze}）")
 
-        # ④ 相手が壊れている → 行かない
-        ok, naze = shirabe(_ue.HTTPError("u", 500, "err", {}, None))
-        eq(ok, None, f"robots.txt が 500 なのに許可と言った（{naze}）")
+    # ④ 相手が壊れている → 行かない
+    ok, naze = shirabe((500, ""))
+    eq(ok, None, f"robots.txt が 500 なのに許可と言った（{naze}）")
 
-        # ⑤ **こちらが外に出られない** → 行かない（2026-09-21 に実際に起きた）
-        ok, naze = shirabe(_ue.URLError("Tunnel connection failed: 403 Forbidden"))
-        eq(ok, None, f"robots.txt に届いていないのに許可と言った（{naze}）")
+    # ⑤ **こちらが外に出られない** → 行かない（2026-09-21 に実際に起きた）
+    ok, naze = shirabe(_ue.URLError("Tunnel connection failed: 403 Forbidden"))
+    eq(ok, None, f"robots.txt に届いていないのに許可と言った（{naze}）")
 
-        # ⑥ 読めて、拒否と書いてある → 行かない
-        ok, _ = shirabe("User-agent: *\nDisallow: /")
-        eq(ok, False, "robots.txt が拒否しているのに、行く側に倒している")
+    # ⑥ 読めて、拒否と書いてある → 行かない
+    ok, _ = shirabe((200, "User-agent: *\nDisallow: /\n"))
+    eq(ok, False, "robots.txt が拒否しているのに、行く側に倒している")
 
-        # ⑦ 読めて、許可と書いてある → 行く
-        ok, _ = shirabe("User-agent: *\nAllow: /")
-        eq(ok, True, "robots.txt が許可しているのに、行かない側に倒している")
-    finally:
-        _f._robots_cache.clear()
+    # ⑦ 読めて、許可と書いてある → 行く
+    ok, _ = shirabe((200, "User-agent: *\nAllow: /\n"))
+    eq(ok, True, "robots.txt が許可しているのに、行かない側に倒している")
 
 
 def test_人が指したURLをドメインに丸めていないか():
@@ -5532,6 +5662,8 @@ def test_フロアマップを人が規約を読む前に取りに行かない�
     ここを通してしまうと、**誰も読んでいないものを「確かめた」と名乗る**（ルール⑥）。
 
     ネットには出ない。`check_robots` と `get` を差し替えて、**呼ばれた回数**を見る。
+    カードの門（common/kado.py）は**通す偽物**に差し替える——ここで見たいのは
+    利用規約の関所であって、門そのものの挙動は tests/test_kado.py が確かめている。
     """
     import floor_get as fg
 
@@ -5544,40 +5676,41 @@ def test_フロアマップを人が規約を読む前に取りに行かない�
             200, b"x", "",
             {"todoita": True, "owari": True, "moto_kensuu": None})
 
-        k = {"id": "kou", "mei": "甲モール", "unei": "甲",
-             "chizu": "https://例.example/floor",
-             "yakusoku": {"mita_hi": "", "kekka": "未確認", "riyuu": "", "url": ""}}
-        d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
-        if yonda:
-            raise AssertionError(
-                f"人が規約を読む前に {len(yonda)} 回取りに行った: {yonda}")
-        if d["kekka"] != "見送り":
-            raise AssertionError(f"見送っていない（{d['kekka']}）")
+        with toosu_kado_mon(fg):
+            k = {"id": "kou", "mei": "甲モール", "unei": "甲",
+                 "chizu": "https://例.example/floor",
+                 "yakusoku": {"mita_hi": "", "kekka": "未確認", "riyuu": "", "url": ""}}
+            d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
+            if yonda:
+                raise AssertionError(
+                    f"人が規約を読む前に {len(yonda)} 回取りに行った: {yonda}")
+            if d["kekka"] != "見送り":
+                raise AssertionError(f"見送っていない（{d['kekka']}）")
 
-        # **相手が禁じている**とき。robots が許可でも通さない。
-        # **「未確認」と同じ顔にしない**——理由が記録に残ること
-        k["yakusoku"] = {"mita_hi": "2026-09-21", "kekka": "取ってはいけない",
-                         "riyuu": "複製・二次利用を禁じている", "url": "サイトポリシー"}
-        d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
-        if yonda:
-            raise AssertionError(f"禁じられているのに {len(yonda)} 回取りに行った: {yonda}")
-        eq(d["kekka"], "見送り", "禁じられているのに見送っていない")
-        if "禁じ" not in d["riyuu"]:
-            raise AssertionError(f"禁じられたことが理由に残っていない（{d['riyuu']}）")
+            # **相手が禁じている**とき。robots が許可でも通さない。
+            # **「未確認」と同じ顔にしない**——理由が記録に残ること
+            k["yakusoku"] = {"mita_hi": "2026-09-21", "kekka": "取ってはいけない",
+                             "riyuu": "複製・二次利用を禁じている", "url": "サイトポリシー"}
+            d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
+            if yonda:
+                raise AssertionError(f"禁じられているのに {len(yonda)} 回取りに行った: {yonda}")
+            eq(d["kekka"], "見送り", "禁じられているのに見送っていない")
+            if "禁じ" not in d["riyuu"]:
+                raise AssertionError(f"禁じられたことが理由に残っていない（{d['riyuu']}）")
 
-        # **「取ってよい」なのに読んだ日が無い**のも通さない。いつの判断か分からない
-        k["yakusoku"] = {"mita_hi": "", "kekka": "取ってよい", "riyuu": "", "url": ""}
-        d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
-        if yonda:
-            raise AssertionError("読んだ日が無いのに取りに行った")
+            # **「取ってよい」なのに読んだ日が無い**のも通さない。いつの判断か分からない
+            k["yakusoku"] = {"mita_hi": "", "kekka": "取ってよい", "riyuu": "", "url": ""}
+            d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
+            if yonda:
+                raise AssertionError("読んだ日が無いのに取りに行った")
 
-        # 人が読んで「取ってよい」と決めていれば、取りに行く。**行かない側に倒していないか**
-        k["yakusoku"] = {"mita_hi": "2026-09-21", "kekka": "取ってよい",
-                         "riyuu": "禁止が書かれていない", "url": "サイトポリシー"}
-        d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
-        eq(len(yonda), 1, "人が読んだ日が入っているのに取りに行っていない")
-        eq(d["kekka"], "取れた", "取れたと書いていない")
-        eq(d["henka"], "はじめて", "1枚目を「はじめて」と書いていない")
+            # 人が読んで「取ってよい」と決めていれば、取りに行く。**行かない側に倒していないか**
+            k["yakusoku"] = {"mita_hi": "2026-09-21", "kekka": "取ってよい",
+                             "riyuu": "禁止が書かれていない", "url": "サイトポリシー"}
+            d = fg.hitotsu(k, {"shisetsu": {}}, "2026-09-21")
+            eq(len(yonda), 1, "人が読んだ日が入っているのに取りに行っていない")
+            eq(d["kekka"], "取れた", "取れたと書いていない")
+            eq(d["henka"], "はじめて", "1枚目を「はじめて」と書いていない")
     finally:
         fg.check_robots, fg.get, fg.time.sleep = moto_robots, moto_get, moto_sleep
 
@@ -5615,18 +5748,19 @@ def test_フロアマップの指紋と回数の数え方():
         fg.get = lambda u: yonda.append(u) or (
             200, b, "",
             {"todoita": True, "owari": True, "moto_kensuu": None})
-        k = {"id": "kou", "mei": "甲モール", "unei": "甲",
-             "chizu": "https://例.example/floor",
-             "yakusoku": {"mita_hi": "2026-09-21", "kekka": "取ってよい",
-                          "riyuu": "", "url": ""}}
-        d = fg.hitotsu(k, dai, "2026-09-21")
-        if yonda:
-            raise AssertionError("同じ相手に1日2回行った")
-        eq(d["kekka"], "見送り", "今日すでに見たのに取りに行っている")
+        with toosu_kado_mon(fg):
+            k = {"id": "kou", "mei": "甲モール", "unei": "甲",
+                 "chizu": "https://例.example/floor",
+                 "yakusoku": {"mita_hi": "2026-09-21", "kekka": "取ってよい",
+                              "riyuu": "", "url": ""}}
+            d = fg.hitotsu(k, dai, "2026-09-21")
+            if yonda:
+                raise AssertionError("同じ相手に1日2回行った")
+            eq(d["kekka"], "見送り", "今日すでに見たのに取りに行っている")
 
-        # 次の日。指紋が違えば「変わった」
-        d = fg.hitotsu(k, dai, "2026-09-22")
-        eq(d["henka"], "**変わった**", "指紋が違うのに「変わった」と書いていない")
+            # 次の日。指紋が違えば「変わった」
+            d = fg.hitotsu(k, dai, "2026-09-22")
+            eq(d["henka"], "**変わった**", "指紋が違うのに「変わった」と書いていない")
     finally:
         fg.check_robots, fg.get, fg.time.sleep = moto_robots, moto_get, moto_sleep
 
@@ -7070,8 +7204,9 @@ def test_条件付きGETを変わっていないと書いていないか():
         hg.get = lambda u, e="", l="": (304, "", None, e, l)
         try:
             dai = {"file": {}}
-            d = hg.hitotsu({"url": "https://例.example/a.csv", "tane_id": "hyogo-pref",
-                            "tane_mei": "どこか", "text": "一覧"}, dai, "2026-09-21")
+            with toosu_kado_mon(hg):
+                d = hg.hitotsu({"url": "https://例.example/a.csv", "tane_id": "hyogo-pref",
+                                "tane_mei": "どこか", "text": "一覧"}, dai, "2026-09-21")
         finally:
             hg.get, hg.check_robots, hg.time.sleep = moto_get, moto_robots, moto_sleep
     finally:
@@ -7903,25 +8038,26 @@ def test_観測元が変わった回を前と比べていないか():
              "yakusoku": {"mita_hi": "2026-09-21", "kekka": "取ってよい",
                           "riyuu": "", "url": ""}}
 
-        # ② 前の回が**別のページ**
-        dai = {"shisetsu": {"kou": {"mei": "甲", "kiroku": [
-            {"hi": "2026-09-20", "yubiwa": "a" * 64,
-             "moto_url": "https://例.example/shopguide"}]}}}
-        d = fg.hitotsu(k, dai, "2026-09-21")
-        if d["henka"] == "**変わった**":
-            raise AssertionError(
-                "観測元がちがうのに「変わった」と書いている。"
-                "**中身と関係なく全部が入れ替わって見える**")
-        if "観測元が変わった" not in d["henka"]:
-            raise AssertionError(f"観測元が変わったと書かれていない: {d['henka']}")
+        with toosu_kado_mon(fg):
+            # ② 前の回が**別のページ**
+            dai = {"shisetsu": {"kou": {"mei": "甲", "kiroku": [
+                {"hi": "2026-09-20", "yubiwa": "a" * 64,
+                 "moto_url": "https://例.example/shopguide"}]}}}
+            d = fg.hitotsu(k, dai, "2026-09-21")
+            if d["henka"] == "**変わった**":
+                raise AssertionError(
+                    "観測元がちがうのに「変わった」と書いている。"
+                    "**中身と関係なく全部が入れ替わって見える**")
+            if "観測元が変わった" not in d["henka"]:
+                raise AssertionError(f"観測元が変わったと書かれていない: {d['henka']}")
 
-        # ③ 前の回に**観測元が入っていない**（古い記録）
-        dai2 = {"shisetsu": {"kou": {"mei": "甲", "kiroku": [
-            {"hi": "2026-09-20", "yubiwa": "a" * 64}]}}}
-        d2 = fg.hitotsu(k, dai2, "2026-09-21")
-        if d2["henka"] == "**変わった**":
-            raise AssertionError(
-                "観測元が分からない記録と比べている。**分からないを大丈夫に倒さない**")
+            # ③ 前の回に**観測元が入っていない**（古い記録）
+            dai2 = {"shisetsu": {"kou": {"mei": "甲", "kiroku": [
+                {"hi": "2026-09-20", "yubiwa": "a" * 64}]}}}
+            d2 = fg.hitotsu(k, dai2, "2026-09-21")
+            if d2["henka"] == "**変わった**":
+                raise AssertionError(
+                    "観測元が分からない記録と比べている。**分からないを大丈夫に倒さない**")
 
         # ① 台帳に残る
         dai3 = {"shisetsu": {}}
@@ -7932,10 +8068,11 @@ def test_観測元が変わった回を前と比べていないか():
             raise AssertionError("台帳に観測元のURLが残っていない")
 
         # **同じページなら、ちゃんと「変わった」と言えること**（止めすぎない）
-        dai4 = {"shisetsu": {"kou": {"mei": "甲", "kiroku": [
-            {"hi": "2026-09-20", "yubiwa": "a" * 64,
-             "moto_url": "https://例.example/floor/1"}]}}}
-        d4 = fg.hitotsu(k, dai4, "2026-09-21")
+        with toosu_kado_mon(fg):
+            dai4 = {"shisetsu": {"kou": {"mei": "甲", "kiroku": [
+                {"hi": "2026-09-20", "yubiwa": "a" * 64,
+                 "moto_url": "https://例.example/floor/1"}]}}}
+            d4 = fg.hitotsu(k, dai4, "2026-09-21")
         eq(d4["henka"], "**変わった**",
            "同じページなのに「変わった」と言えていない。**止めすぎている**")
     finally:
@@ -8478,7 +8615,11 @@ def _recon_wo_nise_de_hashiraseru(nensu, dame=()):
             sys.argv = ["recon.py"]
             os.environ["RUN_DATE"] = "2026-09-25"
             os.environ.pop("GITHUB_STEP_SUMMARY", None)
-            with contextlib.redirect_stdout(io.StringIO()):
+            # カードの門（common/kado.py）は**通す偽物**に差し替える。架空の置き場
+            # には torimoto-card.json が無いので、素のままだと「カードが無い」で
+            # 全部止まる。ここで見たいのは取得の完全性の判定であって、門そのもの
+            # の挙動は tests/test_kado.py が確かめている。
+            with contextlib.redirect_stdout(io.StringIO()), toosu_kado_mon(rc):
                 rc.main()
             k = rc.kanzen_hantei({"id": "nise", "url": url}, "2026-09-25",
                                  os.path.join(tmp, "data", "raw"))

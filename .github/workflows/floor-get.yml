@@ -44,6 +44,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          # **浅い履歴だと、カードの承認の出どころを確かめられない**
+          # （common/kado.py の shounin_dedokoro は git の履歴で承認を見る）
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -63,12 +66,30 @@ jobs:
       - name: 生データの置き場を金庫につなぐ
         id: link
         if: env.HAS_VAULT == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
+          # 金庫が private であることを確かめる。公開側の GITHUB_TOKEN から見えるなら
+          # （200）public。private なら 404。それ以外（通信失敗・403 など）も止まる
+          # （疑わしきは止まる）。curl は失敗しても -w の 000 を出す
+          code=$(curl -s -o /dev/null -w '%{http_code}' \
+                   -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
+                   "https://api.github.com/repos/${RAW_REPO}" || true)
+          case "$code" in
+            404) echo "金庫 ${RAW_REPO} は公開側から見えない（private）" ;;
+            200) echo "金庫 ${RAW_REPO} が public のまま。KINKO_DIR は渡さない"; exit 1 ;;
+            *)   echo "金庫の見え方を確かめられなかった（HTTP ${code:-なし}）。止まる"; exit 1 ;;
+          esac
           mkdir -p inbox
           mkdir -p "_raw/inbox/floor"
           rm -rf "inbox/floor"
           ln -s "../_raw/inbox/floor" "inbox/floor"
           ls -la inbox
+          # **ここまで来た＝金庫が private だと確かめ、いま checkout もつないだ、
+          # その成功の道。** common/kado.py の門に、金庫の場所を渡す
+          # （確かめられなかった道では書かない）
+          echo "KINKO_DIR=$(pwd)/_raw" >> "$GITHUB_ENV"
+          echo "KINKO_PRIVATE=1" >> "$GITHUB_ENV"
 
       # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」
       - name: 検査する
@@ -106,16 +127,6 @@ jobs:
           done
           exit 1
 
-      # **金庫が無い回の保険。** 90日で消えるので、これだけに頼らない
-      - name: 取ってきた HTML を成果物として置く
-        if: ${{ env.HAS_VAULT != 'true' && always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: floor-${{ env.RUN_DATE }}
-          path: inbox/floor/
-          if-no-files-found: warn
-          retention-days: 90
-
       # 入れるのは**指紋の台帳と記録だけ。** 店の名前は1つも入らない
       - name: 記録を残す
         if: always()
@@ -124,6 +135,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ref/floor-get.md data/ref/floor-ledger.json
+          # 門（common/kado.py）の記録（今日もう見たか・機械札）。次の回にも効くので持ち越す
+          git add data/ref/aite-kyou.json data/ref/kikai-fuda.json
           if git diff --cached --quiet; then
             echo "変わっていない"
             exit 0

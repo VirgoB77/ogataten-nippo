@@ -53,17 +53,6 @@ jobs:
       - name: 役所の一覧から事業者の候補を作る（同時1本・5秒以上あける）
         run: python3 chien_zenkoku.py --limit "${{ github.event.inputs.limit || 3 }}"
 
-      # **返ってきたバイトは、そのまま置く。** 読み取らない。
-      # public なリポジトリには入れない（外から取ってきた生データなので）
-      - name: 取ってきた HTML を成果物として置く
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chien-zenkoku-${{ env.RUN_DATE }}
-          path: inbox/chien-zenkoku/
-          if-no-files-found: warn
-          retention-days: 7
-
       # 入れるのは**数えた記録と、見つけたリンクだけ。** 中身は入れない
       - name: 記録を残す
         if: always()

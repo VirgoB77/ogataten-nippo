@@ -90,9 +90,17 @@ from common.fetch import (  # noqa: E402
     Konde, TIMEOUT, UA, WAIT, check_robots, decode_html, is_busy,
 )
 from common.runday import today  # noqa: E402
+from common import kado  # noqa: E402  取りに行く前の門。カードid = floor- + 施設のid
 from floor_kanmon import (  # noqa: E402  **一覧も語も関所が正本。2か所に書かない**
     KEKKA, KOUHO, UNEI_YAKUSOKU,
 )
+
+
+def _mon(K, cid, hozon_saki):
+    """カードの門のセッション。**門が始まっていなければ、始まった体で回り込まない。**"""
+    if K is None:
+        raise kado.Tomeru("門（common/kado.py）が始まっていない")
+    return K.sesshon(cid, hozon_saki=hozon_saki)
 
 # 生のバイトは `inbox/`（`.gitignore`）。巡回中はここが金庫への symlink になる
 INBOX = HERE / "inbox" / "floor"
@@ -362,71 +370,79 @@ def hitotsu(k: dict, dai: dict, hiduke: str):
         d["riyuu"] = "今日はもう見た（同じ相手に1日2回行かない）"
         return d
 
-    for url in ikisaki(k):
-        ok, why = check_robots(url)
-        if ok is not True:
-            d["kekka"] = "見送り"
-            d["riyuu"] = f"robots が{'拒否' if ok is False else '分からない'}：{why}"
-            return d
+    # **取りに行く前の門。** カードid = floor- + 施設のid。保存先 inbox/floor/<id>。
+    cid = "floor-" + sid
+    K = kado.genzai()
+    try:
+        with _mon(K, cid, str(INBOX / sid)):
+            for url in ikisaki(k):
+                ok, why = check_robots(url)
+                if ok is not True:
+                    d["kekka"] = "見送り"
+                    d["riyuu"] = f"robots が{'拒否' if ok is False else '分からない'}：{why}"
+                    return d
 
-        time.sleep(WAIT)
-        try:
-            status, raw, note, shirushi = get(url)
-        except Konde as e:
-            d["kekka"] = "見送り"
-            d["riyuu"] = f"{e}。その回は中止"
-            return d
+                time.sleep(WAIT)
+                try:
+                    status, raw, note, shirushi = get(url)
+                except Konde as e:
+                    d["kekka"] = "見送り"
+                    d["riyuu"] = f"{e}。その回は中止"
+                    return d
 
-        # **公開の状態。** こちらに残っているかとは別の欄
-        if status == 200 and raw:
-            d["koukai"] = "原典で見えた"
-        elif status in (404, 410):
-            d["koukai"] = "原典で見つけられなくなった（**撤回とは限らない**）"
-        else:
-            d["koukai"] = f"確かめられなかった（{note or status}）"
+                # **公開の状態。** こちらに残っているかとは別の欄
+                if status == 200 and raw:
+                    d["koukai"] = "原典で見えた"
+                elif status in (404, 410):
+                    d["koukai"] = "原典で見つけられなくなった（**撤回とは限らない**）"
+                else:
+                    d["koukai"] = f"確かめられなかった（{note or status}）"
 
-        # **観測が完全だったかの印。** 差分の段がここを受け取る（推測しない）。
-        # **「分からない」を「大丈夫」に倒さない**（3.4・既定は止まる側）
-        d["kansei"] = shirushi
-        # **1条件で決めない。** どれか1つでも「完全でない／分からない」なら倒す。
-        # **ページ送りが見えたら、その1枚では全部ではない**（2026-09-21）
-        d["kansoku"] = (bool(shirushi)
-                        and shirushi.get("todoita") is True
-                        and shirushi.get("owari") is True
-                        and shirushi.get("pager") in (None, 1))
+                # **観測が完全だったかの印。** 差分の段がここを受け取る（推測しない）。
+                # **「分からない」を「大丈夫」に倒さない**（3.4・既定は止まる側）
+                d["kansei"] = shirushi
+                # **1条件で決めない。** どれか1つでも「完全でない／分からない」なら倒す。
+                # **ページ送りが見えたら、その1枚では全部ではない**（2026-09-21）
+                d["kansoku"] = (bool(shirushi)
+                                and shirushi.get("todoita") is True
+                                and shirushi.get("owari") is True
+                                and shirushi.get("pager") in (None, 1))
 
-        if not raw:
-            d["kekka"] = "取れなかった"
-            d["hozon"] = "残っていない"
-            d["riyuu"] = note or f"HTTP {status}"
-            return d
+                if not raw:
+                    d["kekka"] = "取れなかった"
+                    d["hozon"] = "残っていない"
+                    d["riyuu"] = note or f"HTTP {status}"
+                    return d
 
-        yu = yubiwa(raw)
-        d["moto_url"] = url
-        mae = dai["shisetsu"].get(sid, {}).get("kiroku", [])
-        # **観測元が変わったら、前の回は比べる相手ではない**（2026-09-21）。
-        #
-        # 統括の判断で、観測元をショップガイドからフロアのページに替えた。
-        # **台帳は施設ごとなので、そのままだと別のページ同士を比べる。**
-        # 指紋は当然ちがうので「**変わった**」と出る。**中身は無関係なのに。**
-        #
-        # **大量退店・全部入店と同じ家族の事故。** 比べる相手が無いときは、
-        # **無いと書く**（正本9節「比べる相手が無い回は未判定」）
-        onaji = [r for r in mae if (r.get("moto_url") or "") == url]
-        maeno = onaji[-1].get("yubiwa") if onaji else None
-        if maeno is None:
-            d["henka"] = ("はじめて（**観測元が変わった**）"
-                          if mae else "はじめて")   # **「変わっていない」ではない**
-        elif maeno == yu:
-            d["henka"] = "変わっていない"
-        else:
-            d["henka"] = "**変わった**"      # ここが2時点目
+                yu = yubiwa(raw)
+                d["moto_url"] = url
+                mae = dai["shisetsu"].get(sid, {}).get("kiroku", [])
+                # **観測元が変わったら、前の回は比べる相手ではない**（2026-09-21）。
+                #
+                # 統括の判断で、観測元をショップガイドからフロアのページに替えた。
+                # **台帳は施設ごとなので、そのままだと別のページ同士を比べる。**
+                # 指紋は当然ちがうので「**変わった**」と出る。**中身は無関係なのに。**
+                #
+                # **大量退店・全部入店と同じ家族の事故。** 比べる相手が無いときは、
+                # **無いと書く**（正本9節「比べる相手が無い回は未判定」）
+                onaji = [r for r in mae if (r.get("moto_url") or "") == url]
+                maeno = onaji[-1].get("yubiwa") if onaji else None
+                if maeno is None:
+                    d["henka"] = ("はじめて（**観測元が変わった**）"
+                                  if mae else "はじめて")   # **「変わっていない」ではない**
+                elif maeno == yu:
+                    d["henka"] = "変わっていない"
+                else:
+                    d["henka"] = "**変わった**"      # ここが2時点目
 
-        saki = INBOX / sid
-        saki.mkdir(parents=True, exist_ok=True)
-        (saki / f"{hiduke}.html").write_bytes(raw)
-        d.update({"kekka": "取れた", "yubiwa": yu, "bytes": len(raw),
-                  "hozon": "inbox に置いた（金庫がある回は金庫）", "url": url})
+                saki = INBOX / sid
+                saki.mkdir(parents=True, exist_ok=True)
+                (saki / f"{hiduke}.html").write_bytes(raw)
+                d.update({"kekka": "取れた", "yubiwa": yu, "bytes": len(raw),
+                          "hozon": "inbox に置いた（金庫がある回は金庫）", "url": url})
+    except kado.Tomeru as e:
+        d["kekka"] = "見送り"
+        d["riyuu"] = "門で止めた（カードid=%s）：%s" % (cid, "／".join(e.riyuu))
     return d
 
 
@@ -538,6 +554,9 @@ def main(argv=None):
         return 2
     if a.limit:
         kouho = kouho[:a.limit]
+
+    # **取りに行く前の門。** カードid = floor- + 施設のid。
+    kado.hajimeru(str(HERE), "ogataten-nippo", UA, today=today())
 
     hiduke = today()
     dai = daicho_yomu()

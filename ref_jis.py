@@ -28,6 +28,7 @@ sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
 from common.fetch import UA, WAIT, check_robots, decode_html, is_busy   # noqa: E402
 from common import hikisu   # 知らない引数で止める（3.4）
+from common import kado     # 取りに行く前の門。カードid = "ref-jis"
 import xlsx                                        # noqa: E402
 
 PAGE = "https://www.soumu.go.jp/denshijiti/code.html"
@@ -142,26 +143,34 @@ def main():
     if fresh() and not force:
         print(f"jis-codes.json は{MAX_AGE_DAYS}日以内に取っている。取りに行かない")
         return 0
-    ok, why = check_robots(PAGE)
-    if not ok:
-        print(f"{why}。取りに行かない（共通仕様3.4）")
+    # **取りに行く前の門。** カードid = "ref-jis"。保存先は今の置き場（data/ref。
+    # **公開側**なので、金庫の preflight で必ず止まる。それでよい（置き場は変えない）。
+    K = kado.hajimeru(HERE, "ogataten-nippo", UA, today=runday.today())
+    try:
+        with K.sesshon("ref-jis", hozon_saki=REF):
+            ok, why = check_robots(PAGE)
+            if not ok:
+                print(f"{why}。取りに行かない（共通仕様3.4）")
+                return 0
+            # **utf-8 と決め打ちしていた。総務省は Shift_JIS。**
+            # meta の label が "Excel\ufffdt\ufffd@\ufffdC\ufffd\ufffd" と化けていて、
+            # しかも find_code_file() はその化けた文字列に「政令」「廃置」「変更」で
+            # 点を付けていた。**正しいものが選ばれていたのは href の形のおかげで、
+            # 理由が無かった**（2026-09-19、開発系が写しに来て見つけた）
+            html, enc = decode_html(get(PAGE))
+            print(f"ページは {enc} として読んだ")
+            time.sleep(WAIT)
+            cands = find_code_file(html, PAGE)
+            if not cands:
+                print("市区町村コードの Excel へのリンクがページに見つからなかった。ページの作りが変わった")
+                return 1
+            print("候補:", [(s, l[:30], u[-24:]) for s, u, l in cands[:4]])
+            score, url, label = cands[0]
+            data = get(url)
+            time.sleep(WAIT)
+    except kado.Tomeru as e:
+        print("門で止めた：" + "／".join(e.riyuu))
         return 0
-    # **utf-8 と決め打ちしていた。総務省は Shift_JIS。**
-    # meta の label が "Excel\ufffdt\ufffd@\ufffdC\ufffd\ufffd" と化けていて、
-    # しかも find_code_file() はその化けた文字列に「政令」「廃置」「変更」で
-    # 点を付けていた。**正しいものが選ばれていたのは href の形のおかげで、
-    # 理由が無かった**（2026-09-19、開発系が写しに来て見つけた）
-    html, enc = decode_html(get(PAGE))
-    print(f"ページは {enc} として読んだ")
-    time.sleep(WAIT)
-    cands = find_code_file(html, PAGE)
-    if not cands:
-        print("市区町村コードの Excel へのリンクがページに見つからなかった。ページの作りが変わった")
-        return 1
-    print("候補:", [(s, l[:30], u[-24:]) for s, u, l in cands[:4]])
-    score, url, label = cands[0]
-    data = get(url)
-    time.sleep(WAIT)
     os.makedirs(REF, exist_ok=True)
     with open(XLSX, "wb") as f:
         f.write(data)

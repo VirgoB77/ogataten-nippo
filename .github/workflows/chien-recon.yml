@@ -34,6 +34,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          # **浅い履歴だと、カードの承認の出どころを確かめられない**
+          # （chien_get.py が門につながっているため。common/kado.py の
+          # shounin_dedokoro は git の履歴で承認を見る）
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -47,21 +51,12 @@ jobs:
       - name: 遅延証明書のページを探す（同時1本・5秒以上あける）
         run: python3 chien_recon.py --limit "${{ github.event.inputs.limit || 3 }}"
 
-      # 2段目。**1段目の記録から行き先を読む。**
+      # 2段目。**1段目の記録から行き先を読む。** カードの門（common/kado.py）
+      # につながっている。金庫（KINKO_DIR）が無いので、この workflow では
+      # 実際には保存できず、門で止まる（それでよい。金庫のつなぎ込みは別の workflow）。
       # 見つからなければ何もしない（記録が無ければ 1 で止まる）
       - name: 見つけたページを取ってくる（ホストごとに robots を見直す）
         run: python3 chien_get.py
-
-      # **返ってきたバイトは、そのまま置く。** 読み取らない。
-      # public なリポジトリには入れない（外から取ってきた生データなので）
-      - name: 取ってきた HTML を成果物として置く
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chien-${{ env.RUN_DATE }}
-          path: inbox/chien/
-          if-no-files-found: warn
-          retention-days: 7
 
       # 入れるのは**数えた記録と、見つけたリンクだけ。** 中身は入れない
       - name: 記録を残す

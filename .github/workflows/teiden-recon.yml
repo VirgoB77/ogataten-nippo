@@ -79,17 +79,6 @@ jobs:
           TANE: ${{ github.event.inputs.tane }}
           TOPS: ${{ github.event.inputs.tops }}
 
-      # **返ってきたバイトは、そのまま置く。** 読み取らない。
-      # public なリポジトリには入れない（外から取ってきた生データなので）
-      - name: 取ってきた HTML を成果物として置く
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: teiden-recon-${{ env.RUN_DATE }}
-          path: inbox/teiden/
-          if-no-files-found: warn
-          retention-days: 7
-
       # 入れるのは**記録だけ。** 中身は入れない
       - name: 記録を残す
         if: always()

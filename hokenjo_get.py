@@ -118,6 +118,7 @@ from common.fetch import (  # noqa: E402
     Konde, TIMEOUT, UA, WAIT, check_robots, is_busy,
 )
 from common.runday import today  # noqa: E402
+from common import kado  # noqa: E402  取りに行く前の門。カードid = hokenjo- + tane_id
 
 RECON_JSON = HERE / "data" / "ref" / "hokenjo-recon.json"
 DAICHO = HERE / "data" / "ref" / "hokenjo-ledger.json"
@@ -258,6 +259,13 @@ def kurabe(mita, y):
     return "変わっていない" if mae[-1]["yubiwa"] == y else "**変わった**"
 
 
+def _mon(K, cid, hozon_saki):
+    """カードの門のセッション。**門が始まっていなければ、始まった体で回り込まない。**"""
+    if K is None:
+        raise kado.Tomeru("門（common/kado.py）が始まっていない")
+    return K.sesshon(cid, hozon_saki=hozon_saki)
+
+
 def hitotsu(f: dict, dai: dict, hiduke: str):
     """1ファイルぶん。**関所が立っていなければ取りに行かない。**"""
     url = f["url"]
@@ -273,58 +281,67 @@ def hitotsu(f: dict, dai: dict, hiduke: str):
         d["riyuu"] = "今日はもう見た（同じファイルに1日2回行かない）"
         return d
 
-    ok, why = check_robots(url)
-    if ok is not True:
-        d["kekka"] = "見送り"
-        d["riyuu"] = f"robots が{'拒否' if ok is False else '分からない'}：{why}"
-        return d
-
-    ato = dai.setdefault("file", {}).setdefault(
-        url, {"tane_mei": f.get("tane_mei", ""), "text": f.get("text", ""),
-              "mita": []})
-    et, lm = shirushi(ato)
-
-    time.sleep(WAIT)
+    # **取りに行く前の門。** カードid = hokenjo- + tane_id。保存先 inbox/hokenjo-get。
+    cid = "hokenjo-" + (f.get("tane_id") or "")
+    K = kado.genzai()
     try:
-        status, ctype, raw, et2, lm2 = get(url, et, lm)
-    except Konde as e:
-        d["kekka"], d["riyuu"] = "見送り", f"{e}。この回は取らない"
-        return d
-    except Exception as e:                                       # noqa: BLE001
-        d["kekka"] = "届かなかった"
-        d["riyuu"] = f"{type(e).__name__}: {e}"
-        return d
+        with _mon(K, cid, str(INBOX)):
+            ok, why = check_robots(url)
+            if ok is not True:
+                d["kekka"] = "見送り"
+                d["riyuu"] = f"robots が{'拒否' if ok is False else '分からない'}：{why}"
+                return d
 
-    if raw is None:
-        # **相手が「変わっていない」と答えた回。** 中身は来ていない。
-        # **こちらの指紋では確かめていない**ので、そう書く（9節）
-        ato["mita"].append({"hi": hiduke, "yubiwa": None, "bytes": 0,
-                            "status": 304, "ctype": "",
-                            "etag": et2 or et, "last_modified": lm2 or lm,
-                            "hozon": ""})
-        d.update({"kekka": "304", "henka": "相手が「変わっていない」と答えた",
-                  "riyuu": "**こちらは中身を1バイトも持っていない**"
-                           "（指紋では確かめていない）",
-                  "jouken": "効いた"})
+            ato = dai.setdefault("file", {}).setdefault(
+                url, {"tane_mei": f.get("tane_mei", ""), "text": f.get("text", ""),
+                      "mita": []})
+            et, lm = shirushi(ato)
+
+            time.sleep(WAIT)
+            try:
+                status, ctype, raw, et2, lm2 = get(url, et, lm)
+            except Konde as e:
+                d["kekka"], d["riyuu"] = "見送り", f"{e}。この回は取らない"
+                return d
+            except Exception as e:                                       # noqa: BLE001
+                d["kekka"] = "届かなかった"
+                d["riyuu"] = f"{type(e).__name__}: {e}"
+                return d
+
+            if raw is None:
+                # **相手が「変わっていない」と答えた回。** 中身は来ていない。
+                # **こちらの指紋では確かめていない**ので、そう書く（9節）
+                ato["mita"].append({"hi": hiduke, "yubiwa": None, "bytes": 0,
+                                    "status": 304, "ctype": "",
+                                    "etag": et2 or et, "last_modified": lm2 or lm,
+                                    "hozon": ""})
+                d.update({"kekka": "304", "henka": "相手が「変わっていない」と答えた",
+                          "riyuu": "**こちらは中身を1バイトも持っていない**"
+                                   "（指紋では確かめていない）",
+                          "jouken": "効いた"})
+                return d
+
+            y = yubiwa(raw)
+            saki = INBOX / hiduke
+            saki.mkdir(parents=True, exist_ok=True)
+            p = urllib.parse.urlsplit(url)
+            na = (f.get("tane_id") or "tane") + "-" + os.path.basename(p.path or "file")
+            na = "".join(c if c.isalnum() or c in "-._" else "-" for c in na)[:90]
+            (saki / na).write_bytes(raw)
+
+            doudatta = kurabe(ato["mita"], y)
+            ato["mita"].append({"hi": hiduke, "yubiwa": y, "bytes": len(raw),
+                                "status": status, "ctype": ctype, "hozon": na,
+                                "etag": et2, "last_modified": lm2})
+            d.update({"kekka": "取れた", "yubiwa": y, "bytes": len(raw),
+                      "henka": doudatta, "hozon": na, "riyuu": "",
+                      # **次の回に条件付きGETが効くか。** 相手が目印を返したかで決まる
+                      "jouken": "次は効く" if (et2 or lm2) else "目印が無い（毎回取る）"})
+            return d
+    except kado.Tomeru as e:
+        d["kekka"] = "見送り"
+        d["riyuu"] = "門で止めた（カードid=%s）：%s" % (cid, "／".join(e.riyuu))
         return d
-
-    y = yubiwa(raw)
-    saki = INBOX / hiduke
-    saki.mkdir(parents=True, exist_ok=True)
-    p = urllib.parse.urlsplit(url)
-    na = (f.get("tane_id") or "tane") + "-" + os.path.basename(p.path or "file")
-    na = "".join(c if c.isalnum() or c in "-._" else "-" for c in na)[:90]
-    (saki / na).write_bytes(raw)
-
-    doudatta = kurabe(ato["mita"], y)
-    ato["mita"].append({"hi": hiduke, "yubiwa": y, "bytes": len(raw),
-                        "status": status, "ctype": ctype, "hozon": na,
-                        "etag": et2, "last_modified": lm2})
-    d.update({"kekka": "取れた", "yubiwa": y, "bytes": len(raw),
-              "henka": doudatta, "hozon": na, "riyuu": "",
-              # **次の回に条件付きGETが効くか。** 相手が目印を返したかで決まる
-              "jouken": "次は効く" if (et2 or lm2) else "目印が無い（毎回取る）"})
-    return d
 
 
 def houkoku(dai, kekka, hiduke):
@@ -415,6 +432,9 @@ def main(argv=None):
     p.add_argument("--tane-id", default="",
                    help="この入口だけ（カンマ区切りで複数。例 hyogo-pref,amagasaki-city）")
     a = p.parse_args(argv)
+
+    # **取りに行く前の門。** カードid = hokenjo- + tane_id。
+    kado.hajimeru(str(HERE), "ogataten-nippo", UA, today=today())
 
     hiduke = today()
     saki = yomu()

@@ -90,16 +90,6 @@ jobs:
             ${{ github.event.inputs.id && format('--id "{0}"', github.event.inputs.id) || '' }} \
             ${{ github.event.inputs.url && format('--url "{0}"', github.event.inputs.url) || '' }}
 
-      # **相手の規約は相手の著作物。** 公開側には1文字も入れない
-      - name: 取ってきた HTML を成果物として置く
-        if: ${{ env.HAS_VAULT != 'true' && always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: yakusoku-${{ env.RUN_DATE }}
-          path: inbox/yakusoku/
-          if-no-files-found: warn
-          retention-days: 90
-
       - name: 生データを金庫にしまう
         if: ${{ env.HAS_VAULT == 'true' && !cancelled() && steps.link.outcome == 'success' }}
         working-directory: _raw

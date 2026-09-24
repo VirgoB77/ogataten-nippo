@@ -38,6 +38,7 @@ sys.path.insert(0, os.path.join(HERE, "common"))
 import runday
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 from common import hikisu   # 知らない引数で止める（3.4）
+from common import kado     # 取りに行く前の門。カードid = sources.json の id（共通指示書1）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
 
@@ -527,6 +528,8 @@ def main():
     only = sys.argv[1] if len(sys.argv) > 1 else None
     today = runday.today()
     raw_dir = os.path.join(HERE, "data", "raw")
+    # **取りに行く前の門。** カードid = sources.json の id（共通指示書「この置き場の具体」）。
+    K = kado.hajimeru(HERE, "ogataten-nippo", UA, today=runday.today())
 
     lines = [
         f"# 大店立地法 届出ページ 偵察レポート（{today}）",
@@ -538,40 +541,16 @@ def main():
     ]
 
     counts = {}
-    for src in sources:
-        if only and only not in (src["id"], src.get("area", "")):
-            continue
-        res = {}
 
-        if not src.get("enabled", True):
-            res["skipped"] = src.get("note", "いまは対象外にしている")
-            lines.append(report_one(src, res))
-            continue
-
-        # 相手ごとの頻度（共通仕様3.4）。前回からその日数たっていなければ取りに行かない
-        # **知らない値を、いちばん頻繁な側に倒さない。** 綴りを間違えると
-        # 「weekly」が毎日になる。相手のサーバーに出る回数なので、
-        # 分からないときは止める（3.4「1日1回」。2026-09-19）
-        freq = src.get("freq", "daily")
-        if freq not in FREQ_DAYS:
-            raise ValueError(
-                f"{src['id']}: 知らない freq「{freq}」。"
-                f"使えるのは {'/'.join(FREQ_DAYS)}。取りに行く回数なので黙って決めない")
-        wait_days = FREQ_DAYS[freq]
-        if wait_days:
-            last = last_saved(src["id"])
-            if last and (runday.today_date() - last).days < wait_days:
-                res["skipped"] = f"{src.get('freq')}：前回 {last.isoformat()} から {wait_days} 日たっていないので今回は見ない（共通仕様3.4）"
-                lines.append(report_one(src, res))
-                continue
-
+    def do_source(src, res):
+        """1収集先ぶん。**カードの門を通ったセッションの中でだけ呼ぶ。**"""
         ok, why = check_robots(src["url"])
         res["robots"] = why
         if not ok:                     # False＝拒否、None＝robots.txt が混んでいる。どちらも今回は行かない
             res["skipped"] = why
             lines.append(report_one(src, res))
             counts["拒否"] = counts.get("拒否", 0) + 1
-            continue
+            return
 
         try:
             status, ctype, raw = fetch(src["url"])
@@ -583,13 +562,13 @@ def main():
             lines.append(report_one(src, res))
             counts["失敗"] = counts.get("失敗", 0) + 1
             time.sleep(WAIT)
-            continue
+            return
         except Exception as e:
             res["fetch_error"] = f"{type(e).__name__}: {e}"
             lines.append(report_one(src, res))
             counts["失敗"] = counts.get("失敗", 0) + 1
             time.sleep(WAIT)
-            continue
+            return
 
         text, enc = to_text(raw, ctype)
         res.update(status=status, encoding=enc, bytes=len(raw))
@@ -669,6 +648,44 @@ def main():
 
         lines.append(report_one(src, res))
         time.sleep(WAIT)
+
+    for src in sources:
+        if only and only not in (src["id"], src.get("area", "")):
+            continue
+        res = {}
+
+        if not src.get("enabled", True):
+            res["skipped"] = src.get("note", "いまは対象外にしている")
+            lines.append(report_one(src, res))
+            continue
+
+        # 相手ごとの頻度（共通仕様3.4）。前回からその日数たっていなければ取りに行かない
+        # **知らない値を、いちばん頻繁な側に倒さない。** 綴りを間違えると
+        # 「weekly」が毎日になる。相手のサーバーに出る回数なので、
+        # 分からないときは止める（3.4「1日1回」。2026-09-19）
+        freq = src.get("freq", "daily")
+        if freq not in FREQ_DAYS:
+            raise ValueError(
+                f"{src['id']}: 知らない freq「{freq}」。"
+                f"使えるのは {'/'.join(FREQ_DAYS)}。取りに行く回数なので黙って決めない")
+        wait_days = FREQ_DAYS[freq]
+        if wait_days:
+            last = last_saved(src["id"])
+            if last and (runday.today_date() - last).days < wait_days:
+                res["skipped"] = f"{src.get('freq')}：前回 {last.isoformat()} から {wait_days} 日たっていないので今回は見ない（共通仕様3.4）"
+                lines.append(report_one(src, res))
+                continue
+
+        # **取得先1つ（カード1枚）ごとに、通信の前にカードの門を見る。**
+        # 通ったら、その取得先の通信は全部このセッションの中で行う（共通指示書1）。
+        hozon_saki = os.path.join(raw_dir, src["id"])
+        try:
+            with K.sesshon(src["id"], hozon_saki=hozon_saki):
+                do_source(src, res)
+        except kado.Tomeru as e:
+            res["skipped"] = "門で止めた：" + "／".join(e.riyuu)
+            lines.append(report_one(src, res))
+            counts["門で止めた"] = counts.get("門で止めた", 0) + 1
 
     summary = " / ".join(f"{k} {v}件" for k, v in sorted(counts.items())) or "対象なし"
     lines.insert(2, f"**まとめ: {summary}**")
