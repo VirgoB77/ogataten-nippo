@@ -39,8 +39,14 @@ import runday
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 from common import hikisu   # 知らない引数で止める（3.4）
 from common import kado     # 取りに行く前の門。カードid = sources.json の id（共通指示書1）
+from common import kanzen   # 完全観測の印は3値。推測で埋めない（共通指示書2）
 WAIT = 5          # 同じ相手に続けて出すときに空ける秒数。迷惑をかけない
 TIMEOUT = 40
+
+# 完全観測に要る印（共通指示書2）。「解析できた」だけは parse.py が知っている
+# ので、ここでは持たず、呼ぶ側（parse.py）が kanzen_hantei() に渡す。
+HITSUYOU = ("入口に届いた", "必要本文を受け取った", "辿る対象の失敗0",
+            "上限未到達", "最終URLが承認範囲内", "private保存成功", "解析できた")
 
 # robots.txt を読む urllib.robotparser はタイムアウトを指定できず、
 # 既定のままだと相手が黙ったときに永久に待つ。ソケット側で縛っておく。
@@ -238,23 +244,79 @@ def _hozon_saki(d, day, url):
     return None
 
 
-def kanzen_hantei(src, day, raw_dir=None):
-    """**その日の取得が、必要な範囲をそろえていたか**を、保存したものだけで決める。
+def _shirushi_path(d, day):
+    return os.path.join(d, f"{day}.shirushi.json")
+
+
+def shirushi_yomu(d, day):
+    """取得段の印（recon.py がその日に書いたもの）。**無ければ空**——その印は「分からない」。
+
+    過去の日（このしくみを入れる前に取った日）は、この印が無い。
+    """
+    try:
+        with open(_shirushi_path(d, day), encoding="utf-8") as f:
+            j = json.load(f)
+    except (FileNotFoundError, ValueError, OSError):
+        return {}
+    sh = j.get("shirushi") if isinstance(j, dict) else None
+    return sh if isinstance(sh, dict) else {}
+
+
+def shirushi_kaku(d, day, shirushi, moto):
+    """取得段の印を、生データの隣（金庫の中）に書く。壊れた書きかけを残さないよう一時ファイル経由。"""
+    os.makedirs(d, exist_ok=True)
+    path = _shirushi_path(d, day)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump({"shirushi": shirushi, "houshiki": "html", "moto": moto},
+                  f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    os.replace(tmp, path)
+
+
+def _awaseru(a, b):
+    """同じ印を2つの見方（保存したページを見た分・取得段が残した分）から見たときの、悪いほう。
+
+    順は「はい ＜ 分からない ＜ いいえ」（共通指示書2）。**無いほうは無視する**——
+    無いのは「言っていない」であって「分からないと言った」ではない。片方が無いだけで
+    もう片方の「はい」を「分からない」に格下げしない。
+    """
+    JUNI = {kanzen.HAI: 0, kanzen.WAKARANAI: 1, kanzen.IIE: 2}
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return a if JUNI.get(a, 1) >= JUNI.get(b, 1) else b
+
+
+def private_shirushi():
+    """private保存成功の印。**ここまで来ている時点で、直前の書き込み自体は成功している。**
+
+    残るのは、その保存先が private の金庫だと確かめられているか（環境変数 KINKO_PRIVATE）だけ。
+    確かめられなければ「分からない」（無いを「はい」に倒さない）。
+    """
+    return kanzen.HAI if os.environ.get("KINKO_PRIVATE") == "1" else kanzen.WAKARANAI
+
+
+def kanzen_hantei(src, day, raw_dir=None, kaiseki=None):
+    """**その日の取得が、必要な範囲をそろえていたか**を、印（3値）だけで決める（共通指示書2）。
 
     2026-09-24、堺市で分かった。2階層目の上限（FOLLOW_MAX_2）で年度のページを
     黙って切った日に、そのページの届出が「その日に無かった＝消えた」と数えられていた。
     相手の目次には毎日載っていた。**取らなかったことと、相手に無いことは別。**
 
     だから、差分の段が件数から推し量るのではなく、**取得の段の事実**で決める。
-    上限で切った・取れなかった・保存できなかった、のどれも
-    「保存が無い」という1つの事実に出るので、**保存を数えれば足りる。**
-    取っていないページを推測で埋めない。
+    ここでは2つの見方を合わせる。
 
-        入口に表がある     入口ページが最後まで（</html> まで）保存できていれば、そろった
-        入口が目次         本文の中のリンク（`follow_links()`）の先を全部たどり、
-                           その先も目次なら、もう一段（取得の段と同じ2段まで）。
-                           **上限は掛けない。**必要なページが1本でも保存されていなければ、
-                           そろっていない
+        保存したページを見た分   入口に届いた・必要本文を受け取った・辿る対象の失敗0。
+                                いま、ここで保存を数えて決める
+        取得段が残した印         上限未到達・最終URLが承認範囲内・private保存成功。
+                                `<日付>.shirushi.json`（recon.py がその場で書いた）から読む
+
+    同じ印が両方にあれば、**はい＜分からない＜いいえ の悪いほう**に寄せる（`_awaseru`）。
+    「解析できた」は parse.py だけが知っているので、呼ぶ側が `kaiseki` で渡す。
+    **渡さなければ「分からない」**——`kanzen_hantei` だけでは「そろった」と言い切らない。
+    最終的な `kanzen` は `kanzen.kimeru(印, HITSUYOU)` で決める。
 
     返り値は dict。**その日の入口が保存されていなければ None**（その日は観測が無い）。
 
@@ -264,28 +326,52 @@ def kanzen_hantei(src, day, raw_dir=None):
         tarinai   保存が無かったページの見出し（先頭10件まで）
         tsukau    取り出しに使ってよい保存ファイル（入口と、辿るべきだったページ）。
                   本文の外の欄から迷い込んで保存したページは入らない
+        shirushi  合わせたあとの印（3値の辞書）
     """
     d = os.path.join(raw_dir or os.path.join(HERE, "data", "raw"), src["id"])
     try:
         names = sorted(os.listdir(d))
     except FileNotFoundError:
         return None
+    # **印のファイル（<日付>.shirushi.json）は入口ページではない。** 取れなかった日も
+    # 印は残す（`shirushi_kaku`）ので、拾ってしまうと「入口が無い＝観測が無い」の日を
+    # 「観測がある」と読み違える
     iriguchi = next((os.path.join(d, n) for n in names
-                     if n.startswith(day) and n[len(day):len(day) + 1] == "."), None)
+                     if n.startswith(day) and n[len(day):len(day) + 1] == "."
+                     and not n.endswith(".shirushi.json")), None)
     if not iriguchi:
         return None
     out = {"kanzen": None, "riyuu": "", "hitsuyou": 0, "tarinai": [], "tsukau": [iriguchi]}
+    toku = shirushi_yomu(d, day)         # 取得段の印。無ければ空（＝どの印も「分からない」）
+    page_shirushi = {"入口に届いた": kanzen.HAI}   # 入口ファイルが在る時点で、届いたのは確か
+
+    def kimeru_kaku(base_riyuu):
+        """ここまでの印を、取得段の印・「解析できた」と合わせ、kanzen.kimeru() で決めて out に書く。"""
+        gouryuu = dict(toku)
+        for k2, v2 in page_shirushi.items():
+            gouryuu[k2] = _awaseru(gouryuu.get(k2), v2)
+        if kaiseki is not None:
+            gouryuu["解析できた"] = _awaseru(gouryuu.get("解析できた"), kaiseki)
+        kanzen_val, kimeru_riyuu = kanzen.kimeru(gouryuu, HITSUYOU)
+        out["shirushi"] = gouryuu
+        out["kanzen"] = kanzen_val
+        out["riyuu"] = base_riyuu if kanzen_val is True else f"{base_riyuu}／{kimeru_riyuu}"
+
     if not iriguchi.endswith((".html", ".htm")):
-        out["riyuu"] = "入口が HTML でない。そろったかを、ここでは確かめない"
+        # HTML でない入口は、必要本文を受け取ったかを、ここでは確かめない（分からないのまま）
+        kimeru_kaku("入口が HTML でない。そろったかを、ここでは確かめない")
         return out
     with open(iriguchi, "rb") as f:
         raw = f.read()
     if not _owari_ga_aru(raw):
-        out.update(kanzen=False, riyuu="入口ページの終わりの印（</html>）が無い。途中で切れた疑い")
+        page_shirushi["必要本文を受け取った"] = kanzen.IIE
+        kimeru_kaku("入口ページの終わりの印（</html>）が無い。途中で切れた疑い")
         return out
+    page_shirushi["必要本文を受け取った"] = kanzen.HAI
     text, _ = to_text(raw, "")
     if analyze(text, src["url"])["verdict"] != "わからない":
-        out.update(kanzen=True, riyuu="入口ページに表があり、最後まで保存できている")
+        page_shirushi["辿る対象の失敗0"] = kanzen.HAI       # 辿る必要が無い
+        kimeru_kaku("入口ページに表があり、最後まで保存できている")
         return out
 
     known, queue, tarinai = {src["url"]}, [], []
@@ -315,12 +401,13 @@ def kanzen_hantei(src, day, raw_dir=None):
             t2, _ = to_text(raw2, "")
             if analyze(t2, u)["verdict"] == "わからない":
                 narabu(follow_links(t2, u), depth + 1)
+    page_shirushi["辿る対象の失敗0"] = kanzen.IIE if tarinai else kanzen.HAI
     if tarinai:
-        out.update(kanzen=False, tarinai=tarinai[:10],
-                   riyuu=(f"辿るべきページ {out['hitsuyou']}本のうち {len(tarinai)}本の保存が無い"
-                          "（上限で切った・取れなかった・保存できなかった）"))
+        out["tarinai"] = tarinai[:10]
+        kimeru_kaku(f"辿るべきページ {out['hitsuyou']}本のうち {len(tarinai)}本の保存が無い"
+                    "（上限で切った・取れなかった・保存できなかった）")
     else:
-        out.update(kanzen=True, riyuu=f"辿るべきページ {out['hitsuyou']}本をすべて保存できている")
+        kimeru_kaku(f"辿るべきページ {out['hitsuyou']}本をすべて保存できている")
     return out
 
 
@@ -368,9 +455,14 @@ def last_saved(sid):
     相手が PDF を返した日は `{日付}.pdf` になる。`.html` だけ見ていると
     **その日の分を「持っていない」と数えて、毎日取りに行く**（3.4 違反）。
     **直した日に、直したものを見ていた別の場所が壊れる**（9節）。
+
+    **`.shirushi.json`（取得段の印）は数えない。** 取れなかった日も印だけは残すので、
+    それを「保存した」に数えると、失敗した日を「もう取った」として次の巡回まで飛ばしてしまう。
     """
     days = []
     for p in glob.glob(os.path.join(HERE, "data", "raw", sid, "????-??-??.*")):
+        if p.endswith(".shirushi.json"):
+            continue
         m = re.match(r"(\d{4}-\d{2}-\d{2})\.", os.path.basename(p))
         if m:
             days.append(m.group(1))
@@ -559,12 +651,19 @@ def main():
             if is_busy(e):
                 # 入口で混んでいると言われた。この収集先は今回ここまで（辿りにも行かない）
                 res["busy_stop"] = e.code
+            # 取得段の印。**入口に届かなかった**ことも、あとから分かるように残す
+            shirushi_kaku(os.path.join(raw_dir, src["id"]), today,
+                          {"入口に届いた": kanzen.IIE, "private保存成功": private_shirushi()},
+                          src["url"])
             lines.append(report_one(src, res))
             counts["失敗"] = counts.get("失敗", 0) + 1
             time.sleep(WAIT)
             return
         except Exception as e:
             res["fetch_error"] = f"{type(e).__name__}: {e}"
+            shirushi_kaku(os.path.join(raw_dir, src["id"]), today,
+                          {"入口に届いた": kanzen.IIE, "private保存成功": private_shirushi()},
+                          src["url"])
             lines.append(report_one(src, res))
             counts["失敗"] = counts.get("失敗", 0) + 1
             time.sleep(WAIT)
@@ -642,8 +741,33 @@ def main():
             if len(res["followed"]) >= FOLLOW_BUDGET and queue:
                 res["budget_hit"] = (FOLLOW_BUDGET, len(queue))
 
-        # 今日の取得が、必要な範囲をそろえていたか。**保存したものだけで決める**（上の kanzen_hantei）。
-        # 同じ関数を parse.py も呼び、台帳にして merge.py へ渡す
+        # 取得段の印（共通指示書2）。入口と辿った先の生データを書き終えた直後に残す。
+        # **kanzen_hantei が保存から再現できないもの**（上限で打ち切ったか・門のセッションの
+        # 中で取れたか・private の金庫に書けたか）だけを、ここで持ち帰る
+        shirushi = {
+            "入口に届いた": kanzen.HAI,
+            "必要本文を受け取った": (
+                kanzen.HAI if ext_of(raw, ctype) == ".html" and _owari_ga_aru(raw) else
+                kanzen.IIE if ext_of(raw, ctype) == ".html" else
+                kanzen.WAKARANAI),
+            "private保存成功": private_shirushi(),
+            # 門のセッションの中で取れた回だけ「はい」（門が URL範囲の外を通さないので）
+            "最終URLが承認範囲内": (kanzen.HAI if getattr(K, "_genzai", None) is not None
+                              else kanzen.WAKARANAI),
+        }
+        if res["analysis"]["verdict"] == "わからない":
+            shippai = bool(res.get("busy_stop")) or any(
+                err for (_, _, _, err) in res.get("followed", []))
+            shirushi["辿る対象の失敗0"] = kanzen.IIE if shippai else kanzen.HAI
+            shirushi["上限未到達"] = (kanzen.IIE if (res.get("follow_capped") or res.get("budget_hit"))
+                                else kanzen.HAI)
+        else:
+            shirushi["辿る対象の失敗0"] = kanzen.HAI      # 辿る必要が無かった
+            shirushi["上限未到達"] = kanzen.HAI
+        shirushi_kaku(d, today, shirushi, src["url"])
+
+        # 今日の取得が、必要な範囲をそろえていたか。**保存と、いま残した印を合わせて決める**
+        # （上の kanzen_hantei）。同じ関数を parse.py も呼び、台帳にして merge.py へ渡す
         res["kanzen"] = kanzen_hantei(src, today, raw_dir)
 
         lines.append(report_one(src, res))

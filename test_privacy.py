@@ -53,9 +53,14 @@ def toosu_kado_mon(mod):
     `K = kado.hajimeru(...)` を局所変数で持つ段と、`kado.genzai()` を
     その都度呼ぶ段の両方がある。**本番のコードには「検査のときは通す」
     道を作らない**（共通指示書5）。
+
+    `_genzai` は「セッションの中」だと分かる印（`common/kado.py` の同名の属性と同じ役目）。
+    ここは**通した**あとの門なので、値を持たせておく——持たせないと、
+    「最終URLが承認範囲内」（共通指示書2）を試す側が、セッションの外だと誤認する。
     """
     class _ToosuK:
         cards = {}
+        _genzai = ("toosu", {}, ())
 
         def sesshon(self, cid, hozon_saki=None, **kw):
             return _contextlib.nullcontext()
@@ -1736,6 +1741,13 @@ def test_消えるまでの日数を仮定で書いていないか():
             "混ぜると「ほとんど消えない」という嘘の数字になる")
 
     # ② 仮定が当たるかを測っている。**当たっていなくてよい。測っていることが要る**
+    #
+    # 2026-09-25、比べる時点を last_seen から kakunin_saigo（完全観測の日のうち、
+    # 見えた最後の日）に直した（共通指示書4）。手元の data/all.json が、まだこの印を
+    # 1件も持っていない（parse.py がこの直しのあとにまだ書き直していない）ときは、
+    # ここでは測れない——ファイルが無いときと同じに扱う（安全側）。
+    if not any(r.get("kakunin_saigo") for r in recs):
+        return
     ok, ng, _ = ki.katei_wa_ataru(recs)
     if ok + ng == 0:
         raise AssertionError(
@@ -2844,7 +2856,14 @@ def test_作業手順書が別の仕事の記録を巻き込まないか():
     `data/ref/◯◯-....md` の頭を突き合わせる。**手順書が増えても勝手に見る。**
 
     **捕まえないもの**：その記録の中身が正しいか。ここは名前だけの話。
+
+    **門（common/kado.py）の控えは、どの取得の回でも門自身が書く**（今日もう見たか・機械札）。
+    その回の仕事の記録なので、どの手順書が入れてもよい。名前は一覧で持たず、
+    門が書く置き場の定義（`kado.KYOU`・`kado.FUDA_PATH`）から引く。
     """
+    from common import kado as _kado
+    mon_no_hikae = {os.path.splitext(os.path.basename(p))[0]
+                    for p in (_kado.KYOU, _kado.FUDA_PATH)}
     warui = []
     for michi in workflow_files():
         with open(michi, encoding="utf-8", errors="ignore") as f:
@@ -2858,6 +2877,8 @@ def test_作業手順書が別の仕事の記録を巻き込まないか():
             if "git add " not in gyou:
                 continue
             for michi2 in re.findall(r"data/ref/([A-Za-z0-9_-]+)\.[a-z]+", gyou):
+                if michi2 in mon_no_hikae:
+                    continue
                 if michi2.split("-")[0] not in hashiru:
                     warui.append(
                         f"{os.path.basename(michi)} が data/ref/{michi2} を入れる"
@@ -8525,34 +8546,130 @@ def test_取得がそろわなかった観測を見えなくなった根拠に�
     見るのは、merge.listed_wo_kimeru（いまも載っているかを決める1か所）と、
     parse.py が書く台帳の読み方（merge.kanzen_na_hi）。
 
+    2026-09-25、消失判定用の時点を**完全観測の日だけ**で進めるように直した
+    （共通指示書4）。`listed_wo_kimeru` は「最後に見た日」1つではなく、
+    **見えた日の集合**（days_seen。取得がそろっていたかに関係ない）と、
+    **観測元・取得方式つきの完全観測の日**（kanzen_days）を受け取り、
+    `(listed, kieta_kakunin, kakunin_saigo)` の3つを返す形に変わった。
+
     **捕まえないもの**：取得がそろったかの判定そのもの（下の2本が、取得の段と取り出しの段で見る）。
     """
     import json as _json
     import tempfile
     import merge as mg
     L = mg.listed_wo_kimeru
+    U, T = "u", "html"    # 観測元・取得方式（同じ収集先なら、ふつう変わらない）
     # ① そろった2つの観測のあいだで見えなくなった → 確認できなくなった（見えなくなった候補）
-    eq(L("2026-09-20", "2026-09-21", ["2026-09-20", "2026-09-21"]), (False, "2026-09-21"),
+    eq(L({"2026-09-20"}, "2026-09-21", [("2026-09-20", U, T), ("2026-09-21", U, T)]),
+       (False, "2026-09-21", "2026-09-20"),
        "そろった観測で見えなくなったのに、確認できなくなったとしていない")
     # ② あとの観測がそろっていない → 未判定。**見えなくなったとしない**
-    eq(L("2026-09-20", "2026-09-21", ["2026-09-20"]), (None, None),
+    eq(L({"2026-09-20"}, "2026-09-21", [("2026-09-20", U, T)]), (None, None, "2026-09-20"),
        "そろっていない観測に無かっただけで、見えなくなったとしている")
     # ③ そろっていない日のあとに、また見えた → 載っている。**見えなくなった・また出た、にしない**
-    eq(L("2026-09-22", "2026-09-22", ["2026-09-20"]), (True, None),
+    eq(L({"2026-09-20", "2026-09-22"}, "2026-09-22", [("2026-09-20", U, T)]),
+       (True, None, "2026-09-20"),
        "そろっていない日をはさんで、また見えたものを、載っていないとしている")
     # ④ そろっていない日をはさんで、そのあとのそろった観測で見えない → その日で確認できなくなった
-    eq(L("2026-09-20", "2026-09-23", ["2026-09-20", "2026-09-23"]), (False, "2026-09-23"),
+    eq(L({"2026-09-20"}, "2026-09-23", [("2026-09-20", U, T), ("2026-09-23", U, T)]),
+       (False, "2026-09-23", "2026-09-20"),
        "確認できなかった日を、そろった観測の日にしていない")
-    # ⑤ 台帳が無い・読めない → どの日も、そろったと言わない
+    # ⑤ 「消えた」と言えるはずの回のあとに、そろっていない回でもまた見えた → 未判定に戻す
+    #    （**消えたと言ったあとで、また見えたら、その「消えた」は言わない**。正本の決まり）
+    eq(L({"2026-09-20", "2026-09-24"}, "2026-09-25",
+        [("2026-09-20", U, T), ("2026-09-23", U, T)]),
+       (None, None, "2026-09-20"),
+       "そろった観測で消えたと決めたあと、また見えたのに、消えたままにしている")
+    # ⑥ kakunin_saigo のあとの最初の完全観測が、観測元・取得方式が違う → 比べない（未判定）
+    #    （観測元がちがう回を比べると、中身と関係なく全部が入れ替わって見える）
+    eq(L({"2026-09-20"}, "2026-09-25",
+        [("2026-09-20", U, T), ("2026-09-23", "v", T)]),
+       (None, None, "2026-09-20"),
+       "観測元が変わった回と比べて、消えたとしている")
+    # ⑦ 完全観測で一度も見えていない → kakunin_saigo が無いので、常に未判定
+    eq(L({"2026-09-21"}, "2026-09-25", [("2026-09-20", U, T)]), (None, None, None),
+       "完全観測で一度も見えていないのに、消えたと言える形にしている")
+    # ⑧ 台帳が無い・読めない → どの日も、そろったと言わない
     with tempfile.TemporaryDirectory() as tmp:
         michi = os.path.join(tmp, "kansoku-kanzen.json")
         eq(mg.kanzen_na_hi(michi), {}, "台帳が無いのに、そろった日があることにしている")
         with open(michi, "w", encoding="utf-8") as f:
-            _json.dump({"_setsumei": "x", "a": {"2026-09-20": {"kanzen": True},
+            _json.dump({"_setsumei": "x", "a": {"2026-09-20": {"kanzen": True, "moto": "u", "houshiki": "html"},
                                                 "2026-09-21": {"kanzen": False},
                                                 "2026-09-22": {"kanzen": None}}}, f)
-        eq(mg.kanzen_na_hi(michi), {"a": ["2026-09-20"]},
+        eq(mg.kanzen_na_hi(michi), {"a": [("2026-09-20", "u", "html")]},
            "そろっていない日・確かめていない日を、そろった日に入れている")
+
+
+def test_直前の完全観測とだけ比べているか():
+    """**遠くの完全観測と比べない。** kakunin_saigo のあとの**最初の**完全観測だけを見る。
+
+    共通指示書4の「そのあとの最初の完全観測の日 C」を字義どおり守っているかを見る——
+    途中に合わない観測元・取得方式の日があっても、**それより先の完全観測まで探しに行かない**
+    （探しに行くと、たまたま条件の合う遠い日と比べてしまい、比べる相手を自分で選ぶ形になる）。
+    """
+    import merge as mg
+    L = mg.listed_wo_kimeru
+    U, T = "u", "html"
+    # kakunin_saigo=09-20 の次の完全観測（09-22）は観測元が違う。**その先の09-25（同じ観測元）
+    # まで探しに行かない**——探せば「消えた」になってしまうが、09-22 で止まって未判定のまま
+    eq(L({"2026-09-20"}, "2026-09-26",
+        [("2026-09-20", U, T), ("2026-09-22", "べつの観測元", T), ("2026-09-25", U, T)]),
+       (None, None, "2026-09-20"),
+       "途中の観測元違いを飛ばして、もっと先の完全観測と比べている")
+
+
+def test_完全性を分からないから真に補っていないか():
+    """**「分からない」を「はい」に埋めない。** 共通指示書2・spec/kanzen.md 3。
+
+    ① recon.kanzen_hantei() は、呼ぶ側が「解析できた」を渡さないかぎり、
+       ページが完璧にそろっていても **True と言い切らない**（parse.py が決めるまで）。
+       壊して鳴ることも確かめる——`kaiseki=はい` を渡すと True に**変わる**こと。
+    ② 200 で 0 行（前は1件以上あった）を、それだけで完全観測にしない
+       （`parse.kaiseki_no_shirushi`。kanzen.zero_gyou の配線側）。
+    ③ 店名か届出日の列が見つからず表を丸ごと飛ばした日は、件数がいくつでも「分からない」。
+    ④ 前の完全観測から鍵の半分以上が一度に消えたら「分からない」（kanzen.kyugen の配線側）。
+    """
+    import json as _json
+    import tempfile
+    import recon as rc
+    import parse as ps
+
+    # ① kaiseki を渡さない限り True にならない。渡すと True になる（壊して鳴ることの確認）
+    with tempfile.TemporaryDirectory() as tmp:
+        d = os.path.join(tmp, "nise")
+        os.makedirs(d)
+        page = '<html><body><table><tr><th>届出日</th><th>店舗</th></tr><tr><td>a</td><td>b</td></tr></table></body></html>'
+        with open(os.path.join(d, "2026-09-25.html"), "w", encoding="utf-8") as f:
+            f.write(page)
+        with open(os.path.join(d, "2026-09-25.shirushi.json"), "w", encoding="utf-8") as f:
+            _json.dump({"shirushi": {m: "はい" for m in (
+                "入口に届いた", "必要本文を受け取った", "辿る対象の失敗0",
+                "上限未到達", "最終URLが承認範囲内", "private保存成功")},
+                "houshiki": "html", "moto": "https://x.example/"}, f, ensure_ascii=False)
+        src = {"id": "nise", "url": "https://x.example/"}
+        k = rc.kanzen_hantei(src, "2026-09-25", tmp)
+        if k["kanzen"] is True:
+            raise AssertionError(
+                "「解析できた」を渡していないのに True。分からないをはいに補っている")
+        k2 = rc.kanzen_hantei(src, "2026-09-25", tmp, kaiseki=rc.kanzen.HAI)
+        eq(k2["kanzen"], True, "「解析できた」を渡しても True にならない。壊れていても鳴らない検査")
+
+    # ② 200 で 0 行（前は5件）を、それだけで完全観測にしない
+    eq(ps.kaiseki_no_shirushi(5, 0, {"a", "b"}, set(), False), rc.kanzen.WAKARANAI,
+       "前は5件あったのに今回0件を、根拠なく完全観測にしている")
+    # 前も今回も0件なら、そのまま「はい」でよい（kanzen.zero_gyou の既定）
+    eq(ps.kaiseki_no_shirushi(0, 0, set(), set(), False), rc.kanzen.HAI,
+       "前後とも0件なのに完全観測にしていない")
+    # ③ 表を飛ばした日は、件数が十分でも「分からない」
+    eq(ps.kaiseki_no_shirushi(0, 40, set(), set(range(40)), True), rc.kanzen.WAKARANAI,
+       "店名か届出日の列が見つからず表を飛ばしたのに、完全観測にしている")
+    # ④ 鍵の半分以上が一度に消えたら「分からない」
+    eq(ps.kaiseki_no_shirushi(10, 4, set(range(10)), set(range(4)), False), rc.kanzen.WAKARANAI,
+       "鍵の半分以上が一度に消えたのに、完全観測にしている")
+    # それ以外（半分未満の減り）は「はい」
+    eq(ps.kaiseki_no_shirushi(10, 6, set(range(10)), set(range(6)), False), rc.kanzen.HAI,
+       "半分未満の減りなのに、完全観測にしていない")
 
 
 def _nise_saito(nensu, dame=()):
@@ -8587,7 +8704,14 @@ def _nise_saito(nensu, dame=()):
 
 def _recon_wo_nise_de_hashiraseru(nensu, dame=()):
     """**本物の recon.main を、架空の相手で1回走らせる。**外には出ない
-    （fetch・robots・sleep を差し替える）。返り値は (その日の判定, 取りに行った URL, 記録の文)"""
+    （fetch・robots・sleep を差し替える）。返り値は (その日の判定, 取りに行った URL, 記録の文)
+
+    2026-09-25、recon.kanzen_hantei() が「解析できた」を含む7つの印
+    （共通指示書2）を見るようになった。「解析できた」は parse.py だけが知っているので、
+    ここで見たい**取得（ページを辿れたか）の完全性**だけを確かめるため、
+    `kaiseki=はい` を明示して渡す（このテストの主題ではないので、固定して外す）。
+    同じ理由で、KINKO_PRIVATE も「1」に固定する（private保存成功の印を揺らさない）。
+    """
     import contextlib
     import io
     import json as _json
@@ -8604,7 +8728,7 @@ def _recon_wo_nise_de_hashiraseru(nensu, dame=()):
             raise urllib.error.HTTPError(u, 404, "Not Found", {}, None)
         return 200, "text/html; charset=utf-8", pages[u]
     moto = (rc.HERE, rc.fetch, rc.check_robots, _time.sleep, sys.argv[:])
-    moto_env = {k: os.environ.get(k) for k in ("RUN_DATE", "GITHUB_STEP_SUMMARY")}
+    moto_env = {k: os.environ.get(k) for k in ("RUN_DATE", "GITHUB_STEP_SUMMARY", "KINKO_PRIVATE")}
     with tempfile.TemporaryDirectory() as tmp:
         with open(os.path.join(tmp, "sources.json"), "w", encoding="utf-8") as f:
             _json.dump({"sources": [{"id": "nise", "name": "架空", "area": "test", "url": url}]}, f)
@@ -8614,6 +8738,7 @@ def _recon_wo_nise_de_hashiraseru(nensu, dame=()):
             _time.sleep = lambda s: None
             sys.argv = ["recon.py"]
             os.environ["RUN_DATE"] = "2026-09-25"
+            os.environ["KINKO_PRIVATE"] = "1"
             os.environ.pop("GITHUB_STEP_SUMMARY", None)
             # カードの門（common/kado.py）は**通す偽物**に差し替える。架空の置き場
             # には torimoto-card.json が無いので、素のままだと「カードが無い」で
@@ -8622,7 +8747,7 @@ def _recon_wo_nise_de_hashiraseru(nensu, dame=()):
             with contextlib.redirect_stdout(io.StringIO()), toosu_kado_mon(rc):
                 rc.main()
             k = rc.kanzen_hantei({"id": "nise", "url": url}, "2026-09-25",
-                                 os.path.join(tmp, "data", "raw"))
+                                 os.path.join(tmp, "data", "raw"), kaiseki=rc.kanzen.HAI)
             with open(os.path.join(tmp, "data", "recon-report.md"), encoding="utf-8") as f:
                 kiroku = f.read()
         finally:
@@ -8699,6 +8824,14 @@ def test_本文の外の欄から迷い込んだページを取り出しに使�
             name = f"{day}.html" if u == url else f"{day}--{rc.slug_of(u)}.html"
             with open(os.path.join(d, name), "wb") as f:
                 f.write(body)
+        # 取得段の印（共通指示書2）。ここは recon.main() を走らせていないので、
+        # 実物と同じ形で自分で置く——**取れた前提**を置かないと、この印が無いままになり
+        # （＝分からない）、台帳の kanzen が「解析できた」だけでは True にならない
+        with open(os.path.join(d, f"{day}.shirushi.json"), "w", encoding="utf-8") as f:
+            _json.dump({"shirushi": {m: "はい" for m in (
+                "入口に届いた", "必要本文を受け取った", "辿る対象の失敗0",
+                "上限未到達", "最終URLが承認範囲内", "private保存成功")},
+                "houshiki": "html", "moto": url}, f, ensure_ascii=False)
         with open(os.path.join(tmp, "sources.json"), "w", encoding="utf-8") as f:
             _json.dump({"sources": [{"id": "nise", "name": "架空", "url": url}]}, f)
         yonda = []

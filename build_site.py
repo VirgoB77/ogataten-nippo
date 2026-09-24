@@ -419,7 +419,10 @@ def detail_page(r, by_ref, src_meta):
             status = (f"こちらが最後に見た {esc(r.get('last_seen') or '')} の時点では、"
                       "自治体のページに載っていました")
         elif r.get("listed") is False:
-            status = (f"<b>こちらが最後に確認できたのは {esc(r.get('last_seen') or '')} です。"
+            # **区間の起点は kakunin_saigo**（取得がそろった観測のうち、見えた最後の日）。
+            # last_seen（取得がそろっていたかに関係ない）だと、そろっていない日をはさんだ
+            # 空白まで「見えなくなった幅」に混ざる（共通指示書4）
+            status = (f"<b>こちらが最後に確認できたのは {esc(r.get('kakunin_saigo') or '')} です。"
                       f"{esc(r.get('kieta_kakunin') or '')} の観測（必要なページをすべて取れた日）では、"
                       "自治体のページで見つかっていません。</b>"
                       "見えなくなった日そのものと、その理由は分かりません")
@@ -473,8 +476,8 @@ def detail_page(r, by_ref, src_meta):
     # **消えたものは、それを説明に入れる。** 検索から着いた人が
     # 「役所のページに無い」ことをここで知る。**主語はこちら**（3.5）
     if (r.get("mode") == "snapshot" and r.get("listed") is False
-            and r.get("last_seen") and r.get("kieta_kakunin")):
-        desc += (f" {jp_date(r['last_seen'])}を最後に確認し、{jp_date(r['kieta_kakunin'])}の観測では"
+            and r.get("kakunin_saigo") and r.get("kieta_kakunin")):
+        desc += (f" {jp_date(r['kakunin_saigo'])}を最後に確認し、{jp_date(r['kieta_kakunin'])}の観測では"
                  "自治体のページで見つかっていません。")
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
@@ -1182,7 +1185,7 @@ def index_page(all_recs, today):
     recent_new = sorted([r for r in all_recs if r["kind"] == "新設"], key=lambda r: r["notified_on"], reverse=True)[:12]
     # **取得がそろった観測で確認できなかったものだけ**（listed が false）。未判定（null）は入れない
     gone = sorted([r for r in all_recs if r.get("mode") == "snapshot" and r.get("listed") is False],
-                  key=lambda r: (r.get("kieta_kakunin") or "", r.get("last_seen") or ""), reverse=True)[:12]
+                  key=lambda r: (r.get("kieta_kakunin") or "", r.get("kakunin_saigo") or ""), reverse=True)[:12]
     kinds = Counter(r["kind"] for r in all_recs)
     areas = Counter(r["area"] for r in all_recs)
     # **「場所の見出し」は市区町村の数ではない**（「兵庫県」「所在地不明」が混ざる）。
