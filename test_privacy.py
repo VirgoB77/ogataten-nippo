@@ -6463,17 +6463,20 @@ def test_規約未確定を未確認や禁止と混ぜていないか():
 def test_運営会社の規約を施設の規約の代わりにしていないか():
     """**欄を分ける。片方で他方を代用しない**（robots と規約と同じ形）。
 
-    阪急西宮ガーデンズは、**施設のサイトポリシーが自分で断っている**ので
-    「取ってはいけない」。運営会社（阪急阪神ホールディングス）は「規約未確定」。
-    **同じ運営でも、答えが違う。**
+    施設の欄は施設のサイトポリシーで、運営会社の欄は運営会社の規約で決める。
+    **同じ運営でも、答えは別々に出る。**
 
     ここを混ぜると2方向に転ぶ。
 
         運営が「規約未確定」だから施設も未確定     → **施設の禁止を薄める**
         施設が「取ってはいけない」だから運営も     → **相手が言っていないことを言わせる**
 
-    捕まえるのは、**運営会社の答えが施設の欄に流れ込んでいないか**と、
+    捕まえるのは、**運営会社の規約を施設の欄の根拠にしていないか**と、
     **記録の上で2つが別の欄に出ているか**。
+
+    **値が同じことは、流れ込んだ証拠にならない。** 2026-09-24、阪急西宮ガーデンズは
+    施設のサイトポリシーだけを理由に「規約未確定」へ戻し、運営会社の欄と同じ値になった。
+    値の一致で鳴らすと、施設の規約で決めた結果を止めてしまう。**見るのは根拠の在りか。**
     """
     import floor_get as fg
     import floor_kanmon as fk
@@ -6487,15 +6490,18 @@ def test_運営会社の規約を施設の規約の代わりにしていない�
             if not u.get(iru):
                 raise AssertionError(f"運営会社の欄に {iru} が無い: {u['mei']}")
 
-    # **施設の欄が、運営会社の答えで書き換わっていないか**
-    unei = {u["unei"]: u["kekka"] for u in fk.UNEI_YAKUSOKU}
+    # **施設の欄が、運営会社の規約を根拠にしていないか**（在りかのホストで見る）
+    from urllib.parse import urlparse as _up
+    unei_host = {u["unei"]: _up(u.get("url") or "").netloc for u in fk.UNEI_YAKUSOKU}
     for k in fk.KOUHO:
-        if k.get("unei") not in unei:
+        if not unei_host.get(k.get("unei")):
             continue
-        mochi = (k.get("yakusoku") or {}).get("kekka", "未確認")
-        if mochi == unei[k["unei"]] and mochi == "規約未確定":
+        ya = k.get("yakusoku") or {}
+        if ya.get("kekka", "未確認") == "未確認":
+            continue
+        if _up(ya.get("url") or "").netloc == unei_host[k["unei"]]:
             raise AssertionError(
-                f"{k['mei']} の欄が運営会社の答えと同じになっている。"
+                f"{k['mei']} の欄の根拠が、運営会社の規約（{unei_host[k['unei']]}）になっている。"
                 "**施設は施設の規約で決める**")
 
     # **記録に2つが別の欄で出ているか**
