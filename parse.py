@@ -30,10 +30,14 @@ import urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xlsx import _serial_to_date as serial_to_date  # noqa: E402
 from common import privacy  # 列の見出しが名前の欄かの判定（共通仕様5節）  # noqa: E402
+import recon  # その日の取得がそろっていたか（recon.kanzen_hantei）。取得の段の事実で決める  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "data", "raw")
 OUT = os.path.join(HERE, "data", "parsed")
+# 収集先ごと・日ごとの「取得がそろっていたか」の台帳。merge.py が読む。
+# **data/parsed の外に置く**（merge.py は data/parsed/<id>/*.json を全部「その日の届出」として読むため）
+KANZEN_DAICHO = os.path.join(HERE, "data", "ref", "kansoku-kanzen.json")
 
 
 # ---------------------------------------------------------------- 下ごしらえ
@@ -647,10 +651,34 @@ def parse_file(source, path):
     return recs
 
 
+def kanzen_daicho_yomu():
+    try:
+        with open(KANZEN_DAICHO, encoding="utf-8") as f:
+            d = json.load(f)
+    except (FileNotFoundError, ValueError):
+        d = {}
+    return {k: v for k, v in d.items() if isinstance(v, dict)}
+
+
+def kanzen_daicho_kaku(daicho):
+    """収集先ごと・日ごとの「取得がそろっていたか」を書く。**保存を数えた結果だけ。**"""
+    out = {"_setsumei": ("parse.py が recon.kanzen_hantei() で書く。merge.py が読む。"
+                         "kanzen が true の日だけを「確認できなかった」の根拠に使う。手で直さない")}
+    for source in sorted(daicho):
+        out[source] = {day: daicho[source][day] for day in sorted(daicho[source])}
+    os.makedirs(os.path.dirname(KANZEN_DAICHO), exist_ok=True)
+    with open(KANZEN_DAICHO, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+
+
 def main():
     only = sys.argv[1] if len(sys.argv) > 1 else None
     total = 0
     summary = []
+    with open(os.path.join(HERE, "sources.json"), encoding="utf-8") as f:
+        src_by_id = {s["id"]: s for s in json.load(f)["sources"]}
+    daicho = kanzen_daicho_yomu()
 
     for source in sorted(EXTRACTORS):
         if only and only != source:
@@ -662,7 +690,16 @@ def main():
         for path in sorted(glob.glob(os.path.join(RAW, source, "*.html"))):
             day = os.path.basename(path)[:10]
             by_day.setdefault(day, []).append(path)
+        daicho[source] = {}
         for day, paths in sorted(by_day.items()):
+            # **その日の取得がそろっていたかは、取得の段の事実で決める**（recon.kanzen_hantei）。
+            # 取り出しに使うのも、入口と「辿るべきだった」ページだけ。本文の外の欄から
+            # 迷い込んで保存したページ（中規模の置き場に入った大規模の年度ページなど）は読まない
+            k = recon.kanzen_hantei(src_by_id[source], day, RAW) if source in src_by_id else None
+            if k is not None:
+                tsukau = {os.path.abspath(p) for p in k["tsukau"]}
+                paths = [p for p in paths if os.path.abspath(p) in tsukau]
+                daicho[source][day] = {kk: k[kk] for kk in ("kanzen", "riyuu", "hitsuyou", "tarinai")}
             recs, seen = [], set()
             for path in paths:
                 for r in parse_file(source, path):
@@ -679,6 +716,8 @@ def main():
                 kinds[r["kind"]] = kinds.get(r["kind"], 0) + 1
             summary.append((source, day, len(recs), kinds))
             total += len(recs)
+
+    kanzen_daicho_kaku(daicho)
 
     print(f"# 取り出した結果（合計 {total} 件）\n")
     n_unknown = write_unknown_report(os.path.join(HERE, "data", "parse-unknown.md"))

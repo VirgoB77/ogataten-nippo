@@ -1754,9 +1754,11 @@ def test_消えたことの書き方():
     if not os.path.exists(zairyo):
         return
     recs = json.load(open(zairyo, encoding="utf-8"))
+    # **listed は3つの値**（2026-09-24、merge.listed_wo_kimeru）。「見つかっていません」と書くのは
+    # 取得がそろった観測で見えなかったもの（false）だけ。未判定（null）には書かない
     kieta = [r for r in recs if r.get("mode") == "snapshot"
-             and not r.get("listed") and r.get("last_seen")]
-    aru = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed")]
+             and r.get("listed") is False and r.get("last_seen")]
+    aru = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed") is True]
     for rows, kotoba, nani in (
             (kieta[:30], "見つかっていません", "消えたもの"),
             (aru[:30], "こちらが最後に見た", "まだ在るもの")):
@@ -8372,6 +8374,223 @@ def test_県公報_公開側に1件も残っていないか():
         raise AssertionError(
             "公開リポジトリが県公報をまだ %d 件追跡している。例: %s"
             % (len(nokori), "、".join(nokori[:3])))
+
+
+# ---------------------------------------------------------------- 取りこぼしを「見えなくなった」にしない（2026-09-24）
+
+def test_取得がそろわなかった観測を見えなくなった根拠にしないか():
+    """**「その日の取得結果に無かった」だけでは、見えなくなったとしない。**
+
+    2026-09-24、堺市で「消えて戻った」33鍵が、全部こちらの取りこぼしだった。
+    2階層目の上限で年度のページを取らなかった日に、そのページの届出が
+    「その日に無かった」と数えられ、公開ページに「見つかっていません」と出ていた。
+
+    見るのは、merge.listed_wo_kimeru（いまも載っているかを決める1か所）と、
+    parse.py が書く台帳の読み方（merge.kanzen_na_hi）。
+
+    **捕まえないもの**：取得がそろったかの判定そのもの（下の2本が、取得の段と取り出しの段で見る）。
+    """
+    import json as _json
+    import tempfile
+    import merge as mg
+    L = mg.listed_wo_kimeru
+    # ① そろった2つの観測のあいだで見えなくなった → 確認できなくなった（見えなくなった候補）
+    eq(L("2026-09-20", "2026-09-21", ["2026-09-20", "2026-09-21"]), (False, "2026-09-21"),
+       "そろった観測で見えなくなったのに、確認できなくなったとしていない")
+    # ② あとの観測がそろっていない → 未判定。**見えなくなったとしない**
+    eq(L("2026-09-20", "2026-09-21", ["2026-09-20"]), (None, None),
+       "そろっていない観測に無かっただけで、見えなくなったとしている")
+    # ③ そろっていない日のあとに、また見えた → 載っている。**見えなくなった・また出た、にしない**
+    eq(L("2026-09-22", "2026-09-22", ["2026-09-20"]), (True, None),
+       "そろっていない日をはさんで、また見えたものを、載っていないとしている")
+    # ④ そろっていない日をはさんで、そのあとのそろった観測で見えない → その日で確認できなくなった
+    eq(L("2026-09-20", "2026-09-23", ["2026-09-20", "2026-09-23"]), (False, "2026-09-23"),
+       "確認できなかった日を、そろった観測の日にしていない")
+    # ⑤ 台帳が無い・読めない → どの日も、そろったと言わない
+    with tempfile.TemporaryDirectory() as tmp:
+        michi = os.path.join(tmp, "kansoku-kanzen.json")
+        eq(mg.kanzen_na_hi(michi), {}, "台帳が無いのに、そろった日があることにしている")
+        with open(michi, "w", encoding="utf-8") as f:
+            _json.dump({"_setsumei": "x", "a": {"2026-09-20": {"kanzen": True},
+                                                "2026-09-21": {"kanzen": False},
+                                                "2026-09-22": {"kanzen": None}}}, f)
+        eq(mg.kanzen_na_hi(michi), {"a": ["2026-09-20"]},
+           "そろっていない日・確かめていない日を、そろった日に入れている")
+
+
+def _nise_saito(nensu, dame=()):
+    """架空の相手（**外には出ない**）。入口 → 名称変更の目次 → 年度のページ。
+    本文の外に「このページも読まれています」の欄があり、別の置き場のページを指している。
+    返り値は (入口の URL, {URL: HTML の bytes})。dame に入れた年度は None（取りに行くと 404）"""
+    base = "https://mise.example/todokede/"
+
+    def waku(naka, soto=""):
+        return ("<html><body><div id=\"main\"><!-- ▼メインコンテンツここから▼ -->"
+                "<img alt=\"本文ここから\">" + naka + "<img alt=\"本文ここまで\">"
+                "<!-- ▲メインコンテンツここまで▲ --></div>" + soto + "</body></html>").encode("utf-8")
+    osusume = ("<div class=\"losubnavi lorecommend\"><h2>このページも読まれています</h2><ul>"
+               "<li><a href=\"/chukibo/ichiran.html\">中規模小売店舗の届出状況</a></li></ul></div>")
+    pages = {base + "index.html": waku(
+        "<h1>大規模小売店舗の届出状況</h1><ul><li><a href=\"meisho/index.html\">"
+        "名称・代表者等の変更の届出（法第6条第1項関係）について</a></li></ul>", osusume)}
+    nen = list(range(8, 8 - nensu, -1))
+    pages[base + "meisho/index.html"] = waku("<ul>" + "".join(
+        f"<li><a href=\"r{y}/index.html\">令和{y}年度 名称・代表者等の変更の届出"
+        "（法第6条第1項関係）について</a></li>" for y in nen) + "</ul>", osusume)
+    for y in nen:
+        pages[base + f"meisho/r{y}/index.html"] = None if y in dame else waku(
+            "<table><tr><th>届出日</th><th>店舗</th></tr>"
+            f"<tr><td>令和{y}年4月1日</td><td>架空店{y}</td></tr>"
+            f"<tr><td>令和{y}年5月1日</td><td>架空店{y}b</td></tr></table>")
+    pages["https://mise.example/chukibo/ichiran.html"] = waku(
+        "<table><tr><th>a</th><th>b</th></tr><tr><td>1</td><td>2</td></tr>"
+        "<tr><td>3</td><td>4</td></tr></table>")
+    return base + "index.html", pages
+
+
+def _recon_wo_nise_de_hashiraseru(nensu, dame=()):
+    """**本物の recon.main を、架空の相手で1回走らせる。**外には出ない
+    （fetch・robots・sleep を差し替える）。返り値は (その日の判定, 取りに行った URL, 記録の文)"""
+    import contextlib
+    import io
+    import json as _json
+    import tempfile
+    import time as _time
+    import urllib.error
+    import recon as rc
+    url, pages = _nise_saito(nensu, dame)
+    tori = []
+
+    def nise_fetch(u):
+        tori.append(u)
+        if pages.get(u) is None:
+            raise urllib.error.HTTPError(u, 404, "Not Found", {}, None)
+        return 200, "text/html; charset=utf-8", pages[u]
+    moto = (rc.HERE, rc.fetch, rc.check_robots, _time.sleep, sys.argv[:])
+    moto_env = {k: os.environ.get(k) for k in ("RUN_DATE", "GITHUB_STEP_SUMMARY")}
+    with tempfile.TemporaryDirectory() as tmp:
+        with open(os.path.join(tmp, "sources.json"), "w", encoding="utf-8") as f:
+            _json.dump({"sources": [{"id": "nise", "name": "架空", "area": "test", "url": url}]}, f)
+        try:
+            rc.HERE, rc.fetch = tmp, nise_fetch
+            rc.check_robots = lambda u: (True, "許可")
+            _time.sleep = lambda s: None
+            sys.argv = ["recon.py"]
+            os.environ["RUN_DATE"] = "2026-09-25"
+            os.environ.pop("GITHUB_STEP_SUMMARY", None)
+            with contextlib.redirect_stdout(io.StringIO()):
+                rc.main()
+            k = rc.kanzen_hantei({"id": "nise", "url": url}, "2026-09-25",
+                                 os.path.join(tmp, "data", "raw"))
+            with open(os.path.join(tmp, "data", "recon-report.md"), encoding="utf-8") as f:
+                kiroku = f.read()
+        finally:
+            rc.HERE, rc.fetch, rc.check_robots, _time.sleep, sys.argv = moto
+            for kk, v in moto_env.items():
+                if v is None:
+                    os.environ.pop(kk, None)
+                else:
+                    os.environ[kk] = v
+    return k, tori, kiroku
+
+
+def test_上限で切った日と取れなかった日を取得がそろったと名乗らないか():
+    """**取得の段が、自分の取得をそろったと言えるときだけ、そう言う。**
+
+    2026-09-24、堺市。名称変更の目次に年度が6本あり、2階層目の上限（4本）で
+    2本を**黙って**切っていた。取得の記録にも、切ったことは1行も出ていなかった。
+
+    **本物の recon.main を架空の相手で走らせて**、保存したものから決めた判定を見る。
+
+        ① 年度3本（上限の内側）を全部取れた   → そろった
+        ② 年度6本。上限で2本切った            → そろっていない。記録にも出る
+        ③ 年度3本のうち1本が 404              → そろっていない
+        ④ 本文の外の欄（このページも読まれています）からは、取りに行かない
+
+    **捕まえないもの**：上限の数そのものが妥当か（相手への負荷の判断）。
+    """
+    k, tori, kiroku = _recon_wo_nise_de_hashiraseru(3)
+    if not k or k["kanzen"] is not True:
+        raise AssertionError(f"年度3本を全部取れたのに、そろったと言わない: {k and k['riyuu']}")
+    k, tori, kiroku = _recon_wo_nise_de_hashiraseru(6)
+    if not k or k["kanzen"] is not False:
+        raise AssertionError("上限で年度を切ったのに、取得がそろったと言っている")
+    eq(len(k["tarinai"]), 2, "上限で切った年度の数が、保存が無いものの数と合わない")
+    if "取得の完全性: そろっていない" not in kiroku:
+        raise AssertionError("上限で切ったことが、取得の記録に出ていない（黙って切っている）")
+    k, tori, kiroku = _recon_wo_nise_de_hashiraseru(3, dame=(7,))
+    if not k or k["kanzen"] is not False:
+        raise AssertionError("年度のページが取れなかったのに、取得がそろったと言っている")
+    for nensu in (3, 6):
+        _k, tori, _kiroku = _recon_wo_nise_de_hashiraseru(nensu)
+        if any("/chukibo/" in u for u in tori):
+            raise AssertionError(
+                "本文の外の欄（このページも読まれています）から、別の置き場のページへ取りに行っている")
+
+
+def test_本文の外の欄から迷い込んだページを取り出しに使わないか():
+    """2026-09-24、中規模の置き場に、大規模の年度ページが紛れ込んでいた。
+
+    本文の外の「このページも読まれています」の欄から辿って保存したページを、
+    取り出しの段がそのまま読み、大規模の届出12件が中規模の名前で出ていた。
+
+    **本物の parse.main を、仮の置き場で走らせる。**置き場には、入口と年度のページのほかに、
+    欄から迷い込んで保存したページを1枚まぜる（前の取得の段が保存した形）。
+
+        ① 取り出しに、迷い込んだページを使わない
+        ② 入口と、辿るべきだったページは使う
+        ③ 台帳に「取得がそろった」が書かれる
+
+    **捕まえないもの**：表の読み取りそのもの（読み取りは差し替えて、どのファイルを読んだかだけを見る）。
+    """
+    import json as _json
+    import tempfile
+    import parse as ps
+    import recon as rc
+    url, pages = _nise_saito(3)
+    day = "2026-09-25"
+    moto = (ps.HERE, ps.RAW, ps.OUT, ps.KANZEN_DAICHO, ps.EXTRACTORS,
+            ps.parse_file, ps.write_unknown_report, os.environ.get("GITHUB_STEP_SUMMARY"))
+    with tempfile.TemporaryDirectory() as tmp:
+        d = os.path.join(tmp, "data", "raw", "nise")
+        os.makedirs(d)
+        for u, body in pages.items():
+            name = f"{day}.html" if u == url else f"{day}--{rc.slug_of(u)}.html"
+            with open(os.path.join(d, name), "wb") as f:
+                f.write(body)
+        with open(os.path.join(tmp, "sources.json"), "w", encoding="utf-8") as f:
+            _json.dump({"sources": [{"id": "nise", "name": "架空", "url": url}]}, f)
+        yonda = []
+
+        def nise_parse_file(source, path):
+            yonda.append(os.path.basename(path))
+            return [{"key": os.path.basename(path), "kind": "テスト"}]
+        try:
+            ps.HERE, ps.RAW, ps.OUT = tmp, os.path.join(tmp, "data", "raw"), os.path.join(tmp, "data", "parsed")
+            ps.KANZEN_DAICHO = os.path.join(tmp, "data", "ref", "kansoku-kanzen.json")
+            ps.EXTRACTORS = {"nise": {"base": url, "how": "heading"}}
+            ps.parse_file = nise_parse_file
+            ps.write_unknown_report = lambda path: 0
+            os.environ.pop("GITHUB_STEP_SUMMARY", None)
+            import contextlib
+            import io
+            with contextlib.redirect_stdout(io.StringIO()):
+                ps.main()
+            with open(ps.KANZEN_DAICHO, encoding="utf-8") as f:
+                daicho = _json.load(f)
+        finally:
+            (ps.HERE, ps.RAW, ps.OUT, ps.KANZEN_DAICHO, ps.EXTRACTORS,
+             ps.parse_file, ps.write_unknown_report, gh) = moto
+            if gh is not None:
+                os.environ["GITHUB_STEP_SUMMARY"] = gh
+    if any("chukibo" in n for n in yonda):
+        raise AssertionError("本文の外の欄から迷い込んで保存したページを、取り出しに使っている")
+    eq(sorted(n for n in yonda if "meisho-r" in n).__len__(), 3,
+       "辿るべきだった年度のページを、取り出しに使っていない")
+    if f"{day}.html" not in yonda:
+        raise AssertionError("入口ページを取り出しに使っていない")
+    eq((daicho.get("nise") or {}).get(day, {}).get("kanzen"), True,
+       "取得がそろった日を、台帳にそろったと書いていない")
 
 
 def main():

@@ -38,7 +38,7 @@ def hi(x):
 
 
 def measure(recs, start=None):
-    """**いつネットから消えたか**を数える。中央値は出さない。
+    """**いつ自治体のページで見えなくなったか**を数える。中央値は出さない。
 
     2026-09-19、中島さんの——
 
@@ -49,26 +49,29 @@ def measure(recs, start=None):
 
       中央値          **こちらの観測の話**。読む人には関係ない → 出さない
       廃止日          届出に書いてある事実 → 既に個票に出ている
-      **消えた日**    **こちらしか持っていない** → ここで数える
+      **見えなくなった日**  **こちらしか持っていない** → ここで数える
 
-    ただし**消えた日は点ではない。** 持っているのは「最後に在るのを見た日」で、
-    実際に消えたのはその翌日から次に見た日までの**どこか**（3.5「終了は点ではなく区間」）。
+    ただし**点ではない。** 持っているのは「最後に在るのを見た日」と、
+    「**取得がそろった観測**で見えなかった最初の日」（`kieta_kakunin`）。
+    実際に見えなくなったのは、そのあいだの**どこか**（3.5「終了は点ではなく区間」）。
+    **幅で分ける。**幅はこちらの弱点の数字でもある。
 
-    だから**幅で分ける。** 毎日見ている期間なら幅1日。
-    保存（Internet Archive）から積んだ分は、保存の間隔だけ幅がある。
-    **幅はこちらの弱点の数字でもある。**
+    **取得がそろっていない日は、見えなくなった根拠にしない**（merge.listed_wo_kimeru）。
+    2026-09-24、堺市で「毎日見ていた期間に消えた」と数えていた30件は、
+    全部こちらの取りこぼしだった。そういう届出は `listed` が null（未判定）になり、ここには入らない。
 
-    **捕まえないもの**：なぜ消えたか。縦覧が終わったのか、
+    **捕まえないもの**：なぜ見えなくなったか。縦覧が終わったのか、
     差し替えられたのか、相手の都合か。**確かめていないので書かない。**
     """
-    start = start or SITE_START
     kieta = [r for r in recs
-             if r.get("mode") == "snapshot" and not r.get("listed")
-             and r.get("last_seen")]
-    mainichi = [r for r in kieta if r["last_seen"] >= start]
-    hozon = [r for r in kieta if r["last_seen"] < start]
+             if r.get("mode") == "snapshot" and r.get("listed") is False
+             and r.get("last_seen") and r.get("kieta_kakunin")]
+    haba = {id(r): (hi(r["kieta_kakunin"]) - hi(r["last_seen"])).days for r in kieta}
+    mainichi = [r for r in kieta if haba[id(r)] == 1]
+    hozon = [r for r in kieta if haba[id(r)] > 1]
     tsuki = collections.Counter(r["last_seen"][:7] for r in kieta)
-    return kieta, mainichi, hozon, tsuki
+    mitei = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed") is None]
+    return kieta, mainichi, hozon, tsuki, mitei
 
 
 def katei_wa_ataru(recs):
@@ -82,7 +85,7 @@ def katei_wa_ataru(recs):
     """
     ok = ng = nashi = 0
     for r in recs:
-        if r.get("mode") != "snapshot" or r.get("listed"):
+        if r.get("mode") != "snapshot" or r.get("listed") is not False:
             continue
         if not r.get("last_seen"):
             continue
@@ -103,45 +106,55 @@ def main():
         return 1
     with open(ALL, encoding="utf-8") as f:
         recs = json.load(f)
-    kieta, mainichi, hozon, tsuki = measure(recs)
+    kieta, mainichi, hozon, tsuki, mitei = measure(recs)
     ok, ng, nashi = katei_wa_ataru(recs)
     nokoru = sum(1 for r in recs
-                 if r.get("mode") == "snapshot" and r.get("listed"))
+                 if r.get("mode") == "snapshot" and r.get("listed") is True)
 
     lines = [
-        "# 自治体のページから消えた届出", "",
+        "# 自治体のページで確認できなくなった届出", "",
         "**このファイルは `kieru.py` が書く。** 手で直さない。", "",
-        "**こちらしか持っていない記録。** 届出が自治体のページから消えても、",
-        "このサイトには残る。いつ消えたかを数える。", "",
-        f"消える置き場（`snapshot`）に **{nokoru + len(kieta):,}件**。",
-        f"うち **{len(kieta):,}件が消えた**。残り {nokoru:,}件はまだ載っている。",
-        f"消えない置き場（`cumulative`）の "
+        "**こちらが見た事実だけを書く。** 前の観測では確認でき、",
+        "**取得がそろった観測**（必要なページをすべて保存できた日）では確認できなかった届出を数える。",
+        "**なぜ見えなくなったかは確かめていない**（縦覧が終わったとは限らない）。",
+        "見えなくなっても、このサイトには残す。", "",
+        f"見えなくなることがある置き場（`snapshot`）に **{nokoru + len(kieta) + len(mitei):,}件**。",
+        f"うち **{len(kieta):,}件が、取得がそろった観測で確認できなかった**。"
+        f"{nokoru:,}件はいまも見えている。",
+        f"**{len(mitei):,}件は未判定**——最後に見えた日のあとの観測が、どれも取得がそろっていない。"
+        "取らなかったページの届出を「無かった」と数えないため（2026-09-24、堺市）。",
+        f"見えなくならない置き場（`cumulative`）の "
         f"{sum(1 for r in recs if r.get('mode') == 'cumulative'):,}件は、ここに数えない。", "",
-        "## 「消えた日」は点ではなく、区間", "",
-        "持っているのは「**最後に在るのを見た日**」。実際に消えたのは、",
-        "その翌日から次に見た日までのどこか（3.5）。**幅で分ける。**", "",
+        "## 「見えなくなった日」は点ではなく、区間", "",
+        "持っているのは「**最後に在るのを見た日**」と、",
+        "「**取得がそろった観測で見えなかった最初の日**」。そのあいだのどこか（3.5）。**幅で分ける。**", "",
         "| | 件数 | 幅 |", "|---|---:|---|",
-        f"| **毎日見ていた期間に消えた** | {len(mainichi):,} | "
-        f"**1日**。「◯日には在り、翌日には無かった」と書ける |",
-        f"| 保存から積んだ分 | {len(hozon):,} | 保存の間隔だけ分からない |", "",
+        f"| **幅1日** | {len(mainichi):,} | 「◯日には在り、翌日の、取得がそろった観測では確認できなかった」と書ける |",
+        f"| 幅2日以上 | {len(hozon):,} | 保存（Internet Archive）から積んだ分や、取得がそろわない日をはさんだもの |", "",
         f"毎日見に行き始めたのは **{SITE_START}**。",
-        "**幅1日で言えるのは、それ以降に消えたものだけ。**",
-        "いまは少ないが、**毎日増える。**", "",
+        "**幅1日で言えるのは、前日と当日の両方の観測がそろっていたものだけ。**", "",
     ]
     if mainichi:
         lines += ["### 幅1日で言えるもの", "",
-                  "| 最後に在るのを見た日 | 種類 | 市区町村 | 収集先 |",
-                  "|---|---|---|---|"]
+                  "| 最後に在るのを見た日 | 確認できなかった観測 | 種類 | 市区町村 | 収集先 |",
+                  "|---|---|---|---|---|"]
         for r in sorted(mainichi, key=lambda x: x["last_seen"], reverse=True):
-            lines.append(f"| {r['last_seen']} | {r.get('kind')} | "
+            lines.append(f"| {r['last_seen']} | {r['kieta_kakunin']} | {r.get('kind')} | "
                          f"{r.get('area')} | `{r.get('source')}` |")
         lines.append("")
+    if mitei:
+        mi = collections.Counter(r.get("source") for r in mitei)
+        lines += ["### 未判定（取得がそろった観測が、まだ無い）", "",
+                  "| 収集先 | 件数 |", "|---|---:|"]
+        for src, n in sorted(mi.items(), key=lambda x: (-x[1], x[0])):
+            lines.append(f"| `{src}` | {n:,} |")
+        lines += ["", "取得がそろったかは `data/ref/kansoku-kanzen.json`（`parse.py` が、保存したページを数えて書く）。", ""]
 
     lines += ["## 最後に見た月", "", "| 月 | 件数 |", "|---|---:|"]
     for m, n in sorted(tsuki.items(), reverse=True)[:12]:
         lines.append(f"| {m} | {n:,} |")
     lines += ["",
-              "**一度に大きく消える月がある。** 年度替わりの入れ替えとみているが、",
+              "**一度に大きく見えなくなる月がある。** 年度替わりの入れ替えとみているが、",
               "**確かめていないので書かない**（3.3）。", "",
               "## 出さないことにしたもの", "",
               "**「◯日で消えます」という中央値は出さない。**",

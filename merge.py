@@ -7,10 +7,16 @@ data/parsed/<id>/<日付>.json は「その日にページに載っていたも�
 
   first_seen … はじめて見た日
   last_seen  … 最後に見た日
-  listed     … 最新の保存日にまだ載っているか
+  listed     … いまも載っているか。**3つの値**（listed_wo_kimeru）
+                 true   最新の観測日に見えている
+                 false  最後に見えた日のあとの、**取得がそろった観測**で見えなかった
+                 null   そのあとの観測が、どれも取得がそろっていない（未判定）
+  kieta_kakunin … listed が false のとき、見えなかった最初の「そろった観測」の日
 
-を付ける。listed が false になった瞬間が「縦覧が終わってページから消えた」
-ということで、この仕組みの芯になる。消えたあとも、ここには残る。
+を付ける。**「その日の取得結果に無かった」だけでは、消えたとしない。**
+取らなかったページの届出も「その日に無かった」に見えるから（2026-09-24、堺市）。
+取得がそろっていたかは parse.py が書く台帳（data/ref/kansoku-kanzen.json）で見る。
+**なぜ見えなくなったかは確かめていない。**見えなくなったあとも、ここには残る。
 
 大阪市・大阪府のExcelは過去分を全部含む累積の一覧なので、消える／消えない
 の対象にはしない（mode を cumulative にする）。
@@ -188,7 +194,15 @@ def merge_across_sources(by_key):
         snaps = [r for r in g if r.get("mode") == "snapshot"]
         if snaps:
             base["mode"] = "snapshot"
-            base["listed"] = any(r.get("listed") for r in snaps)
+            # **3つの値のまま合わせる。**どこかに見えていれば true。
+            # 見えなくなったと言えるのは、どの収集先でも false のときだけ（1つでも未判定なら未判定）
+            ls_ = [r.get("listed") for r in snaps]
+            base["listed"] = (True if any(v is True for v in ls_)
+                              else False if all(v is False for v in ls_) else None)
+            kk = [r["kieta_kakunin"] for r in snaps if r.get("kieta_kakunin")]
+            base.pop("kieta_kakunin", None)
+            if base["listed"] is False and kk:
+                base["kieta_kakunin"] = max(kk)
             fs = [r["first_seen"] for r in snaps if r.get("first_seen")]
             ls = [r["last_seen"] for r in snaps if r.get("last_seen")]
             base["first_seen"] = min(fs) if fs else None
@@ -283,6 +297,47 @@ def enrich_from_ocr(by_key, ocr):
 def load(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+# ------------------------------------------------- 取得がそろった観測だけを根拠にする
+KANZEN_DAICHO = os.path.join(HERE, "data", "ref", "kansoku-kanzen.json")
+
+
+def kanzen_na_hi(path=KANZEN_DAICHO):
+    """収集先ごとの「取得がそろっていた日」の並び（parse.py が書く台帳から）。
+
+    **台帳が無ければ空。**どの日も、そろったとは言わない（見えなくなったと名乗らない側に倒す）。
+    """
+    try:
+        with open(path, encoding="utf-8") as f:
+            d = json.load(f)
+    except (FileNotFoundError, ValueError):
+        return {}
+    return {src: sorted(day for day, v in days.items()
+                        if isinstance(v, dict) and v.get("kanzen") is True)
+            for src, days in d.items() if isinstance(days, dict)}
+
+
+def listed_wo_kimeru(last_seen, latest, kanzen_days):
+    """snapshot の記録が、いまも載っているか。**(listed, kieta_kakunin)** を返す。
+
+        (True, None)   最新の観測日に見えている
+        (False, 日)    最後に見えた日のあとに、**取得がそろった観測**があり、そこで見えなかった。
+                       日はその最初の日
+        (None, None)   最後に見えた日のあとの観測が、どれも取得がそろっていない（未判定）
+
+    **「その日の取得結果に無かった」だけでは、見えなくなったとしない。**
+    2026-09-24、堺市で「消えて戻った」33鍵が、全部こちらの取りこぼしだった
+    （2階層目の上限で年度のページを取らなかった日に、そのページの届出が
+    「その日に無かった」と数えられていた）。見えた日は、取得がそろっていなくても
+    見えたことの証拠になる。**見えなかったことの証拠になるのは、そろった観測だけ。**
+    """
+    if last_seen and last_seen == latest:
+        return True, None
+    ato = [d for d in kanzen_days if last_seen and d > last_seen]
+    if ato:
+        return False, ato[0]
+    return None, None
 
 
 # ------------------------------------------------- 日ごとのファイルからも落とす
@@ -719,10 +774,15 @@ def main():
                     newer["mode"] = cur["mode"]
                     by_key[k] = newer
 
-    # 最新の保存日に載っているか
+    # いまも載っているか。**取得がそろった観測だけを、見えなくなった根拠にする**（listed_wo_kimeru）
+    kanzen = kanzen_na_hi()
     for rec in by_key.values():
+        rec.pop("kieta_kakunin", None)
         if rec["mode"] == "snapshot":
-            rec["listed"] = (rec["last_seen"] == latest_day.get(rec["source"]))
+            rec["listed"], kakunin = listed_wo_kimeru(
+                rec["last_seen"], latest_day.get(rec["source"]), kanzen.get(rec["source"], []))
+            if kakunin:
+                rec["kieta_kakunin"] = kakunin
         else:
             rec["listed"] = True
 
@@ -759,8 +819,8 @@ def main():
              f"スキャンPDFをOCRで読んだ結果から、所在地・設置者などを {enriched} 件に補った。",
              f"設置者を法人と確かめられなかった {hidden:,} 件は、氏名を「個人」と書き、所在地を町丁目まで丸めた（共通仕様3.1）。",
              f"なお {addr_nakatta:,} 件は、**取ってきた一覧に所在地が入っていなかった**（伏せたのではない）。", ""]
-    lines.append("| 収集先 | 件数 | 新設 | 変更 | 廃止 | 承継 | 最新の保存日 | 消えた |")
-    lines.append("| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |")
+    lines.append("| 収集先 | 件数 | 新設 | 変更 | 廃止 | 承継 | 最新の保存日 | 確認できなくなった | 未判定 |")
+    lines.append("| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: |")
     per = defaultdict(list)
     for r in all_recs:
         per[r["source"]].append(r)
@@ -768,19 +828,22 @@ def main():
     for src in sorted(per):
         rs = per[src]
         kinds = Counter(r["kind"] for r in rs)
-        gone = [r for r in rs if r["mode"] == "snapshot" and not r["listed"]]
+        gone = [r for r in rs if r["mode"] == "snapshot" and r["listed"] is False]
+        mitei = sum(1 for r in rs if r["mode"] == "snapshot" and r["listed"] is None)
         gone_all += gone
         lines.append(f"| {src} | {len(rs)} | {kinds.get('新設',0)} | {kinds.get('変更',0)} | "
-                     f"{kinds.get('廃止',0)} | {kinds.get('承継',0)} | {latest_day.get(src,'—')} | {len(gone)} |")
+                     f"{kinds.get('廃止',0)} | {kinds.get('承継',0)} | {latest_day.get(src,'—')} | {len(gone)} | {mitei} |")
     lines.append("")
 
     if gone_all:
-        lines.append("## ページから消えた届出（縦覧が終わったもの）")
+        # **なぜ見えなくなったかは確かめていない**（縦覧が終わったとは限らない）
+        lines.append("## 取得がそろった観測で確認できなくなった届出")
         lines.append("")
-        lines.append("| 最後に見た日 | 収集先 | 種類 | 店舗 | 届出日 |")
-        lines.append("| --- | --- | --- | --- | --- |")
+        lines.append("| 最後に見た日 | 確認できなかった観測 | 収集先 | 種類 | 店舗 | 届出日 |")
+        lines.append("| --- | --- | --- | --- | --- | --- |")
         for r in sorted(gone_all, key=lambda r: r["last_seen"], reverse=True)[:50]:
-            lines.append(f"| {r['last_seen']} | {r['source']} | {r['kind']} | {r['store']} | {r['notified_on']} |")
+            lines.append(f"| {r['last_seen']} | {r.get('kieta_kakunin') or '—'} | {r['source']} | "
+                         f"{r['kind']} | {r['store']} | {r['notified_on']} |")
         lines.append("")
 
     # これから起きること

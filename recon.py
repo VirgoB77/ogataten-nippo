@@ -156,14 +156,42 @@ class Scanner(HTMLParser):
 
 # ---------------------------------------------------------------- 取りに行く
 
+# 本文の範囲を示す印。自治体の CMS がページに入れていることがある。
+# 印が無いページでは、ページ全体を見る（今までどおり）
+HONBUN_HAJIME = ("メインコンテンツここから", "本文ここから")
+HONBUN_OWARI = ("メインコンテンツここまで", "本文ここまで")
+
+
+def honbun(page):
+    """リンクを選ぶ範囲を、本文の印のあいだに絞る。**横の欄を拾わない。**
+
+    2026-09-24、堺市で分かった。本文の外の「このページも読まれています」の欄は、
+    見た人の動きで**日ごとに中身が変わる。**そこに年度のページが出た日だけ
+    それが先に並び、上限の枠の使われ方が変わって、取れる年度が日ごとに揺れた。
+    中規模のページからは、この欄を通って大規模の年度ページへ迷い込んでいた。
+
+    印が片方でも無ければ、ページ全体を返す（印の無いサイトは、今までどおり）。
+    """
+    hajime = [page.find(m) for m in HONBUN_HAJIME if m in page]
+    if not hajime:
+        return page
+    a = min(hajime)
+    owari = [i for i in (page.find(m, a) for m in HONBUN_OWARI) if i > a]
+    if not owari:
+        return page
+    return page[a:max(owari)]
+
+
 def follow_links(page, base_url):
     """目次ページから、年度別ページなど「その先」のリンクを選ぶ。
 
     堺市や和泉市のように、入口は目次だけで、実物は1階層下にあることが多い。
     ここで拾わないと「表が無いページ」に見えてしまう。
+
+    **選ぶのは本文の中のリンクだけ**（`honbun()`）。
     """
     out, seen = [], set()
-    for m in re.finditer(r'<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', page, re.S | re.I):
+    for m in re.finditer(r'<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', honbun(page), re.S | re.I):
         label = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(2))).strip()
         if not label or len(label) > 60:
             continue
@@ -187,6 +215,112 @@ def slug_of(url):
     path = urllib.parse.urlparse(url).path
     name = re.sub(r"[^A-Za-z0-9._-]", "_", path.strip("/").replace("/", "-"))
     return (name or "page")[-60:]
+
+
+# ---------------------------------------------------------------- その日の取得が、そろっていたか
+
+def _owari_ga_aru(raw):
+    """文書の終わりの印（</html>）があるか。途中で切れた保存を「そろった」と名乗らない。"""
+    return b"</html>" in raw.lower()
+
+
+def _hozon_saki(d, day, url):
+    """辿った先を、その日に保存したファイル（`<日付>--<slug><拡張子>`）。無ければ None。"""
+    mae = f"{day}--{slug_of(url)}"
+    try:
+        names = sorted(os.listdir(d))
+    except FileNotFoundError:
+        return None
+    for name in names:
+        if name.startswith(mae) and name[len(mae):len(mae) + 1] in ("", "."):
+            return os.path.join(d, name)
+    return None
+
+
+def kanzen_hantei(src, day, raw_dir=None):
+    """**その日の取得が、必要な範囲をそろえていたか**を、保存したものだけで決める。
+
+    2026-09-24、堺市で分かった。2階層目の上限（FOLLOW_MAX_2）で年度のページを
+    黙って切った日に、そのページの届出が「その日に無かった＝消えた」と数えられていた。
+    相手の目次には毎日載っていた。**取らなかったことと、相手に無いことは別。**
+
+    だから、差分の段が件数から推し量るのではなく、**取得の段の事実**で決める。
+    上限で切った・取れなかった・保存できなかった、のどれも
+    「保存が無い」という1つの事実に出るので、**保存を数えれば足りる。**
+    取っていないページを推測で埋めない。
+
+        入口に表がある     入口ページが最後まで（</html> まで）保存できていれば、そろった
+        入口が目次         本文の中のリンク（`follow_links()`）の先を全部たどり、
+                           その先も目次なら、もう一段（取得の段と同じ2段まで）。
+                           **上限は掛けない。**必要なページが1本でも保存されていなければ、
+                           そろっていない
+
+    返り値は dict。**その日の入口が保存されていなければ None**（その日は観測が無い）。
+
+        kanzen    True（そろった）／False（そろっていない）／None（ここでは確かめない）
+        riyuu     ひとことの理由
+        hitsuyou  辿るべきだったページの数（入口を除く）
+        tarinai   保存が無かったページの見出し（先頭10件まで）
+        tsukau    取り出しに使ってよい保存ファイル（入口と、辿るべきだったページ）。
+                  本文の外の欄から迷い込んで保存したページは入らない
+    """
+    d = os.path.join(raw_dir or os.path.join(HERE, "data", "raw"), src["id"])
+    try:
+        names = sorted(os.listdir(d))
+    except FileNotFoundError:
+        return None
+    iriguchi = next((os.path.join(d, n) for n in names
+                     if n.startswith(day) and n[len(day):len(day) + 1] == "."), None)
+    if not iriguchi:
+        return None
+    out = {"kanzen": None, "riyuu": "", "hitsuyou": 0, "tarinai": [], "tsukau": [iriguchi]}
+    if not iriguchi.endswith((".html", ".htm")):
+        out["riyuu"] = "入口が HTML でない。そろったかを、ここでは確かめない"
+        return out
+    with open(iriguchi, "rb") as f:
+        raw = f.read()
+    if not _owari_ga_aru(raw):
+        out.update(kanzen=False, riyuu="入口ページの終わりの印（</html>）が無い。途中で切れた疑い")
+        return out
+    text, _ = to_text(raw, "")
+    if analyze(text, src["url"])["verdict"] != "わからない":
+        out.update(kanzen=True, riyuu="入口ページに表があり、最後まで保存できている")
+        return out
+
+    known, queue, tarinai = {src["url"]}, [], []
+
+    def narabu(links, depth):
+        for u, lb in links:
+            if u not in known:
+                known.add(u)
+                queue.append((u, lb, depth))
+
+    narabu(follow_links(text, src["url"]), 1)
+    while queue:
+        u, lb, depth = queue.pop(0)
+        out["hitsuyou"] += 1
+        p = _hozon_saki(d, day, u)
+        if not p:
+            tarinai.append(lb)
+            continue
+        with open(p, "rb") as f:
+            raw2 = f.read()
+        html2 = p.endswith((".html", ".htm"))
+        if html2 and not _owari_ga_aru(raw2):
+            tarinai.append(f"{lb}（途中で切れた疑い）")
+            continue
+        out["tsukau"].append(p)
+        if depth < 2 and html2:
+            t2, _ = to_text(raw2, "")
+            if analyze(t2, u)["verdict"] == "わからない":
+                narabu(follow_links(t2, u), depth + 1)
+    if tarinai:
+        out.update(kanzen=False, tarinai=tarinai[:10],
+                   riyuu=(f"辿るべきページ {out['hitsuyou']}本のうち {len(tarinai)}本の保存が無い"
+                          "（上限で切った・取れなかった・保存できなかった）"))
+    else:
+        out.update(kanzen=True, riyuu=f"辿るべきページ {out['hitsuyou']}本をすべて保存できている")
+    return out
 
 
 # check_robots は common/fetch.py に移した。こちらの名乗りで取り、429/503 を「許可」に倒さない
@@ -363,6 +497,12 @@ def report_one(src, res):
         elif res.get("budget_hit"):
             b, left = res["budget_hit"]
             out.append(f"  - （上限{b}本に達した。まだ{left}本残っている）")
+    k = res.get("kanzen")
+    if k:
+        mark = {True: "そろった", False: "そろっていない", None: "確かめていない"}[k["kanzen"]]
+        out.append(f"- **取得の完全性: {mark}**（{k['riyuu']}）")
+        for lb in k["tarinai"]:
+            out.append(f"  - 保存が無い: {lb[:40]}")
     out.append("")
     return "\n".join(out)
 
@@ -522,6 +662,10 @@ def main():
 
             if len(res["followed"]) >= FOLLOW_BUDGET and queue:
                 res["budget_hit"] = (FOLLOW_BUDGET, len(queue))
+
+        # 今日の取得が、必要な範囲をそろえていたか。**保存したものだけで決める**（上の kanzen_hantei）。
+        # 同じ関数を parse.py も呼び、台帳にして merge.py へ渡す
+        res["kanzen"] = kanzen_hantei(src, today, raw_dir)
 
         lines.append(report_one(src, res))
         time.sleep(WAIT)
