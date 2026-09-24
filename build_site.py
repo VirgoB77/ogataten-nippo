@@ -273,7 +273,7 @@ def page(title, body, rel, desc="", canonical="", extra_css=""):
 {body}
 <footer>
 <p>出典：各自治体が大規模小売店舗立地法に基づいて公告・縦覧している届出（大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町）。八尾市・堺市の「中規模」は、法ではなく市の条例に基づく届出です。各届出ページに出典のURLと取得日を載せています。兵庫県・神戸市の過去分には、Internet Archive（Wayback Machine）の保存から積み直したものを含みます（各ページにその旨を書いています）。
-毎朝1回とりに行き、自治体のページから消えた届出もこのサイトには残しています。</p>
+毎朝1回とりに行き、自治体のページで確認できなくなった届出もこのサイトには残しています。</p>
 <p>{esc(DISCLAIMER)} 写し間違いもありえます。正確な内容は各届出ページの「出典」から自治体のページをご確認ください。</p>
 <p><a href="{rel}about.html">このサイトについて・出典と利用規約</a> ／ <a href="{rel}contact.html">訂正・削除のご依頼</a></p>
 </footer>
@@ -411,13 +411,22 @@ def detail_page(r, by_ref, src_meta):
         # **探される語も、この文に入れる。** 「縦覧」「公告」は誰も検索しない。
         # 検索されるのは店名で、この一文は**その人が着いたあとに効く**——
         # 「もう役所のページには無い」を知って、ここを出典に使う（3.3）
-        if r.get("listed"):
+        #
+        # **見えなかったと書くのは、取得がそろった観測で見えなかったときだけ**（merge.listed_wo_kimeru）。
+        # 2026-09-24、堺市で「見つかっていません」と書いていた届出は、こちらが年度のページを
+        # 取らなかっただけだった。そういう届出は listed が null（未判定）になる
+        if r.get("listed") is True:
             status = (f"こちらが最後に見た {esc(r.get('last_seen') or '')} の時点では、"
                       "自治体のページに載っていました")
+        elif r.get("listed") is False:
+            status = (f"<b>こちらが最後に確認できたのは {esc(r.get('last_seen') or '')} です。"
+                      f"{esc(r.get('kieta_kakunin') or '')} の観測（必要なページをすべて取れた日）では、"
+                      "自治体のページで見つかっていません。</b>"
+                      "見えなくなった日そのものと、その理由は分かりません")
         else:
-            status = (f"<b>{esc(r.get('last_seen') or '')} を最後に、"
-                      "自治体のページでは見つかっていません。</b>"
-                      "消えた日そのものは分かりません（こちらが見た日と見た日のあいだ）")
+            status = (f"こちらが最後に確認できたのは {esc(r.get('last_seen') or '')} です。"
+                      "そのあとの観測では必要なページをすべては取れていないため、"
+                      "いまも自治体のページに載っているかは判定していません")
         status = f'<p class="note">{status}。このサイトには残しています。</p>' 
     ocr_note = ""
     if r.get("from_ocr"):
@@ -463,8 +472,10 @@ def detail_page(r, by_ref, src_meta):
         desc += f" 届出に書かれた{yobina}は{jp_date(ev)}{soeru}。"
     # **消えたものは、それを説明に入れる。** 検索から着いた人が
     # 「役所のページに無い」ことをここで知る。**主語はこちら**（3.5）
-    if r.get("mode") == "snapshot" and not r.get("listed") and r.get("last_seen"):
-        desc += f" {jp_date(r['last_seen'])}を最後に自治体のページでは見つかっていません。"
+    if (r.get("mode") == "snapshot" and r.get("listed") is False
+            and r.get("last_seen") and r.get("kieta_kakunin")):
+        desc += (f" {jp_date(r['last_seen'])}を最後に確認し、{jp_date(r['kieta_kakunin'])}の観測では"
+                 "自治体のページで見つかっていません。")
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>
@@ -568,7 +579,7 @@ def about_page(src_meta, today):
 <h2>このサイトがしていること</h2>
 <p>{esc(SITE_NAME)}は、大規模小売店舗立地法（大店立地法）にもとづいて自治体が公表している「届出」を毎朝1回とりに行き、
 店舗面積1,000㎡を超える大型店の新設・変更・廃止・承継を、届出が出た日に一覧にしているサイトです。
-自治体のページでは縦覧期間（4か月）が過ぎると消えてしまう届出も、このサイトには残しています。</p>
+自治体のページで確認できなくなった届出も、このサイトには残しています。</p>
 <p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、そのうち{n_delegated}市町のページを見ています（池田市・豊能町・能勢町は、箕面市が2市2町の窓口として公表しているページで見ています）。{'・'.join(esc(x) for x in not_seen)}は届出のページが見つからないため、府のページに載る分だけ拾っています。吹田市・高槻市は移譲先ではなく府が受理するため、府のページから拾っています。</p>
 
 <h2>やらないと決めたこと</h2>
@@ -1169,8 +1180,9 @@ def index_page(all_recs, today):
                     key=lambda r: r.get("event_on") or r.get("planned_on"))
     recent_close = sorted([r for r in all_recs if r["kind"] == "廃止"], key=lambda r: r["notified_on"], reverse=True)[:12]
     recent_new = sorted([r for r in all_recs if r["kind"] == "新設"], key=lambda r: r["notified_on"], reverse=True)[:12]
-    gone = sorted([r for r in all_recs if r.get("mode") == "snapshot" and not r.get("listed")],
-                  key=lambda r: r.get("last_seen") or "", reverse=True)[:12]
+    # **取得がそろった観測で確認できなかったものだけ**（listed が false）。未判定（null）は入れない
+    gone = sorted([r for r in all_recs if r.get("mode") == "snapshot" and r.get("listed") is False],
+                  key=lambda r: (r.get("kieta_kakunin") or "", r.get("last_seen") or ""), reverse=True)[:12]
     kinds = Counter(r["kind"] for r in all_recs)
     areas = Counter(r["area"] for r in all_recs)
     # **「場所の見出し」は市区町村の数ではない**（「兵庫県」「所在地不明」が混ざる）。
@@ -1217,7 +1229,7 @@ def index_page(all_recs, today):
 <h2>最近の新設の届出</h2>
 {table(recent_new, rel)}
 
-{"<h2>自治体のページから消えた届出</h2><p class='lead'>縦覧期間（4か月）が終わって元のページには載らなくなったもの。ここには残ります。</p>" + table(gone, rel) if gone else ""}
+{"<h2>自治体のページで確認できなくなった届出</h2><p class='lead'>前の観測では確認でき、必要なページをすべて取れた観測では確認できなかったもの。見えなくなった理由は確かめていません。ここには残ります。</p>" + table(gone, rel) if gone else ""}
 
 <h2>市区町村から</h2>
 <p class="lead">数字は届出の件数です（同じ店の変更の届出も1件ずつ数えます。店の数ではありません）。収録の始まりは市区町村ごとに違うので、市区町村どうしで比べられる数ではありません（各市区町村のページに「収録は何年から」を書いています）。</p>
