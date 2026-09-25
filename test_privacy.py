@@ -5108,8 +5108,11 @@ def test_robotsを確かめられなかったときに許可と言わないか()
             with open(_os.path.join(root, "data", "ref", "aite-daicho.json"),
                      "w", encoding="utf-8") as f:
                 json.dump(daicho, f, ensure_ascii=False)
-            k = _kado.Kado(root, "ogataten-nippo", _f.UA, env={},
-                           transport=_Nise(kotae), sleep=lambda s: None)
+            # 門は外へ出す前に、いまの日本時間の日付がこの実行の日付と同じかを見る。偽の時計はその日の朝
+            import datetime as _dt
+            asa = _dt.datetime(2026, 9, 25, 7, tzinfo=_kado.JST).timestamp()
+            k = _kado.Kado(root, "ogataten-nippo", _f.UA, env={}, today="2026-09-25",
+                           transport=_Nise(kotae), sleep=lambda s: None, now=lambda: asa)
             k._genzai = ("tameshi", {"相手": "ためし相手"}, _kado.KOUI_TORU)
             moto = _kado._KADO
             _kado._KADO = k
