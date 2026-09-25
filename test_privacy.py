@@ -5102,7 +5102,9 @@ def test_robotsを確かめられなかったときに許可と言わないか()
         root = tempfile.mkdtemp()
         try:
             _os.makedirs(_os.path.join(root, "data", "ref"))
-            daicho = {"aite": {"ためし相手": {"host": [HOST], "担当": "ogataten-nippo"}}}
+            # 予約台帳（repo横断）は tests/test_kado.py の「予約台帳」で試す。ここでは要らないと書く
+            daicho = {"yoyaku": {"hitsuyou": False},
+                      "aite": {"ためし相手": {"host": [HOST], "担当": "ogataten-nippo"}}}
             with open(_os.path.join(root, "data", "ref", "aite-daicho.json"),
                      "w", encoding="utf-8") as f:
                 json.dump(daicho, f, ensure_ascii=False)
