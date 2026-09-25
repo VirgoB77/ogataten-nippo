@@ -22,3 +22,6 @@ find . -name __pycache__ -prune -exec rm -rf {} + 2>/dev/null || true
 export RUN_DATE
 python3 test_privacy.py > /tmp/check.log 2>&1 || { tail -20 /tmp/check.log; exit 1; }
 tail -2 /tmp/check.log
+# 門（common/kado.py）の検査。unittest（tests/ に __init__.py は無くても discover は動く）
+python3 -m unittest discover -s tests > /tmp/check-kado.log 2>&1 || { tail -40 /tmp/check-kado.log; exit 1; }
+tail -3 /tmp/check-kado.log

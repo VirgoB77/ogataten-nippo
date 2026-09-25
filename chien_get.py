@@ -32,6 +32,9 @@ import urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from common.fetch import Konde, UA, WAIT, check_robots, decode_html, is_busy  # noqa: E402
+from common import kado  # noqa: E402  取りに行く前の門。カードid = 会社ごと（下の card_id_of）
+from common import runday  # noqa: E402  この実行の日付。門は時計を見ないので、ここから渡す
+import chien_recon  # noqa: E402  KAISHA（会社→トップのURL）から host を作るため
 
 RECORD = os.path.join(HERE, "data", "ref", "chien-recon.md")
 INBOX = os.path.join(HERE, "inbox", "chien")
@@ -89,6 +92,22 @@ def ikisaki(michi=RECORD):
     **本番と同じ `yomu()` を通す。** ここが増えれば見張りも増える。
     """
     return [u for _na, u in yomu(michi)]
+
+
+def card_id_of(na):
+    """会社名 → カードid。**chien_recon.py の KAISHA（トップのURL）から作る。**
+
+    「chien-」+（トップの host から www. を除き、英数字以外を - にしたもの）
+    （共通指示書「この置き場の具体」）。KAISHA に無い会社は「対応なし」——
+    対応が決められない取得先は、カードid を「対応なし」にして、門で止める。
+    """
+    top = next((t for n, t in chien_recon.KAISHA if n == na), None)
+    if not top:
+        return "対応なし"
+    host = (urllib.parse.urlparse(top).hostname or "").lower()
+    host = re.sub(r"^www\.", "", host)
+    host = re.sub(r"[^0-9a-z]+", "-", host).strip("-")
+    return f"chien-{host}" if host else "対応なし"
 
 
 def get(url):
@@ -162,45 +181,53 @@ def main():
         return 1
 
     os.makedirs(INBOX, exist_ok=True)
-    totta, dame, derarenai, konde, robots_dame = [], [], [], [], []
+    totta, dame, derarenai, konde, robots_dame, mon_dame = [], [], [], [], [], []
     mokuhyo = saki[:args.limit]
+    # **取りに行く前の門。** カードid = 会社ごと（card_id_of）。保存先 inbox/chien。
+    K = kado.hajimeru(HERE, "ogataten-nippo", UA, today=runday.today())
 
     for i, (na, url) in enumerate(mokuhyo):
         if i:
             time.sleep(WAIT)
-        # **ホストごとに robots を見直す。** 1段目はトップのホストしか見ていない
-        ok, why = check_robots(url)
-        if ok is False:
-            print(f"× {na} robots.txt が拒否している（{url}）。取りに行かない")
-            robots_dame.append((na, url))
-            continue
-        if ok is None:
-            print(f"△ {na} robots.txt が返らない（{why}）。この社は飛ばす")
-            konde.append((na, url))
-            continue
+        cid = card_id_of(na)
         try:
-            status, ctype, saishu, raw = get(url)
-        except Konde:
-            print(f"△ {na} 相手が混んでいる。この社は飛ばす")
-            konde.append((na, url))
-            continue
-        except urllib.error.HTTPError as e:
-            print(f"× {na} 相手が HTTP {e.code} と答えた")
-            dame.append((na, url, f"HTTP {e.code}"))
-            continue
-        except Exception as e:                                   # noqa: BLE001
-            print(f"× {na} 出られなかった（{type(e).__name__}: {e}）")
-            derarenai.append((na, url))
-            continue
+            with K.sesshon(cid, hozon_saki=INBOX):
+                # **ホストごとに robots を見直す。** 1段目はトップのホストしか見ていない
+                ok, why = check_robots(url)
+                if ok is False:
+                    print(f"× {na} robots.txt が拒否している（{url}）。取りに行かない")
+                    robots_dame.append((na, url))
+                    continue
+                if ok is None:
+                    print(f"△ {na} robots.txt が返らない（{why}）。この社は飛ばす")
+                    konde.append((na, url))
+                    continue
+                try:
+                    status, ctype, saishu, raw = get(url)
+                except Konde:
+                    print(f"△ {na} 相手が混んでいる。この社は飛ばす")
+                    konde.append((na, url))
+                    continue
+                except urllib.error.HTTPError as e:
+                    print(f"× {na} 相手が HTTP {e.code} と答えた")
+                    dame.append((na, url, f"HTTP {e.code}"))
+                    continue
+                except Exception as e:                                   # noqa: BLE001
+                    print(f"× {na} 出られなかった（{type(e).__name__}: {e}）")
+                    derarenai.append((na, url))
+                    continue
 
-        michi = os.path.join(INBOX, f"{yasui(url)}.bin")
-        with open(michi, "wb") as f:
-            f.write(raw)
-        tobasare = "" if saishu.rstrip("/") == url.rstrip("/") else f" → {saishu}"
-        totta.append((na, url, status, ctype, len(raw), saishu, shitami(raw)))
-        print(f"○ {na}  {status} {ctype} {len(raw):,}バイト{tobasare}")
+                michi = os.path.join(INBOX, f"{yasui(url)}.bin")
+                with open(michi, "wb") as f:
+                    f.write(raw)
+                tobasare = "" if saishu.rstrip("/") == url.rstrip("/") else f" → {saishu}"
+                totta.append((na, url, status, ctype, len(raw), saishu, shitami(raw)))
+                print(f"○ {na}  {status} {ctype} {len(raw):,}バイト{tobasare}")
+        except kado.Tomeru as e:
+            print(f"× {na} 門で止めた（カードid={cid}）：{'／'.join(e.riyuu)}")
+            mon_dame.append((na, url))
 
-    mita = len(totta) + len(dame) + len(derarenai) + len(konde) + len(robots_dame)
+    mita = len(totta) + len(dame) + len(derarenai) + len(konde) + len(robots_dame) + len(mon_dame)
     minna_dame = mita > 0 and len(derarenai) == mita
 
     lines = ["# 遅延証明書のページを取ってきた記録", ""]
@@ -219,6 +246,7 @@ def main():
         f"| 相手が「だめ」と答えた | {len(dame):,} |",
         f"| **こちらが出られなかった** | {len(derarenai):,} |",
         f"| 混んでいたので飛ばした | {len(konde):,} |",
+        f"| 門で止めた | {len(mon_dame):,} |",
         f"| 記録にあった行き先 | {len(saki):,} |", "",
     ]
     if totta:

@@ -31,6 +31,8 @@ FILES = os.path.join(HERE, "data", "files")
 
 from common.fetch import UA, check_robots, is_busy  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 from common import hikisu   # 知らない引数で止める（3.4）
+from common import kado     # 取りに行く前の門。カードid = "wayback"（相手は Internet Archive）
+from common import runday   # この実行の日付。門は時計を見ないので、ここから渡す
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 90               # Wayback は混んでいると遅い。40秒では時間切れが多かった
 MAX_PER_RUN = int(os.environ.get("WAYBACK_MAX", "24"))     # 全部合わせて1回にこれだけ
@@ -276,26 +278,33 @@ def main():
     lines = ["# アーカイブから取ってきた結果", ""]
     budget = [MAX_PER_RUN]
     total = 0
-    ok, why = check_robots(WEB + "/")
-    if not ok:                          # False＝拒否、None＝robots.txt が混んでいる
-        lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
-        sources = []
-    for src in sources:
-        wb = src.get("wayback")
-        if not wb or not src.get("enabled"):
-            continue
-        if wanted and src["id"] not in wanted:
-            continue
-        urls = wb if isinstance(wb, list) else [src["url"]]
-        lines.append(f"### {src['name']}")
-        lines.append("")
-        try:
-            total += backfill(src["id"], urls, budget, lines, prefixes=src.get("wayback_prefix") or ())
-        except Busy as e:
-            lines.append(f"- **Wayback が {e}（混んでいる）。今回はここで中止**（共通仕様3.4）")
-            lines.append("")
-            break
-        lines.append("")
+    # **取りに行く前の門。** カードid = "wayback"（相手は Internet Archive）。
+    # 保存先はこのモジュールの置き場（data/raw。個々の収集先ごとの下敷き）。
+    K = kado.hajimeru(HERE, "ogataten-nippo", UA, today=runday.today())
+    try:
+        with K.sesshon("wayback", hozon_saki=RAW):
+            ok, why = check_robots(WEB + "/")
+            if not ok:                          # False＝拒否、None＝robots.txt が混んでいる
+                lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
+                sources = []
+            for src in sources:
+                wb = src.get("wayback")
+                if not wb or not src.get("enabled"):
+                    continue
+                if wanted and src["id"] not in wanted:
+                    continue
+                urls = wb if isinstance(wb, list) else [src["url"]]
+                lines.append(f"### {src['name']}")
+                lines.append("")
+                try:
+                    total += backfill(src["id"], urls, budget, lines, prefixes=src.get("wayback_prefix") or ())
+                except Busy as e:
+                    lines.append(f"- **Wayback が {e}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+                    lines.append("")
+                    break
+                lines.append("")
+    except kado.Tomeru as e:
+        lines.append(f"- **門で止めた：{'／'.join(e.riyuu)}**")
     lines.insert(1, f"**今回置いた {total}本**（1回の上限 {MAX_PER_RUN}本）")
     text = "\n".join(lines)
     os.makedirs(os.path.join(HERE, "data"), exist_ok=True)

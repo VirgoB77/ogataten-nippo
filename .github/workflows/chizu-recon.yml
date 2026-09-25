@@ -49,17 +49,6 @@ jobs:
       - name: 目録を引く（同時1本・5秒以上あける）
         run: python3 chizu_recon.py --limit "${{ github.event.inputs.limit || 3 }}"
 
-      # **返ってきたバイトは、そのまま置く。** 読み取らない。
-      # public なリポジトリには入れない（外から取ってきた生データなので）
-      - name: 返ってきた JSON を成果物として置く
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chizu-mokuroku-${{ env.RUN_DATE }}
-          path: inbox/chizu/search/
-          if-no-files-found: warn
-          retention-days: 7
-
       # 入れるのは**数えた記録だけ。** 中身は入れない
       - name: 記録を残す
         if: always()

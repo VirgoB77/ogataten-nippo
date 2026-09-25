@@ -30,6 +30,7 @@ import urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xlsx import _serial_to_date as serial_to_date  # noqa: E402
 from common import privacy  # 列の見出しが名前の欄かの判定（共通仕様5節）  # noqa: E402
+from common import kanzen  # 完全観測の印は3値。「解析できた」はここで決める（共通指示書2・3）  # noqa: E402
 import recon  # その日の取得がそろっていたか（recon.kanzen_hantei）。取得の段の事実で決める  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -265,11 +266,17 @@ from collections import Counter, defaultdict
 CURRENT = {"source": ""}
 UNKNOWN = defaultdict(Counter)      # (source, 種類, 列名) → 回数
 EXAMPLE = {}                        # 同じキー → 値の例
+# その日ぶんを読んでいる間だけ数える。「解析できた」の印（下）が使う。
+# UNKNOWN は収集先ぶん（run 全体）で積み上がるので、その日だけを見るにはこちらが要る
+DAY_STATE = {"tobashita_hyou": 0}
+TOBASHITA_HYOU_KIND = "店名か届出日の列が見つからず飛ばした表"
 
 
 def note_unknown(kind, name, example=""):
     key = (CURRENT["source"], kind, name)
     UNKNOWN[key[0]][(kind, name)] += 1
+    if kind == TOBASHITA_HYOU_KIND:
+        DAY_STATE["tobashita_hyou"] += 1
     # data/parse-unknown.md は公開する。氏名の入る列の値は例に載せない（3.1）。
     # 回数は残るので「様式が変わった」のサインとしては働く
     # 判定は common/privacy.py に1つだけ置く（merge.py の extra の掃除と同じもの）
@@ -651,6 +658,30 @@ def parse_file(source, path):
     return recs
 
 
+def kaiseki_no_shirushi(mae_kensu, ima_kensu, mae_kagi, ima_kagi, tobashita_ari):
+    """『解析できた』の印。**取り出しの結果からだけ**決める（共通指示書2・3）。
+
+    上から順に見る。どれかに当たれば「分からない」——**次の理由を重ねて調べない**
+    （1つでも怪しければ、それだけで十分。理由を足しても「分からない」は「分からない」のまま）。
+
+        店名か届出日の列が見つからず、表を丸ごと飛ばした     → 分からない
+        前の完全観測は1件以上あったのに、今回は0件           → 分からない（kanzen.zero_gyou）
+        前の完全観測から、鍵の半分以上が一度に消えた         → 分からない（kanzen.kyugen）
+        それ以外                                            → はい
+
+    `zero_gyou` に渡す `zero_no_konkyo` は常に None。**原典の「0件」表示そのものは
+    見ていない**ので、確かめたことにしない（安全側）。
+    """
+    if tobashita_ari:
+        return kanzen.WAKARANAI
+    zero = kanzen.zero_gyou(mae_kensu, ima_kensu, None)
+    if zero != kanzen.HAI:
+        return zero
+    if kanzen.kyugen(mae_kagi, ima_kagi):
+        return kanzen.WAKARANAI
+    return kanzen.HAI
+
+
 def kanzen_daicho_yomu():
     try:
         with open(KANZEN_DAICHO, encoding="utf-8") as f:
@@ -691,15 +722,19 @@ def main():
             day = os.path.basename(path)[:10]
             by_day.setdefault(day, []).append(path)
         daicho[source] = {}
+        mae_kanzen = None   # この収集先で、直前に kanzen=True だった日の（件数, 鍵の集合）
         for day, paths in sorted(by_day.items()):
             # **その日の取得がそろっていたかは、取得の段の事実で決める**（recon.kanzen_hantei）。
             # 取り出しに使うのも、入口と「辿るべきだった」ページだけ。本文の外の欄から
             # 迷い込んで保存したページ（中規模の置き場に入った大規模の年度ページなど）は読まない
+            #
+            # 「解析できた」（下）は取り出してみるまで分からないので、ここでは**まだ渡さない**。
+            # tsukau（使ってよい保存ファイル）を得るためだけに、先に1回呼ぶ
             k = recon.kanzen_hantei(src_by_id[source], day, RAW) if source in src_by_id else None
             if k is not None:
                 tsukau = {os.path.abspath(p) for p in k["tsukau"]}
                 paths = [p for p in paths if os.path.abspath(p) in tsukau]
-                daicho[source][day] = {kk: k[kk] for kk in ("kanzen", "riyuu", "hitsuyou", "tarinai")}
+            DAY_STATE["tobashita_hyou"] = 0
             recs, seen = [], set()
             for path in paths:
                 for r in parse_file(source, path):
@@ -707,6 +742,23 @@ def main():
                         continue
                     seen.add(r["key"])
                     recs.append(r)
+            if k is not None:
+                # 「解析できた」を決めて、取得段の印と合わせ直す（共通指示書2・3）。
+                # ここで初めて recon.kanzen_hantei に kaiseki を渡し、台帳に書く最終判定を得る
+                ima_kagi = {r["key"] for r in recs}
+                kaiseki = kaiseki_no_shirushi(
+                    (mae_kanzen or {}).get("kensu"), len(recs),
+                    (mae_kanzen or {}).get("kagi") or set(), ima_kagi,
+                    DAY_STATE["tobashita_hyou"] > 0)
+                k2 = recon.kanzen_hantei(src_by_id[source], day, RAW, kaiseki=kaiseki)
+                daicho[source][day] = {
+                    "kanzen": k2["kanzen"], "riyuu": k2["riyuu"],
+                    "hitsuyou": k2["hitsuyou"], "tarinai": k2["tarinai"],
+                    "shirushi": k2.get("shirushi", {}), "kensu": len(recs),
+                    "moto": src_by_id[source]["url"], "houshiki": "html",
+                }
+                if k2["kanzen"] is True:
+                    mae_kanzen = {"kensu": len(recs), "kagi": ima_kagi}
             d = os.path.join(OUT, source)
             os.makedirs(d, exist_ok=True)
             with open(os.path.join(d, f"{day}.json"), "w", encoding="utf-8") as f:

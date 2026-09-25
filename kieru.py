@@ -51,10 +51,15 @@ def measure(recs, start=None):
       廃止日          届出に書いてある事実 → 既に個票に出ている
       **見えなくなった日**  **こちらしか持っていない** → ここで数える
 
-    ただし**点ではない。** 持っているのは「最後に在るのを見た日」と、
-    「**取得がそろった観測**で見えなかった最初の日」（`kieta_kakunin`）。
+    ただし**点ではない。** 持っているのは「**取得がそろった観測**のうち、見えた最後の日」
+    （`kakunin_saigo`）と、「取得がそろった観測で見えなかった最初の日」（`kieta_kakunin`）。
     実際に見えなくなったのは、そのあいだの**どこか**（3.5「終了は点ではなく区間」）。
     **幅で分ける。**幅はこちらの弱点の数字でもある。
+
+    2026-09-25、区間の起点を「最後に見た日」（`last_seen`。取得がそろっていたかに関係ない）から
+    `kakunin_saigo` に直した（共通指示書4）。**取得がそろっていない日に見えた事実は残るが、
+    消失判定用の時点としては進めない**——そろっていない日をはさむと、実際には無かった空白が
+    「幅」に混ざってしまう。
 
     **取得がそろっていない日は、見えなくなった根拠にしない**（merge.listed_wo_kimeru）。
     2026-09-24、堺市で「毎日見ていた期間に消えた」と数えていた30件は、
@@ -65,11 +70,11 @@ def measure(recs, start=None):
     """
     kieta = [r for r in recs
              if r.get("mode") == "snapshot" and r.get("listed") is False
-             and r.get("last_seen") and r.get("kieta_kakunin")]
-    haba = {id(r): (hi(r["kieta_kakunin"]) - hi(r["last_seen"])).days for r in kieta}
+             and r.get("kakunin_saigo") and r.get("kieta_kakunin")]
+    haba = {id(r): (hi(r["kieta_kakunin"]) - hi(r["kakunin_saigo"])).days for r in kieta}
     mainichi = [r for r in kieta if haba[id(r)] == 1]
     hozon = [r for r in kieta if haba[id(r)] > 1]
-    tsuki = collections.Counter(r["last_seen"][:7] for r in kieta)
+    tsuki = collections.Counter(r["kakunin_saigo"][:7] for r in kieta)
     mitei = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed") is None]
     return kieta, mainichi, hozon, tsuki, mitei
 
@@ -87,13 +92,13 @@ def katei_wa_ataru(recs):
     for r in recs:
         if r.get("mode") != "snapshot" or r.get("listed") is not False:
             continue
-        if not r.get("last_seen"):
+        if not r.get("kakunin_saigo"):   # 消失判定用の時点は kakunin_saigo（共通指示書4）
             continue
         if not r.get("review_from"):
             nashi += 1
             continue
         yoso = hi(r["review_from"]) + datetime.timedelta(days=JURAN_KATEI)
-        if abs((hi(r["last_seen"]) - yoso).days) <= 14:
+        if abs((hi(r["kakunin_saigo"]) - yoso).days) <= 14:
             ok += 1
         else:
             ng += 1
@@ -121,12 +126,13 @@ def main():
         f"見えなくなることがある置き場（`snapshot`）に **{nokoru + len(kieta) + len(mitei):,}件**。",
         f"うち **{len(kieta):,}件が、取得がそろった観測で確認できなかった**。"
         f"{nokoru:,}件はいまも見えている。",
-        f"**{len(mitei):,}件は未判定**——最後に見えた日のあとの観測が、どれも取得がそろっていない。"
+        f"**{len(mitei):,}件は未判定**——取得がそろった観測で、まだ見えなくなったと確かめられていない"
+        "（そろった観測がまだ無い・観測元やページの取り方が変わった・そろっていない観測でまた見えた、など）。"
         "取らなかったページの届出を「無かった」と数えないため（2026-09-24、堺市）。",
         f"見えなくならない置き場（`cumulative`）の "
         f"{sum(1 for r in recs if r.get('mode') == 'cumulative'):,}件は、ここに数えない。", "",
         "## 「見えなくなった日」は点ではなく、区間", "",
-        "持っているのは「**最後に在るのを見た日**」と、",
+        "持っているのは「**取得がそろった観測のうち、見えた最後の日**」と、",
         "「**取得がそろった観測で見えなかった最初の日**」。そのあいだのどこか（3.5）。**幅で分ける。**", "",
         "| | 件数 | 幅 |", "|---|---:|---|",
         f"| **幅1日** | {len(mainichi):,} | 「◯日には在り、翌日の、取得がそろった観測では確認できなかった」と書ける |",
@@ -136,10 +142,10 @@ def main():
     ]
     if mainichi:
         lines += ["### 幅1日で言えるもの", "",
-                  "| 最後に在るのを見た日 | 確認できなかった観測 | 種類 | 市区町村 | 収集先 |",
+                  "| 取得がそろった観測で最後に見た日 | 確認できなかった観測 | 種類 | 市区町村 | 収集先 |",
                   "|---|---|---|---|---|"]
-        for r in sorted(mainichi, key=lambda x: x["last_seen"], reverse=True):
-            lines.append(f"| {r['last_seen']} | {r['kieta_kakunin']} | {r.get('kind')} | "
+        for r in sorted(mainichi, key=lambda x: x["kakunin_saigo"], reverse=True):
+            lines.append(f"| {r['kakunin_saigo']} | {r['kieta_kakunin']} | {r.get('kind')} | "
                          f"{r.get('area')} | `{r.get('source')}` |")
         lines.append("")
     if mitei:
@@ -150,7 +156,7 @@ def main():
             lines.append(f"| `{src}` | {n:,} |")
         lines += ["", "取得がそろったかは `data/ref/kansoku-kanzen.json`（`parse.py` が、保存したページを数えて書く）。", ""]
 
-    lines += ["## 最後に見た月", "", "| 月 | 件数 |", "|---|---:|"]
+    lines += ["## 取得がそろった観測で最後に見た月", "", "| 月 | 件数 |", "|---|---:|"]
     for m, n in sorted(tsuki.items(), reverse=True)[:12]:
         lines.append(f"| {m} | {n:,} |")
     lines += ["",

@@ -9,6 +9,8 @@
 
 import re
 
+from common import kado   # **これを import した時点で、門の無い通信を閉じる**（kado.py の末尾を見る）
+
 ABOUT_URL = "https://ogataten-nippo.com/about.html"
 CONTACT_FORM_URL = "https://forms.gle/pp93tSJ5p8SAMEMk8"
 
@@ -19,19 +21,11 @@ WAIT = 5
 
 
 # ---------------------------------------------------------------- robots.txt
-import urllib.error
-import urllib.parse
-import urllib.request
-import urllib.robotparser
+import urllib.error   # is_busy() が HTTPError の型を見るためだけに使う
 
 TIMEOUT = 40
 # 相手が「混んでいる」「今は受けない」と言っている応答。押し込まずにその回は中止（3.4）
 BUSY = (429, 503)
-# robots.txt が**本当に無い**とき。これは答えなので、慣例どおり許可でよい。
-# **5xx や 403 はここに入れない**——「無い」ではなく「確かめられなかった」
-NAI = (404, 410)
-
-_robots_cache = {}
 
 
 class Konde(Exception):
@@ -52,77 +46,31 @@ def is_busy(exc):
     return isinstance(exc, urllib.error.HTTPError) and exc.code in BUSY
 
 
-def robots_allows(body, url, ua=UA):
-    """robots.txt の本文を渡して、この UA が url を取ってよいか。ネットに出ない純粋な判定。"""
-    rp = urllib.robotparser.RobotFileParser()
-    rp.parse(body.splitlines())
-    return rp.can_fetch(ua, url)
-
-
 def check_robots(url):
-    """robots.txt を、こちらの名乗りで取って確かめる。1回の実行につきホストごとに1回。
+    """robots.txt を確かめてよいか。**門（common/kado.py）に聞くだけの窓口。**
 
     返り値 (ok, why)
       True  … 許可
       False … robots.txt で拒否。取りに行かない
       None  … **確かめられなかった。** その回は行かない
 
-    **「無い」と「読めなかった」を分ける。**
+    2026-09-21 に直した独自の robots.txt 取得（ホストごとの直取り・キャッシュ）は、
+    2026-09-25 に `common/kado.py` の門へ引っ越した——カード・運営者承認・
+    相手台帳・robots の判定を、取得の入口1か所にまとめるため。
+    「無い（404/410）」「混んでいる（429/503）」「拒んでいる（401/403）」
+    「壊れている（5xx）」「つながらない」の見分けは、いまは `kado.robots_hantei()`
+    がする（fail-closed。**空なら許可のような fail-open はここに置かない**）。
 
-        404 / 410    **本当に無い。** これは答え。慣例どおり許可
-        429 / 503    相手が混んでいる
-        401 / 403    **相手が robots.txt そのものを拒んでいる**
-        5xx          相手が壊れている。**「無い」ではない**
-        つながらない  **こちらが外に出られていないことがある**
-
-    2026-09-21 に直した。それまで下の3つを**「無いものとして続ける」**に倒していて、
-    **この箱が外に出られない回に「よい」と返した。**
-    robots.txt を1バイトも読んでいないのに、**関所の名前が「確かめた」**だった
-    （ルール⑥・名乗りは事実の主張になる）。**確かめられなかったときは、そう言う。**
+    **門が始まっていなければ、確かめられなかったとして止める。**
+    `robots_kekka()` は**セッションの中でだけ**意味がある（カードの門を
+    通っていない呼び出しは、そもそも確かめようがない）ので、
+    それもそのまま「確かめられなかった」に落ちる。
     呼ぶ側は `ok is None` を見て、その相手だけ飛ばす（全部を止めない）。
-
-    robots.txt が無い（404）・読めない（DNS/時間切れ）ときは、慣例どおり許可とみなす。
-    以前の recon.py は urllib.robotparser にそのまま読ませていたので、名乗りが
-    Python-urllib になり、429/503 も「全部許可」に倒れていた（監査で見つかった）。
     """
-    p = urllib.parse.urlparse(url)
-    host = f"{p.scheme}://{p.netloc}"
-    if host in _robots_cache:
-        body, note = _robots_cache[host]
-    else:
-        req = urllib.request.Request(f"{host}/robots.txt",
-                                     headers={"User-Agent": UA, "Accept": "text/plain,*/*"})
-        try:
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-                # **robots.txt も utf-8 と決めつけない。** 役所のサーバーには
-                # Shift_JIS が残っている。`Disallow` は ASCII なので判断は当たるが、
-                # 日本語の注記が置換文字になり、**壊れたことにどこでも気づけない**
-                # （2026-09-19、4サイトのうち3つが同じ場所で見つけた）
-                body, _enc = decode_html(r.read(200_000),
-                                         r.headers.get("Content-Type") or "")
-                note = ""
-        except urllib.error.HTTPError as e:
-            if e.code in NAI:
-                # **これは答え。** robots.txt は無い、と相手が言っている
-                body, note = "", f"robots.txt が HTTP {e.code}（**無い**ので許可）"
-            elif e.code in BUSY:
-                body, note = None, f"robots.txt が HTTP {e.code}（混んでいる）"
-            else:
-                # 401/403/5xx。**「無い」ではない。確かめられなかった**
-                body, note = None, f"robots.txt が HTTP {e.code}（**確かめられなかった**）"
-        except Exception as e:
-            # つながらない。**こちらが外に出られていないことがある**（9節）
-            # **何に届かなかったかまで書く。** 型の名前だけだと、
-            # 「相手が落ちている」のか「こちらが出られていない」のかが同じ顔になる
-            # （2026-09-21、6件そろって URLError で、理由を見るまで分からなかった）
-            body, note = None, (
-                f"robots.txt に届かなかった {type(e).__name__}: {e}"
-                "（**確かめられなかった**）")
-        _robots_cache[host] = (body, note)
-    if body is None:
-        return None, note
-    ok = robots_allows(body, url) if body else True
-    return ok, (note or ("許可" if ok else "robots.txt で拒否されている"))
+    K = kado.genzai()
+    if K is None:
+        return None, "門（common/kado.py）が始まっていない"
+    return K.robots_kekka(url)
 
 
 # ---------------------------------------------------------------- 文字コード

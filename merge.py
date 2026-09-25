@@ -203,6 +203,12 @@ def merge_across_sources(by_key):
             base.pop("kieta_kakunin", None)
             if base["listed"] is False and kk:
                 base["kieta_kakunin"] = max(kk)
+            # kakunin_saigo（完全観測の日のうち、見えた最後の日）も、どの収集先でも同じ意味なので
+            # いちばん新しいものを残す（last_seen と同じ寄せ方）
+            ks = [r["kakunin_saigo"] for r in snaps if r.get("kakunin_saigo")]
+            base.pop("kakunin_saigo", None)
+            if ks:
+                base["kakunin_saigo"] = max(ks)
             fs = [r["first_seen"] for r in snaps if r.get("first_seen")]
             ls = [r["last_seen"] for r in snaps if r.get("last_seen")]
             base["first_seen"] = min(fs) if fs else None
@@ -304,40 +310,73 @@ KANZEN_DAICHO = os.path.join(HERE, "data", "ref", "kansoku-kanzen.json")
 
 
 def kanzen_na_hi(path=KANZEN_DAICHO):
-    """収集先ごとの「取得がそろっていた日」の並び（parse.py が書く台帳から）。
+    """収集先ごとの「取得がそろっていた日」の並び。**(日, 観測元, 取得方式) の3つ組**（parse.py が書く台帳から）。
 
     **台帳が無ければ空。**どの日も、そろったとは言わない（見えなくなったと名乗らない側に倒す）。
+    観測元・取得方式まで持ち帰るのは、消失判定で**同じ観測元・取得方式どうしでしか比べない**ため
+    （`listed_wo_kimeru`。観測元が変わった回を、前の回と比べると中身と関係なく全部が入れ替わって見える）。
     """
     try:
         with open(path, encoding="utf-8") as f:
             d = json.load(f)
     except (FileNotFoundError, ValueError):
         return {}
-    return {src: sorted(day for day, v in days.items()
-                        if isinstance(v, dict) and v.get("kanzen") is True)
-            for src, days in d.items() if isinstance(days, dict)}
+    out = {}
+    for src, days in d.items():
+        if not isinstance(days, dict):
+            continue
+        out[src] = sorted((day, v.get("moto"), v.get("houshiki"))
+                          for day, v in days.items() if isinstance(v, dict) and v.get("kanzen") is True)
+    return out
 
 
-def listed_wo_kimeru(last_seen, latest, kanzen_days):
-    """snapshot の記録が、いまも載っているか。**(listed, kieta_kakunin)** を返す。
+def _saigo_no_kanzen_hi(days_seen, kanzen_days):
+    """**完全観測の日のうち、見えた最後の日**（kakunin_saigo）。無ければ None。"""
+    cands = [d for d, _, _ in kanzen_days if d in days_seen]
+    return max(cands) if cands else None
 
-        (True, None)   最新の観測日に見えている
-        (False, 日)    最後に見えた日のあとに、**取得がそろった観測**があり、そこで見えなかった。
-                       日はその最初の日
-        (None, None)   最後に見えた日のあとの観測が、どれも取得がそろっていない（未判定）
 
-    **「その日の取得結果に無かった」だけでは、見えなくなったとしない。**
+def listed_wo_kimeru(days_seen, latest, kanzen_days):
+    """snapshot の記録が、いまも載っているか。**(listed, kieta_kakunin, kakunin_saigo)** を返す。
+
+    days_seen    この届出が見えた日の集合（**取得がそろっていたかに関係なく、全部**）
+    latest       その収集先の、いちばん新しい観測日
+    kanzen_days  その収集先の「取得がそろっていた日」の並び。(日, 観測元, 取得方式) の3つ組。昇順
+
+        (True, None, kakunin_saigo)   最新の観測日に見えている
+        (False, C, kakunin_saigo)     kakunin_saigo（**完全観測の日のうち、見えた最後の日**）の
+                                      あとの最初の完全観測の日 C が、kakunin_saigo の日と
+                                      観測元・取得方式が同じで、C より後（完全かどうかに関係なく）
+                                      も見えていない
+        (None, None, kakunin_saigo か None)  それ以外（未判定）
+
+    **消失判定用の時点は、取得がそろった観測だけで進める**（共通指示書4）。
     2026-09-24、堺市で「消えて戻った」33鍵が、全部こちらの取りこぼしだった
     （2階層目の上限で年度のページを取らなかった日に、そのページの届出が
     「その日に無かった」と数えられていた）。見えた日は、取得がそろっていなくても
     見えたことの証拠になる。**見えなかったことの証拠になるのは、そろった観測だけ。**
+
+    kakunin_saigo が無い（完全観測で一度も見えていない）ときは、常に未判定。
+    C の観測元・取得方式が kakunin_saigo と違えば、比べない（未判定のまま）。
+    C のあとに（完全でない回でも）また見えたら、「消えた」は言わない——未判定に戻す。
     """
-    if last_seen and last_seen == latest:
-        return True, None
-    ato = [d for d in kanzen_days if last_seen and d > last_seen]
-    if ato:
-        return False, ato[0]
-    return None, None
+    days_seen = days_seen or set()
+    kanzen_days = kanzen_days or []
+    kakunin_saigo = _saigo_no_kanzen_hi(days_seen, kanzen_days)
+    if latest and latest in days_seen:
+        return True, None, kakunin_saigo
+    if not kakunin_saigo:
+        return None, None, None
+    saigo_moto, saigo_hs = next((m, h) for d, m, h in kanzen_days if d == kakunin_saigo)
+    ato = [(d, m, h) for d, m, h in kanzen_days if d > kakunin_saigo]
+    if not ato:
+        return None, None, kakunin_saigo
+    c_hi, c_moto, c_hs = ato[0]
+    if c_moto != saigo_moto or c_hs != saigo_hs:
+        return None, None, kakunin_saigo     # 観測元・取得方式が変わった。比べない
+    if any(hi > c_hi for hi in days_seen):
+        return None, None, kakunin_saigo     # そろっていない回でも、また見えた。未判定に戻す
+    return False, c_hi, kakunin_saigo
 
 
 # ------------------------------------------------- 日ごとのファイルからも落とす
@@ -743,6 +782,7 @@ def main():
 
     by_key = {}
     latest_day = {}                     # 収集先ごとの、いちばん新しい保存日
+    days_seen = defaultdict(set)        # 鍵ごとに見えた日の集合（取得がそろっていたかに関係なく、全部）
 
     for src_dir in sorted(glob.glob(os.path.join(PARSED, "*"))):
         src = os.path.basename(src_dir)
@@ -758,6 +798,8 @@ def main():
                 latest_day[src] = max(latest_day.get(src, ""), day)
             for rec in load(path):
                 k = rec["key"]
+                if day and not cumulative:
+                    days_seen[k].add(day)
                 cur = by_key.get(k)
                 if cur is None:
                     rec = dict(rec)
@@ -774,15 +816,19 @@ def main():
                     newer["mode"] = cur["mode"]
                     by_key[k] = newer
 
-    # いまも載っているか。**取得がそろった観測だけを、見えなくなった根拠にする**（listed_wo_kimeru）
+    # いまも載っているか。**取得がそろった観測だけを、見えなくなった根拠にする**（listed_wo_kimeru）。
+    # 消失判定用の時点（kakunin_saigo）も、取得がそろった観測だけで進める（共通指示書4）
     kanzen = kanzen_na_hi()
     for rec in by_key.values():
         rec.pop("kieta_kakunin", None)
+        rec.pop("kakunin_saigo", None)
         if rec["mode"] == "snapshot":
-            rec["listed"], kakunin = listed_wo_kimeru(
-                rec["last_seen"], latest_day.get(rec["source"]), kanzen.get(rec["source"], []))
+            rec["listed"], kakunin, saigo = listed_wo_kimeru(
+                days_seen.get(rec["key"]), latest_day.get(rec["source"]), kanzen.get(rec["source"], []))
             if kakunin:
                 rec["kieta_kakunin"] = kakunin
+            if saigo:
+                rec["kakunin_saigo"] = saigo
         else:
             rec["listed"] = True
 

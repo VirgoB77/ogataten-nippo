@@ -82,6 +82,7 @@ from common.fetch import (  # noqa: E402
     Konde, TIMEOUT, UA, WAIT, check_robots, is_busy,
 )
 from common.runday import today  # noqa: E402
+from common import kado  # noqa: E402  取りに行く前の門
 from teiden_recon import yakusoku_no_kekka  # noqa: E402  **規約の結果は1か所**
 
 RECON = HERE / "data" / "ref" / "teiden-recon.md"
@@ -233,47 +234,76 @@ def kurabe(mae: list, ima: str) -> str:
     return "**差し替わった**"
 
 
+def card_id_of(url: str, K):
+    """URL の host を「対象host」に含む `teiden-` で始まるカードを探す。
+
+    **無ければ「対応なし」で止める**（共通指示書「この置き場の具体」）。
+    """
+    host = urllib.parse.urlparse(url).hostname or ""
+    if K is not None and isinstance(K.cards, dict):
+        for cid, c in K.cards.items():
+            if cid.startswith("teiden-") and host in (c.get("対象host") or []):
+                return cid
+    return "対応なし"
+
+
+def _mon(K, cid, hozon_saki):
+    """カードの門のセッション。**門が始まっていなければ、始まった体で回り込まない。**"""
+    if K is None:
+        raise kado.Tomeru("門（common/kado.py）が始まっていない")
+    return K.sesshon(cid, hozon_saki=hozon_saki)
+
+
 def hitotsu(moji: str, url: str, hiduke: str, daicho: dict):
-    """1つ取る。**robots を先に見る。確かめられなければ行かない**（3.4）。"""
+    """1つ取る。**カードの門を通ったセッションの中でだけ、robots を見て取りに行く**（3.4）。"""
     ato = daicho.setdefault(url, {"moji": moji, "mita": []})
     d = {"mita_hi": hiduke, "yubiwa": None, "bytes": None,
          # **保存の状態と公開の状態は別**（9節）。この段は保存しか触らない
          "hozon": None, "koukai": "出していない", "naze": ""}
-    ok, naze = check_robots(url)
-    if not ok:
-        d["hozon"] = "取れなかった"
-        d["naze"] = f"robots（{naze}）。**取りに行かない**"
-        ato["mita"].append(d)
-        return d, "robots で行かなかった"
-    time.sleep(WAIT)
+    K = kado.genzai()
+    cid = card_id_of(url, K)
     try:
-        st, raw = get(url)
-    except Konde:
-        raise  # **混んでいると言われたら、その回は止める**
-    except Exception as e:
-        d["hozon"] = "取れなかった"
-        d["naze"] = type(e).__name__
-        ato["mita"].append(d)
-        return d, "取れなかった"
-    if st != 200:
-        d["hozon"] = "取れなかった"
-        d["naze"] = f"HTTP {st}"
-        ato["mita"].append(d)
-        return d, f"HTTP {st}"
+        with _mon(K, cid, str(INBOX)):
+            ok, naze = check_robots(url)
+            if not ok:
+                d["hozon"] = "取れなかった"
+                d["naze"] = f"robots（{naze}）。**取りに行かない**"
+                ato["mita"].append(d)
+                return d, "robots で行かなかった"
+            time.sleep(WAIT)
+            try:
+                st, raw = get(url)
+            except Konde:
+                raise  # **混んでいると言われたら、その回は止める**
+            except Exception as e:
+                d["hozon"] = "取れなかった"
+                d["naze"] = type(e).__name__
+                ato["mita"].append(d)
+                return d, "取れなかった"
+            if st != 200:
+                d["hozon"] = "取れなかった"
+                d["naze"] = f"HTTP {st}"
+                ato["mita"].append(d)
+                return d, f"HTTP {st}"
 
-    y = yubiwa(raw)
-    doudatta = kurabe(ato["mita"], y)
-    d["yubiwa"] = y
-    d["bytes"] = len(raw)
-    d["hozon"] = "取った"
-    ato["mita"].append(d)
+            y = yubiwa(raw)
+            doudatta = kurabe(ato["mita"], y)
+            d["yubiwa"] = y
+            d["bytes"] = len(raw)
+            d["hozon"] = "取った"
+            ato["mita"].append(d)
 
-    saki = INBOX / hiduke
-    saki.mkdir(parents=True, exist_ok=True)
-    p = urllib.parse.urlparse(url)
-    na = re.sub(r"[^a-z0-9.]+", "_", (p.netloc + p.path).lower())[:80] + ".html"
-    (saki / na).write_bytes(raw)
-    return d, doudatta
+            saki = INBOX / hiduke
+            saki.mkdir(parents=True, exist_ok=True)
+            p = urllib.parse.urlparse(url)
+            na = re.sub(r"[^a-z0-9.]+", "_", (p.netloc + p.path).lower())[:80] + ".html"
+            (saki / na).write_bytes(raw)
+            return d, doudatta
+    except kado.Tomeru as e:
+        d["hozon"] = "取れなかった"
+        d["naze"] = "門で止めた（カードid=%s）：%s" % (cid, "／".join(e.riyuu))
+        ato["mita"].append(d)
+        return d, "門で止めた"
 
 
 def houkoku(kekka, hiduke, daicho) -> str:
@@ -344,6 +374,9 @@ def main(argv=None):
     p = argparse.ArgumentParser()
     p.add_argument("--limit", type=int, default=0, help="行き先の数（0=全部）")
     a = p.parse_args(argv)
+
+    # **取りに行く前の門。** カードid = URL の host を「対象host」に含む teiden- カード。
+    kado.hajimeru(str(HERE), "ogataten-nippo", UA, today=today())
 
     saki = yomu()
     if not saki:

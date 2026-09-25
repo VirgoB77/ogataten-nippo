@@ -62,6 +62,7 @@ SOURCE = "hyogo-koho"
 
 from common.fetch import UA, check_robots, is_busy, decode_html  # 名乗り・robots・混雑判定は common/fetch.py（共通仕様3.4）
 from common import hikisu   # 知らない引数で止める（3.4）
+from common import kado     # 取りに行く前の門。カードid = "hyogo-koho"
 WAIT = 5          # 共通仕様 3.4「同時1本・5秒以上」
 TIMEOUT = 60
 MAX_PDF = 6 * 1024 * 1024
@@ -599,6 +600,8 @@ def main():
     _asked = 0
     lines = ["# 兵庫県公報の本体から読んだ大店立地法の公告", ""]
     fetched = 0
+    # **取りに行く前の門。** カードid = "hyogo-koho"。保存先は data/koho（金庫）。
+    K = kado.hajimeru(HERE, "ogataten-nippo", UA, today=runday.today())
     if os.path.exists(ISSUES) and shutil.which("pdftotext"):
         # 目録に出てくる号を全部取りに行く。大店立地法の号だけでは、工事完了公告や
         # 都市計画の告示しか載っていない号（821 号ある）が丸ごと抜けるため。
@@ -624,73 +627,78 @@ def main():
             lines.append(f"- まだ見ていない号が {fresh} で追いついている。公報は月2回"
                          f"（{FETCH_DAYS[0]}日・{FETCH_DAYS[1]}日）だけ取りに行く（共通仕様3.4）。今日は取りに行かない")
             todo = []
-        ok, why = check_robots(HOST + "/")
-        if ok is None:
-            lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
-            todo = []
-        elif ok is False:
-            lines.append(f"- {why}。取りに行かない（共通仕様3.4）")
-            todo = []
+        hozon_saki = os.path.join(HERE, "data", "koho")
         try:
-            for (d, no) in todo:
-                # 枠は「県のサーバーに出した要求の数」で数える（月ページも本体PDFも）。
-                # 月ページに号が無いと分かっただけの号は控えを見ただけなので枠を使わない
-                if _asked >= MAX_ISSUES:
-                    lines.append(f"- 今回の {MAX_ISSUES} 回を使い切った。残りは次回")
-                    break
-                key = f"{d}#{no}"
-                ym = d[:7]
-                murl = index.get(ym)
-                if not murl:
-                    ledger[key] = {"status": "月ページが一覧に無い", "when": today}
-                    continue
-                links = month_links(ym, murl, lines)
-                if links is None:
-                    continue
-                if str(no).startswith("g") and links.get("_v") != MONTH_CACHE_V:
-                    # 号外は新しい版の控えでないと引けない。台帳には書かず、次回以降に回す
-                    continue
-                y, m, dd = d.split("-")
-                url = links.get(f"{int(m)}-{int(dd)}-{no}")
-                issue_date = d
-                if not url and not str(no).startswith("g"):
-                    # 目録の年が1年ずれていないか、前後1年の同じ月日で探す。
-                    # 号外は日ごとに1から振り直されるので、同じ月日の号外は別物。当てない
-                    d2, url2 = find_in_neighbor_year(d, no, index, lines)
-                    if url2:
-                        url, issue_date = url2, d2
-                        lines.append(f"  - {d} {no_label(no)}: 目録の年がずれていた。実際は {d2}")
-                if not url:
-                    # 県には行っていない（控えを見ただけ）。枠は使わず、台帳もあとでまとめて書く
-                    ledger[key] = {"status": "月ページに号が無い", "when": today}
-                    continue
+            with K.sesshon(SOURCE, hozon_saki=hozon_saki):
+                ok, why = check_robots(HOST + "/")
+                if ok is None:
+                    lines.append(f"- {why}。今回は取りに行かない（共通仕様3.4）")
+                    todo = []
+                elif ok is False:
+                    lines.append(f"- {why}。取りに行かない（共通仕様3.4）")
+                    todo = []
                 try:
-                    _asked += 1
-                    n = fetch_issue({"date": issue_date, "no": no}, url, lines)
-                    ledger[key] = {"status": "done", "url": url, "sections": n,
-                                   "v": TEXT_VERSION, "when": today}
-                    if issue_date != d:
-                        ledger[key]["date_actual"] = issue_date
-                    fetched += 1
-                    lines.append(f"  - **{issue_date} {no_label(no)}** 大店立地法の公告 {n} 件"
-                                 f"（目録では {issues[(d, no)]} 件）")
+                    for (d, no) in todo:
+                        # 枠は「県のサーバーに出した要求の数」で数える（月ページも本体PDFも）。
+                        # 月ページに号が無いと分かっただけの号は控えを見ただけなので枠を使わない
+                        if _asked >= MAX_ISSUES:
+                            lines.append(f"- 今回の {MAX_ISSUES} 回を使い切った。残りは次回")
+                            break
+                        key = f"{d}#{no}"
+                        ym = d[:7]
+                        murl = index.get(ym)
+                        if not murl:
+                            ledger[key] = {"status": "月ページが一覧に無い", "when": today}
+                            continue
+                        links = month_links(ym, murl, lines)
+                        if links is None:
+                            continue
+                        if str(no).startswith("g") and links.get("_v") != MONTH_CACHE_V:
+                            # 号外は新しい版の控えでないと引けない。台帳には書かず、次回以降に回す
+                            continue
+                        y, m, dd = d.split("-")
+                        url = links.get(f"{int(m)}-{int(dd)}-{no}")
+                        issue_date = d
+                        if not url and not str(no).startswith("g"):
+                            # 目録の年が1年ずれていないか、前後1年の同じ月日で探す。
+                            # 号外は日ごとに1から振り直されるので、同じ月日の号外は別物。当てない
+                            d2, url2 = find_in_neighbor_year(d, no, index, lines)
+                            if url2:
+                                url, issue_date = url2, d2
+                                lines.append(f"  - {d} {no_label(no)}: 目録の年がずれていた。実際は {d2}")
+                        if not url:
+                            # 県には行っていない（控えを見ただけ）。枠は使わず、台帳もあとでまとめて書く
+                            ledger[key] = {"status": "月ページに号が無い", "when": today}
+                            continue
+                        try:
+                            _asked += 1
+                            n = fetch_issue({"date": issue_date, "no": no}, url, lines)
+                            ledger[key] = {"status": "done", "url": url, "sections": n,
+                                           "v": TEXT_VERSION, "when": today}
+                            if issue_date != d:
+                                ledger[key]["date_actual"] = issue_date
+                            fetched += 1
+                            lines.append(f"  - **{issue_date} {no_label(no)}** 大店立地法の公告 {n} 件"
+                                         f"（目録では {issues[(d, no)]} 件）")
+                        except urllib.error.HTTPError as e:
+                            ledger[key] = {"status": f"failed: HTTP {e.code}", "url": url, "when": today}
+                            lines.append(f"  - {d} {no_label(no)}: HTTP {e.code}")
+                            if is_busy(e):
+                                save_ledger(ledger)
+                                lines.append(f"  - **HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+                                break
+                        except (urllib.error.URLError, OSError, ValueError, subprocess.TimeoutExpired) as e:
+                            # ValueError は「大きすぎる」「文字なし」。中身を残して恒久扱いにする
+                            why = str(e) if isinstance(e, ValueError) else type(e).__name__
+                            ledger[key] = {"status": f"failed: {why}", "url": url, "when": today}
+                            lines.append(f"  - {d} {no_label(no)}: {why[:50]}")
+                        save_ledger(ledger)               # 途中で落ちても、ここまでの分は残る
+                        time.sleep(WAIT)
                 except urllib.error.HTTPError as e:
-                    ledger[key] = {"status": f"failed: HTTP {e.code}", "url": url, "when": today}
-                    lines.append(f"  - {d} {no_label(no)}: HTTP {e.code}")
-                    if is_busy(e):
-                        save_ledger(ledger)
-                        lines.append(f"  - **HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
-                        break
-                except (urllib.error.URLError, OSError, ValueError, subprocess.TimeoutExpired) as e:
-                    # ValueError は「大きすぎる」「文字なし」。中身を残して恒久扱いにする
-                    why = str(e) if isinstance(e, ValueError) else type(e).__name__
-                    ledger[key] = {"status": f"failed: {why}", "url": url, "when": today}
-                    lines.append(f"  - {d} {no_label(no)}: {why[:50]}")
-                save_ledger(ledger)               # 途中で落ちても、ここまでの分は残る
-                time.sleep(WAIT)
-        except urllib.error.HTTPError as e:
-            # 月ページが 429/503。その回は中止
-            lines.append(f"  - **月ページが HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+                    # 月ページが 429/503。その回は中止
+                    lines.append(f"  - **月ページが HTTP {e.code}（混んでいる）。今回はここで中止**（共通仕様3.4）")
+        except kado.Tomeru as e:
+            lines.append(f"- **門で止めた：{'／'.join(e.riyuu)}**")
         save_ledger(ledger)
     else:
         lines.append("- 号の一覧がまだ無いか pdftotext が無いので、取りに行かなかった")
