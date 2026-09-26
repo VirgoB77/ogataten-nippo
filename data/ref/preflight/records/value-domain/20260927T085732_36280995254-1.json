@@ -1,0 +1,72 @@
+{
+ "approval_id": "value-domain-preflight-1",
+ "card_fingerprint": "ab2d99ab5239164f9e99679dce5ab683bbd8706b38be3569974cbd8407ae49ec",
+ "card_version": 1,
+ "detail_url_found": null,
+ "external_requests": 2,
+ "finished_at": "2026-09-27T08:57:41+09:00",
+ "items_note": "items の false は「今回の通常の HTTP 応答の本文では確認できなかった」。その項目が無いという意味ではない（JavaScript は実行していない）",
+ "note": "本文は残していない（SHA-256 と長さだけ）。この記録は取得してよいかを判断する材料で、本番の取得・private 長期保存・公開・商品化の承認ではない",
+ "pages": [
+  {
+   "auth_required": false,
+   "body_bytes": 1006904,
+   "body_sha256": "e5e33447729331aa597524a9e40e75dd848ddbbeadb73d192469bf0a76946bea",
+   "body_truncated": false,
+   "captcha": true,
+   "captcha_reason": "本文に「challenge-platform」",
+   "cf_mitigated": "",
+   "checked_at": "2026-09-27T08:57:39+09:00",
+   "content_encoding": "",
+   "content_type": "text/html; charset=utf-8",
+   "error": "",
+   "final_url": "https://one.value-domain.com/domain/auction/jp",
+   "http_status": 200,
+   "items": {
+    "入札履歴": false,
+    "入札数": true,
+    "入札者": true,
+    "現在価格": true,
+    "終了日時": true,
+    "開始日時": false
+   },
+   "kind": "list",
+   "password_field": false,
+   "redirect": false,
+   "redirect_to": "",
+   "requested_url": "https://one.value-domain.com/domain/auction/jp",
+   "retry_after": "",
+   "stop_reason": "CAPTCHA・チャレンジの兆候（本文に「challenge-platform」）"
+  }
+ ],
+ "result": "STOP",
+ "robots": {
+  "body_bytes": 258,
+  "body_sha256": "522f72e1f7f3aa6b8ed297e51176cc43eec7c22e76bdd4d2c75716562ac7e8b8",
+  "checked_at": "2026-09-27T08:57:34+09:00",
+  "content_type": "text/plain",
+  "crawl_delay": null,
+  "final_url": "https://one.value-domain.com/robots.txt",
+  "http_status": 200,
+  "judgment_reason": "robots.txt を読んだ",
+  "kujiraya_judgment": "通す",
+  "redirect": false,
+  "redirect_to": "",
+  "requested_url": "https://one.value-domain.com/robots.txt",
+  "response_kind": "valid_robots",
+  "target_allowed": {
+   "list": true
+  }
+ },
+ "run": {
+  "job": "kakunin",
+  "repo": "ogataten-nippo",
+  "run_attempt": "1",
+  "run_id": "36280995254",
+  "workflow": "VirgoB77/ogataten-nippo/.github/workflows/kakunin.yml@refs/heads/main"
+ },
+ "schema": 1,
+ "source_id": "value-domain",
+ "started_at": "2026-09-27T08:57:32+09:00",
+ "stop_reason": "list：CAPTCHA・チャレンジの兆候（本文に「challenge-platform」）"
+}
