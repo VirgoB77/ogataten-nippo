@@ -6,7 +6,7 @@
 
 前半は common/privacy.py そのものの検査。
 後半が本体で、公開する生成物を全部走査して、privacy.py を迂回した値が
-1件でも残っていないかを見る（5節「迂回検査」）。
+1件でも残っていないかを見る（5節「privacy.py を迂回した出力が1件でもあれば落ちる検査を書く」）。
 
   python3 test_privacy.py
 
@@ -3028,7 +3028,7 @@ def test_過ぎた日を予定と呼んでいないか():
             sugita += 1
     if sugita == 0:
         # 0件になったら「予定」と呼んでよくなるが、**勝手に戻さない。**
-        # 数え方が壊れたほうを先に疑う（正本9節「鳴らなかったら壊し方を疑う」）
+        # 数え方が壊れたほうを先に疑う（正本9節「鳴らなかったら、まず壊し方を疑う」）
         raise AssertionError(
             "届出日より前の日が1件も無い。2026-09-19 には2,001件あった。"
             "数え方が壊れていないか先に見る")
@@ -3370,6 +3370,58 @@ def test_1日に2回以上取りに行かないか():
             "巡回が止まっている（どちらも見たい）")
 
 
+def test_取り込みを止めているのに_取りに行っていると読める文を出さないか():
+    """公開ページが「毎朝とりに行っている」と読める文を出していないかを見る（2026-09-26）。
+
+    毎朝の巡回（shutten-recon.yml）の定時は 2026-09-25 に止めた。止めたあとも、
+    フッター・about・トップが「毎朝1回とりに行き」「毎朝7時ごろ（最終 作った日）」と
+    書いていた。**名乗りは事実の主張になる。** 止めているあいだは、止めていると書く。
+
+    見ること（作った実物で見る。ソースの文字では見ない）：
+      ① 巡回の workflow に動いている cron が無いなら、build_site.TORIKOMI_TEISHI は True
+      ② フッター・about・トップ・新設と開店のページに、「毎朝」「毎日」が無い
+      ③ 止めているなら、フッター・about・トップに、止めているという1文が出ている
+      ④ トップの「いちばん新しい取り込み」は、作った日ではなくデータの取得日
+
+    **捕まえないもの**：定時はあるが、門で止まって取れない回。
+    そのときの書き方は、再開を決めるときに決める。
+    """
+    import re as _re
+    import build_site as bs
+
+    wf = os.path.join(HERE, ".github", "workflows", "shutten-recon.yml")
+    ugoku = bool(_re.search(r"^\s*-\s*cron:", open(wf, encoding="utf-8").read(), _re.M))
+    if not ugoku and not bs.TORIKOMI_TEISHI:
+        raise AssertionError("巡回の定時が止まっているのに、build_site.TORIKOMI_TEISHI が False"
+                             "（取りに行っていると書く）")
+    with open(bs.ALL, encoding="utf-8") as f:
+        recs = json.load(f)
+    with open(bs.SOURCES, encoding="utf-8") as f:
+        src_meta = {x["id"]: x for x in json.load(f)["sources"]}
+    saishin = bs.saishin_torikomi(recs)
+    if saishin != max(r.get("fetched_on") or "" for r in recs):
+        raise AssertionError("いちばん新しい取り込みの日が、データの取得日になっていない")
+    tsukutta = "2099-01-01"                 # 作った日。**これが画面に出たら、名乗りの間違い**
+    mono = {
+        "フッター": bs.page("ためし", "<p>ためし</p>", ""),
+        "about": bs.about_page(src_meta, tsukutta, saishin),
+        "トップ": bs.index_page(recs, tsukutta, saishin),
+        "新設と開店": bs.shinsetsu_to_kaiten_page(recs, tsukutta),
+    }
+    warui = [f"{na}：「{m.group(0)}」" for na, t in mono.items()
+             for m in _re.finditer(r".{0,12}(毎朝|毎日).{0,12}", _re.sub(r"<[^>]+>", "", t))]
+    if warui:
+        raise AssertionError("取りに行っていると読める文が残っている：\n  " + "\n  ".join(warui))
+    if bs.TORIKOMI_TEISHI:
+        # about とトップは、本文で見る（フッターにも同じ1文があるので、全体で見ると本文から消えても通る）
+        nai = [na for na in ("フッター", "about", "トップ")
+               if bs.torikomi_bun() not in (mono[na] if na == "フッター" else mono[na].split("<footer>")[0])]
+        if nai:
+            raise AssertionError("止めていると書いていない：" + "・".join(nai))
+    if f"いちばん新しい取り込みは {saishin}" not in mono["トップ"] or tsukutta in mono["トップ"].split("<script")[0]:
+        raise AssertionError("トップの日付が、データの取得日ではない（作った日を出している）")
+
+
 def test_workflow_の中のシェルが読めるか():
     """`run: |` の中身を bash -n にかける。
 
@@ -3564,7 +3616,7 @@ def test_報告は数ではなく実物を持って帰る():
 def test_住所が別の市を名乗る行は0件のまま():
     """食い違いの数を、一度数えて終わりにしない。0でなくなった日に止まる。
 
-    4節「測った、は『そのときの一覧では』の意味しかない」。
+    4節「「測った」は「そのときの一覧では」の意味しかない」。
     出どころは、ある日から別の市の土地を載せはじめる。
     """
     import json
@@ -4431,7 +4483,7 @@ def test_settisha_hides_individual_parties():
         fails.append(f"履歴に個人の当事者名がそのまま残っている {len(hbad)}件。3.1")
 
     # 設置者が個人なら、住所は merge の時点で町丁目まで丸まっているはず。
-    # 丸め忘れをここでも見る（5節「迂回検査」）
+    # 丸め忘れをここでも見る（5節「privacy.py を迂回した出力が1件でもあれば落ちる検査を書く」）
     ban = re.compile(r"[0-9０-９]+\s*[-‐−－ー―]\s*[0-9０-９]+|[0-9０-９]+番地?[0-9０-９]*号?")
     addr_bad = [r for r in rows
                 if r.get("operator_kind") in ("individual", "undisclosed")
@@ -5864,7 +5916,7 @@ def test_一部だけ読んだものを全部の精度として数えないか()
 
     2026-09-21。1枚目の1Fは、**地図の赤帯（予告）だけ**を読んだ。全区画は読んでいない。
     そのまま数えると、**見た2行のうち2行が合っていて「精度100%」**になる。
-    **見ていないものは、落としたことにもならない**（9節「0件は0件ではない」）。
+    **見ていないものは、落としたことにもならない**（9節「0件は、正しさの証拠ではない」）。
 
     だから「どこまで読んだか」を欄にして、**全部でなければ数えない。**
 

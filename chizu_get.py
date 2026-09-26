@@ -234,7 +234,10 @@ def kaku(kiroku, kumi_kekka, nokori, yomenai, report=None, daicho=None):
         "# 地図データを取った記録", "",
         "**このファイルは `chizu_get.py` が書く。** 手で直さない。", "",
         f"規約：**{YAKUSOKU['kekka']}**（{YAKUSOKU['mita_no_wa']}が "
-        f"{YAKUSOKU['mita_hi']} に読んだ）。出典の表示が必須。",
+        f"{YAKUSOKU['mita_hi']} に読んだ）。出典の表示が必須。"
+        # **読みと、門の正式状態を混ぜない**（正本 3.4）。読みそのものは法務レビュー待ち
+        "（統括の規約の読みで、門の正式状態ではない。正式状態は、カードの統括判定案と"
+        "運営者承認がそろうまで「取ってよい」にならない。規約の読みそのものは法務レビュー待ち）",
         "**規約と robots は別の欄。** 片方で他方を代用しない。", "",
         "禁止の線（越えない）——", "",
     ] + [f"  ・{x}" for x in YAKUSOKU["kinshi"]] + [

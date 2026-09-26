@@ -70,7 +70,7 @@
 
 ## このリポジトリの形
 
-    毎朝の巡回・押すだけの手順書  GitHub Actions。**Claude の枠を使わない**
+    取得の段・押すだけの手順書    GitHub Actions。**Claude の枠を使わない**（定時の多くはいま止めている）
     生のバイト                    金庫（private）か成果物。公開側に入れない
     docs/nokori.md                残作業
     docs/keikaku.md               全アイデアの計画
