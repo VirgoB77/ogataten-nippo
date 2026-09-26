@@ -4604,6 +4604,12 @@ def test_every_fetcher_stops_when_busy():
         # （＝門そのものである）かどうかで外す
         if re.search(r"^def hajimeru\(", src, re.M):
             continue
+        # **取りに行くのを、門の取得可否確認（`.kakunin(`）だけに任せる段も、止める側ではない**
+        # （2026-09-27）。その段は自分では1本も出さず、429/503 は門の中（`_pf_dasu` と `_tomeru`）が
+        # 止めて、残りを出さない（tests/test_kakunin.py の 一覧が混んでいる・robotsが混んでいる）。
+        # **名前では外さない。** 自分で出す形（urlopen・urllib.request）を1つでも持てば外さない
+        if re.search(r"\.kakunin\(", src) and not re.search(r"urlopen\s*\(|urllib\.request", src):
+            continue
         # **止め方は2通りある。どちらも「その回を中止する」形。**
         #
         #   ① 自分で `is_busy(e)` を見て、その場で止める
