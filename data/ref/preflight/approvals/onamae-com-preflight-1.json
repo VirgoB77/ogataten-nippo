@@ -1,0 +1,14 @@
+{
+ "approval_id": "onamae-com-preflight-1",
+ "source_id": "onamae-com",
+ "purpose": "acquisition_preflight",
+ "issued_by": "operator",
+ "issued_at": "2026-09-27T08:32:03+09:00",
+ "expires_at": "2026-09-28T08:32:03+09:00",
+ "allowed_kinds": ["robots", "list", "detail"],
+ "max_requests": 3,
+ "min_interval_seconds": 5,
+ "single_use": true,
+ "card_version": 1,
+ "card_fingerprint": "32ab32daa5bdfb94a5eb46d8f7d7f72b3983c1b3de0bc0293dd48976ec215a7c"
+}
