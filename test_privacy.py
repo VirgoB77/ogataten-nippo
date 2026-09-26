@@ -952,6 +952,63 @@ def test_町丁目の照合が短い町名へ化けない():
         _towns_wo_sashikomu(moto)
 
 
+# ①'（丁目が無く①で決まらない行を、数字の手前の丸ごと一致で決める）で決まる行の数。
+# 2026-09-26 に数えた（西宮市だけ。一覧が西宮市ぶんしか無い）。条件を締めても 48 のまま。
+# **数えた日に数を直す。理由を見ないまま直さない。** 減ったら、締めた条件で落ちた行を見る
+ICHI_DASH_DE_KIMARU = 48
+
+
+def test_丁目なしの町名は_紛らわしい候補が一覧に在れば決めない():
+    """①' の条件（2026-09-26・統括判断。正本4節）。**1つでも欠ければ決めない。**
+
+      ・丁目が無い／①では決まらない
+      ・数字の手前が、その市の町名の一覧の1件と丸ごと同じ（前方一致は使わない）
+      ・**その町名で始まる別の町名が、一覧に無い**
+
+      F 「X」と「X N丁目」が在る → X＋数字は決めない（3 が丁目の略記か地番か分からない）
+      G 「X」と「X南町」「X町」が在る → X＋番地は決めない（実在の組）
+      H 前方一致だけ → 決めない
+      I 紛らわしい候補が無い → これまでどおり決まる
+      J 実データ：①' で決まる行の数が ICHI_DASH_DE_KIMARU のまま
+
+    **紛らわしさの確認を外すと、F と G が鳴る。**
+    """
+    import addr
+    moto = _towns_wo_sashikomu({})
+    try:
+        _towns_wo_sashikomu({"28204": ["山口町下山口", "山口町下山口1丁目", "山口町下山口2丁目"]})
+        d = addr.normalize("兵庫県", "西宮市", "山口町下山口3番5号")
+        eq(d["town"], "", "F ①'：「X」と「X N丁目」が在るとき、X＋数字は決めない")
+
+        _towns_wo_sashikomu({"28204": ["鷲林寺", "鷲林寺南町", "鷲林寺町"]})
+        d = addr.normalize("兵庫県", "西宮市", "鷲林寺123番地")
+        eq(d["town"], "", "G ①'：X で始まる別の町が在るとき、X＋番地は決めない")
+
+        _towns_wo_sashikomu({"28204": ["今津"]})
+        d = addr.normalize("兵庫県", "西宮市", "今津曙町139番地")
+        eq(d["town"], "", "H ①'：前方一致だけでは決めない")
+
+        _towns_wo_sashikomu({"28204": ["甲子園町", "上ケ原二番町"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園町847番地の1")
+        eq(d["town"], "甲子園町", "I ①'：紛らわしい候補が無ければ、これまでどおり決まる")
+
+        # J 実データ。①' を外したときとの差が、①' で決まった行
+        _towns_wo_sashikomu(None)
+        with open(os.path.join(HERE, "data", "all.json"), encoding="utf-8") as f:
+            recs = [r for r in json.load(f) if r.get("address")]
+        ari = [addr.normalize(r.get("pref") or "", r.get("city") or "", r["address"])["town"] for r in recs]
+        hontai = addr.machi_maru_goto
+        addr.machi_maru_goto = lambda mae, towns: ""
+        try:
+            nashi = [addr.normalize(r.get("pref") or "", r.get("city") or "", r["address"])["town"] for r in recs]
+        finally:
+            addr.machi_maru_goto = hontai
+        kimatta = sum(1 for a, b in zip(ari, nashi) if a and not b)
+        eq(kimatta, ICHI_DASH_DE_KIMARU, "J ①'：実データで ①' で決まる行の数（数えた日に直す。理由を見てから）")
+    finally:
+        _towns_wo_sashikomu(moto)
+
+
 def test_町丁目が決まっている行を一覧が書き換えない():
     """F **いま決まっているものを、あとから来た一覧が動かさない。**
 
@@ -3510,9 +3567,163 @@ def test_取り込みを止めているのに_取りに行っていると読め�
     if f"いちばん新しい取り込みは {saishin}" not in mono["トップ"] or tsukutta in mono["トップ"].split("<script")[0]:
         raise AssertionError("トップの日付が、データの取得日ではない（作った日を出している）")
     # sitemap も名乗り。止めているあいだに「毎日変わる」と言わない
-    sm = "\n".join(bs.sitemap_gyou("https://example.invalid/", ["about.html"], tsukutta))
+    sm = "\n".join(bs.sitemap_gyou("https://example.invalid/", ["about.html"]))
     if bs.TORIKOMI_TEISHI and "changefreq" in sm:
         raise AssertionError("取り込みを止めているのに、sitemap が changefreq を名乗っている")
+
+
+def _build_site_wo_utsushi_de(recs, run_date):
+    """build_site.py を、外への通信を塞いだまま、一時の写しの中で最後まで走らせる。
+
+    写すのは置き場の全部から、.git と、作り直す出力（s・a・k）と、読み取りの控え（data/parsed）を
+    除いたもの。**名前の一覧で写さない**（build_site が新しく読むファイルを足した日に黙る）。
+    data/all.json だけ、渡された recs に差し替える。**公開用の木には1バイトも書かない。**
+    返すのは (終了コード, 出力, 写しの根)。写しは呼んだ側が消す
+    """
+    import shutil
+    import subprocess
+    import tempfile
+    ne = tempfile.mkdtemp(prefix="bs-offline-")
+    utsushi = os.path.join(ne, "r")
+    shutil.copytree(HERE, utsushi, ignore=lambda d, names: [
+        n for n in names if (d == HERE and n in (".git", "s", "a", "k")) or n == "__pycache__"
+        or (os.path.basename(d) == "data" and n == "parsed")])
+    with open(os.path.join(utsushi, "data", "all.json"), "w", encoding="utf-8") as f:
+        json.dump(recs, f, ensure_ascii=False)
+    tozasu = os.path.join(ne, "tozasu.py")
+    with open(tozasu, "w", encoding="utf-8") as f:
+        f.write("""import os, runpy, socket, sys, urllib.request
+yobareta = []
+def _tozasu(*a, **k):
+    yobareta.append(1)
+    raise RuntimeError("外への通信は塞いである")
+socket.socket.connect = _tozasu
+socket.socket.connect_ex = _tozasu
+socket.create_connection = _tozasu  # kado-soto: 検査。外への通信を塞ぐ差し替えで、外へは出ない
+socket.getaddrinfo = _tozasu
+class _T(urllib.request.BaseHandler):
+    def default_open(self, req):
+        _tozasu()
+urllib.request.install_opener(urllib.request.build_opener(_T()))  # kado-soto: 検査。urllib を塞ぐ差し替えで、外へは出ない
+root = sys.argv[1]
+os.chdir(root)
+sys.path.insert(0, root)
+sys.argv = ["build_site.py"]
+try:
+    runpy.run_path(os.path.join(root, "build_site.py"), run_name="__main__")
+finally:
+    print("OUTWARD", len(yobareta))
+    if yobareta:
+        sys.exit(3)
+""")
+    env = dict(os.environ, RUN_DATE=run_date, PYTHONIOENCODING="utf-8", PYTHONDONTWRITEBYTECODE="1")
+    env.pop("SITE_URL", None)
+    r = subprocess.run([sys.executable, tozasu, utsushi], capture_output=True, env=env, timeout=600)
+    out = (r.stdout + r.stderr).decode("utf-8", "replace")
+    return r.returncode, out, ne
+
+
+def test_build_site_が外へ出ずに最後まで走るか():
+    """build_site.py の main() を、外への通信を塞いで、一時の写しの中で最後まで走らせる。
+
+    2026-09-26、PR #58 の直し（fd019f8）で main() の `host` を消し、
+    **robots.txt を書く最後の行で NameError になっていた。** ページを作る関数ごとの検査は
+    全部通っていた——**main を最後まで走らせる検査が無かった。**
+
+    確かめること：
+      ① 終了コード 0（最後まで走った）
+      ② 外へ出ようとした回数 0（socket の接続・名前引きと urllib を塞いで数える）
+      ③ robots.txt・sitemap.xml・index.json が書かれていて、robots.txt が sitemap を指している
+      ④ 作った日（RUN_DATE）を、sitemap の更新日として名乗っていない（2026-09-26・統括判断）
+    """
+    import shutil
+    with open(os.path.join(HERE, "data", "all.json"), encoding="utf-8") as f:
+        recs = json.load(f)
+    # 小さく走らせる。見えなくなった扱いの行も必ず混ぜる（注記とトップの12件の道を通す）
+    kieta = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed") is False][:15]
+    nokori = [r for r in recs if r not in kieta][:25]
+    tsukutta = "2099-01-01"
+    code, out, ne = _build_site_wo_utsushi_de(nokori + kieta, tsukutta)
+    try:
+        if code != 0:
+            raise AssertionError("build_site.py が最後まで走らなかった（終了コード %d）：\n%s" % (code, out[-1500:]))
+        if "OUTWARD 0" not in out:
+            raise AssertionError("build_site.py が外へ出ようとした：\n" + out[-800:])
+        r = os.path.join(ne, "r")
+        for fn in ("robots.txt", "sitemap.xml", "index.json"):
+            if not os.path.exists(os.path.join(r, fn)):
+                raise AssertionError(fn + " が書かれていない")
+        robots = open(os.path.join(r, "robots.txt"), encoding="utf-8").read()
+        if not re.search(r"^Sitemap: https?://\S+/sitemap\.xml$", robots, re.M):
+            raise AssertionError("robots.txt が sitemap を指していない：" + robots)
+        sm = open(os.path.join(r, "sitemap.xml"), encoding="utf-8").read()
+        if tsukutta in sm:
+            raise AssertionError("作った日（%s）を、sitemap の更新日として名乗っている" % tsukutta)
+    finally:
+        shutil.rmtree(ne, ignore_errors=True)
+
+
+def test_見えなくなった届出に_空の日付や見えなくなった日と読める日付を出さないか():
+    """取得がそろった観測の日（kakunin_saigo・kieta_kakunin）が無い記録で、注記を確かめる。
+
+    2026-09-26、9/24 の data/all.json で作り直したら、見えなくなった扱いの 457 ページが
+    「最後に確認できたのは  です。 の観測では…」と**日付が空のまま**出た。
+    その2つの欄が入る前の判定で、見えなくなった扱いになった記録だった。
+
+      ① 空の日付を出さない
+      ② last_seen（こちらが最後に見た日）を、見えなくなった日のように書かない。
+         「取得がそろった観測」を名乗らない（その記録では確かめられない）
+      ③ 2つの欄がそろっている記録は、これまでどおりの注記
+      ④ トップの12件は、空の kieta_kakunin を先頭の鍵にしない。最後に確認できた日の新しい順
+    """
+    import build_site as bs
+    with open(bs.ALL, encoding="utf-8") as f:
+        recs = json.load(f)
+    with open(bs.SOURCES, encoding="utf-8") as f:
+        src_meta = {x["id"]: x for x in json.load(f)["sources"]}
+    moto = next(r for r in recs if r.get("mode") == "snapshot")
+
+    def tsukuru(**k):
+        r = dict(moto)
+        for na in ("kakunin_saigo", "kieta_kakunin", "last_seen"):
+            r.pop(na, None)
+        r.update(mode="snapshot", listed=False, **k)
+        return r
+
+    def chuki(r):
+        t = bs.detail_page(r, {}, src_meta)
+        m = re.search(r'<p class="note">([^<]*(?:<b>.*?</b>)?[^<]*このサイトには残しています。)</p>', t, re.S)
+        if not m:
+            raise AssertionError("見えなくなった扱いの注記が見つからない")
+        return re.sub(r"<[^>]+>", "", m.group(1))
+
+    for r in (tsukuru(last_seen="2026-08-05"), tsukuru()):
+        s = chuki(r)
+        if re.search(r"のは\s*です|。\s*の観測|\s\s", s):
+            raise AssertionError("空の日付が出ている：" + s)
+        if "必要なページをすべて取れた日）では" in s or "取得がそろった" in s:
+            raise AssertionError("確かめられない「取得がそろった観測」を名乗っている：" + s)
+        if r.get("last_seen") and "最後に確認できたのは 2026-08-05 です" not in s:
+            raise AssertionError("last_seen を、最後に確認できた日として書いていない：" + s)
+        if re.search(r"2026-08-05\s*(に|から|を最後に)?\s*(見えなく|消え)", s):
+            raise AssertionError("last_seen を、見えなくなった日のように書いている：" + s)
+    s = chuki(tsukuru(last_seen="2026-09-20", kakunin_saigo="2026-09-10", kieta_kakunin="2026-09-12"))
+    if "最後に確認できたのは 2026-09-10 です" not in s or "2026-09-12 の観測" not in s:
+        raise AssertionError("2つの欄がそろった記録の注記が変わっている：" + s)
+
+    # ④ トップの12件の並び
+    mise = [
+        tsukuru(last_seen="2026-03-01", store="ならびためしB"),
+        tsukuru(last_seen="2026-09-20", store="ならびためしA"),
+        tsukuru(last_seen="2026-09-20", kakunin_saigo="2026-09-10", kieta_kakunin="2026-09-12", store="ならびためしC"),
+    ]
+    for i, r in enumerate(mise):
+        r["key"] = "narabi-%d" % i
+    t = bs.index_page(mise, "2099-01-01", "")
+    t = t[t.find("確認できなくなった届出"):]
+    ichi = [t.find(na) for na in ("ならびためしA", "ならびためしC", "ならびためしB")]
+    if -1 in ichi or ichi != sorted(ichi):
+        raise AssertionError("トップの「確認できなくなった届出」が、最後に確認できた日の新しい順になっていない：" + str(ichi))
 
 
 def test_workflow_の中のシェルが読めるか():

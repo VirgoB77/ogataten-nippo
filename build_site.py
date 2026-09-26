@@ -112,13 +112,18 @@ def torikomi_bun():
     return "自治体のページを見に行って取り込んでいます（取りに行くのは、確認と承認が済んだページだけです）。"
 
 
-def sitemap_gyou(host, urls, today):
-    """sitemap.xml の行。**取り込みを止めているあいだは、「毎日変わる」（changefreq daily）を名乗らない。**"""
+def sitemap_gyou(host, urls):
+    """sitemap.xml の行。**取り込みを止めているあいだは、「毎日変わる」（changefreq daily）を名乗らない。**
+
+    **lastmod は付けない。** 前は作った日を全部の URL に付けていた。取り込みを止めていても
+    作り直せば全ページが「今日変わった」と名乗ることになる（作った日を、データの日として
+    出す形。CLAUDE.md「いちばんよく出る間違い」）。ページごとに正しい更新日を決める方法は
+    まだ無いので、決められないものは省く（2026-09-26・統括判断）"""
     hindo = "" if TORIKOMI_TEISHI else "<changefreq>daily</changefreq>"
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-          f"<url><loc>{host}</loc><lastmod>{today}</lastmod>{hindo}</url>"]
+          f"<url><loc>{host}</loc>{hindo}</url>"]
     for u in urls:
-        sm.append(f"<url><loc>{host}{html.escape(u)}</loc><lastmod>{today}</lastmod></url>")
+        sm.append(f"<url><loc>{host}{html.escape(u)}</loc></url>")
     sm.append("</urlset>")
     return sm
 
@@ -449,6 +454,18 @@ def detail_page(r, by_ref, src_meta):
         if r.get("listed") is True:
             status = (f"こちらが最後に見た {esc(r.get('last_seen') or '')} の時点では、"
                       "自治体のページに載っていました")
+        elif r.get("listed") is False and not (r.get("kakunin_saigo") and r.get("kieta_kakunin")):
+            # **取得がそろった観測の日を持たない記録**（kakunin_saigo・kieta_kakunin が入る前の
+            # 判定で、見えなくなった扱いになったもの）。**空の日付を出さない。**
+            # last_seen は「こちらが最後に見た日」で、**見えなくなった日ではない。** そう読める
+            # 書き方をしない。そのあとの観測が、必要なページをすべて取れていたかも分からない
+            if r.get("last_seen"):
+                status = (f"<b>こちらが最後に確認できたのは {esc(r['last_seen'])} です。"
+                          "そのあとの観測では、自治体のページで見つかっていません。</b>")
+            else:
+                status = "<b>自治体のページで見つかっていません。</b>"
+            status += ("見つからなかった観測で必要なページをすべて取れていたかは、この記録では確かめられません。"
+                       "見えなくなった日そのものと、その理由は分かりません")
         elif r.get("listed") is False:
             # **区間の起点は kakunin_saigo**（取得がそろった観測のうち、見えた最後の日）。
             # last_seen（取得がそろっていたかに関係ない）だと、そろっていない日をはさんだ
@@ -1215,8 +1232,12 @@ def index_page(all_recs, today, saishin=""):
     recent_close = sorted([r for r in all_recs if r["kind"] == "廃止"], key=lambda r: r["notified_on"], reverse=True)[:12]
     recent_new = sorted([r for r in all_recs if r["kind"] == "新設"], key=lambda r: r["notified_on"], reverse=True)[:12]
     # **取得がそろった観測で確認できなかったものだけ**（listed が false）。未判定（null）は入れない
+    # 並びの鍵は「こちらが最後に確認できた日」。取得がそろった観測の日（kakunin_saigo）が
+    # 無い記録は、last_seen を使う。**空の kieta_kakunin を先頭の鍵にしない**——
+    # 空が並ぶと、新しい順ではなく data/all.json の並び順で12件が決まってしまう（2026-09-26）
     gone = sorted([r for r in all_recs if r.get("mode") == "snapshot" and r.get("listed") is False],
-                  key=lambda r: (r.get("kieta_kakunin") or "", r.get("kakunin_saigo") or ""), reverse=True)[:12]
+                  key=lambda r: (r.get("kakunin_saigo") or r.get("last_seen") or "",
+                                 r.get("kieta_kakunin") or ""), reverse=True)[:12]
     kinds = Counter(r["kind"] for r in all_recs)
     areas = Counter(r["area"] for r in all_recs)
     # **「場所の見出し」は市区町村の数ではない**（「兵庫県」「所在地不明」が混ざる）。
@@ -1468,7 +1489,8 @@ def main():
     print(f"index.json: 個票 {len(index['records'])} / 升 {len(index['counts_by_city'])} / city_code あり {coded}"
           + ("" if coded else "（data/ref/jis-codes.json がまだ無い。初回の自動実行で埋まる）"))
 
-    sm = sitemap_gyou(SITE_URL, urls, today)
+    host = SITE_URL
+    sm = sitemap_gyou(host, urls)
     with open(os.path.join(HERE, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write("\n".join(sm))
     with open(os.path.join(HERE, "robots.txt"), "w", encoding="utf-8") as f:
