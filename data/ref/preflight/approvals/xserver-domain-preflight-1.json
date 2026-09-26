@@ -1,0 +1,14 @@
+{
+ "approval_id": "xserver-domain-preflight-1",
+ "source_id": "xserver-domain",
+ "purpose": "acquisition_preflight",
+ "issued_by": "operator",
+ "issued_at": "2026-09-27T08:32:46+09:00",
+ "expires_at": "2026-09-28T08:32:46+09:00",
+ "allowed_kinds": ["robots", "list"],
+ "max_requests": 2,
+ "min_interval_seconds": 5,
+ "single_use": true,
+ "card_version": 1,
+ "card_fingerprint": "7a9e8f193031688c9a012f358078d3e3eb88469761c8ac6537f42fbdb3724b3b"
+}
