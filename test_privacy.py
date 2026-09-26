@@ -3692,6 +3692,12 @@ def test_見えなくなった届出に_空の日付や見えなくなった日�
 
     def chuki(r):
         t = bs.detail_page(r, {}, src_meta)
+        # 検索に出る説明文（description）も同じ線で見る
+        for m in re.finditer(r'<meta (?:name|property)="(?:og:)?description" content="([^"]*)"', t):
+            if re.search(r"(?:^|\s)を最後に|を最後に確認し、\s*の観測|\s\s", m.group(1)):
+                raise AssertionError("説明文に空の日付が出ている：" + m.group(1))
+            if r.get("last_seen") and not r.get("kieta_kakunin") and "を最後に確認し、そのあとの観測" not in m.group(1):
+                raise AssertionError("説明文が、最後に確認できた日の言い方になっていない：" + m.group(1))
         m = re.search(r'<p class="note">([^<]*(?:<b>.*?</b>)?[^<]*このサイトには残しています。)</p>', t, re.S)
         if not m:
             raise AssertionError("見えなくなった扱いの注記が見つからない")

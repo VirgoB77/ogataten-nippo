@@ -527,6 +527,9 @@ def detail_page(r, by_ref, src_meta):
             and r.get("kakunin_saigo") and r.get("kieta_kakunin")):
         desc += (f" {jp_date(r['kakunin_saigo'])}を最後に確認し、{jp_date(r['kieta_kakunin'])}の観測では"
                  "自治体のページで見つかっていません。")
+    elif r.get("mode") == "snapshot" and r.get("listed") is False and r.get("last_seen"):
+        # 取得がそろった観測の日が無い記録（本文の注記と同じ言い方。last_seen は見えなくなった日ではない）
+        desc += f" {jp_date(r['last_seen'])}を最後に確認し、そのあとの観測では自治体のページで見つかっていません。"
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>
