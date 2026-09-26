@@ -1,0 +1,14 @@
+{
+ "approval_id": "value-domain-preflight-1",
+ "source_id": "value-domain",
+ "purpose": "acquisition_preflight",
+ "issued_by": "operator",
+ "issued_at": "2026-09-27T08:30:21+09:00",
+ "expires_at": "2026-09-28T08:30:21+09:00",
+ "allowed_kinds": ["robots", "list", "detail"],
+ "max_requests": 3,
+ "min_interval_seconds": 5,
+ "single_use": true,
+ "card_version": 1,
+ "card_fingerprint": "ab2d99ab5239164f9e99679dce5ab683bbd8706b38be3569974cbd8407ae49ec"
+}
