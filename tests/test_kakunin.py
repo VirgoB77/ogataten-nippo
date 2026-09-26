@@ -133,7 +133,7 @@ class PfOki(tk.Oki):
 
 class 通るとき(PfOki):
 
-    def test_robots・一覧・詳細の3本だけを_GETで_名乗りだけ付けて出す(self):
+    def test_robots_一覧_詳細の3本だけを_GETで_名乗りだけ付けて出す(self):
         self.kyoka()
         rec = self.mon().kakunin(KID)
         self.assertEqual(rec["result"], "完了", rec["stop_reason"])
