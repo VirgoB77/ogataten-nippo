@@ -41,7 +41,8 @@
 `Kado.kakunin(許可ID)` だけが通信を出し、上の本番の入口（sesshon）は通らないし、緩めない。
 
     許可      運営者の手で書いた1ファイル（data/ref/preflight/approvals/<許可ID>.json）。
-              発行から24時間、かつ1回の実行だけ。出どころは本番の承認と同じ関数で確かめる
+              発行から24時間、かつ1回の実行だけ。**実行を始めたら使用済み**（通信0で止まっても。
+              もう一度は、運営者が新しい許可を出す）。出どころは本番の承認と同じ関数で確かめる
     カード    何を見るか（data/ref/preflight/cards.json）。許可はカードの版と指紋に結び付く
     記録      見た結果（data/ref/preflight/records/<source_id>/）。**上書きしない。本文は残さない**
 
@@ -1221,19 +1222,29 @@ class Kado:
                 return name, a
         return None, None
 
-    def pf_tsukatta(self, kid, sid):
-        """その許可で、外へ1本でも出した記録があるか。(使った, 理由)。**読めない記録があれば、使った側に倒す。**"""
-        d = self._p(os.path.join(PF_KIROKU, sid))
-        if not os.path.isdir(d):
+    def pf_tsukatta(self, kid):
+        """その許可で実行した記録があるか。(使った, 理由)。
+
+        **実行を始めたら使用済み**（2026-09-27・統括判断）。外へ何本出したかでは数えない
+        （通信0で止まった回も使用済み）。記録は相手ごとの置き場に分かれるが、許可IDで**全部**を見る
+        （許可が読めなかった回の記録は、相手の分からない置き場に入る）。
+        **読めない記録があれば、使った側に倒す。**
+        """
+        ne = self._p(PF_KIROKU)
+        if not os.path.isdir(ne):
             return False, ""
-        for na in sorted(os.listdir(d)):
-            if not na.endswith(".json"):
+        for sub in sorted(os.listdir(ne)):
+            d = os.path.join(ne, sub)
+            if not os.path.isdir(d):
                 continue
-            r = _yomu(os.path.join(d, na), None)
-            if not isinstance(r, dict):
-                return True, "記録（%s）が読めない。許可が使われたかを確かめられない" % na
-            if r.get("approval_id") == kid and (r.get("external_requests") or 0) > 0:
-                return True, "この許可はもう使われた（記録 %s）" % na
+            for na in sorted(os.listdir(d)):
+                if not na.endswith(".json"):
+                    continue
+                r = _yomu(os.path.join(d, na), None)
+                if not isinstance(r, dict):
+                    return True, "記録（%s/%s）が読めない。許可が使われたかを確かめられない" % (sub, na)
+                if r.get("approval_id") == kid:
+                    return True, "この許可はもう使われた（記録 %s/%s）" % (sub, na)
         return False, ""
 
     def pf_mon(self, kid):
@@ -1354,10 +1365,9 @@ class Kado:
                 why = self._yoyaku_mae(name)
                 if why:
                     riyuu.append("予約台帳：" + why)
-        if sid:
-            used, why = self.pf_tsukatta(kid, sid)
-            if used:
-                riyuu.append(why)
+        used, why = self.pf_tsukatta(kid)
+        if used:
+            riyuu.append(why)
         ok, why = shounin_dedokoro(self.root, rel.replace(os.sep, "/"))
         if not ok:
             riyuu.append("許可の出どころ：" + why.replace("承認ファイル", "許可ファイル"))
@@ -1408,8 +1418,6 @@ class Kado:
             raise Tomeru("この回、この相手は「%s」で止めた" % self._tomatta[ctx["aite"]])
         if self._now() >= ctx["kigen"]:
             raise Tomeru("許可の期限（expires_at）を過ぎた")
-        if ctx["n"] == 0:
-            self._pf_daicho_ni_ato(ctx)
         ctx["dashita"].append(kind)
         # 日付の関所・予約台帳（許可IDつき）・間隔（許可の秒数と Crawl-delay の長いほう）
         self._matsu(ctx["aite"], max(ctx["interval"], ctx["delay"] or 0))
@@ -1474,8 +1482,18 @@ class Kado:
                 f["redirect_to"] or f["final_url"])
         elif st is None:
             jotai, groups, why = "確かめられなかった", None, "robots.txt に届かなかった（%s）" % f["error"]
+        elif st == 410:
+            # 本番の robots_hantei は 410 も「置いていない」と読むが、取得可否確認では
+            # **404 のほかの 4xx を進む側へ広げない**（2026-09-27・統括判断）
+            jotai, groups, why = "確かめられなかった", None, "robots.txt が HTTP %s（取得可否確認で進むのは 404 だけ）" % st
         else:
             jotai, groups, why = robots_hantei(st, f["content_type"], body, f["content_encoding"])
+        hantei, riyuu_kaku = jotai, why
+        if st == 404 and jotai == "通す":
+            # **404 は「robots が取得を許した」ではない。** 置いていない状態として、今の決まりで次へ進むだけ
+            hantei = "robots.txt なし（今の決まりで次へ進む）"
+            riyuu_kaku = ("robots.txt が HTTP 404。robots.txt が存在しない状態として、今の決まり上は"
+                          "次の確認へ進む（robots が取得を許可したという意味ではない）")
         if st is None or st in KONDA or (st and st >= 500):
             shurui = "unavailable"
         elif f["redirect"]:
@@ -1499,7 +1517,7 @@ class Kado:
             "requested_url": url, "final_url": f["final_url"], "checked_at": f["checked_at"],
             "http_status": st, "content_type": f["content_type"], "redirect": f["redirect"],
             "redirect_to": f["redirect_to"], "body_sha256": f["body_sha256"], "body_bytes": f["body_bytes"],
-            "response_kind": shurui, "kujiraya_judgment": jotai, "judgment_reason": why,
+            "response_kind": shurui, "kujiraya_judgment": hantei, "judgment_reason": riyuu_kaku,
             "crawl_delay": delay, "target_allowed": taishou}
         if jotai != "通す":
             raise Tomeru("robots が「%s」：%s" % (jotai, why))
@@ -1599,6 +1617,8 @@ class Kado:
                        "workflow": self.env.get("GITHUB_WORKFLOW_REF") or ""},
                "started_at": _pf_jst(self._now()), "finished_at": "", "external_requests": 0,
                "result": "", "stop_reason": "", "robots": None, "pages": [], "detail_url_found": None,
+               "items_note": "items の false は「今回の通常の HTTP 応答の本文では確認できなかった」。"
+                             "その項目が無いという意味ではない（JavaScript は実行していない）",
                "note": "本文は残していない（SHA-256 と長さだけ）。この記録は取得してよいかを判断する材料で、"
                        "本番の取得・private 長期保存・公開・商品化の承認ではない"}
         ctx, riyuu = self.pf_mon(kid)
@@ -1611,6 +1631,12 @@ class Kado:
             if riyuu:
                 raise Tomeru(riyuu)
             self._pf = ctx
+            # **ここで許可を使う。** 予約台帳に、この許可の跡が無いかを見てから、今日の枠を予約する
+            # （予約に許可IDが載る）。このあと通信0で止まっても、許可は使用済み
+            self.hi_no_seki()
+            self._pf_daicho_ni_ato(ctx)
+            if self.yoyaku_hitsuyou():
+                self._yoyaku_shoumei(ctx["aite"])
             self._pf_robots(ctx, rec)
             body = None
             if "list" in ctx["kinds"]:

@@ -199,12 +199,22 @@ class 通るとき(PfOki):
         self.assertEqual(self.nise.kita, [ROBOTS, ICHIRAN])
         self.assertEqual(rec["detail_url_found"], False)
 
-    def test_robotsが無い_404_は今の本番と同じく通す_ただし事実はnot_foundと残す(self):
+    def test_robotsが無い_404_は次へ進む_ただし許したとは書かない(self):
         self.kyoka()
         kotae = {ROBOTS: (404, {}, b""), ICHIRAN: ICHIRAN_OK, SHOUSAI: SHOUSAI_OK}
         rec = self.mon(kotae).kakunin(KID)
-        self.assertEqual(rec["robots"]["response_kind"], "not_found")
-        self.assertEqual(rec["robots"]["kujiraya_judgment"], "通す")
+        self.assertEqual(rec["result"], "完了")
+        rb = rec["robots"]
+        self.assertEqual((rb["http_status"], rb["response_kind"]), (404, "not_found"))
+        self.assertNotEqual(rb["kujiraya_judgment"], "通す")
+        self.assertIn("次へ進む", rb["kujiraya_judgment"])
+        self.assertIn("許可したという意味ではない", rb["judgment_reason"])
+
+    def test_robotsの_404_のほかの4xxは進まない(self):
+        self.kyoka()
+        rec = self.mon({ROBOTS: (410, {}, b""), ICHIRAN: ICHIRAN_OK}).kakunin(KID)
+        self.tomaru(rec, "404 だけ")
+        self.assertEqual(self.nise.kita, [ROBOTS])
 
     def test_パスワード欄があっても_確かめる語があれば止めない(self):
         self.kyoka()
@@ -392,12 +402,28 @@ class 一回限り(PfOki):
         self.tomaru(rec, "もう使われた")
         self.assertEqual(len(self.nise.kita), n)
 
-    def test_通信の前に止まった許可は_使ったことにならない(self):
+    def test_通信0で止まっても_許可は使用済み(self):
+        # **実行を始めたら使用済み**（2026-09-27・統括判断）。もう一度は新しい許可で
         self.kaku("data/ref/aite-kyou.json", {"ためし県": {"hi": "2026-09-25", "run": "run-0", "repo": "x"}})
         self.kyoka()
-        self.tomaru(self.mon().kakunin(KID), "今日もう見た")
+        rec = self.mon().kakunin(KID)
+        self.tomaru(rec, "今日もう見た")
+        self.assertEqual(rec["external_requests"], 0)
         os.remove(self.p("data/ref/aite-kyou.json"))
-        self.assertEqual(self.mon(run_id="run-2").kakunin(KID)["result"], "完了")
+        self.tomaru(self.mon(run_id="run-2").kakunin(KID), "もう使われた")
+        self.assertEqual(self.nise.kita, [])
+        # 新しい許可IDなら進む
+        self.kyoka(kid="tameshi-ken-2026-09-25-2")
+        self.assertEqual(self.mon(run_id="run-3").kakunin("tameshi-ken-2026-09-25-2")["result"], "完了")
+
+    def test_相手の分からない置き場の記録も_許可IDで数える(self):
+        d = self.p("data", "ref", "preflight", "records", "_shirenai")
+        os.makedirs(d)
+        with open(os.path.join(d, "x.json"), "w", encoding="utf-8") as f:
+            json.dump({"approval_id": KID, "external_requests": 0, "result": "STOP"}, f)
+        self.kyoka()
+        self.tomaru(self.mon().kakunin(KID), "もう使われた")
+        self.assertEqual(self.nise.kita, [])
 
     def test_記録は上書きしない(self):
         self.kyoka()
@@ -575,6 +601,19 @@ class 予約台帳に許可の跡を残す(PfOki):
         subprocess.run(["git", "-C", self.tane, "pull", "-q", "origin", "main"], capture_output=True)
         p = os.path.join(self.tane, "yoyaku", hi, SID + ".json")
         return yomu(p) if os.path.exists(p) else None
+
+    def test_通信の前に止まっても_予約台帳に許可の跡が残る(self):
+        self.kyoka()
+        k = self.mon(run_id="run-a")
+
+        def tomeru(*a, **kw):
+            raise kado.Tomeru("ためしに止める")
+
+        k._pf_dasu = tomeru
+        rec = k.kakunin(KID)
+        self.tomaru(rec, "ためしに止める")
+        self.assertEqual(rec["external_requests"], 0)
+        self.assertEqual(self.yoyaku()["kakunin"], KID)
 
     def test_予約に許可IDが載る(self):
         self.kyoka()
