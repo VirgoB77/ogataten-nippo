@@ -34,6 +34,21 @@
     転送（redirect）              転送先ごとに、上を全部やり直す
 
 **機械は4語を書き換えない。** 書くのは機械札と今日の控えだけ。
+
+## もう1つの狭い入口：取得可否確認（preflight。2026-09-27・統括判断）
+
+新しい取得元を「取ってよいか」判断するための、最小の確認。**本番の取得ではない。**
+`Kado.kakunin(許可ID)` だけが通信を出し、上の本番の入口（sesshon）は通らないし、緩めない。
+
+    許可      運営者の手で書いた1ファイル（data/ref/preflight/approvals/<許可ID>.json）。
+              発行から24時間、かつ1回の実行だけ。出どころは本番の承認と同じ関数で確かめる
+    カード    何を見るか（data/ref/preflight/cards.json）。許可はカードの版と指紋に結び付く
+    記録      見た結果（data/ref/preflight/records/<source_id>/）。**上書きしない。本文は残さない**
+
+送るのは robots.txt・一覧・詳細の最大3本。GET だけ。見出しは名乗り（User-Agent）だけ。
+**転送は辿らない**（辿らずに記録して止まる）。同じ相手・同じ日の枠（今日の控え・予約台帳）は本番と共有する。
+
+**許可 ≠ 本番の取得承認 ≠ private 長期保存の承認 ≠ 公開の承認 ≠ 商品化の承認。**
 """
 import contextlib
 import datetime
@@ -445,6 +460,68 @@ def robots_hantei(status, ctype, body, cenc=""):
     return "通す", groups, "robots.txt を読んだ"
 
 
+# ------------------------------------------------------------------ 取得可否確認（preflight）の決まり
+PF_NE = os.path.join("data", "ref", "preflight")
+PF_CARDS = os.path.join(PF_NE, "cards.json")
+PF_KYOKA = os.path.join(PF_NE, "approvals")
+PF_KIROKU = os.path.join(PF_NE, "records")
+PF_MOKUTEKI = "acquisition_preflight"
+PF_SHURUI = ("robots", "list", "detail")     # この順に出す。robots.txt を見ずに先へ進まない
+PF_JIKAN = 24 * 3600                          # 許可の長さの上限（発行から24時間）
+PF_HONBUN_OOKISA = 2000000                    # 一覧・詳細の本文を読む上限（読むだけ。残さない）
+PF_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,80}$")
+PF_SCHEMA = 1
+# CAPTCHA・チャレンジの兆候。**見落とすより、見つけすぎて止まるほうを選ぶ**
+PF_CAPTCHA = re.compile(rb"g-recaptcha|recaptcha/api|hcaptcha|h-captcha|cf-challenge|challenge-platform"
+                        rb"|cf_chl_|turnstile|captcha", re.I)
+PF_PASSWORD = re.compile(rb"<input[^>]*type\s*=\s*[\"']?password", re.I)
+PF_HREF = re.compile(rb"""href\s*=\s*["']([^"'<>\s]+)["']""", re.I)
+PF_KOTOBA_FUGOU = ("utf-8", "cp932", "euc_jp")   # 語の有無を、本文を読み替えずにバイトで探す
+
+
+def _pf_jikoku(s):
+    """時差つきの ISO 8601 を epoch 秒に。読めない・時差が無いものは None（推し量らない）。"""
+    try:
+        t = datetime.datetime.fromisoformat(str(s))
+    except ValueError:
+        return None
+    return t.timestamp() if t.tzinfo is not None else None
+
+
+def _pf_jst(t):
+    return datetime.datetime.fromtimestamp(t, JST).isoformat(timespec="seconds")
+
+
+def _pf_url(url):
+    """取得可否確認で出してよい形の URL なら (host, "")。違えば (None, 理由)。"""
+    if not isinstance(url, str) or not url:
+        return None, "URL が書いていない"
+    u = urllib.parse.urlsplit(url)
+    try:
+        port = u.port
+    except ValueError:
+        return None, "URL の port が読めない"
+    host = (u.hostname or "").lower()
+    if u.scheme != "https" or not host:
+        return None, "https でない URL（%s）" % url
+    if u.username or u.password:
+        return None, "URL に認証の情報が入っている"
+    if u.fragment:
+        return None, "URL に # が入っている"
+    if port not in (None, 443):
+        return None, "URL に port の指定がある"
+    if re.search(r"(^|/)\.{1,2}(/|$)", _seiki(u.path)):
+        return None, "URL の道すじに . や .. が入っている"
+    return host, ""
+
+
+class _PfTensouShinai(urllib.request.HTTPRedirectHandler):
+    """取得可否確認では、**転送を1つも辿らない。** 3xx のまま返し、行き先を記録して止まる。"""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
 # ------------------------------------------------------------------ 門
 class _RobotsTenSou(urllib.request.HTTPRedirectHandler):
     """robots.txt の転送は、**同じ相手の /robots.txt へのもの**（http → https 等）だけ辿る。
@@ -500,6 +577,7 @@ class Kado:
         self.yoyaku_michi = yoyaku_michi
         self._yoyaku_ari = set()       # この処理で予約を証明できた相手
         self._yoyaku_dame = {}         # 相手 -> 予約できなかった理由（この処理ではもう試さない）
+        self._pf = None                # 取得可否確認の最中だけ、その中身（許可ID 等）
 
     def _p(self, rel):
         return os.path.join(self.root, rel)
@@ -624,6 +702,8 @@ class Kado:
     def card_mon(self, cid, koui=KOUI_TORU, hozon_saki=None):
         """取りに行ってよいか（URL ごとの関所より前の分）。**止める理由の並び**を返す。空なら通す。"""
         card = self.card(cid)
+        if self._pf is not None:
+            return ["取得可否確認の最中（本番の取得を重ねない）"]
         if self.cards is None:
             return ["カードの置き場が壊れている"]
         if card is None:
@@ -787,6 +867,10 @@ class Kado:
         jibun = dict(self._yoyaku_ninshiki(), schema=YOYAKU_SCHEMA, hi=self.today, aite=aid,
                      workflow=str(self.env.get("GITHUB_WORKFLOW_REF")
                                   or self.env.get("GITHUB_WORKFLOW") or ""))
+        if self._pf is not None:
+            # 取得可否確認の予約には許可IDを載せる。**台帳は追記だけで消えないので、許可を2回使わない跡になる**
+            # （置き場の記録が push できずに消えても、ここは残る）
+            jibun["kakunin"] = self._pf["kid"]
         michi = "%s/%s/%s.json" % (self.yoyaku_michi, self.today, aid)
         onaji = lambda s: all(s.get(k) == jibun[k] for k in ("repo", "run_id", "run_attempt", "job"))
         nakami = json.dumps(jibun, ensure_ascii=False, sort_keys=True, indent=1) + "\n"
@@ -1121,6 +1205,431 @@ class Kado:
         if jotai != "通す":
             return None, why
         return (True, why) if robots_yurusu(rules, url) else (False, "robots.txt で拒否されている")
+
+    # ---------------------------------------------------------- 取得可否確認（preflight）
+    def pf_card(self, sid):
+        d = _yomu(self._p(PF_CARDS), {"cards": {}})
+        cards = d.get("cards") if isinstance(d, dict) else None
+        c = cards.get(sid) if isinstance(cards, dict) else None
+        return c if isinstance(c, dict) else None
+
+    def pf_aite(self, sid):
+        """source_id（相手台帳の id）から (相手の名前, 台帳の欄)。無ければ (None, None)。"""
+        aite = self.daicho.get("aite") if isinstance(self.daicho, dict) else None
+        for name, a in (aite if isinstance(aite, dict) else {}).items():
+            if isinstance(a, dict) and a.get("id") == sid:
+                return name, a
+        return None, None
+
+    def pf_tsukatta(self, kid, sid):
+        """その許可で、外へ1本でも出した記録があるか。(使った, 理由)。**読めない記録があれば、使った側に倒す。**"""
+        d = self._p(os.path.join(PF_KIROKU, sid))
+        if not os.path.isdir(d):
+            return False, ""
+        for na in sorted(os.listdir(d)):
+            if not na.endswith(".json"):
+                continue
+            r = _yomu(os.path.join(d, na), None)
+            if not isinstance(r, dict):
+                return True, "記録（%s）が読めない。許可が使われたかを確かめられない" % na
+            if r.get("approval_id") == kid and (r.get("external_requests") or 0) > 0:
+                return True, "この許可はもう使われた（記録 %s）" % na
+        return False, ""
+
+    def pf_mon(self, kid):
+        """取得可否確認に入ってよいか（通信の前の分）。(中身, 止める理由の並び)。理由が空なら通す。
+
+        **本番の承認（shounin/）もカード（torimoto-card.json）も見ない。** 見るのは許可・確認用カード・
+        相手台帳・今日の控え・予約台帳の前提・同じ相手の機械札・記録。
+        """
+        if not isinstance(kid, str) or not PF_ID.match(kid):
+            return None, ["許可ID の形が違う"]
+        if self.today is None:
+            return None, ["今日の日付が渡されていない（RUN_DATE・hajimeru の today）"]
+        if self._genzai is not None or self._pf is not None:
+            return None, ["本番の取得、またはほかの確認の最中（重ねない）"]
+        rel = os.path.join(PF_KYOKA, kid + ".json")
+        k = _yomu(self._p(rel), "無い")
+        if k == "無い":
+            return None, ["許可が無い（%s）" % rel.replace(os.sep, "/")]
+        if not isinstance(k, dict):
+            return None, ["許可のファイルが読めない"]
+        riyuu = []
+        sid = k.get("source_id") if isinstance(k.get("source_id"), str) else ""
+        if k.get("approval_id") != kid:
+            riyuu.append("許可の approval_id がファイル名と違う")
+        if k.get("purpose") != PF_MOKUTEKI:
+            riyuu.append("purpose が %s でない" % PF_MOKUTEKI)
+        if k.get("issued_by") != "operator":
+            riyuu.append("issued_by が operator でない")
+        if k.get("single_use") is not True:
+            riyuu.append("single_use が true でない")
+        kinds = k.get("allowed_kinds")
+        if not (isinstance(kinds, list) and kinds and all(x in PF_SHURUI for x in kinds)
+                and len(set(kinds)) == len(kinds)):
+            riyuu.append("allowed_kinds が robots・list・detail の並びでない")
+            kinds = []
+        elif "robots" not in kinds:
+            riyuu.append("allowed_kinds に robots が無い（robots.txt を見ずに進まない）")
+        n = k.get("max_requests")
+        if not (type(n) is int and 1 <= n <= max(1, len(kinds))):
+            riyuu.append("max_requests が 1〜%d でない" % max(1, len(kinds)))
+            n = 0
+        w = k.get("min_interval_seconds")
+        if not (type(w) in (int, float) and w >= MATSU):
+            riyuu.append("min_interval_seconds が %d 秒以上でない" % MATSU)
+            w = MATSU
+        t0, t1 = _pf_jikoku(k.get("issued_at")), _pf_jikoku(k.get("expires_at"))
+        ima = self._now()
+        if t0 is None or t1 is None:
+            riyuu.append("issued_at・expires_at が読めない（時差つきで書く）")
+        else:
+            if t1 <= t0 or t1 - t0 > PF_JIKAN:
+                riyuu.append("expires_at が、issued_at から24時間の内でない")
+            if ima < t0:
+                riyuu.append("まだ発行の前（issued_at）")
+            if ima >= t1:
+                riyuu.append("許可の期限（expires_at）を過ぎた")
+        card = self.pf_card(sid) if sid else None
+        if card is None:
+            riyuu.append("取得可否確認のカードが無い（%s）" % (sid or "source_id が空"))
+        else:
+            if card.get("source_id") != sid:
+                riyuu.append("カードの source_id が許可と違う")
+            if str(k.get("card_version")) != str(card.get("カード版")):
+                riyuu.append("許可したカード版が、いまのカード版と違う")
+            if k.get("card_fingerprint") != card_shimon(card):
+                riyuu.append("許可時のカード指紋が、いまのカードと違う（許可のあとでカードが変わった）")
+        name, a = self.pf_aite(sid) if sid else (None, None)
+        if a is None:
+            riyuu.append("相手台帳に source_id（%s）の相手が無い" % (sid or "空"))
+        else:
+            pf = a.get("preflight") if isinstance(a.get("preflight"), dict) else {}
+            if pf.get("置き場") != self.repo:
+                riyuu.append("この相手の取得可否確認をする置き場は「%s」（ここは %s）" % (pf.get("置き場") or "未定", self.repo))
+        # 出す URL（robots.txt は、一覧・詳細と同じ host のものを1本だけ）
+        urls = (card or {}).get("URL")
+        urls = urls if isinstance(urls, dict) else {}
+        hosts, kata = set(), None
+        mieru = [("一覧", urls.get("list"))] if "list" in kinds else []
+        if "detail" in kinds and urls.get("detail"):
+            mieru.append(("詳細", urls.get("detail")))
+        for na, u in mieru:
+            h, why = _pf_url(u)
+            if h:
+                hosts.add(h)
+            else:
+                riyuu.append("%s：%s" % (na, why))
+        if "detail" in kinds and not urls.get("detail"):
+            if isinstance(urls.get("detail_pattern"), str) and "list" in kinds:
+                try:
+                    kata = re.compile(urls["detail_pattern"])
+                except re.error:
+                    riyuu.append("詳細の URL の型（detail_pattern）が読めない")
+            else:
+                riyuu.append("詳細の URL（detail）も、一覧から選ぶ型（detail_pattern）も無い")
+        host = next(iter(hosts)) if len(hosts) == 1 else None
+        if kinds and not hosts:
+            riyuu.append("出す URL が1本も無い")
+        elif len(hosts) > 1:
+            riyuu.append("一覧と詳細の host が違う（robots.txt は1本だけ）")
+        if a is not None and host and host not in (a.get("host") or []):
+            riyuu.append("URL の host（%s）が、相手台帳のその相手に無い" % host)
+        # 同じ相手の札・今日の控え・予約台帳（本番と共有）
+        if name:
+            for cid, c in (self.cards if isinstance(self.cards, dict) else {}).items():
+                if isinstance(c, dict) and c.get("相手") == name:
+                    f, _ = self.fuda(cid)
+                    if f != "なし":
+                        riyuu.append("同じ相手のカード（%s）に機械札「%s」" % (cid, f))
+            # **この実行の中で見た相手も止める**（本番のあとに重ねると、予約台帳に許可IDの跡が残らない）
+            e = (self._kyou_yomu() or {}).get(name) or {}
+            if e.get("hi") == self.today or name in self._yoyaku_ari:
+                riyuu.append("この相手は今日もう見た（%s）" % (e.get("repo") or self.repo))
+            if e.get("hi") == self.today and e.get("tomatta"):
+                riyuu.append("この相手は今日「%s」と返した" % e.get("tomatta"))
+            if name in self._tomatta:
+                riyuu.append("この回、この相手は「%s」で止めた" % self._tomatta[name])
+            if self.yoyaku_hitsuyou():
+                why = self._yoyaku_mae(name)
+                if why:
+                    riyuu.append("予約台帳：" + why)
+        if sid:
+            used, why = self.pf_tsukatta(kid, sid)
+            if used:
+                riyuu.append(why)
+        ok, why = shounin_dedokoro(self.root, rel.replace(os.sep, "/"))
+        if not ok:
+            riyuu.append("許可の出どころ：" + why.replace("承認ファイル", "許可ファイル"))
+        ctx = {"kid": kid, "sid": sid, "kyoka": k, "aite": name, "card": card, "kinds": kinds,
+               "max": n, "interval": max(MATSU, w), "t0": t0, "kigen": t1, "host": host,
+               "urls": urls, "kata": kata, "n": 0, "dashita": [], "rules": [], "delay": None}
+        return ctx, riyuu
+
+    def _pf_daicho_ni_ato(self, ctx):
+        """予約台帳に、この許可で出した跡（発行の日から今日まで）が無いか。無ければ何もしない。"""
+        if not self.yoyaku_hitsuyou():
+            return
+        d = self.env.get("YOYAKU_DIR") or ""
+        if _git(d, "fetch", "--quiet", "origin", "main").returncode != 0:
+            raise Tomeru("予約台帳を取り込めない（許可が使われたかを確かめられない）")
+        ware = self._yoyaku_ninshiki() or {}
+        hi, owari = datetime.datetime.fromtimestamp(ctx["t0"], JST).date(), _hi(self.today)
+        while hi <= owari:
+            michi = "%s/%s/%s.json" % (self.yoyaku_michi, hi.isoformat(), ctx["sid"])
+            r = _git(d, "ls-tree", "--name-only", "origin/main", "--", michi)
+            if r.returncode != 0:
+                raise Tomeru("予約台帳の中を見られない（許可が使われたかを確かめられない）")
+            if r.stdout.strip():
+                r = _git(d, "show", "origin/main:" + michi)
+                try:
+                    s = json.loads(r.stdout) if r.returncode == 0 else None
+                except ValueError:
+                    s = None
+                if not isinstance(s, dict):
+                    raise Tomeru("予約台帳の %s が読めない" % michi)
+                jibun = all(s.get(x) == ware.get(x) for x in ("repo", "run_id", "run_attempt", "job"))
+                if s.get("kakunin") == ctx["kid"] and not jibun:
+                    raise Tomeru("この許可はもう使われた（予約台帳 %s）" % michi)
+            hi += datetime.timedelta(days=1)
+
+    def _pf_dasu(self, ctx, kind, url, ookisa):
+        """1本だけ出す。**出す前に全部確かめる。** 返り値は (観測の事実, 本文の頭)。判定は呼ぶ側。"""
+        if kind not in ctx["kinds"]:
+            raise Tomeru("許可に無い種類（%s）" % kind)
+        if kind in ctx["dashita"]:
+            raise Tomeru("同じ種類の2本目（%s）" % kind)
+        if ctx["n"] >= ctx["max"]:
+            raise Tomeru("許可の本数（%d）を使い切った" % ctx["max"])
+        h, why = _pf_url(url)
+        if h is None or h != ctx["host"]:
+            raise Tomeru("許された URL ではない（%s）" % (why or url))
+        if ctx["aite"] in self._tomatta:
+            raise Tomeru("この回、この相手は「%s」で止めた" % self._tomatta[ctx["aite"]])
+        if self._now() >= ctx["kigen"]:
+            raise Tomeru("許可の期限（expires_at）を過ぎた")
+        if ctx["n"] == 0:
+            self._pf_daicho_ni_ato(ctx)
+        ctx["dashita"].append(kind)
+        # 日付の関所・予約台帳（許可IDつき）・間隔（許可の秒数と Crawl-delay の長いほう）
+        self._matsu(ctx["aite"], max(ctx["interval"], ctx["delay"] or 0))
+        if self._now() >= ctx["kigen"]:
+            raise Tomeru("許可の期限（expires_at）を、待つ間に過ぎた")
+        ctx["n"] += 1
+        req = urllib.request.Request(url, headers={"User-Agent": self.ua}, method="GET")
+        f = {"kind": kind, "requested_url": url, "final_url": url, "checked_at": _pf_jst(self._now()),
+             "http_status": None, "content_type": "", "content_encoding": "", "redirect": False,
+             "redirect_to": "", "retry_after": "", "cf_mitigated": "", "error": ""}
+        handlers = [_PfTensouShinai()]
+        if self.transport is not None:
+            handlers.insert(0, self.transport)
+        op = urllib.request.build_opener(*handlers)
+        body = b""
+        try:
+            with op.open(req, timeout=TIMEOUT) as r:
+                f.update(http_status=r.status, final_url=r.geturl() or url)
+                hd = r.headers
+                body = r.read(ookisa + 1)
+        except urllib.error.HTTPError as e:
+            f["http_status"] = e.code
+            hd = e.headers
+            if not (300 <= e.code < 400):
+                try:
+                    body = e.read(ookisa + 1)
+                except Exception:                                # noqa: BLE001
+                    body = b""
+        except Exception as e:                                   # noqa: BLE001
+            f["error"] = type(e).__name__
+            hd = None
+        if hd is not None:
+            f.update(content_type=hd.get("Content-Type", "") or "",
+                     content_encoding=hd.get("Content-Encoding", "") or "",
+                     retry_after=hd.get("Retry-After", "") or "",
+                     cf_mitigated=hd.get("cf-mitigated", "") or "")
+            if f["http_status"] and 300 <= f["http_status"] < 400:
+                f["redirect_to"] = hd.get("Location", "") or ""
+        st = f["http_status"]
+        f["redirect"] = bool(st and 300 <= st < 400) or f["final_url"] != url
+        f["body_bytes"] = min(len(body), ookisa)
+        f["body_truncated"] = len(body) > ookisa
+        body = body[:ookisa]
+        f["body_sha256"] = hashlib.sha256(body).hexdigest() if body else ""
+        self.kiroku.append(("kakunin:" + ctx["kid"], url, "出した", ""))
+        # 混んでいる・断られた（本番と同じ控え。その回は、その相手への残りを全部止める）
+        if st in KONDA or f["retry_after"]:
+            self._tomeru(ctx["aite"], "HTTP %s%s" % (st, "（Retry-After）" if f["retry_after"] else ""))
+        elif st in KOTOWARI:
+            self._tomeru(ctx["aite"], "HTTP %s（断られた）" % st)
+        return f, body
+
+    def _pf_robots(self, ctx, rec):
+        url = "https://%s/robots.txt" % ctx["host"]
+        f, body = self._pf_dasu(ctx, "robots", url, ROBOTS_OOKISA)
+        st = f["http_status"]
+        atama = body.lstrip(b"\xef\xbb\xbf").lstrip()[:2048].lower()
+        html = atama.startswith(b"<") or b"<html" in atama or b"<!doctype" in atama
+        # 【HTTP で観測した事実】と【鯨屋の決まりでの判定】を分ける。**200 は通すではない**
+        if f["redirect"]:
+            jotai, groups, why = "確かめられなかった", None, "robots.txt が転送を返した（辿らない）：%s" % (
+                f["redirect_to"] or f["final_url"])
+        elif st is None:
+            jotai, groups, why = "確かめられなかった", None, "robots.txt に届かなかった（%s）" % f["error"]
+        else:
+            jotai, groups, why = robots_hantei(st, f["content_type"], body, f["content_encoding"])
+        if st is None or st in KONDA or (st and st >= 500):
+            shurui = "unavailable"
+        elif f["redirect"]:
+            shurui = "redirect"
+        elif st in (404, 410):
+            shurui = "not_found"
+        elif st in KOTOWARI:
+            shurui = "denied"
+        elif 200 <= st < 300:
+            shurui = "html_response" if html else ("valid_robots" if jotai == "通す" else "other")
+        else:
+            shurui = "other"
+        rules, delay = robots_group(groups, self.tokens) if groups else ([], None)
+        taishou = {}
+        if jotai == "通す":
+            for k in ("list", "detail"):
+                u = ctx["urls"].get(k)
+                if k in ctx["kinds"] and u:
+                    taishou[k] = robots_yurusu(rules, u)
+        rec["robots"] = {
+            "requested_url": url, "final_url": f["final_url"], "checked_at": f["checked_at"],
+            "http_status": st, "content_type": f["content_type"], "redirect": f["redirect"],
+            "redirect_to": f["redirect_to"], "body_sha256": f["body_sha256"], "body_bytes": f["body_bytes"],
+            "response_kind": shurui, "kujiraya_judgment": jotai, "judgment_reason": why,
+            "crawl_delay": delay, "target_allowed": taishou}
+        if jotai != "通す":
+            raise Tomeru("robots が「%s」：%s" % (jotai, why))
+        dame = [k for k, v in taishou.items() if not v]
+        if dame:
+            raise Tomeru("robots が対象の URL を拒否（%s）" % "・".join(dame))
+        ctx["rules"], ctx["delay"] = rules, delay
+
+    def _pf_page(self, ctx, rec, kind, url):
+        """一覧・詳細を1本。本文は読んで捨てる。残すのは事実と語の有無だけ。"""
+        f, body = self._pf_dasu(ctx, kind, url, PF_HONBUN_OOKISA)
+        st = f["http_status"]
+        m = PF_CAPTCHA.search(body)
+        f["captcha"] = bool(f["cf_mitigated"]) or bool(m)
+        f["captcha_reason"] = ("cf-mitigated: %s" % f["cf_mitigated"]) if f["cf_mitigated"] else (
+            "本文に「%s」" % m.group(0).decode("ascii", "replace") if m else "")
+        f["password_field"] = bool(PF_PASSWORD.search(body))
+        koumoku = (ctx["card"] or {}).get("確かめる項目")
+        items = {}
+        for label, words in (koumoku.items() if isinstance(koumoku, dict) else []):
+            ari = False
+            for wd in (words if isinstance(words, list) else [words]):
+                for enc in PF_KOTOBA_FUGOU:
+                    try:
+                        if str(wd) and str(wd).encode(enc) in body:
+                            ari = True
+                    except UnicodeEncodeError:
+                        pass
+            items[str(label)] = ari
+        f["items"] = items
+        f["auth_required"] = st in KOTOWARI or (f["password_field"] and not any(items.values()))
+        riyuu = ""
+        if st is None:
+            riyuu = "届かなかった（%s）" % f["error"]
+        elif f["redirect"]:
+            riyuu = "転送を返した（辿らない）：%s" % (f["redirect_to"] or f["final_url"])
+        elif st in KONDA or f["retry_after"]:
+            riyuu = "混んでいる（HTTP %s）" % st
+        elif st in KOTOWARI:
+            riyuu = "断られた・認証を求められた（HTTP %s）" % st
+        elif not (200 <= st < 300):
+            riyuu = "HTTP %s" % st
+        elif f["captcha"]:
+            riyuu = "CAPTCHA・チャレンジの兆候（%s）" % f["captcha_reason"]
+        elif f["auth_required"]:
+            riyuu = "ログインを求める兆候（パスワードの欄があり、確かめる語が1つも無い）"
+        f["stop_reason"] = riyuu
+        rec["pages"].append(f)
+        if riyuu:
+            raise Tomeru("%s：%s" % (kind, riyuu))
+        return body
+
+    def _pf_shousai_url(self, ctx, list_url, body):
+        """詳細の URL。カードに決め打ちがあればそれ。型なら、一覧の中の最初に合うリンク（同じ host・robots が通すもの）。"""
+        if ctx["urls"].get("detail"):
+            return ctx["urls"]["detail"]
+        for m in PF_HREF.finditer(body):
+            try:
+                href = m.group(1).decode("ascii").replace("&amp;", "&")
+            except UnicodeDecodeError:
+                continue
+            u = urllib.parse.urldefrag(urllib.parse.urljoin(list_url, href))[0]
+            h, _ = _pf_url(u)
+            if h == ctx["host"] and ctx["kata"].fullmatch(u) and robots_yurusu(ctx["rules"], u):
+                return u
+        return None
+
+    def _pf_kiroku_kaku(self, rec):
+        """記録を1つ書く。**上書きしない**（同じ名前があれば番号を足す）。"""
+        sid = rec.get("source_id") if PF_ID.match(rec.get("source_id") or "") else "_shirenai"
+        d = self._p(os.path.join(PF_KIROKU, sid))
+        os.makedirs(d, exist_ok=True)
+        atama = "%s_%s-%s" % (re.sub(r"[^0-9T]", "", rec["started_at"])[:15],
+                              re.sub(r"[^0-9A-Za-z-]", "_", str(rec["run"]["run_id"])),
+                              re.sub(r"[^0-9A-Za-z-]", "_", str(rec["run"]["run_attempt"] or "0")))
+        for i in range(1, 100):
+            p = os.path.join(d, atama + ("" if i == 1 else "-%d" % i) + ".json")
+            try:
+                with open(p, "x", encoding="utf-8", newline="\n") as fp:
+                    json.dump(rec, fp, ensure_ascii=False, indent=1, sort_keys=True)
+                    fp.write("\n")
+                return p
+            except FileExistsError:
+                continue
+        raise OSError("記録の名前が100通り埋まっている")
+
+    def kakunin(self, kid):
+        """取得可否確認を1回だけ行い、記録を1つ書いて返す。**止まっても記録は書く。**
+
+        順番は robots.txt → 一覧 → 詳細。どこかで止まったら、残りは出さない。
+        """
+        rec = {"schema": PF_SCHEMA, "approval_id": kid if isinstance(kid, str) else "", "source_id": "",
+               "card_version": None, "card_fingerprint": "",
+               "run": {"repo": self.repo, "run_id": self.run_id,
+                       "run_attempt": self.env.get("GITHUB_RUN_ATTEMPT") or "",
+                       "job": self.env.get("GITHUB_JOB") or "",
+                       "workflow": self.env.get("GITHUB_WORKFLOW_REF") or ""},
+               "started_at": _pf_jst(self._now()), "finished_at": "", "external_requests": 0,
+               "result": "", "stop_reason": "", "robots": None, "pages": [], "detail_url_found": None,
+               "note": "本文は残していない（SHA-256 と長さだけ）。この記録は取得してよいかを判断する材料で、"
+                       "本番の取得・private 長期保存・公開・商品化の承認ではない"}
+        ctx, riyuu = self.pf_mon(kid)
+        if ctx is not None:
+            rec["source_id"] = ctx["sid"]
+            if ctx["card"] is not None:
+                rec["card_version"] = ctx["card"].get("カード版")
+                rec["card_fingerprint"] = card_shimon(ctx["card"])
+        try:
+            if riyuu:
+                raise Tomeru(riyuu)
+            self._pf = ctx
+            self._pf_robots(ctx, rec)
+            body = None
+            if "list" in ctx["kinds"]:
+                body = self._pf_page(ctx, rec, "list", ctx["urls"]["list"])
+            if "detail" in ctx["kinds"]:
+                u = self._pf_shousai_url(ctx, ctx["urls"].get("list"), body or b"")
+                rec["detail_url_found"] = bool(u)
+                if u:
+                    self._pf_page(ctx, rec, "detail", u)
+            rec["result"] = "完了"
+        except Tomeru as e:
+            rec["result"] = "STOP"
+            rec["stop_reason"] = "／".join(e.riyuu)
+        finally:
+            self._pf = None
+            rec["external_requests"] = ctx["n"] if ctx is not None else 0
+            rec["finished_at"] = _pf_jst(self._now())
+            rec["kiroku_path"] = os.path.relpath(self._pf_kiroku_kaku(rec), self.root).replace(os.sep, "/")
+        return rec
 
 
 _KADO = None
