@@ -82,7 +82,7 @@ def toosu_kado_mon(mod):
 
 
 # ---------------------------------------------------------------- is_corp
-def subete_no_py(nozoku=("test_",)):
+def subete_no_py(nozoku=("test_",), ne=None):
     """**この置き場の .py を全部拾う。1か所で拾う。**
 
     2026-09-20 の監査で出た。検査の中に**拾い方が4通り**あった。
@@ -96,12 +96,18 @@ def subete_no_py(nozoku=("test_",)):
     書いた人にも分からない。**
 
     だから**歩いて拾う。** 一覧も、階層の数も、決め打ちしない。
+
+    **中に `.git` がある階は歩かない**（2026-09-27）。workflow が作業場所の中に出す**別の置き場**
+    （予約台帳 `_yoyaku/`・金庫 `_raw/`）で、この置き場の .py ではない。予約台帳に試験の .py が
+    入った日から、取得可否確認の「検査する」段が、台帳の .py を咎めて落ちた（本番の6本も同じ並び）。
+    **名前では外さない。** 別の置き場かどうか（`.git` があるか）で外す。git も同じ数え方をする。
     """
     import os as _os
     de = []
-    for ne, dirs, files in _os.walk(HERE):
+    for ne, dirs, files in _os.walk(ne or HERE):
         dirs[:] = [d for d in dirs
-                   if not d.startswith(".") and d != "__pycache__"]
+                   if not d.startswith(".") and d != "__pycache__"
+                   and not _os.path.exists(_os.path.join(ne, d, ".git"))]
         for f in files:
             if f.endswith(".py") and not any(f.startswith(n) for n in nozoku):
                 de.append(_os.path.join(ne, f))
@@ -2781,6 +2787,41 @@ def test_升が本当に数えているか():
         if (m.get("count") is None) != (m.get("count_label") == "1-2"):
             raise AssertionError(
                 f"升の count と count_label が食い違っている: {m}")
+
+
+def test_入れ子の置き場の_pyは拾わない():
+    """workflow が作業場所の中に出す別の置き場（予約台帳・金庫）の .py は、この置き場の .py ではない。
+
+    2026-09-27、取得可否確認の初回が「検査する」段で落ちた。予約台帳（`_yoyaku/`）の試験の .py を
+    時計の見張りが咎めた。**別の置き場は拾わない。この置き場の階は、深くても拾う。**
+    """
+    import shutil
+    import tempfile
+    ne = tempfile.mkdtemp()
+    try:
+        for rel in ("a.py", "fukai/b.py", "_yoyaku/kyousou/c.py", "_yoyaku/.git/HEAD", "_raw/.git",
+                    "_raw/d.py", "_yoyaku_nise/e.py"):
+            p = os.path.join(ne, *rel.split("/"))
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w", encoding="utf-8") as f:
+                f.write("x = 1\n")
+        hirotta = sorted(os.path.relpath(m, ne).replace(os.sep, "/") for m in subete_no_py(nozoku=(), ne=ne))
+        eq(hirotta, ["_yoyaku_nise/e.py", "a.py", "fukai/b.py"],
+           "別の置き場（.git がある階）の .py を拾った、またはこの置き場の .py を落とした")
+    finally:
+        shutil.rmtree(ne, ignore_errors=True)
+
+
+def test_検査の中の偽の実行は_本物の実行のまとめに書かない():
+    """check.sh は GITHUB_STEP_SUMMARY を外してから検査を走らせる。
+
+    2026-09-27、取得可否確認の初回で、まとめ（job summary）に**検査の中の偽の偵察**
+    （架空市・example.test）が出た。検査が本物の実行のまとめに書いていた。
+    """
+    src = open(os.path.join(HERE, "check.sh"), encoding="utf-8").read()
+    i = src.find("unset GITHUB_STEP_SUMMARY")
+    j = src.find("\npython3 test_privacy.py")      # 頭の説明の中の同じ語は数えない
+    eq(0 <= i < j, True, "check.sh が、検査の前に GITHUB_STEP_SUMMARY を外していない")
 
 
 def test_pyの拾い方が1か所か():

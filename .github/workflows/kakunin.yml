@@ -76,7 +76,12 @@ jobs:
         timeout-minutes: 10
         env:
           KYOKA: ${{ github.event.inputs.approval_id }}
-        run: python3 kakunin.py "$KYOKA"
+        run: |
+          set -o pipefail
+          echo "### 取得可否確認（${KYOKA}）" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          python3 kakunin.py "$KYOKA" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
 
       # 止まった回も記録は残す。**しまうのは記録と、門自身の控え（今日の控え・機械札）だけ。**
       # 許可（approvals/）とカードは機械が書かない。混ざったら止まる
