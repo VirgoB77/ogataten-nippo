@@ -1,0 +1,14 @@
+{
+ "approval_id": "muumuu-domain-preflight-1",
+ "source_id": "muumuu-domain",
+ "purpose": "acquisition_preflight",
+ "issued_by": "operator",
+ "issued_at": "2026-09-27T08:31:14+09:00",
+ "expires_at": "2026-09-28T08:31:14+09:00",
+ "allowed_kinds": ["robots", "list", "detail"],
+ "max_requests": 3,
+ "min_interval_seconds": 5,
+ "single_use": true,
+ "card_version": 1,
+ "card_fingerprint": "22bf75fb1e16fb5a92930e62d73bc1a543078ec84821d005e507cd215e4bfea5"
+}
