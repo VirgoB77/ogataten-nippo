@@ -56,6 +56,24 @@ def load_towns(path=TOWNS_PATH):
     return _towns
 
 
+def machi_maru_goto(mae, towns):
+    """①'。丁目が無く①で決まらなかった行で、**数字の手前（mae）が一覧の1件と丸ごと同じ**なら、その町名。
+
+    **前方一致は使わない。** 前方一致にすると「町A139番、町B2-3」のように1行に町が2つ在る
+    ときに片方を選んでしまう（2026-09-22、実測で1件あった）。
+
+    **その町名で始まる別の町名が一覧に在れば、決めない**（2026-09-26・統括判断）。
+    「X」と「X N丁目」が両方在る市では、「X3番5号」の 3 が丁目の略記か地番か、
+    文字だけでは分からない。決めると粗い「X」に丸めてしまう。
+    「X」と「X南町」のような組でも同じく降りる。**迷ったら未決**（4節③）
+    """
+    if not mae or mae not in towns:
+        return ""
+    if any(t != mae and t.startswith(mae) for t in towns):
+        return ""
+    return mae
+
+
 def machi_wo_ateru(s, towns):
     """町丁目の一覧で最長一致。**当たった直後が数字か、末尾のときだけ採る。**
 
@@ -289,16 +307,13 @@ def normalize(pref, city, addr, codes=None):
         display = (key + (building if building else "")).rstrip("-")   # 末尾の「号」が印になって残る
         town = re.sub(r"-+$", "", town.replace(_MARK, "-").replace(_CMARK, "-"))
         if ci < 0 and not town:
-            # **丁目が無いので町丁目が決まらなかった行。** ここは一覧を
+            # **丁目が無いので町丁目が決まらなかった行**（①'）。ここは一覧を
             # 一度も見ていなかった（2026-09-22 に測った。西宮市で51件）。
             # 見るのは「数字の連なりが始まる手前」だけ。start は上で出ている。
-            # **前方一致ではなく、丸ごと同じときだけ採る。**
-            # 前方一致にすると「町A139番、町B2-3」のように1行に町が2つ在る
-            # ときに片方を選んでしまう（実測で1件あった）。
+            # 条件は machi_maru_goto に書いた（丸ごと同じ・前方一致なし・紛らわしい候補なし）。
             # first より前なので、marked[:start] に印は入らない
-            mae = marked[:start]
-            if code and mae and mae in load_towns().get(code, []):
-                town = mae
+            if code:
+                town = machi_maru_goto(marked[:start], load_towns().get(code, []))
     else:
         # ② 置き換えが無かった。町丁目の一覧で最長一致。無ければ ③ 空
         display = marked.replace(_MARK, '-').replace(_CMARK, '-')

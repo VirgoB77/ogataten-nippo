@@ -71,7 +71,7 @@ jobs:
           ln -s "../../_raw/inbox/chizu/zip" "inbox/chizu/zip"
           ls -la inbox/chizu
 
-      # 共通仕様9節「ワークフローの最初のステップでテストを走らせる」。
+      # 取りに行く前に、まず検査を通す（もとは共通仕様9節の決まり。いまの正本には、この見出しが無い）。
       # **外に出る前に止まる**形にする
       - name: 検査する
         run: ./check.sh
