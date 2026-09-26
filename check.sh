@@ -17,6 +17,9 @@
 #    落ちたら止まる形で書く。
 set -e
 cd "$(dirname "$0")"
+# 検査の中の偽の実行（偵察・取得のまねごと）が、**本物の実行のまとめ（job summary）に書かない**ように外す
+# （2026-09-27、取得可否確認の初回のまとめに、検査の架空市・example.test が出た）
+unset GITHUB_STEP_SUMMARY
 find . -name __pycache__ -prune -exec rm -rf {} + 2>/dev/null || true
 : "${RUN_DATE:=$(TZ=Asia/Tokyo date +%F)}"
 export RUN_DATE
