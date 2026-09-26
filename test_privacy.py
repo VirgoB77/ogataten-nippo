@@ -6,7 +6,7 @@
 
 前半は common/privacy.py そのものの検査。
 後半が本体で、公開する生成物を全部走査して、privacy.py を迂回した値が
-1件でも残っていないかを見る（5節「迂回検査」）。
+1件でも残っていないかを見る（5節「privacy.py を迂回した出力が1件でもあれば落ちる検査を書く」）。
 
   python3 test_privacy.py
 
@@ -952,6 +952,63 @@ def test_町丁目の照合が短い町名へ化けない():
         _towns_wo_sashikomu(moto)
 
 
+# ①'（丁目が無く①で決まらない行を、数字の手前の丸ごと一致で決める）で決まる行の数。
+# 2026-09-26 に数えた（西宮市だけ。一覧が西宮市ぶんしか無い）。条件を締めても 48 のまま。
+# **数えた日に数を直す。理由を見ないまま直さない。** 減ったら、締めた条件で落ちた行を見る
+ICHI_DASH_DE_KIMARU = 48
+
+
+def test_丁目なしの町名は_紛らわしい候補が一覧に在れば決めない():
+    """①' の条件（2026-09-26・統括判断。正本4節）。**1つでも欠ければ決めない。**
+
+      ・丁目が無い／①では決まらない
+      ・数字の手前が、その市の町名の一覧の1件と丸ごと同じ（前方一致は使わない）
+      ・**その町名で始まる別の町名が、一覧に無い**
+
+      F 「X」と「X N丁目」が在る → X＋数字は決めない（3 が丁目の略記か地番か分からない）
+      G 「X」と「X南町」「X町」が在る → X＋番地は決めない（実在の組）
+      H 前方一致だけ → 決めない
+      I 紛らわしい候補が無い → これまでどおり決まる
+      J 実データ：①' で決まる行の数が ICHI_DASH_DE_KIMARU のまま
+
+    **紛らわしさの確認を外すと、F と G が鳴る。**
+    """
+    import addr
+    moto = _towns_wo_sashikomu({})
+    try:
+        _towns_wo_sashikomu({"28204": ["山口町下山口", "山口町下山口1丁目", "山口町下山口2丁目"]})
+        d = addr.normalize("兵庫県", "西宮市", "山口町下山口3番5号")
+        eq(d["town"], "", "F ①'：「X」と「X N丁目」が在るとき、X＋数字は決めない")
+
+        _towns_wo_sashikomu({"28204": ["鷲林寺", "鷲林寺南町", "鷲林寺町"]})
+        d = addr.normalize("兵庫県", "西宮市", "鷲林寺123番地")
+        eq(d["town"], "", "G ①'：X で始まる別の町が在るとき、X＋番地は決めない")
+
+        _towns_wo_sashikomu({"28204": ["今津"]})
+        d = addr.normalize("兵庫県", "西宮市", "今津曙町139番地")
+        eq(d["town"], "", "H ①'：前方一致だけでは決めない")
+
+        _towns_wo_sashikomu({"28204": ["甲子園町", "上ケ原二番町"]})
+        d = addr.normalize("兵庫県", "西宮市", "甲子園町847番地の1")
+        eq(d["town"], "甲子園町", "I ①'：紛らわしい候補が無ければ、これまでどおり決まる")
+
+        # J 実データ。①' を外したときとの差が、①' で決まった行
+        _towns_wo_sashikomu(None)
+        with open(os.path.join(HERE, "data", "all.json"), encoding="utf-8") as f:
+            recs = [r for r in json.load(f) if r.get("address")]
+        ari = [addr.normalize(r.get("pref") or "", r.get("city") or "", r["address"])["town"] for r in recs]
+        hontai = addr.machi_maru_goto
+        addr.machi_maru_goto = lambda mae, towns: ""
+        try:
+            nashi = [addr.normalize(r.get("pref") or "", r.get("city") or "", r["address"])["town"] for r in recs]
+        finally:
+            addr.machi_maru_goto = hontai
+        kimatta = sum(1 for a, b in zip(ari, nashi) if a and not b)
+        eq(kimatta, ICHI_DASH_DE_KIMARU, "J ①'：実データで ①' で決まる行の数（数えた日に直す。理由を見てから）")
+    finally:
+        _towns_wo_sashikomu(moto)
+
+
 def test_町丁目が決まっている行を一覧が書き換えない():
     """F **いま決まっているものを、あとから来た一覧が動かさない。**
 
@@ -1298,7 +1355,7 @@ def test_探される語が_description_に入っているか():
 
     ① 届出が出しているのは「大規模小売店舗として新設する日」であって、
        開店日ではない。**新設してから開ける日は別に決まる**
-       （2026-09-19、中島さんの指摘。僕が一度「に開店予定」と書き、
+       （2026-09-19、[運営者]の指摘。僕が一度「に開店予定」と書き、
        その日のうちに直した。「事実の主張は外れる」と正本に書いた当日）。
 
     ② **「予定」そのものが外れる。** 4,809件を数えたら、届出日より前の日が
@@ -1389,7 +1446,7 @@ def test_探される語が_description_に入っているか():
 def test_新設と開店の違いを説明する1枚があるか():
     """**役所の語では見つからない。だが言い換えて主張にしない。** その代わりの1枚。
 
-    2026-09-19、中島さんの案——
+    2026-09-19、[運営者]の案——
 
     > 新設と廃止で閉店と開店とは異なります。の記載で１位目指せないかにゃ？
 
@@ -1764,7 +1821,7 @@ def test_消えるまでの日数を仮定で書いていないか():
             "記録に「こちらが最後に見た日」と書かれていない。"
             "持っているのは相手が消した日ではない（3.5）")
 
-    # **中央値は出さない**（2026-09-19、中島さん「情報としてしょぼい」）。
+    # **中央値は出さない**（2026-09-19、[運営者]「情報としてしょぼい」）。
     # こちらの観測の話であって、読む人に関係がない
     if "中央値" in honbun and "出さない" not in honbun:
         raise AssertionError("記録に中央値が出ている。こちらの観測の話で、読む人に関係がない")
@@ -1779,7 +1836,7 @@ def test_消えるまでの日数を仮定で書いていないか():
 def test_消えたことの書き方():
     """**「消えた」も主張。主語をこちらにする。**
 
-    2026-09-19、中島さんの——
+    2026-09-19、[運営者]の——
 
     > ネットから消えた日の件は、**SEO対策で語句を選ばないといけない**にゃね
 
@@ -2010,7 +2067,7 @@ def test_移り変わりと複数を見分けているか():
 def test_遅延証明書のページをURLで当てていないか():
     """**在りかを知らないものは、辿って見つける。作文しない。**
 
-    2026-09-19、中島さんの案。5つのルール全部に○が付いた唯一の題材で、
+    2026-09-19、[運営者]の案。5つのルール全部に○が付いた唯一の題材で、
     **個人が1人も出てこない**（3.1 の問題がゼロ）。
 
     だが**遅延証明書のページの在りかは知らない。** そこで
@@ -2583,7 +2640,7 @@ def test_作ったページが公開の許可リストから漏れていない�
 def test_全国の会社をドメインで作文していないか():
     """**200社のドメインを思い出して並べたら、それは作文。**
 
-    2026-09-20、中島さんの「遅延証明はかるいから全国にひろげてほしい」。
+    2026-09-20、[運営者]の「遅延証明はかるいから全国にひろげてほしい」。
     10社なら目で確かめられるが、全国で同じことをすると、
     **当たっているかを誰も確かめられないドメインが並ぶ。**
     外れていれば**関係のない誰かのサーバーを叩く**（3.4）。
@@ -3028,7 +3085,7 @@ def test_過ぎた日を予定と呼んでいないか():
             sugita += 1
     if sugita == 0:
         # 0件になったら「予定」と呼んでよくなるが、**勝手に戻さない。**
-        # 数え方が壊れたほうを先に疑う（正本9節「鳴らなかったら壊し方を疑う」）
+        # 数え方が壊れたほうを先に疑う（正本9節「鳴らなかったら、まず壊し方を疑う」）
         raise AssertionError(
             "届出日より前の日が1件も無い。2026-09-19 には2,001件あった。"
             "数え方が壊れていないか先に見る")
@@ -3370,6 +3427,311 @@ def test_1日に2回以上取りに行かないか():
             "巡回が止まっている（どちらも見たい）")
 
 
+# 門と逆向きに読める言い回し。**この検査の中では分けて書く**（そのまま書くと、この検査自身が鳴る）
+GYAKU_KOTOBA = ("迷ったら" + "先に取る", "早い者" + "勝ち", "取得を" + "止めない",
+                "押し" + "放題", "読めば" + "動く", "人が読むまで" + "1バイトも")
+# 歩かない置き場。**金庫（_raw）・人が置いた原本（inbox）・予約台帳（_yoyaku）は private の中身。**
+# 読むと、公開の Actions の記録に private 側のパスや語が出る。どの深さでも外す
+GYAKU_NOZOKU = frozenset({".git", "__pycache__", "data", "s", "_raw", "inbox", "_yoyaku"})
+# **当時の記録**として残す行の印。行にこの印があれば数えない（歴史の記録を消させない）
+GYAKU_TOUJI = ("当時の記録", "当時の記述")
+
+
+def gyaku_no_iimawashi(ne):
+    """ne の下を歩いて、門と逆向きに読める言い回しを探す。(見たファイル数, [場所「語」]) を返す。"""
+    import re as _re
+    pat = _re.compile("|".join(_re.escape(k) for k in GYAKU_KOTOBA))
+    mita, warui = 0, []
+    for d0, dirs, files in os.walk(ne):
+        dirs[:] = [d for d in dirs if d not in GYAKU_NOZOKU
+                   and (not d.startswith(".") or d == ".github")]
+        for f in files:
+            if not f.endswith((".md", ".py", ".yml")):
+                continue
+            p = os.path.join(d0, f)
+            mita += 1
+            for i, gyou in enumerate(open(p, encoding="utf-8", errors="replace"), 1):
+                m = pat.search(gyou)
+                if m and not any(t in gyou for t in GYAKU_TOUJI):
+                    warui.append(f"{os.path.relpath(p, ne)}:{i}「{m.group(0)}」")
+    return mita, warui
+
+
+def test_取りに行く前の門と逆向きの言い回しが_文書とコードに残っていないか():
+    """門の運用と逆に読める言い回しが、文書・コード・手順書に戻っていないかを見る（2026-09-26）。
+
+    正本と周辺文書の全行監査で、下の言い回し（`GYAKU_KOTOBA`）が、いまの運用
+    （取りに行く前の門。カードと運営者承認がそろった相手だけ・迷ったら止まる側）と
+    逆向きに読めると分かった。
+    **読まれる文書が逆を言うと、決まりより先にそちらが効く。**
+
+    見る所は、この置き場の .md（CLAUDE.md・README.md・docs/）・.py（検査も含む）・
+    手順書（.github/workflows/）。**拾い方は歩いて拾う**（名前の一覧で決め打ちしない）。
+    **金庫（_raw）・inbox・予約台帳（_yoyaku）は見ない**（private の中身。公開の記録に出さない）。
+    **当時の記録として残す行は、その行に「当時の記録」と書けば数えない**（歴史を書き換えさせない）。
+
+    **捕まえないもの**：同じ意味を別の言葉で書いた文。そこは読む人が見る。
+    """
+    mita, warui = gyaku_no_iimawashi(HERE)
+    if mita < 20:
+        raise AssertionError(f"見たファイルが{mita}本しかない。拾い方が壊れている")
+    if warui:
+        raise AssertionError("取りに行く前の門と逆向きに読める言い回しが残っている：\n  "
+                             + "\n  ".join(warui))
+
+
+def test_逆向きの言い回しの見張りが_privateを読まず_当時の記録は残せるか():
+    """上の見張りの守備範囲を、一時フォルダで確かめる（2026-09-26）。
+
+    ① 公開側の文書に言い回しがあれば、拾う
+    ② 金庫（_raw）・inbox・予約台帳（_yoyaku）の中にあっても、**読まない**（どの深さでも）
+    ③ 「当時の記録」と書いた行は、数えない
+    **外す置き場を消すと ② が、印を消すと ③ が、拾い方を壊すと ① が鳴る。**
+    """
+    import shutil as _sh
+    import tempfile as _tf
+    ne = _tf.mkdtemp()
+    try:
+        go = GYAKU_KOTOBA[0]
+        oku = {
+            os.path.join("docs", "ima.md"): f"いまの文。{go}。\n",
+            os.path.join("docs", "mukashi.md"): f"2026-09-19 の文。{go}。（当時の記録）\n",
+            os.path.join("_raw", "kinko.md"): f"金庫の中。{go}。\n",
+            os.path.join("inbox", "genpon.md"): f"原本。{go}。\n",
+            os.path.join("_yoyaku", "yoyaku.md"): f"予約台帳。{go}。\n",
+            os.path.join("sub", "_raw", "fukai.md"): f"深い金庫。{go}。\n",
+        }
+        for rel, t in oku.items():
+            os.makedirs(os.path.join(ne, os.path.dirname(rel)), exist_ok=True)
+            with open(os.path.join(ne, rel), "w", encoding="utf-8") as f:
+                f.write(t)
+        mita, warui = gyaku_no_iimawashi(ne)
+        mieta = sorted(w.split(":")[0].replace(os.sep, "/") for w in warui)
+        if mieta != ["docs/ima.md"]:
+            raise AssertionError("逆向きの言い回しの見張りの守備範囲がずれている：拾ったのは "
+                                 + (", ".join(mieta) or "0件")
+                                 + "（拾うのは docs/ima.md だけのはず。_raw・inbox・_yoyaku は読まない・"
+                                 "当時の記録は数えない）")
+    finally:
+        _sh.rmtree(ne, ignore_errors=True)
+
+
+def test_取り込みを止めているのに_取りに行っていると読める文を出さないか():
+    """公開ページが「毎朝とりに行っている」と読める文を出していないかを見る（2026-09-26）。
+
+    毎朝の巡回（shutten-recon.yml）の定時は 2026-09-25 に止めた。止めたあとも、
+    フッター・about・トップが「毎朝1回とりに行き」「毎朝7時ごろ（最終 作った日）」と
+    書いていた。**名乗りは事実の主張になる。** 止めているあいだは、止めていると書く。
+
+    見ること（作った実物で見る。ソースの文字では見ない）：
+      ① 巡回の workflow に動いている cron が無いなら、build_site.TORIKOMI_TEISHI は True
+      ② フッター・about・トップ・新設と開店のページに、「毎朝」「毎日」が無い
+      ③ 止めているなら、フッター・about・トップに、止めているという1文が出ている
+      ④ トップの「いちばん新しい取り込み」は、作った日ではなくデータの取得日
+
+    **捕まえないもの**：定時はあるが、門で止まって取れない回。
+    そのときの書き方は、再開を決めるときに決める。
+    """
+    import re as _re
+    import build_site as bs
+
+    wf = os.path.join(HERE, ".github", "workflows", "shutten-recon.yml")
+    ugoku = bool(_re.search(r"^\s*-\s*cron:", open(wf, encoding="utf-8").read(), _re.M))
+    if not ugoku and not bs.TORIKOMI_TEISHI:
+        raise AssertionError("巡回の定時が止まっているのに、build_site.TORIKOMI_TEISHI が False"
+                             "（取りに行っていると書く）")
+    with open(bs.ALL, encoding="utf-8") as f:
+        recs = json.load(f)
+    with open(bs.SOURCES, encoding="utf-8") as f:
+        src_meta = {x["id"]: x for x in json.load(f)["sources"]}
+    saishin = bs.saishin_torikomi(recs)
+    if saishin != max(r.get("fetched_on") or "" for r in recs):
+        raise AssertionError("いちばん新しい取り込みの日が、データの取得日になっていない")
+    tsukutta = "2099-01-01"                 # 作った日。**これが画面に出たら、名乗りの間違い**
+    mono = {
+        "フッター": bs.page("ためし", "<p>ためし</p>", ""),
+        "about": bs.about_page(src_meta, tsukutta, saishin),
+        "トップ": bs.index_page(recs, tsukutta, saishin),
+        "新設と開店": bs.shinsetsu_to_kaiten_page(recs, tsukutta),
+    }
+    warui = [f"{na}：「{m.group(0)}」" for na, t in mono.items()
+             for m in _re.finditer(r".{0,12}(毎朝|毎日).{0,12}", _re.sub(r"<[^>]+>", "", t))]
+    if warui:
+        raise AssertionError("取りに行っていると読める文が残っている：\n  " + "\n  ".join(warui))
+    if bs.TORIKOMI_TEISHI:
+        # about とトップは、本文で見る（フッターにも同じ1文があるので、全体で見ると本文から消えても通る）
+        nai = [na for na in ("フッター", "about", "トップ")
+               if bs.torikomi_bun() not in (mono[na] if na == "フッター" else mono[na].split("<footer>")[0])]
+        if nai:
+            raise AssertionError("止めていると書いていない：" + "・".join(nai))
+    if f"いちばん新しい取り込みは {saishin}" not in mono["トップ"] or tsukutta in mono["トップ"].split("<script")[0]:
+        raise AssertionError("トップの日付が、データの取得日ではない（作った日を出している）")
+    # sitemap も名乗り。止めているあいだに「毎日変わる」と言わない
+    sm = "\n".join(bs.sitemap_gyou("https://example.invalid/", ["about.html"]))
+    if bs.TORIKOMI_TEISHI and "changefreq" in sm:
+        raise AssertionError("取り込みを止めているのに、sitemap が changefreq を名乗っている")
+
+
+def _build_site_wo_utsushi_de(recs, run_date):
+    """build_site.py を、外への通信を塞いだまま、一時の写しの中で最後まで走らせる。
+
+    写すのは置き場の全部から、.git と、作り直す出力（s・a・k）と、読み取りの控え（data/parsed）を
+    除いたもの。**名前の一覧で写さない**（build_site が新しく読むファイルを足した日に黙る）。
+    data/all.json だけ、渡された recs に差し替える。**公開用の木には1バイトも書かない。**
+    返すのは (終了コード, 出力, 写しの根)。写しは呼んだ側が消す
+    """
+    import shutil
+    import subprocess
+    import tempfile
+    ne = tempfile.mkdtemp(prefix="bs-offline-")
+    utsushi = os.path.join(ne, "r")
+    shutil.copytree(HERE, utsushi, ignore=lambda d, names: [
+        n for n in names if (d == HERE and n in (".git", "s", "a", "k")) or n == "__pycache__"
+        or (os.path.basename(d) == "data" and n == "parsed")])
+    with open(os.path.join(utsushi, "data", "all.json"), "w", encoding="utf-8") as f:
+        json.dump(recs, f, ensure_ascii=False)
+    tozasu = os.path.join(ne, "tozasu.py")
+    with open(tozasu, "w", encoding="utf-8") as f:
+        f.write("""import os, runpy, socket, sys, urllib.request
+yobareta = []
+def _tozasu(*a, **k):
+    yobareta.append(1)
+    raise RuntimeError("外への通信は塞いである")
+socket.socket.connect = _tozasu
+socket.socket.connect_ex = _tozasu
+socket.create_connection = _tozasu  # kado-soto: 検査。外への通信を塞ぐ差し替えで、外へは出ない
+socket.getaddrinfo = _tozasu
+class _T(urllib.request.BaseHandler):
+    def default_open(self, req):
+        _tozasu()
+urllib.request.install_opener(urllib.request.build_opener(_T()))  # kado-soto: 検査。urllib を塞ぐ差し替えで、外へは出ない
+root = sys.argv[1]
+os.chdir(root)
+sys.path.insert(0, root)
+sys.argv = ["build_site.py"]
+try:
+    runpy.run_path(os.path.join(root, "build_site.py"), run_name="__main__")
+finally:
+    print("OUTWARD", len(yobareta))
+    if yobareta:
+        sys.exit(3)
+""")
+    env = dict(os.environ, RUN_DATE=run_date, PYTHONIOENCODING="utf-8", PYTHONDONTWRITEBYTECODE="1")
+    env.pop("SITE_URL", None)
+    r = subprocess.run([sys.executable, tozasu, utsushi], capture_output=True, env=env, timeout=600)
+    out = (r.stdout + r.stderr).decode("utf-8", "replace")
+    return r.returncode, out, ne
+
+
+def test_build_site_が外へ出ずに最後まで走るか():
+    """build_site.py の main() を、外への通信を塞いで、一時の写しの中で最後まで走らせる。
+
+    2026-09-26、PR #58 の直し（fd019f8）で main() の `host` を消し、
+    **robots.txt を書く最後の行で NameError になっていた。** ページを作る関数ごとの検査は
+    全部通っていた——**main を最後まで走らせる検査が無かった。**
+
+    確かめること：
+      ① 終了コード 0（最後まで走った）
+      ② 外へ出ようとした回数 0（socket の接続・名前引きと urllib を塞いで数える）
+      ③ robots.txt・sitemap.xml・index.json が書かれていて、robots.txt が sitemap を指している
+      ④ 作った日（RUN_DATE）を、sitemap の更新日として名乗っていない（2026-09-26・統括判断）
+    """
+    import shutil
+    with open(os.path.join(HERE, "data", "all.json"), encoding="utf-8") as f:
+        recs = json.load(f)
+    # 小さく走らせる。見えなくなった扱いの行も必ず混ぜる（注記とトップの12件の道を通す）
+    kieta = [r for r in recs if r.get("mode") == "snapshot" and r.get("listed") is False][:15]
+    nokori = [r for r in recs if r not in kieta][:25]
+    tsukutta = "2099-01-01"
+    code, out, ne = _build_site_wo_utsushi_de(nokori + kieta, tsukutta)
+    try:
+        if code != 0:
+            raise AssertionError("build_site.py が最後まで走らなかった（終了コード %d）：\n%s" % (code, out[-1500:]))
+        if "OUTWARD 0" not in out:
+            raise AssertionError("build_site.py が外へ出ようとした：\n" + out[-800:])
+        r = os.path.join(ne, "r")
+        for fn in ("robots.txt", "sitemap.xml", "index.json"):
+            if not os.path.exists(os.path.join(r, fn)):
+                raise AssertionError(fn + " が書かれていない")
+        robots = open(os.path.join(r, "robots.txt"), encoding="utf-8").read()
+        if not re.search(r"^Sitemap: https?://\S+/sitemap\.xml$", robots, re.M):
+            raise AssertionError("robots.txt が sitemap を指していない：" + robots)
+        sm = open(os.path.join(r, "sitemap.xml"), encoding="utf-8").read()
+        if tsukutta in sm:
+            raise AssertionError("作った日（%s）を、sitemap の更新日として名乗っている" % tsukutta)
+    finally:
+        shutil.rmtree(ne, ignore_errors=True)
+
+
+def test_見えなくなった届出に_空の日付や見えなくなった日と読める日付を出さないか():
+    """取得がそろった観測の日（kakunin_saigo・kieta_kakunin）が無い記録で、注記を確かめる。
+
+    2026-09-26、9/24 の data/all.json で作り直したら、見えなくなった扱いの 457 ページが
+    「最後に確認できたのは  です。 の観測では…」と**日付が空のまま**出た。
+    その2つの欄が入る前の判定で、見えなくなった扱いになった記録だった。
+
+      ① 空の日付を出さない
+      ② last_seen（こちらが最後に見た日）を、見えなくなった日のように書かない。
+         「取得がそろった観測」を名乗らない（その記録では確かめられない）
+      ③ 2つの欄がそろっている記録は、これまでどおりの注記
+      ④ トップの12件は、空の kieta_kakunin を先頭の鍵にしない。最後に確認できた日の新しい順
+    """
+    import build_site as bs
+    with open(bs.ALL, encoding="utf-8") as f:
+        recs = json.load(f)
+    with open(bs.SOURCES, encoding="utf-8") as f:
+        src_meta = {x["id"]: x for x in json.load(f)["sources"]}
+    moto = next(r for r in recs if r.get("mode") == "snapshot")
+
+    def tsukuru(**k):
+        r = dict(moto)
+        for na in ("kakunin_saigo", "kieta_kakunin", "last_seen"):
+            r.pop(na, None)
+        r.update(mode="snapshot", listed=False, **k)
+        return r
+
+    def chuki(r):
+        t = bs.detail_page(r, {}, src_meta)
+        # 検索に出る説明文（description）も同じ線で見る
+        for m in re.finditer(r'<meta (?:name|property)="(?:og:)?description" content="([^"]*)"', t):
+            if re.search(r"(?:^|\s)を最後に|を最後に確認し、\s*の観測|\s\s", m.group(1)):
+                raise AssertionError("説明文に空の日付が出ている：" + m.group(1))
+            if r.get("last_seen") and not r.get("kieta_kakunin") and "を最後に確認し、そのあとの観測" not in m.group(1):
+                raise AssertionError("説明文が、最後に確認できた日の言い方になっていない：" + m.group(1))
+        m = re.search(r'<p class="note">([^<]*(?:<b>.*?</b>)?[^<]*このサイトには残しています。)</p>', t, re.S)
+        if not m:
+            raise AssertionError("見えなくなった扱いの注記が見つからない")
+        return re.sub(r"<[^>]+>", "", m.group(1))
+
+    for r in (tsukuru(last_seen="2026-08-05"), tsukuru()):
+        s = chuki(r)
+        if re.search(r"のは\s*です|。\s*の観測|\s\s", s):
+            raise AssertionError("空の日付が出ている：" + s)
+        if "必要なページをすべて取れた日）では" in s or "取得がそろった" in s:
+            raise AssertionError("確かめられない「取得がそろった観測」を名乗っている：" + s)
+        if r.get("last_seen") and "最後に確認できたのは 2026-08-05 です" not in s:
+            raise AssertionError("last_seen を、最後に確認できた日として書いていない：" + s)
+        if re.search(r"2026-08-05\s*(に|から|を最後に)?\s*(見えなく|消え)", s):
+            raise AssertionError("last_seen を、見えなくなった日のように書いている：" + s)
+    s = chuki(tsukuru(last_seen="2026-09-20", kakunin_saigo="2026-09-10", kieta_kakunin="2026-09-12"))
+    if "最後に確認できたのは 2026-09-10 です" not in s or "2026-09-12 の観測" not in s:
+        raise AssertionError("2つの欄がそろった記録の注記が変わっている：" + s)
+
+    # ④ トップの12件の並び
+    mise = [
+        tsukuru(last_seen="2026-03-01", store="ならびためしB"),
+        tsukuru(last_seen="2026-09-20", store="ならびためしA"),
+        tsukuru(last_seen="2026-09-20", kakunin_saigo="2026-09-10", kieta_kakunin="2026-09-12", store="ならびためしC"),
+    ]
+    for i, r in enumerate(mise):
+        r["key"] = "narabi-%d" % i
+    t = bs.index_page(mise, "2099-01-01", "")
+    t = t[t.find("確認できなくなった届出"):]
+    ichi = [t.find(na) for na in ("ならびためしA", "ならびためしC", "ならびためしB")]
+    if -1 in ichi or ichi != sorted(ichi):
+        raise AssertionError("トップの「確認できなくなった届出」が、最後に確認できた日の新しい順になっていない：" + str(ichi))
+
+
 def test_workflow_の中のシェルが読めるか():
     """`run: |` の中身を bash -n にかける。
 
@@ -3564,7 +3926,7 @@ def test_報告は数ではなく実物を持って帰る():
 def test_住所が別の市を名乗る行は0件のまま():
     """食い違いの数を、一度数えて終わりにしない。0でなくなった日に止まる。
 
-    4節「測った、は『そのときの一覧では』の意味しかない」。
+    4節「「測った」は「そのときの一覧では」の意味しかない」。
     出どころは、ある日から別の市の土地を載せはじめる。
     """
     import json
@@ -4431,7 +4793,7 @@ def test_settisha_hides_individual_parties():
         fails.append(f"履歴に個人の当事者名がそのまま残っている {len(hbad)}件。3.1")
 
     # 設置者が個人なら、住所は merge の時点で町丁目まで丸まっているはず。
-    # 丸め忘れをここでも見る（5節「迂回検査」）
+    # 丸め忘れをここでも見る（5節「privacy.py を迂回した出力が1件でもあれば落ちる検査を書く」）
     ban = re.compile(r"[0-9０-９]+\s*[-‐−－ー―]\s*[0-9０-９]+|[0-9０-９]+番地?[0-9０-９]*号?")
     addr_bad = [r for r in rows
                 if r.get("operator_kind") in ("individual", "undisclosed")
@@ -5864,7 +6226,7 @@ def test_一部だけ読んだものを全部の精度として数えないか()
 
     2026-09-21。1枚目の1Fは、**地図の赤帯（予告）だけ**を読んだ。全区画は読んでいない。
     そのまま数えると、**見た2行のうち2行が合っていて「精度100%」**になる。
-    **見ていないものは、落としたことにもならない**（9節「0件は0件ではない」）。
+    **見ていないものは、落としたことにもならない**（9節「0件は、正しさの証拠ではない」）。
 
     だから「どこまで読んだか」を欄にして、**全部でなければ数えない。**
 
@@ -5910,7 +6272,7 @@ def test_テナントの下見が規約より先に開いていないか():
     画像かHTMLかを分けていない。**取り方を変えても、壁は同じ場所にある。**
 
     そしてもう1つ——**「未確認」と「技術的に取得困難」を混ぜない。**
-    前者は人が規約を読めば変わる。後者は相手の作りの話。
+    前者は確認・判定・承認が済めば変わりうる。後者は相手の作りの話。
     混ぜると「あと何をすれば進むのか」が分からなくなる。
     """
     import tenant_recon as tr

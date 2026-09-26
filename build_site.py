@@ -96,6 +96,42 @@ REPO_ISSUES = "https://github.com/VirgoB77/ogataten-nippo/issues/new"
 DISCLAIMER = "届出時点の内容です。届出のあとに変更や取下げがあることがあり、実際の開店日・閉店日と異なる場合があります。"
 TAGLINE = "大阪・兵庫の大型店の開店・閉店を、届出が出た日に。"
 
+# **いまの取り込みの状態は、ここ1か所で持つ**（フッター・about・トップが読む）。
+# 毎朝の巡回（.github/workflows/shutten-recon.yml）の定時は 2026-09-25 から止めている。
+# 取りに行く前の門（common/kado.py）も、カードと運営者承認のそろったものしか取らせない。
+# **止めているあいだに、取りに行っていると読める文を出さない**（名乗りは事実の主張になる）。
+# 定時を戻すときは、ここも一緒に直す。test_privacy.py が、巡回の定時が無いのに
+# 「止めている」と書いていない形を落とす
+TORIKOMI_TEISHI = True
+
+
+def torikomi_bun():
+    """いまの取り込みの状態を、画面に出す1文で。"""
+    if TORIKOMI_TEISHI:
+        return "いまは、自治体のページへの自動の取り込みを止めています。"
+    return "自治体のページを見に行って取り込んでいます（取りに行くのは、確認と承認が済んだページだけです）。"
+
+
+def sitemap_gyou(host, urls):
+    """sitemap.xml の行。**取り込みを止めているあいだは、「毎日変わる」（changefreq daily）を名乗らない。**
+
+    **lastmod は付けない。** 前は作った日を全部の URL に付けていた。取り込みを止めていても
+    作り直せば全ページが「今日変わった」と名乗ることになる（作った日を、データの日として
+    出す形。CLAUDE.md「いちばんよく出る間違い」）。ページごとに正しい更新日を決める方法は
+    まだ無いので、決められないものは省く（2026-09-26・統括判断）"""
+    hindo = "" if TORIKOMI_TEISHI else "<changefreq>daily</changefreq>"
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+          f"<url><loc>{host}</loc>{hindo}</url>"]
+    for u in urls:
+        sm.append(f"<url><loc>{host}{html.escape(u)}</loc></url>")
+    sm.append("</urlset>")
+    return sm
+
+
+def saishin_torikomi(recs):
+    """いちばん新しい取り込みの日。**作った日ではなく、データの取得日**（3.5・ルール⑥）。"""
+    return max((r.get("fetched_on") or "" for r in recs), default="")
+
 KIND_ORDER = ["新設", "廃止", "承継", "変更", "中規模", "不明", "意見・勧告"]
 
 
@@ -137,7 +173,7 @@ KIND_DESC = {
 # ここには「予定」も「開店」も入れない。理由は2つある。
 #
 # ① **届出が出しているのは「大規模小売店舗として新設する日」で、開店日ではない。**
-#    新設してから開ける日は別に決まる（2026-09-19、中島さんの指摘。
+#    新設してから開ける日は別に決まる（2026-09-19、[運営者]の指摘。
 #    僕が一度「に開店予定」と書き、その日のうちに直した）。
 #    役所が「開店日」という欄を持っているときだけ開店日と書く（opened_on）。
 #
@@ -273,7 +309,7 @@ def page(title, body, rel, desc="", canonical="", extra_css=""):
 {body}
 <footer>
 <p>出典：各自治体が大規模小売店舗立地法に基づいて公告・縦覧している届出（大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町）。八尾市・堺市の「中規模」は、法ではなく市の条例に基づく届出です。各届出ページに出典のURLと取得日を載せています。兵庫県・神戸市の過去分には、Internet Archive（Wayback Machine）の保存から積み直したものを含みます（各ページにその旨を書いています）。
-毎朝1回とりに行き、自治体のページで確認できなくなった届出もこのサイトには残しています。</p>
+自治体のページで確認できなくなった届出も、このサイトには残しています。{esc(torikomi_bun())}</p>
 <p>{esc(DISCLAIMER)} 写し間違いもありえます。正確な内容は各届出ページの「出典」から自治体のページをご確認ください。</p>
 <p><a href="{rel}about.html">このサイトについて・出典と利用規約</a> ／ <a href="{rel}contact.html">訂正・削除のご依頼</a></p>
 </footer>
@@ -418,6 +454,18 @@ def detail_page(r, by_ref, src_meta):
         if r.get("listed") is True:
             status = (f"こちらが最後に見た {esc(r.get('last_seen') or '')} の時点では、"
                       "自治体のページに載っていました")
+        elif r.get("listed") is False and not (r.get("kakunin_saigo") and r.get("kieta_kakunin")):
+            # **取得がそろった観測の日を持たない記録**（kakunin_saigo・kieta_kakunin が入る前の
+            # 判定で、見えなくなった扱いになったもの）。**空の日付を出さない。**
+            # last_seen は「こちらが最後に見た日」で、**見えなくなった日ではない。** そう読める
+            # 書き方をしない。そのあとの観測が、必要なページをすべて取れていたかも分からない
+            if r.get("last_seen"):
+                status = (f"<b>こちらが最後に確認できたのは {esc(r['last_seen'])} です。"
+                          "そのあとの観測では、自治体のページで見つかっていません。</b>")
+            else:
+                status = "<b>自治体のページで見つかっていません。</b>"
+            status += ("見つからなかった観測で必要なページをすべて取れていたかは、この記録では確かめられません。"
+                       "見えなくなった日そのものと、その理由は分かりません")
         elif r.get("listed") is False:
             # **区間の起点は kakunin_saigo**（取得がそろった観測のうち、見えた最後の日）。
             # last_seen（取得がそろっていたかに関係ない）だと、そろっていない日をはさんだ
@@ -479,6 +527,9 @@ def detail_page(r, by_ref, src_meta):
             and r.get("kakunin_saigo") and r.get("kieta_kakunin")):
         desc += (f" {jp_date(r['kakunin_saigo'])}を最後に確認し、{jp_date(r['kieta_kakunin'])}の観測では"
                  "自治体のページで見つかっていません。")
+    elif r.get("mode") == "snapshot" and r.get("listed") is False and r.get("last_seen"):
+        # 取得がそろった観測の日が無い記録（本文の注記と同じ言い方。last_seen は見えなくなった日ではない）
+        desc += f" {jp_date(r['last_seen'])}を最後に確認し、そのあとの観測では自治体のページで見つかっていません。"
     body = f"""
 <p class="lead"><a href="{rel}a/{esc(slug(r['area']))}.html">{esc(r['area'])}</a>{'<span class="note">（所在地は店名から推定）</span>' if r.get('place_guess') else ''} › <a href="{rel}k/{esc(r['kind'])}.html">{esc(r['kind'])}</a></p>
 <h1>{esc(r['store'])}</h1>
@@ -528,7 +579,7 @@ def kind_page(kind, rows):
     return page(f"{kind}の届出一覧（大阪・兵庫の大型店）", body, rel, f"{KIND_DESC.get(kind,'')} 大阪府・兵庫県で{n_(len(rows))}件。", canonical=f"k/{kind}.html")
 
 
-def about_page(src_meta, today):
+def about_page(src_meta, today, saishin=""):
     rel = ""
     main_ids = ["osaka-pref", "osaka-city", "sakai-city", "hyogo-pref-juran", "kobe-city"]
     rows = []
@@ -573,17 +624,17 @@ def about_page(src_meta, today):
 <h2>運営者情報</h2>
 <div class="card"><dl class="kv">
 {operator_rows}
-<dt>サイトの目的</dt><dd>大規模小売店舗立地法にもとづく届出を、届出が出た日にわかる形で公開し、自治体のページから消えたあとも残すこと。</dd>
+<dt>サイトの目的</dt><dd>大規模小売店舗立地法にもとづく届出を、届出が出た日にわかる形で公開し、自治体のページで確認できなくなったあとも残すこと。</dd>
 <dt>データの出どころ</dt><dd>大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から権限移譲を受けた市町が公表している届出、および兵庫県公報の公告。各届出ページに出典のURLと取得日を書いています。</dd>
-<dt>更新頻度</dt><dd>毎朝1回、自動で取り込んでいます。内容が変わっていれば、その日のうちに更新します。兵庫県・神戸市の過去分（{esc(SITE_START)}より前の日付のもの）は、Internet Archive（Wayback Machine）に残っていた自治体ページの保存から積み直したもので、各ページにその旨を書いています。</dd>
+<dt>更新</dt><dd>{esc(torikomi_bun())}載せているのは、{esc(saishin or "—")}までに取り込んで整理した記録です。兵庫県・神戸市の過去分（{esc(SITE_START)}より前の日付のもの）は、Internet Archive（Wayback Machine）に残っていた自治体ページの保存から積み直したもので、各ページにその旨を書いています。</dd>
 <dt>訂正・削除</dt><dd><a href="{rel}contact.html">訂正・削除のご依頼</a>から受け付けます。原則{REPLY_DAYS}日以内に返信します。</dd>
 </dl></div>
 
 <h2>このサイトがしていること</h2>
-<p>{esc(SITE_NAME)}は、大規模小売店舗立地法（大店立地法）にもとづいて自治体が公表している「届出」を毎朝1回とりに行き、
+<p>{esc(SITE_NAME)}は、大規模小売店舗立地法（大店立地法）にもとづいて自治体が公表している「届出」を取り込んで、
 店舗面積1,000㎡を超える大型店の新設・変更・廃止・承継を、届出が出た日に一覧にしているサイトです。
 自治体のページで確認できなくなった届出も、このサイトには残しています。</p>
-<p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、そのうち{n_delegated}市町のページを見ています（池田市・豊能町・能勢町は、箕面市が2市2町の窓口として公表しているページで見ています）。{'・'.join(esc(x) for x in not_seen)}は届出のページが見つからないため、府のページに載る分だけ拾っています。吹田市・高槻市は移譲先ではなく府が受理するため、府のページから拾っています。</p>
+<p>対象はいま大阪府と兵庫県です。届出先は都道府県と政令指定都市で、大阪府では20の市町に届出先が移譲されているため、そのうち{n_delegated}市町のページを取り込みの対象にしています（池田市・豊能町・能勢町は、箕面市が2市2町の窓口として公表しているページで見ています）。{'・'.join(esc(x) for x in not_seen)}は届出のページが見つからないため、府のページに載る分だけ拾っています。吹田市・高槻市は移譲先ではなく府が受理するため、府のページから拾っています。</p>
 
 <h2>やらないと決めたこと</h2>
 <ul class="list">
@@ -751,7 +802,7 @@ def shinsetsu_to_kaiten_page(recs, today):
         saidai_mae = -min([x for x in zure if x < 0], default=0)
 
         # **「3件に1件」のような文を書かない。** 数えた値をそのまま置く。
-        # 書き写すと、翌朝から嘘になる（9節「書いたら約束になる」）
+        # 書き写すと、翌朝から嘘になる（8節「書いたら約束になる」）
         zureta = n_(kumi[1] + kumi[2]) if gokei != "–" else "–"
 
         def hito(n, nichi):
@@ -771,7 +822,7 @@ def shinsetsu_to_kaiten_page(recs, today):
 <p class="note"><b>ずれたのは {zureta}件</b>です。
 ずれの向きは両方あります。予定より遅れて開く店もあれば、早く開く店もあります。
 {f'このほかに、開店日が<b>届出の日より前</b>のものが {n_(motomoto)}件ありました。もともとあった店が、あとから大型店（1,000㎡超）になったものです。ここには数えていません。' if motomoto else ''}<br>
-この表は毎朝、そのときのデータから数え直しています。<b>文章に数を書き写していません。</b>
+この表は、サイトを作り直すたびに、そのときのデータから数え直しています。<b>文章に数を書き写していません。</b>
 なぜずれるのか（工事か、内装か、許認可か）は<b>確かめていないので書きません。</b></p>
 """
 
@@ -1177,15 +1228,19 @@ def settisha_page():
                 canonical="settisha.html", extra_css=FILTER_CSS)
 
 
-def index_page(all_recs, today):
+def index_page(all_recs, today, saishin=""):
     rel = ""
     future = sorted([r for r in all_recs if (r.get("event_on") or r.get("planned_on") or "") > today],
                     key=lambda r: r.get("event_on") or r.get("planned_on"))
     recent_close = sorted([r for r in all_recs if r["kind"] == "廃止"], key=lambda r: r["notified_on"], reverse=True)[:12]
     recent_new = sorted([r for r in all_recs if r["kind"] == "新設"], key=lambda r: r["notified_on"], reverse=True)[:12]
     # **取得がそろった観測で確認できなかったものだけ**（listed が false）。未判定（null）は入れない
+    # 並びの鍵は「こちらが最後に確認できた日」。取得がそろった観測の日（kakunin_saigo）が
+    # 無い記録は、last_seen を使う。**空の kieta_kakunin を先頭の鍵にしない**——
+    # 空が並ぶと、新しい順ではなく data/all.json の並び順で12件が決まってしまう（2026-09-26）
     gone = sorted([r for r in all_recs if r.get("mode") == "snapshot" and r.get("listed") is False],
-                  key=lambda r: (r.get("kieta_kakunin") or "", r.get("kakunin_saigo") or ""), reverse=True)[:12]
+                  key=lambda r: (r.get("kakunin_saigo") or r.get("last_seen") or "",
+                                 r.get("kieta_kakunin") or ""), reverse=True)[:12]
     kinds = Counter(r["kind"] for r in all_recs)
     areas = Counter(r["area"] for r in all_recs)
     # **「場所の見出し」は市区町村の数ではない**（「兵庫県」「所在地不明」が混ざる）。
@@ -1210,7 +1265,7 @@ def index_page(all_recs, today):
                if law_yrs and min(yrs) < min(law_yrs) else "")
     body = f"""
 <h1>大阪・兵庫の大型店、これからの開店とこれまでの閉店</h1>
-<p class="lead">大規模小売店舗立地法の届出（店舗面積1,000㎡超）を、各自治体の公表ページから毎朝あつめています。届出は開店の8か月以上前に出るので、ニュースになる前に分かります。</p>
+<p class="lead">大規模小売店舗立地法の届出（店舗面積1,000㎡超）を、各自治体の公表ページから取り込んで、一覧にしています。届出は開店の8か月以上前に出るので、ニュースになる前に分かります。</p>
 <div class="stat"><div><b>{len(all_recs):,}</b><span>届出（{min(yrs)}〜{max(yrs)}年{yr_note}）</span></div><div><b>{kinds.get('新設',0)}</b><span>新設</span></div><div><b>{kinds.get('廃止',0)}</b><span>廃止</span></div><div><b>{shikuchoson}</b><span>市区町村（ほかに市区町村が決まらない場所が{len(areas) - shikuchoson}）</span></div></div>
 <input class="q" id="q" type="search" placeholder="店名・市区町村でさがす（例：イオン、枚方市）" autocomplete="off"><ul class="list" id="hits"></ul>
 
@@ -1242,7 +1297,7 @@ def index_page(all_recs, today):
 <h2>種類から</h2>
 <div class="chips">{kind_chips}</div>
 
-<p class="note">更新：毎朝7時ごろ（最終 {esc(today)}）。大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から事務を移譲されている市町のページが対象です。</p>
+<p class="note">{esc(torikomi_bun())}いちばん新しい取り込みは {esc(saishin or "—")}。大阪府・大阪市・堺市・兵庫県・神戸市と、大阪府から事務を移譲されている市町のページが対象です。</p>
 <script>
 (function(){{var q=document.getElementById('q'),ul=document.getElementById('hits'),idx=null;
 function norm(s){{return (s||'').toLowerCase().replace(/[\\s　]/g,'')}}
@@ -1254,7 +1309,7 @@ ul.innerHTML=out.map(function(r){{return '<li><a href="s/'+r.k+'.html">'+r.s+'</
 </script>
 """
     return page(f"{SITE_NAME}｜大阪・兵庫の大型店の開店・閉店を届出の日に", body, rel,
-                f"大阪府・兵庫県の大規模小売店舗立地法の届出{len(all_recs):,}件。これから開く店、閉まる店を、自治体の公表から毎朝あつめています。", canonical="")
+                f"大阪府・兵庫県の大規模小売店舗立地法の届出{len(all_recs):,}件。これから開く店、閉まる店を、自治体の公表から取り込んだ一覧です。", canonical="")
 
 
 # ---------------------------------------------------------------- 書き出し
@@ -1404,11 +1459,11 @@ def main():
     urls += made
 
     with open(os.path.join(HERE, "index.html"), "w", encoding="utf-8") as f:
-        f.write(index_page(recs, today))
+        f.write(index_page(recs, today, saishin_torikomi(recs)))
     if made:
         print("まとめた一覧: " + " / ".join(made))
     with open(os.path.join(HERE, "about.html"), "w", encoding="utf-8") as f:
-        f.write(about_page(src_meta, today))
+        f.write(about_page(src_meta, today, saishin_torikomi(recs)))
     with open(os.path.join(HERE, "contact.html"), "w", encoding="utf-8") as f:
         f.write(contact_page(today))
     with open(os.path.join(HERE, "teisei.html"), "w", encoding="utf-8") as f:
@@ -1438,11 +1493,7 @@ def main():
           + ("" if coded else "（data/ref/jis-codes.json がまだ無い。初回の自動実行で埋まる）"))
 
     host = SITE_URL
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-          f"<url><loc>{host}</loc><lastmod>{today}</lastmod><changefreq>daily</changefreq></url>"]
-    for u in urls:
-        sm.append(f"<url><loc>{host}{html.escape(u)}</loc><lastmod>{today}</lastmod></url>")
-    sm.append("</urlset>")
+    sm = sitemap_gyou(host, urls)
     with open(os.path.join(HERE, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write("\n".join(sm))
     with open(os.path.join(HERE, "robots.txt"), "w", encoding="utf-8") as f:
