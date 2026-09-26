@@ -112,6 +112,17 @@ def torikomi_bun():
     return "自治体のページを見に行って取り込んでいます（取りに行くのは、確認と承認が済んだページだけです）。"
 
 
+def sitemap_gyou(host, urls, today):
+    """sitemap.xml の行。**取り込みを止めているあいだは、「毎日変わる」（changefreq daily）を名乗らない。**"""
+    hindo = "" if TORIKOMI_TEISHI else "<changefreq>daily</changefreq>"
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+          f"<url><loc>{host}</loc><lastmod>{today}</lastmod>{hindo}</url>"]
+    for u in urls:
+        sm.append(f"<url><loc>{host}{html.escape(u)}</loc><lastmod>{today}</lastmod></url>")
+    sm.append("</urlset>")
+    return sm
+
+
 def saishin_torikomi(recs):
     """いちばん新しい取り込みの日。**作った日ではなく、データの取得日**（3.5・ルール⑥）。"""
     return max((r.get("fetched_on") or "" for r in recs), default="")
@@ -157,7 +168,7 @@ KIND_DESC = {
 # ここには「予定」も「開店」も入れない。理由は2つある。
 #
 # ① **届出が出しているのは「大規模小売店舗として新設する日」で、開店日ではない。**
-#    新設してから開ける日は別に決まる（2026-09-19、運営者の指摘。
+#    新設してから開ける日は別に決まる（2026-09-19、[運営者]の指摘。
 #    僕が一度「に開店予定」と書き、その日のうちに直した）。
 #    役所が「開店日」という欄を持っているときだけ開店日と書く（opened_on）。
 #
@@ -1457,12 +1468,7 @@ def main():
     print(f"index.json: 個票 {len(index['records'])} / 升 {len(index['counts_by_city'])} / city_code あり {coded}"
           + ("" if coded else "（data/ref/jis-codes.json がまだ無い。初回の自動実行で埋まる）"))
 
-    host = SITE_URL
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-          f"<url><loc>{host}</loc><lastmod>{today}</lastmod><changefreq>daily</changefreq></url>"]
-    for u in urls:
-        sm.append(f"<url><loc>{host}{html.escape(u)}</loc><lastmod>{today}</lastmod></url>")
-    sm.append("</urlset>")
+    sm = sitemap_gyou(SITE_URL, urls, today)
     with open(os.path.join(HERE, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write("\n".join(sm))
     with open(os.path.join(HERE, "robots.txt"), "w", encoding="utf-8") as f:

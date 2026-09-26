@@ -1298,7 +1298,7 @@ def test_探される語が_description_に入っているか():
 
     ① 届出が出しているのは「大規模小売店舗として新設する日」であって、
        開店日ではない。**新設してから開ける日は別に決まる**
-       （2026-09-19、運営者の指摘。僕が一度「に開店予定」と書き、
+       （2026-09-19、[運営者]の指摘。僕が一度「に開店予定」と書き、
        その日のうちに直した。「事実の主張は外れる」と正本に書いた当日）。
 
     ② **「予定」そのものが外れる。** 4,809件を数えたら、届出日より前の日が
@@ -1389,7 +1389,7 @@ def test_探される語が_description_に入っているか():
 def test_新設と開店の違いを説明する1枚があるか():
     """**役所の語では見つからない。だが言い換えて主張にしない。** その代わりの1枚。
 
-    2026-09-19、運営者の案——
+    2026-09-19、[運営者]の案——
 
     > 新設と廃止で閉店と開店とは異なります。の記載で１位目指せないかにゃ？
 
@@ -1764,7 +1764,7 @@ def test_消えるまでの日数を仮定で書いていないか():
             "記録に「こちらが最後に見た日」と書かれていない。"
             "持っているのは相手が消した日ではない（3.5）")
 
-    # **中央値は出さない**（2026-09-19、運営者「情報としてしょぼい」）。
+    # **中央値は出さない**（2026-09-19、[運営者]「情報としてしょぼい」）。
     # こちらの観測の話であって、読む人に関係がない
     if "中央値" in honbun and "出さない" not in honbun:
         raise AssertionError("記録に中央値が出ている。こちらの観測の話で、読む人に関係がない")
@@ -1779,7 +1779,7 @@ def test_消えるまでの日数を仮定で書いていないか():
 def test_消えたことの書き方():
     """**「消えた」も主張。主語をこちらにする。**
 
-    2026-09-19、運営者の——
+    2026-09-19、[運営者]の——
 
     > ネットから消えた日の件は、**SEO対策で語句を選ばないといけない**にゃね
 
@@ -2010,7 +2010,7 @@ def test_移り変わりと複数を見分けているか():
 def test_遅延証明書のページをURLで当てていないか():
     """**在りかを知らないものは、辿って見つける。作文しない。**
 
-    2026-09-19、運営者の案。5つのルール全部に○が付いた唯一の題材で、
+    2026-09-19、[運営者]の案。5つのルール全部に○が付いた唯一の題材で、
     **個人が1人も出てこない**（3.1 の問題がゼロ）。
 
     だが**遅延証明書のページの在りかは知らない。** そこで
@@ -2583,7 +2583,7 @@ def test_作ったページが公開の許可リストから漏れていない�
 def test_全国の会社をドメインで作文していないか():
     """**200社のドメインを思い出して並べたら、それは作文。**
 
-    2026-09-20、運営者の「遅延証明はかるいから全国にひろげてほしい」。
+    2026-09-20、[運営者]の「遅延証明はかるいから全国にひろげてほしい」。
     10社なら目で確かめられるが、全国で同じことをすると、
     **当たっているかを誰も確かめられないドメインが並ぶ。**
     外れていれば**関係のない誰かのサーバーを叩く**（3.4）。
@@ -3370,42 +3370,93 @@ def test_1日に2回以上取りに行かないか():
             "巡回が止まっている（どちらも見たい）")
 
 
+# 門と逆向きに読める言い回し。**この検査の中では分けて書く**（そのまま書くと、この検査自身が鳴る）
+GYAKU_KOTOBA = ("迷ったら" + "先に取る", "早い者" + "勝ち", "取得を" + "止めない",
+                "押し" + "放題", "読めば" + "動く", "人が読むまで" + "1バイトも")
+# 歩かない置き場。**金庫（_raw）・人が置いた原本（inbox）・予約台帳（_yoyaku）は private の中身。**
+# 読むと、公開の Actions の記録に private 側のパスや語が出る。どの深さでも外す
+GYAKU_NOZOKU = frozenset({".git", "__pycache__", "data", "s", "_raw", "inbox", "_yoyaku"})
+# **当時の記録**として残す行の印。行にこの印があれば数えない（歴史の記録を消させない）
+GYAKU_TOUJI = ("当時の記録", "当時の記述")
+
+
+def gyaku_no_iimawashi(ne):
+    """ne の下を歩いて、門と逆向きに読める言い回しを探す。(見たファイル数, [場所「語」]) を返す。"""
+    import re as _re
+    pat = _re.compile("|".join(_re.escape(k) for k in GYAKU_KOTOBA))
+    mita, warui = 0, []
+    for d0, dirs, files in os.walk(ne):
+        dirs[:] = [d for d in dirs if d not in GYAKU_NOZOKU
+                   and (not d.startswith(".") or d == ".github")]
+        for f in files:
+            if not f.endswith((".md", ".py", ".yml")):
+                continue
+            p = os.path.join(d0, f)
+            mita += 1
+            for i, gyou in enumerate(open(p, encoding="utf-8", errors="replace"), 1):
+                m = pat.search(gyou)
+                if m and not any(t in gyou for t in GYAKU_TOUJI):
+                    warui.append(f"{os.path.relpath(p, ne)}:{i}「{m.group(0)}」")
+    return mita, warui
+
+
 def test_取りに行く前の門と逆向きの言い回しが_文書とコードに残っていないか():
     """門の運用と逆に読める言い回しが、文書・コード・手順書に戻っていないかを見る（2026-09-26）。
 
-    正本と周辺文書の全行監査で、5つの言い回し（下の `kotoba`）が、いまの運用
+    正本と周辺文書の全行監査で、下の言い回し（`GYAKU_KOTOBA`）が、いまの運用
     （取りに行く前の門。カードと運営者承認がそろった相手だけ・迷ったら止まる側）と
     逆向きに読めると分かった。
     **読まれる文書が逆を言うと、決まりより先にそちらが効く。**
 
     見る所は、この置き場の .md（CLAUDE.md・README.md・docs/）・.py（検査も含む）・
     手順書（.github/workflows/）。**拾い方は歩いて拾う**（名前の一覧で決め打ちしない）。
-    言い回しは**この検査の中では分けて書く**（そのまま書くと、この検査自身が鳴る）。
+    **金庫（_raw）・inbox・予約台帳（_yoyaku）は見ない**（private の中身。公開の記録に出さない）。
+    **当時の記録として残す行は、その行に「当時の記録」と書けば数えない**（歴史を書き換えさせない）。
 
     **捕まえないもの**：同じ意味を別の言葉で書いた文。そこは読む人が見る。
     """
-    import re as _re
-    kotoba = ["迷ったら" + "先に取る", "早い者" + "勝ち", "取得を" + "止めない",
-              "押し" + "放題", "読めば" + "動く"]
-    pat = _re.compile("|".join(_re.escape(k) for k in kotoba))
-    mita, warui = 0, []
-    for ne, dirs, files in os.walk(HERE):
-        dirs[:] = [d for d in dirs if d not in (".git", "__pycache__", "data", "s")
-                   and (not d.startswith(".") or d == ".github")]
-        for f in files:
-            if not f.endswith((".md", ".py", ".yml")):
-                continue
-            p = os.path.join(ne, f)
-            mita += 1
-            for i, gyou in enumerate(open(p, encoding="utf-8", errors="replace"), 1):
-                m = pat.search(gyou)
-                if m:
-                    warui.append(f"{os.path.relpath(p, HERE)}:{i}「{m.group(0)}」")
+    mita, warui = gyaku_no_iimawashi(HERE)
     if mita < 20:
         raise AssertionError(f"見たファイルが{mita}本しかない。拾い方が壊れている")
     if warui:
         raise AssertionError("取りに行く前の門と逆向きに読める言い回しが残っている：\n  "
                              + "\n  ".join(warui))
+
+
+def test_逆向きの言い回しの見張りが_privateを読まず_当時の記録は残せるか():
+    """上の見張りの守備範囲を、一時フォルダで確かめる（2026-09-26）。
+
+    ① 公開側の文書に言い回しがあれば、拾う
+    ② 金庫（_raw）・inbox・予約台帳（_yoyaku）の中にあっても、**読まない**（どの深さでも）
+    ③ 「当時の記録」と書いた行は、数えない
+    **外す置き場を消すと ② が、印を消すと ③ が、拾い方を壊すと ① が鳴る。**
+    """
+    import shutil as _sh
+    import tempfile as _tf
+    ne = _tf.mkdtemp()
+    try:
+        go = GYAKU_KOTOBA[0]
+        oku = {
+            os.path.join("docs", "ima.md"): f"いまの文。{go}。\n",
+            os.path.join("docs", "mukashi.md"): f"2026-09-19 の文。{go}。（当時の記録）\n",
+            os.path.join("_raw", "kinko.md"): f"金庫の中。{go}。\n",
+            os.path.join("inbox", "genpon.md"): f"原本。{go}。\n",
+            os.path.join("_yoyaku", "yoyaku.md"): f"予約台帳。{go}。\n",
+            os.path.join("sub", "_raw", "fukai.md"): f"深い金庫。{go}。\n",
+        }
+        for rel, t in oku.items():
+            os.makedirs(os.path.join(ne, os.path.dirname(rel)), exist_ok=True)
+            with open(os.path.join(ne, rel), "w", encoding="utf-8") as f:
+                f.write(t)
+        mita, warui = gyaku_no_iimawashi(ne)
+        mieta = sorted(w.split(":")[0].replace(os.sep, "/") for w in warui)
+        if mieta != ["docs/ima.md"]:
+            raise AssertionError("逆向きの言い回しの見張りの守備範囲がずれている：拾ったのは "
+                                 + (", ".join(mieta) or "0件")
+                                 + "（拾うのは docs/ima.md だけのはず。_raw・inbox・_yoyaku は読まない・"
+                                 "当時の記録は数えない）")
+    finally:
+        _sh.rmtree(ne, ignore_errors=True)
 
 
 def test_取り込みを止めているのに_取りに行っていると読める文を出さないか():
@@ -3458,6 +3509,10 @@ def test_取り込みを止めているのに_取りに行っていると読め�
             raise AssertionError("止めていると書いていない：" + "・".join(nai))
     if f"いちばん新しい取り込みは {saishin}" not in mono["トップ"] or tsukutta in mono["トップ"].split("<script")[0]:
         raise AssertionError("トップの日付が、データの取得日ではない（作った日を出している）")
+    # sitemap も名乗り。止めているあいだに「毎日変わる」と言わない
+    sm = "\n".join(bs.sitemap_gyou("https://example.invalid/", ["about.html"], tsukutta))
+    if bs.TORIKOMI_TEISHI and "changefreq" in sm:
+        raise AssertionError("取り込みを止めているのに、sitemap が changefreq を名乗っている")
 
 
 def test_workflow_の中のシェルが読めるか():
