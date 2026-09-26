@@ -3518,6 +3518,109 @@ def test_逆向きの言い回しの見張りが_privateを読まず_当時の�
         _sh.rmtree(ne, ignore_errors=True)
 
 
+# 3.6「元データの再配布と、独自 DB の商品化を混同しない」の見張り（2026-09-26）。**どちらの向きの一般化も拾う。**
+# 語はつないで書く（このファイル自身が当たらないように。拾うのは .md だけ）
+SHOHINKA_IPPANKA = (
+    # 締めすぎ：有料・商用などであることだけで止める
+    ("有料・商用などだけで止める", "(有料|商用|広告|事業利用|商品化)(だから|なので|であるから)" + "(STOP|ストップ|止める|止めた|NG|不可)"),
+    # 締めすぎ：私的利用などの記載から、独自 DB の商品化まで一律に止める
+    ("私的利用などの記載から独自DBの商品化まで止める",
+     "(私的利用|商用利用不可|転載禁止|再配布禁止)[^。\n]{0,20}(から|ので)[^。\n]{0,20}(独自|商品化)"
+     + "[^。\n]{0,15}(も|まで)[^。\n]{0,8}(STOP|ストップ|止め|NG|不可)"),
+    # 緩めすぎ：利用条件を無視してよい
+    ("利用条件を無視してよい", "利用条件(は|を)[^。\n]{0,4}無視" + "(して|でき)"),
+    # 緩めすぎ：事実・数値なら何でも商品化してよい
+    ("事実・数値なら何でも商品化してよい",
+     "(事実|数値)[^。\n]{0,6}なら[^。\n]{0,6}(何でも|なんでも)[^。\n]{0,12}(商品|売|使)" + "[^。\n]{0,6}(よい|いい|OK|できる)"),
+    # 緩めすぎ：元データをそのまま再配布してよい
+    ("元データをそのまま再配布してよい",
+     "(raw|生データ|元データ)[^。\n]{0,6}そのまま[^。\n]{0,8}(再配布|配布|配って|配れ|転載)" + "[^。\n]{0,4}(よい|いい|OK|できる)"),
+)
+
+
+def shohinka_ippanka(ne):
+    """ne の下の .md を歩いて、商品化の一般原則をどちらかの向きに一般化した文を探す。(見た数, [場所「種類」])。"""
+    import re as _re
+    pats = [(na, _re.compile(p)) for na, p in SHOHINKA_IPPANKA]
+    mita, warui = 0, []
+    for d0, dirs, files in os.walk(ne):
+        dirs[:] = [d for d in dirs if d not in GYAKU_NOZOKU
+                   and (not d.startswith(".") or d == ".github")]
+        for f in files:
+            if not f.endswith(".md"):
+                continue
+            p = os.path.join(d0, f)
+            mita += 1
+            for i, gyou in enumerate(open(p, encoding="utf-8", errors="replace"), 1):
+                if any(t in gyou for t in GYAKU_TOUJI):
+                    continue
+                for na, pat in pats:
+                    if pat.search(gyou):
+                        warui.append(f"{os.path.relpath(p, ne)}:{i}「{na}」")
+    return mita, warui
+
+
+def test_商品化の一般原則を_どちらの向きにも一般化していないか():
+    """3.6「元データの再配布と、独自 DB の商品化を混同しない」が、文書の中で崩れていないかを見る（2026-09-26）。
+
+    **締めすぎ**：有料・商用などであることだけで止める／私的利用などの記載から、独自 DB の商品化まで一律に止める
+    **緩めすぎ**：利用条件を無視してよい／事実・数値なら何でも商品化してよい／元データをそのまま再配布してよい
+
+    2026-09-26、統括の判断が「取得元に私的利用などの記載がある」→「独自 DB の商品化も不可」へ短絡した。
+    **読まれる文書が一般化した形で書くと、決まりより先にそちらが効く。** 見るのは .md だけ
+    （金庫・inbox・予約台帳は読まない。「当時の記録」と書いた行は数えない。逆向きの言い回しの見張りと同じ）。
+
+    **捕まえないもの**：同じ意味を別の言葉で書いた文。そこは読む人が見る。
+    """
+    mita, warui = shohinka_ippanka(HERE)
+    if mita < 5:
+        raise AssertionError(f"見た .md が{mita}本しかない。拾い方が壊れている")
+    if warui:
+        raise AssertionError("商品化の一般原則を、どちらかの向きに一般化した文がある（正本3.6）：\n  "
+                             + "\n  ".join(warui))
+
+
+def test_商品化の一般化の見張りが_両向きを拾い_否定の書き方は拾わないか():
+    """上の見張りの守備範囲を、一時フォルダで確かめる（2026-09-26）。
+
+    ① 両向きの一般化（5種類）を、それぞれ拾う
+    ② 正本3.6 の否定の書き方（「〜だけでは止めない」「〜という意味ではない」など）は拾わない
+    ③ 「当時の記録」と書いた行は数えない。金庫（_raw）の中は読まない
+    **語を1つ外すと ① が、否定まで拾う形にすると ② が鳴る。**
+    """
+    import shutil as _sh
+    import tempfile as _tf
+    ne = _tf.mkdtemp()
+    try:
+        aru = {
+            "tsuyo1.md": "この題材は有料" + "だからSTOP。\n",
+            "tsuyo2.md": "私的利用" + "と書いてあるから、独自DBの商品化も自動STOP。\n",
+            "yuru1.md": "利用条件は" + "無視してよい。\n",
+            "yuru2.md": "事実・数値" + "なら何でも商品化してよい。\n",
+            "yuru3.md": "raw を" + "そのまま再配布してよい。\n",
+        }
+        nai = {
+            "hitei.md": ("②③は、有料であること・広告が付くこと・事業として使うこと・商品にすること、のどれか1つだけでは止めない。\n"
+                         "その記載があることだけで、②③の商品化まで一律に止めない。\n"
+                         "この項目は、利用条件を読まなくてよい・事実や数値でありさえすれば商品にできる・元データを手を加えずに配れる、という意味ではない。\n"
+                         "回答が来るまで、「有料化だから」だけで商品化の候補を止める運用にはしない。\n"),
+            "mukashi.md": "2026-09-26 の判断。有料" + "だからSTOP としていた（当時の記録）。\n",
+            os.path.join("_raw", "kinko.md"): "金庫の中。有料" + "だからSTOP。\n",
+        }
+        for rel, t in list(aru.items()) + list(nai.items()):
+            os.makedirs(os.path.join(ne, "docs", os.path.dirname(rel)), exist_ok=True)
+            with open(os.path.join(ne, "docs", rel), "w", encoding="utf-8") as f:
+                f.write(t)
+        mita, warui = shohinka_ippanka(ne)
+        mieta = sorted({w.split(":")[0].replace(os.sep, "/").split("/")[-1] for w in warui})
+        hoshii = sorted(aru)
+        if mieta != hoshii:
+            raise AssertionError("商品化の一般化の見張りの守備範囲がずれている：拾ったのは "
+                                 + (", ".join(mieta) or "0件") + "（拾うのは " + ", ".join(hoshii) + " だけのはず）")
+    finally:
+        _sh.rmtree(ne, ignore_errors=True)
+
+
 def test_取り込みを止めているのに_取りに行っていると読める文を出さないか():
     """公開ページが「毎朝とりに行っている」と読める文を出していないかを見る（2026-09-26）。
 
