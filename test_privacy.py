@@ -1124,17 +1124,27 @@ def test_正本に同じ行が2度続いていないか():
     2026-09-19 に2か所あった（404 の URL の話と、コードブロックの話）。
     どちらも「その行を強調しようとして貼り直した」あと。
     見た目では気づけないので、機械で見る。
+
+    **見るのは docs/ の .md 全部**（2026-09-27）。正本は `docs/kyotsu-shiyo.md` と
+    `docs/kyotsu-shiyo-v2/site-*.md` の【サイト固有の現在ルール】を合わせたものになった。
+    正本の本文だけを見ていると、site の文書で同じ形が起きても黙る。
+    **拾い方は歩いて拾う**（名前の一覧で決め打ちしない）。
     """
-    path = os.path.join(HERE, "docs", "kyotsu-shiyo.md")
-    lines = open(path, encoding="utf-8").read().splitlines()
+    import glob as _glob
+    michi = sorted(_glob.glob(os.path.join(HERE, "docs", "**", "*.md"), recursive=True))
+    namae = {os.path.relpath(p, HERE).replace(os.sep, "/") for p in michi}
+    if "docs/kyotsu-shiyo.md" not in namae or not any(n.startswith("docs/kyotsu-shiyo-v2/site-") for n in namae):
+        raise AssertionError("正本の本文か site の文書を拾えていない。**拾い方が壊れていると、この検査は黙って通る**")
     dups = []
-    for i in range(1, len(lines)):
-        t = lines[i].strip()
-        # 表の行・箇条書き・コードブロックの中は、同じ行が並んでよい
-        if t and lines[i] == lines[i - 1] and t[0] not in "|-" and not t.startswith("```"):
-            dups.append(f"{i + 1}行目: {t[:60]}")
+    for path in michi:
+        lines = open(path, encoding="utf-8").read().splitlines()
+        for i in range(1, len(lines)):
+            t = lines[i].strip()
+            # 表の行・箇条書き・コードブロックの中は、同じ行が並んでよい
+            if t and lines[i] == lines[i - 1] and t[0] not in "|-" and not t.startswith("```"):
+                dups.append(f"{os.path.relpath(path, HERE)}:{i + 1}: {t[:60]}")
     if dups:
-        raise AssertionError("正本に同じ行が2度続いている：\n  " + "\n  ".join(dups))
+        raise AssertionError("文書に同じ行が2度続いている：\n  " + "\n  ".join(dups))
 
 
 def test_文字コードは例外の有無で選ばない():
@@ -5260,10 +5270,11 @@ def test_every_python_file_parses():
     if bad:
         fails.append(f"読めない .py が {len(bad)}本（{bad[:3]}）")
 
-    # マージの衝突マーカーは、.py 以外にも残る
+    # マージの衝突マーカーは、.py 以外にも残る。docs/ の下は深さを問わず見る
+    # （2026-09-27。正本の一部になった docs/kyotsu-shiyo-v2/site-*.md は1段深い）
     marks = []
     for f in (glob.glob(os.path.join(HERE, "*.md"))
-              + glob.glob(os.path.join(HERE, "docs", "*.md"))
+              + glob.glob(os.path.join(HERE, "docs", "**", "*.md"), recursive=True)
               + workflow_files()):
         with open(f, encoding="utf-8", errors="ignore") as fh:
             t = fh.read()
