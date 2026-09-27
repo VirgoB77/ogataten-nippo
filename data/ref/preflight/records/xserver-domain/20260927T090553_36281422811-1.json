@@ -1,0 +1,72 @@
+{
+ "approval_id": "xserver-domain-preflight-1",
+ "card_fingerprint": "7a9e8f193031688c9a012f358078d3e3eb88469761c8ac6537f42fbdb3724b3b",
+ "card_version": 1,
+ "detail_url_found": null,
+ "external_requests": 2,
+ "finished_at": "2026-09-27T09:06:02+09:00",
+ "items_note": "items の false は「今回の通常の HTTP 応答の本文では確認できなかった」。その項目が無いという意味ではない（JavaScript は実行していない）",
+ "note": "本文は残していない（SHA-256 と長さだけ）。この記録は取得してよいかを判断する材料で、本番の取得・private 長期保存・公開・商品化の承認ではない",
+ "pages": [
+  {
+   "auth_required": false,
+   "body_bytes": 46815,
+   "body_sha256": "bcdba5777be90edb6faa50846b4a3339a53f2bf67c06eef98d75a8b69640f0e5",
+   "body_truncated": false,
+   "captcha": false,
+   "captcha_reason": "",
+   "cf_mitigated": "",
+   "checked_at": "2026-09-27T09:06:01+09:00",
+   "content_encoding": "",
+   "content_type": "text/html; charset=EUC-JP",
+   "error": "",
+   "final_url": "https://secure.xserver.ne.jp/xinfo/?action_register_xd_auction_index=true",
+   "http_status": 200,
+   "items": {
+    "入札履歴": false,
+    "入札数": false,
+    "入札者": false,
+    "現在価格": true,
+    "終了日時": false,
+    "開始日時": false
+   },
+   "kind": "list",
+   "password_field": false,
+   "redirect": false,
+   "redirect_to": "",
+   "requested_url": "https://secure.xserver.ne.jp/xinfo/?action_register_xd_auction_index=true",
+   "retry_after": "",
+   "stop_reason": ""
+  }
+ ],
+ "result": "完了",
+ "robots": {
+  "body_bytes": 208,
+  "body_sha256": "e10aa5cfb3a2675cfb50f056b3c0b1b08e96f4ed5da21c4a7744773374e35fbe",
+  "checked_at": "2026-09-27T09:05:56+09:00",
+  "content_type": "text/html; charset=iso-8859-1",
+  "crawl_delay": null,
+  "final_url": "https://secure.xserver.ne.jp/robots.txt",
+  "http_status": 404,
+  "judgment_reason": "robots.txt が HTTP 404。robots.txt が存在しない状態として、今の決まり上は次の確認へ進む（robots が取得を許可したという意味ではない）",
+  "kujiraya_judgment": "robots.txt なし（今の決まりで次へ進む）",
+  "redirect": false,
+  "redirect_to": "",
+  "requested_url": "https://secure.xserver.ne.jp/robots.txt",
+  "response_kind": "not_found",
+  "target_allowed": {
+   "list": true
+  }
+ },
+ "run": {
+  "job": "kakunin",
+  "repo": "ogataten-nippo",
+  "run_attempt": "1",
+  "run_id": "36281422811",
+  "workflow": "VirgoB77/ogataten-nippo/.github/workflows/kakunin.yml@refs/heads/main"
+ },
+ "schema": 1,
+ "source_id": "xserver-domain",
+ "started_at": "2026-09-27T09:05:53+09:00",
+ "stop_reason": ""
+}
