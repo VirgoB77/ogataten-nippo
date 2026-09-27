@@ -4,7 +4,7 @@
 許可の出どころは、一時フォルダに作った git の置き場で確かめる。予約台帳は一時フォルダの bare repo。
 
 見ること：
-    許可が無い・形が違う・運営者の手でない・期限の外・使用済み → **通信0で止まる**
+    許可が無い・形が違う・承認した者が運営者でない・期限の外・使用済み → **通信0で止まる**
     出すのは robots.txt・一覧・詳細の最大3本。GET だけ。見出しは名乗りだけ。転送は辿らない
     拒否・認証・CAPTCHA・想定外の転送 → 残りを出さずに止まる
     記録は上書きしない。**本文を残さない**
@@ -64,7 +64,7 @@ def yomu(p):
 
 def yoi_kyoka(**kae):
     k = {"approval_id": KID, "source_id": SID, "purpose": "acquisition_preflight",
-         "issued_by": "operator", "issued_at": "2026-09-25T06:00:00+09:00",
+         "approved_by": "operator", "entered_by": "codex", "issued_at": "2026-09-25T06:00:00+09:00",
          "expires_at": "2026-09-26T06:00:00+09:00", "allowed_kinds": ["robots", "list", "detail"],
          "max_requests": 3, "min_interval_seconds": 5, "single_use": True}
     k.update(kae)
@@ -132,6 +132,14 @@ class PfOki(tk.Oki):
 
 
 class 通るとき(PfOki):
+
+    def test_運営者が承認しAIが転記した許可は通る_commitの印では決めない(self):
+        # 承認した者は approved_by で読む。AI の印のある commit でも、bot の commit でも同じ
+        for kae in ({"ai": True, "entered_by": "claude"}, {"bot": True, "entered_by": "codex"}):
+            with self.subTest(kae=kae):
+                self.setUp()
+                self.kyoka(**kae)
+                self.assertEqual(self.mon().kakunin(KID)["result"], "完了")
 
     def test_robots_一覧_詳細の3本だけを_GETで_名乗りだけ付けて出す(self):
         self.kyoka()
@@ -242,13 +250,16 @@ class 通信の前に止まる(PfOki):
     def test_許可IDの形が違う(self):
         self.tomete("許可ID の形が違う", kid="../shounin/tameshi")
 
-    def test_AIの印が付いた許可(self):
-        self.kyoka(ai=True)
-        self.tomete("AI の commit")
+    def test_AIを承認した者と書いた許可(self):
+        for sha in ("claude", "codex", "pc-sanbo"):
+            with self.subTest(approved_by=sha):
+                self.setUp()
+                self.kyoka(approved_by=sha)
+                self.tomete("運営者だけ")
 
-    def test_自動実行が入れた許可(self):
-        self.kyoka(bot=True)
-        self.tomete("自動実行の commit")
+    def test_書き込んだ者が無い許可(self):
+        self.kyoka(entered_by="")
+        self.tomete("entered_by")
 
     def test_保存していない許可(self):
         self.kyoka(hozon=False)
@@ -262,7 +273,7 @@ class 通信の前に止まる(PfOki):
 
     def test_許可の欄が決まりどおりでない(self):
         for kae, kotoba in (({"purpose": "production"}, "purpose"),
-                            ({"issued_by": "pc-sanbo"}, "issued_by"),
+                            ({"approved_by": "pc-sanbo"}, "運営者だけ"),
                             ({"single_use": False}, "single_use"),
                             ({"allowed_kinds": ["list", "detail"]}, "robots が無い"),
                             ({"allowed_kinds": ["robots", "api"]}, "allowed_kinds"),

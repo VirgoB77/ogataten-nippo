@@ -1059,7 +1059,7 @@ def _m2(v):
 
 
 def taiten_page():
-    """閉じた届出の一覧。**「撤退」とは書かない**（3.3・評価しない）。"""
+    """廃止の届出の一覧。**「撤退」「閉店」とは書かない**（3.3・評価しない）。廃止の届出は縮小・建て替えでも出る。"""
     doc = _load("taiten.json")
     if not doc:
         return None
@@ -1069,27 +1069,30 @@ def taiten_page():
     lasted = [r for r in rows if r.get("lasted_days")]
     near = [r for r in rows if r.get("near_candidates")]
 
-    head = f"""<h1>大型店が閉じた届出の一覧</h1>
+    head = f"""<h1>大型店の廃止の届出の一覧</h1>
 <p class="lead">大規模小売店舗立地法の廃止の届出を、<b>廃止の日</b>（届出に書かれた日。
 書かれていないものは届出の日）の新しい順に並べたものです。
 {esc(years and min(years) or "")}年から{esc(years and max(years) or "")}年まで。
+廃止の届出は、閉店のほか、縮小・建て替えでも出ます（店舗面積が1,000㎡以下になる届出）。
 大型店の出退店を追う方のために作りました。</p>
 
 <div class="stat">
-  <div><b>{n_(len(rows))}</b><span>閉じた届出</span></div>
+  <div><b>{n_(len(rows))}</b><span>廃止の届出</span></div>
   <div><b>{n_(sum(1 for r in rows if r.get("area_m2")))}</b><span>店舗面積が書かれていた</span></div>
-  <div><b>{n_(len(lasted))}</b><span>開店日までつながった</span></div>
+  <div><b>{n_(len(lasted))}</b><span>新設の届出までつながった</span></div>
 </div>
 
-<div class="note"><b>開店日までつながったのは {n_(len(lasted))} 件だけです。</b>
+<div class="note"><b>新設の届出までつながったのは {n_(len(lasted))} 件だけです。</b>
 残りは、始まりの側の届出が手元にありません。役所の縦覧は数か月で消えるので、
-こちらが集め始める前に閉じた店は、あとから取りに行っても埋まりません。
-<b>平均何年もったか、は出しません。</b>{n_(len(lasted))}件の平均は、
+こちらが集め始める前に出た新設の届出は、あとから取りに行っても埋まりません。
+<b>年数の平均は出しません。</b>{n_(len(lasted))}件の平均は、
 一覧全体について何も言っていないからです。<br>
-つながらないのは過去の分だけです。<b>これから開店の届出を取れた店は、
-閉じるときにつながります。</b>年数の欄は空のまま持っておきます。</div>
+つながらないのは過去の分だけです。<b>これから新設の届出を取れた店は、
+廃止の届出が出たときにつながります。</b>年数の欄は空のまま持っておきます。<br>
+年数は、新設の届出の日から廃止の日までです。<b>店がその期間ずっと営業していたとは言えません</b>
+（開店の日は新設の日と別に決まり、縮小・建て替えでも廃止の届出は出ます）。</div>
 
-<div class="note">個人が設置者の届出には、<b>何年そこにいたかを出していません。</b>
+<div class="note">個人が設置者の届出には、<b>新設からの年数を出していません。</b>
 所在地も町丁目までにしています（<a href="{rel}about.html">このサイトについて</a>）。</div>
 """
     if near:
@@ -1122,15 +1125,15 @@ def taiten_page():
     body = head + f"""
 <h2>一覧（{n_(len(rows))}件）</h2>
 {tools_bar("店名・所在地・会社名でしぼる（表に出ている語なら何でも）", [
-    ("hasarea", "店舗面積あり"), ("lasted", "何年いたか分かる"), ("near", "近い候補あり")],
+    ("hasarea", "店舗面積あり"), ("lasted", "新設からの年数が分かる"), ("near", "近い候補あり")],
     cities=Counter(r.get("city") for r in rows if r.get("city")).most_common())}
-<table class="wide"><thead><tr><th class="s" data-k="closed">閉じた日</th><th>店名・所在地</th>
+<table class="wide"><thead><tr><th class="s" data-k="closed">廃止の日</th><th>店名・所在地</th>
 <th class="s n" data-k="area">店舗面積<br>（㎡）</th>
-<th class="hide">設置者<br>店をやる人</th><th>何年いたか<br>つなぎ方</th></tr></thead>
+<th class="hide">設置者<br>店をやる人</th><th>新設の届出からの年数<br>つなぎ方</th></tr></thead>
 <tbody>{"".join(tr)}</tbody></table>
 <p class="empty" id="empty" style="display:none">当てはまるものがありませんでした。</p>
 {FILTER_JS}"""
-    return page("大型店が閉じた届出の一覧（大阪・兵庫）", body, rel,
+    return page("大型店の廃止の届出の一覧（大阪・兵庫）", body, rel,
                 f"大規模小売店舗立地法の廃止の届出 {len(rows)}件。大阪府・兵庫県。廃止の日の新しい順。",
                 canonical="taiten.html", extra_css=FILTER_CSS)
 
@@ -1272,7 +1275,7 @@ def index_page(all_recs, today, saishin=""):
 <h2>届出をまとめた一覧</h2>
 <p class="lead">届出を1件ずつではなく、店ごと・出来事ごとにまとめ直したもの。</p>
 <div class="chips">
-<a href="taiten.html">大型店が閉じた届出の一覧</a>
+<a href="taiten.html">大型店の廃止の届出の一覧</a>
 <a href="settisha.html">建物を用意した人と、店をやる人が別の届出</a>
 </div>
 

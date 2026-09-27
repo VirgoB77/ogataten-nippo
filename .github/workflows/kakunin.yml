@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-          # **浅い履歴だと、許可の出どころ（運営者の手か）を確かめられない**
+          # 許可ファイルが保存（commit）されたものかを、門（common/kado.py の shounin_hozon）が git で確かめる
           fetch-depth: 0
 
       # 予約台帳（repo横断。同じ相手へ、同じ日本時間の日に、2つの置き場・2つの実行から行かない）。
