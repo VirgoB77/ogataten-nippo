@@ -1,0 +1,72 @@
+{
+ "approval_id": "onamae-com-preflight-1",
+ "card_fingerprint": "32ab32daa5bdfb94a5eb46d8f7d7f72b3983c1b3de0bc0293dd48976ec215a7c",
+ "card_version": 1,
+ "detail_url_found": null,
+ "external_requests": 2,
+ "finished_at": "2026-09-27T09:04:00+09:00",
+ "items_note": "items の false は「今回の通常の HTTP 応答の本文では確認できなかった」。その項目が無いという意味ではない（JavaScript は実行していない）",
+ "note": "本文は残していない（SHA-256 と長さだけ）。この記録は取得してよいかを判断する材料で、本番の取得・private 長期保存・公開・商品化の承認ではない",
+ "pages": [
+  {
+   "auth_required": false,
+   "body_bytes": 0,
+   "body_sha256": "",
+   "body_truncated": false,
+   "captcha": false,
+   "captcha_reason": "",
+   "cf_mitigated": "",
+   "checked_at": "2026-09-27T09:04:00+09:00",
+   "content_encoding": "",
+   "content_type": "text/html; charset=utf-8",
+   "error": "",
+   "final_url": "https://www.onamae.com/auc/jp/",
+   "http_status": 302,
+   "items": {
+    "入札履歴": false,
+    "入札数": false,
+    "入札者": false,
+    "現在価格": false,
+    "終了日時": false,
+    "開始日時": false
+   },
+   "kind": "list",
+   "password_field": false,
+   "redirect": true,
+   "redirect_to": "https://www.onamae.com/404",
+   "requested_url": "https://www.onamae.com/auc/jp/",
+   "retry_after": "",
+   "stop_reason": "転送を返した（辿らない）：https://www.onamae.com/404"
+  }
+ ],
+ "result": "STOP",
+ "robots": {
+  "body_bytes": 1915,
+  "body_sha256": "e98045318c77269dcefcf406fc912ee4b6fcd89505a7818ddde5caeab5ca7a7c",
+  "checked_at": "2026-09-27T09:03:55+09:00",
+  "content_type": "text/plain;charset=UTF-8",
+  "crawl_delay": null,
+  "final_url": "https://www.onamae.com/robots.txt",
+  "http_status": 200,
+  "judgment_reason": "robots.txt を読んだ",
+  "kujiraya_judgment": "通す",
+  "redirect": false,
+  "redirect_to": "",
+  "requested_url": "https://www.onamae.com/robots.txt",
+  "response_kind": "valid_robots",
+  "target_allowed": {
+   "list": true
+  }
+ },
+ "run": {
+  "job": "kakunin",
+  "repo": "ogataten-nippo",
+  "run_attempt": "1",
+  "run_id": "36281310067",
+  "workflow": "VirgoB77/ogataten-nippo/.github/workflows/kakunin.yml@refs/heads/main"
+ },
+ "schema": 1,
+ "source_id": "onamae-com",
+ "started_at": "2026-09-27T09:03:50+09:00",
+ "stop_reason": "list：転送を返した（辿らない）：https://www.onamae.com/404"
+}
