@@ -31,7 +31,7 @@
 | `chien-shintetsu-co-jp` | 未確認 | 未確認 | — |  | 神戸電鉄 | ogataten-nippo | 1 | `2a73ece73993709a2b524506ffc06d6ccad51c08aba1b46622de746b59dab6d4` |
 | `chien-westjr-co-jp` | 未確認 | 未確認 | — |  | JR西日本 | ogataten-nippo | 1 | `b84fb49f3312557bafed8cfa3d77f9a59f5909648baff956d615b110f2e9d727` |
 | `chien-zenkoku-mlit` | 未確認 | 未確認 | — |  | 国土交通省 | ogataten-nippo | 1 | `e5dc51eea19c70d3dc1efec79a89fb8f1e9999ab7452624ffe4bab6d5fd714ee` |
-| `dropcatch-com` | 未確認 | 未確認 | — |  | DropCatch | 未定 | 1 | `ea467a99def405200943c5eb22ba479f9b0c4b551451cbd7879b9e00842e4c16` |
+| `dropcatch-com` | 未確認 | 未確認 | — |  | DropCatch | 未定 | 2 | `a5ef23ee0abff21027251734e1c8d4d1ac1adccf92e581840477d36b8c939c29` |
 | `floor-abeno-qs` | 未確認 | 未確認 | — |  | 東急不動産 | ogataten-nippo | 1 | `e7c92bce29077959d1d384f2bcc11891bb88cfb6b5e736e2327f9b6701e356f2` |
 | `floor-aeon-itami` | 未確認 | 未確認 | — |  | イオンモール | ogataten-nippo | 1 | `32919075e8865cb92583916b7e68c5aacd0feee966761d4f41b68ff40829ab64` |
 | `floor-aeon-kyoto` | 未確認 | 未確認 | — |  | イオンモール | ogataten-nippo | 1 | `2742a62119950c63f8462f538e4eeed5da3131079476884ebe6551d533cca6b5` |
