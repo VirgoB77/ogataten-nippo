@@ -15,7 +15,7 @@
 | カード | step 0 の区分 | 正式状態 | 移行元の語 | 控え | 相手 | 担当 | 版 | カード指紋 |
 | --- | --- | --- | --- | --- | --- | --- | ---: | --- |
 | `chizu-geospatial` | 取ってよい候補 | 未確認 | 取ってよい | 制限の文言あり | G空間情報センター | ogataten-nippo | 1 | `e078e1ec157dba34cd1963d929ce39ff90a9573a596e7ceca128e7bad930d417` |
-| `floor-gardens` | 規約未確定 | 規約未確定 | 規約未確定 | 制限の文言あり | 阪急阪神 | ogataten-nippo | 1 | `4dbbbde37b22e1865004013c9230fa164225284ec23c81ff38581d0a91701fb9` |
+| `floor-gardens` | 規約未確定 | 取ってはいけない | 規約未確定 | 制限の文言あり | 阪急阪神 | ogataten-nippo | 2 | `e0b9d1f1fe55f189526e246d51d7a31757916b9a42b3fad91f46b2b21d506fd1` |
 | `unei-hankyu-hanshin-hd` | 規約未確定 | 規約未確定 | 規約未確定 | 制限の文言あり | 阪急阪神 | ogataten-nippo | 1 | `36eeb7fba6cfe4bccb32a6019abf722ed142efcea793c17240725db976ec67cc` |
 | `floor-lalaport-koshien` | 取ってはいけない | 取ってはいけない | 取ってはいけない | 制限の文言あり | 三井不動産 | ogataten-nippo | 1 | `3ad106af99dcbf281687c2d724857781d45f8f6a564d618d8199a2565e4f0b1d` |
 | `teiden-kyuden-co-jp` | 取ってはいけない | 取ってはいけない | 取ってはいけない | 制限の文言あり | 九州電力送配電 | ogataten-nippo | 1 | `b42aef35c91a436c8333512143e7baad7c84f074d4ede9b9b30d8def76777425` |
