@@ -519,6 +519,42 @@ class 途中で止まる(PfOki):
                 self.assertTrue(rec["pages"][0]["captcha"])
                 self.assertEqual(self.nise.kita, [ROBOTS, ICHIRAN])
 
+    def test_チャレンジの画面は_本来の中身があっても止める(self):
+        # 正本 3.4a（2026-09-29）：チャレンジの画面そのものの印は、中身の語があっても止める
+        for body in (b"<html><title>Just a moment...</title>" + "現在価格 入札数".encode("utf-8") + b"</html>",
+                     b"<script>window._cf_chl_opt={}</script>" + "現在価格 入札数".encode("utf-8"),
+                     '<div class="cf-turnstile"></div>現在価格 入札数'.encode("utf-8")):
+            with self.subTest(body=body[:30]):
+                self.setUp()
+                rec = self.dasu({ROBOTS: tk.ROBOTS_OK,
+                                 ICHIRAN: (200, {"Content-Type": "text/html"}, body), SHOUSAI: SHOUSAI_OK})
+                self.tomaru(rec, "チャレンジ")
+                self.assertTrue(rec["pages"][0]["captcha"])
+
+    def test_CAPTCHAのscriptの読み込みだけでは_本来の中身がそろっていれば止めない(self):
+        # challenge 用の script を読み込んでいるだけで、一覧の中身（確かめる項目）が全部あるページ
+        body = ('<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>'
+                '<script src="/cdn-cgi/challenge-platform/scripts/jsd/main.js"></script>'
+                '<html>現在価格 入札数 入札履歴 <a href="/auction/item/123">x</a></html>').encode("utf-8")
+        rec = self.dasu({ROBOTS: tk.ROBOTS_OK,
+                         ICHIRAN: (200, {"Content-Type": "text/html"}, body), SHOUSAI: SHOUSAI_OK})
+        self.assertEqual(rec["result"], "完了", rec["stop_reason"])
+        self.assertFalse(rec["pages"][0]["captcha"])
+        self.assertTrue(rec["pages"][0]["captcha_script_only"])      # 記録には残す
+
+    def test_CAPTCHAの語があり_本来の中身が一部しか無ければ止める(self):
+        # 曖昧なときは人が確かめる（見落とす向きに倒さない）
+        body = ('<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>'
+                '<html>現在価格</html>').encode("utf-8")
+        rec = self.dasu({ROBOTS: tk.ROBOTS_OK,
+                         ICHIRAN: (200, {"Content-Type": "text/html"}, body), SHOUSAI: SHOUSAI_OK})
+        self.tomaru(rec, "人が確かめる")
+
+    def test_記録はrouteの種別を持つ(self):
+        self.kyoka()
+        rec = self.mon().kakunin(KID)
+        self.assertEqual(rec["route_kind"], "web")
+
     def test_ログイン画面が200で返った(self):
         rec = self.dasu({ROBOTS: tk.ROBOTS_OK,
                          ICHIRAN: (200, {"Content-Type": "text/html"},
