@@ -1308,6 +1308,8 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
 - **本番の保存の境界（3.4a）**：観測は `Kado.kansoku_hozon()` で金庫へ保存し、出どころが1件でも欠ける・形が違うなら1件も保存しない。
 - **対象host**：カードの対象host は hostname（小文字）の並び。文字列1本・形の違う要素があるカードは正式状態にならない。
   照合は並びの要素との完全一致だけ（機械の route も manual も同じ）。
+- **HTTP メソッド（3.4a）**：web・api・member は GET だけ。public_form_post はカードの「公開form」と1字も違わない POST
+  （と、その form のページの GET）だけ。POST の応答の転送は辿らない（`Kado.tensou_saki` に Location を残して止める）。
   観測をこの形で保存する段（`hajimeru(..., kansoku_demoto=True)`）だけが本番の取得（`sesshon`）に入れる。
 - **正式状態が「取ってよい」でないカードでは、どの段も取りに行かない**（1回だけ見る段も同じ）。
   ほかに、再確認期限を過ぎた・機械札が付いた・正規提供手段を調べていない・承認された行為に
@@ -1338,6 +1340,9 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
 大型店日報で初回を安全に1巡させてから、共通化が要るかを決める）。
 **3.4a の共通の決まり**（根拠5・STOP 条件・route・商品用継続観測の可否・出どころ・manual の承認の経路・本番の保存の境界）は、
 2026-09-29 に4つの置き場で同じ中身にした。**正本は1つなので、置き場ごとに門の答えを変えない。**
+**Facility9（`VirgoB77/facility9`）は、この取得門を使う5つ目の置き場**（2026-09-30）。`common/kado.py` は姉妹3つと同じ中身。
+カード・運営者承認・相手台帳の写しを自分の `data/ref/` に持ち、Canary（`python3 -m facility9.canary`）で1本だけ取って
+private の金庫の quarantine に置く。相手台帳の正本はここ（大型店日報）のまま。
 
 **置き場をまたぐ予約台帳**（同じ相手へ、同じ日本時間の日に、2つの置き場から行かない）が
 4つの置き場に入っている。台帳は private の `VirgoB77/kujiraya-aite-yoyaku`。
@@ -1429,6 +1434,25 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
 
 **文書化された公式 API・feed は、別の route として扱う**（下の「route を分ける」）。
 
+#### 公開 Web の download form（public_form_post。2026-09-30）
+
+公開ページにある**ふつうのダウンロードの form**（ボタンを押すと POST が出るもの）は、route の種別 `public_form_post` で扱う。
+特定の取得元だけの特例ではない。**次を全部満たすときだけ**。1つでも外れれば HOLD。
+
+    誰でも見られる公開ページの form／login・auth・CAPTCHA・challenge・access control なし
+    action・method（POST）・送る値が、ページの HTML にそのまま書いてある
+    推し量った引数を足さない／内部の XHR を使わない／download のためだけ（登録・更新・削除などの副作用なし）
+    Cookie に頼らない・Authorization を使わない・Referer を偽らない
+    action の道すじの robots を確かめた／転送の先は、辿る前に host・path の robots を確かめる
+
+カードに、ページから写した「公開form」（action・method・送る値・見たページ・見た日）を書く。
+**門は、それと action・中身が1字も違わない POST だけを通す**（1字違い・欄を足す・欄が欠ける・並びが違う・
+Cookie／Authorization／Referer の見出しつきは止める）。**POST の応答の転送（3xx）は辿らない**：Location を記録して止め、
+新しい host・path の robots と運営者の判断のあとでなければ先へ進まない。
+401・403・429・503・Retry-After はほかの route と同じくその相手を止める。CAPTCHA・challenge・session や token を
+求める・Cookie に頼る・想定外は HOLD／STOP。根拠5（公開された事実の web の観測）は web だけのままで、
+public_form_post は根拠1〜4 で判定する。osaka-city（残作業59）は Cookie が前提なので、public_form_post に当たらない。
+
 #### 事実・数値とは
 
     事実・数値に含める  店名・施設名・法人名・区画番号・階・ドメイン・価格・入札数・状態・日時・数量・面積・
@@ -1445,7 +1469,7 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
 1つでも当たれば、その自動取得の route は止める。根拠5のカードは、10個すべてについて
 **確かめた中身つきで**「当たらない」を書く（「該当文言なし」だけは理由にならない）。
 
-1. **robots**：対象の User-Agent・道すじが Disallow → その自動取得 route を止める
+1. **robots**：対象の User-Agent・道すじが Disallow → その自動取得 route を止める（public_form_post は form の action の道すじ、転送があればその先の host・道すじも）
 2. **アクセス制御**：ログイン・認証・CAPTCHA・チャレンジ・403 などを機械で突破しないと取れない → その route を止める
 3. **明示的な bot 禁止**：相手が公開 Web 上で、bot・crawler・scraping・robot・自動取得・automated access・
    programmatic access などを名指しで禁じている → 同意の有無にかかわらず、自主線として自動取得を止める
@@ -1497,7 +1521,11 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
 
 #### route を分ける
 
-route の種別は **web・api・member・manual** の4つ。**同じ会社でも別の route。1 route＝1カードを基本にする。**
+route の種別は **web・api・member・manual・public_form_post** の5つ。**同じ会社でも別の route。1 route＝1カードを基本にする。**
+**門が通す HTTP メソッドは route ごとに決まっている**（`common/kado.py` の `METHOD_ROUTE`）：web・api・member は GET だけ
+（api で GET 以外が要るときは、カードで承認する欄を足してから）、manual は機械の取得をしない、public_form_post は
+form のページを確かめる GET と、カードの「公開form」と1字も違わない POST だけ。**既存の route から勝手な POST を出せる道は閉じた**
+（メソッドの確かめは通信の前。robots も取りに行かない）。GET の転送は、これまでどおり1本ずつ門を通して辿る。
 API の禁止を web へ当然には広げない。web が使えることを、API の規約を読まずに済ませる理由にもしない。
 
 観測の記録は1件ずつ出どころを持つ：source id・route id・route の種別・observed_at（時差つき）。
