@@ -45,6 +45,7 @@ MAWARIKOMU = re.compile(
     r"|(?<!\.)\brequests\.(get|post|put|delete|head|Session)\("
     r"|^\s*import\s+requests\b|^\s*from\s+requests\b"
     r"|\burllib3\b|socket\.create_connection|cafile\s*=|urlopen\([^)]*context\s*="
+    r"|capath\s*=|OpenerDirector"     # （2026-10-01 独立監査 Q2：capath=・OpenerDirector を足した。urlopen の context=・cafile=・capath= は門でも止める）
 )
 KADO_SOTO = re.compile(r"#\s*kado-soto\s*:")
 

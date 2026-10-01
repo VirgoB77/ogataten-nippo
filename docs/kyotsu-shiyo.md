@@ -1281,7 +1281,7 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
   - 掲載期限が近いものを警告する（例：`第12号はあと21日で閲覧できなくなります`）。
   - 取り込み済みは台帳に記録し、二度と催促しない。
 
-### 取りに行く前の門（`common/kado.py`。4つの置き場に置く）
+### 取りに行く前の門（`common/kado.py`。5つの置き場に置く）
 
 **この門を通らない通信は、1本も出さない。** ここには、実装されていることだけを書く
 （仕組みの本文は `common/kado.py` の冒頭、確かめ方は `tests/test_kado.py`）。
@@ -1311,6 +1311,13 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
 - **HTTP メソッド（3.4a）**：web・api・member は GET だけ。public_form_post はカードの「公開form」と1字も違わない POST
   （と、その form のページの GET）だけ。POST の応答の転送は辿らない（`Kado.tensou_saki` に Location を残して止める）。
   観測をこの形で保存する段（`hajimeru(..., kansoku_demoto=True)`）だけが本番の取得（`sesshon`）に入れる。
+- **見出し（3.4a。2026-10-01）**：どの route・メソッドでも、取得段は Cookie・Cookie2・Authorization・Proxy-Authorization・
+  Host の見出しを付けない（Cookie・認証に頼らない・接続先を差し替えない）。GET の Referer は、カードの対象host のページだけ
+  （偽らない）。public_form_post の POST に付けてよい見出しは **許す一覧**（Content-Type＝application/x-www-form-urlencoded・
+  User-Agent）だけで、それ以外は止める。**大型店日報の osaka-city のクッキーを持つ経路（残作業59）は、門で止まる**。
+- **URL範囲（3.4a。2026-10-01）**：前方一致にしない。「/」で終わる範囲はその道すじの下、「?」の付いた範囲は道すじと
+  問い合わせまで完全一致（`?id=21424` は `?id=214240` に当たらない）、それ以外は道すじの完全一致（問い合わせの付いた URL は
+  入れない）。scheme・host・port が違う・userinfo・`\`・`%2e` `%2f` `%5c` を含む URL は入れない（`kado.han_ni_hairu`）。
 - **正式状態が「取ってよい」でないカードでは、どの段も取りに行かない**（1回だけ見る段も同じ）。
   ほかに、再確認期限を過ぎた・機械札が付いた・正規提供手段を調べていない・承認された行為に
   「自動取得」「内部保存」が無い、のどれでも止める。
@@ -1337,6 +1344,13 @@ public なリポジトリのコミットメッセージ・PR の題名と本文�
   金庫にする形）は、この確かめで止まる（残作業63）。
 - **import しただけで閉じる**：`common/kado.py` を import した時点で、門の無い通信は出なくなる。
   取りに行く段は、実行の最初に `kado.hajimeru()` を呼ぶ。呼ばない段は、外へ出られない。
+  file:・data: の URL も門で止める。`urlopen` に context・cafile・capath を渡す形（既定の opener＝門を使わない形）は
+  門が止める。get_method・data を差し替えた Request は出さない。行を見る見張り（各置き場の `tests/test_kado_kouzou.py`）は
+  build_opener・http.client・requests・urllib3・socket.create_connection・cafile=・capath=・OpenerDirector を見る（2026-10-01）。
+- **運営者承認の細部（2026-10-01）**：承認日が今日より後・承認ファイルが symlink か承認の置き場の外・取り込み先の main
+  （`refs/remotes/origin/main`）があるのに承認ファイルが main と違う（別の branch の承認）なら、承認と認めない。
+- **今日の控えが壊れていたら止める（2026-10-01）**：`data/ref/aite-kyou.json` が読めなければ、同じ相手へ1日1回を
+  確かめられないので取りに行かない。壊れた控えを新しい控えで上書きしない。
 - **門は時計で日付を決めない**：日付は `RUN_DATE`（またはその段が渡す日付）。
 
 **旧「自動取得・スクレイピング運用基準 v1（rev2・rev3）」「民間公開 Web（旧版。v3）」「開始パック」その他の作業案は、
@@ -1455,7 +1469,7 @@ private の金庫の quarantine に置く。相手台帳の正本はここ（大
 
 カードに、ページから写した「公開form」（action・method・送る値・見たページ・見た日）を書く。
 **門は、それと action・中身が1字も違わない POST だけを通す**（1字違い・欄を足す・欄が欠ける・並びが違う・
-Cookie／Authorization／Referer の見出しつきは止める）。**POST の応答の転送（3xx）は辿らない**：Location を記録して止め、
+Cookie／Authorization／Referer など、許す一覧（Content-Type・User-Agent）の外の見出しつきは止める）。**POST の応答の転送（3xx）は辿らない**：Location を記録して止め、
 新しい host・path の robots と運営者の判断のあとでなければ先へ進まない。
 401・403・429・503・Retry-After はほかの route と同じくその相手を止める。CAPTCHA・challenge・session や token を
 求める・Cookie に頼る・想定外は HOLD／STOP。根拠5（公開された事実の web の観測）は web だけのままで、
@@ -1477,7 +1491,10 @@ public_form_post は根拠1〜4 で判定する。osaka-city（残作業59）は
 （送れなければ止まる）。取る段は、印が**この実行のもの**（実行の id・再実行の回・今日・カードの指紋）で、送ってあるときだけ
 外へ出る。STOP・HOLD・manifest を保存できなかった・想定外の例外のどれでも印は残り、2回目（再実行を含む）は外へ出す前に止まる。
 **印を消すのは運営者だけ**（結果を見て決める。機械は消さない）。本文が途中で切れた（Content-Length と違う）ときは、
-途中までの原本を保存しないで止める。名乗りは固定し、外から受け取るのは連絡先の URL だけ。
+途中までの原本を保存しないで止める。200 でも Retry-After があれば止める（保存しない）。CSV は Content-Type と1行目の区切りまで
+見る。form の送り方を変える部品（enctype・accept-charset・formaction など）・CAPTCHA／challenge の部品があるページ、
+送る値に ASCII の外があるのにページの文字コードが UTF-8 と確かめられないページでは POST しない（HOLD）。
+結果の記録に出す値（相手の見出し・Location 由来）は制御文字を除いて長さを切る。名乗りは固定し、外から受け取るのは連絡先の URL だけ。
 Facility9 の Canary の形・手で押す手順は `VirgoB77/facility9` の `docs/kado-canary.md`。
 
 #### 事実・数値とは
