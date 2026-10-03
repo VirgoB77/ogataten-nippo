@@ -774,11 +774,31 @@
     "ogataten-nippo"
    ],
    "担当": "ogataten-nippo"
+  },
+  "港区": {
+   "host": [
+    "opendata.city.minato.tokyo.jp"
+   ],
+   "id": "minato-city",
+   "カードがある置き場": [
+    "facility9"
+   ],
+   "担当": "facility9"
+  },
+  "京都市": {
+   "host": [
+    "data.city.kyoto.lg.jp"
+   ],
+   "id": "kyoto-city",
+   "カードがある置き場": [
+    "facility9"
+   ],
+   "担当": "facility9"
   }
  },
  "yoyaku": {
   "hitsuyou": true,
   "repo": "VirgoB77/kujiraya-aite-yoyaku"
  },
- "版": 2
+ "版": 3
 }
